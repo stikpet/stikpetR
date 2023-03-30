@@ -1,0 +1,77 @@
+#' Rank biserial correlation coefficient (one-sample)
+#' 
+#' @param data vector with the numeric scores
+#' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
+#' @return dataframe with the hypothesized median (mu) and the effect size measure
+#' 
+#' @examples  
+#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
+#' r_rank_biserial_os(data)
+#' r_rank_biserial_os(data, mu=2)
+#' 
+#' @details 
+#' The formula used (Kerby, 2014, p. 5):
+#' \deqn{r_{rb} = \frac{\left|R_{pos} - R_{neg}\right|}{R}}
+#' This is actually the same as (King & Minium, 2008, p. 403):
+#' \deqn{r_{rb} = \frac{4\times\left|R_{min} - \frac{R_{pos} + R_{min}}{2}\right|}{n\times\left(n + 1\right)}}
+#' 
+#' *Symbols used:*
+#' \itemize{
+#' \item \eqn{R_{pos}} the sum of the ranks with a positive deviation from the hypothesized median 
+#' \item \eqn{R_{neg}} the sum of the ranks with a positive deviation from the hypothesized median 
+#' \item \eqn{R_{min}} the minimum of \eqn{R_{pos}},\eqn{R_{neg}}
+#' \item \eqn{n} the number of ranks with a non-zero difference with the hypothesized median 
+#' \item \eqn{R} the sum of all ranks, i.e. \eqn{R_{pos} + R_{neg}}
+#' }
+#' 
+#' If no hypothesized median is provided, the midrange is used, defined as:
+#' \deqn{\frac{x_{max} - x_{min}}{2}}
+#' Where \eqn{x_{max}} is the maximum value of the scores, and \eqn{x_{min}} the minimum
+#' 
+#' **Alternative**
+#' 
+#' The *effectsize* library has a similar function: *rank_biserial()*
+#'  
+#' @author 
+#' P. Stikker
+#' 
+#' Please visit: https://PeterStatistics.com
+#' 
+#' YouTube channel: https://www.youtube.com/stikpet
+#' 
+#' @references 
+#' Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonparametric correlation. *Comprehensive Psychology*, 3, 1–9. https://doi.org/10.2466/11.IT.3.1
+#' 
+#' King, B. M., & Minium, E. W. (2008). *Statistical reasoning in the behavioral sciences* (5th ed.). John Wiley & Sons, Inc.
+#'  
+#' @export
+r_rank_biserial_os <- function(data, mu=NULL){
+  
+  #set hypothesized median to mid range if not provided
+  if (is.null(mu)) {
+    mu = (min(data) + max(data)) / 2
+  }
+  
+  #remove scores equal to hypothesized median
+  data = data[data != mu]
+  
+  # Determine the differences with the hypothesized median, and the corresponding signs
+  diffs = abs(data - mu)
+  signs = sign(data - mu)
+  
+  # Use the rank function to determine the ranks
+  ranks = rank(diffs)
+  
+  # Sum the positive and negative ranks
+  rPlus = sum(ranks[signs==1])
+  rNeg = sum(ranks[signs==-1])
+  
+  # Calculate the rank biserial correlation coefficient
+  rb = (rPlus - rNeg) / (rPlus + rNeg)
+  
+  testResults <- data.frame(mu, rb)
+  
+  return(testResults)
+}
+
+
