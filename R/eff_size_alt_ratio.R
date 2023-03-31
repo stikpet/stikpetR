@@ -52,9 +52,9 @@
 #' @author 
 #' P. Stikker
 #' 
-#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
+#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
 #' 
-#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
+#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
 #' 
 #' @export
 es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){

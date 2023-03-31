@@ -38,6 +38,8 @@ A nominal variable can also be used and the two categories to compare indicated.
 
 A significance in general is the probability of a result as in the sample,
 or more extreme, if the null hypothesis is true.
+
+Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
 }
 \details{
 Also sometimes called a 'proportion' test.
@@ -86,7 +88,7 @@ and Wald test (\code{\link{ts_wald_os}})
 \author{
 P. Stikker
 
-Please visit: https://PeterStatistics.com
+Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
 
-YouTube channel: https://www.youtube.com/stikpet
+YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
 }

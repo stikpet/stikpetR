@@ -1,4 +1,3 @@
-library(polycor)
 #' Polychoric Correlation Coefficient
 #' 
 #' @param var1 A vector with the scores data
@@ -31,7 +30,7 @@ r_polychoric <- function(dataVar, groupVar){
   df = na.omit(df)
   colnames(df) = c("score", "group")
   
-  rp = polychor(table(df))
+  rp = polycor::polychor(table(df))
   
   return(rp)
   

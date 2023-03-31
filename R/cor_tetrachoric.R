@@ -1,5 +1,3 @@
-library(fMultivar)
-
 #' helper function for Kirk method
 hEfn1 <- function(xx, w) {
   f = exp(-1 * xx * w / 2);
@@ -14,6 +12,8 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 
 
 #' Tetrachoric Correlation Coefficient
+#' 
+#' @importFrom fMultivar pnorm2d
 #' 
 #' @param var1 A vector with the data from the first variable
 #' @param var2 A vector with the data from the second variable
@@ -99,7 +99,7 @@ r_tetrachoric <- function(var1, var2, method="search"){
       i <- -1
       while (prt < p && i < 1) {
         rt <- rt + 1/(10**nd)
-        prt <- pnorm2d(z1, z2, rt)[1]
+        prt <- fMultivar::pnorm2d(z1, z2, rt)[1]
         i <- i + 0.1
       }
       rt <- rt - 1/(10**nd)
@@ -334,7 +334,7 @@ r_tetrachoric <- function(var1, var2, method="search"){
     
     #CHECK IF ANY CELL FREQUENCY IS NEGATIVE
     if (a < 0 || b < 0 || c < 0 || d < 0) {
-      System.out.println("error in input");
+      print("error in input");
       r = 2;
     } 
     else {
@@ -352,7 +352,7 @@ r_tetrachoric <- function(var1, var2, method="search"){
       #DELTA IS 0.0, 0.5 OR -0.5 ACCORDING TO WHICH CELL IS ZERO
       if (kdelta == 4) {
         #GO TO 92
-        System.out.println("error row or column total is zero");
+        print("error row or column total is zero");
         r = 2;
       } 
       else {
@@ -590,11 +590,11 @@ r_tetrachoric <- function(var1, var2, method="search"){
                   #TO AVOID UNDERFLOWS, TEMPA AND TEMPB ARE USED
                   tempa = (zab - rr * xla) / rrsq;
                   if (tempa >= -6) {
-                    sum = sum + w[iquad] * mAexp(-0.5 * xla^2) * pnorm(tempa);
+                    sum = sum + w[iquad] * exp(-0.5 * xla^2) * pnorm(tempa);
                   }
                   tempb = (zab - rr * xlb) / rrsq;
                   if (tempb >= -6) {
-                    sum = sum + w[iquad] * mAexp(-0.5 * xlb^2) * pnorm(tempb);
+                    sum = sum + w[iquad] * exp(-0.5 * xlb^2) * pnorm(tempb);
                   }
                 }
                 #44
@@ -613,7 +613,7 @@ r_tetrachoric <- function(var1, var2, method="search"){
                 if (iter >= niter) {
                   #GOTO 93
                   skip70 = TRUE;
-                  skip85 = false;
+                  skip85 = FALSE;
                 }
                 
                 #ESTIMATE CORRELATIONFOR NEXT ITERATION BY LINEAR INTERPOLATION
@@ -711,7 +711,7 @@ r_tetrachoric <- function(var1, var2, method="search"){
     r <- cos(pi/(1+OR**alp))
     
     for (i in 1:10) {
-      L <- pnorm2d(h, k, r)[1]
+      L <- fMultivar::pnorm2d(h, k, r)[1]
       Ld <- exp(-(h**2-2*r*h*k+k**2)/(2*(1-r**2)))/(2*pi*sqrt(1-r**2))
       r <- r - (L - a/n)/Ld
     }

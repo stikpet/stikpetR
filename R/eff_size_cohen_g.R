@@ -8,7 +8,7 @@
 #' Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003), 
 #' score or Wald test. It is simply the difference of the sample proportion with 0.5. 
 #' 
-#' A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}(here on YouTube)
+#' A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
 #' 
 #' @details 
 #' The formula used is (Cohen, 1988, p. 147):
@@ -42,9 +42,9 @@
 #' @author 
 #' P. Stikker
 #' 
-#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
+#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
 #' 
-#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
+#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
 #' 
 #' @export
 es_cohen_g <- function(data, codes=NULL){

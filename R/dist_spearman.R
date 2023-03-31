@@ -1,5 +1,3 @@
-library(pspearman)
-
 #' Spearman Rho Distribution
 #' @description 
 #' The Spearman Rank Correlation Coefficient Distribution. Will return a two-tailed p-value
@@ -198,10 +196,10 @@ di_spearman <- function(n, rs,
   else if (method=="exact") {
     S = (n**3 - n)*(1 - rs)/6
     if (S > (n**3 - n)/6) {
-      pValue = pspearman(S, n, lower.tail=FALSE, approximation="exact")
+      pValue = pspearman::pspearman(S, n, lower.tail=FALSE, approximation="exact")
     }
     else{
-      pValue = pspearman(S, n, lower.tail=TRUE, approximation="exact")
+      pValue = pspearman::pspearman(S, n, lower.tail=TRUE, approximation="exact")
     }
     pValue = min(2*pValue, 1)
     results = data.frame(pValue)

@@ -106,7 +106,7 @@
 #' r_spearman_rho(ord1, ord2, method="AS89", cc=TRUE)
 #' 
 #' @export
-r_spearman_rho <- function(ord1, ord, 
+r_spearman_rho <- function(ord1, ord2, 
                            method=c("t", "z-fieller", "z-olds", "iman-conover", "AS89", "exact"), 
                            cc=FALSE, iters=500){
   

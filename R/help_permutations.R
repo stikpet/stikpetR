@@ -24,7 +24,7 @@ he_permutations <- function(n){
   if(n==1){
     return(matrix(1))
   } else {
-    sp <- permutations(n-1)
+    sp <- he_permutations(n-1)
     p <- nrow(sp)
     A <- matrix(nrow=n*p,ncol=n)
     for(i in 1:n){

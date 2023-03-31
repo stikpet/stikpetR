@@ -1,7 +1,7 @@
 #' Rule-of-Thumb for Cohen g
 #' 
 #' @param g the Cohen g value
-#' @param qual optional setting for which rule of thumb to use. Currently only 'cohen'
+#' @param qual optional setting for which rule of thumb to use. Currently only "cohen"
 #' @return dataframe with the qualification and source
 #' 
 #' @examples 

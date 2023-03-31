@@ -6,7 +6,7 @@
 \usage{
 r_spearman_rho(
   ord1,
-  ord,
+  ord2,
   method = c("t", "z-fieller", "z-olds", "iman-conover", "AS89", "exact"),
   cc = FALSE,
   iters = 500
@@ -15,13 +15,13 @@ r_spearman_rho(
 \arguments{
 \item{ord1}{the numeric scores of the first variable}
 
+\item{ord2}{the numeric scores of the second variable}
+
 \item{method}{the test to be used}
 
 \item{cc}{boolean to indicate the use of a continuity correction}
 
 \item{iters}{the number of iterations to use, only applicable if Iman-Conover is used}
-
-\item{ord2}{the numeric scores of the second variable}
 }
 \value{
 A dataframe with:

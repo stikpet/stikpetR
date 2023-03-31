@@ -9,7 +9,7 @@ th_cohen_g(g, qual = "cohen")
 \arguments{
 \item{g}{the Cohen g value}
 
-\item{qual}{optional setting for which rule of thumb to use. Currently only 'cohen'}
+\item{qual}{optional setting for which rule of thumb to use. Currently only "cohen"}
 }
 \value{
 dataframe with the qualification and source

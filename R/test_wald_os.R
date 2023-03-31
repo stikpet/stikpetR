@@ -28,7 +28,7 @@
 #' A significance in general is the probability of a result as in the sample, 
 #' or more extreme, if the null hypothesis is true. 
 #' 
-#' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}(video).
+#' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
 #' 
 #' @details 
 #' This test differs from the one-sample score test in the calculation of the standard error. 
@@ -81,9 +81,9 @@
 #' @author 
 #' P. Stikker
 #' 
-#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
+#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
 #' 
-#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
+#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
 #' 
 #' @export
 ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=c("none", "yates")){

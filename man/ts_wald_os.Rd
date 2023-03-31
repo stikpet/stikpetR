@@ -4,7 +4,7 @@
 \alias{ts_wald_os}
 \title{One-Sample Wald Test}
 \usage{
-ts_wald_os(data, codes = NULL, p0 = 0.5, cc = NULL)
+ts_wald_os(data, codes = NULL, p0 = 0.5, cc = c("none", "yates"))
 }
 \arguments{
 \item{data}{A vector with the data}
@@ -13,13 +13,33 @@ ts_wald_os(data, codes = NULL, p0 = 0.5, cc = NULL)
 
 \item{p0}{The hypothesized proportion for the first category (default is 0.5)}
 
-\item{cc}{c(NULL, "yates") use of continuity correction (default is NULL)}
+\item{cc}{use of continuity correction (default is "none")}
 }
 \value{
-dataframe with test-value, two-sided p-value and test used
+Dataframe with:
+\item{statistic}{the test value}
+\item{pValue}{two-sided p-value}
+\item{testUsed}{a description of the test used}
 }
 \description{
-One-Sample Wald Test
+A one-sample score test could be used with binary data, to test if the two categories
+have a significantly different proportion. It is an approximation of a binomial test,
+by using a standard normal distribution. Since the binomial distribution is discrete
+while the normal is continuous, a so-called continuity correction can (should?) be
+applied.
+
+The null hypothesis is usually that the proportions of the two categories in the
+population are equal (i.e. 0.5 for each). If the p-value of the test is below the
+pre-defined alpha level (usually 5\% = 0.05) the null hypothesis is rejected and
+the two categories differ in proportion significantly.
+
+The input for the function doesn't have to be a binary variable.
+A nominal variable can also be used and the two categories to compare indicated.
+
+A significance in general is the probability of a result as in the sample,
+or more extreme, if the null hypothesis is true.
+
+Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
 }
 \details{
 This test differs from the one-sample score test in the calculation of the standard error.
@@ -44,10 +64,10 @@ If the Yates continuity correction is used the formula changes to (Yates, 1934, 
 The formula used in the calculation is the one from IBM (2021, p. 997).
 IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 refer to Wald (1943)
-
-\strong{Alternative}
+\subsection{Alternative}{
 
 No alternative library that has this function exist to my knowledge.
+}
 }
 \examples{
 data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
@@ -63,10 +83,17 @@ Wald, A. (1943). Tests of statistical hypotheses concerning several parameters w
 
 Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
 }
+\seealso{
+Effect size measures that could go with the test are Cohen g (\code{\link{es_cohen_g}}),
+Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
+
+Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}),
+and Score test (\code{\link{ts_score_os}})
+}
 \author{
 P. Stikker
 
-Please visit: https://PeterStatistics.com
+Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
 
-YouTube channel: https://www.youtube.com/stikpet
+YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
 }

@@ -15,7 +15,10 @@ es_cohen_g(data, codes = NULL)
 Cohen's g as a single value
 }
 \description{
-Cohen's g
+Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003),
+score or Wald test. It is simply the difference of the sample proportion with 0.5.
+
+A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
 }
 \details{
 The formula used is (Cohen, 1988, p. 147):
@@ -25,12 +28,10 @@ The formula used is (Cohen, 1988, p. 147):
 \itemize{
 \item \eqn{p} is the sample proportion
 }
-
-For a classification use: \emph{th_cohen_g(g)}
-
-\strong{Alternative}
+\subsection{Alternative}{
 
 I'm not aware of any alternative library that has this function.
+}
 }
 \examples{
 data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male")
@@ -40,10 +41,18 @@ es_cohen_g(data)
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
+\seealso{
+This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}),
+score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
+
+Alternatives for Cohen g are the Alternative Ratio (\code{\link{es_alt_ratio}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
+
+For a rule of thumb interpretation use \code{\link{th_cohen_g}}
+}
 \author{
 P. Stikker
 
-Please visit: https://PeterStatistics.com
+Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
 
-YouTube channel: https://www.youtube.com/stikpet
+YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
 }

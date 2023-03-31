@@ -1,6 +1,6 @@
-library(gsl)
-
 #' Pearson Correlation Coefficient
+#' 
+#' @importFrom gsl hyperg_2F1
 #' 
 #' @param var1 the scores on the first variable
 #' @param var2 the scores on the second variable
@@ -188,7 +188,7 @@ r_pearson <- function(var1,
     r = r*(1+(1 - r**2)/(2*(n-3)))
   }
   else if (adj=="olkin-pratt-3") {
-    r = sqrt(1 - (1 - r**2)*hyperg_2F1(1, 1, (n - 1)/2, 1 - r**2))
+    r = sqrt(1 - (1 - r**2)*gsl::hyperg_2F1(1, 1, (n - 1)/2, 1 - r**2))
   }
   else if (adj=="cattin") {
     r = sqrt(1 - (1 - r**2)*(1 + 2*(1 - r**2)/(n - 1) + 8*(1 - r**2)**2/((n - 3)*(n + 1))))

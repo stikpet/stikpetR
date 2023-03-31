@@ -16,10 +16,16 @@ es_alt_ratio(data, codes = NULL, p0 = 0.5, category = NULL)
 \item{category}{Optional category to label as 'success', otherwise the first category found is used.}
 }
 \value{
-dataframe with the two Alternative Ratios (one for each category)
+Dataframe with:
+\item{AR1}{the alternative category for one category}
+\item{AR2}{the alternative category for the other category}
 }
 \description{
-Alternative Ratio
+The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test..
+It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
+
+The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.),
+and referred to as Relative Risk by JonB (2015).
 }
 \details{
 The formula used is:
@@ -30,12 +36,10 @@ The formula used is:
 \item \eqn{p} is the sample proportion of one of the categories
 \item \eqn{\pi} the expected proportion
 }
-
-The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
-
-\strong{Alternatives}
+\subsection{Alternatives}{
 
 I'm not aware of any alternative library that has this function.
+}
 }
 \examples{
 data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Other")
@@ -49,10 +53,16 @@ JonB. (2015, October 14). Effect size of a binomial test and its relation to oth
 
 NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100–132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
 }
+\seealso{
+This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}),
+score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
+
+Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
+}
 \author{
 P. Stikker
 
-Please visit: https://PeterStatistics.com
+Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
 
-YouTube channel: https://www.youtube.com/stikpet
+YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
 }
