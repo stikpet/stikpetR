@@ -3,12 +3,32 @@
 #' @param data A vector with the data
 #' @param codes Optional vector with the two codes to use
 #' @param p0 The hypothesized proportion for the first category (default is 0.5)
-#' @param cc c(NULL, "yates") use of continuity correction (default is NULL)
-#' @return dataframe with test-value, two-sided p-value and test used
+#' @param cc use of continuity correction (default is "none")
+#' @returns 
+#' Dataframe with:
+#' \item{statistic}{the test value}
+#' \item{pValue}{two-sided p-value}
+#' \item{testUsed}{a description of the test used}
 #' 
-#' @examples 
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
-#' ts_wald_os(data, c("Female", "Male"), p0 = 0.5)
+#' @description 
+#' A one-sample score test could be used with binary data, to test if the two categories
+#' have a significantly different proportion. It is an approximation of a binomial test, 
+#' by using a standard normal distribution. Since the binomial distribution is discrete 
+#' while the normal is continuous, a so-called continuity correction can (should?) be 
+#' applied.
+#' 
+#' The null hypothesis is usually that the proportions of the two categories in the 
+#' population are equal (i.e. 0.5 for each). If the p-value of the test is below the 
+#' pre-defined alpha level (usually 5% = 0.05) the null hypothesis is rejected and 
+#' the two categories differ in proportion significantly.
+#' 
+#' The input for the function doesn't have to be a binary variable. 
+#' A nominal variable can also be used and the two categories to compare indicated.
+#' 
+#' A significance in general is the probability of a result as in the sample, 
+#' or more extreme, if the null hypothesis is true. 
+#' 
+#' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}(video).
 #' 
 #' @details 
 #' This test differs from the one-sample score test in the calculation of the standard error. 
@@ -34,17 +54,21 @@
 #' IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 #' refer to Wald (1943)
 #' 
-#' **Alternative**
+#' ## Alternative
 #' 
 #' No alternative library that has this function exist to my knowledge.
 #' 
-#' @author 
-#' P. Stikker
+#' @examples 
+#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
+#' ts_wald_os(data, c("Female", "Male"), p0 = 0.5)
 #' 
-#' Please visit: https://PeterStatistics.com
+#' @seealso 
+#' Effect size measures that could go with the test are Cohen g (\code{\link{es_cohen_g}}), 
+#' Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
+#' Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}), 
+#' and Score test (\code{\link{ts_score_os}})
+#' 
 #' @references 
 #' Agresti, A. (2013). *Categorical data analysis* (3rd ed.). Wiley.
 #' 
@@ -53,11 +77,17 @@
 #' Wald, A. (1943). Tests of statistical hypotheses concerning several parameters when the number of observations is large. *Transactions of the American Mathematical Society, 54*(3), 426–482. https://doi.org/10.2307/1990256
 #' 
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
+#' 
+#' @author 
+#' P. Stikker
+#' 
+#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
+#' 
+#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
+#' 
 #' @export
-ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=NULL){
-  
-  #one-sample Wald test
-  #an approximation using the normal distribution for a one-sample binomial test
+ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=c("none", "yates")){
+  if (length(cc)>1) {cc = "none"}
   
   #if no codes provided use first found
   if (is.null(codes)) {
@@ -78,7 +108,7 @@ ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=NULL){
     ExpProp = 1 - ExpProp}
   
   #Wald approximation
-  if (is.null(cc)){
+  if (cc == "none"){
     p = minCount / n
     q = 1 - p
     se = (p * q / n) ^ 0.5

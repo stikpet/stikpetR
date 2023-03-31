@@ -1,5 +1,15 @@
 #' One-Sample Score Test
 #' 
+#' @param data A vector with the data
+#' @param codes optional vector with the two codes to use
+#' @param p0 optional the hypothesized proportion for the first category (default is 0.5)
+#' @param cc Use of continuity correction (default is "none")
+#' @returns 
+#' Dataframe with:
+#' \item{statistic}{the test value}
+#' \item{pValue}{two-sided p-value}
+#' \item{testUsed}{a description of the test used}
+#' 
 #' @description 
 #' A one-sample score test could be used with binary data, to test if the two categories
 #' have a significantly different proportion. It is an approximation of a binomial test, 
@@ -18,15 +28,7 @@
 #' A significance in general is the probability of a result as in the sample, 
 #' or more extreme, if the null hypothesis is true. 
 #' 
-#' @param data A vector with the data
-#' @param codes optional vector with the two codes to use
-#' @param p0 optional the hypothesized proportion for the first category (default is 0.5)
-#' @param cc Use of continuity correction (default is "none")
-#' @returns 
-#' Dataframe with:
-#' \item{statistic}{the test value}
-#' \item{pValue}{two-sided p-value}
-#' \item{testUsed}{a description of the test used}
+#' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}(video).
 #' 
 #' @details 
 #' Also sometimes called a 'proportion' test.
@@ -75,12 +77,15 @@
 #' @author 
 #' P. Stikker
 #' 
-#' Please visit: https://PeterStatistics.com
+#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
 #'  
 #' @export
 ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){
+  
+  if (length(cc)>1) {cc = "none"}
+  
   #if no codes provided use first found
   if (is.null(codes)) {
     n1 = unname(table(data)[1])

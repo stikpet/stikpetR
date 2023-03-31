@@ -4,7 +4,18 @@
 #' @param codes Optional vector with the two codes to use
 #' @param p0 Optional the hypothesized proportion for the first category (default is 0.5)
 #' @param category Optional category to label as 'success', otherwise the first category found is used.
-#' @return dataframe with the two Alternative Ratios (one for each category)
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{AR1}{the alternative category for one category}
+#' \item{AR2}{the alternative category for the other category}
+#' 
+#' @description 
+#' The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.. 
+#' It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
+#' 
+#' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), 
+#' and referred to as Relative Risk by JonB (2015).
 #' 
 #' @details 
 #' The formula used is:
@@ -16,9 +27,7 @@
 #' \item \eqn{\pi} the expected proportion
 #' } 
 #' 
-#' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
-#' 
-#' **Alternatives**
+#' ## Alternatives
 #' 
 #' I'm not aware of any alternative library that has this function.
 #' 
@@ -28,18 +37,25 @@
 #' es_alt_ratio(data, category="Male")
 #' es_alt_ratio(data, c("Male", "Female"))
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso 
+#' This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}), 
+#' score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
 #' 
-#' Please visit: https://PeterStatistics.com
+#' Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
 #' 
 #' NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100–132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
 #'  
+#' @author 
+#' P. Stikker
+#' 
+#' Please visit: \href{https://PeterStatistics.com}(PeterStatistics.com)
+#' 
+#' YouTube channel: \href{https://www.youtube.com/stikpet}(stikpet)
+#' 
 #' @export
 es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
   
