@@ -9,5 +9,6 @@ devtools::document("stikpetR")
 
 library(stikpetR)
 
+usethis::use_readme_rmd()
 
-install_github("stikpet/Rpackage")
+install_github("stikpet/stikpetR")
