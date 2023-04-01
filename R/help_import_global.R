@@ -3,7 +3,7 @@
 #' @description 
 #' Only here to import the stats library
 #' 
-#' @import stats
+#' @import stats graphics
 #' 
 #' @export
 he_import_global <- function(){

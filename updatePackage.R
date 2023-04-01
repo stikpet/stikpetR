@@ -4,6 +4,12 @@ library(rcmdcheck)
 
 library(stikpetR)
 
+#Note to self 1
+#If a global library needs to be installed:
+#add it WITHOUT comma to the help_import_global file
+#then add it to the depends WITH comma in the dependencies
+#update the documentation
+
 #update documentation
 setwd("H:/PeterStatistics/Packages/R")
 devtools::document("stikpetR")
