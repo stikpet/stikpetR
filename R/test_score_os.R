@@ -49,12 +49,12 @@
 #' 
 #' The formula used and naming comes from IBM (2021, p. 997) who refer to Agresti, most likeli Agresti (2013, p. 10)
 #' 
-#' ## Alternative
+#' @section Alternatives:
 #' 
 #' R's *stats* library: prop.test().
 #' 
 #' @examples 
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
+#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 #' ts_score_os(data, c("Female", "Male"), p0 = 0.5)
 #' 
 #' @seealso 
@@ -63,7 +63,6 @@
 #' 
 #' Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}), 
 #' and Wald test (\code{\link{ts_wald_os}})
-#' 
 #' 
 #' @references 
 #' Agresti, A. (2013). *Categorical data analysis* (3rd ed.). Wiley.
@@ -75,11 +74,7 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
-#' 
-#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
 ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){

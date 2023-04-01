@@ -59,13 +59,15 @@ If the Yates continuity correction is used the formula changes to (Yates, 1934, 
 \deqn{z_{Yates} = \frac{\left|x - \mu\right| - 0.5}{SE}}
 
 The formula used and naming comes from IBM (2021, p. 997) who refer to Agresti, most likeli Agresti (2013, p. 10)
-\subsection{Alternative}{
+}
+\section{Alternatives}{
+
 
 R's \emph{stats} library: prop.test().
 }
-}
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 ts_score_os(data, c("Female", "Male"), p0 = 0.5)
 
 }
@@ -86,9 +88,5 @@ Other tests for a binary variable are the binomial test (\code{\link{ts_binomial
 and Wald test (\code{\link{ts_wald_os}})
 }
 \author{
-P. Stikker
-
-Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
-
-YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

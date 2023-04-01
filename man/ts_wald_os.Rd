@@ -64,13 +64,15 @@ If the Yates continuity correction is used the formula changes to (Yates, 1934, 
 The formula used in the calculation is the one from IBM (2021, p. 997).
 IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 refer to Wald (1943)
-\subsection{Alternative}{
+}
+\section{Alternatives}{
+
 
 No alternative library that has this function exist to my knowledge.
 }
-}
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 ts_wald_os(data, c("Female", "Male"), p0 = 0.5)
 
 }
@@ -91,9 +93,5 @@ Other tests for a binary variable are the binomial test (\code{\link{ts_binomial
 and Score test (\code{\link{ts_score_os}})
 }
 \author{
-P. Stikker
-
-Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
-
-YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }
