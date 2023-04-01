@@ -2,6 +2,7 @@
 #' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
+#' @param k the number of categories
 #' @param bergsma optional boolean to indicate the use of the Bergsma correction (default is False)
 #' @return Cramer's V value
 #' 

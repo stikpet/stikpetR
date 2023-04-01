@@ -1,27 +1,33 @@
 library(devtools)
 library(roxygen2)
+library(rcmdcheck)
+
 
 setwd("H:/PeterStatistics/Packages/R")
+
 #devtools::create("stikpetR")
 
-#update documentation
-devtools::document("stikpetR")
+#add GPL-3 licence
+#setwd("H:/PeterStatistics/Packages/R/stikpetR")
+#use_gpl_license(version = 3, include_future = TRUE)
+
+
 
 library(stikpetR)
 
-#usethis::use_readme_rmd()
+#update documentation
+setwd("H:/PeterStatistics/Packages/R")
+devtools::document("stikpetR")
 
-#install_github("stikpet/stikpetR")
+#build manual
+#thanks a lot to https://tex.stackexchange.com/questions/125274/error-font-ts1-zi4r-at-540-not-found
+setwd("H:/PeterStatistics/Packages/R/stikpetR")
+build_manual(pkg = ".")
 
-build_manual(pkg = "stikpetR")
+setwd("H:/PeterStatistics/Packages/R/stikpetR")
+check_man()
 
-#tinytex::tlmgr_install("makeindex")
-#tinytex::install_tinytex(TRUE)
-#install.packages("texlive-fonts-extra")
 
-library(rcmdcheck)
+setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 
-
-
-library(TinyTex)

@@ -1,7 +1,7 @@
 #' Theil U / Uncertainty Coefficient
 #' 
-#' @param nom1 the scores on the first variable
-#' @param nom2 the scores on the second variable
+#' @param var1 the scores on the first variable
+#' @param var2 the scores on the second variable
 #' @param dir c("both", "rows", "columns") optional to select which U to return (rows = first variable)
 #' @return dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)
 #' 

@@ -1,7 +1,7 @@
 #' (Glass) Rank Biserial Correlation / Cliff Delta
 #' 
-#' @param var1 A vector with the scores data
-#' @param var2 A vector with the group data
+#' @param dataVar A vector with the scores data
+#' @param groupVar A vector with the group data
 #' @return Rank Biserial Correlation value
 #' 
 #' @details

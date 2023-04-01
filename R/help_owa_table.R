@@ -1,5 +1,9 @@
 #' One-Way ANOVA table
 #' 
+#' @param scores a vector with the numeric scores
+#' @param groups a vector with the data containing the categories
+#' @return a dataframe with the ANOVA table
+#' 
 #' @description 
 #' Function to generate a one-way anova table
 #' 

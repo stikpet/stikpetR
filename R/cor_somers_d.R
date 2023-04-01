@@ -1,6 +1,6 @@
 #' Somers' d
-#' @param ord1 the numeric scores of the first variable
-#' @param ord2 the numeric scores of the second variable
+#' @param var1 the numeric scores of the first variable
+#' @param var2 the numeric scores of the second variable
 #' @param dir direction of the measure
 #' @returns 
 #' A dataframe with:

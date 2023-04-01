@@ -1,7 +1,7 @@
-#' G (Likelihood Ratio / Wilks) Test of Independenc
+#' G (Likelihood Ratio / Wilks) Test of Independence
 #' 
-#' @param nom1 A vector with the data of the first variable
-#' @param nom2 A vector with the data of the second variable
+#' @param var1 A vector with the data of the first variable
+#' @param var2 A vector with the data of the second variable
 #' @param cc c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)
 #' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
 #' 

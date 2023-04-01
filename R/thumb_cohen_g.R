@@ -9,7 +9,7 @@
 #' th_cohen_g(g)
 #' 
 #' @details 
-#' Cohen's rule of thumb for Cohen g (1988, pp. 147–149):
+#' Cohen's rule of thumb for Cohen g (1988, pp. 147-149):
 #' 
 #' |\|g\|| Interpretation|
 #' |---|----------|
@@ -33,7 +33,7 @@ th_cohen_g <- function(g, qual="cohen"){
   
   if (qual=="cohen") {
     
-    ref = "Cohen (1988, pp. 147–149)"
+    ref = "Cohen (1988, pp. 147-149)"
     
     if (abs(g)<0.05) {
       qual = "negligible"}

@@ -2,7 +2,7 @@
 #' 
 #' @param scores A vector with the scores data
 #' @param groups A vector with the group data
-#' @param conrol Optional to indicate which group is the 'control' group, otherwise the 1st found will be used.
+#' @param control Optional to indicate which group is the 'control' group, otherwise the 1st found will be used.
 #' @return Hedges g value
 #' 
 #' @details

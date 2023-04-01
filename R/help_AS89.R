@@ -1,11 +1,13 @@
 #' Helper Function - Algorithm AS 89
+#' 
+#' @param n the number of scores (should be equal in both variables)
+#' @param IS the test statistic (see details)
+#' @returns 
+#' \item{pValue}{the two-sided significance (p-value)}
+#' 
 #' @description 
 #' Algorithm AS 89 (Best & Roberts, 1975) is for upper-tail probabilities
 #' 
-#' @param n the number of scores (should be equal in both variables)
-#' @param S the test statistic (see details)
-#' @returns 
-#' \item{pValue}{the two-sided significance (p-value)}
 #' 
 #' @details 
 #' The test statistic \eqn{S} defined as:
@@ -26,7 +28,7 @@
 #' @examples 
 #' n = 12
 #' S = 8
-#' he_AS89(n, rs)
+#' he_AS89(n, S)
 #' 
 #' @export
 he_AS89 <- function(n, IS){

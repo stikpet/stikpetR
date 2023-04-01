@@ -3,6 +3,7 @@
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
 #' @param cc c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)
+#' @param lambda optional power to use in equation (see details)
 #' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
 #' 
 #' @details 

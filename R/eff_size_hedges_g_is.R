@@ -2,7 +2,7 @@
 #' 
 #' @param scores A vector with the scores data
 #' @param groups A vector with the group data
-#' @param appr c(NULL, 'hedges-exact', 'hedges-appr', 'durlak', 'xue') approximation to use, NULL will use biased version.
+#' @param corr c(NULL, 'hedges-exact', 'hedges-appr', 'durlak', 'xue') approximation to use, NULL will use biased version.
 #' @return Hedges g value
 #' 
 #' @details

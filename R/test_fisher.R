@@ -19,7 +19,6 @@
 #' @details 
 #' The p-value is calculated as follows.
 #' First determine the probability of the sample data cross table using the hypergeometric distribution.
-#' ct[1,1], Cs[1], Cs[2], Rs[1]
 #' \deqn{p_{s} = h\left(a, C_1, C_2, R_1\right)}
 #' 
 #' Second determine the minimum and maximum value the top-left cell could have.
@@ -41,7 +40,7 @@
 #' \item \eqn{n} the total sample size (sum of all counts in the cross table) 
 #' }
 #' 
-#' The test is described by Fisher (1950 [1935], p. 96).
+#' The test is described by Fisher (1950, p. 96).
 #' 
 #' For larger than 2x2 tables the Fisher-Freeman-Halton test could be used.
 #' 

@@ -1,8 +1,8 @@
 #' Independent Samples Yuen(-Welch) Mean Test
 #' 
-#' @param data A vector with the data as numbers
-#' @param mu optional hypothesized trimmed mean, otherwise the midrange will be used
-#' @param trim optional proportion to trim from each side (so in total twice this will be trimmed)
+#' @param scores A vector with the numeric scores
+#' @param groups A vector with the group data
+#' @param trimProp optional proportion to trim from each side (so in total twice this will be trimmed)
 #' @return dataframe test statistic, degrees of freedom, p-value (sig.) and name of test used
 #'  
 #' @details 

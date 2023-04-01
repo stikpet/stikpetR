@@ -2,6 +2,8 @@
 #' 
 #' @param var1 the scores on the first variable
 #' @param var2 the scores on the second variable
+#' @param dmu optional the difference according to null hypothesis (default is 0)
+#' @param appr approximation to use (see details), default is "none"
 #' @param within boolean to use a correction for correlated pairs
 #' @returns 
 #' A dataframe with:

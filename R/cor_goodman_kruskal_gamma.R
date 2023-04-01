@@ -1,7 +1,7 @@
 #' Goodman-Kruskal Gamma
 #' 
-#' @param scores the numeric scores of the first variable
-#' @param groups the numeric scores of the second variable
+#' @param ord1 the numeric scores of the first variable
+#' @param ord2 the numeric scores of the second variable
 #' @returns 
 #' A dataframe with:
 #' \item{g}{the Goodman-Kruskal Gamma value}

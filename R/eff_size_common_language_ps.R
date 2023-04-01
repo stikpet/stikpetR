@@ -1,73 +1,73 @@
 #' Common Language (CL/CLES) (Paired Samples)
-#' 
+#'
 #' @param var1 the scores on the first variable
 #' @param var2 the scores on the second variable
 #' @param dmu difference according to null hypothesis (default is 0), only if method="mcgraw-wong"
 #' @param method method to use for calculating CL (see details)
-#' @returns 
-#' 
+#' @returns
+#'
 #' The formula used (McGraw & Wong, 1992, p. 363):
 #' \deqn{CL = \Phi\left(z_{cl}\right)}
 #' With:
-#' \deqn{z_{cl} = \frac{\left|\bar{x}_1 - \bar{x}_2\right| - d_{H0}}{\sqrt{s_1^2 + s_2^2 - 2\times r_p \times\s_1 \times s_2}}}
+#' \deqn{z_{cl} = \frac{\left|\bar{x}_1 - \bar{x}_2\right| - d_{H0}}{\sqrt{s_1^2 + s_2^2 - 2\times r_p \times s_1 \times s_2}}}
 #' \deqn{s_i^2 = \frac{\sum_{j=1}^{n} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
 #' \deqn{\bar{x}_i = \frac{\sum_{j=1}^n x_{i,j}}{n_i}}
 #' \deqn{r_p = \frac{\sum_{i=1}^n \left(x_{i,1} - \bar{x}_1\right) \times \left(x_{i,2} - \bar{x}_2\right)}{\left(n - 1\right)\times s_1\times s_2}}
-#' 
+#'
 #' **Symbols used:**
 #' \itemize{
 #' \item \eqn{n} the total number of pairs
-#' \item \eqn{x_{i,j}} the i-th score in the j-th variable 
-#' \item \eqn{r_p} the Pearson correlation coefficient 
+#' \item \eqn{x_{i,j}} the i-th score in the j-th variable
+#' \item \eqn{r_p} the Pearson correlation coefficient
 #' }
-#' 
+#'
 #' This equation is used when method="mcgraw-wong"
-#' 
+#'
 #' The formula used for the Dunlap method (Dunlap, 1994, p. 509):
 #' \deqn{CL = \sin^{-1}\left(r\right) + \frac{1}{2}}
-#' 
+#'
 #' This equation is used when method="dunlap".
-#' 
+#'
 #' @examples
 #' var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
 #' var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-#' 
+#'
 #' es_common_language_ps(var1, var2, method="dunlap")
 #' es_common_language_ps(var1, var2, method="mcgraw-wong")
-#' 
-#' @references 
+#'
+#' @references
 #' Dunlap, W. P. (1994). Generalizing the common language effect size indicator to bivariate normal correlations. *Psychological Bulletin, 116*(3), 509–511. https://doi.org/10.1037/0033-2909.116.3.509
-#' 
+#'
 #' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
-#' 
-#' @author 
+#'
+#' @author
 #' P. Stikker
-#' 
+#'
 #' Please visit: https://PeterStatistics.com
-#' 
+#'
 #' YouTube channel: https://www.youtube.com/stikpet
-#' 
+#'
 #' @export
 es_common_language_ps <- function(var1, var2, dmu=0, method=c("dunlap", "mcgraw-wong")){
-  
+
   if (length(method)>1) {
     method="dunlap"
   }
-  
+
   datF = na.omit(data.frame(var1, var2))
-  
+
   n = nrow(datF)
-  
+
   mx = mean(datF$var1)
   my = mean(datF$var2)
-  
+
   sx = sd(datF$var1)
   sy = sd(datF$var2)
-  
+
   sxy = sum((datF$var1 - mx)*(datF$var2 - my))
-  
+
   r = sxy/((n - 1)*sx*sy)
-  
+
   if (method=="dunlap") {
     cl = asin(r)/pi + 0.5
   }
@@ -76,8 +76,8 @@ es_common_language_ps <- function(var1, var2, dmu=0, method=c("dunlap", "mcgraw-
     z = (abs(mx - my) - dmu)/se
     cl = pnorm(z)
   }
-  
+
 
   return(cl)
-  
+
 }

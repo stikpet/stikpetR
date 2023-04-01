@@ -1,9 +1,9 @@
 #' Fligner-Policello Test
 #' 
-#' @param var1 A vector with the scores data
-#' @param var2 A vector with the group data
+#' @param dataVar A vector with the scores data
+#' @param groupVar A vector with the group data
 #' @param ties boolean to indicate the use of a ties correction
-#' @param corr boolean to indicate the use of a continuity correction
+#' @param cc boolean to indicate the use of a continuity correction
 #' @return dataframe with the test statistic, p-value, and the test used
 #' 
 #' @details
@@ -48,13 +48,13 @@
 #' scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
 #' groups = c("A","A","A","B","B","B","B", NA, "C")
 #' ts_fligner_policello(scores, groups)
-#' ts_fligner_policello(scores, groups, ties=FALSE, cont=FALSE)
-#' ts_fligner_policello(scores, groups, ties=FALSE, cont=TRUE)
-#' ts_fligner_policello(scores, groups, ties=TRUE, cont=FALSE)
-#' ts_fligner_policello(scores, groups, ties=TRUE, cont=TRUE)
+#' ts_fligner_policello(scores, groups, ties=FALSE, cc=FALSE)
+#' ts_fligner_policello(scores, groups, ties=FALSE, cc=TRUE)
+#' ts_fligner_policello(scores, groups, ties=TRUE, cc=FALSE)
+#' ts_fligner_policello(scores, groups, ties=TRUE, cc=TRUE)
 #' 
 #' @export
-ts_fligner_policello <- function(dataVar, groupVar, ties= TRUE, cont=FALSE){
+ts_fligner_policello <- function(dataVar, groupVar, ties= TRUE, cc=FALSE){
   testUsed = "Fligner-Policello test"
   
   #remove rows with missing values
@@ -103,17 +103,17 @@ ts_fligner_policello <- function(dataVar, groupVar, ties= TRUE, cont=FALSE){
   se = sqrt(ss1 + ss2 + m1*m2)
   num = (s2 - s1)/2
   
-  if (cont) {
+  if (cc) {
     num = abs(num)-0.5
   }
   z = num/se
   pValue = 2*(1 - pnorm(abs(z)))
   
   
-  if (cont && ties){
+  if (cc && ties){
     testUsed = paste0(testUsed, ", with continuity and ties correction")
   }
-  else if (cont){
+  else if (cc){
     testUsed = paste0(testUsed, ", with continuity correction")
   }
   else if (ties){

@@ -1,7 +1,7 @@
 #' Mann-Whitney U Test
 #' 
-#' @param var1 A vector with the scores data
-#' @param var2 A vector with the group data
+#' @param dataVar A vector with the scores data
+#' @param groupVar A vector with the group data
 #' @param method c("exact", "appr") exact method or normal approximation
 #' @param corr boolean to indicate the use of a continuity correction
 #' @return dataframe with U, the test statistic, p-value, and the test used

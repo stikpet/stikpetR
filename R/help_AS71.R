@@ -1,6 +1,6 @@
 #' Helper Function - Algorithm AS 71
 #' @param S the test statistic
-#' @param n the sample size
+#' @param N the sample size
 #' @returns 
 #' \item{pValue}{upper tail p-value of Kendall tau Distribution}
 #' @details 
