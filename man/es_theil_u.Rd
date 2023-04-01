@@ -7,11 +7,11 @@
 es_theil_u(var1, var2, dir = "both")
 }
 \arguments{
+\item{var1}{the scores on the first variable}
+
+\item{var2}{the scores on the second variable}
+
 \item{dir}{c("both", "rows", "columns") optional to select which U to return (rows = first variable)}
-
-\item{nom1}{the scores on the first variable}
-
-\item{nom2}{the scores on the second variable}
 }
 \value{
 dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)

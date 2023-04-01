@@ -6,6 +6,14 @@
 \usage{
 hEfn1(xx, w)
 }
+\arguments{
+\item{xx}{H}
+
+\item{w}{K value}
+}
+\value{
+f value
+}
 \description{
-helper function for Kirk method
+H AND K INTEGRAND EVALUATION FOR GAUSSIAN QUADRATURE
 }

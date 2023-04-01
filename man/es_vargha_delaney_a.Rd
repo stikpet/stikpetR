@@ -7,9 +7,9 @@
 es_vargha_delaney_a(dataVar, groupVar)
 }
 \arguments{
-\item{var1}{A vector with the scores data}
+\item{dataVar}{A vector with the scores data}
 
-\item{var2}{A vector with the group data}
+\item{groupVar}{A vector with the group data}
 }
 \value{
 Vargha and Delaney A value

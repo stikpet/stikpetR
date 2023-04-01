@@ -11,7 +11,7 @@ es_glass_delta(scores, groups, control = NULL)
 
 \item{groups}{A vector with the group data}
 
-\item{conrol}{Optional to indicate which group is the 'control' group, otherwise the 1st found will be used.}
+\item{control}{Optional to indicate which group is the 'control' group, otherwise the 1st found will be used.}
 }
 \value{
 Hedges g value

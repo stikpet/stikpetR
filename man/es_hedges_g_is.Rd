@@ -11,7 +11,7 @@ es_hedges_g_is(scores, groups, corr = "none")
 
 \item{groups}{A vector with the group data}
 
-\item{appr}{c(NULL, 'hedges-exact', 'hedges-appr', 'durlak', 'xue') approximation to use, NULL will use biased version.}
+\item{corr}{c(NULL, 'hedges-exact', 'hedges-appr', 'durlak', 'xue') approximation to use, NULL will use biased version.}
 }
 \value{
 Hedges g value

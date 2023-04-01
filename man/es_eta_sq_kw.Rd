@@ -36,11 +36,11 @@ Eta squared in general is much older, for example Pearson (1911, p. 254).
 H = 21.32807
 n = 54
 k = 3
-es_eta_sq_kw(H, n)
+es_eta_sq_kw(H, n, k)
 
 }
 \references{
-Pearson, K. (1911). On a correction to be made to the correlation ratio η. \emph{Biometrika, 8}(1/2), 254. https://doi.org/10.2307/2331454
+Pearson, K. (1911). On a correction to be made to the correlation ratio \eqn{\eta}. \emph{Biometrika, 8}(1/2), 254. https://doi.org/10.2307/2331454
 
 Tomczak, M., & Tomczak, E. (2014). The need to report effect size estimates revisited. An overview of some recommended measures of effect size. \emph{Trends in Sport Sciences, 1}(21), 19–25.
 }

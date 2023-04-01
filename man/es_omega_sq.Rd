@@ -88,7 +88,7 @@ es_omega_sq(scores, groups, version="hays2")
 \references{
 Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. \emph{Journal of Experimental Social Psychology, 74}, 187–195. https://doi.org/10.1016/j.jesp.2017.09.004
 
-Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s ε and Hays’ ω. \emph{Educational and Psychological Measurement, 35}(3), 541–554. https://doi.org/10.1177/001316447503500304
+Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s \eqn{\epsilon} and Hays’ \eqn{\omega}. \emph{Educational and Psychological Measurement, 35}(3), 541–554. https://doi.org/10.1177/001316447503500304
 
 Hays, W. L. (1973). \emph{Statistics for the social sciences} (2nd ed.). Holt, Rinehart and Winston.
 

@@ -17,6 +17,10 @@ es_hedges_g_ps(
 
 \item{var2}{the scores on the second variable}
 
+\item{dmu}{optional the difference according to null hypothesis (default is 0)}
+
+\item{appr}{approximation to use (see details), default is "none"}
+
 \item{within}{boolean to use a correction for correlated pairs}
 }
 \value{

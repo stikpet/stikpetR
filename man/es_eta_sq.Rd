@@ -64,7 +64,7 @@ es_eta_sq(scores, groups)
 
 }
 \references{
-Pearson, K. (1911). On a correction to be made to the correlation ratio η. \emph{Biometrika, 8}(1/2), 254. https://doi.org/10.2307/2331454
+Pearson, K. (1911). On a correction to be made to the correlation ratio \eqn{\eta}. \emph{Biometrika, 8}(1/2), 254. https://doi.org/10.2307/2331454
 
 Richardson, J. T. E. (2011). Eta squared and partial eta squared as measures of effect size in educational research. \emph{Educational Research Review, 6}(2), 135–147. https://doi.org/10.1016/j.edurev.2010.12.001
 }
