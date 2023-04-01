@@ -11,11 +11,11 @@ me_mode_bin(
 )
 }
 \arguments{
+\item{binData}{the binned data}
+
 \item{allEq}{indicator on what to do if maximum frequency is equal for more than one category (see details)}
 
 \item{value}{which value to show in the output (see details)}
-
-\item{data}{the binned data}
 }
 \value{
 A list with:
@@ -52,7 +52,7 @@ Where \eqn{UB_m} is the upper bound of the modal bin, and \eqn{LB_m} the lower b
 If \emph{value="quadratic"} is used a quadratic curve is made from the midpoint of the
 bin prior to the modal bin, to the midpoint of the bin after the modal bin.
 This is done using:
-\deqn{M = \LB_{m} + \frac{d_1}{d_1 + d_2}\times\left(UB_m - LB_m\right)}
+\deqn{M = LB_{m} + \frac{d_1}{d_1 + d_2}\times\left(UB_m - LB_m\right)}
 With:
 \deqn{d_1 = FD_m - FD_{m -1}}
 \deqn{d_2 = FD_m - FD_{m + 1}}

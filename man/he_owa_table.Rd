@@ -6,6 +6,14 @@
 \usage{
 he_owa_table(scores, groups)
 }
+\arguments{
+\item{scores}{a vector with the numeric scores}
+
+\item{groups}{a vector with the data containing the categories}
+}
+\value{
+a dataframe with the ANOVA table
+}
 \description{
 Function to generate a one-way anova table
 }

@@ -9,7 +9,7 @@ he_AS89(n, IS)
 \arguments{
 \item{n}{the number of scores (should be equal in both variables)}
 
-\item{S}{the test statistic (see details)}
+\item{IS}{the test statistic (see details)}
 }
 \value{
 \item{pValue}{the two-sided significance (p-value)}
@@ -26,7 +26,7 @@ Which if there are no ties is equal to:
 \examples{
 n = 12
 S = 8
-he_AS89(n, rs)
+he_AS89(n, S)
 
 }
 \references{

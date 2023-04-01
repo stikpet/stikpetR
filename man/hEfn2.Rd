@@ -6,6 +6,22 @@
 \usage{
 hEfn2(h2k2, hk2, x, xx, v, w)
 }
+\arguments{
+\item{h2k2}{see Kirk method flowchart}
+
+\item{hk2}{see Kirk method flowchart}
+
+\item{x}{see Kirk method flowchart}
+
+\item{xx}{see Kirk method flowchart}
+
+\item{v}{see Kirk method flowchart}
+
+\item{w}{see Kirk method flowchart}
+}
+\value{
+f value
+}
 \description{
-helper function for Kirk method
+R INTEGRAND EVALUATION
 }

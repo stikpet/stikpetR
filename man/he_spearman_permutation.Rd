@@ -28,8 +28,8 @@ The exact distribution is calculated using the following steps:
 }
 }
 \examples{
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
+ord1 = c(5, 3, 3, 4, 3, 4, 3)
+ord2 = c(5, 3, 3, 3, 3, 3, 5)
 
 he_spearman_permutation(ord1, ord2)
 

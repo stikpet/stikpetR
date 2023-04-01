@@ -9,7 +9,7 @@ he_AS71(S, N)
 \arguments{
 \item{S}{the test statistic}
 
-\item{n}{the sample size}
+\item{N}{the sample size}
 }
 \value{
 \item{pValue}{upper tail p-value of Kendall tau Distribution}

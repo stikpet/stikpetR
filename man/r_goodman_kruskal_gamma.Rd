@@ -7,9 +7,9 @@
 r_goodman_kruskal_gamma(ord1, ord2)
 }
 \arguments{
-\item{scores}{the numeric scores of the first variable}
+\item{ord1}{the numeric scores of the first variable}
 
-\item{groups}{the numeric scores of the second variable}
+\item{ord2}{the numeric scores of the second variable}
 }
 \value{
 A dataframe with:
