@@ -19,7 +19,7 @@ A pie-chart is a “graphic display in which a circle is cut into wedges with th
 each wedge being proportional to the percentage of cases in the category represented by
 that wedge” (Zedeck, 2014, p. 260).
 
-A \href{https://youtu.be/e6JtJsh-6iw}{YouTube} video on pie charts.
+A video on pie charts is available \href{https://youtu.be/e6JtJsh-6iw}{here}.
 }
 \details{
 It is possible to either show only the labels (label="none"), the counts (label="counts"),
