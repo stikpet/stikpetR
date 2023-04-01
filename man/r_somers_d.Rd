@@ -7,11 +7,11 @@
 r_somers_d(var1, var2, dir = c("both", "rows", "columns"))
 }
 \arguments{
+\item{var1}{the numeric scores of the first variable}
+
+\item{var2}{the numeric scores of the second variable}
+
 \item{dir}{direction of the measure}
-
-\item{ord1}{the numeric scores of the first variable}
-
-\item{ord2}{the numeric scores of the second variable}
 }
 \value{
 A dataframe with:

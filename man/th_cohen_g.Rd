@@ -18,7 +18,7 @@ dataframe with the qualification and source
 Rule-of-Thumb for Cohen g
 }
 \details{
-Cohen's rule of thumb for Cohen g (1988, pp. 147–149):\tabular{ll}{
+Cohen's rule of thumb for Cohen g (1988, pp. 147-149):\tabular{ll}{
    |g| \tab Interpretation \cr
    0.00 < 0.05 \tab negligible \cr
    0.05 < 0.15 \tab small \cr
