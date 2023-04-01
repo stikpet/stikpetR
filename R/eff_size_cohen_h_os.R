@@ -5,9 +5,13 @@
 #' @param p0 Optional the hypothesized proportion for the first category (default is 0.5)
 #' @return Cohen's h'
 #' 
-#' @details 
-#' An adaptation of Cohen h for a one-sample case.
+#' @description 
+#' An adaptation of Cohen h (\code{\link{es_cohen_h}}) for a one-sample case. It is an effect size measure that could 
+#' be accompanying a one-sample binomial, score or Wald test.
 #' 
+#' A [YouTube](https://youtu.be/ddWe94VKX_8) video on Cohen h'.
+#' 
+#' @details 
 #' Formula used (Cohen, 1988, p. 202):
 #' \deqn{h'=\phi_{1}-\phi_{h_0}}
 #' With:
@@ -23,27 +27,30 @@
 #' \item \eqn{p_{h_0}} the expected proportion (i.e. the proportion according to the null hypothesis)
 #' }
 #' 
-#' For classification rule-of-thumb use a conversion to Cohen h: *es_convert(h2, from="cohenhos", to="cohenh")*
-#' 
-#' Then use: *th_cohen_h()*
-#' 
-#' **Alternative**
+#' @section Alternatives:
 #' 
 #' The *'pwr'* library has a similar function: *ES.h()*
 #' 
 #' @examples 
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male")
+#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 #' es_cohen_h_os(data)
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso 
+#' This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}), 
+#' score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
 #' 
-#' Please visit: https://PeterStatistics.com
+#' Alternatives for Cohen h' are the Alternative Ratio (\code{\link{es_alt_ratio}}) or Cohen's g (\code{\link{es_cohen_g}})
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
+#' For a rule of thumb a conversion to the 'regular' Cohen h can be made using 
+#' \code{\link{es_convert}}, then the interpretation with \code{\link{th_cohen_h}}
+#' 
+#' [Companion Website](https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html) on Cohen g.
+#'   
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
 es_cohen_h_os <- function(data, codes=NULL, p0=0.5){

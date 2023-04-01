@@ -28,13 +28,15 @@ The formula used is (Cohen, 1988, p. 147):
 \itemize{
 \item \eqn{p} is the sample proportion
 }
-\subsection{Alternative}{
+}
+\section{Alternatives}{
+
 
 I'm not aware of any alternative library that has this function.
 }
-}
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 es_cohen_g(data)
 
 }
@@ -48,11 +50,9 @@ score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
 Alternatives for Cohen g are the Alternative Ratio (\code{\link{es_alt_ratio}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
 
 For a rule of thumb interpretation use \code{\link{th_cohen_g}}
+
+\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html}{Companion Website} on Cohen g.
 }
 \author{
-P. Stikker
-
-Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
-
-YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

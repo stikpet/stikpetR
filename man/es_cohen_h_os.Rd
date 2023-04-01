@@ -17,11 +17,12 @@ es_cohen_h_os(data, codes = NULL, p0 = 0.5)
 Cohen's h'
 }
 \description{
-Cohen's h'
+An adaptation of Cohen h (\code{\link{es_cohen_h}}) for a one-sample case. It is an effect size measure that could
+be accompanying a one-sample binomial, score or Wald test.
+
+A \href{https://youtu.be/ddWe94VKX_8}{YouTube} video on Cohen h'.
 }
 \details{
-An adaptation of Cohen h for a one-sample case.
-
 Formula used (Cohen, 1988, p. 202):
 \deqn{h'=\phi_{1}-\phi_{h_0}}
 With:
@@ -36,27 +37,32 @@ With:
 \item \eqn{p_i} the proportion of cases in category i
 \item \eqn{p_{h_0}} the expected proportion (i.e. the proportion according to the null hypothesis)
 }
+}
+\section{Alternatives}{
 
-For classification rule-of-thumb use a conversion to Cohen h: \emph{es_convert(h2, from="cohenhos", to="cohenh")}
-
-Then use: \emph{th_cohen_h()}
-
-\strong{Alternative}
 
 The \emph{'pwr'} library has a similar function: \emph{ES.h()}
 }
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 es_cohen_h_os(data)
 
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
+\seealso{
+This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}),
+score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
+
+Alternatives for Cohen h' are the Alternative Ratio (\code{\link{es_alt_ratio}}) or Cohen's g (\code{\link{es_cohen_g}})
+
+For a rule of thumb a conversion to the 'regular' Cohen h can be made using
+\code{\link{es_convert}}, then the interpretation with \code{\link{th_cohen_h}}
+
+\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html}{Companion Website} on Cohen g.
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

@@ -1,10 +1,10 @@
 Package: stikpetR
-Title: What the Package Does (One Line, Title Case)
+Title: Functions for Analysing a Survey
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Peter", "Stikker", , "stikpet@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: The goal of stikpetR is to provide functions for statistical analysis of surveys. The functions are documented with the formulas and references used. The functions are NOT optimized but instead relatively easy to follow. If you would look at the source code it is most often a combination of if statements and for loops..
 Depends:
   stats
 Imports:

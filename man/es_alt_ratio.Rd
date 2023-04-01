@@ -36,13 +36,15 @@ The formula used is:
 \item \eqn{p} is the sample proportion of one of the categories
 \item \eqn{\pi} the expected proportion
 }
-\subsection{Alternatives}{
+}
+\section{Alternatives}{
+
 
 I'm not aware of any alternative library that has this function.
 }
-}
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Other")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 es_alt_ratio(data)
 es_alt_ratio(data, category="Male")
 es_alt_ratio(data, c("Male", "Female"))
@@ -58,11 +60,9 @@ This effect size could be used with a one-sample binomial test (\code{\link{ts_b
 score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
 
 Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
+
+\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html}{Companion Website} on the Alternative Ratio.
 }
 \author{
-P. Stikker
-
-Please visit: \href{https://PeterStatistics.com}{PeterStatistics.com}
-
-YouTube channel: \href{https://www.youtube.com/stikpet}{stikpet}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

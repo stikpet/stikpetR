@@ -38,10 +38,12 @@ and the two categories to compare indicated.
 A significance in general is the probability of a result as in the sample, or more extreme, if the null
 hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication.
 There are different methods to approach this problem. See the details for more information.
+
+A \href{https://youtu.be/9OGCi1Q7tBQ}{YouTube} video on the binomial test.
 }
 \details{
 A one sided p-value is calculated first:
-\deqn{sig_{one-tail} = B\left(n, n_{min}, p_0^*\right)}
+\deqn{sig_{one-tail} = \text{Bin}\left(n, n_{min}, p_0^*\right)}
 With:
 \deqn{n_min = min\left\{n_s, n_f\right\}}
 \deqn{p_0^* = \begin{cases}p_0 & \text{ if } n_{min}=n_s \\1 - p_0 & \text{ if } n_{min}= n_f\end{cases}}
@@ -53,7 +55,7 @@ With:
 \item \eqn{n_f} is the number of failures
 \item \eqn{p_0} is the probability of a success according to the null hypothesis
 \item \eqn{p_0^*} is the probability adjusted in case failures is used
-\item \eqn{B\left(\dots\right)} the binomial cumulative distribution function
+\item \eqn{\text{Bin}\left(\dots\right)} the binomial cumulative distribution function
 }
 
 For the two sided significance three options can be used.
@@ -91,15 +93,15 @@ will also have a lower probability, so we only need to sum over the ones above i
 \deqn{sig_{two-tail} = 2\times sig_{one-tail}}
 
 Fairly straight forward. Just double the one-sided significance.
-\subsection{Alternative}{
-
-R \emph{stats} library
-
-binom.test()
 }
+\section{Alternatives}{
+
+
+R \emph{stats} library: binom.test()
 }
+
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female","Male", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Female")
+data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 ts_binomial_os(data, c("Female", "Male"), p0 = 0.5, twoSidedMethod="eqdist")
 
 }
@@ -108,11 +110,9 @@ Effect size measures that could go with the binomial test are Cohen g (\code{\li
 Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
 
 Other tests for a binary variable are the Score test (\code{\link{ts_score_os}}), and Wald test (\code{\link{ts_wald_os}})
+
+\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2a-Testing.html}{Companion Website} on test for a single binary variable.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

@@ -27,12 +27,12 @@
 #' \item \eqn{\pi} the expected proportion
 #' } 
 #' 
-#' ## Alternatives
+#' @section Alternatives:
 #' 
 #' I'm not aware of any alternative library that has this function.
 #' 
 #' @examples
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male", "Other")
+#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 #' es_alt_ratio(data)
 #' es_alt_ratio(data, category="Male")
 #' es_alt_ratio(data, c("Male", "Female"))
@@ -43,6 +43,7 @@
 #' 
 #' Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
 #' 
+#' [Companion Website](https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html) on the Alternative Ratio.
 #' 
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
@@ -50,11 +51,7 @@
 #' NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100–132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
 #'  
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
-#' 
-#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
 es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){

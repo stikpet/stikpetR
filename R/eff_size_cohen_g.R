@@ -19,13 +19,12 @@
 #' \item \eqn{p} is the sample proportion
 #' }
 #'  
-#' 
-#' ## Alternative
+#' @section Alternatives:
 #' 
 #' I'm not aware of any alternative library that has this function.
 #' 
 #' @examples
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Female", "Male", "Male", "Male", "Male", "Male", "Male", "Female", "Male", "Female", "Male", "Male")
+#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 #' es_cohen_g(data)
 #' 
 #' @seealso 
@@ -36,19 +35,16 @@
 #' 
 #' For a rule of thumb interpretation use \code{\link{th_cohen_g}}
 #' 
+#' [Companion Website](https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html) on Cohen g.
+#' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 #'  
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: [PeterStatistics.com](https://PeterStatistics.com)
-#' 
-#' YouTube channel: [stikpet](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
 es_cohen_g <- function(data, codes=NULL){
-  
   if (is.null(codes)){
     freq <- table(data)
     prop <- freq / sum(freq)
@@ -61,14 +57,8 @@ es_cohen_g <- function(data, codes=NULL){
     
     #Determine total sample size
     n<-n1 + n2
-    
     p1 <- n1/n
-    
   }
-  
   g <- p1 - 0.5
-  
-  
   return (g)
-  
 }

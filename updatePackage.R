@@ -2,17 +2,6 @@ library(devtools)
 library(roxygen2)
 library(rcmdcheck)
 
-
-setwd("H:/PeterStatistics/Packages/R")
-
-#devtools::create("stikpetR")
-
-#add GPL-3 licence
-#setwd("H:/PeterStatistics/Packages/R/stikpetR")
-#use_gpl_license(version = 3, include_future = TRUE)
-
-
-
 library(stikpetR)
 
 #update documentation
@@ -24,10 +13,19 @@ devtools::document("stikpetR")
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 build_manual(pkg = ".")
 
+
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 check_man()
 
-
+#in case manual doesn't work.
 setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 
+
+#add GPL-3 licence
+#setwd("H:/PeterStatistics/Packages/R/stikpetR")
+#use_gpl_license(version = 3, include_future = TRUE)
+
+
+#setwd("H:/PeterStatistics/Packages/R")
+#devtools::create("stikpetR")
