@@ -38,7 +38,7 @@ With:
 \itemize{
 \item \eqn{\Phi\left(\dots\right)} the cumulative distribution function of the standard normal distribution
 \item \eqn{\bar{x}} the sample mean
-\item \eqn{μ_{H_0}} the hypothesized mean in the population
+\item \eqn{\mu_{H_0}} the hypothesized mean in the population
 \item \eqn{SE} the standard error (i.e. the standard deviation of the sampling distribution)
 \item \eqn{n} the sample size (i.e. the number of scores)
 \item \eqn{s} the unbiased sample standard deviation
@@ -46,7 +46,6 @@ With:
 }
 }
 \examples{
- 
 data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 ts_z_os(data)
 

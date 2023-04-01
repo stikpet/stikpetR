@@ -7,11 +7,11 @@
 ts_trimmed_means_t_is(scores, groups, trimProp = 0.1)
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{scores}{A vector with the scores data}
 
-\item{mu}{optional hypothesized trimmed mean, otherwise the midrange will be used}
+\item{groups}{A vector with the group data}
 
-\item{trim}{optional proportion to trim from each side (so in total twice this will be trimmed)}
+\item{trimProp}{optional proportion to trim from each side (so in total twice this will be trimmed)}
 }
 \value{
 dataframe test statistic, degrees of freedom, p-value (sig.) and name of test used

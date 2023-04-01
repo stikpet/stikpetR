@@ -123,7 +123,7 @@ ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = FALSE, cc = TRU
 
 ord1 = c(5, 8, 6, 3, 9, 9, 18, 13, 16)
 ord2 = c(4, 11, 8, 7, 3, 16, 5, 18, 7)
-ts_wilcoxon_mp(ord1, ord2, appr="exact")
+ts_wilcoxon_ps(ord1, ord2, appr="exact")
 
 }
 \references{

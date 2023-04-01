@@ -32,7 +32,7 @@ With:
 \itemize{
 \item \eqn{T\left(\dots, \dots\right)} the cumulative distribution function of the t-distribution
 \item \eqn{\bar{x}} the sample mean
-\item \eqn{μ_{H_0}} the hypothesized mean in the population
+\item \eqn{\mu_{H_0}} the hypothesized mean in the population
 \item \eqn{SE} the standard error (i.e. the standard deviation of the sampling distribution)
 \item \eqn{df} the degrees of freedom
 \item \eqn{n} the sample size (i.e. the number of scores)
@@ -46,7 +46,6 @@ The Student t test (Student, 1908) was described by Gosset under the pseudo name
 R stats library has a similar function: \emph{t.test()}
 }
 \examples{
- 
 data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 ts_student_t_os(data)
 

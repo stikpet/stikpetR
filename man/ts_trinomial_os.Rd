@@ -47,7 +47,7 @@ I'm not aware of any other library that has a similar function.
 \examples{
 data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 ts_trinomial_os(data)
-ts_trinomial_os(data, hypMed = 2)
+ts_trinomial_os(data, mu = 2)
 
 }
 \references{
