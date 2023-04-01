@@ -2,22 +2,22 @@
 % Please edit documentation in R/test_g_ind.R
 \name{ts_g_ind}
 \alias{ts_g_ind}
-\title{G (Likelihood Ratio / Wilks) Test of Independenc}
+\title{G (Likelihood Ratio / Wilks) Test of Independence}
 \usage{
 ts_g_ind(var1, var2, cc = NULL)
 }
 \arguments{
+\item{var1}{A vector with the data of the first variable}
+
+\item{var2}{A vector with the data of the second variable}
+
 \item{cc}{c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)}
-
-\item{nom1}{A vector with the data of the first variable}
-
-\item{nom2}{A vector with the data of the second variable}
 }
 \value{
 dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
 }
 \description{
-G (Likelihood Ratio / Wilks) Test of Independenc
+G (Likelihood Ratio / Wilks) Test of Independence
 }
 \details{
 The formula used (Wilks, 1938, p. 62):

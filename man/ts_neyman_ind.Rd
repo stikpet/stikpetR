@@ -7,11 +7,11 @@
 ts_neyman_ind(var1, var2, cc = NULL)
 }
 \arguments{
+\item{var1}{A vector with the data of the first variable}
+
+\item{var2}{A vector with the data of the second variable}
+
 \item{cc}{c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)}
-
-\item{nom1}{A vector with the data of the first variable}
-
-\item{nom2}{A vector with the data of the second variable}
 }
 \value{
 dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used

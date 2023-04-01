@@ -7,13 +7,13 @@
 ts_mann_whitney(dataVar, groupVar, method = "exact", corr = TRUE)
 }
 \arguments{
+\item{dataVar}{A vector with the scores data}
+
+\item{groupVar}{A vector with the group data}
+
 \item{method}{c("exact", "appr") exact method or normal approximation}
 
 \item{corr}{boolean to indicate the use of a continuity correction}
-
-\item{var1}{A vector with the scores data}
-
-\item{var2}{A vector with the group data}
 }
 \value{
 dataframe with U, the test statistic, p-value, and the test used

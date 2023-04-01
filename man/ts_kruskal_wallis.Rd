@@ -17,6 +17,10 @@ ts_kruskal_wallis(
 \item{scores}{the variable with the scores}
 
 \item{groups}{the variable with the groups}
+
+\item{tiescorr}{boolean to indicate the use of a ties correction}
+
+\item{approx}{approximation to use (see details)}
 }
 \value{
 Returns a dataframe with:
@@ -95,7 +99,7 @@ And a chi-square approximation of this gamma approximation with:
 This is the one used when \emph{approx="kw-gamma-chi2"}
 
 They also provided an incomplete beta distribution approximation with (Kruskal & Wallis, 1952, pp. 609-610):
-\deqn{sig. \approx 1 - \Beta\left(\frac{H}{M}, \alpha, \beta \right)}
+\deqn{sig. \approx 1 - B\left(\frac{H}{M}, \alpha, \beta \right)}
 \deqn{M = \frac{n^3 - \sum_{i=1}^k n_i^3}{n\times\left(n + 1\right)}}
 \deqn{\alpha = \frac{df_1}{2}}
 \deqn{\beta = \frac{df_2}{2}}
@@ -129,7 +133,7 @@ This is used when \emph{approx="wallace-I-f"}, \emph{approx="wallace-II-f"}, or 
 For the beta approximations the same as before:
 \deqn{\alpha_i = \frac{df_1^i}{2}}
 \deqn{\beta_i = \frac{df_2^i}{2}}
-\deqn{sig. \approx 1 - \Beta\left(B_2, \alpha_i, \beta_i \right)}
+\deqn{sig. \approx 1 - B\left(B_2, \alpha_i, \beta_i \right)}
 This is used when \emph{approx="wallace-I-beta"}, \emph{approx="wallace-II-beta"}, or \emph{approx="wallace-III-beta"}
 
 Finally, Iman and Davenport (1976) describe an approximation from Sattertwaite as:

@@ -4,16 +4,16 @@
 \alias{ts_fligner_policello}
 \title{Fligner-Policello Test}
 \usage{
-ts_fligner_policello(dataVar, groupVar, ties = TRUE, cont = FALSE)
+ts_fligner_policello(dataVar, groupVar, ties = TRUE, cc = FALSE)
 }
 \arguments{
+\item{dataVar}{A vector with the scores data}
+
+\item{groupVar}{A vector with the group data}
+
 \item{ties}{boolean to indicate the use of a ties correction}
 
-\item{var1}{A vector with the scores data}
-
-\item{var2}{A vector with the group data}
-
-\item{corr}{boolean to indicate the use of a continuity correction}
+\item{cc}{boolean to indicate the use of a continuity correction}
 }
 \value{
 dataframe with the test statistic, p-value, and the test used
@@ -49,10 +49,10 @@ The test is described by Fligner and Policello (1981), and can also be found in 
 scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
 groups = c("A","A","A","B","B","B","B", NA, "C")
 ts_fligner_policello(scores, groups)
-ts_fligner_policello(scores, groups, ties=FALSE, cont=FALSE)
-ts_fligner_policello(scores, groups, ties=FALSE, cont=TRUE)
-ts_fligner_policello(scores, groups, ties=TRUE, cont=FALSE)
-ts_fligner_policello(scores, groups, ties=TRUE, cont=TRUE)
+ts_fligner_policello(scores, groups, ties=FALSE, cc=FALSE)
+ts_fligner_policello(scores, groups, ties=FALSE, cc=TRUE)
+ts_fligner_policello(scores, groups, ties=TRUE, cc=FALSE)
+ts_fligner_policello(scores, groups, ties=TRUE, cc=TRUE)
 
 }
 \references{
