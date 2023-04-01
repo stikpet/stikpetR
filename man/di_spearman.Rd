@@ -113,7 +113,7 @@ Olds, E. G. (1949). The 5\% significance levels for sums of squares of rank diff
 
 Pitman, E. J. G. (1937). Significance tests which may be applied to samples from any populations. II. The correlation coefficient test. Supplement to the \emph{Journal of the Royal Statistical Society, 4}(2), 225–232. https://doi.org/10.2307/2983647
 
-van de Wiel, M. A., & Bucchianico, A. D. (2001). Fast computation of the exact null distribution of Spearman’s ρ and Page’s L statistic for samples with and without ties. \emph{Journal of Statistical Planning and Inference, 92}(1–2), 133–145. https://doi.org/10.1016/S0378-3758(00)00166-X
+van de Wiel, M. A., & Bucchianico, A. D. (2001). Fast computation of the exact null distribution of Spearman’s rho and Page’s L statistic for samples with and without ties. \emph{Journal of Statistical Planning and Inference, 92}(1–2), 133–145. https://doi.org/10.1016/S0378-3758(00)00166-X
 }
 \author{
 P. Stikker

@@ -11,6 +11,8 @@ es_cramer_v_gof(chi2, n, k, bergsma = FALSE)
 
 \item{n}{the sample size}
 
+\item{k}{the number of categories}
+
 \item{bergsma}{optional boolean to indicate the use of the Bergsma correction (default is False)}
 }
 \value{

@@ -19,7 +19,7 @@ es_common_language_ps(var1, var2, dmu = 0, method = c("dunlap", "mcgraw-wong"))
 The formula used (McGraw & Wong, 1992, p. 363):
 \deqn{CL = \Phi\left(z_{cl}\right)}
 With:
-\deqn{z_{cl} = \frac{\left|\bar{x}_1 - \bar{x}_2\right| - d_{H0}}{\sqrt{s_1^2 + s_2^2 - 2\times r_p \times\s_1 \times s_2}}}
+\deqn{z_{cl} = \frac{\left|\bar{x}_1 - \bar{x}_2\right| - d_{H0}}{\sqrt{s_1^2 + s_2^2 - 2\times r_p \times s_1 \times s_2}}}
 \deqn{s_i^2 = \frac{\sum_{j=1}^{n} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
 \deqn{\bar{x}_i = \frac{\sum_{j=1}^n x_{i,j}}{n_i}}
 \deqn{r_p = \frac{\sum_{i=1}^n \left(x_{i,1} - \bar{x}_1\right) \times \left(x_{i,2} - \bar{x}_2\right)}{\left(n - 1\right)\times s_1\times s_2}}

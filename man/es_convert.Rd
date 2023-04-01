@@ -12,6 +12,10 @@ es_convert(es, from, to, ex1 = NULL, ex2 = NULL)
 \item{from}{name of the original effect size (see details)}
 
 \item{to}{name of the effect size to convert to (see details)}
+
+\item{ex1}{extra for some conversions (see details)}
+
+\item{ex2}{extra for some conversions (see details)}
 }
 \value{
 the converted effect size value
@@ -131,7 +135,7 @@ from="or", to="cohend", ex1="borenstein"
 
 This uses (Borenstein et. al, 2009, p. 3):
 
-\deqn{d = \ln\left(OR\righ)\times\frac{\sqrt{3}}{\pi}}
+\deqn{d = \ln\left(OR\right)\times\frac{\sqrt{3}}{\pi}}
 
 \strong{Odds Ratio to Yule Q}
 

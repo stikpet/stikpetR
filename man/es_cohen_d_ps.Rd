@@ -23,7 +23,7 @@ Cohen d_z (for Paired Samples)
 the formula used (Cohen, 1988, p. 48):
 \deqn{d_z = \frac{\bar{d}}{s_d}}
 With:
-\deqn{s_d = \sqrt{\frac{\sum_{i=1}^n\left(d_i - \bar{d}\right)^2}}{n - 1}}
+\deqn{s_d = \sqrt{\frac{\sum_{i=1}^n\left(d_i - \bar{d}\right)^2}{n - 1}}}
 \deqn{d_i = x_{i,1} - x_{i,2}}
 \deqn{\bar{d} = \frac{\sum_{i=1}^n d_i}{n}}
 

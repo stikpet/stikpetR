@@ -33,7 +33,7 @@ a later study actually showed that \eqn{\epsilon^2} might be preferred (Okada, 2
 There are quite some variations on this formula. For example Cureton (1966, p. 605):
 \deqn{\epsilon^2 = 1 - \frac{n - 1}{n - k}\times\left(1 - \eta^2\right)}
 Caroll and Nordholm (1975, p. 547):
-\deqn{\epsilon^2 = \frac{F - 1}{F + \frac{n - k}{k - 1}}}#'
+\deqn{\epsilon^2 = \frac{F - 1}{F + \frac{n - k}{k - 1}}}
 Albers and Lakens (2018, p. 194)
 \deqn{\epsilon^2 =  \frac{F - 1}{F + \frac{df_w}{df_b}}}
 Albers and Lakens (2018, p. 188)
@@ -66,7 +66,7 @@ es_epsilon_sq(etasq, n, k)
 \references{
 Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. \emph{Journal of Experimental Social Psychology, 74}, 187–195. https://doi.org/10.1016/j.jesp.2017.09.004
 
-Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s ε and Hays’ ω. \emph{Educational and Psychological Measurement, 35}(3), 541–554. https://doi.org/10.1177/001316447503500304
+Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s \eqn{\epsilon} and Hays’ \eqn{\omega}. \emph{Educational and Psychological Measurement, 35}(3), 541–554. https://doi.org/10.1177/001316447503500304
 
 Cureton, E. E. (1966). On correlation coefficients. \emph{Psychometrika, 31}(4), 605–607. https://doi.org/10.1007/BF02289528
 

@@ -27,7 +27,7 @@ With:
 \emph{Symbols used:}
 \itemize{
 \item \eqn{\bar{x}} the sample mean
-\item \eqn{μ_{H_0}} the hypothesized mean in the population
+\item \eqn{\mu_{H_0}} the hypothesized mean in the population
 \item \eqn{n} the sample size (i.e. the number of scores)
 \item \eqn{s} the unbiased sample standard deviation
 \item \eqn{x_i} the i-th score
