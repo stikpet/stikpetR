@@ -2,17 +2,23 @@
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
-#' @param cc c(NULL, "yates", "pearson", "williams") Optional continuity correction (default is NULL)
-#' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+#' @param cc Optional continuity correction (default is "none")
+#' @returns 
+#' Dataframe with:
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
 #' 
-#' @examples
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_g_gof(data)
-#' ts_g_gof(data, cc="yates")
-#' ts_g_gof(data, cc="pearson")
-#' ts_g_gof(data, cc="williams")
-#' ts_g_gof(data, eCounts)
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
 #' 
 #' @details 
 #' The formula used (Wilks, 1938, p. 62):
@@ -58,18 +64,39 @@
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
-#' **Alternatives**
+#' @section Alternatives:
 #' 
 #' The library *DescTools* has a similar function *GTest()*
 #' 
 #' The library *RVAideMemoire* has a similar function *G.test()*
 #' 
-#' @author 
-#' P. Stikker
+#' @examples
+#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_g_gof(data)
+#' ts_g_gof(data, cc="yates")
+#' ts_g_gof(data, cc="pearson")
+#' ts_g_gof(data, cc="williams")
+#' ts_g_gof(data, eCounts)
 #' 
-#' Please visit: https://PeterStatistics.com
+#' @seealso 
+#' Alternative tests with a nominal variable:
+#' \itemize{
+#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
+#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
+#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+#' }
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' Effect sizes that might be of interest:
+#' \itemize{
+#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+#' \item \code{\link{es_cohen_w}} Cohen w
+#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+#' }
 #' 
 #' @references 
 #' Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1–6. https://doi.org/10.48550/ARXIV.1206.4881
@@ -88,8 +115,13 @@
 #' 
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #'  
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
 #' @export
-ts_g_gof <- function(data, expCount=NULL, cc = NULL){
+ts_g_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson", "williams")){
+  
+  if (length(cc)>1) {cc="none"}
   
   #the sample size n
   n = length(data)
@@ -151,7 +183,7 @@ ts_g_gof <- function(data, expCount=NULL, cc = NULL){
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
   
-  if (!is.null(cc) && cc == "yates"){
+  if (cc == "yates"){
     for (i in 1:k){
       if (as.numeric(freq[i, 2] > expC[i])){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
@@ -167,20 +199,20 @@ ts_g_gof <- function(data, expCount=NULL, cc = NULL){
   }
   chiVal = chiVal*2
     
-  if (!is.null(cc) && cc == "pearson"){
+  if (cc == "pearson"){
     chiVal = (n - 1) / n * chiVal}
-  else if (!is.null(cc) && cc == "williams"){
+  else if (cc == "williams"){
     chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
 
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used
   testUsed = "G test of goodness-of-fit"
-  if (!is.null(cc) && cc == "pearson"){
+  if (cc == "pearson"){
     testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
-  else if (!is.null(cc) && cc == "williams"){
+  else if (cc == "williams"){
     testUsed = paste(testUsed, ", with Williams continuity correction")}
-  else if (!is.null(cc) && cc == "yates"){
+  else if (cc == "yates"){
     testUsed = paste(testUsed, ", with Yates continuity correction")}
   
   statistic = chiVal

@@ -2,14 +2,25 @@
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
-#' @return dataframe with probability of the observed data, number of combinations used, p-value and test used
+#' @returns 
+#' Dataframe with:
+#' \item{pObs}{probability of the observed data}
+#' \item{ncomb}{number of combinations used}
+#' \item{pValue}{two-sided p-value}
+#' \item{testUsed}{a description of the test used}
 #' 
-#' @examples
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_multinomial_gof(data)
-#' ts_multinomial_gof(data, eCounts)
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
 #' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is a Pearson chi-square test, 
+#' but also a G-test, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
+#' 
+#' McDonald (2014, p. 82) suggests to always use this exact test as long as the sample size is less than 1000 
+#' (which was just picked as a nice round number, when n is very large the exact test becomes 
+#' computational heavy even for computers).
+#'  
 #' @details 
 #' The exact multinomial test of goodness of fit is done in four steps
 #' 
@@ -23,33 +34,54 @@
 #' 
 #' Step 4: Sum all probabilities found in step 3 that are equal or less than the one found in step 1.
 #' 
-#' **Alternatives**
+#' @section Alternatives:
 #' 
 #' The *EMT* library has a similar function: *multinomial.test()*
 #' 
 #' The *XNomial* library has a similar function: *xmulti()*
 #' 
+#' @examples
+#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_multinomial_gof(data)
+#' ts_multinomial_gof(data, eCounts)
+#' 
+#' @seealso 
+#' Alternative tests with a nominal variable:
+#' \itemize{
+#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
+#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+#' }
+#' 
+#' Effect sizes that might be of interest (although they all require a chi-square test statistic):
+#' \itemize{
+#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+#' \item \code{\link{es_cohen_w}} Cohen w
+#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+#' }
+#' 
+#' @references 
+#' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
+#' 
 #' @author 
-#' P. Stikker
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
 #' @export
 ts_multinomial_gof <- function(data, expCount=NULL) {
   
   #determine the observed counts
-  if (is.null(expCount)){
-    observed <- c(table(data))}
+  if (is.null(expCount)){observed <- c(table(data))}
   else {
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in expCount[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
-    
     observed <- setNames(as.integer(t(freq[2])), t(freq[1]))
-    
   }
     
   n <- sum(observed)
@@ -60,9 +92,7 @@ ts_multinomial_gof <- function(data, expCount=NULL) {
   counts <- seq(0, n, by = 1)
   
   kCounts <- matrix(0 ,nrow=n+1, ncol=k)
-  for (i in 1:k){
-    kCounts[,i] <- counts
-  }
+  for (i in 1:k){kCounts[,i] <- counts}
   
   all_perm <- merge(kCounts[,1], as.data.frame(kCounts[,2]),all=TRUE)
   all_perm <- all_perm[rowSums(all_perm) <= n,]

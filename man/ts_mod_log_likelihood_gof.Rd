@@ -4,24 +4,40 @@
 \alias{ts_mod_log_likelihood_gof}
 \title{Mod-Log Likelihood Test of Goodness-of-Fit}
 \usage{
-ts_mod_log_likelihood_gof(data, expCount = NULL, cc = NULL)
+ts_mod_log_likelihood_gof(
+  data,
+  expCount = NULL,
+  cc = c("none", "yates", "pearson", "williams")
+)
 }
 \arguments{
 \item{data}{A vector with the data}
 
 \item{expCount}{Optional dataframe with the categories and expected counts}
 
-\item{cc}{c(NULL, "yates", "pearson", "williams") Optional continuity correction (default is NULL)}
+\item{cc}{Optional continuity correction (default is "none")}
 }
 \value{
-dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+Dataframe with:
+\item{statistic}{the chi-square statistic}
+\item{df}{the degrees of freedom}
+\item{pValue}{two-sided p-value}
+\item{minExp}{the minimum expected count}
+\item{propBelow5}{the proportion of expected counts below 5}
+\item{testUsed}{a description of the test used}
 }
 \description{
-Mod-Log Likelihood Test of Goodness-of-Fit
+A test that can be used with a single nominal variable, to test if the probabilities in all the categories
+are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+assumption they are all equal in the population will be rejected.
+
+There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test,
+but also an exact multinomial, G-test, Freeman-Tukey, Neyman, Cressie-Read, and
+Freeman-Tukey-Read test are possible.
 }
 \details{
 The formula used (Cressie & Read, 1984, p. 441):
-\deqn{MG=2\times\sum_{i=1}^{k}\left(F_{i}\times ln\left(\frac{F_{i}}{E_{i}}\right)\right)}
+\deqn{MG=2\times\sum_{i=1}^{k}\left(F_{i}\times \ln\left(\frac{F_{i}}{E_{i}}\right)\right)}
 \deqn{df = k - 1}
 \deqn{sig. = 1 - \chi^2\left(MG,df\right)}
 
@@ -79,10 +95,25 @@ Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency
 
 Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
 }
+\seealso{
+Alternative tests with a nominal variable:
+\itemize{
+\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+\item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
+\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+}
+
+Effect sizes that might be of interest:
+\itemize{
+\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+\item \code{\link{es_cohen_w}} Cohen w
+\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

@@ -12,10 +12,23 @@ ts_multinomial_gof(data, expCount = NULL)
 \item{expCount}{Optional dataframe with the categories and expected counts}
 }
 \value{
-dataframe with probability of the observed data, number of combinations used, p-value and test used
+Dataframe with:
+\item{pObs}{probability of the observed data}
+\item{ncomb}{number of combinations used}
+\item{pValue}{two-sided p-value}
+\item{testUsed}{a description of the test used}
 }
 \description{
-Exact Multinomial Test of Goodness-of-Fit
+A test that can be used with a single nominal variable, to test if the probabilities in all the categories
+are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+assumption they are all equal in the population will be rejected.
+
+There are quite a few tests that can do this. Perhaps the most commonly used is a Pearson chi-square test,
+but also a G-test, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
+
+McDonald (2014, p. 82) suggests to always use this exact test as long as the sample size is less than 1000
+(which was just picked as a nice round number, when n is very large the exact test becomes
+computational heavy even for computers).
 }
 \details{
 The exact multinomial test of goodness of fit is done in four steps
@@ -29,13 +42,15 @@ that create a sum equal to the sample size over the k-categories.
 Step 3: Determine the probability of each of these permutations using the probability mass function of the multinomial distribution.
 
 Step 4: Sum all probabilities found in step 3 that are equal or less than the one found in step 1.
+}
+\section{Alternatives}{
 
-\strong{Alternatives}
 
 The \emph{EMT} library has a similar function: \emph{multinomial.test()}
 
 The \emph{XNomial} library has a similar function: \emph{xmulti()}
 }
+
 \examples{
 data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
 eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
@@ -43,10 +58,28 @@ ts_multinomial_gof(data)
 ts_multinomial_gof(data, eCounts)
 
 }
+\references{
+McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
+}
+\seealso{
+Alternative tests with a nominal variable:
+\itemize{
+\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
+\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+}
+
+Effect sizes that might be of interest (although they all require a chi-square test statistic):
+\itemize{
+\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+\item \code{\link{es_cohen_w}} Cohen w
+\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

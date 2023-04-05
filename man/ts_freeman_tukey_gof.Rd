@@ -4,20 +4,36 @@
 \alias{ts_freeman_tukey_gof}
 \title{Freeman-Tukey Test of Goodness-of-Fit}
 \usage{
-ts_freeman_tukey_gof(data, expCount = NULL, cc = NULL)
+ts_freeman_tukey_gof(
+  data,
+  expCount = NULL,
+  cc = c("none", "pearson", "williams")
+)
 }
 \arguments{
 \item{data}{A vector with the data}
 
 \item{expCount}{Optional dataframe with the categories and expected counts}
 
-\item{cc}{c(NULL, pearson", or "williams") Optional continuity correction (default is NULL)}
+\item{cc}{Optional continuity correction (default is "none")}
 }
 \value{
-dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+Dataframe with:
+\item{statistic}{the chi-square statistic}
+\item{df}{the degrees of freedom}
+\item{pValue}{two-sided p-value}
+\item{minExp}{the minimum expected count}
+\item{propBelow5}{the proportion of expected counts below 5}
+\item{testUsed}{a description of the test used}
 }
 \description{
-Freeman-Tukey Test of Goodness-of-Fit
+A test that can be used with a single nominal variable, to test if the probabilities in all the categories
+are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+assumption they are all equal in the population will be rejected.
+
+There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test,
+but also an exact multinomial, G-test, Neyman, Mod-Log Likelihood, Cressie-Read, and
+Freeman-Tukey-Read test are possible.
 }
 \details{
 The formula used is (Ayinde & Abidoye, 2010, p. 21):
@@ -47,10 +63,10 @@ else:
 The test is attributed to Freeman and Tukey (1950), but couldn't really find it in there.
 Another source often mentioned is Bishop et al. (2007)
 
-The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
+The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
 
-The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
+The Williams correction (cc="williams") is calculated using (Williams, 1976, p. 36):
 \deqn{\chi_{PW}^2 = \frac{\chi_{P}^2}{q}}
 With:
 \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
@@ -64,7 +80,7 @@ ts_freeman_tukey_gof(data)
 ts_freeman_tukey_gof(data, cc="pearson")
 ts_freeman_tukey_gof(data, cc="williams")
 ts_freeman_tukey_gof(data, eCounts)
- 
+
 }
 \references{
 Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. \emph{Science World Journal, 2}(2), 21–27. https://doi.org/10.4314/swj.v2i2.51730
@@ -79,10 +95,25 @@ Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interp
 
 Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
 }
+\seealso{
+Alternative tests with a nominal variable:
+\itemize{
+\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+\item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
+\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
+\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+}
+
+Effect sizes that might be of interest:
+\itemize{
+\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+\item \code{\link{es_cohen_w}} Cohen w
+\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

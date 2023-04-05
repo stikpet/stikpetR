@@ -2,9 +2,25 @@
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
-#' @param cc c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)
+#' @param cc Optional continuity correction (default is "none")
 #' @param lambda optional power to use in equation (see details)
-#' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+#' @returns
+#' Dataframe with:
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
+#' 
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, G-test, Freeman-Tukey, Neyman, Mod-Log Likelihood, and 
+#' Freeman-Tukey-Read test are possible.
 #' 
 #' @details 
 #' The formula used is (Cressie & Read, 1984, p. 442):
@@ -19,7 +35,6 @@
 #' else:
 #' \deqn{E_i = n\times\frac{E_{p_i}}{n_p}}
 #' \deqn{n_p = \sum_{i=1}^k E_{p_i}}
-#' 
 #' 
 #' *Symbols used:*
 #' \itemize{
@@ -48,12 +63,47 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 
-#' @author 
-#' P. Stikker
+#' @examples  
+#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_cressie_read_gof(data)
+#' ts_cressie_read_gof(data, cc="yates")
+#' ts_cressie_read_gof(data, cc="pearson")
+#' ts_cressie_read_gof(data, cc="williams")
+#' ts_cressie_read_gof(data, eCounts)
+#'  
+#' @seealso 
+#' Alternative tests with a nominal variable:
+#' \itemize{
+#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
+#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+#' \item \code{\link{ts_mod_log_likelihood_gof}} Mod-Log Likelihood test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+#' }
 #' 
-#' Please visit: https://PeterStatistics.com
+#' Effect sizes that might be of interest:
+#' \itemize{
+#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+#' \item \code{\link{es_cohen_w}} Cohen w
+#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+#' }
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @section Alternatives:
+#' 
+#' The *MSCquartets* library has a *powerDivStat()* function, which can return the test statistics, 
+#' based on given observed and expected counts.
+#' obs = as.vector(unname(table(nomData)))
+#' 
+#' k = length(obs)
+#' 
+#' n = sum(obs)
+#' 
+#' exp = rep(1/k, k)
+#' 
+#' n*powerDivStat(obs/n, exp, lambda=2/3)
 #' 
 #' @references 
 #' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. https://doi.org/10.1111/j.2517-6161.1984.tb01318.x
@@ -64,17 +114,13 @@
 #' 
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_cressie_read_gof(data)
-#' ts_cressie_read_gof(data, cc="yates")
-#' ts_cressie_read_gof(data, cc="pearson")
-#' ts_cressie_read_gof(data, cc="williams")
-#' ts_cressie_read_gof(data, eCounts)
-#'  
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
 #' @export
-ts_cressie_read_gof <- function(data, expCount=NULL, cc = NULL, lambda=2/3){
+ts_cressie_read_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson", "williams"), lambda=2/3){
+  
+  if (length(cc)>1) {cc="none"}
   
   #the sample size n
   n = length(data)
@@ -138,7 +184,7 @@ ts_cressie_read_gof <- function(data, expCount=NULL, cc = NULL, lambda=2/3){
   
   #calculate the chi-square value
   chiVal = 0
-  if (is.null(cc) || cc == "pearson" || cc == "williams"){
+  if (cc == "none" || cc == "pearson" || cc == "williams"){
     for (i in 1:k){
       obs  = as.numeric(freq[i, 2])
       ex = expC[i]
@@ -164,12 +210,12 @@ ts_cressie_read_gof <- function(data, expCount=NULL, cc = NULL, lambda=2/3){
       chiVal = 2/(lambda*(lambda + 1)) * chiVal
     }
 
-    if (!is.null(cc) && cc == "pearson"){
+    if (cc == "pearson"){
       chiVal = (n - 1) / n * chiVal}
-    else if (!is.null(cc) && cc == "williams"){
+    else if (cc == "williams"){
       chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
   }
-  else if (!is.null(cc) && cc == "yates"){
+  else if (cc == "yates"){
     for (i in 1:k){
       chiVal = chiVal + (abs(as.numeric(freq[i, 2]) - expC[i]) - 0.5) ^ 2 / expC[i]}
   }
@@ -181,11 +227,11 @@ ts_cressie_read_gof <- function(data, expCount=NULL, cc = NULL, lambda=2/3){
   if (lambda!=2/3) {
     testUsed = paste0(testUsed, " (lambda = ", lambda, ")")}
   
-  if (!is.null(cc) && cc == "pearson"){
+  if (cc == "pearson"){
     testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
-  else if (!is.null(cc) && cc == "williams"){
+  else if (cc == "williams"){
     testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (!is.null(cc) && cc == "yates"){
+  else if (cc == "yates"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
   statistic = chiVal

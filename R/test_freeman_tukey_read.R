@@ -1,7 +1,8 @@
-#' Pearson Chi-Square Test of Goodness-of-Fit
+#' Freeman-Tukey-Read Test of Goodness-of-Fit
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
+#' @param weights the weights to be used (should sum to 4)
 #' @param cc Optional continuity correction (default is "none")
 #' @returns 
 #' Dataframe with:
@@ -17,27 +18,26 @@
 #' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
 #' assumption they are all equal in the population will be rejected. 
 #' 
-#' There are quite a few tests that can do this. Perhaps the most commonly used is this Pearson chi-square test, 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
 #' but also an exact multinomial, G-test, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
 #' 
-#' The test compares the observed counts with the expected counts. It is often recommended not to use it if the 
-#' expected count is at least 5 (Peck & Devore, 2012, p. 593).
+#' This is actually a family (class) of tests, similar as the Cressie-Read. Weights can be chosen. the default 
+#' will give the same results as the default for Cressie-Read with lambda = 0.5. Setting the weights to 4/5, 8/5, 
+#' 16/15, 8/15 gives the same results as Cressie-Read with lambda = 3/2. The Pearson chi-square test is the 
+#' same when setting weights to 1, 2, 1 and setting the weight simply to 4 gives the original Freeman-Tukey.
 #' 
-#' A YouTube video with explanation on this test is available [here](https://youtu.be/NVR5dZhp4vY)
-#'  
-#' @details 
-#' The formula used is (Pearson, 1900):
-#' \deqn{\chi_{P}^{2}=\sum_{i=1}^{k}\frac{\left(O_{i}-E_{i}\right)^{2}}{E_{i}}}
+#' @details
+#' The formula used is (Read, 1987, p. 271):
+#' \deqn{FT\left(b_0, b_1, \dots, b_x\right) = \sum_{i=1}^k \left(\sum_{j=0}^x b_j\times\left(\sqrt{\frac{F_i}{E_i}}\right)^j\right)\times\left(\sqrt{F_i} - \sqrt{E_i}\right)^2}
 #' \deqn{df = k - 1}
-#' \deqn{sig. = 1 - \chi^2\left(\chi_{P}^{2},df\right)}
-#' 
-#' With:
-#' \deqn{n = \sum_{i=1}^k F_i}
-#' If no expected counts provided:
+#' \deqn{sig. = 1 - \chi^2\left(FT, df\right)}
+#' With, if no expected counts provided:
 #' \deqn{E_i = \frac{n}{k}}
 #' else:
 #' \deqn{E_i = n\times\frac{E_{p_i}}{n_p}}
 #' \deqn{n_p = \sum_{i=1}^k E_{p_i}}
+#' The sum of the \eqn{b_i} should be four, i.e.
+#' \deqn{\sum_{i=0}^x = 4}
 #' 
 #' *Symbols used:*
 #' \itemize{
@@ -48,10 +48,10 @@
 #' \item \eqn{n} the sample size, i.e. the sum of all frequencies
 #' \item \eqn{n_p} the sum of all provided expected counts
 #' \item \eqn{\chi^2\left(\dots\right)}	the chi-square cumulative density function
-#' }
+#' }:
 #' 
-#' The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
-#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\left(\left|F_i - E_i\right| - 0.5\right)^2}{E_i}}
+#' The default weights are the ones used by Read \eqn{\left(\frac{4}{3}, \frac{8}{3}\right)}, which would
+#' be the same as using a Cressie-Read power divergence with \eqn{\lambda = \frac{1}{2}}
 #' 
 #' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
@@ -65,11 +65,11 @@
 #' @examples  
 #' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
 #' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_pearson_gof(data)
-#' ts_pearson_gof(data, cc="yates")
-#' ts_pearson_gof(data, cc="pearson")
-#' ts_pearson_gof(data, cc="williams")
-#' ts_pearson_gof(data, eCounts)
+#' ts_freeman_tukey_read(data)
+#' ts_freeman_tukey_read(data, cc="yates")
+#' ts_freeman_tukey_read(data, cc="pearson")
+#' ts_freeman_tukey_read(data, cc="williams")
+#' ts_freeman_tukey_read(data, expCount=eCounts)
 #' 
 #' @seealso 
 #' Alternative tests with a nominal variable:
@@ -80,7 +80,6 @@
 #' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
 #' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
 #' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
 #' }
 #' 
 #' Effect sizes that might be of interest:
@@ -91,73 +90,46 @@
 #' }
 #' 
 #' @references 
-#' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
-#' 
 #' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
 #' 
-#' Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. *Philosophical Magazine Series 5, 50*(302), 157–175. https://doi.org/10.1080/14786440009463897
-#' 
-#' Peck, R., & Devore, J. L. (2012). *Statistics: The exploration and analysis of data* (7th ed). Brooks/Cole.
+#' Read, C. B. (1993). Freeman-Tukey chi-squared goodness-of-fit statistics. *Statistics & Probability Letters, 18*(4), 271–278. https://doi.org/10.1016/0167-7152(93)90015-B
 #' 
 #' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
-#' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_pearson_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson", "williams")){
+ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc = c("none", "pearson", "williams")){
   
   if (length(cc)>1) {cc="none"}
   
-  #the sample size n
   n = length(data)
   
-  #determine the observed counts
   if (is.null(expCount)){
-    
-    #generate frequency table
     freqTable<-table(data)
-    
-    #number of categories to use (k)
     k = dim(freqTable)
-    
-    #rewrite frequency table in long format
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in 1:k){
       freq[nrow(freq) + 1,] = c(names(freqTable)[i], freqTable[i])
     }
-    
-    #number of expected counts is simply sample size
     nE = n
-    
   }
   else{
-    #if expected counts are given
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in expCount[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
-    
-    #number of categories to use (k)
     k = nrow(expCount)
-    
-    #sum of the given expected counts
     nE = sum(expCount[,2])
-    
   }
   
-  #the degrees of freedom
   df = k - 1
   
-  #the true expected counts
   if (is.null(expCount)){
-    #assume all to be equal
     expC = rep(n/k,k)
   }
   else{
-    #check if categories match
     expC = c()
     for (i in 1:k){
       for (j in 1:k){
@@ -170,36 +142,33 @@ ts_pearson_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson
   
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
-  
-  #calculate the chi-square value
-  chiVal = 0
-  if (cc=="none" || cc == "pearson" || cc == "williams"){
-    for (i in 1:k){
-      chiVal = chiVal + (as.numeric(freq[i, 2]) - expC[i]) ^ 2 / expC[i]
+
+  r = length(weights)
+  FT = 0
+  for (i in 1:k){
+    ff = 0
+    F = as.numeric(freq[i, 2])
+    for (j in 1:r) {
+      ff = ff + weights[j]*sqrt(F/expC[i])**(j - 1)
     }
-    
-    if (cc == "pearson"){
-      chiVal = (n - 1) / n * chiVal}
-    else if (cc == "williams"){
-      chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
-  }
-  else if (cc == "yates"){
-    for (i in 1:k){
-      chiVal = chiVal + (abs(as.numeric(freq[i, 2]) - expC[i]) - 0.5) ^ 2 / expC[i]}
+    FT = FT + ff*(sqrt(F) - sqrt(expC[i])) ^ 2 
   }
   
-  pValue = pchisq(chiVal, df, lower.tail = FALSE)
+  if (cc == "pearson"){
+    FT = (n - 1) / n * FT}
+  else if (cc == "williams"){
+    FT = FT / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
+  
+  pValue = pchisq(FT, df, lower.tail = FALSE)
   
   #Which test was used
-  testUsed = "Pearson chi-square test of goodness-of-fit"
+  testUsed = "Freeman-Tukey-Read test of goodness-of-fit"
   if (cc == "pearson"){
-    testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
+    testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
-    testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (cc == "yates"){
-    testUsed = paste0(testUsed, ", with Yates continuity correction")}
+    testUsed = paste(testUsed, ", with Williams continuity correction")}
   
-  statistic = chiVal
+  statistic = FT
   testResults <- data.frame(statistic, df, pValue, minExp, propBelow5, testUsed)
   
   return (testResults)

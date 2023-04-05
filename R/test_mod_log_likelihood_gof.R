@@ -2,12 +2,28 @@
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
-#' @param cc c(NULL, "yates", "pearson", "williams") Optional continuity correction (default is NULL)
-#' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+#' @param cc Optional continuity correction (default is "none")
+#' @returns
+#' Dataframe with:
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
+#' 
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, G-test, Freeman-Tukey, Neyman, Cressie-Read, and 
+#' Freeman-Tukey-Read test are possible.
 #' 
 #' @details 
 #' The formula used (Cressie & Read, 1984, p. 441):
-#' \deqn{MG=2\times\sum_{i=1}^{k}\left(F_{i}\times ln\left(\frac{F_{i}}{E_{i}}\right)\right)}
+#' \deqn{MG=2\times\sum_{i=1}^{k}\left(F_{i}\times \ln\left(\frac{F_{i}}{E_{i}}\right)\right)}
 #' \deqn{df = k - 1}
 #' \deqn{sig. = 1 - \chi^2\left(MG,df\right)}
 #' 
@@ -46,12 +62,33 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 
-#' @author 
-#' P. Stikker
+#' @examples
+#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_mod_log_likelihood_gof(data)
+#' ts_mod_log_likelihood_gof(data, cc="yates")
+#' ts_mod_log_likelihood_gof(data, cc="pearson")
+#' ts_mod_log_likelihood_gof(data, cc="williams")
+#' ts_mod_log_likelihood_gof(data, eCounts)
 #' 
-#' Please visit: https://PeterStatistics.com
+#' @seealso 
+#' Alternative tests with a nominal variable:
+#' \itemize{
+#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
+#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
+#' }
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' Effect sizes that might be of interest:
+#' \itemize{
+#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+#' \item \code{\link{es_cohen_w}} Cohen w
+#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
+#' }
 #' 
 #' @references 
 #' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. https://doi.org/10.1111/j.2517-6161.1984.tb01318.x
@@ -62,17 +99,13 @@
 #' 
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #'  
-#' @examples
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_mod_log_likelihood_gof(data)
-#' ts_mod_log_likelihood_gof(data, cc="yates")
-#' ts_mod_log_likelihood_gof(data, cc="pearson")
-#' ts_mod_log_likelihood_gof(data, cc="williams")
-#' ts_mod_log_likelihood_gof(data, eCounts)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = NULL){
+ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson", "williams")){
+  
+  if (length(cc)>1) {cc="none"}
   
   #the sample size n
   n = length(data)
@@ -134,7 +167,7 @@ ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = NULL){
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
   
-  if (!is.null(cc) && cc == "yates"){
+  if (cc == "yates"){
     for (i in 1:k){
       if (as.numeric(freq[i, 2] > expC[i])){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
@@ -151,20 +184,20 @@ ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = NULL){
   }
   chiVal = 2*chiVal
   
-  if (!is.null(cc) && cc == "pearson"){
+  if (cc == "pearson"){
     chiVal = (n - 1) / n * chiVal}
-  else if (!is.null(cc) && cc == "williams"){
+  else if (cc == "williams"){
     chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
   
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used
   testUsed = "mod-log likelihood test of goodness-of-fit"
-  if (!is.null(cc) && cc == "pearson"){
+  if (cc == "pearson"){
     testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
-  else if (!is.null(cc) && cc == "williams"){
+  else if (cc == "williams"){
     testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (!is.null(cc) && cc == "yates"){
+  else if (cc == "yates"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
   statistic = chiVal

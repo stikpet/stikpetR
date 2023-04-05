@@ -19,7 +19,12 @@ devtools::document("stikpetR")
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 build_manual(pkg = ".")
 
+#Create a vignette
+#usethis::use_vignette("single_binary")
 
+?stikpetR
+
+#Troubleshooting manual
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 check_man()
 
