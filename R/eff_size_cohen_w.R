@@ -31,13 +31,6 @@
 #' 
 #' The *'rcompanion'* library also has a function for this: *cohenW()*
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#' 
 #' @seealso 
 #' 
 #' Alternative effect sizes that might be of interest:

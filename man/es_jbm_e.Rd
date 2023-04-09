@@ -4,7 +4,7 @@
 \alias{es_jbm_e}
 \title{Johnston-Berry-Mielke E}
 \usage{
-es_jbm_e(chi2, n, minExp, test = "chi")
+es_jbm_e(chi2, n, minExp, test = c("chi", "g"))
 }
 \arguments{
 \item{chi2}{the chi-square test statistic}
@@ -13,13 +13,13 @@ es_jbm_e(chi2, n, minExp, test = "chi")
 
 \item{minExp}{the minimum expected count}
 
-\item{test}{c("chi", "g"). "chi" (default) for chi-square tests, or "g" for likelihood ratio (g) tests}
+\item{test}{"chi" (default) for chi-square tests, or "g" for likelihood ratio (g) tests}
 }
 \value{
 JBM's E value
 }
 \description{
-Johnston-Berry-Mielke E
+An effect size measure that could be used with a chi-square test or g-test.
 }
 \details{
 Two versions of this effect size. The formula for a chi-square test is:
@@ -42,11 +42,13 @@ Both formulas are from Johnston et al. (2006, p. 413)
 
 A qualification rule-of-thumb could be obtained by converting this to Cohen's w, using \emph{es_convert(from=="jbme", to=="cohenw", ex1 = minExp/n)}
 The rule-of-thumb can then be obtained using \emph{th_cohen_w(w)}
+}
+\section{Alternative}{
 
-\strong{Alternative}
 
 I'm not aware of any other library with a similar function.
 }
+
 \examples{
 chi2Value <- 3.105263
 n <- 19
@@ -58,10 +60,23 @@ es_jbm_e(chi2Value, n, minExp, test="g")
 \references{
 Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. \emph{Perceptual and Motor Skills, 103}(2), 412–414. https://doi.org/10.2466/pms.103.2.412-414
 }
+\seealso{
+Alternative effect sizes that might be of interest:
+\itemize{
+\item \code{\link{es_cramer_v_gof}} Cramér V
+\item \code{\link{es_cohen_w}} Cohen w
+}
+
+Tests with a nominal variable where this effect size might be used:
+\itemize{
+\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
+\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
+\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
+\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
+\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
+\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
+}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

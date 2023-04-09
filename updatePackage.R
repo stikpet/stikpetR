@@ -22,7 +22,10 @@ build_manual(pkg = ".")
 #Create a vignette
 #usethis::use_vignette("single_binary")
 
-?stikpetR
+#first clean the environment, restart R and then use:
+install_github("stikpet/stikpetR", build_vignettes = TRUE)
+
+help(package = "stikpetR")
 
 #Troubleshooting manual
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
