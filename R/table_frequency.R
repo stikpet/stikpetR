@@ -58,8 +58,8 @@
 #' The **cumulative frequency** (not shown in table) can be defined as: “the total (absolute) frequency up to the upper 
 #' boundary of that class” (Kenney, 1939, p. 16). This would only be useful if there is an order to the categories, 
 #' so we can say that for example 299 respondents found accounting pretty scientific or even more. Which is why these 
-#' cumulative frequencies will not have a meaningful interpretation for a nominal variable (e.g. 28 students study business 
-#' or less?).
+#' cumulative frequencies will not have a meaningful interpretation for a nominal variable (e.g. 28 students study 
+#' business or less?).
 #' 
 #' The **Cumulative Percent** is the running total of the Valid Percent, it is the addition of all previous and the current 
 #' category’s valid percentages.

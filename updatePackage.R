@@ -19,6 +19,11 @@ devtools::document("stikpetR")
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 build_manual(pkg = ".")
 
+
+#update GitHub
+#see https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r/
+
+
 #Create a vignette
 #usethis::use_vignette("single_binary")
 
