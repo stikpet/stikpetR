@@ -1,6 +1,7 @@
 #' Frequency Table
 #' 
 #' @param data A vector with the data
+#' @param decimals An integer for the number of decimals to be shown for the percentages
 #' @returns 
 #' Dataframe with the folowing columns:
 #' \item{data}{the categories}
@@ -46,7 +47,7 @@
 #' you get the degrees of a circle, etc.
 #' 
 #' In general the formula for a percentage is:
-#' \(PR_i = \frac{F_i}{n}\times 100 \)
+#' \deqn{PR_i = \frac{F_i}{n}\times 100}
 #' 
 #' *Symbols used:*
 #' \itemize{
@@ -93,7 +94,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-tab_frequency <- function(data){
+tab_frequency <- function(data, decimals=1){
   #counts without missing values
   freq = table(data)
   #counts with missing values
@@ -121,15 +122,15 @@ tab_frequency <- function(data){
   myTable$Percent = rf$Freq*100
   
   if (noMissing) {
-    myTable$CumulativePercent = crf$cumrf*100
-    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),sum(myTable$Percent),NA))
+    myTable$CumulativePercent = round(crf$cumrf*100, decimals)
+    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),100,NA))
   }
   else{
     vp2 = rbind(vp,c(NA,NA))
     crf2 = rbind(crf,c(NA))
-    myTable$ValidPercent = vp2$Freq*100
-    myTable$CumulativePercent = crf2$cumrf*100
-    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),sum(myTable$Percent),sum(myTable$ValidPercent, na.rm = TRUE),NA))
+    myTable$ValidPercent = round(vp2$Freq*100,decimals)
+    myTable$CumulativePercent = round(crf2$cumrf*100, decimals)
+    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),100, 100,NA))
   }
   
   return(myTable)
