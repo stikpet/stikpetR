@@ -1,17 +1,31 @@
-#' one-sample Wilcoxon signed rank test
+#' One-Sample Wilcoxon Signed Rank Test
 #' 
 #' @param data A vector with the data as numbers
 #' @param mu optional hypothesized median, otherwise the midrange will be used
 #' @param ties optional boolean to use a tie correction (default is True)
-#' @param appr c("wilcoxon", "exact", "imanz", "imant") optional which method to use for approximation (default is "wilcoxon")
-#' @param eqMed c("wilcoxon", "pratt", "zsplit") optional method to deal with scores equal to hypMed (default is "wilcoxon")
-#' @param cc optional boolean to use a continuity correction (default is False)
-#' @return dataframe with mu, the Wilcoxon W, test statistic, degrees of freedom (only applicable for Iman t approximation), significance (p-value) and test used
+#' @param appr optional which method to use for approximation (default is "wilcoxon")
+#' @param eqMed optional method to deal with scores equal to hypMed (default is "wilcoxon")
+#' @param cc optional boolean to use a continuity correction (default is FALSE)
+#' @returns
+#' A dataframe with:
+#' \item{mu}{the hypothesized median according to the null}
+#' \item{W}{the Wilcoxon W value}
+#' \item{statistic}{test statistic}
+#' \item{df}{degrees of freedom (only applicable for Iman t approximation)}
+#' \item{pValue}{significance (p-value)}
+#' \item{testUsed}{description of the test used}
 #' 
-#' @examples 
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' ts_wilcoxon_os(data)
-#' ts_wilcoxon_os(data, ties=FALSE, appr="imanz", eqMed = "zsplit", cc = FALSE)
+#' @description 
+#' The one-sample Wilcoxon signed rank test is often considered the non-parametric version of a one-sample t-test.
+#' It can be used to determine if the median is significantly different from an hypothesized value. It actually 
+#' doesn't always tests this specifically, but more if the mean rank is significantly different.
+#' 
+#' If the p-value is the probability of a result as in the sample, or more extreme, if the assumption about the 
+#' population would be true. If this is below a certain threshold (usually 0.05) the assumption about the 
+#' population is rejected. For this test the assumed median for the population is then incorrect.
+#' 
+#' Results in software packages for this test can vary, since there are a few different approaches. Especially if 
+#' there are so-called ties. See the details for more information.
 #' 
 #' @details 
 #' The unadjusted test statistic is given by:
@@ -30,9 +44,9 @@
 #' 
 #' If there are no ties, an exact method can be used, using the Sign Rank Distribution. 
 #' R has this available with *psignrank()*. 
-#' The exact test can be found as Algorithm AS 62 (Dinneen & Blakesley, 1973), which is also used by Zaiontz (n.d.)
+#' The exact test can be found in Zaiontz (n.d.)
 #' 
-#' *Approximations*
+#' **Approximations**
 #' 
 #' If the sample size is large enough, we can use a normal approximation. 
 #' What is large enough varies quite per author. A few examples: n > 8 (slideplayer, 2015), 
@@ -109,23 +123,33 @@
 #' The Pratt (1959) method and z-split method were found in Python’s documentation 
 #' for scipy’s Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
 #' 
-#' **Alternatives**
+#' @examples 
+#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
+#' ts_wilcoxon_os(data)
+#' ts_wilcoxon_os(data, ties=FALSE, appr="imanz", eqMed = "zsplit", cc = FALSE)
+#' 
+#' @section Alternatives:
 #' 
 #' R's stats library has a similar function: *wilcox.test()*
 #' 
 #' The *exactRankTests* library has a function for the exact test: *wilcox.exact()*
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso 
+#' Alternative tests:
+#' \itemize{
+#' \item one-sample sign test, see \code{\link{ts_sign_os}}
+#' \item one-sample trinomial test, see \code{\link{ts_trinomial_os}}
+#' } 
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' As for an effect size measure, see:
+#' \itemize{
+#' \item Rosenthal Correlation, see \code{\link{r_rosenthal}}
+#' \item Rank Biserial Correlation, see \code{\link{r_rank_biserial_os}}
+#' \item Dominance, see \code{\link{es_dominance}}
+#' }
 #' 
 #' @references 
 #' Cureton, E. E. (1967). The normal approximation to the signed-rank sampling distribution when zero differences are present. *Journal of the American Statistical Association, 62*(319), 1068–1069. https://doi.org/10.1080/01621459.1967.10500917
-#' 
-#' Dinneen, L. C., & Blakesley, B. C. (1973). Algorithm AS 62: A generator for the sampling distribution of the Mann- Whitney U statistic. *Journal of the Royal Statistical Society. Series C (Applied Statistics), 22*(2), 269–273. https://doi.org/10.2307/2346934
 #' 
 #' Harris, T., & Hardin, J. W. (2013). Exact Wilcoxon Signed-Rank and Wilcoxon Mann–Whitney Ranksum Tests. *The Stata Journal, 13*(2), 337–343. https://doi.org/10.1177/1536867X1301300208
 #' 
@@ -147,11 +171,19 @@
 #' 
 #' Zaiontz, C. (n.d.). Wilcoxon signed ranks exact test. Real Statistics Using Excel. Retrieved January 25, 2023, from https://real-statistics.com/non-parametric-tests/wilcoxon-signed-ranks-test/wilcoxon-signed-ranks-exact-test/
 #'  
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
 #' @export
 ts_wilcoxon_os <- function(data, 
                            mu = NULL, ties = TRUE, 
-                           appr = "wilcoxon", eqMed = "wilcoxon", 
+                           appr = c("wilcoxon", "none", "imanz", "imant"), 
+                           eqMed = c("wilcoxon", "zsplit", "pratt"), 
                            cc = FALSE){
+  
+  #set defaults if not provided
+  if (length(appr)>1){appr="wilcoxon"}
+  if (length(eqMed)>1){appr="wilcoxon"}
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
@@ -170,7 +202,7 @@ ts_wilcoxon_os <- function(data,
   
   absDiffs = 0
   #remove scores equal to hypMed if eqMed is wilcoxon
-  if (eqMed == "wilcoxon" || appr == "exact"){
+  if (eqMed == "wilcoxon" || appr == "none"){
     data = data[data != mu]
   }
   
@@ -182,7 +214,7 @@ ts_wilcoxon_os <- function(data,
   W = sum(ranks[diffs > 0])
   
   df = "n.a."
-  if (appr=="exact"){
+  if (appr=="none"){
     #check if ties exist
     ranks = ranks[absDiffs != 0]
     

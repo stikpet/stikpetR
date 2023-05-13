@@ -2,14 +2,14 @@
 % Please edit documentation in R/test_wilcoxon_os.R
 \name{ts_wilcoxon_os}
 \alias{ts_wilcoxon_os}
-\title{one-sample Wilcoxon signed rank test}
+\title{One-Sample Wilcoxon Signed Rank Test}
 \usage{
 ts_wilcoxon_os(
   data,
   mu = NULL,
   ties = TRUE,
-  appr = "wilcoxon",
-  eqMed = "wilcoxon",
+  appr = c("wilcoxon", "none", "imanz", "imant"),
+  eqMed = c("wilcoxon", "zsplit", "pratt"),
   cc = FALSE
 )
 }
@@ -20,17 +20,32 @@ ts_wilcoxon_os(
 
 \item{ties}{optional boolean to use a tie correction (default is True)}
 
-\item{appr}{c("wilcoxon", "exact", "imanz", "imant") optional which method to use for approximation (default is "wilcoxon")}
+\item{appr}{optional which method to use for approximation (default is "wilcoxon")}
 
-\item{eqMed}{c("wilcoxon", "pratt", "zsplit") optional method to deal with scores equal to hypMed (default is "wilcoxon")}
+\item{eqMed}{optional method to deal with scores equal to hypMed (default is "wilcoxon")}
 
-\item{cc}{optional boolean to use a continuity correction (default is False)}
+\item{cc}{optional boolean to use a continuity correction (default is FALSE)}
 }
 \value{
-dataframe with mu, the Wilcoxon W, test statistic, degrees of freedom (only applicable for Iman t approximation), significance (p-value) and test used
+A dataframe with:
+\item{mu}{the hypothesized median according to the null}
+\item{W}{the Wilcoxon W value}
+\item{statistic}{test statistic}
+\item{df}{degrees of freedom (only applicable for Iman t approximation)}
+\item{pValue}{significance (p-value)}
+\item{testUsed}{description of the test used}
 }
 \description{
-one-sample Wilcoxon signed rank test
+The one-sample Wilcoxon signed rank test is often considered the non-parametric version of a one-sample t-test.
+It can be used to determine if the median is significantly different from an hypothesized value. It actually
+doesn't always tests this specifically, but more if the mean rank is significantly different.
+
+If the p-value is the probability of a result as in the sample, or more extreme, if the assumption about the
+population would be true. If this is below a certain threshold (usually 0.05) the assumption about the
+population is rejected. For this test the assumed median for the population is then incorrect.
+
+Results in software packages for this test can vary, since there are a few different approaches. Especially if
+there are so-called ties. See the details for more information.
 }
 \details{
 The unadjusted test statistic is given by:
@@ -49,9 +64,9 @@ With:
 
 If there are no ties, an exact method can be used, using the Sign Rank Distribution.
 R has this available with \emph{psignrank()}.
-The exact test can be found as Algorithm AS 62 (Dinneen & Blakesley, 1973), which is also used by Zaiontz (n.d.)
+The exact test can be found in Zaiontz (n.d.)
 
-\emph{Approximations}
+\strong{Approximations}
 
 If the sample size is large enough, we can use a normal approximation.
 What is large enough varies quite per author. A few examples: n > 8 (slideplayer, 2015),
@@ -126,13 +141,15 @@ For both methods now \eqn{n_r=n}, where n is the number of scores.
 
 The Pratt (1959) method and z-split method were found in Python’s documentation
 for scipy’s Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
+}
+\section{Alternatives}{
 
-\strong{Alternatives}
 
 R's stats library has a similar function: \emph{wilcox.test()}
 
 The \emph{exactRankTests} library has a function for the exact test: \emph{wilcox.exact()}
 }
+
 \examples{
 data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 ts_wilcoxon_os(data)
@@ -141,8 +158,6 @@ ts_wilcoxon_os(data, ties=FALSE, appr="imanz", eqMed = "zsplit", cc = FALSE)
 }
 \references{
 Cureton, E. E. (1967). The normal approximation to the signed-rank sampling distribution when zero differences are present. \emph{Journal of the American Statistical Association, 62}(319), 1068–1069. https://doi.org/10.1080/01621459.1967.10500917
-
-Dinneen, L. C., & Blakesley, B. C. (1973). Algorithm AS 62: A generator for the sampling distribution of the Mann- Whitney U statistic. \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics), 22}(2), 269–273. https://doi.org/10.2307/2346934
 
 Harris, T., & Hardin, J. W. (2013). Exact Wilcoxon Signed-Rank and Wilcoxon Mann–Whitney Ranksum Tests. \emph{The Stata Journal, 13}(2), 337–343. https://doi.org/10.1177/1536867X1301300208
 
@@ -164,10 +179,20 @@ Winthrop. (n.d.). The Wilcoxon signed rank test for one sample. Winthrop Univeri
 
 Zaiontz, C. (n.d.). Wilcoxon signed ranks exact test. Real Statistics Using Excel. Retrieved January 25, 2023, from https://real-statistics.com/non-parametric-tests/wilcoxon-signed-ranks-test/wilcoxon-signed-ranks-exact-test/
 }
+\seealso{
+Alternative tests:
+\itemize{
+\item one-sample sign test, see \code{\link{ts_sign_os}}
+\item one-sample trinomial test, see \code{\link{ts_trinomial_os}}
+}
+
+As for an effect size measure, see:
+\itemize{
+\item Rosenthal Correlation, see \code{\link{r_rosenthal}}
+\item Rank Biserial Correlation, see \code{\link{r_rank_biserial_os}}
+\item Dominance, see \code{\link{es_dominance}}
+}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

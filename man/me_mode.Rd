@@ -67,9 +67,5 @@ Weisstein, E. W. (2002). \emph{CRC concise encyclopedia of mathematics} (2nd ed.
 \code{\link{me_mode_bin}}, to determine the mode with binned data
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }
