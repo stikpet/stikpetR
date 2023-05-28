@@ -29,7 +29,7 @@
 #' @export
 vi_cleveland_dot_plot <- function(data, size=2){
   
-  chart = lattice::dotplot(nomData, horizontal = FALSE, cex=size)
+  chart = lattice::dotplot(data, horizontal = FALSE, cex=size)
   
   return(chart)
 }

@@ -37,7 +37,7 @@
 #' and Galton (1881, p. 246) in English.
 #' 
 #' @examples 
-#' 
+#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 #' me_median(ordData)
 #' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
 #' me_median(ordData, levels=labels)

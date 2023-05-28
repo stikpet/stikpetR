@@ -183,7 +183,7 @@ ts_wilcoxon_os <- function(data,
   
   #set defaults if not provided
   if (length(appr)>1){appr="wilcoxon"}
-  if (length(eqMed)>1){appr="wilcoxon"}
+  if (length(eqMed)>1){eqMed="wilcoxon"}
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {

@@ -46,12 +46,14 @@ and \eqn{GM^2} can all be captured with one general formula. The additional vari
 (\eqn{\lambda}) was then investigated, and they settled on a \eqn{\lambda} of 2/3.
 
 By setting \eqn{\lambda} to different values, we get the different tests:
+\itemize{
 \item{\eqn{\lambda = 1}}{Pearson chi-square}
 \item{\eqn{\lambda = 0}}{G/Wilks/Likelihood-Ratio}
 \item{\eqn{\lambda = -\frac{1}{2}}}{Freeman-Tukey}
 \item{\eqn{\lambda = -1}}{Mod-Log-Likelihood}
 \item{\eqn{\lambda = -2}}{Neyman}
 \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
+}
 }
 \details{
 The formula used is (Cressie & Read, 1984, p. 442):
@@ -80,7 +82,7 @@ With:
 Cressie and Read (1984, p. 463) suggest to use \eqn{\lambda = \frac{2}{3}},  which
 is therefor the default in this function.
 
-The \strong{Pearson chi-square statistic} can be obtained by setting $\lambda = 1$. Pearson's original
+The \strong{Pearson chi-square statistic} can be obtained by setting \eqn{\lambda = 1}. Pearson's original
 formula is (Pearson, 1900, p. 165):
 \deqn{\chi_{P}^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{\left(F_{i,j} - E_{i,j}\right)^2}{E_{i,j}}}
 

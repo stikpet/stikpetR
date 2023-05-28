@@ -1,5 +1,9 @@
 #' Simple Bar-Chart
 #' 
+#' @param data A vector with the data
+#' @param varname Optional name for the variable
+#' @param height Optional to indicate what the height should represent
+#' 
 #' @description 
 #' A bar-chart is defined as “a graph in which bars of varying height with spaces between them are 
 #' used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20). 

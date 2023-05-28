@@ -32,7 +32,7 @@ vi_bar_dual_axis <- function(data, varname=NULL){
     varname=deparse(substitute(data))
   }
   
-  freqs<-table(ordData)
+  freqs<-table(data)
   k = length(freqs)
   cumFr <- cumsum(freqs)
   cumPerc <- cumFr /sum(freqs)
