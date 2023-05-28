@@ -19,6 +19,7 @@ We begin with loading the library:
 
 ```{r setup}
 library(stikpetR)
+#devtools::install_github("stikpet/stikpetR")
 ```
 
 Also some example data is needed:
@@ -29,10 +30,10 @@ binData <- c("Female", "Male", "Male", "Female", "Male", "Male", "Female", "Fema
 
 # First Impressions
 
-To get an impression of the data, we can simply run R's table function:
+To get an impression of the data, we can create a frequency table using the tab_frequency function:
 
 ```{r}
-table(binData)
+tab_frequency(binData)
 ```
 
 There are 12 Female cases, and 34 Male. Seems like we have 'a lot' more Male cases, but is what I consider 'a lot' you might not. One thing we can do is check if the difference between 12 and 34 is statistical significant.

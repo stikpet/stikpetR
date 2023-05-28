@@ -3,6 +3,7 @@ library(roxygen2)
 library(rcmdcheck)
 
 library(stikpetR)
+#devtools::install_github("stikpet/stikpetR")
 
 #Note to self 1
 #If a global library needs to be installed:
@@ -18,7 +19,6 @@ devtools::document("stikpetR")
 #thanks a lot to https://tex.stackexchange.com/questions/125274/error-font-ts1-zi4r-at-540-not-found
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 build_manual(pkg = ".")
-
 
 #update GitHub
 #see https://rfortherestofus.com/2021/02/how-to-use-git-github-with-r/

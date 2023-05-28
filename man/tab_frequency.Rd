@@ -4,10 +4,12 @@
 \alias{tab_frequency}
 \title{Frequency Table}
 \usage{
-tab_frequency(data)
+tab_frequency(data, decimals = 1)
 }
 \arguments{
 \item{data}{A vector with the data}
+
+\item{decimals}{An integer for the number of decimals to be shown for the percentages}
 }
 \value{
 Dataframe with the folowing columns:
@@ -54,7 +56,7 @@ Multiply this by 100 and you get the percentage, multiply it by 1000 and you get
 you get the degrees of a circle, etc.
 
 In general the formula for a percentage is:
-\(PR_i = \frac{F_i}{n}\times 100 \)
+\deqn{PR_i = \frac{F_i}{n}\times 100}
 
 \emph{Symbols used:}
 \itemize{
@@ -66,19 +68,19 @@ In general the formula for a percentage is:
 The \strong{cumulative frequency} (not shown in table) can be defined as: “the total (absolute) frequency up to the upper
 boundary of that class” (Kenney, 1939, p. 16). This would only be useful if there is an order to the categories,
 so we can say that for example 299 respondents found accounting pretty scientific or even more. Which is why these
-cumulative frequencies will not have a meaningful interpretation for a nominal variable (e.g. 28 students study business
-or less?).
+cumulative frequencies will not have a meaningful interpretation for a nominal variable (e.g. 28 students study
+business or less?).
 
 The \strong{Cumulative Percent} is the running total of the Valid Percent, it is the addition of all previous and the current
 category’s valid percentages.
 
 The cumulative frequency can be calculated using:
-\(CF_i = \sum_{j=1}^i F_j\)
+\deqn{CF_i = \sum_{j=1}^i F_j}
 Or using recursion:
-\(CF_i = F_i + CF_{i-1} \)
-For the cumulative percent the same formulas as for cumulative frequency can be used, but replacing \(F_i\) with \(PR_i\).
+\deqn{CF_i = F_i + CF_{i-1}}
+For the cumulative percent the same formulas as for cumulative frequency can be used, but replacing \eqn{F_i} with \eqn{PR_i}.
 It can also be determined using the cumulative frequency:
-\(CPR_i = \frac{CF_i}{n}\)
+\deqn{CPR_i = \frac{CF_i}{n}}
 
 When the categories are ranges of values (bins), the frequency density could become helpful.
 It can be defined as: “the number of occurrences of an event divided by the bin size…” (Zedeck, 2014, pp. 144–145).
