@@ -1,4 +1,4 @@
-#' Pearson Chi-Square Test of Goodness-of-Fit
+#' Neyman Test of Goodness-of-Fit
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
