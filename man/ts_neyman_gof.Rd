@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_neyman_gof.R
 \name{ts_neyman_gof}
 \alias{ts_neyman_gof}
-\title{Pearson Chi-Square Test of Goodness-of-Fit}
+\title{Neyman Test of Goodness-of-Fit}
 \usage{
 ts_neyman_gof(
   data,
