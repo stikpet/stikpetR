@@ -278,77 +278,15 @@ me_quartiles <- function(data,
   
   sData = sort(data)
   n = length(sData)
-  even = (n %% 2 == 0)
-  iM = (n + 1)/2
-  numbers = is.numeric(sData[1])
+  m = n %% 4
   
-  if (method=="inclusive") {
-    #See also Siegel and Morgan (1996, p. 77)
-    if (even) {
-      lowData = sData[1:(n/2)]
-      upData = sData[(n/2 + 1):n]
-    }
-    else{
-      lowData = sData[1:((n+1)/2)]
-      upData = sData[((n+1)/2):n]
-    }
-    iQ1 = median(lowData)
-    iQ3 = median(upData)
-  }
   
-  else if (method=="exclusive") {
-    #also referred to as Moore and McCabe (1989, p. 33)
-    if (even) {
-      lowData = sData[1:(n/2)]
-      upData = sData[(n/2 + 1):n]
-    }
-    else{
-      lowData = sData[1:((n-1)/2)]
-      upData = sData[((n+3)/2):n]
-    }
-    iQ1 = median(lowData)
-    iQ3 = median(upData)
-  }
+  #NOTE: R uses bankings rounding (i.e. rounds .5 to the nearest even number)
+  #use as.integer(x + 0.5) to us 'regular' rounding
   
-  else if (method=="tukey"){
-    # Uses Tukey's hinges (Tukey, 1977, p. 33) same result as inclusive
-    H = (floor(iM) + 1) / 2
-    iQ1 = H
-    iQ3 = n + 1 - H
-  }
-  else if (method=="cdf"){
-    if (n*1 %% 4 == 0) {
-      iQ1 = (floor(1/4*n) + ceiling(1/4*n))/2
-    }
-    else {
-      iQ1 = ceiling(1/4*n)
-    }
-    
-    if (n*3 %% 4 == 0) {
-      iQ3 = (floor(3/4*n) + ceiling(3/4*n))/2
-    }
-    else {
-      iQ3 = ceiling(3/4*n)
-    }
-  }
-  else if (method=="ms"){
-    #Mendenhall and Sincich (1992, p. 35)
-    iQ1 = round((n + 1)/4)
-    if (3*(n + 1) %% 4 == 2){
-      iQ3 = floor(3*(n + 1)/4)
-    }
-    else{
-      iQ3 = round(3*(n + 1)/4)
-    }
-  }
-  else if (method=="lohninger"){
-    # Lohninger (n.d.)
-    iQ1 = round((n + 1)/4)
-    iQ3 = round(3*(n + 1)/4)
-  }
-  else if (method=="vining"){
-    # Vining (1998, p. 44) same result as inclusive
-    if (even) {
+  if (method=="inclusive" || method=="tukey" || method=="vining") {
+    #See also Siegel and Morgan (1996, p. 77), or Tukey's hinges (Tukey, 1977, p. 33), or Vining (1998, p. 44) .
+    if (m==0 || m ==2){
       iQ1 = (n + 2)/4
       iQ3 = (3*n + 2)/4
     }
@@ -357,9 +295,10 @@ me_quartiles <- function(data,
       iQ3 = (3*n + 1)/4
     }
   }
-  else if (method=="jf"){
-    #Joarder and Firozzaman (2001, p. 88) same result as exclusive
-    if (even) {
+  
+  else if (method=="exclusive" || method=="jf") {
+    #also referred to as Moore and McCabe (1989, p. 33), or Joarder and Firozzaman (2001, p. 88) 
+    if (m==0 || m ==2){
       iQ1 = (n + 2)/4
       iQ3 = (3*n + 2)/4
     }
@@ -368,162 +307,154 @@ me_quartiles <- function(data,
       iQ3 = (3*n + 3)/4
     }
   }
-  else if (method=="hl1" || method=="hl2"){
+  
+  else if (method=="cdf" || method=="sas5" || method=="hf2"){
+    if (m==0){
+      iQ1 = (n + 2)/4
+      iQ3 = (3*n + 2)/4
+    }
+    else{
+      iQ1 = ceiling(n/4)
+      iQ3 = ceiling(3*n/4)
+    }
+  }
+  
+  else if (method=="ms"){
+    #Mendenhall and Sincich (1992, p. 35)
+    iQ1 = as.integer((n + 1)/4+0.5)
+    if (m == 1){
+      iQ3 = floor(3*(n + 1)/4)
+    }
+    else{
+      iQ3 = as.integer(3*(n + 1)/4 + 0.5)
+    }
+  }
+  
+  else if (method=="lohninger"){
+    # Lohninger (n.d.)
+    iQ1 = as.integer((n + 1)/4+0.5)
+    iQ3 = as.integer(3*(n + 1)/4+0.5)
+  }
+  
+  else if (method=="hl1"){
+    #Hogg and Ledolter (1992, p. 21)
+    if (m==0 || m==2){
+      iQ1 = (n+2)/4
+      iQ3 = (3*n+2)/4
+    }
+    else if (m==1){
+      iQ1 = (n+3)/4
+      iQ3 = (3*n+3)/4
+    }
+    else {
+      iQ1 = (n+1)/4
+      iQ3 = (3*n+1)/4
+    }
+  }
+  else if (method=="hl2" || method=="hf5"){
     #Hogg and Ledolter (1992, p. 21)
     iQ1 = (n+2)/4
     iQ3 = (3*n+2)/4
   }
-  else if (method=="minitab"){
+  
+  else if (method=="minitab" || method =="sas4" || method=="hf6"){
     #See also Snedecor (1940, p. 43)
     iQ1 = (n+1)/4
     iQ3 = (n+1)*3/4
   }
-  else if (method=="excel"){
+  
+  else if (method=="excel" || method=="hf7"){
     #See also Freund and Perles (1987, p. 201)
     iQ1 = 1 + (n-1)/4
     iQ3 = 1 + (n-1)*3/4
   }
-  else if (method=="sas1"){
+  
+  else if (method=="sas1" || method=="hf4"){
     #See also Parzen (1979, p. ???)
     iQ1 = 1/4*n
     iQ3 = 3/4*n
   }
-  else if (method=="sas2"){
-    #See also 
-    if (n*1 %% 4 == 2) {
-      if(floor(n*1/4) %% 2 ==0){
-        iQ1 = floor(n*1/4)
-      }
-      else{
-        iQ1 = ceiling(n*1/4)
-      }
-    }
-    else{
-      iQ1 = round(n*1/4)
-    }
-    
-    if (n*3 %% 4 == 2) {
-      if(floor(n*3/4) %% 2 ==0){
-        iQ3 = floor(n*3/4)
-      }
-      else{
-        iQ3 = ceiling(n*3/4)
-      }
-    }
-    else{
-      iQ3 = round(n*3/4)
-    }
+  
+  else if (method=="sas2" || method=="hf3"){
+    iQ1 = round(n*1/4)
+    iQ3 = round(n*3/4)
   }
-  else if (method=="sas3"){
+  
+  else if (method=="sas3" || method=="hf1"){
     #See also 
     iQ1 = ceiling(1/4*n)
     iQ3 = ceiling(3/4*n)
   }
+  
   else if (method=="hf8"){
     #See also Hyndman and Fan (1996, p. 363)
     iQ1 = (n + 1/3)*1/4 + 1/3
     iQ3 = (n + 1/3)*3/4 + 1/3
   }
+  
   else if (method=="hf9"){
     #See also Hyndman and Fan (1996, p. 364)
     iQ1 = (n + 1/4)*1/4 + 3/8
     iQ3 = (n + 1/4)*3/4 + 3/8
   }
-    
   
-  #the actual quartiles
-  if (method %in% c("inclusive", "exclusive", "tukey", "vining", "jf", "hl1")) {
-    #methods with potential midway points
+  #make sure integer, if indeed integer
+  q1Int = FALSE
+  if (iQ1 == round(iQ1)) {
+    iQ1 = round(iQ1)
+    q1Int = TRUE}
+  q3Int = FALSE
+  if (iQ3 == round(iQ3)) {
+    iQ3 = round(iQ3)
+    q3Int = TRUE}
+  
+  #find the quartiles
+  numbers = is.numeric(sData[1]) 
+  
+  if (q1Int){
+    Q1 = sData[iQ1]
+  }
+  else {
     iQ1low = floor(iQ1)
     iQ1high = ceiling(iQ1)
-    if (iQ1low==iQ1high) {
-      Q1 = sData[iQ1]
+    
+    if (sData[iQ1low]==sData[iQ1high]) {
+      Q1 = sData[iQ1low]
     }
     else{
-      if (sData[iQ1low]==sData[iQ1high]) {
-        Q1 = sData[iQ1low]
+      if (numbers) {
+        r = sData[iQ1high] - sData[iQ1low]
+        Q1 = sData[iQ1low] + (iQ1 - iQ1low)/(iQ1high - iQ1low)*r
       }
       else{
-        if (numbers) {
-          Q1 = (sData[iQ1low] + sData[iQ1high])/2
-        }
-        else{
-          Q1 = paste0("between ", sData[iQ1low], " and ", sData[iQ1high])
-        }
+        Q1 = paste0("between ", sData[iQ1low], " and ", sData[iQ1high])
       }
     }
-    
-    iQ3low = floor(iQ3)
-    iQ3high = ceiling(iQ3)
-    if (iQ3low==iQ3high) {
-      Q3 = sData[iQ3]
-    }
-    else{
-      if (sData[iQ3low]==sData[iQ3high]) {
-        Q3 = sData[iQ3low]
-      }
-      else{
-        if (numbers) {
-          Q3 = (sData[iQ3low] + sData[iQ3high])/2
-        }
-        else{
-          Q3 = paste0("between ", sData[iQ3low], " and ", sData[iQ3high])
-        }
-      }
-    }
-    
   }
-  else if (method %in% c("cdf", "ms", "lohninger", "sas2", "sas3")){
-    #already integer methods
-    Q1 = sData[iQ1]
+  
+  if (q3Int){
     Q3 = sData[iQ3]
   }
-  else if (method %in% c("hl2", "minitab", "excel", "sas1", "hf8", "hf9")){
-    #methods using linear interpolation
-    iQ1low = floor(iQ1)
-    iQ1high = ceiling(iQ1)
-    if (iQ1low==iQ1high) {
-      Q1 = sData[iQ1]
-    }
-    else{
-      
-      if (sData[iQ1low]==sData[iQ1high]) {
-        Q1 = sData[iQ1low]
-      }
-      else{
-        if (numbers) {
-          r = sData[iQ1high] - sData[iQ1low]
-          Q1 = sData[iQ1low] + (iQ1 - iQ1low)/(iQ1high - iQ1low)*r
-        }
-        else{
-          Q1 = paste0("between ", sData[iQ1low], " and ", sData[iQ1high])
-        }
-      }
-    }
-    
+  else {
     iQ3low = floor(iQ3)
     iQ3high = ceiling(iQ3)
-    if (iQ3low==iQ3high) {
-      Q3 = sData[iQ3]
+    
+    if (sData[iQ3low]==sData[iQ3high]) {
+      Q3 = sData[iQ3low]
     }
     else{
-      if (sData[iQ3low]==sData[iQ3high]) {
-        Q3 = sData[iQ3low]
+      if (numbers) {
+        r = sData[iQ3high] - sData[iQ3low]
+        Q3 = sData[iQ3low] + (iQ3 - iQ3low)/(iQ3high - iQ3low)*r
       }
       else{
-        if (numbers) {
-          r = sData[iQ3high] - sData[iQ3low]
-          Q3 = sData[iQ3low] + (iQ3 - iQ3low)/(iQ3high - iQ3low)*r
-        }
-        else{
-          Q3 = paste0("between ", sData[iQ3low], " and ", sData[iQ3high])
-        }
+        Q3 = paste0("between ", sData[iQ3low], " and ", sData[iQ3high])
       }
     }
-    
   }
   
   results = data.frame(Q1, Q3)
+  
   return(results)
 }
 
