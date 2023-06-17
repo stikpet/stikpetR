@@ -1,12 +1,5 @@
 #' Quartiles / Hinges
 #' 
-#' The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50%, and the quartiles at 25% and 75%. Note that there are five quartiles, the minimum value is the 0-quartile, 
-#' at 25% the first (or lower) quartile, at 50% the median a.k.a. the second quartile, at 75% the third (or upper) quartile, and the maximum as the fourth quartile.
-#' Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
-#' 
-#' There are quite a few different methods to determine the quartiles. This function has 19 different ones. 
-#' See the notes for a description.
-#' 
 #' @param data dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param method optional which method to use to calculate quartiles
@@ -22,6 +15,16 @@
 #' \item{q3}{the third (upper/higher) quartile}
 #' \item{q1-text}{the first (lower) quartile as text (only if levels were used)}
 #' \item{q3-text}{the third (upper/higher) quartile as text (only if levels were used)}
+#' 
+#' @description
+#' The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50 percent, and the quartiles 
+#' at 25 and 75 percent. Note that there are five quartiles, the minimum value is the 0-quartile, 
+#' at 25 percent the first (or lower) quartile, at 50 percent the median a.k.a. the second quartile, at 75 percent the third (or upper) quartile, 
+#' and the maximum as the fourth quartile.
+#' Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
+#' 
+#' There are quite a few different methods to determine the quartiles. This function has 19 different ones. 
+#' See the details for a description.
 #' 
 #' @details
 #' To determine the quartiles a specific indexing method can be used. See \code{\link{he_quartileIndexing}} for details on the different 
@@ -56,7 +59,7 @@
 #' |hf9|hf9|use int|linear|use int|linear|
 #' 
 #' The following values can be used for the *method* parameter:
-#' \enumerate{
+#' \itemize{
 #' \item inclusive = tukey =hinges = vining. (Tukey, 1977, p. 32; Siegel & Morgan, 1996, p. 77; Vining, 1998, p. 44).
 #' \item exclusive = jf. (Moore & McCabe, 1989, p. 33; Joarder & Firozzaman, 2001, p. 88).
 #' \item sas1 = parzen = hf4 = interpolated_inverted_cdf = maple3 = r4. (Parzen, 1979, p. 108; SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 363)
@@ -68,7 +71,7 @@
 #' \item ms (Mendenhall & Sincich, 1992, p. 35)
 #' \item lohninger (Lohninger, n.d.)
 #' \item hl1 (Hogg & Ledolter, 1992, p. 21)
-#' \item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21；Hazen, 1914, p. ?)
+#' \item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21; Hazen, 1914, p. ?)
 #' \item maple2
 #' \item excel = hf7 = pd1 = linear = gumbel = maple6 = r7 (Hyndman & Fan, 1996, p. 363; Freund & Perles, 1987, p. 201; Gumbel, 1939, p. ?)
 #' \item pd2 = lower
@@ -86,6 +89,7 @@
 #' The names *linear*, *lower*, *higher*, *nearest* and *midpoint* are all used by pandas quantile function and numpy 
 #' percentile function. Numpy also uses *inverted_cdf*, *averaged_inverted_cdf*, *closest_observation*, 
 #' *interpolated_inverted_cdf*, *hazen*, *weibull*, *median_unbiased*, and *normal_unbiased*. 
+#' 
 #' 
 #' @examples 
 #' ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)

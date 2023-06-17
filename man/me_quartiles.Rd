@@ -41,14 +41,16 @@ A dataframe with:
 \item{q3-text}{the third (upper/higher) quartile as text (only if levels were used)}
 }
 \description{
-The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50\%, and the quartiles at 25\% and 75\%. Note that there are five quartiles, the minimum value is the 0-quartile,
-at 25\% the first (or lower) quartile, at 50\% the median a.k.a. the second quartile, at 75\% the third (or upper) quartile, and the maximum as the fourth quartile.
+The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50 percent, and the quartiles
+at 25 and 75 percent. Note that there are five quartiles, the minimum value is the 0-quartile,
+at 25 percent the first (or lower) quartile, at 50 percent the median a.k.a. the second quartile, at 75 percent the third (or upper) quartile,
+and the maximum as the fourth quartile.
 Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
+
+There are quite a few different methods to determine the quartiles. This function has 19 different ones.
+See the details for a description.
 }
 \details{
-There are quite a few different methods to determine the quartiles. This function has 19 different ones.
-See the notes for a description.
-
 To determine the quartiles a specific indexing method can be used. See \code{\link{he_quartileIndexing}} for details on the different
 methods to choose from.
 
@@ -82,7 +84,7 @@ I've come across the following methods:\tabular{llllll}{
 
 
 The following values can be used for the \emph{method} parameter:
-\enumerate{
+\itemize{
 \item inclusive = tukey =hinges = vining. (Tukey, 1977, p. 32; Siegel & Morgan, 1996, p. 77; Vining, 1998, p. 44).
 \item exclusive = jf. (Moore & McCabe, 1989, p. 33; Joarder & Firozzaman, 2001, p. 88).
 \item sas1 = parzen = hf4 = interpolated_inverted_cdf = maple3 = r4. (Parzen, 1979, p. 108; SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 363)
@@ -94,7 +96,7 @@ The following values can be used for the \emph{method} parameter:
 \item ms (Mendenhall & Sincich, 1992, p. 35)
 \item lohninger (Lohninger, n.d.)
 \item hl1 (Hogg & Ledolter, 1992, p. 21)
-\item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21；Hazen, 1914, p. ?)
+\item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21; Hazen, 1914, p. ?)
 \item maple2
 \item excel = hf7 = pd1 = linear = gumbel = maple6 = r7 (Hyndman & Fan, 1996, p. 363; Freund & Perles, 1987, p. 201; Gumbel, 1939, p. ?)
 \item pd2 = lower
