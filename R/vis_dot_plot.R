@@ -8,6 +8,7 @@
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 geom_dotplot
 #' @importFrom ggplot2 scale_y_continuous
+#' @importFrom ggplot2 aes
 #' 
 #' @description 
 #' The Oxford Dictionary of Statistics defines a dot plot as "an alternative to a bar chart 

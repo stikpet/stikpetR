@@ -6,232 +6,119 @@
 \usage{
 me_quartiles(
   data,
-  method = c("cdf", "inclusive", "exclusive", "tukey", "ms", "lohninger", "vining",
-    "jf", "hl1", "hl2", "minitab", "excel", "sas1", "sas2", "sas3", "hf8", "hf9")
+  levels = NULL,
+  method = "own",
+  indexMethod = c("inclusive", "exclusive", "sas1", "sas4", "hl", "excel", "hf8",
+    "hf9"),
+  q1Frac = c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"),
+  q1Int = c("int", "midpoint"),
+  q3Frac = c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"),
+  q3Int = c("int", "midpoint")
 )
 }
 \arguments{
-\item{data}{ordinal input data}
+\item{data}{dataframe with scores as numbers, or if text also provide levels}
 
-\item{method}{optional which method to use to calculate quartiles. Default is "cdf", see details for more info.}
+\item{levels}{optional vector with levels in order}
+
+\item{method}{optional which method to use to calculate quartiles}
+
+\item{indexMethod}{optional to indicate which type of indexing to use}
+
+\item{q1Frac}{optional to indicate what type of rounding to use for first quarter}
+
+\item{q1Int}{optional to indicate the use of the integer or the midpoint method for first quarter}
+
+\item{q3Frac}{optional to indicate what type of rounding to use for third quarter}
+
+\item{q3Int}{optional to indicate the use of the integer or the midpoint method for third quarter}
 }
 \value{
 A dataframe with:
-\item{Q1}{the first (lower) quartile}
-\item{Q3}{the third (upper/higher) quartile}
+\item{q1}{the first (lower) quartile}
+\item{q3}{the third (upper/higher) quartile}
+\item{q1-text}{the first (lower) quartile as text (only if levels were used)}
+\item{q3-text}{the third (upper/higher) quartile as text (only if levels were used)}
 }
 \description{
-The quartiles are at quarters of the data. The median is at 50\%, and the quartiles at 25\% and 75\%. Note that there are
-five quartiles, the minimum value is the 0-quartile, at 25\% the first (or lower) quartile, at 50\% the median a.k.a. the
-second quartile, at 75\% the third (or upper) quartile, and the maximum as the fourth quartile.
-
-Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then
-the hinges.
-
-There are quite a few different methods to determine the quartiles. This function has 12 different ones. See the details
-for a description.
+The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50\%, and the quartiles at 25\% and 75\%. Note that there are five quartiles, the minimum value is the 0-quartile,
+at 25\% the first (or lower) quartile, at 50\% the median a.k.a. the second quartile, at 75\% the third (or upper) quartile, and the maximum as the fourth quartile.
+Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
 }
 \details{
-First the index of \eqn{Q_1} and \eqn{Q_3} needs to be determined. This depends on the method used
-and the sample size. The table below shows the calculation for the indexes (\eqn{iQ_1} and \eqn{iQ_3}).
-the 'm' is determined by:
-\deqn{m = n \text{ mod } 4}\tabular{lllll}{
-   method \tab m=0 \tab m=1 \tab m=2 \tab m=3 \cr
-   Inclusive / Tukey / Vining \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \cr
-   Exclusive / Joarder-Firozzaman \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \cr
-   CDF / SAS 5 \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\lceil \frac{1}{4}\times n \rceil}, \eqn{\lceil \frac{3}{4}\times n \rceil} \tab \eqn{\lceil \frac{1}{4}\times n \rceil}, \eqn{\lceil \frac{3}{4}\times n \rceil} \tab \eqn{\lceil \frac{1}{4}\times n \rceil}, \eqn{\lceil \frac{3}{4}\times n \rceil} \cr
-   Mendenhall-Sincich \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \tab \eqn{\left[\frac{n + 1}{4}\right]}, \eqn{\lfloor \frac{3n + 3}{4}\rfloor} \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \cr
-   Lohninger \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \tab \eqn{\left[\frac{n+1}{4}\right]}, \eqn{\left[\frac{3n+3}{4}\right]} \cr
-   Hogg-Ledolter v1 \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 1}{4}} \cr
-   Hogg-Ledolter v2 \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \tab \eqn{\frac{n + 2}{4}}, \eqn{\frac{3n + 2}{4}} \cr
-   Minitab / SAS 4 / Snedecor \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \tab \eqn{\frac{n + 1}{4}}, \eqn{\frac{3n + 3}{4}} \cr
-   Excel \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \tab \eqn{\frac{n + 3}{4}}, \eqn{\frac{3n + 1}{4}} \cr
-   SAS 1 \tab \eqn{\frac{n}{4}}, \eqn{\frac{3n}{4}} \tab \eqn{\frac{n}{4}}, \eqn{\frac{3n}{4}} \tab \eqn{\frac{n}{4}}, \eqn{\frac{3n}{4}} \tab \eqn{\frac{n}{4}}, \eqn{\frac{3n}{4}} \cr
-   SAS 2 \tab \eqn{\left[\frac{n}{4}\right]}, \eqn{\left[\frac{3n}{4}\right]} \tab \eqn{\left[\frac{n}{4}\right]}, \eqn{\left[\frac{3n}{4}\right]} \tab \eqn{\lfloor\frac{n}{4}\rceil}, \eqn{\lfloor\frac{3n}{4}\rceil} \tab \eqn{\left[\frac{n}{4}\right]}, \eqn{\left[\frac{3n}{4}\right]} \cr
-   SAS 3 \tab \eqn{\lceil\frac{n}{4}\rceil}, \eqn{\lceil\frac{3n}{4}\rceil} \tab \eqn{\lceil\frac{n}{4}\rceil}, \eqn{\lceil\frac{3n}{4}\rceil} \tab \eqn{\lceil\frac{n}{4}\rceil}, \eqn{\lceil\frac{3n}{4}\rceil} \tab \eqn{\lceil\frac{n}{4}\rceil}, \eqn{\lceil\frac{3n}{4}\rceil} \cr
-   Hyndman-Fan v8 \tab \eqn{\frac{3n+5}{12}}, \eqn{\frac{9n+7}{12}} \tab \eqn{\frac{3n+5}{12}}, \eqn{\frac{9n+7}{12}} \tab \eqn{\frac{3n+5}{12}}, \eqn{\frac{9n+7}{12}} \tab \eqn{\frac{3n+5}{12}}, \eqn{\frac{9n+7}{12}} \cr
-   Hyndman-Fan v9 \tab \eqn{\frac{4n+7}{16}}, \eqn{\frac{12n+9}{16}} \tab \eqn{\frac{4n+7}{16}}, \eqn{\frac{12n+9}{16}} \tab \eqn{\frac{4n+7}{16}}, \eqn{\frac{12n+9}{16}} \tab \eqn{\frac{4n+7}{16}}, \eqn{\frac{12n+9}{16}} \cr
+There are quite a few different methods to determine the quartiles. This function has 19 different ones.
+See the notes for a description.
+
+To determine the quartiles a specific indexing method can be used. See \code{\link{he_quartileIndexing}} for details on the different
+methods to choose from.
+
+Then based on the indexes either linear interpolation or different rounding methods (bankers, nearest, down, up, half-down)
+can be used, or the midpoint between the two values. If the index is an integer either the integer or the mid point is used.
+See the \code{\link{he_quartilesIndex}} for details on this.
+
+Note that the rounding method can even vary per quartile, i.e. the one used for the first quartile being different
+than the one for the second.
+
+I've come across the following methods:\tabular{llllll}{
+   method \tab indexing \tab q1 integer \tab q1 fractional \tab q3 integer \tab q3 fractional \cr
+   sas1 \tab sas1 \tab use int \tab linear \tab use int \tab linear \cr
+   sas2 \tab sas1 \tab use int \tab bankers \tab use int \tab bankers \cr
+   sas3 \tab sas1 \tab use int \tab up \tab use int \tab up \cr
+   sas5 \tab sas1 \tab midpoint \tab up \tab midpoint \tab up \cr
+   hf3b \tab sas1 \tab use int \tab nearest \tab use int \tab halfdown \cr
+   sas4 \tab sas4 \tab use int \tab linear \tab use int \tab linear \cr
+   ms \tab sas4 \tab use int \tab nearest \tab use int \tab halfdown \cr
+   lohninger \tab sas4 \tab use int \tab nearest \tab use int \tab nearest \cr
+   hl2 \tab hl \tab use int \tab linear \tab use int \tab linear \cr
+   hl1 \tab hl \tab use int \tab midpoint \tab use int \tab midpoint \cr
+   excel \tab excel \tab use int \tab linear \tab use int \tab linear \cr
+   pd2 \tab excel \tab use int \tab down \tab use int \tab down \cr
+   pd3 \tab excel \tab use int \tab up \tab use int \tab up \cr
+   pd4 \tab excel \tab use int \tab halfdown \tab use int \tab nearest \cr
+   pd5 \tab excel \tab use int \tab midpoint \tab use int \tab midpoint \cr
+   hf8 \tab hf8 \tab use int \tab linear \tab use int \tab linear \cr
+   hf9 \tab hf9 \tab use int \tab linear \tab use int \tab linear \cr
 }
 
 
-Once the index is known, the quartiles can be determined using the method shown in the table below using:
-\deqn{fr = iHQ_x - iQ_x}\tabular{lllll}{
-   method \tab fr=0 \tab fr=0.25 \tab fr=0.5 \tab fr=0.75 \cr
-   \eqn{Q_x} \tab \eqn{x_{iLQ_x}} \tab \eqn{\frac{x_{iHQ_x + 3\times x_{iLQ_x}}}{4}} \tab \eqn{\frac{x_{iHQ_x + x_{iLQ_x}}}{2}} \tab \eqn{\frac{3\times x_{iHQ_x + x_{iLQ_x}}}{4}} \cr
+The following values can be used for the \emph{method} parameter:
+\enumerate{
+\item inclusive = tukey =hinges = vining. (Tukey, 1977, p. 32; Siegel & Morgan, 1996, p. 77; Vining, 1998, p. 44).
+\item exclusive = jf. (Moore & McCabe, 1989, p. 33; Joarder & Firozzaman, 2001, p. 88).
+\item sas1 = parzen = hf4 = interpolated_inverted_cdf = maple3 = r4. (Parzen, 1979, p. 108; SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 363)
+\item sas2 = hf3 = r3. (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item sas3 = hf1 = inverted_cdf = maple1 = r1 (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item sas4 = hf6 = minitab = snedecor = weibull = maple5 = r6 (Hyndman & Fan, 1996, p. 363; Weibull, 1939, p. ?; Snedecor, 1940, p. 43; SAS, 1990, p. 626)
+\item sas5 = hf2 = CDF = averaged_inverted_cdf = r2 (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item hf3b = closest_observation
+\item ms (Mendenhall & Sincich, 1992, p. 35)
+\item lohninger (Lohninger, n.d.)
+\item hl1 (Hogg & Ledolter, 1992, p. 21)
+\item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21；Hazen, 1914, p. ?)
+\item maple2
+\item excel = hf7 = pd1 = linear = gumbel = maple6 = r7 (Hyndman & Fan, 1996, p. 363; Freund & Perles, 1987, p. 201; Gumbel, 1939, p. ?)
+\item pd2 = lower
+\item pd3 = higher
+\item pd4 = nearest
+\item pd5 = midpoint
+\item hf8 = median_unbiased = maple7 = r8 (Hyndman & Fan, 1996, p. 363)
+\item hf9 = normal_unbiased = maple8 = r9 (Hyndman & Fan, 1996, p. 363)
 }
 
+\emph{hf} is short for Hyndman and Fan who wrote an article showcasing many different methods,
+\emph{hl} is short for Hog and Ledolter, \emph{ms} is short for Mendenhall and Sincich, \emph{jf} is short for Joarder and Firozzaman.
+\emph{sas} refers to the software package SAS, \emph{maple} to Maple, \emph{pd} to Python's pandas library, and \emph{r} to R.
 
-With:
-\deqn{iHQ_x = \lceil iQ_x \rceil = iLQ_x + 1}
-\deqn{iLQ_x = \lfloor iQ_x \rfloor}
-
-\emph{Symbols used:}
-\itemize{
-\item \eqn{x_i} the i-the score of x after the scores have been sorted
-\item \eqn{n} the sample size (i.e. the number of scores)
-\item \eqn{\left[\dots\right]} round to the nearest integer, if 0.5 round up
-\item \eqn{\lceil\dots\rceil} round up to the nearest integer
-\item \eqn{\lfloor\dots\rfloor} round down to the nearest integer
-\item \eqn{\lfloor\dots\rceil} round to the nearest even integer
-}
-
-The names of the different methods were adapted from Langford (2006). McAlister (1897, p. 374) uses
-the terms higher and lower quartile, while Galton (1881, p. 245) uses upper and lower.
-
-The final formula for \eqn{Q_x} is based on linear interpolation.
-\deqn{Q_x = \frac{iQ_x - iLQ_x}{iHQ_x - iLQ_x}\times\left(x_{iHQ_x} - x_{iLQ_x}\right) + x_{iLQ_x}}
-Since \eqn{iHQ_x - iLQ_x = 1} this can be further simplified to:
-\deqn{Q_x = \left(iQ_x - iLQ_x\right)\times\left(x_{iHQ_x} - x_{iLQ_x}\right) + x_{iLQ_x}}
-
-If the data is not numeric the interpolation will not be used and the two categories the quartile fell between
-is shown.
-
-\strong{Inclusive method vs. Exclusive}
-
-For both methods divides the data into two, using the median as the cut-off.
-The quartiles are then the medians of each of the two parts. If the sample size is an even number.
-The median will fall between two indexes, i.e. between \eqn{\frac{n}{2}} and \eqn{\frac{n + 2}{2}}.
-The first half will therefor have the indexes 1 to \eqn{\frac{n}{2}}. The median of this will be:
-\deqn{\frac{\frac{n}{2} + 1}{2} = \frac{\frac{n+2}{2}}{2}=\frac{n+2}{2}}.
-The second half will start at \eqn{\frac{n + 2}{2}} and end at \eqn{n}. The number of scores in the
-upper half is then:
-\deqn{n - \frac{n + 2}{2} + 1 = \frac{n - 2}{2} + 1 = \frac{n}{2}}
-The same as in the lower half, as it should be. The median of the upper half will then be:
-\deqn{\frac{n + 2}{2} + \frac{\frac{n}{2} + 1}{2} - 1 = \frac{n + 2 + \frac{n}{2} + 1 - 2}{2} = \frac{\frac{3n + 2}{2}}{2} = \frac{3n + 2}{4}}
-
-However, this creates a problem if the median is a specific value (when n is odd). We could
-either exclude the median itself then in each of the two parts, or include it. Hence, the names
-'inclusive' and 'exclusive.
-
-If we include it, the number of values in each half will be:
-\deqn{\frac{n + 1}{2}}
-The median of the first half is then:
-\deqn{\frac{\frac{n + 1}{2} + 1}{2} = \frac{\frac{n + 3}{2}}{2}= \frac{n + 3}{4}}
-And for the second half:
-\deqn{\frac{n + 1}{2} + \frac{\frac{n + 1}{2} + 1}{2} - 1 = \frac{n + 1 + \frac{n + 1}{2} + 1 - 2}{2} = \frac{\frac{3n + 1}{2}}{2} = \frac{3n + 1}{4}}
-
-If we exclude it, the number of values in each half will be:
-\deqn{\frac{n - 1}{2}}
-The median of the first half is then:
-\deqn{\frac{\frac{n - 1}{2} + 1}{2} = \frac{\frac{n + 1}{2}}{2}= \frac{n + 1}{4}}
-And for the second half:
-\deqn{\frac{n + 3}{2} + \frac{\frac{n + 1}{2} + 1}{2} - 1 = \frac{n + 3 + \frac{n + 1}{2} + 1 - 2}{2} = \frac{\frac{3n + 3}{2}}{2} = \frac{3n + 3}{4}}
-
-The inclusive method can be found in Tukey (1977), but also Siegel and Morgan (1996, p. 77) and Vining (1998, p. 44).
-While the exclusive method could be found in Moore and McCabe (1989, p. 33) or Joarder and Firozzaman (2001, p. 88).
-
-\strong{SAS versions}
-
-Another approach to the issue is simply using \eqn{n\times p} where \eqn{p} is the percentile, which
-for the first quartile is then 0.25, and for the third 0.75.
-
-Simply using \eqn{iQ_x = n\times p} is what \strong{SAS method 1 does}.
-\deqn{iQ_1 = \frac{1}{4}\times n = \frac{n}{4}}
-\deqn{iQ_3 = \frac{3}{4}\times n = \frac{3n}{4}}
-
-\strong{SAS method 3} simply rounds each of the results up to the nearest integer:
-\deqn{iQ_1 = \lceil\frac{1}{4}\times n\rceil = \lceil\frac{n}{4}\rceil}
-\deqn{iQ_3 = \lceil\frac{3}{4}\times n\rceil = \lceil\frac{3n}{4}\rceil}
-
-\strong{SAS method 2} is very similar, except if \eqn{n\times p} ends with 0.5. It then suggests to round to
-the nearest even integer. So for example 3.5 gets rounded to 4, but 2.5 gets rounded to 2.
-Note that we only get \eqn{n\times p} ending with .5 if n is a multiple of 4 + 2, i.e. \eqn{n \text{mod} 4 = 2}
-
-\strong{SAS method 4} first adds 1 to the sample size, so uses \eqn{\left(n + 1\right)\times p}. This leads for
-the two quartiles to:
-\deqn{iQ_1 = \frac{1}{4}\times\left(n + 1\right) = \frac{n + 1}{4}}
-\deqn{iQ_3 = \frac{3}{4}\times\left(n + 1\right) = \frac{3n + 3}{4}}
-
-The SAS method 4 is also used by \strong{Minitab} and can also be found in Snedecor (1940, p. 43).
-
-\strong{SAS method 5} is the same as SAS method 3, except \eqn{n\times p} is an integer. This will
-only occur if \eqn{n} is a multiple of 4. In that case it simply takes the average of the index and the
-next value i.e. \eqn{n\times p + 1}. For the first quartile this leads to:
-\deqn{iQ_1 = \frac{\frac{n}{4} + \frac{n}{4} + 1}{2} = \frac{\frac{2n + 4}{4}}{2}= \frac{\frac{n + 2}{2}}{2} = \frac{n + 2}{4}}
-And for the third:
-\deqn{iQ_3 = \frac{\frac{3n}{4} + \frac{3n}{4} + 1}{2} = \frac{\frac{6n + 4}{4}}{2}= \frac{\frac{3n + 2}{2}}{2} = \frac{3n + 2}{4}}
-
-The methods used by SAS are found in the procedures guide (SAS, 2006, p. 626).
-
-\strong{Mendenhall and Sincich}
-
-Similar as SAS method 4, however Mendenhall and Sincich (1992, p. 35) round the values.
-For the lower (first) quartile use:
-\deqn{iQ_1 = \left[\frac{1}{4}\times \left(n + 1\right)\right] = \left[\frac{n + 1}{4}\right]}
-However, if the third quartile index ends with 0.5 round down. The index will become ending with
-a 0.5 if \eqn{n \text{ mod } 4 = 1}, since then \eqn{n + 1} will have a modulo 2, which divided by 4
-gives the .5. So the third quartile is then:
-\deqn{iQ_3 = \lfloor \frac{3}{4}\times\left(n + 1\right)\rfloor = \lfloor \frac{3\times n + 3}{4}\rfloor}
-Otherwise:
-\deqn{iQ_3 = \left[\frac{3}{4}\times \left(n + 1\right)\right] = \left[\frac{3\times n + 3}{4}\right]}
-
-\strong{Lohninger}
-
-Lohninger (n.d.) does the same as Mendenhall and Sincich, but simply always uses 'regular' roundings.
-
-\deqn{\left[iQ_1 = \frac{1}{4}\times \left(n + 1\right)\right] = \left[\frac{n + 1}{4}\right]}
-and for the third quartile
-\deqn{\left[iQ_3 = \frac{3}{4}\times \left(n + 1\right)\right] = \left[\frac{3\times n + 3}{4}\right]}
-
-\strong{Hogg and Ledolter}
-
-Hogg and Ledolter (1992, p. 21) use that for the median \eqn{\frac{n}{2} + \frac{1}{2}} is used.
-So use for the first quartile the same approach:
-\deqn{iQ_1 = \frac{n}{4} + \frac{1}{2} = \frac{n + 2}{4}}
-For the third:
-\deqn{iQ_3 = \frac{3n}{4} + \frac{1}{2} = \frac{3n + 2}{4}}
-If however this falls between two indexes, average the two they fall between.
-This means we can't use the linear interpolation directly, since the two equations could end with
-.25 and .75 as well, and then still need to just determine the average of the two.
-If it ends in .25 we simply add 1/4, and if it ends in .75 we subtract it.
-So if \eqn{n \text{ mod } 4 = 1}:
-\deqn{iQ_1 = \frac{n + 2}{4} + \frac{1}{4} = \frac{n + 3}{4}}
-\deqn{iQ_3 = \frac{3n + 2}{4} + \frac{1}{4} = \frac{3n + 3}{4}}
-And if it ends in .75, i.e. \eqn{n \text{ mod } 4 = 3}:
-\deqn{iQ_1 = \frac{n + 2}{4} - \frac{1}{4} = \frac{n + 1}{4}}
-\deqn{iQ_3 = \frac{3n + 2}{4} - \frac{1}{4} = \frac{3n + 1}{4}}
-
-It could be that this method was also described in Hazen (1914), but I couldn't find the exact
-page number in that document.
-
-\strong{Excel}
-
-It appears that MS Excel has a unique method. It can also be found in Freund and Perles (1987, p. 201):
-\deqn{iQ_1 = \frac{1}{4}\times \left(n - 1\right) + 1 = \frac{n + 3}{4}}
-\deqn{iQ_3 = \frac{3}{4}\times \left(n - 1\right) + 1 = \frac{3\times n + 1}{4}}
-
-\strong{Hyndman-Fan}
-
-Hyndman and Fan (1996) discuss 9 different methods for quantiles, which can be used to determine quartiles.
-The R stats library's quantile() function uses their numbering.
-HF-1 = SAS-3, HF-2 = CDF / SAS-5, HF-3 = SAS-2, HF-4 = SAS-1, HF-5 = Hogg-Ledolter v2,
-HF-6 = Minitab / SAS-4, and HF-7 = Excel.
-
-This leaves their 8th and 9th definitions. For their 8th (method="hf8"):
-\deqn{iQ_1 = \left(n + \frac{1}{3}\right)\times\frac{1}{4}+\frac{1}{3} = \frac{3n+5}{12}}
-\deqn{iQ_3 = \left(n + \frac{1}{3}\right)\times\frac{3}{4}+\frac{1}{3} = \frac{9n+7}{12}}
-
-For their 9th method (method="hf9"):
-\deqn{iQ_1 = \left(n + \frac{1}{4}\right)\times\frac{1}{4}+\frac{3}{8} = \frac{4n+7}{16}}
-\deqn{iQ_1 = \left(n + \frac{1}{4}\right)\times\frac{3}{4}+\frac{3}{8} = \frac{12n+9}{16}}
+The names \emph{linear}, \emph{lower}, \emph{higher}, \emph{nearest} and \emph{midpoint} are all used by pandas quantile function and numpy
+percentile function. Numpy also uses \emph{inverted_cdf}, \emph{averaged_inverted_cdf}, \emph{closest_observation},
+\emph{interpolated_inverted_cdf}, \emph{hazen}, \emph{weibull}, \emph{median_unbiased}, and \emph{normal_unbiased}.
 }
 \examples{
-ex1 = c(1, 2, 3, 4, 5, 6, 7)
-me_quartiles(ex1, method="inclusive")
-me_quartiles(ex1, method="exclusive")
-me_quartiles(ex1, method="tukey")
-me_quartiles(ex1, method="cdf")
-me_quartiles(ex1, method="ms")
-me_quartiles(ex1, method="lohninger")
-me_quartiles(ex1, method="vining")
-me_quartiles(ex1, method="jf")
-me_quartiles(ex1, method="hl1")
-me_quartiles(ex1, method="hl2")
-me_quartiles(ex1, method="minitab")
-me_quartiles(ex1, method="excel")
-me_quartiles(ex1, method="sas1")
-me_quartiles(ex1, method="sas2")
-me_quartiles(ex1, method="sas3")
+ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)
+me_quartiles(ex8)
+test = c("a", "b", "c", "d", "e", "f")
+testCoding = c("a", "b", "c", "d", "e", "f")
+me_quartiles(test, levels=testCoding, method="excel")
 
 }
 \references{
@@ -239,13 +126,15 @@ Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data
 
 Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225–272.
 
+Gumbel, E. J. (1939). La Probabilité des Hypothèses. \emph{Compes Rendus de l’ Académie des Sciences, 209}, 645–647.
+
 Hazen, A. (1914). Storage to be provided in impounding municipal water supply. \emph{Transactions of the American Society of Civil Engineers, 77}(1), 1539–1640. https://doi.org/10.1061/taceat.0002563
 
 Hogg, R. V., & Ledolter, J. (1992). \emph{Applied statistics for engineers and physical scientists} (2nd int.). Macmillan.
 
-Hyndman, R. J., & Fan, Y. (1996). \emph{Sample quantiles in statistical packages. The American Statistician, 50}(4), 361–365. https://doi.org/10.2307/2684934
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. \emph{The American Statistician, 50}(4), 361–365. https://doi.org/10.2307/2684934
 
-Joarder, A. H., & Firozzaman, M. (2001). \emph{Quartiles for discrete data. Teaching Statistics, 23}(3), 86–89. https://doi.org/10.1111/1467-9639.00063
+Joarder, A. H., & Firozzaman, M. (2001). Quartiles for discrete data. \emph{Teaching Statistics, 23}(3), 86–89. https://doi.org/10.1111/1467-9639.00063
 
 Langford, E. (2006). Quartiles in elementary statistics. \emph{Journal of Statistics Education, 14}(3), 1–17. https://doi.org/10.1080/10691898.2006.11910589
 
@@ -253,13 +142,13 @@ Lohninger, H. (n.d.). Quartile. Fundamentals of Statistics. Retrieved April 7, 2
 
 McAlister, D. (1879). The law of the geometric mean. \emph{Proceedings of the Royal Society of London, 29}(196–199), 367–376. https://doi.org/10.1098/rspl.1879.0061
 
-Mendenhall, W., & Sincich, T. (1992). S\emph{tatistics for engineering and the sciences} (3rd ed.). Dellen Publishing Company.
+Mendenhall, W., & Sincich, T. (1992). \emph{Statistics for engineering and the sciences} (3rd ed.). Dellen Publishing Company.
 
 Moore, D. S., & McCabe, G. P. (1989). \emph{Introduction to the practice of statistics}. W.H. Freeman.
 
 Parzen, E. (1979). Nonparametric statistical data modeling. \emph{Journal of the American Statistical Association, 74}(365), 105–121. https://doi.org/10.1080/01621459.1979.10481621
 
-SAS. (1990). \emph{SAS procedures guide: Version 6} (3rd ed.). SAS Institute.
+SAS. (1990). SAS procedures guide: Version 6 (3rd ed.). SAS Institute.
 
 Siegel, A. F., & Morgan, C. J. (1996). \emph{Statistics and data analysis: An introduction} (2nd ed.). J. Wiley.
 
@@ -268,12 +157,8 @@ Snedecor, G. W. (1940). \emph{Statistical methods applied to experiments in agri
 Tukey, J. W. (1977). \emph{Exploratory data analysis}. Addison-Wesley Pub. Co.
 
 Vining, G. G. (1998). \emph{Statistical methods for engineers}. Duxbury Press.
-}
-\seealso{
-Quartiles are a special case of quantiles, see \code{\link{me_quantiles}} for more info on those.
 
-The quartiles are used for different ranges (interquartile, semi-interquartile and mid-quartile).
-See \code{\link{me_quartile_range}} for more info on those.
+Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}

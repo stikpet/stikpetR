@@ -40,6 +40,7 @@ check_man()
 setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 
+tinytex::tlmgr_install("makeindex")
 
 #add GPL-3 licence
 #setwd("H:/PeterStatistics/Packages/R/stikpetR")

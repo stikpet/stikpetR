@@ -71,8 +71,8 @@ me_quartile_range <- function(data,
   if (length(range)>1){range="iqr"}
   
   Qs = me_quartiles(data, method=method)
-  q1 = Qs$Q1
-  q3 = Qs$Q3
+  q1 = Qs$q1
+  q3 = Qs$q3
   
   if (range=="iqr") {
     r = q3 - q1
