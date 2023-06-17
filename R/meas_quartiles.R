@@ -163,6 +163,7 @@ me_quartiles <- function(data, levels=NULL,
     dataN = as.numeric(myFieldOrd)
   }
   
+  #Sort the data
   dataN = sort(dataN)
   
   #alternative namings

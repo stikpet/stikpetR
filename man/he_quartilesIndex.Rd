@@ -50,8 +50,8 @@ Where:
 \item  \eqn{\lceil\dots\rceil} is the function to always round up
 }
 
-Or we can use 'rounding'. But there are different versions of rounding. Besides the already mentioned round down
-and round up versions:
+Or we can use 'rounding'. But there are different versions of rounding. Besides the already mentioned round
+down and round up versions:
 \itemize{
 \item \eqn{\lfloor\dots\rceil} to indicate rounding to the nearest even integer. A value of 2.5 gets rounded to 2, while 1.5 also gets rounded to 2. This is also referred to as \emph{bankers} method.
 \item  \eqn{\left[\dots\right]} to indicate rounding to the nearest integer. A value that ends with .5 is then always rounded up.

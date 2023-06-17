@@ -20,8 +20,8 @@ A dataframe with:
 \item{q3Index}{the index of the third (upper/higher) quartile}
 }
 \description{
-Helper function for \code{\link{me_quartiles}} and \code{\link{he_quartileIndexing}} to return the index number of the first and third quartile for different methods of
-determining this index.
+Helper function for \code{\link{me_quartiles}} and \code{\link{he_quartileIndexing}} to return the index number
+of the first and third quartile for different methods of determining this index.
 }
 \details{
 The \strong{inclusive} method divides the data into two, and then includes the median in each half (if the sample size is odd).

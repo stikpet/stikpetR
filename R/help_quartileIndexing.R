@@ -1,7 +1,7 @@
 #' Quartile Indexing
 #' 
-#' Helper function for \code{\link{me_quartiles}} and \code{\link{he_quartileIndexing}} to return the index number of the first and third quartile for different methods of 
-#' determining this index.
+#' Helper function for \code{\link{me_quartiles}} and \code{\link{he_quartileIndexing}} to return the index number
+#'  of the first and third quartile for different methods of determining this index.
 #' 
 #' @param data dataframe with scores as numbers
 #' @param method indexing method to use
