@@ -4,10 +4,12 @@
 \alias{me_consensus}
 \title{Consensus}
 \usage{
-me_consensus(ordData)
+me_consensus(data, levels = NULL)
 }
 \arguments{
-\item{ordData}{ordinal data}
+\item{data}{the data}
+
+\item{levels}{optional to indicate the categories in order if data is non-numeric}
 }
 \value{
 cns the consensus score
@@ -43,9 +45,7 @@ ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
 me_consensus(ordData)
 
 labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-factData = as.factor(ordData)
-levels(factData) = labels
-me_consensus(factData)
+me_consensus(factData, labels)
 
 }
 \references{

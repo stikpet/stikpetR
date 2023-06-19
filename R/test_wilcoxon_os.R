@@ -175,7 +175,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_wilcoxon_os <- function(data, 
+ts_wilcoxon_os <- function(data, levels=NULL, 
                            mu = NULL, ties = TRUE, 
                            appr = c("wilcoxon", "none", "imanz", "imant"), 
                            eqMed = c("wilcoxon", "zsplit", "pratt"), 
@@ -184,6 +184,11 @@ ts_wilcoxon_os <- function(data,
   #set defaults if not provided
   if (length(appr)>1){appr="wilcoxon"}
   if (length(eqMed)>1){eqMed="wilcoxon"}
+  
+  if (!is.null(levels)){
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    data = as.numeric(myFieldOrd)
+  }
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {

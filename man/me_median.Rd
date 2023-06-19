@@ -37,12 +37,8 @@ With:
 \item \eqn{\tilde{x}} the median
 }
 
-If the number of scores is an odd number, and the median falls between two categories,
-the result will be that the median is the average of those two values. However, if the scores
-are not numeric the \emph{tieBreaker} can be used. If this is set to \emph{"between"}, the function
-will return "between X and Y".
-If it is set to "tieBreaker="low"", the lower value is returned, and if set to "tiebreaker="high""
-the upper value is returned.
+If the number of scores is an odd number, and the median falls between two categories. With the
+\emph{tieBreaker} it can then be set to return the lower value (low), upper (high), or average (between).
 
 Some old references to the median are Pacioli (1523) in Italian, Cournot (1843, p. 120) in French,
 and Galton (1881, p. 246) in English.

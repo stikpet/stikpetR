@@ -6,6 +6,7 @@
 \usage{
 ts_wilcoxon_os(
   data,
+  levels = NULL,
   mu = NULL,
   ties = TRUE,
   appr = c("wilcoxon", "none", "imanz", "imant"),
