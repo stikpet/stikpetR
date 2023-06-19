@@ -52,7 +52,13 @@
 #' Stewart, W. M. (1941). A note on the power of the sign test. *The Annals of Mathematical Statistics, 12*(2), 236–239. https://doi.org/10.1214/aoms/1177731755
 #'  
 #' @export
-ts_sign_os <- function(data, mu = NULL){
+ts_sign_os <- function(data, levels=NULL, mu = NULL){
+  
+  if (!is.null(levels)){
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    data = as.numeric(myFieldOrd)
+  }
+  
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
     mu = (min(data) + max(data)) / 2
