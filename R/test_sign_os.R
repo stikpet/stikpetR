@@ -1,7 +1,7 @@
 #' one-sample sign test
 #' 
 #' @param data A vector with the data as numbers
-#' 
+#' @param levels optional vector with levels in order
 #' @param mu optional hypothesized median, otherwise the midrange will be used
 #' @return dataframe with mu, the significance (p-value) and test used
 #' 
