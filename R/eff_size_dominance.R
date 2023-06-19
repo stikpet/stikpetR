@@ -1,6 +1,7 @@
 #' Dominance and a Vargha-Delaney A like effect size measure
 #' 
-#' @param data vector with the numeric scores
+#' @param data dataframe with scores as numbers, or if text also provide levels
+#' @param levels optional vector with levels in order
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
 #' @param out c("dominance","vda"). optional to either show the dominance score (default), or a VDA like measure
 #' @return dataframe with the hypothesized median (mu) and the effect size value
@@ -45,7 +46,12 @@
 #' Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.20.01). Rutger Cooperative Extension.
 #'  
 #' @export
-es_dominance <- function(data, mu=NULL, out="dominance"){
+es_dominance <- function(data, levels=NULL, mu=NULL, out="dominance"){
+  
+  if (!is.null(levels)){
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    data = as.numeric(myFieldOrd)
+  }
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
