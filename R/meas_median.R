@@ -26,12 +26,8 @@
 #' \item \eqn{\tilde{x}} the median
 #' }
 #' 
-#' If the number of scores is an odd number, and the median falls between two categories, 
-#' the result will be that the median is the average of those two values. However, if the scores 
-#' are not numeric the *tieBreaker* can be used. If this is set to *"between"*, the function 
-#' will return "between X and Y".
-#' If it is set to "tieBreaker="low"", the lower value is returned, and if set to "tiebreaker="high"" 
-#' the upper value is returned.
+#' If the number of scores is an odd number, and the median falls between two categories. With the 
+#' *tieBreaker* it can then be set to return the lower value (low), upper (high), or average (between).
 #' 
 #' Some old references to the median are Pacioli (1523) in Italian, Cournot (1843, p. 120) in French, 
 #' and Galton (1881, p. 246) in English.
@@ -72,39 +68,32 @@ me_median <- function(ordData, levels=NULL, tieBreaker=c("between", "low", "high
   n = length(sData)
   medIndex = (n + 1)/2
   
-  if (is.integer(medIndex)) {med = sData[medIndex]}
+  if (medIndex = round(medIndex)) {med = sData[medIndex]}
   else{
     medLow = sData[medIndex - 0.5]
     medHigh = sData[medIndex + 0.5]
     
-    if (is.null(levels) && is.numeric(sData)) {
-      med = (medLow + medHigh)/2
+    if (tieBreaker=="between") {
+      medN = (medLow + medHigh)/2
     }
-    
+    else if (tieBreaker=="low"){
+      medN = medLow
+    }
+    else if (tieBreaker=="high"){
+      medN = medHigh
+    }
+  }
+  
+  if (is.null(levels)){
+    med = medN
+  }
+  else{
+      if (medN != round(medN)) {
+        med = levels(medN)
+      }
     else{
-      if(!is.null(levels)){
-        medLow = levels[medLow]
-        medHigh = levels[medHigh]
-      }
-      
-      if (medLow != medHigh) {
-        
-        if (tieBreaker=="between") {
-          med = paste0("between ", medLow, " and ", medHigh)
-        }
-        else if (tieBreaker=="low"){
-          med = medLow
-        }
-        else if (tieBreaker=="high"){
-          med = medHigh
-        }
-        
-      }
-      else{
-        med = medLow
-      }
+      med = paste0("between ", levels[medLow], " and ", levels[medHigh])
     }
-    
   }
   return(med)
 }
