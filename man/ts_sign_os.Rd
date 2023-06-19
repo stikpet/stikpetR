@@ -4,7 +4,7 @@
 \alias{ts_sign_os}
 \title{one-sample sign test}
 \usage{
-ts_sign_os(data, mu = NULL)
+ts_sign_os(data, levels = NULL, mu = NULL)
 }
 \arguments{
 \item{data}{A vector with the data as numbers}

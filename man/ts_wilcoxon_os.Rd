@@ -15,7 +15,9 @@ ts_wilcoxon_os(
 )
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{dataframe with scores as numbers, or if text also provide levels}
+
+\item{levels}{optional vector with levels in order}
 
 \item{mu}{optional hypothesized median, otherwise the midrange will be used}
 

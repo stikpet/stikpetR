@@ -1,6 +1,7 @@
 #' One-Sample Wilcoxon Signed Rank Test
 #' 
-#' @param data A vector with the data as numbers
+#' @param data dataframe with scores as numbers, or if text also provide levels
+#' @param levels optional vector with levels in order
 #' @param mu optional hypothesized median, otherwise the midrange will be used
 #' @param ties optional boolean to use a tie correction (default is True)
 #' @param appr optional which method to use for approximation (default is "wilcoxon")
