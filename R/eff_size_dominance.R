@@ -66,11 +66,17 @@ es_dominance <- function(data, levels=NULL, mu=NULL, out="dominance"){
   
   dominance = pPlus - pMin
   es = dominance
+  title = "dominance"
   
   if (out=="vda") {
     VDA = (dominance + 1)/2
     es = VDA
+    title = "VDA-like"
   }
   
-  return(es)
+  
+  results <- data.frame(mu, es)
+  colnames(results) = c("mu", title)
+  
+  return(results)
 }
