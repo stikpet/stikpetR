@@ -1,6 +1,7 @@
 #' Consensus
 #' 
-#' @param ordData ordinal data
+#' @param data the data
+#' @param levels optional to indicate the categories in order if data is non-numeric
 #' @return cns the consensus score
 #' 
 #' @description 
@@ -28,9 +29,7 @@
 #' me_consensus(ordData)
 #' 
 #' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-#' factData = as.factor(ordData)
-#' levels(factData) = labels
-#' me_consensus(factData)
+#' me_consensus(factData, labels)
 #' 
 #' @section Alternatives:
 #' 
@@ -43,8 +42,16 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-me_consensus <- function(ordData){
-  freq = table(ordData)
+me_consensus <- function(data, levels=NULL){
+  
+  if (is.null(levels)){
+    dataN = data}
+  else{
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(myFieldOrd)
+  }
+  
+  freq = table(dataN)
   n = sum(freq)
   p = freq/n
   r = seq(length(freq))
