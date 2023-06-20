@@ -2,7 +2,7 @@
 #' 
 #' @param data dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
-#' @param range the specific range to determine
+#' @param measure the specific measure to determine
 #' @param method the method to use to determine the quartiles
 #' @returns
 #' A dataframe with:
@@ -66,10 +66,10 @@
 #' 
 #' @export
 me_quartile_range <- function(data, levels=NULL,
-                              range=c("iqr", "siqr", "qd", "mqr"), 
+                              measure=c("iqr", "siqr", "qd", "mqr"), 
                               method="cdf"){
   
-  if (length(range)>1){range="iqr"}
+  if (length(measure)>1){measure="iqr"}
   
   if (is.null(levels)){
     dataN = data}
@@ -82,16 +82,16 @@ me_quartile_range <- function(data, levels=NULL,
   q1 = Qs$q1
   q3 = Qs$q3
   
-  if (range=="iqr") {
+  if (measure=="iqr") {
     r = q3 - q1
     if (method=="tukey" || method=="inclusive" || method=="tukey" || method=="vining" || method=="hinges") {rName = "Hspread"}
     else{rName = "IQR"}
   }
-  else if (range=="siqr" || range=="qd"){
+  else if (measure=="siqr" || measure=="qd"){
     r = (q3 - q1)/2
     rName = "SIQR"
   }
-  else if (range=="mqr"){
+  else if (measure=="mqr"){
     r = (q3 + q1)/2
     rName = "MQR"
   }
