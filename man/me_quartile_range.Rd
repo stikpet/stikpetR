@@ -4,10 +4,17 @@
 \alias{me_quartile_range}
 \title{Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range}
 \usage{
-me_quartile_range(data, range = c("iqr", "siqr", "qd", "mqr"), method = "cdf")
+me_quartile_range(
+  data,
+  levels = NULL,
+  range = c("iqr", "siqr", "qd", "mqr"),
+  method = "cdf"
+)
 }
 \arguments{
-\item{data}{the numeric data to use}
+\item{data}{dataframe with scores as numbers, or if text also provide levels}
+
+\item{levels}{optional vector with levels in order}
 
 \item{range}{the specific range to determine}
 

@@ -4,10 +4,12 @@
 \alias{es_dominance}
 \title{Dominance and a Vargha-Delaney A like effect size measure}
 \usage{
-es_dominance(data, mu = NULL, out = "dominance")
+es_dominance(data, levels = NULL, mu = NULL, out = "dominance")
 }
 \arguments{
-\item{data}{vector with the numeric scores}
+\item{data}{dataframe with scores as numbers, or if text also provide levels}
+
+\item{levels}{optional vector with levels in order}
 
 \item{mu}{optional parameter to set the hypothesized median. If not used the midrange is used}
 

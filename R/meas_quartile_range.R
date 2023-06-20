@@ -1,6 +1,7 @@
 #' Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range
 #' 
-#' @param data the numeric data to use
+#' @param data dataframe with scores as numbers, or if text also provide levels
+#' @param levels optional vector with levels in order
 #' @param range the specific range to determine
 #' @param method the method to use to determine the quartiles
 #' @returns
@@ -64,19 +65,26 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-me_quartile_range <- function(data, 
+me_quartile_range <- function(data, levels=NULL,
                               range=c("iqr", "siqr", "qd", "mqr"), 
                               method="cdf"){
   
   if (length(range)>1){range="iqr"}
   
-  Qs = me_quartiles(data, method=method)
+  if (is.null(levels)){
+    dataN = data}
+  else{
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(myFieldOrd)
+  }
+  
+  Qs = me_quartiles(dataN, method=method)
   q1 = Qs$q1
   q3 = Qs$q3
   
   if (range=="iqr") {
     r = q3 - q1
-    if (method=="tukey") {rName = "Hspread"}
+    if (method=="tukey" || method=="inclusive" || method=="tukey" || method=="vining" || method=="hinges") {rName = "Hspread"}
     else{rName = "IQR"}
   }
   else if (range=="siqr" || range=="qd"){
@@ -89,7 +97,7 @@ me_quartile_range <- function(data,
   }
   
   results = data.frame(q1, q3, r)
-  colnames(results) = c("Q1", "Q2", rName)
+  colnames(results) = c("Q1", "Q3", rName)
   
   
   return (results)
