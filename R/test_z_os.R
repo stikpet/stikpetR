@@ -1,5 +1,12 @@
 #' One-Sample Z t-Test
-#'
+#' 
+#' This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test
+#' is usually used.
+#' 
+#' The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean 
+#' that is expected in the population. If the p-value (significance) is then below a pre-defined threhold 
+#' (usually 0.05), the assumption is rejected.
+#' 
 #' @param data A vector with the data as numbers
 #' @param mu optional hypothesized mean, otherwise the midrange will be used
 #' @param sigma population standard deviation, if NULL sample results will be used
