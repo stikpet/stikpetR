@@ -104,11 +104,11 @@ ts_binomial_os <- function(data,
                            p0 = 0.5, 
                            twoSidedMethod=c("eqdist", "double", "smallp")){
   
-  if (length(twoSidedMethod)>1) {
-    twoSidedMethod = "eqdist"
-  }
+  if (length(twoSidedMethod)>1) {twoSidedMethod = "eqdist"}
   
   testUsed = "one-sample binomial"
+  
+  data = na.omit(data)
   
   #if no codes provided use first found
   if (is.null(codes)) {

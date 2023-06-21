@@ -7,7 +7,7 @@
 me_quartile_range(
   data,
   levels = NULL,
-  range = c("iqr", "siqr", "qd", "mqr"),
+  measure = c("iqr", "siqr", "qd", "mqr"),
   method = "cdf"
 )
 }
@@ -16,7 +16,7 @@ me_quartile_range(
 
 \item{levels}{optional vector with levels in order}
 
-\item{range}{the specific range to determine}
+\item{measure}{the specific measure to determine}
 
 \item{method}{the method to use to determine the quartiles}
 }
