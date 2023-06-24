@@ -49,6 +49,7 @@ th_cohen_h <- function(h, qual="cohen"){
   }
   
   results = data.frame(qual, ref)
+  colnames(results)<-c("classification", "reference")
   
   return(results)
   
