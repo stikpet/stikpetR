@@ -4,7 +4,7 @@
 \alias{tab_frequency}
 \title{Frequency Table}
 \usage{
-tab_frequency(data, decimals = 1)
+tab_frequency(data, order = NULL)
 }
 \arguments{
 \item{data}{A vector with the data}
@@ -13,11 +13,11 @@ tab_frequency(data, decimals = 1)
 }
 \value{
 Dataframe with the folowing columns:
-\item{data}{the categories}
-\item{Freq}{the absolute count}
-\item{Percent}{the percentage based on the total including missing values}
-\item{ValidPercent}{the percentage based on the total excluding missing values, only if missing values are present}
-\item{CumulativePercent}{the cumulative percentages}
+\item{index}{the categories}
+\item{frequency}{the absolute count}
+\item{percent}{the percentage based on the total including missing values}
+\item{valid percent}{the percentage based on the total excluding missing values, only if missing values are present}
+\item{cumulative percent}{the cumulative percentages}
 }
 \description{
 A frequency table is defined as "a table showing (1) all of the values for a variable in a dataset,
