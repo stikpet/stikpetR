@@ -88,8 +88,9 @@ es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
   AR1 = p1 / p0
   AR2 = p2 / (1 - p0)
   
-  testResults <- data.frame(AR1, AR2)
+  results <- data.frame(AR1, AR2)
+  colnames(results)<-c("Alt. Ratio Cat. 1", "Alt. Ratio Cat. 2")
   
-  return (testResults)
+  return (results)
   
 }
