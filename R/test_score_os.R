@@ -82,6 +82,8 @@ ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){
   
   if (length(cc)>1) {cc = "none"}
   
+  data = na.omit(data)
+  
   #if no codes provided use first found
   if (is.null(codes)) {
     n1 = unname(table(data)[1])
@@ -124,6 +126,7 @@ ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){
     testUsed = "one-Sample Score with Yates continuity correction"}
   
   testResults <- data.frame(n, statistic, pValue, testUsed)
+  colnames(testResults)<-c("n", "p-value (2-sided)", "test")
   
   return (testResults)
 }

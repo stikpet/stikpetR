@@ -164,6 +164,7 @@ ts_binomial_os <- function(data,
   }
   
   testResults <- data.frame(pValue, testUsed)
+  colnames(testResults)<-c("p-value (2-sided)", "test")
   
   return (testResults)
   
