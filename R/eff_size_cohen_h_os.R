@@ -59,7 +59,7 @@ es_cohen_h_os <- function(data, codes=NULL, p0=0.5){
   
   if (is.null(codes)){
     freq <- table(data)
-    n1 <- sum(data==data[1])
+    n1 <- sum(data==rownames(freq)[1])
     n <- sum(freq)
     n2 = n - n1    
   } else {
