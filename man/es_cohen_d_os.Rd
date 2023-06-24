@@ -15,7 +15,7 @@ es_cohen_d_os(data, mu = NULL)
 Cohen d'. mu is also printed if not provided.
 }
 \description{
-Cohen d' (for one-sample)
+This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 }
 \details{
 The formula used (Cohen, 1988, p. 46):

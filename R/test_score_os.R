@@ -6,6 +6,7 @@
 #' @param cc Use of continuity correction (default is "none")
 #' @returns 
 #' Dataframe with:
+#' \item{n}{the sample size}
 #' \item{statistic}{the test value}
 #' \item{pValue}{two-sided p-value}
 #' \item{testUsed}{a description of the test used}
@@ -122,7 +123,7 @@ ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){
     statistic = Z
     testUsed = "one-Sample Score with Yates continuity correction"}
   
-  testResults <- data.frame(statistic, pValue, testUsed)
+  testResults <- data.frame(n, statistic, pValue, testUsed)
   
   return (testResults)
 }

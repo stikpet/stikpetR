@@ -94,7 +94,7 @@
 #' In formula notation:
 #' \deqn{\bar{f_k}=\frac{\sum_{i=1}^k f_{i,k}}{k}}
 #' \deqn{\sigma_{f_k}=\frac{\sum_{i=1}^k\left(f_{i,k}-\bar{f_k}\right)^2}{k}}
-#' Where \eqnf_{i,k}} is the frequency of the i-th bin when using k bins.
+#' Where \eqn{f_{i,k}} is the frequency of the i-th bin when using k bins.
 #' 
 #' **Stone (stone)**
 #' 

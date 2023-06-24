@@ -1,4 +1,8 @@
-#' One-Sample Trimmed Mean Test
+#' One-Sample (Yuen or Yuen-Welch) Trimmed Mean Test
+#' 
+#' A variation on a one-sample Student t-test where the data is first trimmed, and the Winsorized variance is used.
+#' 
+#' The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
 #' 
 #' @param data A vector with the data as numbers
 #' @param mu optional hypothesized trimmed mean, otherwise the midrange will be used

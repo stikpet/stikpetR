@@ -1,5 +1,9 @@
 #' Hedges g (for one-sample)
 #' 
+#' This function will calculate Hedges g (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
+#' 
+#' Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
+#' 
 #' @param data pandas series with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used
 #' @param appr c(NULL, 'hedges', 'durlak', 'xue') approximation to use, NULL will use exact.

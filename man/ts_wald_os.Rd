@@ -17,6 +17,7 @@ ts_wald_os(data, codes = NULL, p0 = 0.5, cc = c("none", "yates"))
 }
 \value{
 Dataframe with:
+\item{n}{the sample size}
 \item{statistic}{the test value}
 \item{pValue}{two-sided p-value}
 \item{testUsed}{a description of the test used}

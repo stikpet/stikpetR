@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_trimmed_mean_os.R
 \name{ts_trimmed_mean_os}
 \alias{ts_trimmed_mean_os}
-\title{One-Sample Trimmed Mean Test}
+\title{One-Sample (Yuen or Yuen-Welch) Trimmed Mean Test}
 \usage{
 ts_trimmed_mean_os(data, mu = NULL, trim = 0.1, se = "yuen")
 }
@@ -19,9 +19,11 @@ ts_trimmed_mean_os(data, mu = NULL, trim = 0.1, se = "yuen")
 dataframe with the sample trimmed mean, hypothesized trimmed mean, the standard error, test statistic, degrees of freedom, p-value (sig.) and name of test used
 }
 \description{
-One-Sample Trimmed Mean Test
+A variation on a one-sample Student t-test where the data is first trimmed, and the Winsorized variance is used.
 }
 \details{
+The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
+
 The formula used is:
 \deqn{\frac{\bar{x}_t - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - T\left(\left|t\right|, df\right)\right)}

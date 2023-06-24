@@ -23,7 +23,99 @@ To decide on the appropriate number of bins, many different rules can be applied
 determine the number of bins, based on the chosen method.
 }
 \details{
+The first few methods are determining the number of bins (k) using the sample size (n).
 
+\strong{Square Root Choice (src)}
+
+This method uses (unknown source):
+\deqn{k = \lceil\sqrt{n}\rceil}
+
+\strong{Sturges Choice (sturges)}
+
+This method uses (Sturges, 1926, p. 65):
+\deqn{k = \lceil\log_2\left(n\right)\rceil + 1}
+
+\strong{Quartic Root (qr)}
+
+This method uses (anonymous, as cited in Lohaka, 2007, p. 87):
+\deqn{k = \lceil 2.5\times\sqrt[4]{n}\rceil}
+
+\strong{Rice Rule (rice)}
+
+This method uses (Lane, n.d., p. 85):
+\deqn{k = \lceil 2\times \sqrt[3]{n}\lceil}
+
+\strong{Terrell and Scotte (ts)}
+
+This method uses (Terrell & Scott, 1985, p. 212):
+\deqn{k = \lceil \sqrt[3]{2\times n\rceil}}
+
+\strong{Exponential (exp)}
+
+This method uses (Iman & Conover, 1989, p. 54):
+\deqn{k = \lceil \log_2\left(n\right)\rceil}
+
+\strong{Velleman (velleman)}
+
+This method uses (Velleman, 1976 as cited in Lohaka, 2007, p. 89):
+\deqn{k = \begin{cases}\lceil 2\times\sqrt{n}\rceil & \text{ if } n\leq 100 \\ \lceil 10\times\log_{10}\left(n\right)\rceil & \text{ if } n > 100\end{cases}}
+
+\strong{Doane (doane)}
+
+This method uses (Doane, 1976, pp. 181-182):
+\deqn{k = 1 + \lceil\log_2\left(n\right) + \log_2\left(1+\frac{\left|g_1\right|}{\sigma_{g_1}}\right)\rceil}
+In the formula's \eqn{g_1} is the 3rd moment skewness:
+\deqn{g_1 = \frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^3} {n\times\sigma^3} = \frac{1}{n}\times\sum_{i=1}^n\left(\frac{x_i-\bar{x}}{\sigma}\right)^3}
+With:
+\deqn{\sigma = \sqrt{\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n}}}
+The \eqn{\sigma_{g_1}} is defined using the formula:
+\deqn{\sigma_{g_1}=\sqrt{\frac{6\times\left(n-2\right)}{\left(n+1\right)\left(n+3\right)}}}
+
+Next are methods that determine the bin sizes (h), which can then be used to determine the number of bins (k) using:
+\deqn{k = \lceil\frac{\text{max}\left(x\right)-\text{min}\left(x\right)}{h}\rceil}
+
+\strong{Scott (scott)}
+
+This method uses (Scott, 1979, p. 608):
+\deqn{h = \frac{3.49\times s}{\sqrt[3]{n}}}
+
+Where \eqn{s} is the sample standard deviation:
+\deqn{s = \sqrt{\frac{\sum_{i=1}^n\left(x_i-\bar{x}\right)^2}{n-1}}}
+
+\strong{Freedman and Diaconis (fd)}
+
+This method uses (Freedman & Diaconis, 1981, p. 3):
+\deqn{h = 2\times\frac{\text{IQR}\left(x\right)}{\sqrt[3]{n}}}
+
+Where \eqn{\text{IQR}} is the inter-quartile range.
+
+The last three methods all minimize a cost function (or maximize a profit function). They make use of the following steps:
+\enumerate{
+\item Divide the data into k bins and count the frequency in each bin
+\item Compute the cost function
+\item Repeat the first two steps while changing k, until a k is found that minimizes the cost function
+}
+
+\strong{Shimazaki and Shinomoto (shinshim)}
+
+This method uses as a cost function (Shimazaki & Shinomoto, 2007, p. 1508):
+\deqn{C_k = \frac{2\times\bar{f_k}-\sigma_{f_k}}{h^2}}
+With \eqn{\bar{f_k}} being the average of the frequencies when using k bins, and \eqn{\sigma_{f_k}} the population variance.
+In formula notation:
+\deqn{\bar{f_k}=\frac{\sum_{i=1}^k f_{i,k}}{k}}
+\deqn{\sigma_{f_k}=\frac{\sum_{i=1}^k\left(f_{i,k}-\bar{f_k}\right)^2}{k}}
+Where \eqn{f_{i,k}} is the frequency of the i-th bin when using k bins.
+
+\strong{Stone (stone)}
+
+This method uses as a cost function (Stone, 1984, p. 3):
+\deqn{C_k = \frac{1}{h}\times\left(\frac{2}{n-1}-\frac{n+1}{n-1}\times\sum_{i=1}^k\left(\frac{f_i}{n}\right)^2\right)}
+
+\strong{Knuth (knuth)}
+
+This method uses as a profit function (Knuth, 2019, p. 8):
+
+\deqn{P_k=n\times\ln\left(k\right) + \ln\Gamma\left(\frac{k}{2}\right) - k\times\ln\Gamma\left(\frac{1}{2}\right) - \ln\Gamma\left(n+\frac{k}{2}\right) + \sum_{i=1}^k\ln\Gamma\left(f_i+\frac{1}{2}\right)}
 }
 \references{
 Doane, D. P. (1976). Aesthetic frequency classifications. \emph{The American Statistician, 30}(4), 181–183. https://doi.org/10.2307/2683757

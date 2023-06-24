@@ -1,4 +1,6 @@
 #' Cohen d' (for one-sample)
+#' 
+#' This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 #'
 #' @param data pandas series with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used

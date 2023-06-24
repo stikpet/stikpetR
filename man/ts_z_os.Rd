@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_z_os.R
 \name{ts_z_os}
 \alias{ts_z_os}
-\title{One-Sample Z t-Test}
+\title{One-Sample Z Test}
 \usage{
 ts_z_os(data, mu = NULL, sigma = NULL)
 }
@@ -22,9 +22,14 @@ A dataframe with:
 \item{testUsed}{name of test used}
 }
 \description{
-One-Sample Z t-Test
+This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test
+is usually used.
 }
 \details{
+The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean
+that is expected in the population. If the p-value (significance) is then below a pre-defined threhold
+(usually 0.05), the assumption is rejected.
+
 The formula used is:
 \deqn{z = \frac{\bar{x} - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}

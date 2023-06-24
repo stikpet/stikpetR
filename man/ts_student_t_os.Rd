@@ -15,9 +15,11 @@ ts_student_t_os(data, mu = NULL)
 dataframe with the hypothesized mean, sample mean, test statistic, degrees of freedom, p-value (sig.) and name of test used
 }
 \description{
-One-Sample Student t-Test
+A test for a single (arithmetic) mean.
 }
 \details{
+The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean that is expected in the population. If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
+
 The formula used is:
 \deqn{t = \frac{\bar{x} - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - T\left(\left|t\right|, df\right)\right)}

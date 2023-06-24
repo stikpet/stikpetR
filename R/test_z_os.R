@@ -1,4 +1,4 @@
-#' One-Sample Z t-Test
+#' One-Sample Z Test
 #' 
 #' This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test
 #' is usually used.

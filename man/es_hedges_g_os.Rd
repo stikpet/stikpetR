@@ -17,9 +17,11 @@ es_hedges_g_os(data, mu = NULL, appr = NULL)
 dataframe with the hypothesized mean used, the effect size value, and method used.
 }
 \description{
-Hedges g (for one-sample)
+This function will calculate Hedges g (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 }
 \details{
+Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
+
 Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have
 a one-sample version for Hedges g, and this correction is the one for Hedges g used for the
 independent samples.
