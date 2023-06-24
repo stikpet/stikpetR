@@ -55,6 +55,8 @@
 #' @export
 es_cohen_h_os <- function(data, codes=NULL, p0=0.5){
   
+  data = na.omit(data)
+  
   if (is.null(codes)){
     freq <- table(data)
     n1 <- sum(data==data[1])

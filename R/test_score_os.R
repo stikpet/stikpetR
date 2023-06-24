@@ -126,7 +126,7 @@ ts_score_os <- function(data, codes=NULL, p0 = 0.5, cc = c("none", "yates")){
     testUsed = "one-Sample Score with Yates continuity correction"}
   
   testResults <- data.frame(n, statistic, pValue, testUsed)
-  colnames(testResults)<-c("n", "p-value (2-sided)", "test")
+  colnames(testResults)<-c("n", "statistic", "p-value (2-sided)", "test")
   
   return (testResults)
 }

@@ -45,6 +45,9 @@
 #' 
 #' @export
 es_cohen_g <- function(data, codes=NULL){
+  
+  data = na.omit(data)
+  
   if (is.null(codes)){
     freq <- table(data)
     prop <- freq / sum(freq)

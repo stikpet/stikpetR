@@ -56,6 +56,8 @@
 #' @export
 es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
   
+  data = na.omit(data)
+  
   if (is.null(codes)){
     freq <- table(data)
     n <- sum(freq)
