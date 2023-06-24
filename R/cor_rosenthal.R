@@ -41,6 +41,6 @@ r_rosenthal <- function(zVal, n){
   
   r = zVal/sqrt(n)
   
-  return (r)
+  return (r[1,1])
   
 }
