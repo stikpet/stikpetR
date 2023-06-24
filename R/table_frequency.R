@@ -4,11 +4,11 @@
 #' @param decimals An integer for the number of decimals to be shown for the percentages
 #' @returns 
 #' Dataframe with the folowing columns:
-#' \item{data}{the categories}
-#' \item{Freq}{the absolute count}
-#' \item{Percent}{the percentage based on the total including missing values}
-#' \item{ValidPercent}{the percentage based on the total excluding missing values, only if missing values are present}
-#' \item{CumulativePercent}{the cumulative percentages}
+#' \item{index}{the categories}
+#' \item{frequency}{the absolute count}
+#' \item{percent}{the percentage based on the total including missing values}
+#' \item{valid percent}{the percentage based on the total excluding missing values, only if missing values are present}
+#' \item{cumulative percent}{the cumulative percentages}
 #' 
 #' @description 
 #' A frequency table is defined as "a table showing (1) all of the values for a variable in a dataset, 
@@ -94,44 +94,46 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-tab_frequency <- function(data, decimals=1){
+tab_frequency <- function(data, order=NULL){
+  
+  if (!is.null(order)){
+    if(!is.null(names(order))){
+      for (i in 1:length(order)){data[data == unname(order[i])] = names(order)[i]}
+      order = names(order)
+    }
+  }
+  
   #counts without missing values
   freq = table(data)
   #counts with missing values
   freq2 = table(data, exclude=NULL)
   
-  #Missing values present?
-  noMissing <- sum(freq) == sum(freq2)
-
   #Proportions without missing values
   prop = prop.table(freq)  
   #Proportions with missing values
-  prop2 = prop.table(freq2)
+  prop2 = freq/sum(freq2)
   
   #Cumulative Frequency
   cumf  = cumsum(freq)
   #Cumulative Relative Frequency
   cumrf = cumsum(prop)
   
+  f = as.data.frame(freq,stringsAsFactors=FALSE)
+  colnames(f) = c("category", "frequency")
   
-  f = as.data.frame(freq2,stringsAsFactors=FALSE)
+  if (!is.null(order)){f = f[match(order, f$category), ]}
   rf = as.data.frame(prop2,stringsAsFactors=FALSE)
   vp = as.data.frame(prop,stringsAsFactors=FALSE)
   crf = as.data.frame(cumrf,stringsAsFactors=FALSE)
-  myTable= f
+  myTable = f
   myTable$Percent = rf$Freq*100
+  myTable$vp = vp$Freq*100
+  myTable$crf = crf$cumrf*100
   
-  if (noMissing) {
-    myTable$CumulativePercent = round(crf$cumrf*100, decimals)
-    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),100,NA))
-  }
-  else{
-    vp2 = rbind(vp,c(NA,NA))
-    crf2 = rbind(crf,c(NA))
-    myTable$ValidPercent = round(vp2$Freq*100,decimals)
-    myTable$CumulativePercent = round(crf2$cumrf*100, decimals)
-    myTable = rbind(myTable,c("TOTAL",sum(myTable$Freq),100, 100,NA))
-  }
+  colnames(myTable)<-c("category", "frequency", "percent", "valid percent", "cumulative percent")
+  rownames(myTable) = myTable$category    
   
-  return(myTable)
+  tab = myTable[, 2:5]
+  
+  return(tab)
 }
