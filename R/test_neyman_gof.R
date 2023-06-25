@@ -177,6 +177,8 @@ ts_neyman_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pearson"
   else if (cc == "yates"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
+  statistic=chiVal
+  
   testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
   colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
   
