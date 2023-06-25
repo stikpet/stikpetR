@@ -258,7 +258,14 @@ ts_powerdivergence <- function(var1, var2=NULL, expCounts=NULL, lambd=c("cressie
   
   
   #prepare results
-  testResults = data.frame(ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)        
+  if (is.null(var2)){
+    testResults = data.frame(n, k, ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
+    colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
+    }
+  else {
+    testResults = data.frame(ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
+    colnames(testResults)<-c("statistic", "df", "p-value", "minExp", "propBelow5", "test")
+  }
   
   return (testResults)
 }
