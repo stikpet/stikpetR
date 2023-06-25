@@ -3,8 +3,10 @@
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
 #' @param cc Optional continuity correction (default is "none")
-#' @returns
+#' @returns 
 #' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
 #' \item{statistic}{the chi-square statistic}
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
@@ -107,27 +109,16 @@ ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = c("none", "yates
   
   if (length(cc)>1) {cc="none"}
   
-  #the sample size n
-  n = length(data)
-  
   #determine the observed counts
   if (is.null(expCount)){
-    
-    #generate frequency table
     freqTable<-table(data)
-    
-    #number of categories to use (k)
+    n = sum(freqTable)
     k = dim(freqTable)
-    
-    #rewrite frequency table in long format
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in 1:k){
       freq[nrow(freq) + 1,] = c(names(freqTable)[i], freqTable[i])
     }
-    
-    #number of expected counts is simply sample size
     nE = n
-    
   }
   else{
     #if expected counts are given
@@ -135,13 +126,9 @@ ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = c("none", "yates
     for (i in expCount[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
-    
-    #number of categories to use (k)
     k = nrow(expCount)
-    
-    #sum of the given expected counts
     nE = sum(expCount[,2])
-    
+    n = sum(freq[,1])
   }
   
   #the degrees of freedom
@@ -202,7 +189,8 @@ ts_mod_log_likelihood_gof <- function(data, expCount=NULL, cc = c("none", "yates
   
   statistic = chiVal
   
-  testResults <- data.frame(statistic, df, pValue, minExp, propBelow5, testUsed)
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
   
   return (testResults)
   

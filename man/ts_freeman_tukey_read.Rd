@@ -22,6 +22,8 @@ ts_freeman_tukey_read(
 }
 \value{
 Dataframe with:
+\item{n}{the sample size}
+\item{k}{the number of categories}
 \item{statistic}{the chi-square statistic}
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}

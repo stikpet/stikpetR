@@ -6,6 +6,8 @@
 #' @param cc Optional continuity correction (default is "none")
 #' @returns 
 #' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
 #' \item{statistic}{the chi-square statistic}
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
@@ -104,10 +106,10 @@ ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc =
   
   if (length(cc)>1) {cc="none"}
   
-  n = length(data)
-  
+  #determine the observed counts
   if (is.null(expCount)){
     freqTable<-table(data)
+    n = sum(freqTable)
     k = dim(freqTable)
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in 1:k){
@@ -116,12 +118,14 @@ ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc =
     nE = n
   }
   else{
+    #if expected counts are given
     freq = data.frame(matrix(nrow=0, ncol=2))
     for (i in expCount[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
     k = nrow(expCount)
     nE = sum(expCount[,2])
+    n = sum(freq[,1])
   }
   
   df = k - 1
@@ -169,7 +173,8 @@ ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc =
     testUsed = paste(testUsed, ", with Williams continuity correction")}
   
   statistic = FT
-  testResults <- data.frame(statistic, df, pValue, minExp, propBelow5, testUsed)
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
   
   return (testResults)
   
