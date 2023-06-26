@@ -63,7 +63,7 @@ es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
     n <- sum(freq)
     
     if (is.null(category)){
-      n1 <- sum(data==data[1])}
+      n1 <- sum(data==rownames(freq)[1])}
     else{
       n1<-sum(data==category)}
     
