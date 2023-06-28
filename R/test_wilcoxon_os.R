@@ -314,7 +314,7 @@ ts_wilcoxon_os <- function(data, levels=NULL,
   
   pValue = pVal
   testResults <- data.frame(nr, mu, W, statistic, df, pValue, testUsed)
-  colnames(testResults)<-c("nr", "mu", "W", "statistic", "p-value", "df", "test")
+  colnames(testResults)<-c("nr", "mu", "W", "statistic", "df", "p-value", "test")
   
   return (testResults)
 }
