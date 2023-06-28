@@ -1,6 +1,7 @@
 #' Rank biserial correlation coefficient (one-sample)
 #' 
 #' @param data vector with the numeric scores
+#' @param levels optional vector with levels in order
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
 #' @return dataframe with the hypothesized median (mu) and the effect size measure
 #' 
@@ -45,19 +46,26 @@
 #' King, B. M., & Minium, E. W. (2008). *Statistical reasoning in the behavioral sciences* (5th ed.). John Wiley & Sons, Inc.
 #'  
 #' @export
-r_rank_biserial_os <- function(data, mu=NULL){
+r_rank_biserial_os <- function(data, levels=NULL, mu=NULL){
+  
+  if (is.null(levels)){
+    dataN = data}
+  else{
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(myFieldOrd)
+  }
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
-    mu = (min(data) + max(data)) / 2
+    mu = (min(dataN) + max(dataN)) / 2
   }
   
   #remove scores equal to hypothesized median
-  data = data[data != mu]
+  dataN = dataN[dataN != mu]
   
   # Determine the differences with the hypothesized median, and the corresponding signs
-  diffs = abs(data - mu)
-  signs = sign(data - mu)
+  diffs = abs(dataN - mu)
+  signs = sign(dataN - mu)
   
   # Use the rank function to determine the ranks
   ranks = rank(diffs)
