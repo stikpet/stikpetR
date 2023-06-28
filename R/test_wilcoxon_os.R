@@ -178,7 +178,7 @@
 #' @export
 ts_wilcoxon_os <- function(data, levels=NULL, 
                            mu = NULL, ties = TRUE, 
-                           appr = c("wilcoxon", "none", "imanz", "imant"), 
+                           appr = c("wilcoxon", "exact", "imanz", "imant"), 
                            eqMed = c("wilcoxon", "zsplit", "pratt"), 
                            cc = FALSE){
   
@@ -208,7 +208,7 @@ ts_wilcoxon_os <- function(data, levels=NULL,
   
   absDiffs = 0
   #remove scores equal to hypMed if eqMed is wilcoxon
-  if (eqMed == "wilcoxon" || appr == "none"){
+  if (eqMed == "wilcoxon" || appr == "exact"){
     data = data[data != mu]
   }
   
@@ -220,7 +220,7 @@ ts_wilcoxon_os <- function(data, levels=NULL,
   W = sum(ranks[diffs > 0])
   
   df = "n.a."
-  if (appr=="none"){
+  if (appr=="exact"){
     #check if ties exist
     ranks = ranks[absDiffs != 0]
     
@@ -313,7 +313,8 @@ ts_wilcoxon_os <- function(data, levels=NULL,
   }  
   
   pValue = pVal
-  testResults <- data.frame(mu, W, statistic, df, pValue, testUsed)
+  testResults <- data.frame(nr, mu, W, statistic, df, pValue, testUsed)
+  colnames(testResults)<-c("nr", "mu", "W", "statistic", "p-value", "df", "test")
   
   return (testResults)
 }
