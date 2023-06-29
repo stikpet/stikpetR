@@ -82,7 +82,7 @@ me_mode <- function(data, allEq = c("none", "all")){
   }
   
   results <- data.frame(modes, fMode)
-  colnames(testResults)<-c("mode", "mode freq.")
+  colnames(results)<-c("mode", "mode freq.")
   
   return(results)
   
