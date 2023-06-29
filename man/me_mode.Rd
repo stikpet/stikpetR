@@ -7,9 +7,9 @@
 me_mode(data, allEq = c("none", "all"))
 }
 \arguments{
-\item{data}{the scores to determine the mode from}
+\item{data}{vector with the scores to determine the mode from}
 
-\item{allEq}{indicator on what to do if maximum frequency is equal for more than one category (see details)}
+\item{allEq}{optional indicator on what to do if maximum frequency is equal for more than one category. Either \code{"none"} (default), or \code{"all"}}
 }
 \value{
 A dataframe with:
@@ -17,30 +17,20 @@ A dataframe with:
 \item{mode freq.}{frequency of the mode}
 }
 \description{
-The mode is a measure of central tendency and defined as “the abscissa corresponding to
-the ordinate of maximum frequency” (Pearson, 1895, p. 345).
-A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
-The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear,
-so the mode is the option most people chose.
+The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
 
-If one category has the highest frequency this category will be the modal category and if two or more categories have
-the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal,
-if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
+The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
 
-An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already
-nominal data types.
+If one category has the highest frequency this category will be the modal category and if two or more categories have the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
+
+An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 
 A video on the mode is available \href{https://youtu.be/oPpTE8qt2go}{here}.
 }
 \details{
-One small controversy exists if all categories have the same frequency.
-In this case none of them has a higher occurence than the others, so none of them would be the mode
-(see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69).
-This is used when \emph{allEq="none"} and the default.
+One small controversy exists if all categories have the same frequency. In this case none of them has a higher occurence than the others, so none of them would be the mode (see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69). This is used when \emph{allEq="none"} and the default.
 
-On a rare occasion someone might argue that if all categories have the same frequency,
-then all categories are part of the mode since they all have the highest frequency.
-This is used when \emph{allEq="all"}.
+On a rare occasion someone might argue that if all categories have the same frequency, then all categories are part of the mode since they all have the highest frequency. This is used when \emph{allEq="all"}.
 }
 \examples{
 data = c("a", "a", "a", "b", "b", "b", "c")
@@ -52,7 +42,7 @@ me_mode(data)
 
 data = c(1, 2, 1, 2, 3, 3)
 me_mode(data)
-
+ 
 }
 \references{
 Larson, R., & Farber, E. (2014). \emph{Elementary statistics: Picturing the world} (6th ed.). Pearson.

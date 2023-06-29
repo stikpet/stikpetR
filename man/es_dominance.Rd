@@ -13,7 +13,7 @@ es_dominance(data, levels = NULL, mu = NULL, out = "dominance")
 
 \item{mu}{optional parameter to set the hypothesized median. If not used the midrange is used}
 
-\item{out}{c("dominance","vda"). optional to either show the dominance score (default), or a VDA like measure}
+\item{out}{c("dominance","vda"). optional to either show the dominance score or a VDA like measure: \code{"dominance"} (default), \code{"vda"}}
 }
 \value{
 dataframe with the hypothesized median (mu) and the effect size value
@@ -41,10 +41,12 @@ A Vargha-Delaney A (VDA) style effect size is calculated with (Mangiafico, 2016,
 \deqn{VDA_{like} = \frac{D + 1}{2}}
 
 This will range from 0 to 1, with 0.5 being the same as a dominance score of 0.
+}
+\section{Alternatives}{
 
-\strong{Alternative}
 The \emph{rcompanion} library has a similar function: \emph{oneSampleDominance()}
 }
+
 \examples{
  
 data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
@@ -56,9 +58,5 @@ es_dominance(data, mu=2)
 Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.20.01). Rutger Cooperative Extension.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

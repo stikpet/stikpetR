@@ -7,9 +7,9 @@
 es_cohen_g(data, codes = NULL)
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{vector with the data}
 
-\item{codes}{Optional vector with the two codes to use}
+\item{codes}{optional vector with the two codes to use}
 }
 \value{
 Cohen's g as a single value
@@ -29,12 +29,6 @@ The formula used is (Cohen, 1988, p. 147):
 \item \eqn{p} is the sample proportion
 }
 }
-\section{Alternatives}{
-
-
-I'm not aware of any alternative library that has this function.
-}
-
 \examples{
 data <- c("Female", "Male", "Male", "Female", "Male", "Male")
 es_cohen_g(data)
@@ -44,14 +38,7 @@ es_cohen_g(data)
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
 \seealso{
-This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}),
-score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
-
-Alternatives for Cohen g are the Alternative Ratio (\code{\link{es_alt_ratio}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
-
-For a rule of thumb interpretation use \code{\link{th_cohen_g}}
-
-\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html}{Companion Website} on Cohen g.
+\code{\link{th_cohen_g}}, rules-of-thumb for Cohen g
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}

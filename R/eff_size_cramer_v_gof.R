@@ -1,23 +1,21 @@
 #' Cramer's V for Goodness-of-Fit
 #' 
-#' @param chi2 the chi-square test statistic
-#' @param n the sample size
-#' @param k the number of categories
-#' @param bergsma optional boolean to indicate the use of the Bergsma correction (default is False)
-#' @return Cramer's V value
-#' 
 #' @description 
-#' Cramér's V is one possible effect size when using a chi-square test. 
-#' This measure is actually designed for the chi-square test for independence but can be adjusted 
-#' for the goodness-of-fit test (Kelley & Preacher, 2012, p. 145; Mangiafico, 2016, p. 474). 
+#' Cramér's V is one possible effect size when using a chi-square test. This measure is actually designed for the chi-square test for independence but can be adjusted for the goodness-of-fit test (Kelley & Preacher, 2012, p. 145; Mangiafico, 2016, p. 474). 
 #' 
-#' It gives an estimate of how well the data then fits the expected values, where 0 would indicate that 
-#' they are exactly equal. If you use the equal distributed expected values the maximum value would be 1, 
-#' otherwise it could actually also exceed 1.
+#' It gives an estimate of how well the data then fits the expected values, where 0 would indicate that they are exactly equal. If you use the equal distributed expected values the maximum value would be 1, otherwise it could actually also exceed 1.
 #' 
 #' As for a classification Cramér's V can be converted to Cohen w, for which Cohen provides rules of thumb.
 #' 
 #' A Bergsma correction is also possible.
+#' 
+#' @param chi2 the chi-square test statistic
+#' @param n the sample size
+#' @param k the number of categories
+#' @param bergsma optional boolean to indicate the use of the Bergsma correction: `FALSE`(the default), or `TRUE`
+#' 
+#' @return Cramer's V value
+#' 
 #' 
 #' @details
 #' The formula used is:
@@ -37,9 +35,8 @@
 #' \deqn{\tilde{k} = k - \frac{\left(k - 1\right)^2}{n - 1}}
 #' \deqn{\varphi^2 = \frac{\chi_{GoF}^{2}}{n}}
 #' 
-#' Cramér described V (1946, p. 282) for use with a test of independence.
-#' Others (e.g. K. Kelley & Preacher, 2012, p. 145; Mangiafico, 2016a, p. 474) 
-#' added that this can also be use for goodness-of-fit tests.
+#' Cramér described V (1946, p. 282) for use with a test of independence. Others (e.g. K. Kelley & Preacher, 2012, p. 145; Mangiafico, 2016a, p. 474) added that this can also be use for goodness-of-fit tests.
+#' 
 #' For the Bergsma (2013, pp. 324-325) correction the same thing applies
 #' 
 #' Cramér's V can be converted to Cohen's w using *es_convert(from="cramervgof", to = "cohenw", ex1 = df)*
@@ -52,30 +49,11 @@
 #' 
 #' The *DescTools* library has a similar function: *CramerV()*
 #' 
-#' @examples 
-#' chi2Value <- 3.105263
-#' n <- 19
-#' k <- 4
-#' es_cramer_v_gof(chi2Value, n, k)
-#' es_cramer_v_gof(chi2Value, n, k, bergsma=TRUE)
 #' 
 #' @seealso 
+#' \code{\link{es_convert}}, to convert Cramér's V (GoF) to Cohen w, use fr="cramervgof" and to="cohenw"
 #' 
-#' Alternative effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
-#' Tests with a nominal variable where this effect size might be used:
-#' \itemize{
-#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' }
+#' \code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
 #' 
 #' @references 
 #' Bergsma, W. (2013). A bias-correction for Cramér’s and Tschuprow’s. *Journal of the Korean Statistical Society, 42*(3), 323–328. https://doi.org/10.1016/j.jkss.2012.10.002
@@ -88,6 +66,13 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' chi2Value <- 3.105263
+#' n <- 19
+#' k <- 4
+#' es_cramer_v_gof(chi2Value, n, k)
+#' es_cramer_v_gof(chi2Value, n, k, bergsma=TRUE)
 #' 
 #' @export
 es_cramer_v_gof <- function(chi2, n, k, bergsma=FALSE){

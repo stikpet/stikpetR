@@ -1,32 +1,26 @@
 #' Mode for Binned Data
 #'
-#' @param binData the binned data
-#' @param allEq indicator on what to do if maximum frequency is equal for more than one category (see details)
-#' @param value which value to show in the output (see details)
+#' @description
+#' The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
+#' 
+#' For binned data the mode is the bin with the highest frequency density. This will have the same result as using the highest frequency if all bins are of equal size. A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145). Different methods exist to narrow this down to a single value. See the details for more info on this.
+#'
+#' To create the bins, R's *cut()* function could be used.
+#'
+#' The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
+#'
+#' If one category has the highest frequency this category will be the modal category and if two or more categories have the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
+#'
+#' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
+#'
+#' @param data the binned data
+#' @param allEq indicator on what to do if maximum frequency is equal for more than one category. Either `"none"` (default), or `"all"`
+#' @param value which value to show in the output. Either "`none"` (default), `"midpoint"`, or `"quadratic"`
+#' 
 #' @returns
 #' A list with:
 #' \item{modes}{the mode(s)}
 #' \item{modeFD}{frequency density of the mode}
-#'
-#' @description
-#' The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345).
-#' A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
-#' For binned data the mode is the bin with the highest frequency density. This will have
-#' the same result as using the highest frequency if all bins are of equal size.
-#' A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145).
-#' Different methods exist to narrow this down to a single value. See the details for more info on this.
-#'
-#' To create the bins, R's *cut()* function could be used.
-#'
-#' The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear,
-#' so the mode is the option most people chose.
-#'
-#' If one category has the highest frequency this category will be the modal category and if two or more categories have
-#' the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal,
-#' if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
-#'
-#' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already
-#' nominal data types.
 #'
 #' @details
 #' ## Value to return
@@ -57,11 +51,7 @@
 #'
 #' The function can return the bins that are the modal bins, by setting *value="none"*.
 #'
-#' @examples
-#' data = sample(100, size=100)
-#' binData = cut(data, breaks=3)
-#' me_mode_bin(binData)
-#'
+#' 
 #' @references
 #' Larson, R., & Farber, E. (2014). *Elementary statistics: Picturing the world* (6th ed.). Pearson.
 #'
@@ -79,9 +69,14 @@
 #' Please visit: https://PeterStatistics.com
 #'
 #' YouTube channel: https://www.youtube.com/stikpet
-#'
+#' 
+#' @examples
+#' data = sample(100, size=100)
+#' binData = cut(data, breaks=3)
+#' me_mode_bin(binData)
+#' 
 #' @export
-me_mode_bin <- function(binData,
+me_mode_bin <- function(data,
                         allEq=c("none", "all"),
                         value=c("none", "midpoint", "quadratic")){
 
@@ -93,7 +88,7 @@ me_mode_bin <- function(binData,
     value="none"
   }
 
-  freq = table(binData)
+  freq = table(data)
   k = length(freq)
 
   #taken from https://stackoverflow.com/a/61757432

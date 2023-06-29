@@ -40,6 +40,18 @@ check_man()
 setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 
+# DOCUMENTATION
+#roxygen2 documentation
+#' @param data vector with the scores to determine the mode from
+#' @param allEq optional indicator on what to do if maximum frequency is equal for more than one category. Either `"none"` (default), or `"all"`
+#' 
+#' @seealso 
+#' \code{\link{me_mode_bin}}, to determine the mode with binned data
+#' 
+#' @section Alternatives:
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 
 #add GPL-3 licence
 #setwd("H:/PeterStatistics/Packages/R/stikpetR")

@@ -11,17 +11,22 @@ es_hedges_g_os(data, mu = NULL, appr = NULL)
 
 \item{mu}{optional parameter to set the hypothesized mean. If not used the midrange is used}
 
-\item{appr}{c(NULL, 'hedges', 'durlak', 'xue') approximation to use, NULL will use exact.}
+\item{appr}{optional approximation to use, NULL will use exact. Either \code{NULL} (default), \code{"hedges"}, \code{"durlak"}, or \code{"xue"}}
 }
 \value{
-dataframe with the hypothesized mean used, the effect size value, and method used.
+dataframe with
+\itemize{
+\item \emph{mu}, the hypothesized mean used, the effect size value, and method used
+\item \emph{g}, Hedges g for a one-sample
+\item \emph{version}, description of version used.
+}
 }
 \description{
 This function will calculate Hedges g (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
+
+Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 }
 \details{
-Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
-
 Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have
 a one-sample version for Hedges g, and this correction is the one for Hedges g used for the
 independent samples.
@@ -49,10 +54,14 @@ The formula used for the approximation from Durlak (2009, p. 927) (appr="durlak"
 The formula used for the approximation from Xue (2020, p. 3) (appr="xue"):
 \deqn{g = d' \times \sqrt[12]{1 - \frac{9}{df} + \frac{69}{2\times df^2} - \frac{72}{df^3} + \frac{687}{8\times df^4} - \frac{441}{8\times df^5} + \frac{247}{16\times df^6}}}
 
-\strong{Alternative}
+Since Hedges g is a correction for Cohen d', it can be converted to a regular Cohen d and then rules of thumb for the interpertation could be used.
+}
+\section{Alternatives}{
+
 
 The \emph{effectsize} library has a similar function: \emph{hedges_g()}
 }
+
 \examples{
 data <- c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, 90, 25, 40, 70, 65, 70, 98, 40, 65, 60)
 es_hedges_g_os(data, mu=50)
@@ -65,10 +74,11 @@ Hedges, L. V. (1981). Distribution Theory for Glass’s Estimator of Effect Size
 
 Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
 }
+\seealso{
+\code{\link{es_convert}}, to convert Cohen d one-sample to Cohen d, use fr="cohendos" and to="cohend"
+
+\code{\link{th_cohen_d}}, rules-of-thumb for Cohen d
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

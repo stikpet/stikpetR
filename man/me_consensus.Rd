@@ -7,7 +7,7 @@
 me_consensus(data, levels = NULL)
 }
 \arguments{
-\item{data}{the data}
+\item{data}{a vector with the data}
 
 \item{levels}{optional to indicate the categories in order if data is non-numeric}
 }
@@ -15,8 +15,7 @@ me_consensus(data, levels = NULL)
 cns the consensus score
 }
 \description{
-The Consensus is a measure of agreement or dispersion for ordinal data. If there
-is no agreement the value is 0, and with full agreement 1.
+The Consensus is a measure of agreement or dispersion for ordinal data. If there is no agreement the value is 0, and with full agreement 1.
 }
 \details{
 The formula used (Tastle et al., 2005, p. 98):

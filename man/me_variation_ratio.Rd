@@ -13,18 +13,16 @@ me_variation_ratio(data)
 VR the variation ratio value
 }
 \description{
-the Variation Ratio (VR) (Freeman, 1965) is simply the proportion that does not belong
-to the modal category (Zedeck, 2014, p.406).
+the Variation Ratio (VR) (Freeman, 1965) is simply the proportion that does not belong to the modal category (Zedeck, 2014, p.406).
 
-It is a measure of dispersion for categorical data. There are many other measures of dispersion for
-categorical data. A good start for more info on other measures could be an article from
-Kader and Perry (2007).
+It is a measure of dispersion for categorical data. There are many other measures of dispersion for categorical data. A good start for more info on other measures could be an article from Kader and Perry (2007).
 }
 \details{
 The formula used is (Freeman, 1965, p. 41):
 \deqn{VR = 1 - p_{m}}
 With:
 \deqn{p_{m} = \frac{F_{m}}{n}}
+
 \emph{Symbols used:}
 \itemize{
 \item \eqn{n} the total sample size

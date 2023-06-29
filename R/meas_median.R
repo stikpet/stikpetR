@@ -1,16 +1,13 @@
 #' Median
 #' 
-#' @param data ordinal data as a vector
-#' @param levels optional to indicate what values represent
-#' @param tieBreaker optional which to return if median falls between two values
-#' @return the median
-#' 
 #' @description 
-#' Function to determine the median of a set of data. The median can be defined as 
-#' "the middle value in a distribution, below and above which lie values with equal 
-#' total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50% of 
-#' the respondents scored equal or higher to the median, and also 50% of the respondents 
-#' scored lower or equal.
+#' Function to determine the median of a set of data. The median can be defined as "the middle value in a distribution, below and above which lie values with equal total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50% of the respondents scored equal or higher to the median, and also 50% of the respondents scored lower or equal.
+#' 
+#' @param data vector with the data
+#' @param levels optional to indicate what values represent
+#' @param tieBreaker optional which to return if median falls between two values. Either `"between"` (default), `"low"`, or `"high"`
+#' 
+#' @return the median
 #' 
 #' @details 
 #' The formula that is used, assuming the data has been sorted, is:
@@ -32,15 +29,6 @@
 #' Some old references to the median are Pacioli (1523) in Italian, Cournot (1843, p. 120) in French, 
 #' and Galton (1881, p. 246) in English.
 #' 
-#' @examples 
-#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' me_median(ordData)
-#' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-#' me_median(ordData, levels=labels)
-#' factData = as.factor(ordData)
-#' levels(factData) = labels
-#' me_median(factData)
-#' 
 #' @section Alternatives:
 #' 
 #' R's *stats* library has a function *median*, and also *DescTools*, *missMethods*, and probably 
@@ -58,6 +46,15 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
+#' me_median(ordData)
+#' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
+#' me_median(ordData, levels=labels)
+#' factData = as.factor(ordData)
+#' levels(factData) = labels
+#' me_median(factData)
 #' 
 #' @export
 me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high")){

@@ -1,12 +1,12 @@
 #' Consensus
 #' 
-#' @param data the data
-#' @param levels optional to indicate the categories in order if data is non-numeric
-#' @return cns the consensus score
-#' 
 #' @description 
-#' The Consensus is a measure of agreement or dispersion for ordinal data. If there 
-#' is no agreement the value is 0, and with full agreement 1. 
+#' The Consensus is a measure of agreement or dispersion for ordinal data. If there is no agreement the value is 0, and with full agreement 1. 
+#' 
+#' @param data a vector with the data
+#' @param levels optional to indicate the categories in order if data is non-numeric
+#' 
+#' @return cns the consensus score
 #' 
 #' @details 
 #' The formula used (Tastle et al., 2005, p. 98):
@@ -24,13 +24,6 @@
 #' \item \eqn{k} the number of categories.
 #' }
 #' 
-#' @examples 
-#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' me_consensus(ordData)
-#' 
-#' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-#' me_consensus(factData, labels)
-#' 
 #' @section Alternatives:
 #' 
 #' The *agrmt* library has a function *consensus(table(ordData))*
@@ -40,6 +33,13 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
+#' me_consensus(ordData)
+#' 
+#' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
+#' me_consensus(factData, labels)
 #' 
 #' @export
 me_consensus <- function(data, levels=NULL){

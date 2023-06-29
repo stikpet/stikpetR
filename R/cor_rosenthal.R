@@ -30,11 +30,7 @@
 #' Rosenthal, R. (1991). *Meta-analytic procedures for social research* (Rev. ed). Sage Publications.
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @examples
 #' z = 1.143943

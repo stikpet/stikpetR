@@ -1,18 +1,7 @@
 #' Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range
 #' 
-#' @param data dataframe with scores as numbers, or if text also provide levels
-#' @param levels optional vector with levels in order
-#' @param measure the specific measure to determine
-#' @param method the method to use to determine the quartiles
-#' @returns
-#' A dataframe with:
-#' \item{Q1}{the first (lower) quartile}
-#' \item{Q3}{the third (upper/higher) quartile}
-#' \item{range}{the range determined}
-#' 
 #' @description 
-#' Three different ranges that can be used with quartiles. The Interquartile Range (IQR) is 
-#' simply the third minus the first quartile.
+#' Three different ranges that can be used with quartiles. The Interquartile Range (IQR) is simply the third minus the first quartile.
 #' 
 #' The Semi-Interquartile range (a.k.a. Quartile Deviation) divides the IQR by 2.
 #' 
@@ -21,7 +10,18 @@
 #' A special case is the H-spread, which is if Hinges are used the IQR. This can be obtained by 
 #' setting *method="tukey"*.
 #' 
-#' The function uses the *me_quartiles* function and any of the methods from that function can be used.
+#' The function uses the *me_quartiles()* function and any of the methods from that function can be used.
+#' 
+#' @param data vector or dataframe with scores as numbers, or if text also provide levels
+#' @param levels optional vector with levels in order
+#' @param measure the specific measure to determine. Either `"iqr"` (default), `"siqr"`, `"qd"`, or `"mqr"`
+#' @param method the method to use to determine the quartiles
+#' 
+#' @returns
+#' A dataframe with:
+#' \item{Q1}{the first (lower) quartile}
+#' \item{Q3}{the third (upper/higher) quartile}
+#' \item{range}{the range determined}
 #' 
 #' @details 
 #' The formula used for the Interquartile Range is:
@@ -42,15 +42,8 @@
 #' 
 #' This formula can be found in Parzen (1980, p. 19), but there are probably older references.
 #' 
-#' @examples 
-#' data = runif(n=10, min=1, max=50)
-#' me_quartile_range(data)
-#' me_quartile_range(data, method="tukey")
-#' me_quartile_range(data, range="siqr")
-#' me_quartile_range(data, range="mqr")
-#' 
 #' @seealso 
-#' For more details on the quartiles calculation see \code{\link{me_quartiles}}.
+#' \code{\link{me_quartiles}}, calculating quartiles
 #' 
 #' @references 
 #' Galton, F. (1881). Report of the anthropometric committee. Report of the British Association for the Advancement of Science, 51, 225–272.
@@ -63,6 +56,13 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' data = runif(n=10, min=1, max=50)
+#' me_quartile_range(data)
+#' me_quartile_range(data, method="tukey")
+#' me_quartile_range(data, range="siqr")
+#' me_quartile_range(data, range="mqr")
 #' 
 #' @export
 me_quartile_range <- function(data, levels=NULL,

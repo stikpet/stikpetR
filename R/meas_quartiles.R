@@ -1,13 +1,18 @@
 #' Quartiles / Hinges
 #' 
-#' @param data dataframe with scores as numbers, or if text also provide levels
+#' @description
+#' The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50 percent, and the quartiles at 25 and 75 percent. Note that there are five quartiles, the minimum value is the 0-quartile, at 25 percent the first (or lower) quartile, at 50 percent the median a.k.a. the second quartile, at 75 percent the third (or upper) quartile, and the maximum as the fourth quartile.
+#' 
+#' Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
+#' 
+#' There are quite a few different methods to determine the quartiles. This function has 19 different ones. See the details for a description.
+#' 
+#' @param data vector or dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param method optional which method to use to calculate quartiles
-#' @param indexMethod optional to indicate which type of indexing to use
-#' @param q1Frac optional to indicate what type of rounding to use for first quarter
-#' @param q1Int optional to indicate the use of the integer or the midpoint method for first quarter
-#' @param q3Frac optional to indicate what type of rounding to use for third quarter
-#' @param q3Int optional to indicate the use of the integer or the midpoint method for third quarter
+#' @param indexMethod optional to indicate which type of indexing to use. Either `"sas1"` (default), `"inclusive"`, `"exclusive"`, `"sas4"`, `"excel"`, `"hl"`, `"hf8"`, or `"hf9"`
+#' @param q1Frac,q3Frac optional to indicate what type of rounding to use for each quartile. Either `"linear"` (default), `"down"`, `"up"`, `"bankers"`, `"nearest"`, `"halfdown"`, or `"midpoint"`
+#' @param q1Int,q3Int optional to indicate the use of the integer or the midpoint method for each quartile. Either `"int"` (default), or `"midpoint"`.
 #' 
 #' @returns
 #' A dataframe with:
@@ -16,23 +21,10 @@
 #' \item{q1-text}{the first (lower) quartile as text (only if levels were used)}
 #' \item{q3-text}{the third (upper/higher) quartile as text (only if levels were used)}
 #' 
-#' @description
-#' The quartiles are at quarters of the data (McAlister, 1879, p. 374; Galton, 1881, p. 245). The median is at 50 percent, and the quartiles 
-#' at 25 and 75 percent. Note that there are five quartiles, the minimum value is the 0-quartile, 
-#' at 25 percent the first (or lower) quartile, at 50 percent the median a.k.a. the second quartile, at 75 percent the third (or upper) quartile, 
-#' and the maximum as the fourth quartile.
-#' Tukey (1977) also introduced the term Hinges and sorted the values in a W shape, where the bottom parts of the W are then the hinges.
-#' 
-#' There are quite a few different methods to determine the quartiles. This function has 19 different ones. 
-#' See the details for a description.
-#' 
 #' @details
-#' To determine the quartiles a specific indexing method can be used. See \code{\link{he_quartileIndexing}} for details on the different 
-#' methods to choose from.
+#' To determine the quartiles a specific indexing method can be used. See \code{\link{he_quartileIndexing}} for details on the different methods to choose from.
 #' 
-#' Then based on the indexes either linear interpolation or different rounding methods (bankers, nearest, down, up, half-down) 
-#' can be used, or the midpoint between the two values. If the index is an integer either the integer or the mid point is used. 
-#' See the \code{\link{he_quartilesIndex}} for details on this.
+#' Then based on the indexes either linear interpolation or different rounding methods (bankers, nearest, down, up, half-down) can be used, or the midpoint between the two values. If the index is an integer either the integer or the mid point is used. See the \code{\link{he_quartilesIndex}} for details on this.
 #' 
 #' Note that the rounding method can even vary per quartile, i.e. the one used for the first quartile being different 
 #' than the one for the second.
@@ -91,13 +83,6 @@
 #' *interpolated_inverted_cdf*, *hazen*, *weibull*, *median_unbiased*, and *normal_unbiased*. 
 #' 
 #' 
-#' @examples 
-#' ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)
-#' me_quartiles(ex8)
-#' test = c("a", "b", "c", "d", "e", "f")
-#' testCoding = c("a", "b", "c", "d", "e", "f")
-#' me_quartiles(test, levels=testCoding, method="excel")
-#' 
 #' @references 
 #' Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. *The American Statistician, 41*(3), 200–203. https://doi.org/10.1080/00031305.1987.10475479
 #' 
@@ -139,6 +124,14 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)
+#' me_quartiles(ex8)
+#' test = c("a", "b", "c", "d", "e", "f")
+#' testCoding = c("a", "b", "c", "d", "e", "f")
+#' me_quartiles(test, levels=testCoding, method="excel")
+#' 
 #' 
 #' @export
 me_quartiles <- function(data, levels=NULL, 

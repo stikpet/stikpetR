@@ -1,23 +1,26 @@
 #' Alternative Ratio
 #' 
-#' @param data A vector with the data
-#' @param codes Optional vector with the two codes to use
-#' @param p0 Optional the hypothesized proportion for the first category (default is 0.5)
-#' @param category Optional category to label as 'success', otherwise the first category found is used.
+#' @description 
+#' The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
+#' 
+#' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
+#' 
+#' @param data vector with the data
+#' @param codes optional vector with the two codes to use
+#' @param p0 optional the hypothesized proportion for the first category (default is 0.5)
+#' @param category optional category to label as 'success', otherwise the first category found is used.
 #' 
 #' @returns 
 #' Dataframe with:
 #' \item{AR1}{the alternative category for one category}
 #' \item{AR2}{the alternative category for the other category}
 #' 
-#' @description 
-#' The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.. 
-#' It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
-#' 
-#' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), 
-#' and referred to as Relative Risk by JonB (2015).
-#' 
 #' @details 
+#' 
+#' If codes and category are not provided the first category will be the first data point.
+#' 
+#' If codes only are provided the first category in the codes is used.
+#' 
 #' The formula used is:
 #' \deqn{AR=\frac{p}{\pi}}
 #' 
@@ -36,14 +39,6 @@
 #' es_alt_ratio(data)
 #' es_alt_ratio(data, category="Male")
 #' es_alt_ratio(data, c("Male", "Female"))
-#' 
-#' @seealso 
-#' This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}), 
-#' score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
-#' 
-#' Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
-#' 
-#' [Companion Website](https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html) on the Alternative Ratio.
 #' 
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856

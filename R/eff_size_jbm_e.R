@@ -1,13 +1,14 @@
 #' Johnston-Berry-Mielke E
 #' 
+#' @description 
+#' An effect size measure that could be used with a chi-square test or g-test. 
+#' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
 #' @param minExp the minimum expected count
-#' @param test "chi" (default) for chi-square tests, or "g" for likelihood ratio (g) tests
-#' @return JBM's E value
+#' @param test optional to indicate if a chi-square tests, or a g (likelihood ratio) test was used. Either `"chi"` (default), or `"g"`.
 #' 
-#' @description 
-#' An effect size measure that could be used with a chi-square test or g-test. 
+#' @return JBM's E value
 #' 
 #' @details 
 #' Two versions of this effect size. The formula for a chi-square test is:
@@ -28,8 +29,7 @@
 #' 
 #' Both formulas are from Johnston et al. (2006, p. 413)
 #' 
-#' A qualification rule-of-thumb could be obtained by converting this to Cohen's w, using *es_convert(from=="jbme", to=="cohenw", ex1 = minExp/n)*
-#' The rule-of-thumb can then be obtained using *th_cohen_w(w)*
+#' A qualification rule-of-thumb could be obtained by converting this to Cohen's w
 #' 
 #' @examples 
 #' chi2Value <- 3.105263

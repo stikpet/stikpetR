@@ -32,11 +32,6 @@ Rosenthal (1991) is the oldest reference I could find for this correlation coeff
 For a classification the same as for Pearson correlation use \emph{th_pearson_r()}
 }
 \examples{
- 
-z = 1.143943
-n = 20
-r_rosenthal(z, n)
-
 z = 1.143943
 n = 20
 r_rosenthal(z, n)
@@ -51,9 +46,5 @@ Rosenthal, R. (1991). \emph{Meta-analytic procedures for social research} (Rev. 
 \code{\link{th_pearson_r()}}, rules of thumb for a Pearson correlation coefficient.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }

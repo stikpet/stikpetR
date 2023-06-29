@@ -13,7 +13,7 @@ es_jbm_e(chi2, n, minExp, test = c("chi", "g"))
 
 \item{minExp}{the minimum expected count}
 
-\item{test}{"chi" (default) for chi-square tests, or "g" for likelihood ratio (g) tests}
+\item{test}{optional to indicate if a chi-square tests, or a g (likelihood ratio) test was used. Either \code{"chi"} (default), or \code{"g"}.}
 }
 \value{
 JBM's E value
@@ -40,8 +40,7 @@ For a Likelihood Ratio (G) test:
 
 Both formulas are from Johnston et al. (2006, p. 413)
 
-A qualification rule-of-thumb could be obtained by converting this to Cohen's w, using \emph{es_convert(from=="jbme", to=="cohenw", ex1 = minExp/n)}
-The rule-of-thumb can then be obtained using \emph{th_cohen_w(w)}
+A qualification rule-of-thumb could be obtained by converting this to Cohen's w
 }
 \section{Alternative}{
 

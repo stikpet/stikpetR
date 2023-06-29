@@ -3,13 +3,10 @@
 #' @param data dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
-#' @param out c("dominance","vda"). optional to either show the dominance score (default), or a VDA like measure
+#' @param out c("dominance","vda"). optional to either show the dominance score or a VDA like measure: `"dominance"` (default), `"vda"`
+#' 
 #' @return dataframe with the hypothesized median (mu) and the effect size value
 #' 
-#' @examples  
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' es_dominance(data)
-#' es_dominance(data, mu=2)
 #' 
 #' @details 
 #' The formula used is (Mangiafico, 2016, p. 223-224):
@@ -32,19 +29,20 @@
 #' 
 #' This will range from 0 to 1, with 0.5 being the same as a dominance score of 0.
 #' 
-#' **Alternative**
+#' @section Alternatives:
 #' The *rcompanion* library has a similar function: *oneSampleDominance()*
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references 
 #' Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.20.01). Rutger Cooperative Extension.
 #'  
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples  
+#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
+#' es_dominance(data)
+#' es_dominance(data, mu=2)
+#' 
 #' @export
 es_dominance <- function(data, levels=NULL, mu=NULL, out="dominance"){
   

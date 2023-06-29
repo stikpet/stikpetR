@@ -1,51 +1,32 @@
 #' Mode
 #' 
-#' @param data the scores to determine the mode from
-#' @param allEq indicator on what to do if maximum frequency is equal for more than one category (see details)
+#' @description 
+#' The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002). 
+#' 
+#' The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
+#' 
+#' If one category has the highest frequency this category will be the modal category and if two or more categories have the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
+#' 
+#' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types. 
+#' 
+#' A video on the mode is available [here](https://youtu.be/oPpTE8qt2go).
+#' 
+#' @param data vector with the scores to determine the mode from
+#' @param allEq optional indicator on what to do if maximum frequency is equal for more than one category. Either `"none"` (default), or `"all"`
+#' 
 #' @returns 
 #' A dataframe with:
 #' \item{mode}{the mode(s)}
 #' \item{mode freq.}{frequency of the mode}
 #' 
-#' @description 
-#' The mode is a measure of central tendency and defined as “the abscissa corresponding to 
-#' the ordinate of maximum frequency” (Pearson, 1895, p. 345). 
-#' A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002). 
-#' The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, 
-#' so the mode is the option most people chose.
-#' 
-#' If one category has the highest frequency this category will be the modal category and if two or more categories have 
-#' the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, 
-#' if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
-#' 
-#' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already 
-#' nominal data types. 
-#' 
-#' A video on the mode is available [here](https://youtu.be/oPpTE8qt2go).
 #' 
 #' @details 
-#' One small controversy exists if all categories have the same frequency. 
-#' In this case none of them has a higher occurence than the others, so none of them would be the mode 
-#' (see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69). 
-#' This is used when *allEq="none"* and the default.
+#' One small controversy exists if all categories have the same frequency. In this case none of them has a higher occurence than the others, so none of them would be the mode (see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69). This is used when *allEq="none"* and the default.
 #' 
-#' On a rare occasion someone might argue that if all categories have the same frequency, 
-#' then all categories are part of the mode since they all have the highest frequency. 
-#' This is used when *allEq="all"*.
+#' On a rare occasion someone might argue that if all categories have the same frequency, then all categories are part of the mode since they all have the highest frequency. This is used when *allEq="all"*.
 #' 
 #' @seealso 
 #' \code{\link{me_mode_bin}}, to determine the mode with binned data
-#' 
-#' @examples 
-#' data = c("a", "a", "a", "b", "b", "b", "c")
-#' me_mode(data)
-#' me_mode(data, allEq="all")
-#' 
-#' data = c(1, 1, 1, 2, 2, 2, 3)
-#' me_mode(data)
-#' 
-#' data = c(1, 2, 1, 2, 3, 3)
-#' me_mode(data)
 #' 
 #' @references 
 #' Larson, R., & Farber, E. (2014). *Elementary statistics: Picturing the world* (6th ed.). Pearson.
@@ -58,6 +39,17 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples 
+#' data = c("a", "a", "a", "b", "b", "b", "c")
+#' me_mode(data)
+#' me_mode(data, allEq="all")
+#' 
+#' data = c(1, 1, 1, 2, 2, 2, 3)
+#' me_mode(data)
+#' 
+#' data = c(1, 2, 1, 2, 3, 3)
+#' me_mode(data)
 #'  
 #' @export
 me_mode <- function(data, allEq = c("none", "all")){

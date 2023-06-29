@@ -7,21 +7,17 @@
 me_median(data, levels = NULL, tieBreaker = c("between", "low", "high"))
 }
 \arguments{
-\item{data}{ordinal data as a vector}
+\item{data}{vector with the data}
 
 \item{levels}{optional to indicate what values represent}
 
-\item{tieBreaker}{optional which to return if median falls between two values}
+\item{tieBreaker}{optional which to return if median falls between two values. Either \code{"between"} (default), \code{"low"}, or \code{"high"}}
 }
 \value{
 the median
 }
 \description{
-Function to determine the median of a set of data. The median can be defined as
-"the middle value in a distribution, below and above which lie values with equal
-total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50\% of
-the respondents scored equal or higher to the median, and also 50\% of the respondents
-scored lower or equal.
+Function to determine the median of a set of data. The median can be defined as "the middle value in a distribution, below and above which lie values with equal total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50\% of the respondents scored equal or higher to the median, and also 50\% of the respondents scored lower or equal.
 }
 \details{
 The formula that is used, assuming the data has been sorted, is:

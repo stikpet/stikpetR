@@ -12,11 +12,11 @@ me_quartile_range(
 )
 }
 \arguments{
-\item{data}{dataframe with scores as numbers, or if text also provide levels}
+\item{data}{vector or dataframe with scores as numbers, or if text also provide levels}
 
 \item{levels}{optional vector with levels in order}
 
-\item{measure}{the specific measure to determine}
+\item{measure}{the specific measure to determine. Either \code{"iqr"} (default), \code{"siqr"}, \code{"qd"}, or \code{"mqr"}}
 
 \item{method}{the method to use to determine the quartiles}
 }
@@ -27,8 +27,7 @@ A dataframe with:
 \item{range}{the range determined}
 }
 \description{
-Three different ranges that can be used with quartiles. The Interquartile Range (IQR) is
-simply the third minus the first quartile.
+Three different ranges that can be used with quartiles. The Interquartile Range (IQR) is simply the third minus the first quartile.
 
 The Semi-Interquartile range (a.k.a. Quartile Deviation) divides the IQR by 2.
 
@@ -37,7 +36,7 @@ The Mid-Quartile Range adds the two quartiles and then divides by 2.
 A special case is the H-spread, which is if Hinges are used the IQR. This can be obtained by
 setting \emph{method="tukey"}.
 
-The function uses the \emph{me_quartiles} function and any of the methods from that function can be used.
+The function uses the \emph{me_quartiles()} function and any of the methods from that function can be used.
 }
 \details{
 The formula used for the Interquartile Range is:
@@ -76,7 +75,7 @@ Tukey, J. W. (1977). \emph{Exploratory data analysis}. Addison-Wesley Pub. Co.
 Yule, G. U. (1911). \emph{An introduction to the theory of statistics}. Charles Griffin.
 }
 \seealso{
-For more details on the quartiles calculation see \code{\link{me_quartiles}}.
+\code{\link{me_quartiles}}, calculating quartiles
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}

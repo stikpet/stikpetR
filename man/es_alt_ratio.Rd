@@ -7,13 +7,13 @@
 es_alt_ratio(data, codes = NULL, p0 = 0.5, category = NULL)
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{vector with the data}
 
-\item{codes}{Optional vector with the two codes to use}
+\item{codes}{optional vector with the two codes to use}
 
-\item{p0}{Optional the hypothesized proportion for the first category (default is 0.5)}
+\item{p0}{optional the hypothesized proportion for the first category (default is 0.5)}
 
-\item{category}{Optional category to label as 'success', otherwise the first category found is used.}
+\item{category}{optional category to label as 'success', otherwise the first category found is used.}
 }
 \value{
 Dataframe with:
@@ -21,13 +21,15 @@ Dataframe with:
 \item{AR2}{the alternative category for the other category}
 }
 \description{
-The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test..
-It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
+The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
 
-The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.),
-and referred to as Relative Risk by JonB (2015).
+The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
 }
 \details{
+If codes and category are not provided the first category will be the first data point.
+
+If codes only are provided the first category in the codes is used.
+
 The formula used is:
 \deqn{AR=\frac{p}{\pi}}
 
@@ -54,14 +56,6 @@ es_alt_ratio(data, c("Male", "Female"))
 JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
 
 NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100–132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
-}
-\seealso{
-This effect size could be used with a one-sample binomial test (\code{\link{ts_binomial_os}}),
-score test (\code{\link{ts_score_os}}), or Wald test (\code{\link{ts_wald_os}}).
-
-Alternatives for Alternative Ratio are Cohen g (\code{\link{es_cohen_g}}) or Cohen's h' (\code{\link{es_cohen_h_os}})
-
-\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2b-EffectSize.html}{Companion Website} on the Alternative Ratio.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}

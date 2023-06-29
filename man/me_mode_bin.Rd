@@ -5,17 +5,17 @@
 \title{Mode for Binned Data}
 \usage{
 me_mode_bin(
-  binData,
+  data,
   allEq = c("none", "all"),
   value = c("none", "midpoint", "quadratic")
 )
 }
 \arguments{
-\item{binData}{the binned data}
+\item{data}{the binned data}
 
-\item{allEq}{indicator on what to do if maximum frequency is equal for more than one category (see details)}
+\item{allEq}{indicator on what to do if maximum frequency is equal for more than one category. Either \code{"none"} (default), or \code{"all"}}
 
-\item{value}{which value to show in the output (see details)}
+\item{value}{which value to show in the output. Either "\verb{none"} (default), \code{"midpoint"}, or \code{"quadratic"}}
 }
 \value{
 A list with:
@@ -23,24 +23,17 @@ A list with:
 \item{modeFD}{frequency density of the mode}
 }
 \description{
-The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345).
-A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
-For binned data the mode is the bin with the highest frequency density. This will have
-the same result as using the highest frequency if all bins are of equal size.
-A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145).
-Different methods exist to narrow this down to a single value. See the details for more info on this.
+The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
+
+For binned data the mode is the bin with the highest frequency density. This will have the same result as using the highest frequency if all bins are of equal size. A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145). Different methods exist to narrow this down to a single value. See the details for more info on this.
 
 To create the bins, R's \emph{cut()} function could be used.
 
-The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear,
-so the mode is the option most people chose.
+The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
 
-If one category has the highest frequency this category will be the modal category and if two or more categories have
-the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal,
-if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
+If one category has the highest frequency this category will be the modal category and if two or more categories have the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
 
-An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already
-nominal data types.
+An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 }
 \details{
 \subsection{Value to return}{
