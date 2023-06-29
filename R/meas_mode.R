@@ -3,9 +3,9 @@
 #' @param data the scores to determine the mode from
 #' @param allEq indicator on what to do if maximum frequency is equal for more than one category (see details)
 #' @returns 
-#' A list with:
-#' \item{modes}{the mode(s)}
-#' \item{modeFreq}{frequency of the mode}
+#' A dataframe with:
+#' \item{mode}{the mode(s)}
+#' \item{mode freq.}{frequency of the mode}
 #' 
 #' @description 
 #' The mode is a measure of central tendency and defined as “the abscissa corresponding to 
@@ -81,6 +81,9 @@ me_mode <- function(data, allEq = c("none", "all")){
     }
   }
   
-  return(list("mode"=modes, "modeFreq"=fMode))
+  results <- data.frame(modes, fMode)
+  colnames(testResults)<-c("mode", "mode freq.")
+  
+  return(results)
   
 }
