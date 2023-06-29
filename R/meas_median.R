@@ -1,6 +1,6 @@
 #' Median
 #' 
-#' @param ordData ordinal data as a vector
+#' @param data ordinal data as a vector
 #' @param levels optional to indicate what values represent
 #' @param tieBreaker optional which to return if median falls between two values
 #' @return the median
@@ -60,12 +60,18 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-me_median <- function(ordData, levels=NULL, tieBreaker=c("between", "low", "high")){
+me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high")){
   
   if (length(tieBreaker)>1) {tieBreaker = "between"}
   
-  sData = sort(na.omit(ordData))
-  n = length(sData)
+  if (!is.null(levels)){
+    dataN = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(dataN)
+  }
+  else{dataN = data}
+  
+  sData = sort(na.omit(dataN))
+  n = length(dataN)
   medIndex = (n + 1)/2
   
   if (medIndex == round(medIndex)) {med = sData[medIndex]}
