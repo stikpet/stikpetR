@@ -4,10 +4,12 @@
 \alias{r_rank_biserial_os}
 \title{Rank biserial correlation coefficient (one-sample)}
 \usage{
-r_rank_biserial_os(data, mu = NULL)
+r_rank_biserial_os(data, levels = NULL, mu = NULL)
 }
 \arguments{
 \item{data}{vector with the numeric scores}
+
+\item{levels}{optional vector with levels in order}
 
 \item{mu}{optional parameter to set the hypothesized median. If not used the midrange is used}
 }
@@ -15,7 +17,7 @@ r_rank_biserial_os(data, mu = NULL)
 dataframe with the hypothesized median (mu) and the effect size measure
 }
 \description{
-Rank biserial correlation coefficient (one-sample)
+This function will calculate Rank biserial correlation coefficient (one-sample)
 }
 \details{
 The formula used (Kerby, 2014, p. 5):

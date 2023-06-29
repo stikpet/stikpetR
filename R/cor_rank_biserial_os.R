@@ -1,5 +1,7 @@
 #' Rank biserial correlation coefficient (one-sample)
 #' 
+#' This function will calculate Rank biserial correlation coefficient (one-sample)
+#' 
 #' @param data vector with the numeric scores
 #' @param levels optional vector with levels in order
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used

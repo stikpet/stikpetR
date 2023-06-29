@@ -9,7 +9,7 @@ ts_wilcoxon_os(
   levels = NULL,
   mu = NULL,
   ties = TRUE,
-  appr = c("wilcoxon", "none", "imanz", "imant"),
+  appr = c("wilcoxon", "exact", "imanz", "imant"),
   eqMed = c("wilcoxon", "zsplit", "pratt"),
   cc = FALSE
 )

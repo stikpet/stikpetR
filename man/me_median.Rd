@@ -4,10 +4,10 @@
 \alias{me_median}
 \title{Median}
 \usage{
-me_median(ordData, levels = NULL, tieBreaker = c("between", "low", "high"))
+me_median(data, levels = NULL, tieBreaker = c("between", "low", "high"))
 }
 \arguments{
-\item{ordData}{ordinal data as a vector}
+\item{data}{ordinal data as a vector}
 
 \item{levels}{optional to indicate what values represent}
 

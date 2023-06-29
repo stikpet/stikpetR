@@ -12,9 +12,9 @@ me_mode(data, allEq = c("none", "all"))
 \item{allEq}{indicator on what to do if maximum frequency is equal for more than one category (see details)}
 }
 \value{
-A list with:
-\item{modes}{the mode(s)}
-\item{modeFreq}{frequency of the mode}
+A dataframe with:
+\item{mode}{the mode(s)}
+\item{mode freq.}{frequency of the mode}
 }
 \description{
 The mode is a measure of central tendency and defined as “the abscissa corresponding to

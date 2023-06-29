@@ -7,15 +7,15 @@
 r_rank_biserial_is(dataVar, groupVar)
 }
 \arguments{
-\item{dataVar}{A vector with the scores data}
+\item{dataVar}{vector with the scores data}
 
-\item{groupVar}{A vector with the group data}
+\item{groupVar}{vector with the group data}
 }
 \value{
 Rank Biserial Correlation value
 }
 \description{
-(Glass) Rank Biserial Correlation / Cliff Delta
+This function will calculate Rank biserial correlation coefficient (independent-samples)
 }
 \details{
 The formula used is (Glass, 1966, p. 626):

@@ -1,7 +1,9 @@
 #' (Glass) Rank Biserial Correlation / Cliff Delta
 #' 
-#' @param dataVar A vector with the scores data
-#' @param groupVar A vector with the group data
+#' This function will calculate Rank biserial correlation coefficient (independent-samples)
+#' 
+#' @param dataVar vector with the scores data
+#' @param groupVar vector with the group data
 #' @return Rank Biserial Correlation value
 #' 
 #' @details
