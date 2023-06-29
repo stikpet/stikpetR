@@ -94,8 +94,8 @@ me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high"))
     med = medN
   }
   else{
-      if (medN != round(medN)) {
-        med = levels(medN)
+      if (medN == round(medN)) {
+        med = levels[medN]
       }
     else{
       med = paste0("between ", levels[medLow], " and ", levels[medHigh])
