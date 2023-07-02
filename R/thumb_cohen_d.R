@@ -2,7 +2,7 @@
 #' 
 #' @param d the Cohen d value
 #' @param qual c("cohen", "sawilowsky", "lovakov", "rosenthal") optional the rule of thumb to be used
-#' @return string with the qualification (classification)
+#' @return dataframe with the qualification and source
 #' 
 #' @examples  
 #' th_cohen_d(0.34)
@@ -72,6 +72,7 @@ th_cohen_d <- function(d, qual="sawilowsky"){
   
   #Cohen (1988, p. 40)
   if (qual=="cohen") {
+    ref = "Cohen (1988, p. 40)"
     if (abs(d) < 0.2) {
       qual = "negligible"}
     else if (abs(d) < 0.50){
@@ -84,6 +85,7 @@ th_cohen_d <- function(d, qual="sawilowsky"){
   
   #Lovakov and Agadullina (2021, p. 501)
   else if (qual=="lovakov") {
+    ref = "Lovakov and Agadullina (2021, p. 501)"
     if (abs(d) < 0.15) {
       qual = "negligible"}
     else if (abs(d) < 0.35){
@@ -96,6 +98,7 @@ th_cohen_d <- function(d, qual="sawilowsky"){
   
   #Rosenthal (1996, p. 45)
   else if (qual=="rosenthal") {
+    ref = "Rosenthal (1996, p. 45)"
     if (abs(d) < 0.20) {
       qual = "negligible"}
     else if (abs(d) < 0.5){
@@ -110,6 +113,7 @@ th_cohen_d <- function(d, qual="sawilowsky"){
   
   #Sawilowsky (2009, p. 599)
   else if (qual=="sawilowsky") {
+    ref = "Sawilowsky (2009, p. 599)"
     if (abs(d) < 0.10) {
       qual = "negligible"}
     else if (abs(d) < 0.20){
@@ -126,5 +130,8 @@ th_cohen_d <- function(d, qual="sawilowsky"){
       qual = "huge"}
   }
   
-  return(qual)
+  results = data.frame(qual, ref)
+  colnames(results)<-c("classification", "reference")
+  
+  return(results)
 }

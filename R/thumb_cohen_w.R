@@ -43,6 +43,7 @@ th_cohen_w <- function(w, qual="cohen"){
     qual = "large"}
   
   results = data.frame(qual, ref)
+  colnames(results)<-c("classification", "reference")
   
   return(results)
   

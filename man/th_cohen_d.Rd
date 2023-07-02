@@ -12,7 +12,7 @@ th_cohen_d(d, qual = "sawilowsky")
 \item{qual}{c("cohen", "sawilowsky", "lovakov", "rosenthal") optional the rule of thumb to be used}
 }
 \value{
-string with the qualification (classification)
+dataframe with the qualification and source
 }
 \description{
 Rules of Thumb for Cohen d
