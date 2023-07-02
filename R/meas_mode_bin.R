@@ -61,7 +61,7 @@
 #' 
 #' @export
 me_mode_bin <- function(data, bins, allEq="none", value="none"){
-  
+  data = na.omit(data)
   k = nrow(bins)
   
   tab = data.frame(matrix(ncol=2, nrow=0))
