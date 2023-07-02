@@ -4,30 +4,26 @@
 \alias{me_mode_bin}
 \title{Mode for Binned Data}
 \usage{
-me_mode_bin(
-  data,
-  allEq = c("none", "all"),
-  value = c("none", "midpoint", "quadratic")
-)
+me_mode_bin(data, bins, allEq = "none", value = "none")
 }
 \arguments{
-\item{data}{the binned data}
+\item{data}{list or dataframe}
 
-\item{allEq}{indicator on what to do if maximum frequency is equal for more than one category. Either \code{"none"} (default), or \code{"all"}}
+\item{bins}{dataframe with the lower and upper bounds}
 
-\item{value}{which value to show in the output. Either "\verb{none"} (default), \code{"midpoint"}, or \code{"quadratic"}}
+\item{allEq}{optional indicator on what to do if maximum frequency is equal for more than one category. Either "none" (default) or "all"}
+
+\item{value}{optional which value to show in the output. Either "none" (default), "midpoint", or "quadratic"}
 }
 \value{
-A list with:
-\item{modes}{the mode(s)}
-\item{modeFD}{frequency density of the mode}
+A dataframe with
+\item{mode}{the mode(s)}
+\item{mode fd}{frequency density of the mode}
 }
 \description{
 The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002).
 
-For binned data the mode is the bin with the highest frequency density. This will have the same result as using the highest frequency if all bins are of equal size. A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145). Different methods exist to narrow this down to a single value. See the details for more info on this.
-
-To create the bins, R's \emph{cut()} function could be used.
+For binned data the mode is the bin with the highest frequency density. This will have the same result as using the highest frequency if all bins are of equal size. A frequency density is the frequency divided by the bin size (Zedeck, 2014, pp. 144-145). Different methods exist to narrow this down to a single value. See the notes for more info on this.
 
 The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
 
@@ -36,41 +32,28 @@ If one category has the highest frequency this category will be the modal catego
 An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 }
 \details{
-\subsection{Value to return}{
+\strong{Value to return}
 
 If \emph{value="midpoint"} is used the modal bin(s) midpoints are shown, using:
 \deqn{MP_m = \frac{UB_m + LB_m}{2}}
 Where \eqn{UB_m} is the upper bound of the modal bin, and \eqn{LB_m} the lower bound.
 
-If \emph{value="quadratic"} is used a quadratic curve is made from the midpoint of the
-bin prior to the modal bin, to the midpoint of the bin after the modal bin.
-This is done using:
+If \emph{value="quadratic"} is used a quadratic curve is made from the midpoint of the bin prior to the modal bin, to the midpoint of the bin after the modal bin. This is done using:
 \deqn{M = LB_{m} + \frac{d_1}{d_1 + d_2}\times\left(UB_m - LB_m\right)}
+
 With:
 \deqn{d_1 = FD_m - FD_{m -1}}
 \deqn{d_2 = FD_m - FD_{m + 1}}
+
 Where \eqn{FD_m} is the frequency density of the modal category.
-}
 
-\subsection{Multimode}{
+\strong{Multimode}
 
-One small controversy exists if all categories have the same frequency.
-In this case none of them has a higher occurence than the others, so none of them would be the mode
-(see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69).
-This is used when \emph{allEq="none"} and the default.
+One small controversy exists if all categories have the same frequency. In this case none of them has a higher occurence than the others, so none of them would be the mode (see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69). This is used when \emph{allEq="none"} and the default.
 
-On a rare occasion someone might argue that if all categories have the same frequency,
-then all categories are part of the mode since they all have the highest frequency.
-This is used when \emph{allEq="all"}.
+On a rare occasion someone might argue that if all categories have the same frequency, then all categories are part of the mode since they all have the highest frequency. This is used when \emph{allEq="all"}.
 
 The function can return the bins that are the modal bins, by setting \emph{value="none"}.
-}
-}
-\examples{
-data = sample(100, size=100)
-binData = cut(data, breaks=3)
-me_mode_bin(binData)
-
 }
 \references{
 Larson, R., & Farber, E. (2014). \emph{Elementary statistics: Picturing the world} (6th ed.). Pearson.
@@ -84,9 +67,5 @@ Weisstein, E. W. (2002). \emph{CRC concise encyclopedia of mathematics} (2nd ed.
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }
