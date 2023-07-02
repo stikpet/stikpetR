@@ -53,6 +53,7 @@
 #'
 #' @export
 es_cohen_d_os <- function(data, mu=NULL){
+  data = unlist(na.omit(data))
 
   #set hypothesized mean to mid range if not provided
   if (is.null(mu)) {
