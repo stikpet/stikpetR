@@ -67,7 +67,7 @@ me_mode_bin <- function(data, bins, allEq="none", value="none"){
   tab = data.frame(matrix(ncol=2, nrow=0))
   colnames(tab) = c("f", "fd")
   for (i in 1:k ){
-    f = sum(ex1 >= bins[i,1]) - sum(ex1 >= bins[i,2])
+    f = sum(data >= bins[i,1]) - sum(data >= bins[i,2])
     fd = f/(bins[i,2] - bins[i,1])
     tab[nrow(tab) + 1, ] = c(f, fd)
   }
