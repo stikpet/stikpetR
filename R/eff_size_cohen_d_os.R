@@ -57,9 +57,7 @@ es_cohen_d_os <- function(data, mu=NULL){
 
   #set hypothesized mean to mid range if not provided
   if (is.null(mu)) {
-    mu = (min(data) + max(data)) / 2
-    print("Hypothesized mean used:")
-    print(mu)}
+    mu = (min(data) + max(data)) / 2}
 
   xBar = mean(data)
   s = sd(data)
