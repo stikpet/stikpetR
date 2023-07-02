@@ -134,8 +134,7 @@
 #' @export
 tab_nbins <- function(data, method='src', maxBins=100, qmethod="cdf"){
     data <- na.omit(data) # remove missing values
-    data <- as.numeric(data) # convert to numeric
-    
+    data <- as.numeric(data[,1]) # convert to numeric
     # Number of scores
     n <- length(data)
 
