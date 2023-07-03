@@ -29,8 +29,6 @@ vi_boxplot_single <- function(data, varname=NULL){
   
   data = data.frame(data)
   
-  pl = boxplot(data, ylab=varname, horizontal=TRUE)
-  
-  return (pl)
+  boxplot(data, ylab=varname, horizontal=TRUE)
   
 }

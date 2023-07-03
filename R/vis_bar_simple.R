@@ -53,12 +53,11 @@ vi_bar_simple <- function(data, varname=NULL, height="count"){
   fr = table(data)
   
   if (height=="count") {
-    chart = barplot(fr, xlab=varname, ylab="Frequency");
+    barplot(fr, xlab=varname, ylab="Frequency");
   }
   else if (height=="percent"){
     n = sum(fr)
-    chart = barplot(fr/n*100, xlab=varname, ylab="Percent");
+    barplot(fr/n*100, xlab=varname, ylab="Percent");
   }
-    
-  return(chart)
+
 }
