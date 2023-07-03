@@ -4,14 +4,14 @@
 \alias{ts_trimmed_mean_os}
 \title{One-Sample (Yuen or Yuen-Welch) Trimmed Mean Test}
 \usage{
-ts_trimmed_mean_os(data, mu = NULL, trim = 0.1, se = "yuen")
+ts_trimmed_mean_os(data, mu = NULL, trimProp = 0.1, se = "yuen")
 }
 \arguments{
 \item{data}{A vector with the data as numbers}
 
 \item{mu}{optional hypothesized trimmed mean, otherwise the midrange will be used}
 
-\item{trim}{optional proportion to trim from each side (so in total twice this will be trimmed)}
+\item{trimProp}{optional proportion to trim from each side (so in total twice this will be trimmed)}
 
 \item{se}{c("yuen", "wilcox") optional method to use to determine standard error (default is "yuen")}
 }
@@ -69,8 +69,8 @@ The \emph{WRS2} library has a similar function: \emph{yuen()}
 \examples{
  
 grade = c(4, 10, 2, 9, 5, 28, 8, 7, 9, 35, 40, 12, 8, 6, 16, 12, 14, 10, 18, 4, 11)
-ts_trimmed_mean_os(grade, trim=0.1, mu=12)
-ts_trimmed_mean_os(grade, trim=0.1, mu=12, se="wilcox")
+ts_trimmed_mean_os(grade, trimProp=0.1, mu=12)
+ts_trimmed_mean_os(grade, trimProp=0.1, mu=12, se="wilcox")
 
 }
 \references{

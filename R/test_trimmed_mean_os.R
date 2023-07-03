@@ -6,14 +6,14 @@
 #' 
 #' @param data A vector with the data as numbers
 #' @param mu optional hypothesized trimmed mean, otherwise the midrange will be used
-#' @param trim optional proportion to trim from each side (so in total twice this will be trimmed)
+#' @param trimProp optional proportion to trim from each side (so in total twice this will be trimmed)
 #' @param se c("yuen", "wilcox") optional method to use to determine standard error (default is "yuen")
 #' @return dataframe with the sample trimmed mean, hypothesized trimmed mean, the standard error, test statistic, degrees of freedom, p-value (sig.) and name of test used
 #' 
 #' @examples  
 #' grade = c(4, 10, 2, 9, 5, 28, 8, 7, 9, 35, 40, 12, 8, 6, 16, 12, 14, 10, 18, 4, 11)
-#' ts_trimmed_mean_os(grade, trim=0.1, mu=12)
-#' ts_trimmed_mean_os(grade, trim=0.1, mu=12, se="wilcox")
+#' ts_trimmed_mean_os(grade, trimProp=0.1, mu=12)
+#' ts_trimmed_mean_os(grade, trimProp=0.1, mu=12, se="wilcox")
 #' 
 #' @details 
 #' The formula used is:
@@ -76,7 +76,7 @@
 #' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
 #'  
 #' @export
-ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
+ts_trimmed_mean_os <- function(data, mu=NULL, trimProp=0.1, se="yuen"){
   data = data.frame(data)
   data = na.omit(data)
   
@@ -89,15 +89,15 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
   n = nrow(data)
   
   #number of scores not trimmed:
-  nt = n - 2*round(n*trim)
+  nt = n - 2*round(n*trimProp)
   
   #trimmed mean
-  mt = mean(data[,1], trim=trim)
+  mt = mean(data[,1], trim=trimProp)
   
   #Winsorize the data
-  scSort = sort(data)
-  minReplace1 = scSort[round(n*trim)+1]
-  maxReplace1 = scSort[n - round(n*trim)]
+  scSort = sort(data[,1])
+  minReplace1 = scSort[round(n*trimProp)+1]
+  maxReplace1 = scSort[n - round(n*trimProp)]
   data = replace(data, data<minReplace1, minReplace1)
   data = replace(data, data>maxReplace1, maxReplace1)
   
@@ -108,7 +108,7 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
     se = sqrt(var)*sqrt(n - 1)/sqrt(nt*(nt - 1))
   }
   else if (se=="wilcox") {
-    se = sqrt(var)/((1 - 2*trim)*sqrt(n))
+    se = sqrt(var)/((1 - 2*trimProp)*sqrt(n))
   }
   
   trim.mean = mt
@@ -119,6 +119,7 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
   statistic=t
   testUsed = "one-sample trimmed mean test"
   results = data.frame(trim.mean, mu, se, statistic, df, pValue, testUsed)
+  colnames(testResults)<-c("trim. mean", "mu", "SE", "statistic", "df", "p-value", "test used")
   
   return(results)
 }

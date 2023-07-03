@@ -75,6 +75,7 @@ ts_student_t_os <- function(data, mu=NULL){
   testUsed = "one-sample Student t"
 
   testResults <- data.frame(mu, sample.mean, statistic, df, pValue, testUsed)
+  colnames(testResults)<-c("mu", "sample mean", "statistic", "df", "p-value", "test used")
 
   return(testResults)
 }
