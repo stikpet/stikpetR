@@ -53,16 +53,16 @@
 #'
 #' @export
 ts_student_t_os <- function(data, mu=NULL){
-
+  data = data.frame(data)
   data = na.omit(data)
 
   if (is.null(mu)) {
     mu = (min(data) + max(data)) / 2
   }
 
-  n = length(data)
-  m = mean(data)
-  s =sd(data)
+  n = nrow(data)
+  m = mean(data[,1])
+  s =sd(data[,1])
   se = s/sqrt(n)
   t = (m - mu)/se
 

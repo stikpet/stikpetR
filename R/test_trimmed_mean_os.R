@@ -77,7 +77,7 @@
 #'  
 #' @export
 ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
-  
+  data = data.frame(data)
   data = na.omit(data)
   
   #set mu to midrange if not provided
@@ -86,13 +86,13 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
   }
   
   #untrimmed sample size (n):
-  n = length(data)
+  n = nrow(data)
   
   #number of scores not trimmed:
   nt = n - 2*round(n*trim)
   
   #trimmed mean
-  mt = mean(data, trim=trim)
+  mt = mean(data[,1], trim=trim)
   
   #Winsorize the data
   scSort = sort(data)
@@ -102,7 +102,7 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trim=0.1, se="yuen"){
   data = replace(data, data>maxReplace1, maxReplace1)
   
   #Winsorized variance
-  var = var(data)
+  var = var(data[,1])
   
   if (se=="yuen"){
     se = sqrt(var)*sqrt(n - 1)/sqrt(nt*(nt - 1))
