@@ -61,7 +61,7 @@ ts_z_os <- function(data, mu=NULL, sigma=NULL){
 
   n = nrow(data)
   data = as.numeric(data[,1])
-  m = mean(data[,1])
+  m = mean(data)
 
   if (is.null(sigma)) {
     s =sd(data)
