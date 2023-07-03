@@ -1,6 +1,6 @@
 #' Binned Frequency Table 
 #' 
-#' @description 
+#' @description
 #' Bins data and creates a frequency table with frequency density.
 #' 
 #' @param data list or dataframe
@@ -12,15 +12,15 @@
 #' @returns
 #' dataframe with:
 #' 
-#' \item{lower bound}
-#' \item{upper bound}
-#' \item{frequency}
-#' \item{frequency density}
+#' \item{lower bound}{lower bound of class}
+#' \item{upper bound}{upper bound of class}
+#' \item{frequency}{count of scores in bin}
+#' \item{frequency density}{count divided by bin range}
 #' 
-#' @seealso 
+#' @seealso
 #' \code{\link{tab_nbins}}, to determine the number of bins
 #' 
-#' @author 
+#' @author
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export

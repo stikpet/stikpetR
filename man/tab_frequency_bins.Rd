@@ -26,10 +26,10 @@ tab_frequency_bins(
 \value{
 dataframe with:
 
-\item{lower bound}
-\item{upper bound}
-\item{frequency}
-\item{frequency density}
+\item{lower bound}{lower bound of class}
+\item{upper bound}{upper bound of class}
+\item{frequency}{count of scores in bin}
+\item{frequency density}{count divided by bin range}
 }
 \description{
 Bins data and creates a frequency table with frequency density.
