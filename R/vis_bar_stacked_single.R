@@ -9,18 +9,12 @@
 #' each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
 #' 
 #' @param data the data from which to create the bar-chart
-#' @param varname name of the variable, if not provided name of data is used.
-#' @param height which values to show on axis, either percent or count
+#' @param catCoding optional vector with the order for the bars
+#' @param orientation optional to indicate horizontal or vertical chart Either `"h"` (default) or `"v"`
 #' @return The chart.
 #' 
 #' @details 
 #' This function basically uses barplot(...,beside = FALSE) from R's *graphics* library
-#' 
-#' @examples 
-#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' vi_bar_stacked_single(ordData)
-#' vi_bar_stacked_single(ordData, height="count")
-#' vi_bar_stacked_single(ordData, varname="scores", height="percent")
 #' 
 #' @seealso 
 #' An alternative chart for a single ordinal variable could be a dual axis bar chart, see \code{\link{vi_bar_dual_axis}} 
@@ -36,33 +30,34 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-vi_bar_stacked_single <- function(data, varname=NULL, height=c("percent", "count")){
+vi_bar_stacked_single <- function(data, catCoding=NULL, orientation=c("h", "v")){
   
-  #set default if not provided
-  if (length(height)>1) {
-    height="percent"
+  if (length(orientation)>1){orientation="h"}
+  if (orientation=="h"){horizontal = TRUE}
+  else {horizontal = FALSE}
+  
+  varname=deparse(substitute(data)) 
+  if (!is.null(catCoding)){
+    legendLabels = catCoding
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = catCoding)
+    data = as.numeric(myFieldOrd)
   }
-  
   #determine the counts (frequencies)
   freqs = table(data)
   
   #determine the number of categories (k)
   k = length(freqs)
   
-  #set variable name to data name if not provided
-  if (is.null(varname)) {
-    varname=deparse(substitute(data))
-  }
+  if (is.null(catCoding)){legendLabels=rownames(freqs)}
   
-  if (height=="percent") {
-    freqs = freqs/sum(freqs)*100
-  }
+  freqs = freqs/sum(freqs)*100
+  
   chart = barplot(as.matrix(freqs),
                   beside = FALSE,
-                  legend.text = rownames(freqs),
-                  horiz = TRUE,
+                  legend.text = legendLabels,
+                  horiz = horizontal,
                   col = heat.colors(k),
-                  xlab = height,
+                  xlab = "percent",
                   ylab = varname)
   
   return(chart)

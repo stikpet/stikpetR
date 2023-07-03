@@ -4,14 +4,14 @@
 \alias{vi_bar_stacked_single}
 \title{Single Stacked Bar-Chart}
 \usage{
-vi_bar_stacked_single(data, varname = NULL, height = c("percent", "count"))
+vi_bar_stacked_single(data, catCoding = NULL, orientation = c("h", "v"))
 }
 \arguments{
 \item{data}{the data from which to create the bar-chart}
 
-\item{varname}{name of the variable, if not provided name of data is used.}
+\item{catCoding}{optional vector with the order for the bars}
 
-\item{height}{which values to show on axis, either percent or count}
+\item{orientation}{optional to indicate horizontal or vertical chart Either \code{"h"} (default) or \code{"v"}}
 }
 \value{
 The chart.
@@ -26,13 +26,6 @@ each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88
 }
 \details{
 This function basically uses barplot(...,beside = FALSE) from R's \emph{graphics} library
-}
-\examples{
-ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-vi_bar_stacked_single(ordData)
-vi_bar_stacked_single(ordData, height="count")
-vi_bar_stacked_single(ordData, varname="scores", height="percent")
-
 }
 \references{
 Upton, G. J. G., & Cook, I. (2014). \emph{Dictionary of statistics} (3rd ed.). Oxford University Press.
