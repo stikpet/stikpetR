@@ -11,7 +11,7 @@ ts_trimmed_mean_os(data, mu = NULL, trimProp = 0.1, se = "yuen")
 
 \item{mu}{optional hypothesized trimmed mean, otherwise the midrange will be used}
 
-\item{trimProp}{optional proportion to trim from each side (so in total twice this will be trimmed)}
+\item{trimProp}{optional proportion to trim in total (half will be trimmed from each side)}
 
 \item{se}{c("yuen", "wilcox") optional method to use to determine standard error (default is "yuen")}
 }
