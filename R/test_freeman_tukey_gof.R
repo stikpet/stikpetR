@@ -129,7 +129,8 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "pearson",
     }
     k = nrow(expCounts)
     nE = sum(expCounts[,2])
-    n = sum(freq[,1])
+    freq[,2] = as.numeric(freq[,2])
+    n = sum(freq[,2])
   }
   
   #the degrees of freedom

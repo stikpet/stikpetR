@@ -127,7 +127,8 @@ ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc 
     }
     k = nrow(expCounts)
     nE = sum(expCounts[,2])
-    n = sum(freq[,1])
+    freq[,2] = as.numeric(freq[,2])
+    n = sum(freq[,2])
   }
   
   df = k - 1

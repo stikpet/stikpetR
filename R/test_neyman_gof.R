@@ -125,7 +125,8 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
     }
     k = nrow(expCounts)
     nE = sum(expCounts[,2])
-    n = sum(freq[,1])
+    freq[,2] = as.numeric(freq[,2])
+    n = sum(freq[,2])
   }
   
   #the degrees of freedom

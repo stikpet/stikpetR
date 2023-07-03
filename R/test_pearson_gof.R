@@ -134,7 +134,8 @@ ts_pearson_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearso
     }
     k = nrow(expCounts)
     nE = sum(expCounts[,2])
-    n = sum(freq[,1])
+    freq[,2] = as.numeric(freq[,2])
+    n = sum(freq[,2])
   }
   
   df = k - 1
