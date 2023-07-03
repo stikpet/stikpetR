@@ -30,16 +30,6 @@
 #' \item \eqn{\pi} the expected proportion
 #' } 
 #' 
-#' @section Alternatives:
-#' 
-#' I'm not aware of any alternative library that has this function.
-#' 
-#' @examples
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-#' es_alt_ratio(data)
-#' es_alt_ratio(data, category="Male")
-#' es_alt_ratio(data, c("Male", "Female"))
-#' 
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
 #' 
@@ -47,6 +37,23 @@
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples
+#' # Example 1: Numeric list
+#' ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+#' es_alt_ratio(ex1)
+#' es_alt_ratio(ex1, p0=0.3)
+#' 
+#' # Example 2: Text list
+#' ex2 = c("Female", "Male", "Male", "Female", "Male", "Male")
+#' es_alt_ratio(ex2)
+#' es_alt_ratio(ex2, category='Female')
+#' es_alt_ratio(ex2, codes=c('Male', 'Female'))
+#' 
+#' # Example 3: dataframe
+#' df1 <- read.csv("https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv", sep=",", na.strings=c("", "NA"))
+#' es_alt_ratio(df1['sex'])
+#' es_alt_ratio(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
 es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){

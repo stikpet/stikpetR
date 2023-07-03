@@ -7,11 +7,6 @@
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
 #' @return dataframe with the hypothesized median (mu) and the effect size measure
 #' 
-#' @examples  
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' r_rank_biserial_os(data)
-#' r_rank_biserial_os(data, mu=2)
-#' 
 #' @details 
 #' The formula used (Kerby, 2014, p. 5):
 #' \deqn{r_{rb} = \frac{\left|R_{pos} - R_{neg}\right|}{R}}
@@ -34,19 +29,24 @@
 #' **Alternative**
 #' 
 #' The *effectsize* library has a similar function: *rank_biserial()*
-#'  
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references 
 #' Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonparametric correlation. *Comprehensive Psychology*, 3, 1–9. https://doi.org/10.2466/11.IT.3.1
 #' 
 #' King, B. M., & Minium, E. W. (2008). *Statistical reasoning in the behavioral sciences* (5th ed.). John Wiley & Sons, Inc.
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' 
+#' @examples
+#' df2 = read.csv('https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv', sep=';', na.strings=c("", "NA"))
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' r_rank_biserial_os(ex1, levels=order)
+#' 
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' r_rank_biserial_os(ex2)
+#' 
 #' @export
 r_rank_biserial_os <- function(data, levels=NULL, mu=NULL){
   

@@ -43,10 +43,13 @@ Where \eqn{x_{max}} is the maximum value of the scores, and \eqn{x_{min}} the mi
 The \emph{effectsize} library has a similar function: \emph{rank_biserial()}
 }
 \examples{
- 
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-r_rank_biserial_os(data)
-r_rank_biserial_os(data, mu=2)
+df2 = read.csv('https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv', sep=';', na.strings=c("", "NA"))
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+r_rank_biserial_os(ex1, levels=order)
+
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+r_rank_biserial_os(ex2)
 
 }
 \references{
@@ -55,9 +58,5 @@ Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonp
 King, B. M., & Minium, E. W. (2008). \emph{Statistical reasoning in the behavioral sciences} (5th ed.). John Wiley & Sons, Inc.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
 }
