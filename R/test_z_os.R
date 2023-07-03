@@ -52,15 +52,16 @@
 #'
 #' @export
 ts_z_os <- function(data, mu=NULL, sigma=NULL){
-
+  data = data.frame(data)
   data = na.omit(data)
 
   if (is.null(mu)) {
     mu = (min(data) + max(data)) / 2
   }
 
-  n = length(data)
-  m = mean(data)
+  n = nrow(data)
+  data = as.numeric(data[,1])
+  m = mean(data[,1])
 
   if (is.null(sigma)) {
     s =sd(data)
