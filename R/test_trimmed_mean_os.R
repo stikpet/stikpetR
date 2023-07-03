@@ -119,7 +119,7 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trimProp=0.1, se="yuen"){
   statistic=t
   testUsed = "one-sample trimmed mean test"
   results = data.frame(trim.mean, mu, se, statistic, df, pValue, testUsed)
-  colnames(testResults)<-c("trim. mean", "mu", "SE", "statistic", "df", "p-value", "test used")
+  colnames(results)<-c("trim. mean", "mu", "SE", "statistic", "df", "p-value", "test used")
   
   return(results)
 }
