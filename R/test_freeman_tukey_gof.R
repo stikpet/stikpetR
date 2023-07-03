@@ -1,7 +1,7 @@
 #' Freeman-Tukey Test of Goodness-of-Fit
 #' 
 #' @param data A vector with the data
-#' @param expCount Optional dataframe with the categories and expected counts 
+#' @param expCounts Optional dataframe with the categories and expected counts 
 #' @param cc Optional continuity correction (default is "none")
 #' @returns 
 #' Dataframe with:
@@ -104,12 +104,14 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_freeman_tukey_gof <- function(data, expCount=NULL, cc = c("none", "pearson", "williams")){
+ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "pearson", "williams")){
+  
+  data = na.omit(data)
   
   if (length(cc)>1) {cc="none"}
   
   #determine the observed counts
-  if (is.null(expCount)){
+  if (is.null(expCounts)){
     freqTable<-table(data)
     n = sum(freqTable)
     k = dim(freqTable)
@@ -122,11 +124,11 @@ ts_freeman_tukey_gof <- function(data, expCount=NULL, cc = c("none", "pearson", 
   else{
     #if expected counts are given
     freq = data.frame(matrix(nrow=0, ncol=2))
-    for (i in expCount[,1]){
+    for (i in expCounts[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
-    k = nrow(expCount)
-    nE = sum(expCount[,2])
+    k = nrow(expCounts)
+    nE = sum(expCounts[,2])
     n = sum(freq[,1])
   }
   
@@ -134,7 +136,7 @@ ts_freeman_tukey_gof <- function(data, expCount=NULL, cc = c("none", "pearson", 
   df = k - 1
   
   #the true expected counts
-  if (is.null(expCount)){
+  if (is.null(expCounts)){
     #assume all to be equal
     expC = rep(n/k,k)
   }
@@ -143,8 +145,8 @@ ts_freeman_tukey_gof <- function(data, expCount=NULL, cc = c("none", "pearson", 
     expC = c()
     for (i in 1:k){
       for (j in 1:k){
-        if (expCount[i,1]==freq[j,1]){
-          expC = append(expC, expCount[i,2]/nE * n)
+        if (expCounts[i,1]==freq[j,1]){
+          expC = append(expC, expCounts[i,2]/nE * n)
         }
       }
     }

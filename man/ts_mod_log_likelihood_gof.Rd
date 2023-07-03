@@ -6,14 +6,14 @@
 \usage{
 ts_mod_log_likelihood_gof(
   data,
-  expCount = NULL,
+  expCounts = NULL,
   cc = c("none", "yates", "pearson", "williams")
 )
 }
 \arguments{
 \item{data}{A vector with the data}
 
-\item{expCount}{Optional dataframe with the categories and expected counts}
+\item{expCounts}{Optional dataframe with the categories and expected counts}
 
 \item{cc}{Optional continuity correction (default is "none")}
 }

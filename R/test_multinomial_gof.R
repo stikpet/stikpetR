@@ -1,7 +1,7 @@
 #' Exact Multinomial Test of Goodness-of-Fit
 #' 
 #' @param data A vector with the data
-#' @param expCount Optional dataframe with the categories and expected counts 
+#' @param expCounts Optional dataframe with the categories and expected counts 
 #' @returns 
 #' Dataframe with:
 #' \item{pObs}{probability of the observed data}
@@ -72,13 +72,15 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_multinomial_gof <- function(data, expCount=NULL) {
+ts_multinomial_gof <- function(data, expCounts=NULL) {
+  
+  data = na.omit(data)
   
   #determine the observed counts
-  if (is.null(expCount)){observed <- c(table(data))}
+  if (is.null(expCounts)){observed <- c(table(data))}
   else {
     freq = data.frame(matrix(nrow=0, ncol=2))
-    for (i in expCount[,1]){
+    for (i in expCounts[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
     observed <- setNames(as.integer(t(freq[2])), t(freq[1]))

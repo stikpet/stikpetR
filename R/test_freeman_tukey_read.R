@@ -1,7 +1,7 @@
 #' Freeman-Tukey-Read Test of Goodness-of-Fit
 #' 
 #' @param data A vector with the data
-#' @param expCount Optional dataframe with the categories and expected counts 
+#' @param expCounts Optional dataframe with the categories and expected counts 
 #' @param weights the weights to be used (should sum to 4)
 #' @param cc Optional continuity correction (default is "none")
 #' @returns 
@@ -71,7 +71,7 @@
 #' ts_freeman_tukey_read(data, cc="yates")
 #' ts_freeman_tukey_read(data, cc="pearson")
 #' ts_freeman_tukey_read(data, cc="williams")
-#' ts_freeman_tukey_read(data, expCount=eCounts)
+#' ts_freeman_tukey_read(data, expCounts=eCounts)
 #' 
 #' @seealso 
 #' Alternative tests with a nominal variable:
@@ -102,12 +102,14 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc = c("none", "pearson", "williams")){
+ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc = c("none", "pearson", "williams")){
+  
+  data = na.omit(data)
   
   if (length(cc)>1) {cc="none"}
   
   #determine the observed counts
-  if (is.null(expCount)){
+  if (is.null(expCounts)){
     freqTable<-table(data)
     n = sum(freqTable)
     k = dim(freqTable)
@@ -120,25 +122,25 @@ ts_freeman_tukey_read <- function(data, expCount=NULL, weights=c(4/3, 8/3), cc =
   else{
     #if expected counts are given
     freq = data.frame(matrix(nrow=0, ncol=2))
-    for (i in expCount[,1]){
+    for (i in expCounts[,1]){
       freq[nrow(freq) + 1,] = c(i, sum(data==i))
     }
-    k = nrow(expCount)
-    nE = sum(expCount[,2])
+    k = nrow(expCounts)
+    nE = sum(expCounts[,2])
     n = sum(freq[,1])
   }
   
   df = k - 1
   
-  if (is.null(expCount)){
+  if (is.null(expCounts)){
     expC = rep(n/k,k)
   }
   else{
     expC = c()
     for (i in 1:k){
       for (j in 1:k){
-        if (expCount[i,1]==freq[j,1]){
-          expC = append(expC, expCount[i,2]/nE * n)
+        if (expCounts[i,1]==freq[j,1]){
+          expC = append(expC, expCounts[i,2]/nE * n)
         }
       }
     }

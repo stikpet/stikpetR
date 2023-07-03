@@ -4,12 +4,12 @@
 \alias{ts_multinomial_gof}
 \title{Exact Multinomial Test of Goodness-of-Fit}
 \usage{
-ts_multinomial_gof(data, expCount = NULL)
+ts_multinomial_gof(data, expCounts = NULL)
 }
 \arguments{
 \item{data}{A vector with the data}
 
-\item{expCount}{Optional dataframe with the categories and expected counts}
+\item{expCounts}{Optional dataframe with the categories and expected counts}
 }
 \value{
 Dataframe with:

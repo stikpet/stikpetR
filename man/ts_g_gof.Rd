@@ -4,12 +4,16 @@
 \alias{ts_g_gof}
 \title{G (Likelihood Ratio) Test of Goodness-of-Fit}
 \usage{
-ts_g_gof(data, expCount = NULL, cc = c("none", "yates", "pearson", "williams"))
+ts_g_gof(
+  data,
+  expCounts = NULL,
+  cc = c("none", "yates", "pearson", "williams")
+)
 }
 \arguments{
 \item{data}{A vector with the data}
 
-\item{expCount}{Optional dataframe with the categories and expected counts}
+\item{expCounts}{Optional dataframe with the categories and expected counts}
 
 \item{cc}{Optional continuity correction (default is "none")}
 }

@@ -6,7 +6,7 @@
 \usage{
 ts_freeman_tukey_read(
   data,
-  expCount = NULL,
+  expCounts = NULL,
   weights = c(4/3, 8/3),
   cc = c("none", "pearson", "williams")
 )
@@ -14,7 +14,7 @@ ts_freeman_tukey_read(
 \arguments{
 \item{data}{A vector with the data}
 
-\item{expCount}{Optional dataframe with the categories and expected counts}
+\item{expCounts}{Optional dataframe with the categories and expected counts}
 
 \item{weights}{the weights to be used (should sum to 4)}
 
@@ -88,7 +88,7 @@ ts_freeman_tukey_read(data)
 ts_freeman_tukey_read(data, cc="yates")
 ts_freeman_tukey_read(data, cc="pearson")
 ts_freeman_tukey_read(data, cc="williams")
-ts_freeman_tukey_read(data, expCount=eCounts)
+ts_freeman_tukey_read(data, expCounts=eCounts)
 
 }
 \references{
