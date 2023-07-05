@@ -7,7 +7,7 @@
 es_hedges_g_os(data, mu = NULL, appr = NULL)
 }
 \arguments{
-\item{data}{pandas series with the numeric scores}
+\item{data}{vector or dataframe with the numeric scores}
 
 \item{mu}{optional parameter to set the hypothesized mean. If not used the midrange is used}
 
@@ -27,10 +27,6 @@ This function will calculate Hedges g (one-sample). An effect size measure that 
 Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 }
 \details{
-Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have
-a one-sample version for Hedges g, and this correction is the one for Hedges g used for the
-independent samples.
-
 The formula used for the exact method (appr=NULL) (Hedges, 1981, p. 111):
 \deqn{g = d' \times\frac{\Gamma\left(m\right)}{\Gamma\left(m - \frac{1}{2}\right)\times\sqrt{m}}}
 With:
@@ -63,8 +59,15 @@ The \emph{effectsize} library has a similar function: \emph{hedges_g()}
 }
 
 \examples{
-data <- c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, 90, 25, 40, 70, 65, 70, 98, 40, 65, 60)
-es_hedges_g_os(data, mu=50)
+#Example 1: Numeric dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2['Gen_Age']
+es_hedges_g_os(ex1)
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+es_hedges_g_os(ex2)
  
 }
 \references{
@@ -80,5 +83,5 @@ Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.4855
 \code{\link{th_cohen_d}}, rules-of-thumb for Cohen d
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

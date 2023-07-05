@@ -45,8 +45,15 @@ The \emph{'pwr'} library has a similar function: \emph{ES.h()}
 }
 
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-es_cohen_h_os(data)
+#Example 1: Numeric list
+ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+es_cohen_h_os(ex1)
+es_cohen_h_os(ex1, p0=0.3)
+
+#Example 2: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_cohen_h_os(df1['sex'])
 
 }
 \references{
@@ -58,5 +65,5 @@ Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} 
 \code{\link{th_cohen_h}}, rules-of-thumb for Cohen g
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

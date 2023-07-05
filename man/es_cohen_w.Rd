@@ -34,6 +34,12 @@ The formula used is (Cohen, 1988, p. 216):
 The \emph{'rcompanion'} library also has a function for this: \emph{cohenW()}
 }
 
+\examples{
+chi2Value <- 3.105263
+n <- 19
+es_cohen_w(chi2Value, n)
+
+}
 \references{
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 }
@@ -43,10 +49,5 @@ Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} 
 \code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
-
-#' @examples
-chi2Value <- 3.105263
-n <- 19
-es_cohen_w(chi2Value, n)
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

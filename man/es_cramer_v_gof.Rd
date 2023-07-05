@@ -84,5 +84,5 @@ Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation i
 \code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

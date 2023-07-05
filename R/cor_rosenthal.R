@@ -5,7 +5,7 @@
 #' @param zVal z-value of test
 #' @param n total sample size
 #' 
-#' @return the effect size measure
+#' @return r the effect size measure
 #' 
 #' @details 
 #' The formula used (Rosenthal, 1991, p. 19):
@@ -30,7 +30,7 @@
 #' Rosenthal, R. (1991). *Meta-analytic procedures for social research* (Rev. ed). Sage Publications.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples
 #' z = 1.143943

@@ -34,32 +34,38 @@ With:
 }
 
 Note to use a rule-of-thumb from Cohen d, first convert this to a regular Cohen d using
-\emph{es_convert(d', from="cohendos", to="cohend")}
+\emph{es_convert(d', from="cohendos", to="cohend")}, then use \emph{th_cohen_d(d)}
 
-Then use \emph{th_cohen_d(d)}
+Or convert it further to an Odds Ratio using, \emph{es_convert(d, from="cohend", to="or", ex1="chinn")} or \emph{es_convert(d, from="cohend", to="or", ex1="borenstein")}. Then use \emph{th_odds_ratio(or)}
+}
+\section{Alternatives}{
 
-Or convert it further to an Odds Ratio using:
-\emph{es_convert(d, from="cohend", to="or", ex1="chinn)} or \emph{es_convert(d, from="cohend", to="or", ex1="borenstein)}
-
-Then use \emph{th_odds_ratio(or)}
-
-\strong{Alternative}
 
 The \emph{lsr} library has a similar function: \emph{cohensD()}
 }
+
 \examples{
-data <- c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, 90, 25, 40, 70, 65, 70, 98, 40, 65, 60)
-es_cohen_d_os(data)
-es_cohen_d_os(data, mu=70)
+#Example 1: Numeric dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2['Gen_Age']
+es_cohen_d_os(ex1)
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+es_cohen_d_os(ex2)
 
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
+\seealso{
+\code{\link{es_convert}}, to convert Cohen d' to Cohen d, use from="cohendos", to="cohend". To convert Cohen d to an Odds Ratio, use  from="cohend", to="or", ex1="chinn", or ex1="borenstein"
+
+\code{\link{th_cohen_d}}, for rule-of-thumb classification of Cohen d
+
+\code{\link{th_odds_ratio}}, for rule-of-thumb classification of Odds Ratio.
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

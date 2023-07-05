@@ -27,11 +27,19 @@
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 #'  
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-#' es_cohen_g(data)
+#' #Example 1: Numeric list
+#' ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+#' es_cohen_g(ex1)
+#' 
+#' #Example 2: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_cohen_g(df1['sex'])
+#' #Using two specific categories:
+#' es_cohen_g(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
 es_cohen_g <- function(data, codes=NULL){

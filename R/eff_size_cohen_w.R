@@ -19,7 +19,6 @@
 #' \item \eqn{n} the sample size, i.e. the sum of all frequencies
 #' }
 #' 
-#' 
 #' @section Alternative:
 #' 
 #' The *'rcompanion'* library also has a function for this: *cohenW()*
@@ -33,9 +32,9 @@
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' #' @examples 
+#' @examples 
 #' chi2Value <- 3.105263
 #' n <- 19
 #' es_cohen_w(chi2Value, n)

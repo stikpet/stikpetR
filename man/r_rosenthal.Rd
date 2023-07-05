@@ -12,7 +12,7 @@ r_rosenthal(zVal, n)
 \item{n}{total sample size}
 }
 \value{
-the effect size measure
+r the effect size measure
 }
 \description{
 This function will calculate Rosenthal Correlation Coefficient. A simple correlation coefficient that divides a z-score by the square root of the sample size.
@@ -46,5 +46,5 @@ Rosenthal, R. (1991). \emph{Meta-analytic procedures for social research} (Rev. 
 \code{\link{th_pearson_r()}}, rules of thumb for a Pearson correlation coefficient.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

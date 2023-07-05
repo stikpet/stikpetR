@@ -36,10 +36,11 @@
 #' King, B. M., & Minium, E. W. (2008). *Statistical reasoning in the behavioral sciences* (5th ed.). John Wiley & Sons, Inc.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples
-#' df2 = read.csv('https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv', sep=';', na.strings=c("", "NA"))
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
 #' ex1 = df2[['Teach_Motivate']]
 #' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
 #' r_rank_biserial_os(ex1, levels=order)

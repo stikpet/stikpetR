@@ -5,7 +5,7 @@
 #' 
 #' Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 #' 
-#' @param data pandas series with the numeric scores
+#' @param data vector or dataframe with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used
 #' @param appr optional approximation to use, NULL will use exact. Either `NULL` (default), `"hedges"`, `"durlak"`, or `"xue"`
 #' 
@@ -14,10 +14,7 @@
 #'    * *g*, Hedges g for a one-sample
 #'    * *version*, description of version used.
 #' 
-#' @details 
-#' Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have
-#' a one-sample version for Hedges g, and this correction is the one for Hedges g used for the
-#' independent samples.
+#' @details
 #' 
 #' The formula used for the exact method (appr=NULL) (Hedges, 1981, p. 111):
 #' \deqn{g = d' \times\frac{\Gamma\left(m\right)}{\Gamma\left(m - \frac{1}{2}\right)\times\sqrt{m}}}
@@ -61,18 +58,21 @@
 #' Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples
-#' data <- c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, 90, 25, 40, 70, 65, 70, 98, 40, 65, 60)
-#' es_hedges_g_os(data, mu=50)
+#' #Example 1: Numeric dataframe
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' ex1 = df2['Gen_Age']
+#' es_hedges_g_os(ex1)
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' es_hedges_g_os(ex2)
 #'  
 #' @export
 es_hedges_g_os <- function(data, mu=NULL, appr=NULL){
-  # Hedges g for a one-sample test
-  # Numeric data vector as input
-  # mu: the hypothesized mean (default is "none")
-  # appr: approximation to use. Can be set to 'hedges', 'durlak', or 'xue'. NULL will give the exact result.
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {

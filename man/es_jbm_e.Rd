@@ -42,12 +42,6 @@ Both formulas are from Johnston et al. (2006, p. 413)
 
 A qualification rule-of-thumb could be obtained by converting this to Cohen's w
 }
-\section{Alternative}{
-
-
-I'm not aware of any other library with a similar function.
-}
-
 \examples{
 chi2Value <- 3.105263
 n <- 19
@@ -60,22 +54,9 @@ es_jbm_e(chi2Value, n, minExp, test="g")
 Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. \emph{Perceptual and Motor Skills, 103}(2), 412–414. https://doi.org/10.2466/pms.103.2.412-414
 }
 \seealso{
-Alternative effect sizes that might be of interest:
-\itemize{
-\item \code{\link{es_cramer_v_gof}} Cramér V
-\item \code{\link{es_cohen_w}} Cohen w
-}
-
-Tests with a nominal variable where this effect size might be used:
-\itemize{
-\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-}
+\code{\link{es_convert}} to convert JBM-E to Cohen w, use from="jbme", to="cohenw", and ex1=minExp/n
+\code{\link{th_cohen_w()}} rules-of-thumb for Cohen w
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

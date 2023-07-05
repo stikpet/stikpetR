@@ -30,8 +30,16 @@ The formula used is (Cohen, 1988, p. 147):
 }
 }
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-es_cohen_g(data)
+#Example 1: Numeric list
+ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+es_cohen_g(ex1)
+
+#Example 2: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_cohen_g(df1['sex'])
+#Using two specific categories:
+es_cohen_g(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 
 }
 \references{
@@ -41,5 +49,5 @@ Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed
 \code{\link{th_cohen_g}}, rules-of-thumb for Cohen g
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
