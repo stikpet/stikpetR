@@ -192,6 +192,9 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
     testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste(testUsed, ", with Williams continuity correction")}
+  else if (cc =="yates"){
+    testUsed = paste(testUsed, ", with Yates continuity correction")
+  }
   
   statistic = T2
   testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
