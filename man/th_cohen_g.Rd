@@ -12,10 +12,12 @@ th_cohen_g(g, qual = "cohen")
 \item{qual}{optional setting for which rule of thumb to use. Currently only "cohen"}
 }
 \value{
-dataframe with the qualification and source
+A dataframe with:
+\item{classification}{the qualification of the effect size}
+\item{reference}{a reference for the rule of thumb used}
 }
 \description{
-Rule-of-Thumb for Cohen g
+Simple function to use a rule-of-thumb for the Cohen g effect size.
 }
 \details{
 Cohen's rule of thumb for Cohen g (1988, pp. 147-149):\tabular{ll}{
@@ -27,17 +29,16 @@ Cohen's rule of thumb for Cohen g (1988, pp. 147-149):\tabular{ll}{
 }
 }
 \examples{
-g <- -0.2391304
-th_cohen_g(g)
-
+es = 0.6
+th_cohen_g(es)
+ 
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
+\seealso{
+\code{\link{es_cohen_g}}, to determine Cohen g
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

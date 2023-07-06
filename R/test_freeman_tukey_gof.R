@@ -1,8 +1,18 @@
 #' Freeman-Tukey Test of Goodness-of-Fit
 #' 
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, G-test, Neyman, Mod-Log Likelihood, Cressie-Read, and 
+#' Freeman-Tukey-Read test are possible.
+#' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction (default is "none")
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", "williams"
+#' 
 #' @returns 
 #' Dataframe with:
 #' \item{n}{the sample size}
@@ -14,14 +24,6 @@
 #' \item{propBelow5}{the proportion of expected counts below 5}
 #' \item{testUsed}{a description of the test used}
 #' 
-#' @description 
-#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
-#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
-#' assumption they are all equal in the population will be rejected. 
-#' 
-#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
-#' but also an exact multinomial, G-test, Neyman, Mod-Log Likelihood, Cressie-Read, and 
-#' Freeman-Tukey-Read test are possible.
 #' 
 #' @details 
 #' The formula used is (Ayinde & Abidoye, 2010, p. 21):
@@ -51,6 +53,11 @@
 #' The test is attributed to Freeman and Tukey (1950), but couldn't really find it in there.
 #' Another source often mentioned is Bishop et al. (2007)
 #' 
+#' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+#' \deqn{G_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
+#' Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
+#' 
 #' The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
 #' 
@@ -59,27 +66,8 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
-#' 	
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_freeman_tukey_gof(data)
-#' ts_freeman_tukey_gof(data, cc="pearson")
-#' ts_freeman_tukey_gof(data, cc="williams")
-#' ts_freeman_tukey_gof(data, eCounts)
 #' 
 #' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-#' }
-#' 
 #' Effect sizes that might be of interest:
 #' \itemize{
 #' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
@@ -101,10 +89,29 @@
 #' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' ts_freeman_tukey_gof(ex1)
+#' 
+#' #Example 2: Dataframe with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_freeman_tukey_gof(ex2, expCounts=eCounts, cc="yates")
+#' ts_freeman_tukey_gof(ex2, expCounts=eCounts, cc="pearson")
+#' ts_freeman_tukey_gof(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_freeman_tukey_gof(ex3)
+#' ts_freeman_tukey_gof(ex3, expCount=eCounts)
 #' 
 #' @export
-ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "pearson", "williams")){
+ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){
   
   data = na.omit(data)
   
@@ -155,6 +162,15 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "pearson",
   
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
+  
+  if (cc == "yates"){
+    for (i in 1:k){
+      if (as.numeric(freq[i, 2] > expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+      else if (as.numeric(freq[i, 2] < expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+    }
+  }
   
   #calculate the chi-square value
   T2 = 0

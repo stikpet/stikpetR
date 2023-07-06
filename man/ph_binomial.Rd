@@ -14,7 +14,7 @@ ph_binomial(
 \arguments{
 \item{data}{dataframe with scores}
 
-\item{expCount}{optional pandas dataframe with categories and expected counts}
+\item{expCount}{optional dataframe with categories and expected counts}
 
 \item{twoSidedMethod}{method to use for determining two-sided p-value of binomial test}
 
@@ -35,6 +35,25 @@ a dataframe with:
 This function will perform a one-sample binomial test for each possible pair in the
 data. It makes use of the ts_binomial_os() function.
 }
+\examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+ph_binomial(ex1)
+
+#Example 2: pandas series with various settings
+ex2 = df1['mar1']
+categories = c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED")
+expcounts = c(5, 5, 5, 5)
+eCounts = data.frame('category' = categories, 'count' = ecounts)
+ph_binomial(ex2, expCount=eCounts)
+
+#Example 3: a list
+ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+ph_binomial(ex3)
+
+}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

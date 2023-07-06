@@ -9,13 +9,15 @@ th_cohen_d(d, qual = "sawilowsky")
 \arguments{
 \item{d}{the Cohen d value}
 
-\item{qual}{c("cohen", "sawilowsky", "lovakov", "rosenthal") optional the rule of thumb to be used}
+\item{qual}{optional the rule of thumb to be used. Either "sawilowsky" (default), "cohen", "lovakov", or "rosenthal"}
 }
 \value{
-dataframe with the qualification and source
+A dataframe with:
+\item{classification}{the qualification of the effect size}
+\item{reference}{a reference for the rule of thumb used}
 }
 \description{
-Rules of Thumb for Cohen d
+This function will give a qualification (classification) for Cohen d
 }
 \details{
 The following rules-of-thumb can be used:
@@ -60,9 +62,9 @@ The following rules-of-thumb can be used:
 }
 }
 \examples{
+es = 0.6
+th_cohen_d(es)
  
-th_cohen_d(0.34)
-
 }
 \references{
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
@@ -73,10 +75,11 @@ Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and 
 
 Sawilowsky, S. (2009). New effect size rules of thumb. \emph{Journal of Modern Applied Statistical Methods, 8}(2). https://doi.org/10.22237/jmasm/1257035100
 }
+\seealso{
+\code{\link{es_cohen_d}}, to determine Cohen d
+
+\code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

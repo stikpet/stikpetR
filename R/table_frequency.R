@@ -1,15 +1,5 @@
 #' Frequency Table
 #' 
-#' @param data A vector with the data
-#' @param order optional list with order of the categories
-#' @returns 
-#' Dataframe with the folowing columns:
-#' \item{index}{the categories}
-#' \item{frequency}{the absolute count}
-#' \item{percent}{the percentage based on the total including missing values}
-#' \item{valid percent}{the percentage based on the total excluding missing values, only if missing values are present}
-#' \item{cumulative percent}{the cumulative percentages}
-#' 
 #' @description 
 #' A frequency table is defined as "a table showing (1) all of the values for a variable in a dataset, 
 #' and (2) the frequency of each of those responses. Some frequency tables also show a cumulative frequency and 
@@ -21,10 +11,23 @@
 #' 
 #' If you have many options in the scale variable, the data is often binned (e.g. 0 < 10, 10 < 20, etc.), which creates 
 #' then an ordinal variable, of which a frequency table can then be helpful. See binning for more information on this.
+#' 
 #' A frequency table can show different types of frequencies. Various options are discussed in the details.
 #' 
 #' A YouTube video with explanation on this test is available [here](https://youtu.be/DPmwWxYYCp4)
 #'  
+#' @param data A vector or dataframe
+#' @param order optional list with order of the categories
+#' 
+#' @returns 
+#' Dataframe with the folowing columns:
+#' \item{index}{the categories}
+#' \item{frequency}{the absolute count}
+#' \item{percent}{the percentage based on the total including missing values}
+#' \item{valid percent}{the percentage based on the total excluding missing values, only if missing values are present}
+#' \item{cumulative percent}{the cumulative percentages}
+#' 
+#' 
 #' @details 
 #' The column **Frequency** shows how many respondents answered each option. We can tell that 100 people in this survey 
 #' chose the option 'very scientific'. This is also known as the **absolute frequency** and defined as “the number of 
@@ -77,10 +80,6 @@
 #' It can be defined as: “the number of occurrences of an event divided by the bin size…” (Zedeck, 2014, pp. 144–145).
 #' See the binned tables for more information about this.
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", NA, "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' tab_frequency(data)
-#' 
 #' @references 
 #' Kenney, J. F. (1939). *Mathematics of statistics; Part one*. Chapman & Hall.
 #' 
@@ -91,7 +90,31 @@
 #' Zedeck, S. (Ed.). (2014). *APA dictionary of statistics and research methods*. American Psychological Association.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' tab_frequency(ex1)
+#' 
+#' #Example 2: Text data with specified order
+#' myOrder = c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED", "WIDOWED")
+#' tab_frequency(df1['mar1'], order=myOrder)
+#' 
+#' #Example 3: Numeric data
+#' ex3 = c(1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5)
+#' tab_frequency(ex3)
+#' 
+#' #Example 4: Ordinal data
+#' ex4a = c(1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, "NaN")
+#' myOrder = c("fully disagree"=1, "disagree"=2, "neutral"=3, "agree"=4, "fully agree"=5)
+#' tab_frequency(ex4a, order=myOrder)
+#' 
+#' ex4b = df1['accntsci']
+#' myOrder = c("Not scientific at all", "Not too scientific", "Pretty scientific", "Very scientific")
+#' tab_frequency(ex4b, order=myOrder)
 #' 
 #' @export
 tab_frequency <- function(data, order=NULL){

@@ -12,7 +12,9 @@ th_pearson_r(r, qual = "bartz")
 \item{qual}{optional the rule of thumb to be used. Either "\verb{bartz"} (default), \code{"rafter"}, \code{"cohen"}, \code{"rumsey"}, \code{"rosenthal"}, \code{"agnes"}, \code{"disha"}, \code{"hopkins"}, \code{"funder"}, \code{"gignac"}, \code{"hemphill"}, or \code{"lovakov"}}
 }
 \value{
-dataframe with the qualification and source
+A dataframe with:
+\item{classification}{the qualification of the effect size}
+\item{reference}{a reference for the rule of thumb used}
 }
 \description{
 This function will give a qualification (classification) to a given correlation coefficient
@@ -128,6 +130,11 @@ The following rules-of-thumb can be used:
    0.40 or more \tab very large \cr
 }
 }
+\examples{
+es = 0.6
+th_pearson_r(es)
+
+}
 \references{
 Agnes. (2011, April 16). Correlation – Correlation coefficient, r. Finance Training Course. https://financetrainingcourse.com/education/2011/04/correlation-correlation-coefficient-r/
 
@@ -151,6 +158,11 @@ Rumsey, D. J. (2011). \emph{Statistics for dummies} (2nd ed.). Wiley.
 
 Warmbrod, J. R. (2001). Calculating, interpreting, and reporting estimates of “effect size": Magnitude of an effect or the strength of a relationship. https://www.depts.ttu.edu/aged/toolbox/effect_size.pdf
 }
+\seealso{
+\code{\link{r_pearson}}, to determine Pearson correlation coefficient or
+
+\code{\link{r_rosenthal}}, to determine Rosenthal correlation coefficient
+}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

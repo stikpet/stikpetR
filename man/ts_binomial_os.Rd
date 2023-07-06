@@ -27,17 +27,12 @@ Dataframe with:
 }
 \description{
 Performs a one-sample (exact) binomial test.
-This test can be useful with a single binary variable as input. The null hypothesis is usually that
-the proportions of the two categories in the population are equal (i.e. 0.5 for each).
-If the p-value of the test is below the pre-defined alpha level (usually 5\% = 0.05) the null hypothesis
-is rejected and the two categories differ in proportion significantly.
 
-The input for the function doesn't have to be a binary variable. A nominal variable can also be used
-and the two categories to compare indicated.
+This test can be useful with a single binary variable as input. The null hypothesis is usually that the proportions of the two categories in the population are equal (i.e. 0.5 for each). If the p-value of the test is below the pre-defined alpha level (usually 5\% = 0.05) the null hypothesis is rejected and the two categories differ in proportion significantly.
 
-A significance in general is the probability of a result as in the sample, or more extreme, if the null
-hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication.
-There are different methods to approach this problem. See the details for more information.
+The input for the function doesn't have to be a binary variable. A nominal variable can also be used and the two categories to compare indicated.
+
+A significance in general is the probability of a result as in the sample, or more extreme, if the null hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication. There are different methods to approach this problem. See the details for more information.
 
 A \href{https://youtu.be/9OGCi1Q7tBQ}{YouTube} video on the binomial test.
 }
@@ -101,18 +96,20 @@ R \emph{stats} library: binom.test()
 }
 
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-ts_binomial_os(data, c("Female", "Male"), p0 = 0.5, twoSidedMethod="eqdist")
+#Example 1: Numeric list
+ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+ts_binomial_os(ex1)
+ts_binomial_os(ex1, p0=0.3, twoSidedMethod="eqdist")
+ts_binomial_os(ex1, p0=0.3, twoSidedMethod="double")
+ts_binomial_os(ex1, p0=0.3, twoSidedMethod="smallp")
 
-}
-\seealso{
-Effect size measures that could go with the binomial test are Cohen g (\code{\link{es_cohen_g}}),
-Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
+#Example 2: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ts_binomial_os(df1['sex'])
+ts_binomial_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 
-Other tests for a binary variable are the Score test (\code{\link{ts_score_os}}), and Wald test (\code{\link{ts_wald_os}})
-
-\href{https://peterstatistics.com/CrashCourse/2-SingleVar/Binary/Binary-2a-Testing.html}{Companion Website} on test for a single binary variable.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

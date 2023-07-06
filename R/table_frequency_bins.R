@@ -20,8 +20,23 @@
 #' @seealso
 #' \code{\link{tab_nbins}}, to determine the number of bins
 #' 
-#' @author
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Numeric Dataframe
+#' ex1a = df2['Gen_Age']
+#' tab_frequency_bins(ex1a)
+#' 
+#' ex1b = df2['Gen_Age']
+#' myBins = data.frame(c(0, 20, 25, 30), c(20, 25, 30, 120))
+#' tab_frequency_bins(ex1b, bins=myBins)
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' tab_frequency_bins(ex2, adjust=0.1)
 #' 
 #' @export
 tab_frequency_bins <- function(data, nbins="sturges", bins=NULL, incl_lower=TRUE, adjust=1){

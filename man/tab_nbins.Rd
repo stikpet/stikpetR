@@ -7,7 +7,7 @@
 tab_nbins(data, method = "src", maxBins = 100, qmethod = "cdf")
 }
 \arguments{
-\item{data}{vector or pandas series with numeric data}
+\item{data}{vector or dataframe}
 
 \item{method}{optional to indicate the method to use. Either "src", "sturges", "qr", "rice", "ts", "exp", "velleman", "doane", "scott", "fd", "shinshim", "stone", or "knuth"}
 
@@ -117,6 +117,21 @@ This method uses as a profit function (Knuth, 2019, p. 8):
 
 \deqn{P_k=n\times\ln\left(k\right) + \ln\Gamma\left(\frac{k}{2}\right) - k\times\ln\Gamma\left(\frac{1}{2}\right) - \ln\Gamma\left(n+\frac{k}{2}\right) + \sum_{i=1}^k\ln\Gamma\left(f_i+\frac{1}{2}\right)}
 }
+\examples{
+#Example 1
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+tab_nbins(ex1)
+
+#Example 2
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex2 = df2['Gen_Age']
+tab_nbins(ex2)
+
+}
 \references{
 Doane, D. P. (1976). Aesthetic frequency classifications. \emph{The American Statistician, 30}(4), 181–183. https://doi.org/10.2307/2683757
 
@@ -139,5 +154,5 @@ Sturges, H. A. (1926). The choice of a class interval. \emph{Journal of the Amer
 Terrell, G. R., & Scott, D. W. (1985). Oversmoothed nonparametric density estimates. \emph{Journal of the American Statistical Association, 80}(389), 209–214. https://doi.org/10.2307/2288074
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

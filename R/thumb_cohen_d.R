@@ -1,11 +1,15 @@
 #' Rules of Thumb for Cohen d
 #' 
-#' @param d the Cohen d value
-#' @param qual c("cohen", "sawilowsky", "lovakov", "rosenthal") optional the rule of thumb to be used
-#' @return dataframe with the qualification and source
+#' @description 
+#' This function will give a qualification (classification) for Cohen d
 #' 
-#' @examples  
-#' th_cohen_d(0.34)
+#' @param d the Cohen d value
+#' @param qual optional the rule of thumb to be used. Either "sawilowsky" (default), "cohen", "lovakov", or "rosenthal"
+#' 
+#' @returns 
+#' A dataframe with:
+#' \item{classification}{the qualification of the effect size}
+#' \item{reference}{a reference for the rule of thumb used}
 #' 
 #' @details 
 #' The following rules-of-thumb can be used:
@@ -51,6 +55,11 @@
 #' |0.80 < 1.30 | large |
 #' |0.80 or more | very large |
 #' 
+#' @seealso 
+#' \code{\link{es_cohen_d}}, to determine Cohen d
+#' 
+#' \code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
+#' 
 #' @references 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #' 
@@ -61,11 +70,11 @@
 #' Sawilowsky, S. (2009). New effect size rules of thumb. *Journal of Modern Applied Statistical Methods, 8*(2). https://doi.org/10.22237/jmasm/1257035100
 #' 
 #' @author 
-#' P. Stikker
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @examples
+#' es = 0.6
+#' th_cohen_d(es)
 #'  
 #' @export
 th_cohen_d <- function(d, qual="sawilowsky"){

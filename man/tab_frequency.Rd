@@ -7,7 +7,7 @@
 tab_frequency(data, order = NULL)
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{A vector or dataframe}
 
 \item{order}{optional list with order of the categories}
 }
@@ -30,6 +30,7 @@ age, a list going from 1 to 90 with different ages and frequencies, will probabl
 
 If you have many options in the scale variable, the data is often binned (e.g. 0 < 10, 10 < 20, etc.), which creates
 then an ordinal variable, of which a frequency table can then be helpful. See binning for more information on this.
+
 A frequency table can show different types of frequencies. Various options are discussed in the details.
 
 A YouTube video with explanation on this test is available \href{https://youtu.be/DPmwWxYYCp4}{here}
@@ -87,9 +88,28 @@ It can be defined as: “the number of occurrences of an event divided by the bi
 See the binned tables for more information about this.
 }
 \examples{
- 
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", NA, "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-tab_frequency(data)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+tab_frequency(ex1)
+
+#Example 2: Text data with specified order
+myOrder = c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED", "WIDOWED")
+tab_frequency(df1['mar1'], order=myOrder)
+
+#Example 3: Numeric data
+ex3 = c(1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5)
+tab_frequency(ex3)
+
+#Example 4: Ordinal data
+ex4a = c(1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, "NaN")
+myOrder = c("fully disagree"=1, "disagree"=2, "neutral"=3, "agree"=4, "fully agree"=5)
+tab_frequency(ex4a, order=myOrder)
+
+ex4b = df1['accntsci']
+myOrder = c("Not scientific at all", "Not too scientific", "Pretty scientific", "Very scientific")
+tab_frequency(ex4b, order=myOrder)
 
 }
 \references{
@@ -102,5 +122,5 @@ Weisstein, E. W. (2002). \emph{CRC concise encyclopedia of mathematics} (2nd ed.
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

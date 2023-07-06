@@ -1,16 +1,16 @@
 #' Number of Bins
 #' 
-#' @param data vector or pandas series with numeric data
+#' @description 
+#' To decide on the appropriate number of bins, many different rules can be applied. This function will 
+#' determine the number of bins, based on the chosen method.
+#' 
+#' @param data vector or dataframe
 #' @param method optional to indicate the method to use. Either "src", "sturges", "qr", "rice", "ts", "exp", "velleman", "doane", "scott", "fd", "shinshim", "stone", or "knuth"
 #' @param maxBins optional for in iterations with "shinshim", "stone" and "knuth"
 #' @param qmethod optional quartile method calculation to use for IQR when "fd" is used. See me_quartiles for options
 #' 
 #' @returns 
 #' k : integer with optimum number of bins according to chosen method
-#' 
-#' @description 
-#' To decide on the appropriate number of bins, many different rules can be applied. This function will 
-#' determine the number of bins, based on the chosen method.
 #' 
 #' @details
 #' The first few methods are determining the number of bins (k) using the sample size (n).
@@ -129,7 +129,21 @@
 #' Terrell, G. R., & Scott, D. W. (1985). Oversmoothed nonparametric density estimates. *Journal of the American Statistical Association, 80*(389), 209–214. https://doi.org/10.2307/2288074
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['age']
+#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+#' tab_nbins(ex1)
+#' 
+#' #Example 2
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' ex2 = df2['Gen_Age']
+#' tab_nbins(ex2)
 #' 
 #' @export
 tab_nbins <- function(data, method='src', maxBins=100, qmethod="cdf"){

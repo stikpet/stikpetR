@@ -1,12 +1,15 @@
 #' Rule-of-Thumb for Cohen w
 #' 
+#' @description
+#' Simple function to use a rule-of-thumb for the Cohen w effect size.
+#' 
 #' @param w the Cohen w value
 #' @param qual optional setting for which rule of thumb to use. Currently only 'cohen'
-#' @return dataframe with the qualification and source
 #' 
-#' @examples 
-#' w <- -0.2391304
-#' th_cohen_w(w)
+#' @returns 
+#' A dataframe with:
+#' \item{classification}{the qualification of the effect size}
+#' \item{reference}{a reference for the rule of thumb used}
 #' 
 #' @details 
 #' Cohen's rule of thumb for Cohen w (1988, p. 227):
@@ -18,16 +21,19 @@
 #' |0.30 < 0.50 | medium |
 #' |0.50 or more | large |
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso 
+#' \code{\link{es_cohen_w}}, to determine Cohen w
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' es = 0.6
+#' th_cohen_w(es)
+#' 
 #' @export
 th_cohen_w <- function(w, qual="cohen"){
   

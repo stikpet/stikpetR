@@ -7,7 +7,10 @@
 #' @param r the correlation coefficient
 #' @param qual optional the rule of thumb to be used. Either "`bartz"` (default), `"rafter"`, `"cohen"`, `"rumsey"`, `"rosenthal"`, `"agnes"`, `"disha"`, `"hopkins"`, `"funder"`, `"gignac"`, `"hemphill"`, or `"lovakov"`
 #' 
-#' @returns dataframe with the qualification and source
+#' @returns 
+#' A dataframe with:
+#' \item{classification}{the qualification of the effect size}
+#' \item{reference}{a reference for the rule of thumb used}
 #' 
 #' @details 
 #' 
@@ -119,6 +122,11 @@
 #' |0.30 < 0.40 | large |
 #' |0.40 or more | very large |
 #' 
+#' @seealso 
+#' \code{\link{r_pearson}}, to determine Pearson correlation coefficient or
+#' 
+#' \code{\link{r_rosenthal}}, to determine Rosenthal correlation coefficient
+#' 
 #' @references
 #' Agnes. (2011, April 16). Correlation – Correlation coefficient, r. Finance Training Course. https://financetrainingcourse.com/education/2011/04/correlation-correlation-coefficient-r/
 #' 
@@ -143,7 +151,11 @@
 #' Warmbrod, J. R. (2001). Calculating, interpreting, and reporting estimates of “effect size": Magnitude of an effect or the strength of a relationship. https://www.depts.ttu.edu/aged/toolbox/effect_size.pdf
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' es = 0.6
+#' th_pearson_r(es)
 #' 
 #' @export
 th_pearson_r <- function(r, qual="bartz"){
