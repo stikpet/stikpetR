@@ -11,9 +11,9 @@ me_mean(data, version = "arithmetic", trimProp = 0.1, trimFrac = "down")
 
 \item{version, }{optional mean to calculate. Either \code{"arithmetic"} (default), \code{"winsorized"}, \code{"trimmed"}, \code{"windsor"}, \code{"truncated"}, \code{"olympic"}, \code{"geometric"}, \code{"harmonic"}, \code{"midrange"}}
 
-\item{trimFrac, }{optional parameter to indicate what to do if trimmed amount is non-integer. Either \code{"down"} (default), \code{"prop"}, \code{"linear"}}
+\item{trimProp, }{optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.}
 
-\item{trimprop, }{optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.}
+\item{trimFrac, }{optional parameter to indicate what to do if trimmed amount is non-integer. Either \code{"down"} (default), \code{"prop"}, \code{"linear"}}
 }
 \value{
 res, the value of the mean

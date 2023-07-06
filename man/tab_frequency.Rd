@@ -9,7 +9,7 @@ tab_frequency(data, order = NULL)
 \arguments{
 \item{data}{A vector with the data}
 
-\item{decimals}{An integer for the number of decimals to be shown for the percentages}
+\item{order}{optional list with order of the categories}
 }
 \value{
 Dataframe with the folowing columns:

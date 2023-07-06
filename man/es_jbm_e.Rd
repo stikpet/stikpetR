@@ -55,7 +55,7 @@ Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size f
 }
 \seealso{
 \code{\link{es_convert}} to convert JBM-E to Cohen w, use from="jbme", to="cohenw", and ex1=minExp/n
-\code{\link{th_cohen_w()}} rules-of-thumb for Cohen w
+\code{\link{th_cohen_w}} rules-of-thumb for Cohen w
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

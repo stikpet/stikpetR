@@ -18,7 +18,7 @@ ts_powerdivergence_gof(
 
 \item{lambd}{Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3}
 
-\item{corr}{Optional correction to be used.}
+\item{cc}{Optional correction to be used.}
 }
 \value{
 Dataframe with:

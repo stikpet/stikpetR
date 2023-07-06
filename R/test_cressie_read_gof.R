@@ -65,14 +65,6 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_cressie_read_gof(data)
-#' ts_cressie_read_gof(data, cc="yates")
-#' ts_cressie_read_gof(data, cc="pearson")
-#' ts_cressie_read_gof(data, cc="williams")
-#' ts_cressie_read_gof(data, eCounts)
 #'  
 #' @seealso 
 #' Alternative tests with a nominal variable:
@@ -221,7 +213,7 @@ ts_cressie_read_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pe
   else if (cc == "yates"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
+  testResults <- data.frame(n, k, chiVal, df, pValue, minExp, propBelow5, testUsed)
   colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
   
   return (testResults)

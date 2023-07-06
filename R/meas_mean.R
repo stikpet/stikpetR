@@ -7,7 +7,7 @@
 #' 
 #' @param data, vector or dataframe with scores as numbers
 #' @param version, optional mean to calculate. Either `"arithmetic"` (default), `"winsorized"`, `"trimmed"`, `"windsor"`, `"truncated"`, `"olympic"`, `"geometric"`, `"harmonic"`, `"midrange"`
-#' @param trimprop, optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.
+#' @param trimProp, optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.
 #' @param trimFrac, optional parameter to indicate what to do if trimmed amount is non-integer. Either `"down"` (default), `"prop"`, `"linear"`
 #' 
 #' @returns 

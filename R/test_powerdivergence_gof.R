@@ -3,7 +3,7 @@
 #' @param data A vector with the data
 #' @param expCounts Optional counts according to null hypothesis
 #' @param lambd Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3
-#' @param corr Optional correction to be used.
+#' @param cc Optional correction to be used.
 #' @returns 
 #' Dataframe with:
 #' \item{statistic}{the chi-square statistic}

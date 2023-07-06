@@ -43,7 +43,7 @@ Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} 
 Rosenthal, R. (1991). \emph{Meta-analytic procedures for social research} (Rev. ed). Sage Publications.
 }
 \seealso{
-\code{\link{th_pearson_r()}}, rules of thumb for a Pearson correlation coefficient.
+\code{\link{th_pearson_r}}, rules of thumb for a Pearson correlation coefficient.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

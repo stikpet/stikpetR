@@ -126,7 +126,7 @@ Iman, R. L., & Conover, W. J. (1989). \emph{Modern business statistics} (2nd ed.
 
 Knuth, K. H. (2019). Optimal data-based binning for histograms and histogram-based probability density models. \emph{Digital Signal Processing, 95}, 1–30. https://doi.org/10.1016/j.dsp.2019.102581
 
-Lohaka, H. O. (2007). Making a grouped-data frequency table: Development and examination of the iteration algorithm \link{Doctoral dissertation, Ohio University}. https://etd.ohiolink.edu
+Lohaka, H. O. (2007). Making a grouped-data frequency table: Development and examination of the iteration algorithm [Doctoral dissertation, Ohio University]. https://etd.ohiolink.edu
 
 Scott, D. W. (1979). On optimal and data-based histograms. \emph{Biometrika, 66}(3), 605–610. https://doi.org/10.1093/biomet/66.3.605
 

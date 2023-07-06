@@ -97,17 +97,6 @@ exp = rep(1/k, k)
 n*powerDivStat(obs/n, exp, lambda=2/3)
 }
 
-\examples{
- 
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-ts_cressie_read_gof(data)
-ts_cressie_read_gof(data, cc="yates")
-ts_cressie_read_gof(data, cc="pearson")
-ts_cressie_read_gof(data, cc="williams")
-ts_cressie_read_gof(data, eCounts)
- 
-}
 \references{
 Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. \emph{Journal of the Royal Statistical Society: Series B (Methodological), 46}(3), 440–464. https://doi.org/10.1111/j.2517-6161.1984.tb01318.x
 

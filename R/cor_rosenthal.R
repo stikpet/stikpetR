@@ -22,7 +22,7 @@
 #' For a classification the same as for Pearson correlation use *th_pearson_r()*
 #' 
 #' @seealso 
-#' \code{\link{th_pearson_r()}}, rules of thumb for a Pearson correlation coefficient.
+#' \code{\link{th_pearson_r}}, rules of thumb for a Pearson correlation coefficient.
 #' 
 #' @references 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.

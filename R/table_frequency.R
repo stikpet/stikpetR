@@ -1,7 +1,7 @@
 #' Frequency Table
 #' 
 #' @param data A vector with the data
-#' @param decimals An integer for the number of decimals to be shown for the percentages
+#' @param order optional list with order of the categories
 #' @returns 
 #' Dataframe with the folowing columns:
 #' \item{index}{the categories}
