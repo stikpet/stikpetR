@@ -1,8 +1,17 @@
 #' G (Likelihood Ratio) Test of Goodness-of-Fit
 #' 
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
+#' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction (default is "none")
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' 
 #' @returns 
 #' Dataframe with:
 #' \item{n}{the sample size}
@@ -14,13 +23,6 @@
 #' \item{propBelow5}{the proportion of expected counts below 5}
 #' \item{testUsed}{a description of the test used}
 #' 
-#' @description 
-#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
-#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
-#' assumption they are all equal in the population will be rejected. 
-#' 
-#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
-#' but also an exact multinomial, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
 #' 
 #' @details 
 #' The formula used (Wilks, 1938, p. 62):
@@ -35,7 +37,6 @@
 #' else:
 #' \deqn{E_i = n\times\frac{E_{p_i}}{n_p}}
 #' \deqn{n_p = \sum_{i=1}^k E_{p_i}}
-#' 
 #' 
 #' *Symbols used*:
 #' \itemize{
@@ -72,34 +73,6 @@
 #' 
 #' The library *RVAideMemoire* has a similar function *G.test()*
 #' 
-#' @examples
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_g_gof(data)
-#' ts_g_gof(data, cc="yates")
-#' ts_g_gof(data, cc="pearson")
-#' ts_g_gof(data, cc="williams")
-#' ts_g_gof(data, eCounts)
-#' 
-#' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-#' }
-#' 
-#' Effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references 
 #' Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1–6. https://doi.org/10.48550/ARXIV.1206.4881
 #' 
@@ -118,7 +91,26 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #'  
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' ts_g_gof(ex1)
+#' 
+#' #Example 2: dataframe with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_g_gof(ex2, expCounts=eCounts, cc="yates")
+#' ts_g_gof(ex2, expCounts=eCounts, cc="pearson")
+#' ts_g_gof(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' 
+#' ts_g_gof(ex3)
 #' 
 #' @export
 ts_g_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){

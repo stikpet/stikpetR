@@ -8,7 +8,7 @@ ts_freeman_tukey_read(
   data,
   expCounts = NULL,
   weights = c(4/3, 8/3),
-  cc = c("none", "pearson", "williams")
+  cc = c("none", "yates", "pearson", "williams")
 )
 }
 \arguments{
@@ -18,7 +18,7 @@ ts_freeman_tukey_read(
 
 \item{weights}{the weights to be used (should sum to 4)}
 
-\item{cc}{Optional continuity correction (default is "none")}
+\item{cc}{Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"}
 }
 \value{
 Dataframe with:
@@ -71,6 +71,11 @@ The sum of the \eqn{b_i} should be four, i.e.
 The default weights are the ones used by Read \eqn{\left(\frac{4}{3}, \frac{8}{3}\right)}, which would
 be the same as using a Cressie-Read power divergence with \eqn{\lambda = \frac{1}{2}}
 
+The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
+\deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+\deqn{G_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
+Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
+
 The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
 
@@ -81,14 +86,22 @@ With:
 The formula is also used by McDonald (2014, p. 87)
 }
 \examples{
- 
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+ts_freeman_tukey_read(ex1)
+
+#Example 2: pandas series with various settings
+ex2 = df1['mar1']
 eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-ts_freeman_tukey_read(data)
-ts_freeman_tukey_read(data, cc="yates")
-ts_freeman_tukey_read(data, cc="pearson")
-ts_freeman_tukey_read(data, cc="williams")
-ts_freeman_tukey_read(data, expCounts=eCounts)
+ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="yates")
+ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="pearson")
+ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="williams")
+
+#Example 3: a list
+ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+ts_freeman_tukey_read(ex3)
 
 }
 \references{
@@ -98,24 +111,6 @@ Read, C. B. (1993). Freeman-Tukey chi-squared goodness-of-fit statistics. \emph{
 
 Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
 }
-\seealso{
-Alternative tests with a nominal variable:
-\itemize{
-\item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-}
-
-Effect sizes that might be of interest:
-\itemize{
-\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-\item \code{\link{es_cohen_w}} Cohen w
-\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-}
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

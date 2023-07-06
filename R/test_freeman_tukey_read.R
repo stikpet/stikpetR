@@ -1,20 +1,5 @@
 #' Freeman-Tukey-Read Test of Goodness-of-Fit
 #' 
-#' @param data A vector with the data
-#' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param weights the weights to be used (should sum to 4)
-#' @param cc Optional continuity correction (default is "none")
-#' @returns 
-#' Dataframe with:
-#' \item{n}{the sample size}
-#' \item{k}{the number of categories}
-#' \item{statistic}{the chi-square statistic}
-#' \item{df}{the degrees of freedom}
-#' \item{pValue}{two-sided p-value}
-#' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
-#' 
 #' @description 
 #' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
 #' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
@@ -27,6 +12,23 @@
 #' will give the same results as the default for Cressie-Read with lambda = 0.5. Setting the weights to 4/5, 8/5, 
 #' 16/15, 8/15 gives the same results as Cressie-Read with lambda = 3/2. The Pearson chi-square test is the 
 #' same when setting weights to 1, 2, 1 and setting the weight simply to 4 gives the original Freeman-Tukey.
+#' 
+#' @param data A vector with the data
+#' @param expCounts Optional dataframe with the categories and expected counts 
+#' @param weights the weights to be used (should sum to 4)
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
+#' 
 #' 
 #' @details
 #' The formula used is (Read, 1987, p. 271):
@@ -55,6 +57,11 @@
 #' The default weights are the ones used by Read \eqn{\left(\frac{4}{3}, \frac{8}{3}\right)}, which would
 #' be the same as using a Cressie-Read power divergence with \eqn{\lambda = \frac{1}{2}}
 #' 
+#' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+#' \deqn{G_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
+#' Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
+#' 
 #' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
 #' 
@@ -64,33 +71,6 @@
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_freeman_tukey_read(data)
-#' ts_freeman_tukey_read(data, cc="yates")
-#' ts_freeman_tukey_read(data, cc="pearson")
-#' ts_freeman_tukey_read(data, cc="williams")
-#' ts_freeman_tukey_read(data, expCounts=eCounts)
-#' 
-#' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' }
-#' 
-#' Effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references 
 #' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
 #' 
@@ -99,10 +79,28 @@
 #' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' ts_freeman_tukey_read(ex1)
+#' 
+#' #Example 2: pandas series with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="yates")
+#' ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="pearson")
+#' ts_freeman_tukey_read(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_freeman_tukey_read(ex3)
 #' 
 #' @export
-ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc = c("none", "pearson", "williams")){
+ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc = c("none", "yates", "pearson", "williams")){
   
   data = na.omit(data)
   
@@ -149,6 +147,15 @@ ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc 
   
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
+  
+  if (cc == "yates"){
+    for (i in 1:k){
+      if (as.numeric(freq[i, 2] > expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+      else if (as.numeric(freq[i, 2] < expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+    }
+  }
 
   r = length(weights)
   FT = 0
@@ -174,6 +181,9 @@ ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc 
     testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste(testUsed, ", with Williams continuity correction")}
+  else if (cc =="yates"){
+    testUsed = paste(testUsed, ", with Yates continuity correction")
+  }
   
   statistic = FT
   testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)

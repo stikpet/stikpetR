@@ -1,8 +1,18 @@
 #' Neyman Test of Goodness-of-Fit
 #' 
-#' @param data A vector with the data
+#' @description 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
+#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
+#' assumption they are all equal in the population will be rejected. 
+#' 
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
+#' but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and 
+#' Freeman-Tukey-Read test are possible.
+#' 
+#' @param data A vector or dataframe
 #' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction (default is "none")
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' 
 #' @returns 
 #' Dataframe with:
 #' \item{n}{the sample size}
@@ -14,14 +24,6 @@
 #' \item{propBelow5}{the proportion of expected counts below 5}
 #' \item{testUsed}{a description of the test used}
 #' 
-#' @description 
-#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
-#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
-#' assumption they are all equal in the population will be rejected. 
-#' 
-#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
-#' but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and 
-#' Freeman-Tukey-Read test are possible.
 #' 
 #' @details 
 #' The formula used is (Neyman, 1949, p. 250):
@@ -59,34 +61,6 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_neyman_gof(data)
-#' ts_neyman_gof(data, cc="yates")
-#' ts_neyman_gof(data, cc="pearson")
-#' ts_neyman_gof(data, cc="williams")
-#' ts_neyman_gof(data, eCounts)
-#' 
-#' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-#' }
-#' 
-#' Effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references 
 #' Neyman, J. (1949). Contribution to the theory of the chi-square test. *Berkeley Symposium on Math. Stat, and Prob*, 239–273. https://doi.org/10.1525/9780520327016-030
 #' 
@@ -97,7 +71,25 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' ts_neyman_gof(ex1)
+#' 
+#' #Example 2: dataframe with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_neyman_gof(ex2, expCounts=eCounts, cc="yates")
+#' ts_neyman_gof(ex2, expCounts=eCounts, cc="pearson")
+#' ts_neyman_gof(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_neyman_gof(ex3)
 #' 
 #' @export
 ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){
@@ -152,23 +144,26 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
   minExp = min(expC)
   propBelow5 = sum(expC < 5)/k
   
-  #calculate the chi-square value
-  chiVal = 0
-  if (cc=="none" || cc == "pearson" || cc == "williams"){
+  if (cc == "yates"){
     for (i in 1:k){
-      chiVal = chiVal + (as.numeric(freq[i, 2]) - expC[i]) ^ 2 / as.numeric(freq[i, 2])
+      if (as.numeric(freq[i, 2] > expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+      else if (as.numeric(freq[i, 2] < expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
-    
-    if (cc == "pearson"){
-      chiVal = (n - 1) / n * chiVal}
-    else if (cc == "williams"){
-      chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
-  }
-  else if (cc == "yates"){
-    for (i in 1:k){
-      chiVal = chiVal + (abs(as.numeric(freq[i, 2]) - expC[i]) - 0.5) ^ 2 / expC[i]}
   }
   
+  #calculate the chi-square value
+  chiVal = 0
+  for (i in 1:k){
+    chiVal = chiVal + (as.numeric(freq[i, 2]) - expC[i]) ^ 2 / as.numeric(freq[i, 2])
+  }
+  
+  if (cc == "pearson"){
+    chiVal = (n - 1) / n * chiVal}
+  else if (cc == "williams"){
+    chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
+
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used

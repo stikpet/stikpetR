@@ -52,34 +52,25 @@ The \emph{XNomial} library has a similar function: \emph{xmulti()}
 }
 
 \examples{
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1[1:20, 'mar1']
+ts_multinomial_gof(ex1)
+
+#Example 2: dataframe with various settings
+ex2 = df1[1:20, 'mar1']
 eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-ts_multinomial_gof(data)
-ts_multinomial_gof(data, eCounts)
+ts_multinomial_gof(ex2, expCounts=eCounts)
+
+#Example 3: a list
+ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+ts_multinomial_gof(ex3)
 
 }
 \references{
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 }
-\seealso{
-Alternative tests with a nominal variable:
-\itemize{
-\item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-\item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-\item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-\item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-\item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-\item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-\item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-}
-
-Effect sizes that might be of interest (although they all require a chi-square test statistic):
-\itemize{
-\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-\item \code{\link{es_cohen_w}} Cohen w
-\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-}
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

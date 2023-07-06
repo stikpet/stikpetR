@@ -112,14 +112,6 @@ Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interp
 
 Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
 }
-\seealso{
-Effect sizes that might be of interest:
-\itemize{
-\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-\item \code{\link{es_cohen_w}} Cohen w
-\item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-}
-}
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

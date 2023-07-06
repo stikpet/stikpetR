@@ -67,14 +67,6 @@
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
-#' @seealso 
-#' Effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references
 #' Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. *Science World Journal, 2*(2), 21–27. https://doi.org/10.4314/swj.v2i2.51730
 #' 

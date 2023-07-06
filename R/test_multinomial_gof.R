@@ -1,14 +1,5 @@
 #' Exact Multinomial Test of Goodness-of-Fit
 #' 
-#' @param data A vector with the data
-#' @param expCounts Optional dataframe with the categories and expected counts 
-#' @returns 
-#' Dataframe with:
-#' \item{pObs}{probability of the observed data}
-#' \item{ncomb}{number of combinations used}
-#' \item{pValue}{two-sided p-value}
-#' \item{testUsed}{a description of the test used}
-#' 
 #' @description 
 #' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
 #' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
@@ -20,6 +11,16 @@
 #' McDonald (2014, p. 82) suggests to always use this exact test as long as the sample size is less than 1000 
 #' (which was just picked as a nice round number, when n is very large the exact test becomes 
 #' computational heavy even for computers).
+#' 
+#' @param data A vector with the data
+#' @param expCounts Optional dataframe with the categories and expected counts 
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{pObs}{probability of the observed data}
+#' \item{ncomb}{number of combinations used}
+#' \item{pValue}{two-sided p-value}
+#' \item{testUsed}{a description of the test used}
 #'  
 #' @details 
 #' The exact multinomial test of goodness of fit is done in four steps
@@ -40,36 +41,27 @@
 #' 
 #' The *XNomial* library has a similar function: *xmulti()*
 #' 
-#' @examples
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_multinomial_gof(data)
-#' ts_multinomial_gof(data, eCounts)
-#' 
-#' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_pearson_gof}} Pearson chi-square test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-#' }
-#' 
-#' Effect sizes that might be of interest (although they all require a chi-square test statistic):
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references 
 #' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1[1:20, 'mar1']
+#' ts_multinomial_gof(ex1)
+#' 
+#' #Example 2: dataframe with various settings
+#' ex2 = df1[1:20, 'mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_multinomial_gof(ex2, expCounts=eCounts)
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_multinomial_gof(ex3)
 #' 
 #' @export
 ts_multinomial_gof <- function(data, expCounts=NULL) {
