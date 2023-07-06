@@ -58,11 +58,16 @@ This can be obtained by setting \emph{range="mqr"}.
 This formula can be found in Parzen (1980, p. 19), but there are probably older references.
 }
 \examples{
-data = runif(n=10, min=1, max=50)
-me_quartile_range(data)
-me_quartile_range(data, method="tukey")
-me_quartile_range(data, range="siqr")
-me_quartile_range(data, range="mqr")
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Text dataframe
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+me_quartile_range(ex1, levels=order)
+
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+me_quartile_range(ex2)
 
 }
 \references{
@@ -78,5 +83,5 @@ Yule, G. U. (1911). \emph{An introduction to the theory of statistics}. Charles 
 \code{\link{me_quartiles}}, calculating quartiles
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

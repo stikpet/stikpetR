@@ -82,7 +82,18 @@
 #' Weinberg, G. H., & Schumaker, J. A. (1962). *Statistics An intuitive approach*. Wadsworth Publishing.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Numeric dataframe
+#' ex1 = df2['Gen_Age']
+#' me_mean(ex1)
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' me_mean(ex2)
 #' 
 #' @export
 me_mean <- function(data, version="arithmetic", trimProp=0.1, trimFrac="down"){

@@ -38,19 +38,31 @@
 #' Weisstein, E. W. (2002). *CRC concise encyclopedia of mathematics* (2nd ed.). Chapman & Hall/CRC.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples 
-#' data = c("a", "a", "a", "b", "b", "b", "c")
-#' me_mode(data)
-#' me_mode(data, allEq="all")
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' me_mode(ex1)
 #' 
-#' data = c(1, 1, 1, 2, 2, 2, 3)
-#' me_mode(data)
+#' #Example 2: a list
+#' ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' me_mode(ex2)
 #' 
-#' data = c(1, 2, 1, 2, 3, 3)
-#' me_mode(data)
-#'  
+#' #Example 3: Multi-Mode
+#' ex3a = c(1, 1, 2, 3, 3, 4, 5, 6, 6)
+#' me_mode(ex3a)
+#' ex3b = c("MARRIED", "DIVORCED", "MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED")
+#' me_mode(ex3b)
+#' 
+#' #Example 4: All Equal
+#' ex4a = c(1, 1, 2, 2, 3, 3, 6, 6)
+#' me_mode(ex4a)
+#' ex4b = c(1, 1, 2, 2, 3, 3, 6, 6)
+#' me_mode(ex4b, allEq="all")
+#' 
 #' @export
 me_mode <- function(data, allEq = c("none", "all")){
   

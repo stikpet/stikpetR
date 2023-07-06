@@ -106,12 +106,16 @@ percentile function. Numpy also uses \emph{inverted_cdf}, \emph{averaged_inverte
 \emph{interpolated_inverted_cdf}, \emph{hazen}, \emph{weibull}, \emph{median_unbiased}, and \emph{normal_unbiased}.
 }
 \examples{
-ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)
-me_quartiles(ex8)
-test = c("a", "b", "c", "d", "e", "f")
-testCoding = c("a", "b", "c", "d", "e", "f")
-me_quartiles(test, levels=testCoding, method="excel")
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Text dataframe
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+me_quartiles(ex1, levels=order)
 
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+me_quartiles(ex2)
 
 }
 \references{
@@ -154,5 +158,5 @@ Vining, G. G. (1998). \emph{Statistical methods for engineers}. Duxbury Press.
 Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

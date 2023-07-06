@@ -31,9 +31,17 @@ With:
 }
 }
 \examples{
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-me_variation_ratio(data)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#Example 1: dataframe
+ex1 = df1['mar1']
+me_variation_ratio(ex1)
 
+#Example 2: a list
+ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+me_variation_ratio(ex2)
+ 
 }
 \references{
 Freeman, L. C. (1965). \emph{Elementary applied statistics: For students in behavioral science}. Wiley.
@@ -41,5 +49,5 @@ Freeman, L. C. (1965). \emph{Elementary applied statistics: For students in beha
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

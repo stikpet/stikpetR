@@ -40,16 +40,21 @@ The \emph{agrmt} library has a function \emph{consensus(table(ordData))}
 }
 
 \examples{
-ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-me_consensus(ordData)
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Text dataframe
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+me_consensus(ex1, levels=order)
 
-labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-me_consensus(factData, labels)
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+me_consensus(ex2) 
 
 }
 \references{
 Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. \emph{International Journal of Approximate Reasoning, 45}(3), 531–545. https://doi.org/10.1016/j.ijar.2006.06.024
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -78,6 +78,18 @@ This is used if \emph{trimFrac = "linear"} is set.
 Similar as with a trimmed mean, but now the data is not removed, but replaced by the value equal to the nearest value that is still included (Winsor as cited in Dixon, 1960, p. 385).
 \deqn{W = n_l \times \left(x_{n_l + 1} + x_{n - n_l}\right)\times\frac{\sum_{n_l + 1}^{n - n_l} x_i}{n - 2\times n_l}}
 }
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Numeric dataframe
+ex1 = df2['Gen_Age']
+me_mean(ex1)
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+me_mean(ex2)
+
+}
 \references{
 Aristotle. (1850). \emph{The nicomachean ethics of Aristotle} (R. W. Browne, Trans.). Henry G. Bohn.
 
@@ -92,5 +104,5 @@ Tukey, J. W. (1962). The future of data analysis. \emph{The Annals of Mathematic
 Weinberg, G. H., & Schumaker, J. A. (1962). \emph{Statistics An intuitive approach}. Wadsworth Publishing.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -123,15 +123,19 @@
 #' Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples 
-#' ex8 = c(1, 2, 3, 4, 5, 6, 7, 8)
-#' me_quartiles(ex8)
-#' test = c("a", "b", "c", "d", "e", "f")
-#' testCoding = c("a", "b", "c", "d", "e", "f")
-#' me_quartiles(test, levels=testCoding, method="excel")
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Text dataframe
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' me_quartiles(ex1, levels=order)
 #' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' me_quartiles(ex2)
 #' 
 #' @export
 me_quartiles <- function(data, levels=NULL, 

@@ -45,16 +45,32 @@
 #' Porkess, R. (1991). *The HarperCollins dictionary of statistics*. HarperPerennial.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples 
-#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' me_median(ordData)
-#' labels = c("fully disagree", "disagree", "neutral", "agree", "fully agree")
-#' me_median(ordData, levels=labels)
-#' factData = as.factor(ordData)
-#' levels(factData) = labels
-#' me_median(factData)
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Text dataframe
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' me_median(ex1, levels=order)
+#' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' me_median(ex2)
+#' 
+#' #Example 3: Text data with between median
+#' ex3 = c("a", "b", "f", "d", "e", "c")
+#' order = c("a", "b", "c", "d", "e", "f")
+#' me_median(ex3, levels=order)
+#' me_median(ex3, levels=order, tieBreaker="low")
+#' me_median(ex3, levels=order, tieBreaker="high")
+#' 
+#' #Example 4: Numeric data with between median
+#' ex4 = c(1, 2, 3, 4, 5, 6)
+#' me_median(ex4)
+#' me_median(ex4, tieBreaker="low")
+#' me_median(ex4, tieBreaker="high")
 #' 
 #' @export
 me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high")){

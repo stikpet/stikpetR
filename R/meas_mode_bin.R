@@ -57,7 +57,16 @@
 #' Zedeck, S. (Ed.). (2014). *APA dictionary of statistics and research methods*. American Psychological Association.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['age']
+#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+#' bins = data.frame(lb = c(0, 20, 50, 70), ub = c(20, 50, 70, 90))
+#' me_mode_bin(ex1, bins)
 #' 
 #' @export
 me_mode_bin <- function(data, bins, allEq="none", value="none"){
