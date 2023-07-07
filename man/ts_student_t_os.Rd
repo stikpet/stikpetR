@@ -57,7 +57,7 @@ R stats library has a similar function: \emph{t.test()}
 }
 
 \examples{
-Example 1: Numeric dataframe
+#Example 1: Numeric dataframe
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
 ex1 = df2['Gen_Age']

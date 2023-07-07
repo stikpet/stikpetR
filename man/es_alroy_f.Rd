@@ -35,8 +35,15 @@ Note Alroy refers to the Forbes coefficient as a measure of similarity.
 Alroy then sets out to improve the measure by disregarding the lower left value (d).
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
+bin1 <- c("female", "female","female","female","female","female","female","female", 
+"female","female","female", "male", "male", "male", "male", "male", "male", "male", 
+"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+"male", "male", "male", "male")
+bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
+"nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
+"other", "other", "other", "other", "other", "other", "other", "other", "other", 
+"other", "other", "other", "other", "other", "other")
 es_alroy_f(bin1, bin2)
 
 }

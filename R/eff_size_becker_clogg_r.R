@@ -49,8 +49,15 @@
 #' Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. *Sociological Methods & Research, 16*(3), 407–424. https://doi.org/10.1177/0049124188016003003
 #' 
 #' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
+#' bin1 <- c("female", "female","female","female","female","female","female","female", 
+#' "female","female","female", "male", "male", "male", "male", "male", "male", "male", 
+#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+#' "male", "male", "male", "male")
+#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl",
+#' "nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
+#' "other", "other", "other", "other", "other", "other", "other", "other", "other", 
+#' "other", "other", "other", "other", "other", "other")
 #' es_becker_clogg_r(bin1, bin2)
 #' 
 #' @export

@@ -52,7 +52,8 @@ es_alt_ratio(ex2, category='Female')
 es_alt_ratio(ex2, codes=c('Male', 'Female'))
 
 # Example 3: dataframe
-df1 <- read.csv("https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv", sep=",", na.strings=c("", "NA"))
+file1 <- "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(file1, sep=",", na.strings=c("", "NA"))
 es_alt_ratio(df1['sex'])
 es_alt_ratio(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 

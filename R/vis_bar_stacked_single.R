@@ -26,7 +26,7 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
-#' 
+#' @importFrom grDevices heat.colors
 #' @examples 
 #' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 #' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

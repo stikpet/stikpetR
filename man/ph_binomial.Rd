@@ -46,11 +46,13 @@ ph_binomial(ex1)
 ex2 = df1['mar1']
 categories = c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED")
 expcounts = c(5, 5, 5, 5)
-eCounts = data.frame('category' = categories, 'count' = ecounts)
+eCounts = data.frame('category' = categories, 'count' = expcounts)
 ph_binomial(ex2, expCount=eCounts)
 
 #Example 3: a list
-ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", 
+"DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", 
+"DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
 ph_binomial(ex3)
 
 }

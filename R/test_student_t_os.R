@@ -53,7 +53,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples 
-#' Example 1: Numeric dataframe
+#' #Example 1: Numeric dataframe
 #' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 #' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
 #' ex1 = df2['Gen_Age']

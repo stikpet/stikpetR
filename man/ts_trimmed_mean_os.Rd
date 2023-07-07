@@ -76,7 +76,7 @@ The \emph{WRS2} library has a similar function: \emph{yuen()}
 }
 
 \examples{
-Example 1: Numeric dataframe
+#Example 1: Numeric dataframe
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
 #Example 1: Numeric dataframe
