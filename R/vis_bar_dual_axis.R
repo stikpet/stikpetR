@@ -1,29 +1,30 @@
 #' Dual-Axis Bar Chart
 #' 
-#' @param data the data from which to create a Pareto chart
-#' @param varname a name for the data, if not provided the name of the data variable is used
-#' @return a chart in the plot window
-#' 
 #' @description 
 #' A dual axis bar-chart is a bar-chart with two vertical axis. In this function it will 
 #' show both the count and cumulative proportion. 
 #' 
 #' This chart could be used with a single ordinal variable.
 #' 
-#' @examples 
-#' ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' vi_bar_stacked_single(ordData)
+#' @param data the data from which to create a Pareto chart
+#' @param varname a name for the data, if not provided the name of the data variable is used
 #' 
-#' @seealso 
-#' An alternative chart for a single ordinal variable could be a single stacked bar-chart, 
-#' see \code{\link{vi_bar_stacked_single}} 
+#' @return a chart in the plot window
 #' 
 #' @section Alternatives:
 #' It is also possible to do this with the library *ggplot2*. 
 #' A video on how to use ggplot2 for this can be found [here](https://youtu.be/EhK9K9jwsco)
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' vi_bar_dual_axis(ex1);
+#' vi_bar_dual_axis(ex1, varname="marital status");
 #' 
 #' @export
 vi_bar_dual_axis <- function(data, varname=NULL){

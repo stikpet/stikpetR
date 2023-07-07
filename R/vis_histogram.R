@@ -22,7 +22,19 @@
 #' Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. *Philosophical Transactions of the Royal Society of London. (A.)*, 186, 343–414. doi:10.1098/rsta.1895.0010
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: dataframe
+#' ex1 = df2['Gen_Age']
+#' vi_histogram(ex1);
+#' vi_histogram(ex1, freq=FALSE);
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' vi_histogram(ex2);
 #' 
 #' @export
 vi_histogram <- function(data, xlbl=NULL, ylbl=NULL, ...){

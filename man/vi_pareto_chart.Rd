@@ -37,8 +37,15 @@ An ogive (oh-jive) is: "the graphs of cumulative frequencies" (Kenney, 1939).
 A video on Pareto charts is available \href{https://youtu.be/kDp5zPfK-Po}{here}.
 }
 \examples{
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-vi_pareto_chart(data, varname="marital status")
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+vi_pareto_chart(ex1);
+
+#Example 2: a list
+ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+vi_pareto_chart(ex2);
 
 }
 \references{
@@ -57,5 +64,5 @@ Weisstein, E. W. (2002). \emph{CRC concise encyclopedia of mathematics} (2nd ed.
 WhatIs.com. (n.d.). What is Pareto chart (Pareto distribution diagram)? - Definition from WhatIs.com. Retrieved April 20, 2014, from http://whatis.techtarget.com/definition/Pareto-chart-Pareto-distribution-diagram
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

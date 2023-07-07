@@ -7,15 +7,14 @@
 vi_bar_simple(data, varname = NULL, height = "count")
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{A vector or dataframe}
 
 \item{varname}{Optional name for the variable}
 
 \item{height}{Optional to indicate what the height should represent}
 }
 \description{
-A bar-chart is defined as “a graph in which bars of varying height with spaces between them are
-used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20).
+A bar-chart is defined as “a graph in which bars of varying height with spaces between them are used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20).
 
 A \href{https://youtu.be/zT52FTyC6P8}{YouTube} video on pie charts.
 }
@@ -36,10 +35,16 @@ There is an earlier bar chart by Oresme (1486), but that is used more for a theo
 than for descriptive statistics.
 }
 \examples{
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-vi_bar_simple(data) 
-vi_bar_simple(data, varname="marital")
-vi_bar_simple(data, varname="marital", height="percent")
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+vi_bar_simple(ex1);
+vi_bar_simple(ex1, varname="marital status", height="percent");
+
+#Example 2: a list
+ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+vi_bar_simple(ex2);
 
 }
 \references{
@@ -54,5 +59,5 @@ Singh, G. (2009). \emph{Map work and practical geography} (4th ed). Vikas Publis
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

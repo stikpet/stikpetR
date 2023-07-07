@@ -22,11 +22,23 @@ This was actually a 'range chart' (Spear, 1952, p. 166) but somehow it is these 
 
 The function uses the \strong{boxplot()} function from the \emph{graphics} library. If you want to modify more things you might want to use that function.
 }
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: dataframe
+ex1 = df2['Gen_Age']
+vi_boxplot_single(ex1);
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+vi_boxplot_single(ex2);
+
+}
 \references{
 Spear, M. E. (1952). \emph{Charting statistics}. McGraw-Hill.
 
 Tukey, J. W. (1977). \emph{Exploratory data analysis}. Addison-Wesley Pub. Co.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -27,14 +27,14 @@ A video on how to use ggplot2 for this can be found \href{https://youtu.be/EhK9K
 }
 
 \examples{
-ordData <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-vi_bar_stacked_single(ordData)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+vi_bar_dual_axis(ex1);
+vi_bar_dual_axis(ex1, varname="marital status");
 
 }
-\seealso{
-An alternative chart for a single ordinal variable could be a single stacked bar-chart,
-see \code{\link{vi_bar_stacked_single}}
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -11,13 +11,11 @@
 #' @param data the data from which to create the bar-chart
 #' @param catCoding optional vector with the order for the bars
 #' @param orientation optional to indicate horizontal or vertical chart Either `"h"` (default) or `"v"`
+#' 
 #' @return The chart.
 #' 
 #' @details 
 #' This function basically uses barplot(...,beside = FALSE) from R's *graphics* library
-#' 
-#' @seealso 
-#' An alternative chart for a single ordinal variable could be a dual axis bar chart, see \code{\link{vi_bar_dual_axis}} 
 #' 
 #' @references 
 #' Upton, G. J. G., & Cook, I. (2014). *Dictionary of statistics* (3rd ed.). Oxford University Press.
@@ -27,7 +25,20 @@
 #' Zedeck, S. (Ed.). (2014). *APA dictionary of statistics and research methods*. American Psychological Association.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Text dataframe
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' vi_bar_stacked_single(ex1, catCoding=order)
+#' vi_bar_stacked_single(ex1, catCoding=order, orientation="v");
+#' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' vi_bar_stacked_single(ex2);
 #' 
 #' @export
 vi_bar_stacked_single <- function(data, catCoding=NULL, orientation=c("h", "v")){

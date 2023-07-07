@@ -1,14 +1,13 @@
 #' Simple Bar-Chart
 #' 
-#' @param data A vector with the data
-#' @param varname Optional name for the variable
-#' @param height Optional to indicate what the height should represent
-#' 
 #' @description 
-#' A bar-chart is defined as “a graph in which bars of varying height with spaces between them are 
-#' used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20). 
+#' A bar-chart is defined as “a graph in which bars of varying height with spaces between them are used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20). 
 #' 
 #' A [YouTube](https://youtu.be/zT52FTyC6P8) video on pie charts.
+#' 
+#' @param data A vector or dataframe
+#' @param varname Optional name for the variable
+#' @param height Optional to indicate what the height should represent
 #' 
 #' @details 
 #' 
@@ -27,12 +26,6 @@
 #' There is an earlier bar chart by Oresme (1486), but that is used more for a theoretical concept, 
 #' than for descriptive statistics.
 #' 
-#' @examples 
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' vi_bar_simple(data) 
-#' vi_bar_simple(data, varname="marital")
-#' vi_bar_simple(data, varname="marital", height="percent")
-#' 
 #' @references 
 #' Oresme, N. (1486). *Tractatus de latitudinibus formarum*. (B. Pelacani da Parma, Ed.). Mathaeus Cerdonis.
 #' 
@@ -45,7 +38,19 @@
 #' Zedeck, S. (Ed.). (2014). *APA dictionary of statistics and research methods*. American Psychological Association.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' vi_bar_simple(ex1);
+#' vi_bar_simple(ex1, varname="marital status", height="percent");
+#' 
+#' #Example 2: a list
+#' ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' vi_bar_simple(ex2);
 #' 
 #' @export
 vi_bar_simple <- function(data, varname=NULL, height="count"){

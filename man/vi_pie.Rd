@@ -9,7 +9,7 @@ vi_pie(data, labels = c("count", "percent", "both", "none"))
 \arguments{
 \item{data}{the data for which to create a pie-chart from}
 
-\item{labels}{what to show besides the labels}
+\item{labels}{what to show besides the labels Either "count" (default), "percent", "none", or "both"}
 }
 \value{
 chart the pie chart
@@ -52,8 +52,18 @@ However Srivastava and Rego (2011) put forward another belief that it is named a
 royal French cook Pie, who served dishes in a pie-chart shape.
 }
 \examples{
-data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-vi_pie(data, labels="percent")
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+vi_pie(ex1);
+vi_pie(ex1, labels="percent");
+vi_pie(ex1, labels="none");
+vi_pie(ex1, labels="both");
+
+#Example 2: a list
+ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+vi_pie(ex2);
 
 }
 \references{
@@ -64,5 +74,5 @@ Srivastava, T. N., & Rego, S. (2011). \emph{Business research methodology}. Tata
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

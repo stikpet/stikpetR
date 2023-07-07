@@ -1,9 +1,5 @@
 #' Pareto Chart
 #' 
-#' @param data the data from which to create a Pareto chart
-#' @param varname a name for the data, if not provided the name of the data variable is used
-#' @return a Pareto chart in the plot window
-#' 
 #' @description 
 #' The Pareto Chart gets its name from the Pareto Principle, which is named after 
 #' Vilfredo Pareto. This principle states that roughly 80% of consequencies come from 
@@ -26,9 +22,10 @@
 #' 
 #' A video on Pareto charts is available [here](https://youtu.be/kDp5zPfK-Po).
 #' 
-#' @examples 
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' vi_pareto_chart(data, varname="marital status")
+#' @param data the data from which to create a Pareto chart
+#' @param varname a name for the data, if not provided the name of the data variable is used
+#' 
+#' @return a Pareto chart in the plot window
 #' 
 #' @references 
 #' Joiner. (1995). Pareto charts: Plain & simple. Joiner Associates.
@@ -46,7 +43,18 @@
 #' WhatIs.com. (n.d.). What is Pareto chart (Pareto distribution diagram)? - Definition from WhatIs.com. Retrieved April 20, 2014, from http://whatis.techtarget.com/definition/Pareto-chart-Pareto-distribution-diagram
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' vi_pareto_chart(ex1);
+#' 
+#' #Example 2: a list
+#' ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' vi_pareto_chart(ex2);
 #' 
 #' @export
 vi_pareto_chart <- function(data, varname=NULL){

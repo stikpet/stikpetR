@@ -28,9 +28,22 @@ To set the bins, the \emph{breaks} argument can be used. This could be a pre-set
 
 If your bins are of equal width, a true histogram than actually should show frequency densities (Pearson, 1895, p. 399). These are the frequencies divided by the bin-width. This can be done using \emph{freq=FALSE} parameter.
 }
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: dataframe
+ex1 = df2['Gen_Age']
+vi_histogram(ex1);
+vi_histogram(ex1, freq=FALSE);
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+vi_histogram(ex2);
+
+}
 \references{
 Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. \emph{Philosophical Transactions of the Royal Society of London. (A.)}, 186, 343–414. doi:10.1098/rsta.1895.0010
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

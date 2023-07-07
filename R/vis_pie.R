@@ -1,9 +1,5 @@
 #' Pie Chart
 #' 
-#' @param data the data for which to create a pie-chart from
-#' @param labels what to show besides the labels
-#' @return chart the pie chart
-#' 
 #' @description 
 #' A pie-chart is a “graphic display in which a circle is cut into wedges with the area of 
 #' each wedge being proportional to the percentage of cases in the category represented by 
@@ -11,8 +7,12 @@
 #' 
 #' A video on pie charts is available [here](https://youtu.be/e6JtJsh-6iw).
 #' 
-#' @details 
+#' @param data the data for which to create a pie-chart from
+#' @param labels what to show besides the labels Either "count" (default), "percent", "none", or "both"
 #' 
+#' @return chart the pie chart
+#' 
+#' @details 
 #' It is possible to either show only the labels (label="none"), the counts (label="counts"), 
 #' the percentages (label="percent"), or both count and percent (label="both").
 #' 
@@ -42,10 +42,6 @@
 #' However Srivastava and Rego (2011) put forward another belief that it is named after a 
 #' royal French cook Pie, who served dishes in a pie-chart shape.
 #' 
-#' @examples 
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' vi_pie(data, labels="percent")
-#' 
 #' @references 
 #' Playfair, W. (1801). *The statistical breviary: Shewing the resources of every state and kingdom*. T. Bensley. http://archive.org/details/statisticalbrev00playgoog
 #' 
@@ -54,7 +50,21 @@
 #' Zedeck, S. (Ed.). (2014). *APA dictionary of statistics and research methods*. American Psychological Association.
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' vi_pie(ex1);
+#' vi_pie(ex1, labels="percent");
+#' vi_pie(ex1, labels="none");
+#' vi_pie(ex1, labels="both");
+#' 
+#' #Example 2: a list
+#' ex2 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' vi_pie(ex2);
 #' 
 #' @export
 vi_pie <- function(data, labels=c("count", "percent", "both", "none")){

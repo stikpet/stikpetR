@@ -27,6 +27,20 @@ each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88
 \details{
 This function basically uses barplot(...,beside = FALSE) from R's \emph{graphics} library
 }
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Text dataframe
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+vi_bar_stacked_single(ex1, catCoding=order)
+vi_bar_stacked_single(ex1, catCoding=order, orientation="v");
+
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+vi_bar_stacked_single(ex2);
+
+}
 \references{
 Upton, G. J. G., & Cook, I. (2014). \emph{Dictionary of statistics} (3rd ed.). Oxford University Press.
 
@@ -34,9 +48,6 @@ Wilkinson, L. (2005). \emph{The grammar of graphics} (2nd ed). Springer.
 
 Zedeck, S. (Ed.). (2014). \emph{APA dictionary of statistics and research methods}. American Psychological Association.
 }
-\seealso{
-An alternative chart for a single ordinal variable could be a dual axis bar chart, see \code{\link{vi_bar_dual_axis}}
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
