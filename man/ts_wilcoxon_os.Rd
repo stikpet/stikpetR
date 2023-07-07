@@ -154,9 +154,16 @@ The \emph{exactRankTests} library has a function for the exact test: \emph{wilco
 }
 
 \examples{
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-ts_wilcoxon_os(data)
-ts_wilcoxon_os(data, ties=FALSE, appr="imanz", eqMed = "zsplit", cc = FALSE)
+#Example 1: Text dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+ts_wilcoxon_os(ex1, levels=order)
+
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_wilcoxon_os(ex2)
 
 }
 \references{
@@ -182,20 +189,6 @@ Winthrop. (n.d.). The Wilcoxon signed rank test for one sample. Winthrop Univeri
 
 Zaiontz, C. (n.d.). Wilcoxon signed ranks exact test. Real Statistics Using Excel. Retrieved January 25, 2023, from https://real-statistics.com/non-parametric-tests/wilcoxon-signed-ranks-test/wilcoxon-signed-ranks-exact-test/
 }
-\seealso{
-Alternative tests:
-\itemize{
-\item one-sample sign test, see \code{\link{ts_sign_os}}
-\item one-sample trinomial test, see \code{\link{ts_trinomial_os}}
-}
-
-As for an effect size measure, see:
-\itemize{
-\item Rosenthal Correlation, see \code{\link{r_rosenthal}}
-\item Rank Biserial Correlation, see \code{\link{r_rank_biserial_os}}
-\item Dominance, see \code{\link{es_dominance}}
-}
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

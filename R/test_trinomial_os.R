@@ -1,6 +1,7 @@
 #' One-Sample Trinomial Test
 #' 
 #' @param data A vector with the data as numbers
+#' @param levels optional list to indicate what values represent
 #' @param mu optional hypothesized median, otherwise the midrange will be used
 #' @return dataframe with mu, the number of scores above mu, below and tied, the significance (p-value) and test used
 #' 
@@ -49,8 +50,15 @@
 #' Zaiontz, C. (n.d.). Trinomial test. Real Statistics Using Excel. Retrieved March 2, 2023, from https://real-statistics.com/non-parametric-tests/trinomial-test/
 #'  
 #' @export
-ts_trinomial_os <- function(data, mu=NULL){
+ts_trinomial_os <- function(data, levels=NULL, mu=NULL){
   testUsed = "one-sample trinomial test"
+  
+  
+  if (!is.null(levels)){
+    dataN = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(dataN)
+  }
+  else{dataN = data}
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {

@@ -12,13 +12,13 @@ ts_powerdivergence_gof(
 )
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{A vector or dataframe with the data}
 
-\item{expCounts}{Optional counts according to null hypothesis}
+\item{expCounts}{Optional dataframe with the categories and expected counts}
 
-\item{lambd}{Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3}
+\item{lambd}{Optional either name of test or specific value. Either "cressie-read" (default), "g", "mod-log", "freeman-tukey", or "neyman"}
 
-\item{cc}{Optional correction to be used.}
+\item{cc}{Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"}
 }
 \value{
 Dataframe with:
@@ -100,11 +100,22 @@ With:
 \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
 }
 \examples{
- 
-nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-ts_powerdivergence(nom1)
-ts_powerdivergence(nom1, nom2)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['mar1']
+ts_powerdivergence_gof(ex1)
+
+#Example 2: dataframe with various settings
+ex2 = df1['mar1']
+eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+ts_powerdivergence_gof(ex2, expCounts=eCounts)
+ts_powerdivergence_gof(ex2, expCounts=eCounts, cc="pearson")
+ts_powerdivergence_gof(ex2, expCounts=eCounts, cc="williams")
+
+#Example 3: a list
+ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+ts_powerdivergence_gof(ex3)
 
 }
 \references{
@@ -127,5 +138,5 @@ Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency
 Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
 }
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

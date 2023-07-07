@@ -7,13 +7,13 @@
 ts_score_os(data, codes = NULL, p0 = 0.5, cc = c("none", "yates"))
 }
 \arguments{
-\item{data}{A vector with the data}
+\item{data}{A vector or dataframe with the data}
 
 \item{codes}{optional vector with the two codes to use}
 
 \item{p0}{optional the hypothesized proportion for the first category (default is 0.5)}
 
-\item{cc}{Use of continuity correction (default is "none")}
+\item{cc}{optional use of continuity correction. Either "none" (default) or "Yates".}
 }
 \value{
 Dataframe with:
@@ -68,9 +68,18 @@ R's \emph{stats} library: prop.test().
 }
 
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-ts_score_os(data, c("Female", "Male"), p0 = 0.5)
+#Example 1: Numeric list
+ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+ts_score_os(ex1)
+ts_score_os(ex1, p0=0.3)
+ts_score_os(ex1, p0=0.3, cc="yates")
 
+#Example 2: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ts_score_os(df1['sex'])
+ts_score_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
+ 
 }
 \references{
 Agresti, A. (2013). \emph{Categorical data analysis} (3rd ed.). Wiley.
@@ -81,13 +90,6 @@ Wilson, E. B. (1927). Probable Inference, the Law of Succession, and Statistical
 
 Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
 }
-\seealso{
-Effect size measures that could go with the test are Cohen g (\code{\link{es_cohen_g}}),
-Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
-
-Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}),
-and Wald test (\code{\link{ts_wald_os}})
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

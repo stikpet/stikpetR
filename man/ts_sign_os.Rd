@@ -7,17 +7,20 @@
 ts_sign_os(data, levels = NULL, mu = NULL)
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{A vector or dataframe}
 
 \item{levels}{optional vector with levels in order}
 
 \item{mu}{optional hypothesized median, otherwise the midrange will be used}
 }
 \value{
-dataframe with mu, the significance (p-value) and test used
+Dataframe with:
+\item{mu}{the mean tested}
+\item{p-value}{he significance (p-value)}
+\item{test}{a description of the test used}
 }
 \description{
-one-sample sign test
+This function will perform one-sample sign test.
 }
 \details{
 The test statistic is calculated using (Stewart, 1941, p. 236):
@@ -33,26 +36,30 @@ The test statistic is calculated using (Stewart, 1941, p. 236):
 }
 
 The test is described in Stewart (1941), although there are earlier uses.
+
 The paired version for example was already described by Arbuthnott (1710)
-
-\strong{Alternatives}
-
-\emph{library(BSDA)}
-
-SIGN.test()
-
-\emph{library(DescTools)}
-
-SignTest()
-
-\emph{library(nonpar)}
-
-signtest(data, m=2)
 }
+\section{Alternatives}{
+
+
+The library \emph{BSDA} has a \strong{SIGN.test()} function
+
+The library \emph{DescTools} has a \strong{SignTest()} function
+
+The library \emph{nonpar} has a \strong{signtest()} function
+}
+
 \examples{
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-ts_sign_os(data)
-ts_sign_os(data, mu = 2)
+#Example 1: Text dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+ts_sign_os(ex1, levels=order)
+
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_sign_os(ex2) 
 
 }
 \references{
@@ -61,9 +68,5 @@ Arbuthnott, J. (1710). An argument for divine providence, taken from the constan
 Stewart, W. M. (1941). A note on the power of the sign test. \emph{The Annals of Mathematical Statistics, 12}(2), 236–239. https://doi.org/10.1214/aoms/1177731755
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

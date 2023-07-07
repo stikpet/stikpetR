@@ -7,19 +7,25 @@
 ts_student_t_os(data, mu = NULL)
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{A vector or dataframe}
 
 \item{mu}{optional hypothesized mean, otherwise the midrange will be used}
 }
 \value{
-dataframe with the hypothesized mean, sample mean, test statistic, degrees of freedom, p-value (sig.) and name of test used
+A dataframe with:
+\item{mu}{the hypothesized mean}
+\item{sample mean}{sample mean}
+\item{statistic}{test statistic}
+\item{df}{degrees of freedom}
+\item{p-value}{p-value (sig.)}
+\item{test used}{test used}
 }
 \description{
 A test for a single (arithmetic) mean.
+
+The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean that is expected in the population. If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
 }
 \details{
-The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean that is expected in the population. If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
-
 The formula used is:
 \deqn{t = \frac{\bar{x} - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - T\left(\left|t\right|, df\right)\right)}
@@ -43,22 +49,29 @@ With:
 }
 
 The Student t test (Student, 1908) was described by Gosset under the pseudo name Student.
+}
+\section{Alternatives}{
 
-\strong{Alternative}
+
 R stats library has a similar function: \emph{t.test()}
 }
+
 \examples{
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-ts_student_t_os(data)
+Example 1: Numeric dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2['Gen_Age']
+ts_student_t_os(ex1)
+ts_student_t_os(ex1, mu=22)
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_student_t_os(ex2) 
 
 }
 \references{
 Student. (1908). The probable error of a mean. \emph{Biometrika, 6}(1), 1–25. https://doi.org/10.1093/biomet/6.1.1
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

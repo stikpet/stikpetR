@@ -66,15 +66,18 @@ The formula used in the calculation is the one from IBM (2021, p. 997).
 IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 refer to Wald (1943)
 }
-\section{Alternatives}{
-
-
-No alternative library that has this function exist to my knowledge.
-}
-
 \examples{
-data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-ts_wald_os(data, c("Female", "Male"), p0 = 0.5)
+#Example 1: Numeric list
+ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+ts_wald_os(ex1)
+ts_wald_os(ex1, p0=0.3)
+ts_wald_os(ex1, p0=0.3, cc="yates")
+
+#Example 2: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ts_wald_os(df1['sex'])
+ts_wald_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 
 }
 \references{
@@ -86,13 +89,6 @@ Wald, A. (1943). Tests of statistical hypotheses concerning several parameters w
 
 Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
 }
-\seealso{
-Effect size measures that could go with the test are Cohen g (\code{\link{es_cohen_g}}),
-Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
-
-Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}),
-and Score test (\code{\link{ts_score_os}})
-}
 \author{
-P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -1,19 +1,24 @@
 #' One-Sample (Yuen or Yuen-Welch) Trimmed Mean Test
 #' 
+#' @description 
 #' A variation on a one-sample Student t-test where the data is first trimmed, and the Winsorized variance is used.
 #' 
 #' The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
 #' 
-#' @param data A vector with the data as numbers
+#' @param data A vector or dataframe
 #' @param mu optional hypothesized trimmed mean, otherwise the midrange will be used
 #' @param trimProp optional proportion to trim in total (half will be trimmed from each side)
-#' @param se c("yuen", "wilcox") optional method to use to determine standard error (default is "yuen")
-#' @return dataframe with the sample trimmed mean, hypothesized trimmed mean, the standard error, test statistic, degrees of freedom, p-value (sig.) and name of test used
+#' @param se optional method to use to determine standard error. Either "yuen" (default) or "wilcox"
 #' 
-#' @examples  
-#' grade = c(4, 10, 2, 9, 5, 28, 8, 7, 9, 35, 40, 12, 8, 6, 16, 12, 14, 10, 18, 4, 11)
-#' ts_trimmed_mean_os(grade, trimProp=0.1, mu=12)
-#' ts_trimmed_mean_os(grade, trimProp=0.1, mu=12, se="wilcox")
+#' @returns 
+#' A dataframe with:
+#' \item{trim. mean}{the sample trimmed mean}
+#' \item{mu}{hypothesized trimmed mean}
+#' \item{SE}{the standard error}
+#' \item{statistic}{test statistic}
+#' \item{df}{degrees of freedom}
+#' \item{p-value}{p-value (sig.)}
+#' \item{test used}{test used}
 #' 
 #' @details 
 #' The formula used is:
@@ -50,7 +55,7 @@
 #' or Peró-Cebollero and Guàrdia-Olmos (2013, p. 409).
 #' 
 #' 
-#' **Alternatives**
+#' @section Alternatives:
 #' R stats library has a similar function: *t.test()*
 #' 
 #' The *DescTools* library has a similar function: *YuenTTest()*
@@ -58,13 +63,6 @@
 #' The *PairedData* library has a similar functions: *yuen.t.test()* and *yuen1.test*
 #' 
 #' The *WRS2* library has a similar function: *yuen()*
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references 
 #' Peró-Cebollero, M., & Guàrdia-Olmos, J. (2013). The adequacy of different robust statistical tests in comparing two independent groups. *Psicológica*, 34, 407–424.
@@ -74,7 +72,23 @@
 #' Wilcox, R. R. (2012). *Introduction to robust estimation and hypothesis testing* (3rd ed.). Academic Press.
 #' 
 #' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' Example 1: Numeric dataframe
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Numeric dataframe
+#' ex1 = df2['Gen_Age']
+#' ts_trimmed_mean_os(ex1)
+#' ts_trimmed_mean_os(ex1, mu=23, trimProp=0.15, se="wilcox")
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' ts_trimmed_mean_os(ex2, trimProp=0.05)
+#' 
 #' @export
 ts_trimmed_mean_os <- function(data, mu=NULL, trimProp=0.1, se="yuen"){
   data = data.frame(data)

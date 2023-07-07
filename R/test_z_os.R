@@ -1,5 +1,6 @@
 #' One-Sample Z Test
 #' 
+#' @description 
 #' This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test
 #' is usually used.
 #' 
@@ -7,9 +8,10 @@
 #' that is expected in the population. If the p-value (significance) is then below a pre-defined threhold 
 #' (usually 0.05), the assumption is rejected.
 #' 
-#' @param data A vector with the data as numbers
+#' @param data A vector or dataframe with the data as numbers
 #' @param mu optional hypothesized mean, otherwise the midrange will be used
 #' @param sigma population standard deviation, if NULL sample results will be used
+#' 
 #' @returns
 #' A dataframe with:
 #' \item{mu}{the hypothesized mean}
@@ -38,18 +40,22 @@
 #' \item \eqn{s} the unbiased sample standard deviation
 #' \item \eqn{x_i} the i-th score
 #' }
-#'
-#' @examples
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' ts_z_os(data)
-#'
-#' @author
-#' P. Stikker
-#'
-#' Please visit: https://PeterStatistics.com
-#'
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' ex1 = df2['Gen_Age']
+#' ts_z_os(ex1)
+#' ts_z_os(ex1, mu=22, sigma=12.1)
+#' 
+#' #Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' ts_z_os(ex2)
+#' 
 #' @export
 ts_z_os <- function(data, mu=NULL, sigma=NULL){
   data = data.frame(data)

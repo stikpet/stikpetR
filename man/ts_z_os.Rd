@@ -7,7 +7,7 @@
 ts_z_os(data, mu = NULL, sigma = NULL)
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{A vector or dataframe with the data as numbers}
 
 \item{mu}{optional hypothesized mean, otherwise the midrange will be used}
 
@@ -24,12 +24,12 @@ A dataframe with:
 \description{
 This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test
 is usually used.
-}
-\details{
+
 The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean
 that is expected in the population. If the p-value (significance) is then below a pre-defined threhold
 (usually 0.05), the assumption is rejected.
-
+}
+\details{
 The formula used is:
 \deqn{z = \frac{\bar{x} - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
@@ -51,14 +51,18 @@ With:
 }
 }
 \examples{
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-ts_z_os(data)
+#Example 1: dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = df2['Gen_Age']
+ts_z_os(ex1)
+ts_z_os(ex1, mu=22, sigma=12.1)
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_z_os(ex2)
 
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

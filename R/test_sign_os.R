@@ -1,14 +1,17 @@
 #' one-sample sign test
 #' 
-#' @param data A vector with the data as numbers
+#' @description 
+#' This function will perform one-sample sign test.
+#' 
+#' @param data A vector or dataframe
 #' @param levels optional vector with levels in order
 #' @param mu optional hypothesized median, otherwise the midrange will be used
-#' @return dataframe with mu, the significance (p-value) and test used
 #' 
-#' @examples 
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' ts_sign_os(data)
-#' ts_sign_os(data, mu = 2)
+#' @returns 
+#' Dataframe with:
+#' \item{mu}{the mean tested}
+#' \item{p-value}{he significance (p-value)}
+#' \item{test}{a description of the test used}
 #' 
 #' @details 
 #' The test statistic is calculated using (Stewart, 1941, p. 236):
@@ -24,34 +27,37 @@
 #' 	}
 #' 
 #' The test is described in Stewart (1941), although there are earlier uses. 
+#' 
 #' The paired version for example was already described by Arbuthnott (1710)
 #' 
-#' **Alternatives**
+#' @section Alternatives:
 #' 
-#' *library(BSDA)* 
+#' The library *BSDA* has a **SIGN.test()** function
 #' 
-#' SIGN.test()
+#' The library *DescTools* has a **SignTest()** function
 #' 
-#' *library(DescTools)* 
-#' 
-#' SignTest()
-#' 
-#' *library(nonpar)*
-#' 
-#' signtest(data, m=2)
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' The library *nonpar* has a **signtest()** function
 #' 
 #' @references 
 #' Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observ’d in the births of both sexes. *Philosophical Transactions of the Royal Society of London, 27*(328), 186–190. https://doi.org/10.1098/rstl.1710.0011
 #' 
 #' Stewart, W. M. (1941). A note on the power of the sign test. *The Annals of Mathematical Statistics, 12*(2), 236–239. https://doi.org/10.1214/aoms/1177731755
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: Text dataframe
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' ts_sign_os(ex1, levels=order)
+#' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' ts_sign_os(ex2) 
+#' 
 #' @export
 ts_sign_os <- function(data, levels=NULL, mu = NULL){
   
@@ -82,6 +88,7 @@ ts_sign_os <- function(data, levels=NULL, mu = NULL){
   
   testUsed = "one-sample sign test"
   testResults <- data.frame(mu, pValue, testUsed)
+  colnames(testResults)<-c("mu", "p-value", "test")
   
   return(testResults)
   

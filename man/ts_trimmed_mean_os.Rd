@@ -7,23 +7,30 @@
 ts_trimmed_mean_os(data, mu = NULL, trimProp = 0.1, se = "yuen")
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{A vector or dataframe}
 
 \item{mu}{optional hypothesized trimmed mean, otherwise the midrange will be used}
 
 \item{trimProp}{optional proportion to trim in total (half will be trimmed from each side)}
 
-\item{se}{c("yuen", "wilcox") optional method to use to determine standard error (default is "yuen")}
+\item{se}{optional method to use to determine standard error. Either "yuen" (default) or "wilcox"}
 }
 \value{
-dataframe with the sample trimmed mean, hypothesized trimmed mean, the standard error, test statistic, degrees of freedom, p-value (sig.) and name of test used
+A dataframe with:
+\item{trim. mean}{the sample trimmed mean}
+\item{mu}{hypothesized trimmed mean}
+\item{SE}{the standard error}
+\item{statistic}{test statistic}
+\item{df}{degrees of freedom}
+\item{p-value}{p-value (sig.)}
+\item{test used}{test used}
 }
 \description{
 A variation on a one-sample Student t-test where the data is first trimmed, and the Winsorized variance is used.
+
+The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
 }
 \details{
-The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
-
 The formula used is:
 \deqn{\frac{\bar{x}_t - \mu_{H_0}}{SE}}
 \deqn{sig = 2\times\left(1 - T\left(\left|t\right|, df\right)\right)}
@@ -56,8 +63,9 @@ test as proposed by Yuen (1974, p. 167)
 
 The second version is used in the other libraries, and can be found in Wilcox (2012, p. 157),
 or Peró-Cebollero and Guàrdia-Olmos (2013, p. 409).
+}
+\section{Alternatives}{
 
-\strong{Alternatives}
 R stats library has a similar function: \emph{t.test()}
 
 The \emph{DescTools} library has a similar function: \emph{YuenTTest()}
@@ -66,11 +74,19 @@ The \emph{PairedData} library has a similar functions: \emph{yuen.t.test()} and 
 
 The \emph{WRS2} library has a similar function: \emph{yuen()}
 }
+
 \examples{
- 
-grade = c(4, 10, 2, 9, 5, 28, 8, 7, 9, 35, 40, 12, 8, 6, 16, 12, 14, 10, 18, 4, 11)
-ts_trimmed_mean_os(grade, trimProp=0.1, mu=12)
-ts_trimmed_mean_os(grade, trimProp=0.1, mu=12, se="wilcox")
+Example 1: Numeric dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Numeric dataframe
+ex1 = df2['Gen_Age']
+ts_trimmed_mean_os(ex1)
+ts_trimmed_mean_os(ex1, mu=23, trimProp=0.15, se="wilcox")
+
+#Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_trimmed_mean_os(ex2, trimProp=0.05)
 
 }
 \references{
@@ -83,9 +99,5 @@ Wilcox, R. R. (2012). \emph{Introduction to robust estimation and hypothesis tes
 Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. \emph{Biometrika, 61}(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

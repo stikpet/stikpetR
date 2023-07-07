@@ -1,16 +1,5 @@
 #' One-Sample Wald Test
 #' 
-#' @param data A vector with the data
-#' @param codes Optional vector with the two codes to use
-#' @param p0 The hypothesized proportion for the first category (default is 0.5)
-#' @param cc use of continuity correction (default is "none")
-#' @returns 
-#' Dataframe with:
-#' \item{n}{the sample size}
-#' \item{statistic}{the test value}
-#' \item{pValue}{two-sided p-value}
-#' \item{testUsed}{a description of the test used}
-#' 
 #' @description 
 #' A one-sample score test could be used with binary data, to test if the two categories
 #' have a significantly different proportion. It is an approximation of a binomial test, 
@@ -30,6 +19,18 @@
 #' or more extreme, if the null hypothesis is true. 
 #' 
 #' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
+#' 
+#' @param data A vector with the data
+#' @param codes Optional vector with the two codes to use
+#' @param p0 The hypothesized proportion for the first category (default is 0.5)
+#' @param cc use of continuity correction (default is "none")
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{statistic}{the test value}
+#' \item{pValue}{two-sided p-value}
+#' \item{testUsed}{a description of the test used}
 #' 
 #' @details 
 #' This test differs from the one-sample score test in the calculation of the standard error. 
@@ -55,21 +56,6 @@
 #' IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 #' refer to Wald (1943)
 #' 
-#' @section Alternatives:
-#' 
-#' No alternative library that has this function exist to my knowledge.
-#' 
-#' @examples 
-#' data <- c("Female", "Male", "Male", "Female", "Male", "Male")
-#' ts_wald_os(data, c("Female", "Male"), p0 = 0.5)
-#' 
-#' @seealso 
-#' Effect size measures that could go with the test are Cohen g (\code{\link{es_cohen_g}}), 
-#' Cohen h (\code{\link{es_cohen_h_os}}), or the alternative ratio (\code{\link{es_alt_ratio}})
-#' 
-#' Other tests for a binary variable are the binomial test (\code{\link{ts_binomial_os}}), 
-#' and Score test (\code{\link{ts_score_os}})
-#' 
 #' @references 
 #' Agresti, A. (2013). *Categorical data analysis* (3rd ed.). Wiley.
 #' 
@@ -80,7 +66,20 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: Numeric list
+#' ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
+#' ts_wald_os(ex1)
+#' ts_wald_os(ex1, p0=0.3)
+#' ts_wald_os(ex1, p0=0.3, cc="yates")
+#' 
+#' #Example 2: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ts_wald_os(df1['sex'])
+#' ts_wald_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
 ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=c("none", "yates")){

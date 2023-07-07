@@ -1,19 +1,5 @@
 #' Pearson Chi-Square Test of Goodness-of-Fit
 #' 
-#' @param data A vector with the data
-#' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction (default is "none")
-#' @returns 
-#' Dataframe with:
-#' \item{n}{the sample size}
-#' \item{k}{the number of categories}
-#' \item{statistic}{the chi-square statistic}
-#' \item{df}{the degrees of freedom}
-#' \item{pValue}{two-sided p-value}
-#' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
-#' 
 #' @description 
 #' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
 #' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
@@ -27,6 +13,21 @@
 #' 
 #' A YouTube video with explanation on this test is available [here](https://youtu.be/NVR5dZhp4vY)
 #'  
+#' @param data A vector with the data
+#' @param expCounts Optional dataframe with the categories and expected counts 
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
+#' 
 #' @details 
 #' The formula used is (Pearson, 1900):
 #' \deqn{\chi_{P}^{2}=\sum_{i=1}^{k}\frac{\left(O_{i}-E_{i}\right)^{2}}{E_{i}}}
@@ -64,34 +65,6 @@
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
-#' @examples  
-#' data <- c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
-#' ts_pearson_gof(data)
-#' ts_pearson_gof(data, cc="yates")
-#' ts_pearson_gof(data, cc="pearson")
-#' ts_pearson_gof(data, cc="williams")
-#' ts_pearson_gof(data, eCounts)
-#' 
-#' @seealso 
-#' Alternative tests with a nominal variable:
-#' \itemize{
-#' \item \code{\link{ts_multinomial_gof}} exact multinomial test of goodness-of-fit
-#' \item \code{\link{ts_g_gof}} G / Likelihood Ratio / Wilks test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_gof}} Freeman-Tukey test of goodness-of-fit
-#' \item \code{\link{ts_neyman_gof}} Neyman test of goodness-of-fit
-#' \item \code{\link{ts_mod_log_likelihood_gof}} mod-log likelihood test of goodness-of-fit
-#' \item \code{\link{ts_cressie_read_gof}} Cressie-Read / Power Divergence test of goodness-of-fit
-#' \item \code{\link{ts_freeman_tukey_read}} Freeman-Tukey-Read test of goodness-of-fit
-#' }
-#' 
-#' Effect sizes that might be of interest:
-#' \itemize{
-#' \item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
-#' \item \code{\link{es_cohen_w}} Cohen w
-#' \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
-#' }
-#' 
 #' @references 
 #' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
 #' 
@@ -106,7 +79,26 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' #Example 1: dataframe
+#' ex1 = df1['mar1']
+#' ts_pearson_gof(ex1)
+#' 
+#' #Example 2: dataframe with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_pearson_gof(ex2, expCounts=eCounts, cc="yates")
+#' ts_pearson_gof(ex2, expCounts=eCounts, cc="pearson")
+#' ts_pearson_gof(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_pearson_gof(ex3)
 #' 
 #' @export
 ts_pearson_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){

@@ -4,7 +4,7 @@
 #' Function to determine the median of a set of data. The median can be defined as "the middle value in a distribution, below and above which lie values with equal total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50% of the respondents scored equal or higher to the median, and also 50% of the respondents scored lower or equal.
 #' 
 #' @param data vector with the data
-#' @param levels optional to indicate what values represent
+#' @param levels optional list to indicate what values represent
 #' @param tieBreaker optional which to return if median falls between two values. Either `"between"` (default), `"low"`, or `"high"`
 #' 
 #' @return the median

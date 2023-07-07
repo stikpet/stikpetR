@@ -1,18 +1,5 @@
 #' Power Divergence Goodness-of Fit Tests
 #' 
-#' @param data A vector with the data
-#' @param expCounts Optional counts according to null hypothesis
-#' @param lambd Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3
-#' @param cc Optional correction to be used.
-#' @returns 
-#' Dataframe with:
-#' \item{statistic}{the chi-square statistic}
-#' \item{df}{the degrees of freedom}
-#' \item{pValue}{two-sided p-value}
-#' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
-#' 
 #' @description 
 #' A test that can be used with a single nominal variable, to test if the probabilities in all the categories are equal (the null hypothesis)
 #' 
@@ -29,6 +16,21 @@
 #' \item{\eqn{\lambda = -2}}{Neyman}
 #' \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
 #' }
+#' 
+#' @param data A vector or dataframe with the data
+#' @param expCounts Optional dataframe with the categories and expected counts
+#' @param lambd Optional either name of test or specific value. Either "cressie-read" (default), "g", "mod-log", "freeman-tukey", or "neyman"
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{statistic}{the chi-square statistic}
+#' \item{df}{the degrees of freedom}
+#' \item{pValue}{two-sided p-value}
+#' \item{minExp}{the minimum expected count}
+#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{testUsed}{a description of the test used}
+#' 
 #' 
 #' @details 
 #' The formula used is (Cressie & Read, 1984, p. 442):
@@ -83,12 +85,6 @@
 #' With:
 #' \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
 #' 
-#' @examples  
-#' nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' ts_powerdivergence(nom1)
-#' ts_powerdivergence(nom1, nom2)
-#' 
 #' @references 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
 #' 
@@ -109,7 +105,25 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @author 
-#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['mar1']
+#' ts_powerdivergence_gof(ex1)
+#' 
+#' #Example 2: dataframe with various settings
+#' ex2 = df1['mar1']
+#' eCounts = data.frame(c("MARRIED", "DIVORCED", "NEVER MARRIED", "SEPARATED"), c(5,5,5,5))
+#' ts_powerdivergence_gof(ex2, expCounts=eCounts)
+#' ts_powerdivergence_gof(ex2, expCounts=eCounts, cc="pearson")
+#' ts_powerdivergence_gof(ex2, expCounts=eCounts, cc="williams")
+#' 
+#' #Example 3: a list
+#' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
+#' ts_powerdivergence_gof(ex3)
 #' 
 #' @export
 ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read", "g", "mod-log", "freeman-tukey", "neyman"), cc=c("none", "yates", "pearson", "williams")){
