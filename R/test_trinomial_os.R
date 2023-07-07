@@ -1,14 +1,20 @@
 #' One-Sample Trinomial Test
 #' 
-#' @param data A vector with the data as numbers
+#' @description
+#' A test that could be used with ordinal data that includes ties
+#' 
+#' @param data A vector or dataframe
 #' @param levels optional list to indicate what values represent
 #' @param mu optional hypothesized median, otherwise the midrange will be used
-#' @return dataframe with mu, the number of scores above mu, below and tied, the significance (p-value) and test used
 #' 
-#' @examples 
-#' data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-#' ts_trinomial_os(data)
-#' ts_trinomial_os(data, mu = 2)
+#' @returns 
+#' A dataframe with:
+#' \item{mu}{he hypothesized median}
+#' \item{n-pos}{the number scores above mu}
+#' \item{n-neg}{the number scores below mu}
+#' \item{n-tied}{the number of scores tied with mu}
+#' \item{p-value}{significance (p-value)}
+#' \item{test}{description of the test used}
 #' 
 #' @details 
 #' The p-value is calculated using (Bian et al., 2009, p. 6):
@@ -20,42 +26,45 @@
 #' \deqn{\left|n_{pos} - n_{neg}\right|}
 #' 
 #' *Symbols used:*
-#' 	\itemize{
-#' 	\item \eqn{n_0} the number of scores equal to the hypothesized median
-#' 	\item \eqn{n_{pos}} the number of scores above the hypothesized median
-#' 	\item \eqn{n_{neg}} the number of scores below the hypothesized median
-#' 	\item \eqn{p_0} the probability of the a score in the sample being equal to the hypothesized median
-#' 	\item \eqn{p_{pos}} the population proportion of a score being above the hypothesized median
-#' 	\item \eqn{p_{neg}} the population proportion of a score being below the hypothesized median
-#' 	\item \eqn{\text{tri}\left(…,… \right)} the trinomial probability mass function
-#' 	}
+#' \itemize{
+#' \item \eqn{n_0} the number of scores equal to the hypothesized median
+#' \item \eqn{n_{pos}} the number of scores above the hypothesized median
+#' \item \eqn{n_{neg}} the number of scores below the hypothesized median
+#' \item \eqn{p_0} the probability of the a score in the sample being equal to the hypothesized median
+#' \item \eqn{p_{pos}} the population proportion of a score being above the hypothesized median
+#' \item \eqn{p_{neg}} the population proportion of a score being below the hypothesized median
+#' \item \eqn{\text{tri}\left(…,… \right)} the trinomial probability mass function
+#' }
 #' 
-#' The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can 
-#' also be used for one-sample situations.
-#' 
-#' **Alternatives**
-#' 
-#' I'm not aware of any other library that has a similar function.
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can also be used for one-sample situations.
 #' 
 #' @references 
 #' Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. *SSRN Electronic Journal*. https://doi.org/10.2139/ssrn.1410589
 #' 
 #' Zaiontz, C. (n.d.). Trinomial test. Real Statistics Using Excel. Retrieved March 2, 2023, from https://real-statistics.com/non-parametric-tests/trinomial-test/
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' #Example 1: Dataframe
+#' ex1 = df2[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' ts_trinomial_os(ex1, levels=order)
+#' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' ts_trinomial_os(ex2)
+#' 
 #' @export
 ts_trinomial_os <- function(data, levels=NULL, mu=NULL){
   testUsed = "one-sample trinomial test"
-  
+  data = na.omit(data)
   
   if (!is.null(levels)){
-    dataN = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = factor(data, ordered = TRUE, levels = levels)
     dataN = as.numeric(dataN)
   }
   else{dataN = data}
@@ -85,6 +94,7 @@ ts_trinomial_os <- function(data, levels=NULL, mu=NULL){
   pValue = sig*2  
   
   results = data.frame(mu, pos, neg, ties, pValue, testUsed)
+  colnames(results)<-c("mu", "n-pos.", "n-neg.", "n-tied.", "p-value", "test")
   
   return(results)
   
