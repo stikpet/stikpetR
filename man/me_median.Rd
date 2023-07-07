@@ -9,7 +9,7 @@ me_median(data, levels = NULL, tieBreaker = c("between", "low", "high"))
 \arguments{
 \item{data}{vector with the data}
 
-\item{levels}{optional to indicate what values represent}
+\item{levels}{optional list to indicate what values represent}
 
 \item{tieBreaker}{optional which to return if median falls between two values. Either \code{"between"} (default), \code{"low"}, or \code{"high"}}
 }

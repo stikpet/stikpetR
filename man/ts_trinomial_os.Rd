@@ -4,18 +4,26 @@
 \alias{ts_trinomial_os}
 \title{One-Sample Trinomial Test}
 \usage{
-ts_trinomial_os(data, mu = NULL)
+ts_trinomial_os(data, levels = NULL, mu = NULL)
 }
 \arguments{
-\item{data}{A vector with the data as numbers}
+\item{data}{A vector or dataframe}
+
+\item{levels}{optional list to indicate what values represent}
 
 \item{mu}{optional hypothesized median, otherwise the midrange will be used}
 }
 \value{
-dataframe with mu, the number of scores above mu, below and tied, the significance (p-value) and test used
+A dataframe with:
+\item{mu}{he hypothesized median}
+\item{n-pos}{the number scores above mu}
+\item{n-neg}{the number scores below mu}
+\item{n-tied}{the number of scores tied with mu}
+\item{p-value}{significance (p-value)}
+\item{test}{description of the test used}
 }
 \description{
-One-Sample Trinomial Test
+A test that could be used with ordinal data that includes ties
 }
 \details{
 The p-value is calculated using (Bian et al., 2009, p. 6):
@@ -37,17 +45,19 @@ With:
 \item \eqn{\text{tri}\left(…,… \right)} the trinomial probability mass function
 }
 
-The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can
-also be used for one-sample situations.
-
-\strong{Alternatives}
-
-I'm not aware of any other library that has a similar function.
+The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can also be used for one-sample situations.
 }
 \examples{
-data <- c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, 3, 4, 2, 4)
-ts_trinomial_os(data)
-ts_trinomial_os(data, mu = 2)
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#Example 1: Dataframe
+ex1 = df2[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+ts_trinomial_os(ex1, levels=order)
+
+#Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+ts_trinomial_os(ex2)
 
 }
 \references{
@@ -56,9 +66,5 @@ Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data wh
 Zaiontz, C. (n.d.). Trinomial test. Real Statistics Using Excel. Retrieved March 2, 2023, from https://real-statistics.com/non-parametric-tests/trinomial-test/
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

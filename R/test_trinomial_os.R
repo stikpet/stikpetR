@@ -71,12 +71,12 @@ ts_trinomial_os <- function(data, levels=NULL, mu=NULL){
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
-    mu = (min(data) + max(data)) / 2
+    mu = (min(dataN) + max(dataN)) / 2
   }
 
-  pos = sum(data>mu)
-  neg = sum(data<mu)
-  ties = sum(data==mu)
+  pos = sum(dataN>mu)
+  neg = sum(dataN<mu)
+  ties = sum(dataN==mu)
   
   n = pos + neg + ties
   
