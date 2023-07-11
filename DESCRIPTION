@@ -1,6 +1,6 @@
 Package: stikpetR
 Title: Functions for Analysing a Survey
-Version: 0.0.0.9000
+Version: 0.0.2.0
 Authors@R: 
     person("Peter", "Stikker", , "stikpet@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))

@@ -6,165 +6,134 @@
 \usage{
 me_quantiles(
   data,
+  levels = NULL,
   k = 4,
-  method = c("cdf", "hl1", "hl2", "minitab", "excel", "sas1", "sas2", "sas3", "hf8",
-    "hf9")
+  method = "own",
+  indexMethod = c("sas1", "sas4", "hl", "excel", "hf8", "hf9"),
+  q1Frac = c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"),
+  q1Int = c("int", "midpoint"),
+  q3Frac = c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"),
+  q3Int = c("int", "midpoint")
 )
 }
 \arguments{
-\item{data}{the scores from which to determine the quantiles}
+\item{data}{: list or dataframe}
 
-\item{k}{the k-quantiles to determine (default is 4)}
+\item{levels}{: list, optional coding to use}
 
-\item{method}{specific method to use to determine quantiles (default is 'cdf')}
+\item{k}{: number of quantiles}
+
+\item{method}{: string, optional which method to use to calculate quartiles}
+
+\item{indexMethod}{: {"sas1", "sas4", "excel", "hl", "hf8", "hf9"}, optional to indicate which type of indexing to use. Default is "sas1"}
+
+\item{qLfrac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"}
+
+\item{qLint}{: {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"}
+
+\item{qHfrac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"}
+
+\item{qHint}{: {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
+
+method can be set to "own" and then provide the next parameters, or any of the methods listed in the notes.}
 }
 \value{
-a named vector with the different quantiles
+results : the quantiles, or if levels are used also additionally text versions
 }
 \description{
-Quantiles split the data into k sections, each containing n/k scores. They can be seen as a
-generalisation of various 'tiles'. For example 4-quantiles is the same as the quartiles,
-5-quantiles the same as quintiles, 100-quantiles the same as percentiles, etc.
+Quantiles split the data into k sections, each containing n/k scores. They can be seen as a generalisation of various 'tiles'. For example 4-quantiles is the same as the quartiles, 5-quantiles the same as quintiles, 100-quantiles the same as percentiles, etc.
 
-Quite a few different methods exist to determine these. See the details for more information.
+Quite a few different methods exist to determine these. See the notes for more information.
 }
 \details{
-To determine the quantile, first determine the index of the quantile (\eqn{iQ_x}).
-Unfortunately there are quite some different methods for this. Below a few:\tabular{ll}{
-   method \tab \eqn{iQ_x} \cr
-   SAS-1 (HF-4) \tab \eqn{n\times p_i} \cr
-   SAS-2 (HF-3) \tab \eqn{\lfloor n\times p_i \rceil} \cr
-   SAS-3 (HF-1) \tab \eqn{\lceil n\times p_i \rceil} \cr
-   Minitab (HF-6 / Snedecor) \tab \eqn{\left(n + 1\right)\times p_i} \cr
-   CDF (SAS-5 / HF-2) \tab \eqn{\begin{cases} n\times p_i+\frac{1}{2} & \text{ if } n\times p_i= \left [ n\times p_i \right ]\\ \lceil n\times p_i\rceil & \text{ if } n\times p_i \neq \left [ n\times p_i \right ] \end{cases}} \cr
-   Hogg-Ledolter-1 \tab \eqn{\begin{cases} n\times p_i+\frac{1}{2} & \text{ if } n\times p_i +\frac{1}{2}= \left [ n\times p_i +\frac{1}{2} \right ]\\ \lfloor n\times p_i+\frac{1}{2}\rfloor +\frac{1}{2}& \text{ if } n\times p_i +\frac{1}{2}\neq \left [ n\times p_i +\frac{1}{2}\right ]  \end{cases}} \cr
-   Hogg-Ledolter-2 (HF-5) \tab \eqn{n\times p_i + \frac{1}{2}} \cr
-   Excel (HF-7) \tab \eqn{\left(n - 1\right)\times p_i + 1} \cr
-   HF-8 \tab \eqn{\left(n + \frac{1}{3}\right)\times p_i + \frac{1}{3}} \cr
-   HF-9 \tab \eqn{\left(n + \frac{1}{4}\right)\times p_i + \frac{3}{8}} \cr
+To determine the quartiles a specific indexing method can be used. See \strong{he_quantileIndexing()} for details on the different methods to choose from.
+
+Then based on the indexes either linear interpolation or different rounding methods (bankers, nearest, down, up, half-down) can be used, or the midpoint between the two values. If the index is an integer either the integer or the mid point is used.
+
+See the \strong{he_quantilesIndex()} for details on this.
+
+Note that the rounding method can even vary per quantile, i.e. the one used for the ones below the median being different than the one those equal or above.
+
+I've come across the following methods:\tabular{llllll}{
+   method \tab indexing \tab q1 integer \tab q1 fractional \tab q3 integer \tab q3 fractional \cr
+   sas1 \tab sas1 \tab use int \tab linear \tab use int \tab linear \cr
+   sas2 \tab sas1 \tab use int \tab bankers \tab use int \tab bankers \cr
+   sas3 \tab sas1 \tab use int \tab up \tab use int \tab up \cr
+   sas5 \tab sas1 \tab midpoint \tab up \tab midpoint \tab up \cr
+   hf3b \tab sas1 \tab use int \tab nearest \tab use int \tab halfdown \cr
+   sas4 \tab sas4 \tab use int \tab linear \tab use int \tab linear \cr
+   ms \tab sas4 \tab use int \tab nearest \tab use int \tab halfdown \cr
+   lohninger \tab sas4 \tab use int \tab nearest \tab use int \tab nearest \cr
+   hl2 \tab hl \tab use int \tab linear \tab use int \tab linear \cr
+   hl1 \tab hl \tab use int \tab midpoint \tab use int \tab midpoint \cr
+   excel \tab excel \tab use int \tab linear \tab use int \tab linear \cr
+   pd2 \tab excel \tab use int \tab down \tab use int \tab down \cr
+   pd3 \tab excel \tab use int \tab up \tab use int \tab up \cr
+   pd4 \tab excel \tab use int \tab halfdown \tab use int \tab nearest \cr
+   pd5 \tab excel \tab use int \tab midpoint \tab use int \tab midpoint \cr
+   hf8 \tab hf8 \tab use int \tab linear \tab use int \tab linear \cr
+   hf9 \tab hf9 \tab use int \tab linear \tab use int \tab linear \cr
 }
 
 
-Then note that the first and last should be the minimum and maximum of the data, i.e.
-\eqn{iQ_0 = 1} and \eqn{iQ_k = n}
-
-If \eqn{iQ_x} is an integer, then:
-\deqn{Q_x = x_{iQ_x}}
-
-Otherwise, use linear interpolation:
-\deqn{Q_x = \left(iQ_x - iLQ_x\right)\times\left(x_{iHQ_x} - x_{iLQ_x}\right) + x_{iLQ_x}}
-With:
-\deqn{iHQ_x = \lceil iQ_x \rceil = iLQ_x + 1}
-\deqn{iLQ_x = \lfloor iQ_x \rfloor}
-
-\emph{Symbols used:}
-\itemize{
-\item \eqn{x_i} the i-the score of x after the scores have been sorted
-\item \eqn{n} the sample size (i.e. the number of scores)
-\item \eqn{\left[\dots\right]} round to the nearest integer, if 0.5 round up
-\item \eqn{\lceil\dots\rceil} round up to the nearest integer
-\item \eqn{\lfloor\dots\rfloor} round down to the nearest integer
-\item \eqn{\lfloor\dots\rceil} round to the nearest even integer
+The following values can be used for the \emph{method} parameter:
+\enumerate{
+\item sas1 = parzen = hf4 = interpolated_inverted_cdf = maple3 = r4. (Parzen, 1979, p. 108; SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 363)
+\item sas2 = hf3 = r3. (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item sas3 = hf1 = inverted_cdf = maple1 = r1 (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item sas4 = hf6 = minitab = snedecor = weibull = maple5 = r6 (Hyndman & Fan, 1996, p. 363; Weibull, 1939, p. ?; Snedecor, 1940, p. 43; SAS, 1990, p. 626)
+\item sas5 = hf2 = CDF = averaged_inverted_cdf = r2 (SAS, 1990, p. 626; Hyndman & Fan, 1996, p. 362)
+\item hf3b = closest_observation
+\item ms (Mendenhall & Sincich, 1992, p. 35)
+\item lohninger (Lohninger, n.d.)
+\item hl1 (Hogg & Ledolter, 1992, p. 21)
+\item hl2 = hf5 = Hazen = maple4 = r5 (Hogg & Ledolter, 1992, p. 21; Hazen, 1914, p. ?)
+\item maple2
+\item excel = hf7 = pd1 = linear = gumbel = maple6 = r7 (Hyndman & Fan, 1996, p. 363; Freund & Perles, 1987, p. 201; Gumbel, 1939, p. ?)
+\item pd2 = lower
+\item pd3 = higher
+\item pd4 = nearest
+\item pd5 = midpoint
+\item hf8 = median_unbiased = maple7 = r8 (Hyndman & Fan, 1996, p. 363)
+\item hf9 = normal_unbiased = maple8 = r9 (Hyndman & Fan, 1996, p. 363)
 }
 
-For the quartiles, simply set 'k=4'. The p values will then be 0/4, 1/4, 2/4, 3/4, and 4/4.
+\emph{hf} is short for Hyndman and Fan who wrote an article showcasing many different methods, \emph{hl} is short for Hog and Ledolter, \emph{ms} is short for Mendenhall and Sincich, \emph{jf} is short for Joarder and Firozzaman. \emph{sas} refers to the software package SAS, \emph{maple} to Maple, \emph{pd} to Python's pandas library, and \emph{r} to R.
 
-\strong{SAS method 1}
-
-Simply uses \eqn{iQ_x = n\times p}.It is the same as Hyndman and Fan method 4.
-
-\strong{SAS method 3}
-
-simply rounds each of the results up to the nearest integer. It is the same as Hyndman and Fan method 1.
-
-\strong{SAS method 2}
-
-is very similar as method 3, except if \eqn{n\times p} ends with 0.5. It then suggests to round to
-the nearest even integer. So for example 3.5 gets rounded to 4, but 2.5 gets rounded to 2.
-It is the same as Hyndman and Fan method 3.
-
-\strong{SAS method 4}
-
-first adds 1 to the sample size, so uses \eqn{\left(n + 1\right)\times p}.
-
-The SAS method 4 is also used by \strong{Minitab} and can also be found in Snedecor (1940, p. 43).
-It is the same as Hyndman and Fan method 6.
-
-\strong{SAS method 5}
-
-the same as SAS method 3, except \eqn{n\times p} is an integer. In that case it simply
-takes the average of the index and the next value i.e. \eqn{n\times p + 1}.
-It is the same as Hyndman and Fan method 2, and Langford (2006) refers to this as the 'CDF' method.
-
-The methods used by SAS are found in the procedures guide (SAS, 2006, p. 626).
-
-\strong{Hogg and Ledolter}
-
-Hogg and Ledolter (1992, p. 21) use that for the median \eqn{\frac{n}{2} + \frac{1}{2}} is used.
-In their first version they suggest to simply average the two values the index falls between
-if it is not an integer.
-This means we can't use the linear interpolation directly. We (in case it is not an integer), first
-simply round down and then add 0.5.
-It could be that this method was also described in Hazen (1914), but I couldn't find the exact
-page number in that document.
-
-The second version of Hogg and Ledolter is to simply use the linear interpolation.
-This is the same as Hyndman and Fan method 5.
-
-\strong{Excel}
-
-It appears that MS Excel has a unique method. It can also be found in Freund and Perles (1987, p. 201).
-This is the same as Hyndman and Fan method 7.
-
-\strong{Hyndman-Fan}
-
-Hyndman and Fan (1996) discuss 9 different methods for quantiles, which can be used to determine quartiles.
-The R stats library's quantile() function uses their numbering.
-HF-1 = SAS-3, HF-2 = CDF / SAS-5, HF-3 = SAS-2, HF-4 = SAS-1, HF-5 = Hogg-Ledolter v2,
-HF-6 = Minitab / SAS-4, and HF-7 = Excel.
-
-This leaves their 8th and 9th definitions which are based on approximating the incomplete
-beta function.
-}
-\section{Alternatives}{
-
-
-The R \emph{stats} library has a very similar function \emph{quantile()}. They use the numbering from
-Hyndman and Fan.
-}
-
-\examples{
-
-data = seq(10)
-me_quantiles(data, 4, method="sas1")
-me_quantiles(data, 4, method="sas2")
-me_quantiles(data, 4, method="sas3")
-me_quantiles(data, 4, method="minitab")
-me_quantiles(data, 4, method="cdf")
-me_quantiles(data, 4, method="hl1")
-me_quantiles(data, 4, method="hl2")
-me_quantiles(data, 4, method="excel")
-me_quantiles(data, 4, method="hf8")
-me_quantiles(data, 4, method="hf9")
-
+The names \emph{linear}, \emph{lower}, \emph{higher}, \emph{nearest} and \emph{midpoint} are all used by pandas quantile function and numpy percentile function. Numpy also uses \emph{inverted_cdf}, \emph{averaged_inverted_cdf}, \emph{closest_observation}, \emph{interpolated_inverted_cdf}, \emph{hazen}, \emph{weibull}, \emph{median_unbiased}, and \emph{normal_unbiased}.
 }
 \references{
 Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. \emph{The American Statistician, 41}(3), 200–203. https://doi.org/10.1080/00031305.1987.10475479
+
+Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225–272.
+
+Gumbel, E. J. (1939). La Probabilité des Hypothèses. \emph{Compes Rendus de l’ Académie des Sciences, 209}, 645–647.
 
 Hazen, A. (1914). Storage to be provided in impounding municipal water supply. \emph{Transactions of the American Society of Civil Engineers, 77}(1), 1539–1640. https://doi.org/10.1061/taceat.0002563
 
 Hogg, R. V., & Ledolter, J. (1992). \emph{Applied statistics for engineers and physical scientists} (2nd int.). Macmillan.
 
-Hyndman, R. J., & Fan, Y. (1996). \emph{Sample quantiles in statistical packages. The American Statistician, 50}(4), 361–365. https://doi.org/10.2307/2684934
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. \emph{The American Statistician, 50}(4), 361–365. https://doi.org/10.2307/2684934
 
 Langford, E. (2006). Quartiles in elementary statistics. \emph{Journal of Statistics Education, 14}(3), 1–17. https://doi.org/10.1080/10691898.2006.11910589
 
-SAS. (1990). \emph{SAS procedures guide: Version 6} (3rd ed.). SAS Institute.
+Lohninger, H. (n.d.). Quartile. Fundamentals of Statistics. Retrieved April 7, 2023, from http://www.statistics4u.com/fundstat_eng/cc_quartile.html
+
+McAlister, D. (1879). The law of the geometric mean. \emph{Proceedings of the Royal Society of London, 29}(196–199), 367–376. https://doi.org/10.1098/rspl.1879.0061
+
+Mendenhall, W., & Sincich, T. (1992). \emph{Statistics for engineering and the sciences} (3rd ed.). Dellen Publishing Company.
+
+Parzen, E. (1979). Nonparametric statistical data modeling. \emph{Journal of the American Statistical Association, 74}(365), 105–121. https://doi.org/10.1080/01621459.1979.10481621
+
+SAS. (1990). SAS procedures guide: Version 6 (3rd ed.). SAS Institute.
+
+Siegel, A. F., & Morgan, C. J. (1996). \emph{Statistics and data analysis: An introduction} (2nd ed.). J. Wiley.
 
 Snedecor, G. W. (1940). \emph{Statistical methods applied to experiments in agriculture and biology} (3rd ed.). The Iowa State College Press.
-}
-\seealso{
-A special case of quantiles are the quartiles, see \code{\link{me_quartiles}} for more info on those.
+
+Vining, G. G. (1998). \emph{Statistical methods for engineers}. Duxbury Press.
+
+Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}
