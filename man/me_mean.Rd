@@ -4,12 +4,20 @@
 \alias{me_mean}
 \title{Mean}
 \usage{
-me_mean(data, version = "arithmetic", trimProp = 0.1, trimFrac = "down")
+me_mean(
+  data,
+  levels = NULL,
+  version = "arithmetic",
+  trimProp = 0.1,
+  trimFrac = "down"
+)
 }
 \arguments{
 \item{data, }{vector or dataframe with scores as numbers}
 
-\item{version, }{optional mean to calculate. Either \code{"arithmetic"} (default), \code{"winsorized"}, \code{"trimmed"}, \code{"windsor"}, \code{"truncated"}, \code{"olympic"}, \code{"geometric"}, \code{"harmonic"}, \code{"midrange"}}
+\item{levels}{: list, optional coding to use}
+
+\item{version, }{optional mean to calculate. Either \code{"arithmetic"} (default), \code{"winsorized"}, \code{"trimmed"}, \code{"windsor"}, \code{"truncated"}, \code{"olympic"}, \code{"geometric"}, \code{"harmonic"}, \code{"midrange"}, or \code{"decile"}}
 
 \item{trimProp, }{optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.}
 
@@ -88,6 +96,11 @@ me_mean(ex1)
 #Example 2: Numeric list
 ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
 me_mean(ex2)
+
+#Example 3: Ordinal Pandas Series
+ex3 = df2['Teach_Motivate']
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+me_mean(ex3, levels=order)
 
 }
 \references{

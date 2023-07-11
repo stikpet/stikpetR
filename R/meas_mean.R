@@ -6,7 +6,8 @@
 #' The mean is a measure of central tendency, to indicate the center.
 #' 
 #' @param data, vector or dataframe with scores as numbers
-#' @param version, optional mean to calculate. Either `"arithmetic"` (default), `"winsorized"`, `"trimmed"`, `"windsor"`, `"truncated"`, `"olympic"`, `"geometric"`, `"harmonic"`, `"midrange"`
+#' @param levels : list, optional coding to use
+#' @param version, optional mean to calculate. Either `"arithmetic"` (default), `"winsorized"`, `"trimmed"`, `"windsor"`, `"truncated"`, `"olympic"`, `"geometric"`, `"harmonic"`, `"midrange"`, or `"decile"`
 #' @param trimProp, optional to indicate the total proportion to trim. Default at 0.1 i.e. 0.05 from each side.
 #' @param trimFrac, optional parameter to indicate what to do if trimmed amount is non-integer. Either `"down"` (default), `"prop"`, `"linear"`
 #' 
@@ -95,9 +96,25 @@
 #' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
 #' me_mean(ex2)
 #' 
+#' #Example 3: Ordinal Pandas Series
+#' ex3 = df2['Teach_Motivate']
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' me_mean(ex3, levels=order)
+#' 
 #' @export
-me_mean <- function(data, version="arithmetic", trimProp=0.1, trimFrac="down"){
-  data = unlist(na.omit(data))
+me_mean <- function(data, 
+                    levels=NULL, 
+                    version="arithmetic", 
+                    trimProp=0.1, 
+                    trimFrac="down"){
+  
+  if (is.null(levels)){dataN = data}
+  else{
+    myFieldOrd = factor(na.omit(data), ordered = TRUE, levels = levels)
+    dataN = as.numeric(myFieldOrd)
+  }
+  
+  data = unlist(na.omit(dataN))
   
   if (version=="arithmetic"){
     res = mean(data)}
@@ -134,6 +151,15 @@ me_mean <- function(data, version="arithmetic", trimProp=0.1, trimFrac="down"){
     res = n/sum(1/data)}
   else if (version=="midrange"){
     res = (max(data) + min(data))/2}
+  else if (version=="decile"){
+    qs = me_quantiles(data, k=10)
+    dm = 0
+    for (i in 2:10){
+      dm = dm + qs[i]
+    }
+    res = dm/9
+    
+  }
   
   return (res)
 }
