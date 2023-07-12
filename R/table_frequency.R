@@ -128,30 +128,18 @@ tab_frequency <- function(data, order=NULL){
   
   #counts without missing values
   freq = table(data)
+  nExcl = sum(freq)
   #counts with missing values
   freq2 = table(data, exclude=NULL)
-  
-  #Proportions without missing values
-  prop = prop.table(freq)  
-  #Proportions with missing values
-  prop2 = freq/sum(freq2)
-  
-  #Cumulative Frequency
-  cumf  = cumsum(freq)
-  #Cumulative Relative Frequency
-  cumrf = cumsum(prop)
-  
+  nIncl = sum(freq2)
   f = as.data.frame(freq,stringsAsFactors=FALSE)
   colnames(f) = c("category", "frequency")
   
   if (!is.null(order)){f = f[match(order, f$category), ]}
-  rf = as.data.frame(prop2,stringsAsFactors=FALSE)
-  vp = as.data.frame(prop,stringsAsFactors=FALSE)
-  crf = as.data.frame(cumrf,stringsAsFactors=FALSE)
   myTable = f
-  myTable$Percent = rf$Freq*100
-  myTable$vp = vp$Freq*100
-  myTable$crf = crf$cumrf*100
+  myTable$Percent = f[,'frequency']/nIncl*100
+  myTable$vp = f[,'frequency']/nExcl*100
+  myTable$crf = cumsum(f[,'frequency'])/nExcl * 100
   
   colnames(myTable)<-c("category", "frequency", "percent", "valid percent", "cumulative percent")
   rownames(myTable) = myTable$category    
