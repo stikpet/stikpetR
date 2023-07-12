@@ -120,7 +120,7 @@ me_variation <- function(data,
   else if (measure=="cv"){
     lbl = "coefficient of variation"
     mu = mean(dataN)
-    s = me_variation(dataN, measure="std", ddof=ddof)
+    s = me_variation(dataN, measure="std", ddof=ddof)[1,1]
     res = s/mu}
   else if (measure=="stddm"){
     lbl = "standard deviation with decile mean"
