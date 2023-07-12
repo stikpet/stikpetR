@@ -155,5 +155,5 @@ me_variation <- function(data,
   }
   results = data.frame(res, lbl)
   colnames(results)<-c("value", "measure")    
-  return (res)
+  return (results)
 }
