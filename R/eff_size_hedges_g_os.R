@@ -74,11 +74,11 @@
 #' @export
 es_hedges_g_os <- function(data, mu=NULL, appr=NULL){
   
+  data = unlist(na.omit(data))
+  
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {
     mu = (min(data) + max(data)) / 2}
-  
-  data = unlist(na.omit(data))
   
   n = length(data)
   df = n - 1
