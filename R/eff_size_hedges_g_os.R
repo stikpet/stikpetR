@@ -89,29 +89,34 @@ es_hedges_g_os <- function(data, mu=NULL, appr=NULL){
   
   m = df/2
   
-  if (is.null(appr) && m <172){
-    # Hedges g (exact)
-    g = d*gamma(m)/(gamma(m-0.5)*sqrt(m))
-    comment = "exact"
-  }
-  else if(appr=="hedges"){
-    # Hedges approximation
-    g = d*(1-3/(4*df-1))
-    comment = "Hedges approximation"
-  }
-  else if(appr=="durlak"){
-    # Durlak (2009, p. 927) approximation:
-    g = d*(n-3)/(n-2.25)*sqrt((n-2)/n)
-    comment = "Durlak approximation"
-  }
-  else{
-    # Xue (2020, p. 3) approximation:
-    g = d*(1 - 9/df + 69/(2*df^2) - 72/(df^3) + 687/(8*df^4) - 441/(8*df^5) + 247/(16*df^6))^(1/12)
-    comment = "Xue approximation"
+  if (is.null(appr)){
+    if (m <172){
+      # Hedges g (exact)
+      g = d*gamma(m)/(gamma(m-0.5)*sqrt(m))
+      comment = "exact"
+    }
+    else {
+      print("WARNING: exact method could not be computed due to large sample size, Xue approximation used instead")
+      appr="xue"}
   }
   
-  if (is.null(appr) && m > 171){
-    print("WARNING: exact method could not be computed due to large sample size, Xue approximation used instead")
+  if (!is.null(appr)){
+    if(appr=="hedges"){
+      # Hedges approximation
+      g = d*(1-3/(4*df-1))
+      comment = "Hedges approximation"
+    }
+    else if(appr=="durlak"){
+      # Durlak (2009, p. 927) approximation:
+      g = d*(n-3)/(n-2.25)*sqrt((n-2)/n)
+      comment = "Durlak approximation"
+    }
+    else{
+      # Xue (2020, p. 3) approximation:
+      g = d*(1 - 9/df + 69/(2*df^2) - 72/(df^3) + 687/(8*df^4) - 441/(8*df^5) + 247/(16*df^6))^(1/12)
+      comment = "Xue approximation"
+    }
+    
   }
   
   #prepare results
