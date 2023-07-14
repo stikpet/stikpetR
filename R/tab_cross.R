@@ -7,6 +7,8 @@
 #' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
+#' @param order1 : optional list with order for categories of field1
+#' @param order2 : optional list with order for categories of field2
 #' @param percent : optional which percentages to show. Either "none" (default), "all", "row", "column"
 #' @param totals : optional to add margin totals. Either "exclude" (default), or "include"
 #' 
@@ -36,12 +38,44 @@
 #' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
 #' tab_cross(df1[['mar1']], df1[['sex']], percent="column", totals="include")
 #' 
+#' orderR = c("DIVORCED", "WIDOWED", "SEPARATED", "MARRIED", "NEVER MARRIED")
+#' orderC = c("MALE", "FEMALE")
+#' tab_cross(df1[['mar1']], df1[['sex']], order1=orderR, order2=orderC)
+#' 
+#' order = c("Not scientific at all", "Not too scientific", "Pretty scientific", "Very scientific")
+#' tab_cross(df1[['mar1']], df1[['accntsci']], order2=order)
+#' 
 #' @export
-tab_cross <- function(field1, field2, percent=c(NULL, "all", "row", "column"), totals="exclude"){
+tab_cross <- function(field1, field2, order1=NULL, order2=NULL, percent=c(NULL, "all", "row", "column"), totals="exclude"){
+  
+  #Set default value
   if (length(percent) > 1) {percent="none"}
   
+  #create basic frequency cross table
   tab = table(field1, field2)
+  
+  #reorder rows if order provided
+  if (!is.null(order1)){
+    if(!is.null(names(order1))){
+      for (i in 1:length(order1)){field1[field1 == unname(order1[i])] = names(order1)[i]}
+      order1 = names(order1)
+      }
+    tab = tab[order1, ]
+  }
+  
+  #reorder columns if order provided
+  if (!is.null(order2)){
+    if(!is.null(names(order2))){
+      for (i in 1:length(order2)){field2[field2 == unname(order2[i])] = names(order2)[i]}
+      order2 = names(order2)
+    }
+    tab = tab[, order2]  
+  }
+  
+  #add margin totals if requested
   if (totals!="exclude"){tab = addmargins(tab)}
+  
+  #convert to proper percentages if requested
   if (percent=="all"){tab = prop.table(tab)*4*100}
   else if (percent=="row"){tab = prop.table(tab, 1)*2*100}
   else if( percent=="column"){tab = prop.table(tab, 2)*2*100}

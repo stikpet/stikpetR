@@ -7,6 +7,8 @@
 tab_cross(
   field1,
   field2,
+  order1 = NULL,
+  order2 = NULL,
   percent = c(NULL, "all", "row", "column"),
   totals = "exclude"
 )
@@ -15,6 +17,10 @@ tab_cross(
 \item{field1}{: dataframe field with categories for the rows}
 
 \item{field2}{: dataframe field with categories for the columns}
+
+\item{order1}{: optional list with order for categories of field1}
+
+\item{order2}{: optional list with order for categories of field2}
 
 \item{percent}{: optional which percentages to show. Either "none" (default), "all", "row", "column"}
 
@@ -33,6 +39,13 @@ There are quite a few variations on the name for this type of table. Perhaps the
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
 df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
 tab_cross(df1[['mar1']], df1[['sex']], percent="column", totals="include")
+
+orderR = c("DIVORCED", "WIDOWED", "SEPARATED", "MARRIED", "NEVER MARRIED")
+orderC = c("MALE", "FEMALE")
+tab_cross(df1[['mar1']], df1[['sex']], order1=orderR, order2=orderC)
+
+order = c("Not scientific at all", "Not too scientific", "Pretty scientific", "Very scientific")
+tab_cross(df1[['mar1']], df1[['accntsci']], order2=order)
 
 }
 \references{
