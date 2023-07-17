@@ -9,8 +9,6 @@
 #' @param field2 : dataframe field with categories for the columns
 #' @param order1 : optional list with order for categories of field1
 #' @param order2 : optional list with order for categories of field2
-#' @param percent : optional which percentages to show. Either "none" (default), "all", "row", "column"
-#' @param totals : optional to add margin totals. Either "exclude" (default), or "include"
 #' 
 #' @returns 
 #' pval : the two-sided p-value (sig.)

@@ -4,12 +4,12 @@
 \alias{es_convert}
 \title{Convert Effect Size}
 \usage{
-es_convert(es, from, to, ex1 = NULL, ex2 = NULL)
+es_convert(es, fr, to, ex1 = NULL, ex2 = NULL)
 }
 \arguments{
 \item{es}{the effect size value to convert}
 
-\item{from}{name of the original effect size (see details)}
+\item{fr}{name of the original effect size (see details)}
 
 \item{to}{name of the effect size to convert to (see details)}
 
@@ -28,13 +28,13 @@ Convert Effect Size
 
 \strong{Cohen d to Odds Ratio}
 
-from="cohend", to="or", ex1="chinn"
+fr="cohend", to="or", ex1="chinn"
 
 This uses (Chinn, 2000, p. 3129):
 
 \deqn{OR = e^{d\times 1.81}}
 
-from="cohend", to="or", ex1="borenstein"
+fr="cohend", to="or", ex1="borenstein"
 
 This uses (Borenstein et. al, 2009, p. 3):
 
@@ -44,7 +44,7 @@ This uses (Borenstein et. al, 2009, p. 3):
 
 \strong{Convert a Cohen d' to Cohen d}
 
-from="cohendos" to="cohend"
+fr="cohendos" to="cohend"
 
 This uses (Cohen , 1988, p. 46):
 \deqn{d = d'\times\sqrt{2}}
@@ -53,7 +53,7 @@ This uses (Cohen , 1988, p. 46):
 
 \strong{Cohen f to Eta-squared}
 
-from="cohenf" to="etasq"
+fr="cohenf" to="etasq"
 
 This uses (Cohen, 1988, p. 284):
 \deqn{\eta^2 = \frac{f^2}{1 + f^2}}
@@ -62,7 +62,7 @@ This uses (Cohen, 1988, p. 284):
 
 \strong{Cohen h' to Cohen h}
 
-from = "cohenhos", to = "cohenh"
+fr = "cohenhos", to = "cohenh"
 
 This uses (Cohen, 1988, p. 203):
 \deqn{h = h'\times\sqrt{2}}
@@ -71,13 +71,13 @@ This uses (Cohen, 1988, p. 203):
 
 \strong{Cohen w to Contingency Coefficient}
 
-from="cohenw", to="cc"
+fr="cohenw", to="cc"
 
 \strong{CRAMER V GoF}
 
 \strong{Cramer's v for Goodness-of-Fit to Cohen w}
 
-from="cramervgof", to = "cohenw", ex1 = k
+fr="cramervgof", to = "cohenw", ex1 = k
 
 This uses (Cohen, 1988, p. 223):
 \deqn{w = v\times\sqrt{df - 1}}
@@ -86,14 +86,14 @@ This uses (Cohen, 1988, p. 223):
 
 \strong{Epsilon Squared to Eta Squared}
 
-from="epsilonsq", to="etasq", ex1 = n, ex2 = k
+fr="epsilonsq", to="etasq", ex1 = n, ex2 = k
 
 This uses:
 \deqn{\eta^2 = 1 - \frac{\left(1 - \epsilon^2\right)\times\left(n - k\right)}{n - 1}}
 
 \strong{Epsilon Squared to Omega Squared}
 
-from="epsilonsq", to="omegasq", ex1=MS_w, ex2 = SS_t
+fr="epsilonsq", to="omegasq", ex1=MS_w, ex2 = SS_t
 
 This uses:
 \deqn{\hat{\omega}^2 = \epsilon^2\times\left(1 - \frac{MS_w}{SS_t + MS_w}\right)}
@@ -101,13 +101,13 @@ This uses:
 \strong{ETA SQUARED}
 
 \strong{Eta squared to Cohen f}
-from="etasq", to="cohenf")
+fr="etasq", to="cohenf")
 
 This uses:
 \deqn{f = \sqrt{\frac{\eta^2}{1 - \eta^2}}}
 
 \strong{Eta squared to Epsilon Squared}
-from="etasq", to="epsilonsq", ex1=n, ex2=k
+fr="etasq", to="epsilonsq", ex1=n, ex2=k
 
 This uses:
 \deqn{\epsilon^2 = \frac{n\times\eta^2 - k + \left(1 - \eta^2\right)}{n - l}}
@@ -116,7 +116,7 @@ This uses:
 
 \strong{Johnston-Berry-Mielke E to Cohen w}
 
-from="jbme", to="cohenw", ex1=minExp/n
+fr="jbme", to="cohenw", ex1=minExp/n
 
 This uses (Johnston et al., 2006, p. 413):
 \deqn{w = \sqrt{\frac{E\times\left(1 - \right)}{q}}}
@@ -125,13 +125,13 @@ This uses (Johnston et al., 2006, p. 413):
 
 \strong{Odds Ratio to Cohen d}
 
-from="or", to="cohend", ex1="chinn"
+fr="or", to="cohend", ex1="chinn"
 
 This uses (Chinn, 2000, p. 3129):
 
 \deqn{d = \frac{\ln{\left(OR\right)}}{1.81}}
 
-from="or", to="cohend", ex1="borenstein"
+fr="or", to="cohend", ex1="borenstein"
 
 This uses (Borenstein et. al, 2009, p. 3):
 
@@ -139,7 +139,7 @@ This uses (Borenstein et. al, 2009, p. 3):
 
 \strong{Odds Ratio to Yule Q}
 
-from="or", to="yuleq"
+fr="or", to="yuleq"
 
 This uses:
 
@@ -154,7 +154,7 @@ This uses
 
 \strong{Omega Squared to Epsilon Squared}
 
-from="omegasq", to="epsilonsq", ex1=MS_w, ex2 = SS_t
+fr="omegasq", to="epsilonsq", ex1=MS_w, ex2 = SS_t
 
 This uses:
 \deqn{\epsilon^2 = \frac{\hat{\omega}^2}{1 - \frac{MS_w}{SS_t + MS_w}}}
@@ -163,7 +163,7 @@ This uses:
 
 \strong{Yule Q to Odds Ratio}
 
-from="yuleq", to="or"
+fr="yuleq", to="or"
 
 This uses:
 
@@ -171,7 +171,7 @@ This uses:
 
 \strong{Yule Q to Yule Y}
 
-from="yuleq", to="yuley"
+fr="yuleq", to="yuley"
 
 This uses:
 \deqn{Y = \frac{1 - sqrt{1 - Q^2}}{Q}}
@@ -180,20 +180,20 @@ This uses:
 
 \strong{Yule Y to Yule Q}
 
-from="yuley", to=="yuleq"
+fr="yuley", to=="yuleq"
 
 This uses:
 \deqn{Q = \frac{2\times Y}{1 + Y^2}}
 
 \strong{Yule Y to Odds Ratio}
 
-from="yuley", to=="or"
+fr="yuley", to=="or"
 
 This uses
 \deqn{OR = \left(\frac{1 + Y}{1 - Y}\right)^2}
 }
 \examples{
-es_convert(0.3, from="cohenhos", to = "cohenh")
+es_convert(0.3, fr="cohenhos", to = "cohenh")
 
 }
 \references{

@@ -14,10 +14,6 @@ ts_fisher(field1, field2, categories1 = NULL, categories2 = NULL)
 \item{order1}{: optional list with order for categories of field1}
 
 \item{order2}{: optional list with order for categories of field2}
-
-\item{percent}{: optional which percentages to show. Either "none" (default), "all", "row", "column"}
-
-\item{totals}{: optional to add margin totals. Either "exclude" (default), or "include"}
 }
 \value{
 pval : the two-sided p-value (sig.)

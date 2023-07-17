@@ -9,13 +9,15 @@ th_odds_ratio(or, qual = "chen")
 \arguments{
 \item{or}{the odds ratio}
 
-\item{qual}{c("chen", "wuensch", "jones") optional rule of thumb to use (default is "chen")}
+\item{qual}{optional rule of thumb to use. Either "chen" (default), "wuensch", or "jones"}
 }
 \value{
-data frame with the qualification/classification  and source
+Dataframe with:
+\item{classification}{the qualification of the effect size}
+\item{reference}{a reference for the rule of thumb used}
 }
 \description{
-Rules of thumb for Odds Ratio
+This function will give a qualification (classification) for a given Odds Ratio
 }
 \details{
 If the OR is less than 1, the alternative is used, i.e. 1/OR.
@@ -59,9 +61,5 @@ Jones, K. (2014, June 5). How do you interpret the odds ratio (OR)? ResearchGate
 Wuensch, K. (2009). Cohen’s conventions for small, medium, and large effects. https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=get&target=esize.doc
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

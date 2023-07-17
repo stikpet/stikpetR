@@ -1,73 +1,81 @@
 #' Odds Ratio
 #' 
-#' @param var1 A vector with the binary data from the first variable
-#' @param var2 A vector with the binary data from the second variable
-#' @return dataframe with the odds ratio value, z-statistic, and 2-sided p-value
+#' @description
+#' Determines the odds ratio from a 2x2 table.
+#' 
+#' Odds can sometimes be reported as 'a one in five odds', but sometimes as 1 : 4. This later notation is less often seen, but means for every one event on the left side, there will be four on the right side.
+#' 
+#' The Odds is the ratio of that something will happen, over the probability that it will not. For the Odds Ratio, we compare the odds of the first category with the second group.
+#' 
+#' If the result is 1, it indicates that one variable has no influence on the other. A result higher than 1, indicates the odds are higher for the first category. A result lower than 1, indicates the odds are lower for the first.
+#' 
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param order1 : optional list with order for categories of field1
+#' @param order2 : optional list with order for categories of field2
+#' 
+#' @returns 
+#' Dataframe with:
+#' \item{OR}{the odds ratio}
+#' \item{n}{the sample size}
+#' \item{statistic}{the test statistic (z-value)}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' 
-#' The p-value is for the null-hypothesis that the population OR is 1.
-#' 
-#' \deqn{OR = \frac{a\times d}{b \times c}}
-#' \deqn{sig. = 2\times\left(1 - Z\left(\left|z\right|\right)\right)}
-#' 
-#' With:
-#' \deqn{SE = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}}
-#' \deqn{z = \frac{\ln{\left(OR\right)}}{SE}}
-#' 
+#' The formula used is (Fisher, 1935, p. 50):
+#' \deqn{OR = \frac{a/c}{b/d} = \frac{a\times d}{b\times c}}
+#'  
 #' *Symbols used:*
 #' \itemize{
 #' \item \eqn{a} the count in the top-left cell
 #' \item \eqn{b} the count in the top-right cell
 #' \item \eqn{c} the count in the bottom-left cell
 #' \item \eqn{d} the count in the bottom-right cell
-#' \item \eqn{Z\left(\dots\right)} the cumulative density function of the standard normal distribution
+#' \item \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
 #' }
 #' 
-#' I could not find an original source for this, but one source is McHugh (2009).
-#' The formula for the standard error can be found on page 123.
+#' As for the test (McHugh, 2009, p. 123):
+#' \deqn{sig. = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
 #' 
-#' For a classification/qualification of the odds ratio use: *th_odds_ratio()*.
+#' With:
+#' \deqn{SE = \sqrt{\frac{1}{a} + \frac{1}{b} + \frac{1}{c} + \frac{1}{d}}}
+#' \deqn{z = \frac{\ln{\left(OR\right)}}{SE}}
 #' 
-#' Or convert it to Cohen's d using either: *es_convert(or, from="or", to="cohend", ex1="chinn")* or *es_convert(or, from="or", to="cohend", ex1="borenstein")*
+#' The p-value is for the null-hypothesis that the population OR is 1.
 #' 
-#' Then use classification/qualification of Cohen d: *th_cohen_d()*
+#' The term Odds Ratio can for example be found in Cox (1958, p. 222).
 #' 
-#' Or convert it to Yule Q using: *es_convert(or, from="or", to="yuleq")*
-#' 
-#' Then use classification/qualification of Yule Q: *th_yule_q()*
-#' 
-#' Or convert it to Yule Y using: *es_convert(or, from="or", to="yuley")*
-#' 
-#' **Alternative**
+#' @section Alternatives:
 #' 
 #' R's *stats* library has a function that also shows an odds ratio: *fisher.test()*
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso 
+#' \code{\link{th_odds_ratio}}, rules of thumb for odds ratio
 #' 
-#' Please visit: https://PeterStatistics.com
+#' \code{\link{es_convert}}, to convert an odds ratio to Yule Q, Yule Y, or Cohen d.
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @references
+#' Cox, D. R. (1958). The regression analysis of binary sequences. *Journal of the Royal Statistical Society: Series B (Methodological), 20*(2), 215–232. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x
 #' 
-#' @references 
+#' Fisher, R. A. (1935). The logic of inductive inference. *Journal of the Royal Statistical Society, 98*(1), 39–82. https://doi.org/10.2307/2342435
+#' 
 #' McHugh, M. (2009). The odds ratio: Calculation, usage, and interpretation. *Biochemia Medica, 19*(2), 120–126. https://doi.org/10.11613/BM.2009.011
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_odds_ratio(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_odds_ratio(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
-es_odds_ratio <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_odds_ratio <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  ct = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
   a = ct[1,1]
@@ -82,10 +90,12 @@ es_odds_ratio <- function(var1, var2){
   L = log(or)
   SE = sqrt(sum(1/ct))
   z = L/SE
+  n = a + b + c +d
   pValue = 2*(1 - pnorm(abs(z)))
   
-  statistic = z
-  results = data.frame(or, statistic, pValue)
+  # the results
+  results = data.frame(or, n, z, pValue)
+  colnames(results)<-c("OR", "n", "statistic", "p-value")
   
   return (results)
 }
