@@ -73,11 +73,11 @@ es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL){
   b = ct[1,2]
   c = ct[2,1]
   d = ct[2,2]
-
+  
   #the column totals
   colTots <- margin.table(ct, 2)
-  C1 <- unname(colTots[1])
-  C2 <- unname(colTots[2])
+  C1 <- as.numeric(unname(colTots[1]))
+  C2 <- as.numeric(unname(colTots[2]))
   
   #grand total
   n <- sum(colTots)

@@ -52,13 +52,13 @@ es_cole_c5 <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #the row totals
   rowTots <- margin.table(ct, 1)
-  R1 <- unname(rowTots[1])
-  R2 <- unname(rowTots[2])
+  R1 <- as.numeric(unname(rowTots[1]))
+  R2 <- as.numeric(unname(rowTots[2]))
   
   #the column totals
   colTots <- margin.table(ct, 2)
-  C1 <- unname(colTots[1])
-  C2 <- unname(colTots[2])
+  C1 <- as.numeric(unname(colTots[1]))
+  C2 <- as.numeric(unname(colTots[2]))
   
   c5 = sqrt(2) * (a*d-b*c)/sqrt((a*d - b*c)**2 + R1*R2*C1*C2)
   

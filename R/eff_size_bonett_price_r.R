@@ -73,12 +73,14 @@ es_bonett_price_r <- function(var1, var2, version=2){
   d = dataTable[2,2]
   
   #the row totals
-  rowTots <- margin.table(dataTable, 1)
-  R1 <- unname(rowTots[1])
+  rowTots <- margin.table(ct, 1)
+  R1 <- as.numeric(unname(rowTots[1]))
+  R2 <- as.numeric(unname(rowTots[2]))
   
   #the column totals
-  colTots <- margin.table(dataTable, 2)
-  C1 <- unname(colTots[1])
+  colTots <- margin.table(ct, 2)
+  C1 <- as.numeric(unname(colTots[1]))
+  C2 <- as.numeric(unname(colTots[2]))
   
   n = a+b+c+d
   
