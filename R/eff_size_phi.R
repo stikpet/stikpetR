@@ -1,14 +1,17 @@
 #' Pearson/Yule Phi Coefficient
 #' 
-#' @param var1 A vector with the binary data from the first variable
-#' @param var2 A vector with the binary data from the second variable
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param order1 : optional list with order for categories of field1
+#' @param order2 : optional list with order for categories of field2
+#' 
 #' @return phi coefficient
 #' 
 #' @details
 #' the Pearson Phi coefficient (Pearson, 1900, p. 12), is the same as Yule's Phi (Yule, 1912, p. 596)
 #' Cole's C2 (Cole, 1949, p. 415) and Cohen's w (Cohen, 1988, p. 216). It is also sometimes referred to as the Mean Square Contingency.
 #' 
-#' This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated
+#' This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated.
 #' 
 #' The formula used is (Pearson, 1900, p. 12):
 #' \deqn{\phi = \frac{a\times d - b\times c}{\sqrt{R_1\times R_2 \times C_1 \times C_2}}}
@@ -49,31 +52,26 @@
 #' es_phi(bin1, bin2)
 #' 
 #' @export
-es_phi <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_phi <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  dataTable = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
+  
+  #store the individual cells
+  a = ct[1,1]
+  b = ct[1,2]
+  c = ct[2,1]
+  d = ct[2,2]
   
   #the row totals
-  rowTots <- margin.table(dataTable, 1)
+  rowTots <- margin.table(ct, 1)
   R1 <- unname(rowTots[1])
   R2 <- unname(rowTots[2])
   
   #the column totals
-  colTots <- margin.table(dataTable, 2)
+  colTots <- margin.table(ct, 2)
   C1 <- unname(colTots[1])
   C2 <- unname(colTots[2])
-  
-  #store the individual cells
-  a = dataTable[1,1]
-  b = dataTable[1,2]
-  c = dataTable[2,1]
-  d = dataTable[2,2]
   
   phi =(a*d - b*c)/(R1*R2*C1*C2)**0.5
   

@@ -4,12 +4,16 @@
 \alias{es_phi}
 \title{Pearson/Yule Phi Coefficient}
 \usage{
-es_phi(var1, var2)
+es_phi(field1, field2, categories1 = NULL, categories2 = NULL)
 }
 \arguments{
-\item{var1}{A vector with the binary data from the first variable}
+\item{field1}{: dataframe field with categories for the rows}
 
-\item{var2}{A vector with the binary data from the second variable}
+\item{field2}{: dataframe field with categories for the columns}
+
+\item{order1}{: optional list with order for categories of field1}
+
+\item{order2}{: optional list with order for categories of field2}
 }
 \value{
 phi coefficient
@@ -21,7 +25,7 @@ Pearson/Yule Phi Coefficient
 the Pearson Phi coefficient (Pearson, 1900, p. 12), is the same as Yule's Phi (Yule, 1912, p. 596)
 Cole's C2 (Cole, 1949, p. 415) and Cohen's w (Cohen, 1988, p. 216). It is also sometimes referred to as the Mean Square Contingency.
 
-This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated
+This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated.
 
 The formula used is (Pearson, 1900, p. 12):
 \deqn{\phi = \frac{a\times d - b\times c}{\sqrt{R_1\times R_2 \times C_1 \times C_2}}}

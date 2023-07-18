@@ -1,7 +1,10 @@
 #' Pearson Q4
 #' 
-#' @param var1 A vector with the binary data from the first variable
-#' @param var2 A vector with the binary data from the second variable
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param categories1 : optional list with selection and/or order for categories of field1
+#' @param categories2 : optional list with selection and/or order for categories of field2
+#' 
 #' @return Pearson Q4
 #' 
 #' @details
@@ -37,15 +40,10 @@
 #' es_pearson_q4(bin1, bin2)
 #' 
 #' @export
-es_pearson_q4 <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_pearson_q4 <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  ct = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
   a = ct[1,1]

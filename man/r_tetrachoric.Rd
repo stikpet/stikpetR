@@ -4,12 +4,22 @@
 \alias{r_tetrachoric}
 \title{Tetrachoric Correlation Coefficient}
 \usage{
-r_tetrachoric(var1, var2, method = "search")
+r_tetrachoric(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  method = "search"
+)
 }
 \arguments{
-\item{var1}{A vector with the data from the first variable}
+\item{field1}{: dataframe field with categories for the rows}
 
-\item{var2}{A vector with the data from the second variable}
+\item{field2}{: dataframe field with categories for the columns}
+
+\item{categories1}{: optional list with selection and/or order for categories of field1}
+
+\item{categories2}{: optional list with selection and/or order for categories of field2}
 
 \item{method}{c("search", "kirk", "brown", "divgi") method to use (see details)}
 }

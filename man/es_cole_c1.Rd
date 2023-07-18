@@ -4,12 +4,16 @@
 \alias{es_cole_c1}
 \title{Cole C1}
 \usage{
-es_cole_c1(var1, var2)
+es_cole_c1(field1, field2, categories1 = NULL, categories2 = NULL)
 }
 \arguments{
-\item{var1}{A vector with the binary data from the first variable}
+\item{field1}{: dataframe field with categories for the rows}
 
-\item{var2}{A vector with the binary data from the second variable}
+\item{field2}{: dataframe field with categories for the columns}
+
+\item{categories1}{: optional list with selection and/or order for categories of field1}
+
+\item{categories2}{: optional list with selection and/or order for categories of field2}
 }
 \value{
 Cole C1

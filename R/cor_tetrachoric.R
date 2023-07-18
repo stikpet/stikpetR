@@ -37,9 +37,12 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 #' 
 #' @importFrom fMultivar pnorm2d
 #' 
-#' @param var1 A vector with the data from the first variable
-#' @param var2 A vector with the data from the second variable
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param categories1 : optional list with selection and/or order for categories of field1
+#' @param categories2 : optional list with selection and/or order for categories of field2
 #' @param method c("search", "kirk", "brown", "divgi") method to use (see details)
+#' 
 #' @return Tetrachoric Correlation Coefficient
 #' 
 #' @details 
@@ -74,31 +77,26 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 #' r_tetrachoric(bin1, bin2)
 #' 
 #' @export
-r_tetrachoric <- function(var1, var2, method="search"){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, method="search"){
   
   #Create a cross table first
-  dataTable = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
-  a = dataTable[1,1]
-  b = dataTable[1,2]
-  c = dataTable[2,1]
-  d = dataTable[2,2]
+  a = ct[1,1]
+  b = ct[1,2]
+  c = ct[2,1]
+  d = ct[2,2]
   
   if(method=="search"){
     
     #the row totals
-    rowTots <- margin.table(dataTable, 1)
+    rowTots <- margin.table(ct, 1)
     R1 <- unname(rowTots[1])
     R2 <- unname(rowTots[2])
     
     #the column totals
-    colTots <- margin.table(dataTable, 2)
+    colTots <- margin.table(ct, 2)
     C1 <- unname(colTots[1])
     C2 <- unname(colTots[2])
     

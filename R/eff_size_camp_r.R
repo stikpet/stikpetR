@@ -1,7 +1,10 @@
 #' Camp r
 #' 
-#' @param var1 A vector with the binary data from the first variable
-#' @param var2 A vector with the binary data from the second variable
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param categories1 : optional list with selection and/or order for categories of field1
+#' @param categories2 : optional list with selection and/or order for categories of field2
+#' 
 #' @return Camp r
 #' 
 #' @details
@@ -60,24 +63,19 @@
 #' es_camp_r(bin1, bin2)
 #' 
 #' @export
-es_camp_r <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  dataTable = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
-  a = dataTable[1,1]
-  b = dataTable[1,2]
-  c = dataTable[2,1]
-  d = dataTable[2,2]
+  a = ct[1,1]
+  b = ct[1,2]
+  c = ct[2,1]
+  d = ct[2,2]
 
   #the column totals
-  colTots <- margin.table(dataTable, 2)
+  colTots <- margin.table(ct, 2)
   C1 <- unname(colTots[1])
   C2 <- unname(colTots[2])
   

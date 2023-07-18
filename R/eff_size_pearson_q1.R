@@ -1,7 +1,10 @@
 #' Pearson Q1
 #' 
-#' @param var1 A vector with the binary data from the first variable
-#' @param var2 A vector with the binary data from the second variable
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param categories1 : optional list with selection and/or order for categories of field1
+#' @param categories2 : optional list with selection and/or order for categories of field2
+#' 
 #' @return Pearson Q1
 #' 
 #' @details
@@ -40,74 +43,66 @@
 #' es_pearson_q1(bin1, bin2)
 #' 
 #' @export
-es_pearson_q1 <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_pearson_q1 <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  dataTable = table(data)
-
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
+  
   #store the individual cells
-  a = dataTable[1,1]
-  b = dataTable[1,2]
-  c = dataTable[2,1]
-  d = dataTable[2,2]
+  a = ct[1,1]
+  b = ct[1,2]
+  c = ct[2,1]
+  d = ct[2,2]
   
   #Pearson requires for Q1 that ad>bc, a>d, and c>b
-  #The original
-  ap <- a
-  bp <- b
-  cp <- c
-  dp <- d
-  
   sw = -1
-  
-  #Check once, if not swop two columns
-  nSwops = 0
-  while(ap*dp<bp*cp || ap < dp || cp < bp){
-    #after three swoppings rotate table
-    if (nSwops==3){
-      at <- ap
-      ap <- bp
-      bp <- dp
-      dp <- cp
-      cp <- at
-      
-      nSwops=0
-      
-      sw <- -sw
+  runs=0
+  while(runs < 2){
+    #swop the rows
+    if (a*d < b*c || a < d || c < b){
+      at = a
+      a = c
+      c = at
+      bt = b
+      b = d
+      d = bt
+      sw = -sw
     }
     
-    else{
-      at <- ap
-    
-      if (ap*dp<bp*cp) {
-        #swop the columns
-        ap <- bp
-        bp <- at
-        
-        ct <- cp
-        cp <- dp
-        dp <- ct
-      } else{
-        #swop the rows
-        ap <- cp
-        cp <- at
-        
-        bt <- bp
-        bp <- dp
-        dp <- bt
-      }
-      
-      sw <- -sw
-      nSwops = nSwops+1
+    #swop columns
+    if (a*d < b*c || a < d || c < b){
+      at = a
+      a = b
+      b = at
+      ct = c
+      c = d
+      d = ct
+      sw = -sw
     }
+    
+    #swop the rows again
+    if (a*d < b*c || a < d || c < b){
+      at = a
+      a = c
+      c = at
+      bt = b
+      b = d
+      d = bt
+      sw = -sw
+    }
+    
+    #pivot the table
+    if (a*d < b*c || a < d || c < b){
+      bt = b
+      b = c
+      c = bt
+      sw = -sw
+    }
+    
+    runs = runs + 1    
   }
   
-  q1 = sw*sin(pi/2 * (cp+dp)*(ap+cp)/((ap+bp) * (bp+dp)))
+  q1 = sw*sin(pi/2 * (c+d)*(a+c)/((a+b) * (b+d)))
   
   return(q1)
   

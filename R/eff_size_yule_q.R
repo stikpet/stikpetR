@@ -1,7 +1,14 @@
 #' Yule Q
+#' @description
+#' Yule Q as well as Yule Y measure how much bigger the diagonal top-left to bottom-right is, than top-right to bottom-left. If the two variables are paired it can be seen as the difference between the pairs that are in agreement with the ones that are in disagreement over the total number of pairs.
 #' 
-#' @param var1 A vector with the data from the first variable
-#' @param var2 A vector with the data from the second variable
+#' It ranges from -1 to 1.
+#' 
+#' @param field1 : dataframe field with categories for the rows
+#' @param field2 : dataframe field with categories for the columns
+#' @param categories1 : optional list with selection and/or order for categories of field1
+#' @param categories2 : optional list with selection and/or order for categories of field2
+#' 
 #' @return Yule Q
 #' 
 #' @details
@@ -18,18 +25,14 @@
 #' \item \eqn{d} the count in the bottom-right cell
 #' }
 #' 
-#' For a rule-of-thumb on the classification use *th_yule_q()*, 
-#' or convert the Yule Q to an Odds Ratio using *es_convert(q, "yuleq", "or")* and 
-#' use a rule of thumb for odds ratios (*th_odds_ratio()*).
+#' @section Alternatives:
 #' 
-#' Yule Q can also be converted to Yule Y using: *es_convert(q, "yuleq", "yuley")*
+#' The *psych* library has a function that also shows Yule Q: *Yule()*
 #' 
-#' @author 
-#' P. Stikker
+#' @seealso
+#' \code{\link{th_yule_q}}, rules of thumb for Yule Q
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' \code{\link{es_convert}}, to convert Yule Q to an Odds Ratio or Yule Y.
 #'
 #' @references 
 #' Cole, L. C. (1949). The measurement of interspecific associaton. *Ecology, 30*(4), 411–424. https://doi.org/10.2307/1932444
@@ -38,21 +41,20 @@
 #' 
 #' Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. *Philosophical Transactions of the Royal Society of London*, 194, 257–319. https://doi.org/10.1098/rsta.1900.0019
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_yule_q(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_yule_q(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
-es_yule_q <- function(var1, var2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_yule_q <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   #Create a cross table first
-  ct = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
   a = ct[1,1]

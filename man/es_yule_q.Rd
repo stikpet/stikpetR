@@ -4,18 +4,24 @@
 \alias{es_yule_q}
 \title{Yule Q}
 \usage{
-es_yule_q(var1, var2)
+es_yule_q(field1, field2, categories1 = NULL, categories2 = NULL)
 }
 \arguments{
-\item{var1}{A vector with the data from the first variable}
+\item{field1}{: dataframe field with categories for the rows}
 
-\item{var2}{A vector with the data from the second variable}
+\item{field2}{: dataframe field with categories for the columns}
+
+\item{categories1}{: optional list with selection and/or order for categories of field1}
+
+\item{categories2}{: optional list with selection and/or order for categories of field2}
 }
 \value{
 Yule Q
 }
 \description{
-Yule Q
+Yule Q as well as Yule Y measure how much bigger the diagonal top-left to bottom-right is, than top-right to bottom-left. If the two variables are paired it can be seen as the difference between the pairs that are in agreement with the ones that are in disagreement over the total number of pairs.
+
+It ranges from -1 to 1.
 }
 \details{
 Yule's Q (1900) is also Cole's C4 (1949, p. 415) and Pearson's Q2 (1900, p. 15).
@@ -30,17 +36,18 @@ The formula used (Yule, 1900, p. 272):
 \item \eqn{c} the count in the bottom-left cell
 \item \eqn{d} the count in the bottom-right cell
 }
-
-For a rule-of-thumb on the classification use \emph{th_yule_q()},
-or convert the Yule Q to an Odds Ratio using \emph{es_convert(q, "yuleq", "or")} and
-use a rule of thumb for odds ratios (\emph{th_odds_ratio()}).
-
-Yule Q can also be converted to Yule Y using: \emph{es_convert(q, "yuleq", "yuley")}
 }
+\section{Alternatives}{
+
+
+The \emph{psych} library has a function that also shows Yule Q: \emph{Yule()}
+}
+
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_yule_q(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_yule_q(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
@@ -50,10 +57,11 @@ Pearson, K. (1900). Mathematical contributions to the theory of evolution. VII. 
 
 Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. \emph{Philosophical Transactions of the Royal Society of London}, 194, 257–319. https://doi.org/10.1098/rsta.1900.0019
 }
+\seealso{
+\code{\link{th_yule_q}}, rules of thumb for Yule Q
+
+\code{\link{es_convert}}, to convert Yule Q to an Odds Ratio or Yule Y.
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
