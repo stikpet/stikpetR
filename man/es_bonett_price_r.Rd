@@ -4,14 +4,20 @@
 \alias{es_bonett_price_r}
 \title{Bonett and Price rho}
 \usage{
-es_bonett_price_r(var1, var2, version = 2)
+es_bonett_price_r(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  version = 2
+)
 }
 \arguments{
+\item{version}{c(1, 2) Optional either version 1 for rho, or version 2 (default) for rho-hat}
+
 \item{var1}{A vector with the binary data from the first variable}
 
 \item{var2}{A vector with the binary data from the second variable}
-
-\item{version}{c(1, 2) Optional either version 1 for rho, or version 2 (default) for rho-hat}
 }
 \value{
 Bonett and Price r

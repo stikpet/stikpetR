@@ -56,21 +56,16 @@
 #' es_bonett_price_r(bin1, bin2)
 #' 
 #' @export
-es_bonett_price_r <- function(var1, var2, version=2){
-  
-  data = data.frame(var1, var2)
-  
-  #remove missing values
-  data = na.omit(data)
+es_bonett_price_r <- function(field1, field2, categories1=NULL, categories2=NULL, version=2){
   
   #Create a cross table first
-  dataTable = table(data)
+  ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
   
   #store the individual cells
-  a = dataTable[1,1]
-  b = dataTable[1,2]
-  c = dataTable[2,1]
-  d = dataTable[2,2]
+  a = ct[1,1]
+  b = ct[1,2]
+  c = ct[2,1]
+  d = ct[2,2]
   
   #the row totals
   rowTots <- margin.table(ct, 1)
