@@ -19,14 +19,14 @@ es_phi(field1, field2, categories1 = NULL, categories2 = NULL)
 phi coefficient
 }
 \description{
-Pearson/Yule Phi Coefficient
-}
-\details{
+An effect size measure for two binary variables.
+
 the Pearson Phi coefficient (Pearson, 1900, p. 12), is the same as Yule's Phi (Yule, 1912, p. 596)
-Cole's C2 (Cole, 1949, p. 415) and Cohen's w (Cohen, 1988, p. 216). It is also sometimes referred to as the Mean Square Contingency.
+Cole's C2 (Cole, 1949, p. 415) and Cohen's w (Cohen, 1988, p. 216). The squared value is also referred to as the Mean Square Contingency (Pearson, 1904, p.6).
 
 This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated.
-
+}
+\details{
 The formula used is (Pearson, 1900, p. 12):
 \deqn{\phi = \frac{a\times d - b\times c}{\sqrt{R_1\times R_2 \times C_1 \times C_2}}}
 
@@ -40,13 +40,17 @@ The formula used is (Pearson, 1900, p. 12):
 \item \eqn{C_i} the sum of counts in the i-th column
 }
 
+The formula is also sometimes expressed with a \eqn{\chi^2} value (Pearson, 1904, p.6; Cohen, 1988, p. 216):
+
+\deqn{\phi = \sqrt{\frac{\chi^2}{n}}}
+
 Note that Cohen w did not limit the size of the table, but uses the same formula.
-For classification/qualification the \emph{th_cohen_w(phi)} function could be used.
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_phi(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_phi(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
@@ -58,10 +62,9 @@ Pearson, K. (1900). Mathematical Contributions to the Theory of Evolution. VII. 
 
 Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579–652. https://doi.org/10.2307/2340126
 }
+\seealso{
+\code{\link{th_cohen_w}}, rules of thumb for Cohen w
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

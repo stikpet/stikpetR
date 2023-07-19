@@ -34,8 +34,16 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 
 
 #' Tetrachoric Correlation Coefficient
-#' 
 #' @importFrom fMultivar pnorm2d
+#' 
+#' @description 
+#' In essence this attempts to mimic a correlation coefficient between two scale variables. It can be defined as "An estimate of the correlation between two random variables having a bivariate normal distribution, obtained from the information from a double dichotomy of their bivariate distribution" (Everitt, 2004, p. 372). 
+#' 
+#' This assumes the two binary variables have ‘hidden’ underlying normal distribution. If so, the combination of the two forms a bivariate normal distribution with a specific correlation between them. The quest is then to find the correlation, such that the cumulative density function of the z-values of the two marginal totals of the top-left cell (a) match that value.
+#' 
+#' This is quite tricky to do, so a few have proposed an approximation for this. These include Yule r (\code{\link{es_yule_r}}), Pearson Q4 (\code{\link{es_pearson_q4}}) and Q5 (\code{\link{es_pearson_q5}}), Camp (\code{\link{es_camp_r}}), Becker and Clogg (\code{\link{es_becker_clogg_r}}), and Bonett and Price (\code{\link{es_bonett_price_r}}).
+#' 
+#' Besides closed form approximation formula's, various algorithms have been designed as well. The three most often mentioned are Brown (1977), Kirk (1973), and Divgi (1979), available in this function.
 #' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
@@ -57,13 +65,6 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 #' 
 #' Flow charts of these algorithms can be found at https://peterstatistics.com/CrashCourse/3-TwoVarUnpair/BinBin/BinBin-2b-EffectSize.html
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Brown, M. B. (1977). Algorithm AS 116: The tetrachoric correlation and its asymptotic standard error. *Applied Statistics, 26*(3), 343. https://doi.org/10.2307/2346985
 #' 
@@ -71,10 +72,14 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
 #' 
 #' Kirk, D. B. (1973). On the numerical approximation of the bivariate normal (tetrachoric) correlation coefficient. *Psychometrika, 38*(2), 259–268. https://doi.org/10.1007/BF02291118
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' r_tetrachoric(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' r_tetrachoric(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, method="search"){

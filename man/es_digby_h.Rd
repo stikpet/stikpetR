@@ -19,7 +19,11 @@ es_digby_h(field1, field2, categories1 = NULL, categories2 = NULL)
 Digby H
 }
 \description{
-Digby H
+A measure of association between two binary variables.
+
+Yule Q and Yule Y can each be written in the format of:
+\deqn{\frac{OR^x - 1}{OR^x + 1}}
+With OR being the Odds Ratio. For Yule Q the \eqn{x=1} and for Yule Y \eqn{x=0.5}. Digby (1983, p. 754) showed that Yule’s Q consistently overestimates the association, while Yule’s Y underestimates it It seems that a better approximation might be somewhere between 0.5 and 1 as the power to use on the Odds Ratio. Digby proposed to use 0.75
 }
 \details{
 The formula used (Digby, 1983, pp. 753-754):
@@ -34,18 +38,15 @@ The formula used (Digby, 1983, pp. 753-754):
 }
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_digby_h(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_digby_h(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
 Digby, P. G. N. (1983). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 39}(3), 753–757. https://doi.org/10.2307/2531104
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

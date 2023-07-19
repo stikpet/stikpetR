@@ -19,11 +19,9 @@ es_yule_r(field1, field2, categories1 = NULL, categories2 = NULL)
 Yule r
 }
 \description{
-Yule r
+An approximation for the tetrachoric correlation coefficient, by adjusting Yule Q.
 }
 \details{
-This is an approximation for the tetrachoric correlation coefficient.
-
 The formula used is the one from Cole (1949, p. 416):
 \deqn{C_6 = \cos\left(\frac{\pi\times\sqrt{b\times c}}{\sqrt{a\times d} + \sqrt{b\times c}}\right)}
 
@@ -50,9 +48,10 @@ Although the original article has a small error in the equation (it divides the 
 Note that \eqn{r_{Yule} = Q_3 = C_6}
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_yule_r(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_yule_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
@@ -65,9 +64,5 @@ Walker, H. M., & Lev, J. (1953). Statistical inference. Holt. https://catalog.ha
 Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. \emph{Philosophical Transactions of the Royal Society of London, 194}, 257–319. https://doi.org/10.1098/rsta.1900.0019
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

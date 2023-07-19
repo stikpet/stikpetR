@@ -19,7 +19,11 @@ es_mcewen_michael(field1, field2, categories1 = NULL, categories2 = NULL)
 McEwen-Michael Coefficient
 }
 \description{
-McEwen-Michael Coefficient / Cole C3
+A measure of association between two binary variables.
+
+A problem with measures that use the Forbes coefficient or Odds Ratio is that if only one cell is very large compared to the others, or 0, the association will be quite large (close to -1 or 1). Michael and McEwen attempted to overcome this by adding a correction.
+
+Note that Cole (1949, p. 415) refers to this as C3. Cole (1949, p. 417) critized this approach and proposed some alternatives himself.
 }
 \details{
 The formula used (Michael, 1920, p. 57)):
@@ -31,13 +35,12 @@ The formula used (Michael, 1920, p. 57)):
 \item \eqn{c} the count in the bottom-left cell of the cross table
 \item \eqn{d} the count in the bottom-right cell of the cross table
 }
-
-Note that Cole (1949, p. 415) refers to this as C3.
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_mcewen_michael(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_mcewen_michael(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
@@ -46,9 +49,5 @@ Cole, L. C. (1949). The measurement of interspecific associaton. \emph{Ecology, 
 Michael, E. L. (1920). Marine Ecology and the coefficient of association: A plea in behalf of quantitative biology. \emph{Journal of Ecology, 8}(1), 54–59. https://doi.org/10.2307/2255213
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

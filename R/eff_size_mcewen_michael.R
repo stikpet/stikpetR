@@ -1,5 +1,12 @@
 #' McEwen-Michael Coefficient / Cole C3
 #' 
+#' @description 
+#' A measure of association between two binary variables.
+#' 
+#' A problem with measures that use the Forbes coefficient or Odds Ratio is that if only one cell is very large compared to the others, or 0, the association will be quite large (close to -1 or 1). Michael and McEwen attempted to overcome this by adding a correction.
+#' 
+#' Note that Cole (1949, p. 415) refers to this as C3. Cole (1949, p. 417) critized this approach and proposed some alternatives himself.
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
@@ -18,24 +25,19 @@
 #' \item \eqn{d} the count in the bottom-right cell of the cross table 
 #' }
 #' 
-#' Note that Cole (1949, p. 415) refers to this as C3.
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Cole, L. C. (1949). The measurement of interspecific associaton. *Ecology, 30*(4), 411–424. https://doi.org/10.2307/1932444
 #' 
 #' Michael, E. L. (1920). Marine Ecology and the coefficient of association: A plea in behalf of quantitative biology. *Journal of Ecology, 8*(1), 54–59. https://doi.org/10.2307/2255213
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_mcewen_michael(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_mcewen_michael(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_mcewen_michael <- function(field1, field2, categories1=NULL, categories2=NULL){

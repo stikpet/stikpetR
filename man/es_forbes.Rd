@@ -19,7 +19,12 @@ es_forbes(field1, field2, categories1 = NULL, categories2 = NULL)
 Forbes Coefficient
 }
 \description{
-Forbes Coefficient
+An effect size measure for two binary variables.
+
+A measure for the association between two binary variables. If all values are equal in the cross table, there is no association. Forbes uses that if all values are the same, then:
+\deqn{1 = \frac{\left(a+b\right)\times\left(a+c\right)}{n}}
+
+While the above equation would result in 0 or 2 if there is a perfect association (i.e. b or c is 0).
 }
 \details{
 The formula used (Forbes, 1907, p. 279):
@@ -34,25 +39,17 @@ The formula used (Forbes, 1907, p. 279):
 \item \eqn{R_1} the sum of counts in the 1st row
 \item \eqn{C_1} the sum of counts in the 1st column
 }
-
-The coefficient has a value of 1 if there is no association, while it has a value of 0 or 2 when there is a perfect one.
-To adjust to the more traditional range of -1 to 1, Cole 1 simply subtracts one from the Forbes coefficient.
-
-Note that Alroy added an adjustment to Forbes F, see \emph{es_alroy_f()} for this adjusted version.
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_forbes(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_forbes(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
 Forbes, S. A. (1907). On the local distribution of certain Illinois fishes: An essay in statistical ecology. \emph{Illinois Natural History Survey Bulletin, 7}(8), 273–303.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

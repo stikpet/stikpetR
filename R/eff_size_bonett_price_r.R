@@ -1,4 +1,6 @@
 #' Bonett and Price rho
+#' @description
+#' An approximation for the tetrachoric correlation coefficient. 
 #' 
 #' @param var1 A vector with the binary data from the first variable
 #' @param var2 A vector with the binary data from the second variable
@@ -33,27 +35,17 @@
 #' \item \eqn{n} the sum of all counts
 #' }
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. *Journal of Educational and Behavioral Statistics, 30*(2), 213–225. https://doi.org/10.3102/10769986030002213
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", 
-#' "female","female","female", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
-#' "nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
-#' "other", "other", "other", "other", "other", "other", "other", "other", "other", 
-#' "other", "other", "other", "other", "other", "other")
-#' es_bonett_price_r(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_bonett_price_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_bonett_price_r <- function(field1, field2, categories1=NULL, categories2=NULL, version=2){

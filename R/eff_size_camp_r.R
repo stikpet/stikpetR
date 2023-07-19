@@ -1,5 +1,8 @@
 #' Camp r
 #' 
+#' @description
+#' An approximation for the tetrachoric correlation coefficient. 
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
@@ -8,8 +11,6 @@
 #' @return Camp r
 #' 
 #' @details
-#' This is an approximation for a tetrachoric correlation coefficient.
-#' 
 #' Camp (1934, pp. 309) describes the following steps for the calculation:
 #' Step 1: If total of column 1 (C1) is less than column 2 (C2), swop the two columns
 #' 
@@ -45,22 +46,19 @@
 #' 
 #' Cureton (1968) describes quite a few shortcomings with this approximation, and circumstances when it might be appropriate.
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Camp, B. H. (1934). *Mathematical part of elementary statistics*. D.C. Heath and Company, London.
 #' 
 #' Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. *Educational and Psychological Measurement, 28*(2), 239–244. https://doi.org/10.1177/001316446802800202
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_camp_r(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_camp_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL){

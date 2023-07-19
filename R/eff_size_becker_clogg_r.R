@@ -1,5 +1,8 @@
 #' Becker and Clogg rho
 #' 
+#' @description
+#' An approximation for the tetrachoric correlation coefficient. 
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
@@ -9,8 +12,6 @@
 #' @return Becker and Clogg r
 #' 
 #' @details 
-#' An approximation to the tetrachoric correlation coefficient.
-#' 
 #' Version 1 will calculate:
 #' \deqn{\rho^* = \frac{g-1}{g+1}}
 #' 
@@ -41,27 +42,17 @@
 #' 
 #' These formulas can be found in Becker and Clogg (1988, pp. 410-412)
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. *Sociological Methods & Research, 16*(3), 407–424. https://doi.org/10.1177/0049124188016003003
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", 
-#' "female","female","female", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-#' "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl",
-#' "nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
-#' "other", "other", "other", "other", "other", "other", "other", "other", "other", 
-#' "other", "other", "other", "other", "other", "other")
-#' es_becker_clogg_r(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_becker_clogg_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_becker_clogg_r <- function(field1, field2, categories1=NULL, categories2=NULL, version=1){

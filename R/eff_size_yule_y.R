@@ -1,5 +1,8 @@
 #' Yule's Y / Coefficient of Colligation
 #' 
+#' @description
+#' A measure of association between two binary variables. This method is based on the Odds Ratio. It converts the sample data cross table to a similar one but having the diagonal values the same, while keeping the same odds ratio as the original.
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
@@ -12,6 +15,7 @@
 #' \deqn{Y = \frac{\sqrt{a\times d} - \sqrt{b\times c}}{\sqrt{a\times d} + \sqrt{b\times c}}}
 #' 
 #' *Symbols used:*
+#' 
 #' \itemize{
 #' \item \eqn{a} the count in the top-left cell of the cross table 
 #' \item \eqn{b} the count in the top-right cell of the cross table 
@@ -19,28 +23,22 @@
 #' \item \eqn{d} the count in the bottom-right cell of the cross table 
 #' }
 #' 
-#' Yule Y can be converted to Yule Q using: *es_convert(q, "yuley", "yuleq")*
+#' Yule Y can be converted to Yule Q for which rules-of-thumb (*th_yule_q(q)*) can be used, or converted to an Odds Ratio using also with rules of thumb available via *th_odds_ratio(or)*
 #' 
-#' Rules-of-thumb for Yule Q can then be used for classification/qualification: *th_yule_q(q)*
-#' 
-#' Yule Y can be converted to Odds Ratio using: *es_convert(q, "yuley", "or")*
-#' 
-#' Rules-of-thumb for Odds Ratio can then be used for classification/qualification: *th_odds_ratio(or)*
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @seealso 
+#' \code{\link{es_convert}}, to convert Yule Y to Yule Q or an Odds Ratio.
 #'
 #' @references 
 #' Yule, G. U. (1912). On the methods of measuring association between two attributes. *Journal of the Royal Statistical Society, 75*(6), 579–652. https://doi.org/10.2307/2340126
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_yule_y(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_yule_y(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_yule_y <- function(field1, field2, categories1=NULL, categories2=NULL){

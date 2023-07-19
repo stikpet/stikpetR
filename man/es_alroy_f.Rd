@@ -19,7 +19,9 @@ es_alroy_f(field1, field2, categories1 = NULL, categories2 = NULL)
 Alroy F
 }
 \description{
-Alroy's Forbes Adjustment
+A measure of association between two binary variables.
+
+An adjustment to the Forbes coefficient.
 }
 \details{
 The formula used (Alroy, 2015):
@@ -34,30 +36,17 @@ With:
 \item \eqn{c} the count in the bottom-left cell of the cross table
 \item \eqn{d} the count in the bottom-right cell of the cross table
 }
-
-Note Alroy refers to the Forbes coefficient as a measure of similarity.
-Alroy then sets out to improve the measure by disregarding the lower left value (d).
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", 
-"female","female","female", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
-"nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
-"other", "other", "other", "other", "other", "other", "other", "other", "other", 
-"other", "other", "other", "other", "other", "other")
-es_alroy_f(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_alroy_f(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
 Alroy, J. (2015). A new twist on a very old binary similarity coefficient. \emph{Ecology, 96}(2), 575–586. https://doi.org/10.1890/14-0471.1
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -19,11 +19,9 @@ es_camp_r(field1, field2, categories1 = NULL, categories2 = NULL)
 Camp r
 }
 \description{
-Camp r
+An approximation for the tetrachoric correlation coefficient.
 }
 \details{
-This is an approximation for a tetrachoric correlation coefficient.
-
 Camp (1934, pp. 309) describes the following steps for the calculation:
 Step 1: If total of column 1 (C1) is less than column 2 (C2), swop the two columns
 
@@ -60,9 +58,10 @@ Step 7: Calculate \eqn{r_t = \frac{m}{\sqrt{1+\phi\times m^2}}}
 Cureton (1968) describes quite a few shortcomings with this approximation, and circumstances when it might be appropriate.
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_camp_r(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_camp_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
@@ -71,9 +70,5 @@ Camp, B. H. (1934). \emph{Mathematical part of elementary statistics}. D.C. Heat
 Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. \emph{Educational and Psychological Measurement, 28}(2), 239–244. https://doi.org/10.1177/001316446802800202
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

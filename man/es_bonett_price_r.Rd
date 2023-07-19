@@ -23,7 +23,7 @@ es_bonett_price_r(
 Bonett and Price r
 }
 \description{
-Bonett and Price rho
+An approximation for the tetrachoric correlation coefficient.
 }
 \details{
 An approximation for the tetrachoric correlation coefficient.
@@ -54,25 +54,15 @@ with:
 }
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", 
-"female","female","female", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
-"male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
-"nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", 
-"other", "other", "other", "other", "other", "other", "other", "other", "other", 
-"other", "other", "other", "other", "other", "other")
-es_bonett_price_r(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_bonett_price_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
 Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. \emph{Journal of Educational and Behavioral Statistics, 30}(2), 213–225. https://doi.org/10.3102/10769986030002213
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

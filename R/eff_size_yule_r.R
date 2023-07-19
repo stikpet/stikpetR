@@ -1,5 +1,8 @@
 #' Yule r
 #' 
+#' @description
+#' An approximation for the tetrachoric correlation coefficient, by adjusting Yule Q.
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
@@ -7,8 +10,6 @@
 #' @return Yule r
 #' 
 #' @details 
-#' This is an approximation for the tetrachoric correlation coefficient.
-#' 
 #' The formula used is the one from Cole (1949, p. 416):
 #' \deqn{C_6 = \cos\left(\frac{\pi\times\sqrt{b\times c}}{\sqrt{a\times d} + \sqrt{b\times c}}\right)}
 #' 
@@ -34,13 +35,6 @@
 #' 
 #' Note that \eqn{r_{Yule} = Q_3 = C_6}
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Cole, L. C. (1949). The measurement of interspecific associaton. *Ecology, 30*(4), 411–424. https://doi.org/10.2307/1932444
 #' 
@@ -50,10 +44,14 @@
 #' 
 #' Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. *Philosophical Transactions of the Royal Society of London, 194*, 257–319. https://doi.org/10.1098/rsta.1900.0019
 #' 
-#' @examples 
-#' bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' es_yule_r(bin1, bin2)
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' es_yule_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
 es_yule_r <- function(field1, field2, categories1=NULL, categories2=NULL){

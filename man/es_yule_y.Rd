@@ -19,13 +19,14 @@ es_yule_y(field1, field2, categories1 = NULL, categories2 = NULL)
 Yule's Y
 }
 \description{
-Yule's Y / Coefficient of Colligation
+A measure of association between two binary variables. This method is based on the Odds Ratio. It converts the sample data cross table to a similar one but having the diagonal values the same, while keeping the same odds ratio as the original.
 }
 \details{
 The formula used (Yule, 1912, p. 592):
 \deqn{Y = \frac{\sqrt{a\times d} - \sqrt{b\times c}}{\sqrt{a\times d} + \sqrt{b\times c}}}
 
 \emph{Symbols used:}
+
 \itemize{
 \item \eqn{a} the count in the top-left cell of the cross table
 \item \eqn{b} the count in the top-right cell of the cross table
@@ -33,27 +34,21 @@ The formula used (Yule, 1912, p. 592):
 \item \eqn{d} the count in the bottom-right cell of the cross table
 }
 
-Yule Y can be converted to Yule Q using: \emph{es_convert(q, "yuley", "yuleq")}
-
-Rules-of-thumb for Yule Q can then be used for classification/qualification: \emph{th_yule_q(q)}
-
-Yule Y can be converted to Odds Ratio using: \emph{es_convert(q, "yuley", "or")}
-
-Rules-of-thumb for Odds Ratio can then be used for classification/qualification: \emph{th_odds_ratio(or)}
+Yule Y can be converted to Yule Q for which rules-of-thumb (\emph{th_yule_q(q)}) can be used, or converted to an Odds Ratio using also with rules of thumb available via \emph{th_odds_ratio(or)}
 }
 \examples{
-bin1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-bin2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-es_yule_y(bin1, bin2)
+#Example: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+es_yule_y(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
 Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579–652. https://doi.org/10.2307/2340126
 }
+\seealso{
+\code{\link{es_convert}}, to convert Yule Y to Yule Q or an Odds Ratio.
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
