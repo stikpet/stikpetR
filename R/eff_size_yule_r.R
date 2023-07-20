@@ -1,4 +1,4 @@
-#' Yule r
+#' Yule r / Pearson Q3 / Cole C6
 #' 
 #' @description
 #' An approximation for the tetrachoric correlation coefficient, by adjusting Yule Q.

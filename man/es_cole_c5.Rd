@@ -25,7 +25,8 @@ This is actually an adjustment of the contingency coefficient, by dividing it ov
 }
 \details{
 The formula used (Cole, 1949, p. 416):
-\deqn{C_5 = \frac{\sqrt{2}\times\left(a\times d - b\times c\right)}{\sqrt{\left(a\times d - b\times c\right)^2 + R1\times R2\times C1\times C2}}}
+\deqn{C_5 = \frac{\sqrt{2}\times\left(a\times d - b\times c\right)}{\sqrt{\left(a\times d - b\times c\right)^2 + R_1\times R_2\times C_1\times C_2}}}
+
 \emph{Symbols used:}
 \itemize{
 \item \eqn{a} the count in the top-left cell of the cross table

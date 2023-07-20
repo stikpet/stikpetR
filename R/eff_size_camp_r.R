@@ -7,6 +7,7 @@
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection and/or order for categories of field1
 #' @param categories2 : optional list with selection and/or order for categories of field2
+#' @param method : optional method to use. Either "cureton" (default), "camp1", or "camp2"
 #' 
 #' @return Camp r
 #' 
@@ -24,6 +25,16 @@
 #' Step 5: Calculate \eqn{m = \frac{p\times\left(1-p\right)\times\left(z_1 + z_2\right)}{y}}
 #' 
 #' Step 6: Find phi in a table of phi values
+#' 
+#' Camp suggested for a very basic approximation to simply use \eqn{\phi=1}.
+#' 
+#' For a better approximation Camp made the following table:
+#' 
+#' | p | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 |
+#' |---|-----|-----|-----|-----|-----|
+#' |phi|0.637|0.63|0.62|0.60|0.56|
+#' 
+#' Cureton (1968, p. 241) expanded on this table and produced:
 #' 
 #' | p | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
 #' |-----|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
@@ -61,7 +72,9 @@
 #' es_camp_r(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 #' 
 #' @export
-es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL){
+es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL, method=c("cureton", "camp1", "camp2")){
+  
+  if (length(method)>1){method="cureton"}
   
   #Create a cross table first
   ct = tab_cross(field1, field2, order1=categories1, order2=categories2)
@@ -119,11 +132,21 @@ es_camp_r <- function(field1, field2, categories1=NULL, categories2=NULL){
   m = p*(1-p)*(z1+z2)/y
   
   #step 6: find phi in table of phi-values
-  phiValues = data.frame("0.5" = c(0.637, 0.636, 0.636, 0.635, 0.635, 0.634, 0.634, 0.633, 0.633, 0.632, 0.631), "0.6" = c(0.631, 0.631, 0.63, 0.629, 0.628, 0.627, 0.626, 0.625, 0.624, 0.622, 0.621), "0.7" = c(0.621, 0.62, 0.618, 0.616, 0.614, 0.612, 0.61, 0.608, 0.606, 0.603, 0.6), "0.8" = c(0.6, 0.597, 0.594, 0.591, 0.587, 0.583, 0.579, 0.574, 0.569, 0.564, 0.559))
-  phi = phiValues[round(p*100,0)-floor(p*10)*10+1, paste("X" ,floor(p*10)/10, sep="")]
+  if (method=="camp1"){
+    phi = 1
+  }
+  else if (method=="camp2"){
+    phiValues = data.frame("0.5" = 0.637, "0.6" = 0.63, "0.7" = 0.62, "0.8" = 0.6, "0.9" = 0.56)
+    phi = phiValues[paste("X" ,floor(p*10)/10, sep="")]
+    
+  }
+  else {
+    phiValues = data.frame("0.5" = c(0.637, 0.636, 0.636, 0.635, 0.635, 0.634, 0.634, 0.633, 0.633, 0.632, 0.631), "0.6" = c(0.631, 0.631, 0.63, 0.629, 0.628, 0.627, 0.626, 0.625, 0.624, 0.622, 0.621), "0.7" = c(0.621, 0.62, 0.618, 0.616, 0.614, 0.612, 0.61, 0.608, 0.606, 0.603, 0.6), "0.8" = c(0.6, 0.597, 0.594, 0.591, 0.587, 0.583, 0.579, 0.574, 0.569, 0.564, 0.559))
+    phi = phiValues[round(p*100,0)-floor(p*10)*10+1, paste("X" ,floor(p*10)/10, sep="")]
+  }
   
   #step 7: calculate r
-  r = switch * m/(1+phi*m**2)
+  r = switch * m/(1+phi*m**2)**0.5
   
   return(r)
 }

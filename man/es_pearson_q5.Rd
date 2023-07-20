@@ -16,7 +16,7 @@ es_pearson_q5(field1, field2, categories1 = NULL, categories2 = NULL)
 \item{categories2}{: optional list with selection and/or order for categories of field2}
 }
 \value{
-Pearson Q4
+Pearson Q5
 }
 \description{
 An approximation for the tetrachoric correlation coefficient.

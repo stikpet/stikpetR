@@ -2,7 +2,7 @@
 % Please edit documentation in R/eff_size_yule_r.R
 \name{es_yule_r}
 \alias{es_yule_r}
-\title{Yule r}
+\title{Yule r / Pearson Q3 / Cole C6}
 \usage{
 es_yule_r(field1, field2, categories1 = NULL, categories2 = NULL)
 }

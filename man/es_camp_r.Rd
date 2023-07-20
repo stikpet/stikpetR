@@ -4,7 +4,13 @@
 \alias{es_camp_r}
 \title{Camp r}
 \usage{
-es_camp_r(field1, field2, categories1 = NULL, categories2 = NULL)
+es_camp_r(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  method = c("cureton", "camp1", "camp2")
+)
 }
 \arguments{
 \item{field1}{: dataframe field with categories for the rows}
@@ -14,6 +20,8 @@ es_camp_r(field1, field2, categories1 = NULL, categories2 = NULL)
 \item{categories1}{: optional list with selection and/or order for categories of field1}
 
 \item{categories2}{: optional list with selection and/or order for categories of field2}
+
+\item{method}{: optional method to use. Either "cureton" (default), "camp1", or "camp2"}
 }
 \value{
 Camp r
@@ -34,7 +42,17 @@ Step 4: Determine y the normal ordinate corresponding to \eqn{z_3} (the height o
 
 Step 5: Calculate \eqn{m = \frac{p\times\left(1-p\right)\times\left(z_1 + z_2\right)}{y}}
 
-Step 6: Find phi in a table of phi values\tabular{llllllllllll}{
+Step 6: Find phi in a table of phi values
+
+Camp suggested for a very basic approximation to simply use \eqn{\phi=1}.
+
+For a better approximation Camp made the following table:\tabular{llllll}{
+   p \tab 0.5 \tab 0.6 \tab 0.7 \tab 0.8 \tab 0.9 \cr
+   phi \tab 0.637 \tab 0.63 \tab 0.62 \tab 0.60 \tab 0.56 \cr
+}
+
+
+Cureton (1968, p. 241) expanded on this table and produced:\tabular{llllllllllll}{
    p \tab 0 \tab 1 \tab 2 \tab 3 \tab 4 \tab 5 \tab 6 \tab 7 \tab 8 \tab 9 \tab 10 \cr
    0.5 \tab 0.637 \tab 0.636 \tab 0.636 \tab 0.635 \tab 0.635 \tab 0.634 \tab 0.634 \tab 0.633 \tab 0.633 \tab 0.632 \tab 0.631 \cr
    0.6 \tab 0.631 \tab 0.631 \tab 0.630 \tab 0.629 \tab 0.628 \tab 0.627 \tab 0.626 \tab 0.625 \tab 0.624 \tab 0.622 \tab 0.621 \cr

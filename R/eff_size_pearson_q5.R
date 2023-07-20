@@ -8,7 +8,7 @@
 #' @param categories1 : optional list with selection and/or order for categories of field1
 #' @param categories2 : optional list with selection and/or order for categories of field2
 #' 
-#' @return Pearson Q4
+#' @return Pearson Q5
 #' 
 #' @details
 #' The formula used (Pearson, 1900, p. 16):

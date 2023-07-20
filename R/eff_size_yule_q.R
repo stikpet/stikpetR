@@ -1,4 +1,5 @@
-#' Yule Q
+#' Yule Q / Cole C4 / Pearson Q2
+#' 
 #' @description
 #' Yule Q as well as Yule Y measure how much bigger the diagonal top-left to bottom-right is, than top-right to bottom-left. If the two variables are paired it can be seen as the difference between the pairs that are in agreement with the ones that are in disagreement over the total number of pairs.
 #' 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/eff_size_phi.R
 \name{es_phi}
 \alias{es_phi}
-\title{Pearson/Yule Phi Coefficient}
+\title{Pearson/Yule Phi Coefficient / Cole C2 / Mean Square Contingency}
 \usage{
 es_phi(field1, field2, categories1 = NULL, categories2 = NULL)
 }
@@ -19,12 +19,11 @@ es_phi(field1, field2, categories1 = NULL, categories2 = NULL)
 phi coefficient
 }
 \description{
-An effect size measure for two binary variables.
+After performing chi-square test the question of the effect size comes up. An obvious candidate to use in a measure of effect size is the test statistic, the \eqn{\chi^2}. One of the earliest and often mentioned measure uses this: the phi coefficient (or mean square contingency). Both Yule (1912, p. 596) and Pearson (1900, p. 12) mention this measure, and Cole (1949, p. 415) refers to it as Cole C2. It is also the same as Cohen's w (Cohen, 1988, p. 216), but Cohen does not specify it to be only for 2x2 tables.
 
-the Pearson Phi coefficient (Pearson, 1900, p. 12), is the same as Yule's Phi (Yule, 1912, p. 596)
-Cole's C2 (Cole, 1949, p. 415) and Cohen's w (Cohen, 1988, p. 216). The squared value is also referred to as the Mean Square Contingency (Pearson, 1904, p.6).
+It is interesting that this gives the same result, as if you would assign a 0 and 1 to each of the two variables categories, and calculate the regular correlation coefficient.
 
-This is also the same result as if values 0 and 1 would be used for both variables, and the regular Pearson Correlation calculated.
+Pearson (1904, p. 6) calls the squared value (i.e. not taking the square root) the Mean Square Contingency.
 }
 \details{
 The formula used is (Pearson, 1900, p. 12):
@@ -59,6 +58,8 @@ Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} 
 Cole, L. C. (1949). The measurement of interspecific associaton. \emph{Ecology, 30}(4), 411–424. https://doi.org/10.2307/1932444
 
 Pearson, K. (1900). Mathematical Contributions to the Theory of Evolution. VII. On the Correlation of Characters not Quantitatively Measurable. \emph{Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character}, 195, 1–405.
+
+Pearson, K. (1904). \emph{Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation}. Dulau and Co.
 
 Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579–652. https://doi.org/10.2307/2340126
 }

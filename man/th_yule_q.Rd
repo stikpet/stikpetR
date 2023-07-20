@@ -12,10 +12,12 @@ th_yule_q(q, qual = "glen")
 \item{qual}{optional for which rule-of-thumb to use. Currently only "glen"}
 }
 \value{
-the qualification/classification
+A dataframe with:
+\item{classification}{the qualification of the effect size}
+\item{reference}{a reference for the rule of thumb used}
 }
 \description{
-Rules of thumb for Yule Q
+Simple function to use a rule-of-thumb for Yule Q effect size.
 }
 \details{
 Glen rule of thumb for Yule Q (2017):\tabular{ll}{
@@ -27,17 +29,16 @@ Glen rule of thumb for Yule Q (2017):\tabular{ll}{
 }
 }
 \examples{
-q = 0.4285714
+q = 0.6
 th_yule_q(q)
 
 }
 \references{
 Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 }
+\seealso{
+\code{\link{es_yule_q}}, to determine Yule Q
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
