@@ -1,7 +1,7 @@
 #' Butterfly Chart / Tornado Chart / Pyramid Chart
 #' 
 #' @importFrom ggplot2 ggplot
-#' @importFrom ggplot2 geom_dotplot
+#' @importFrom ggplot2 geom_bar
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 aes
 #' 
