@@ -35,6 +35,8 @@ It can be defined as “a bar chart for comparing the frequencies of a categoric
 }
 \examples{
 #Example 1: Clustered Bar Chart in percentages
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
 vi_bar_clustered(df1[['mar1']], df1[['sex']], percent="column")
 
 #Example 2: Specified order
