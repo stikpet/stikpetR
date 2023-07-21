@@ -8,6 +8,7 @@
 #' @importFrom ggplot2 guides
 #' @importFrom ggplot2 xlab
 #' @importFrom ggplot2 ylab
+#' @importFrom ggplot2 guide_legend
 #' 
 #' @description
 #' A special case of diverging bar charts when only comparing two categories. 
