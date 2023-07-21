@@ -4,6 +4,8 @@
 #' @importFrom ggplot2 geom_bar
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 aes
+#' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 guides
 #' 
 #' @description
 #' A special case of diverging bar charts when only comparing two categories. 
