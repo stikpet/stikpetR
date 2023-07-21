@@ -6,6 +6,8 @@
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 guides
+#' @importFrom ggplot2 xlab
+#' @importFrom ggplot2 ylab
 #' 
 #' @description
 #' A special case of diverging bar charts when only comparing two categories. 
