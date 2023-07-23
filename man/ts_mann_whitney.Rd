@@ -4,22 +4,41 @@
 \alias{ts_mann_whitney}
 \title{Mann-Whitney U Test}
 \usage{
-ts_mann_whitney(dataVar, groupVar, method = "exact", corr = TRUE)
+ts_mann_whitney(
+  catField,
+  ordField,
+  categories = NULL,
+  levels = NULL,
+  method = "exact",
+  cc = TRUE
+)
 }
 \arguments{
-\item{dataVar}{A vector with the scores data}
+\item{catField}{A vector or dataframe with the group data}
 
-\item{groupVar}{A vector with the group data}
+\item{ordField}{A vector or dataframe with the scores data}
+
+\item{categories}{: optional list with the two categories to use from catField. If not set the first two found will be used}
+
+\item{levels}{optional list with the scores in order}
 
 \item{method}{c("exact", "appr") exact method or normal approximation}
 
-\item{corr}{boolean to indicate the use of a continuity correction}
+\item{cc}{boolean to indicate the use of a continuity correction}
 }
 \value{
-dataframe with U, the test statistic, p-value, and the test used
+A dataframe with:
+\item{n}{the sample size}
+\item{U1}{the Mann-Whitney U score of the first category}
+\item{U2}{the Mann-Whitney U score of the second category}
+\item{statistic}{test statistic}
+\item{pValue}{significance (p-value)}
+\item{test}{description of the test used}
 }
 \description{
-Mann-Whitney U Test
+The Mann-Whitney U and Wilcoxon Rank Sum test are the same. Mann and Whitney simply expanded on the ideas from Wilcoxon.
+
+The test will compare the distribution of ranks between two categories. The assumption is that the two categories have the same mean rank (which often is stated simplified as having the same median in the population).
 }
 \details{
 The formula used is (Mann & Whitney, 1947, p. 51):
@@ -46,22 +65,31 @@ If a continuity correction is used the z-value is calculated using:
 }
 
 The ties correction (\eqn{T}) can be found in Lehmann and D'Abrera (1975, p. 20)
+
+For the exact distribution the Mann-Whitney-Wilcoxon distribution is used, from the \strong{pwilcox()} function from R.
+
+Wilcoxon (1945) had developed this test earlier for the case when both categories have the same sample size, and Mann and Whitney expanded on this.
 }
 \examples{
-scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-groups = c("A","A","A","B","B","B","B", NA, "C")
-ts_mann_whitney(scores, groups)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+myLevels = c('Not scientific at all', 'Not too scientific', 'Pretty scientific', 'Very scientific')
+ts_mann_whitney(df1['sex'], df1['accntsci'], levels=myLevels)
+
+#Example 2: vectors
+binary = c("apple", "apple", "apple", "peer", "peer", "peer", "peer")
+ordinal = c(4, 3, 1, 6, 5, 7, 2)
+ts_mann_whitney(binary, ordinal, categories=c("peer", "apple"))
 
 }
 \references{
 Lehmann, E. L., & D’Abrera, H. J. M. (1975). \emph{Nonparametrics: Statistical methods based on ranks}. Holden-Day.
 
 Mann, H. B., & Whitney, D. R. (1947). On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. \emph{The Annals of Mathematical Statistics, 18}(1), 50–60. https://doi.org/10.1214/aoms/1177730491
+
+Wilcoxon, F. (1945). Individual comparisons by ranking methods. \emph{Biometrics Bulletin, 1}(6), 80. https://doi.org/10.2307/3001968
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
