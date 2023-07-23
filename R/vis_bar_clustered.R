@@ -48,7 +48,7 @@ vi_bar_clustered <- function(field1,
                              order2=NULL, 
                              percent=c(NULL, "all", "row", "column")){
   
-  tab = tab_cross(field2, field1, order1=order2, order2=order1, percent=percent, totals="exclude")
+  tab = tab_cross(field1, field2, order1=order1, order2=order2, percent=percent, totals="exclude")
   
   barplot(tab, beside=TRUE,legend = rownames(tab))
   
