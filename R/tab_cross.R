@@ -73,12 +73,15 @@ tab_cross <- function(field1, field2, order1=NULL, order2=NULL, percent=c(NULL, 
   }
   
   #add margin totals if requested
-  if (totals!="exclude"){tab = addmargins(tab)}
+  f = 1
+  if (totals!="exclude"){
+    tab = addmargins(tab)
+    f = 2}
   
   #convert to proper percentages if requested
-  if (percent=="all"){tab = prop.table(tab)*4*100}
-  else if (percent=="row"){tab = prop.table(tab, 1)*2*100}
-  else if( percent=="column"){tab = prop.table(tab, 2)*2*100}
+  if (percent=="all"){tab = prop.table(tab)*f**2*100}
+  else if (percent=="row"){tab = prop.table(tab, 1)*f*100}
+  else if( percent=="column"){tab = prop.table(tab, 2)*f*100}
   
   
   return (tab)
