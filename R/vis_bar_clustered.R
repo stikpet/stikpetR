@@ -48,6 +48,8 @@ vi_bar_clustered <- function(field1,
                              order2=NULL, 
                              percent=c(NULL, "all", "row", "column")){
   
+  if (length(percent) > 1){percent="none"}
+  
   if (percent=="row"){percent="column"}
   else if (percent=="column"){percent="row"}
   

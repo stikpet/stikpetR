@@ -46,7 +46,12 @@
 #' tab_cross(df1[['mar1']], df1[['accntsci']], order2=order)
 #' 
 #' @export
-tab_cross <- function(field1, field2, order1=NULL, order2=NULL, percent=c(NULL, "all", "row", "column"), totals="exclude"){
+tab_cross <- function(field1, 
+                      field2, 
+                      order1=NULL, 
+                      order2=NULL, 
+                      percent=c(NULL, "all", "row", "column"), 
+                      totals="exclude"){
   
   #Set default value
   if (length(percent) > 1) {percent="none"}
