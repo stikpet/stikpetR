@@ -1,10 +1,23 @@
 #' Fligner-Policello Test
+#' @description
+#' An alternative for the more famous Mann-Whitney U test. The MWU test has as an assumption that the scores in the two categories have the same shape and have unequal variances (Fong & Huang, 2019). The Fligner-Policello test does not, although the distribution around their medians should be symmetric in the population Zaiontz (n.d.).
 #' 
-#' @param dataVar A vector with the scores data
-#' @param groupVar A vector with the group data
-#' @param ties boolean to indicate the use of a ties correction
-#' @param cc boolean to indicate the use of a continuity correction
-#' @return dataframe with the test statistic, p-value, and the test used
+#' Roughly put the assumption for this test is that the two categories have the same median in the population.
+#' 
+#' 
+#' @param catField A vector with the scores data
+#' @param ordField A vector with the group data
+#' @param categories optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.
+#' @param levels optional vector with the labels of the ordinal field in order.
+#' @param ties boolean to indicate the use of a ties correction. Default is TRUE
+#' @param cc boolean to indicate the use of a continuity correction. Default is FALSE
+#' 
+#' @returns
+#' A dataframe with:
+#' \item{n}{the sample size}
+#' \item{statistic}{test statistic}
+#' \item{p-value}{significance (p-value)}
+#' \item{test}{description of the test used}
 #' 
 #' @details
 #' The formula used is:
@@ -30,13 +43,6 @@
 #' 
 #' The test is described by Fligner and Policello (1981), and can also be found in Kloke and McKean (2015, p. 68)
 #' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' Fligner, M. A., & Policello, G. E. (1981). Robust rank procedures for the Behrens-Fisher problem. *Journal of the American Statistical Association, 76*(373), 162–168. https://doi.org/10.1080/01621459.1981.10477623
 #' 
@@ -44,85 +50,94 @@
 #' 
 #' Kloke, J., & McKean, J. W. (2015). *Nonparametric statistical methods using R*. CRC Press, Taylor & Francis.
 #' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @examples 
-#' scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-#' groups = c("A","A","A","B","B","B","B", NA, "C")
-#' ts_fligner_policello(scores, groups)
-#' ts_fligner_policello(scores, groups, ties=FALSE, cc=FALSE)
-#' ts_fligner_policello(scores, groups, ties=FALSE, cc=TRUE)
-#' ts_fligner_policello(scores, groups, ties=TRUE, cc=FALSE)
-#' ts_fligner_policello(scores, groups, ties=TRUE, cc=TRUE)
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' myLevels = c('Not scientific at all', 'Not too scientific', 'Pretty scientific', 'Very scientific')
+#' ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels)
+#' ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels, ties= FALSE, cc=TRUE)
+#' ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels, ties= TRUE, cc=FALSE)
+#' 
+#' #Example 2: vectors
+#' binary = c("apple", "apple", "apple", "peer", "peer", "peer", "peer")
+#' ordinal = c(4, 3, 1, 6, 5, 7, 2)
+#' ts_fligner_policello(binary, ordinal, categories=c("peer", "apple"))
 #' 
 #' @export
-ts_fligner_policello <- function(dataVar, groupVar, ties= TRUE, cc=FALSE){
+ts_fligner_policello <- function(catField, 
+                                 ordField, 
+                                 categories=NULL, 
+                                 levels=NULL, 
+                                 ties= TRUE, 
+                                 cc=FALSE){
   testUsed = "Fligner-Policello test"
   
-  #remove rows with missing values
-  df = data.frame(dataVar, groupVar)
-  df = na.omit(df)
-  colnames(df) = c("score", "group")
+  #create a cross table
+  ct = tab_cross(ordField, catField, order1 = levels, order2 = categories)
+  nr = nrow(ct)
   
-  data1 <- unlist(unname(split(df$score, df$group)[1]))
-  data2 <- unlist(unname(split(df$score, df$group)[2]))
+  fx = c()
+  fy = c()
   
-  n1 = c()
-  for (i in data1) {
-    s = 0
-    for (j in data2) {
-      if (i == j && ties) {
-        s = s + 0.5
-      } else if(i > j){
-        s = s + 1
-      }
+  if (ties) {
+    fx[1] = 0.5*ct[1,2]
+    fy[1] = 0.5*ct[1,1]
+  }
+  else{
+    fx[1] = 0
+    fy[1] = 0
+  }
+  
+  nx = fx[1] * ct[1,1]
+  ny = fy[1] * ct[1,2]
+  
+  n1 = ct[1,1]
+  n2 = ct[1,2]
+  
+  for (i in 2:nr){
+    fx[i] = fx[i-1] + ct[i-1,2]
+    fy[i] = fy[i - 1] + ct[i - 1, 1]
+    
+    if (ties){
+      fx[i] = fx[i] + 0.5 * ct[i, 2] - 0.5 * ct[i-1,2]
+      fy[i] = fy[i] + 0.5 * ct[i, 1] - 0.5 * ct[i - 1, 1]
     }
-    n1 = c(n1, s)
+    
+    nx = nx + fx[i] * ct[i, 1]
+    n1 = n1 + ct[i, 1]
+    
+    ny = ny + fy[i] * ct[i, 2] 
+    n2 = n2 + ct[i, 2] 
   }
   
-  n2 = c()
-  for (i in data2) {
-    s = 0
-    for (j in data1) {
-      if (i == j && ties) {
-        s = s + 0.5
-      } else if(i > j){
-        s = s + 1
-      }
-    }
-    n2 = c(n2, s)
+  MX = nx / n1
+  MY = ny / n2
+  
+  ssx = ssy = 0
+  for (i in 1:nr){
+    ssx = ssx + ct[i, 1] * (fx[i] - MX) ^ 2
+    ssy = ssy + ct[i, 2]  * (fy[i] - MY) ^ 2
   }
   
-  s1 = sum(n1)
-  s2 = sum(n2)
+  if (cc){num = abs(nx - ny) - 0.5}
+  else{num = nx - ny}
   
-  m1 = s1/length(n1)
-  m2 = s2/length(n2)
+  z = num / (2 * sqrt(ssx + ssy + MX * MY))
   
-  ss1 = sum((n1 - m1)^2)
-  ss2 = sum((n2 - m2)^2)
-  
-  se = sqrt(ss1 + ss2 + m1*m2)
-  num = (s2 - s1)/2
-  
-  if (cc) {
-    num = abs(num)-0.5
-  }
-  z = num/se
   pValue = 2*(1 - pnorm(abs(z)))
   
+  if (cc && ties){testUsed = "Fligner-Policello test, with continuity and ties correction"}
+  else if (cc){testUsed = "Fligner-Policello test, with continuity correction"}
+  else if (ties){testUsed = "Fligner-Policello test, with ties correction"}
+  else{testUsed = "Fligner-Policello test"}
   
-  if (cc && ties){
-    testUsed = paste0(testUsed, ", with continuity and ties correction")
-  }
-  else if (cc){
-    testUsed = paste0(testUsed, ", with continuity correction")
-  }
-  else if (ties){
-    testUsed = paste0(testUsed, ", with ties correction")
-  }
+  results <- data.frame(n1+n2, z, pValue, testUsed)
+  colnames(results) = c("n", "statistic", "p-value", "test")
   
-  statistic = z  
-  testResults <- data.frame(statistic, pValue, testUsed)
-  
-  return (testResults)
+  return (results)
   
 }

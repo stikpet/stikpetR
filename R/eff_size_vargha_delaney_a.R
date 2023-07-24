@@ -61,8 +61,3 @@ es_vargha_delaney_a <- function(dataVar, groupVar){
   return(A)
   
 }
-
-var1 = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-var2 = c("A","A","A","B","B","B","B", NA, "C")
-
-es_vargha_delaney_a(var1, var2)

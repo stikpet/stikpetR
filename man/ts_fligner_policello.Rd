@@ -4,22 +4,39 @@
 \alias{ts_fligner_policello}
 \title{Fligner-Policello Test}
 \usage{
-ts_fligner_policello(dataVar, groupVar, ties = TRUE, cc = FALSE)
+ts_fligner_policello(
+  catField,
+  ordField,
+  categories = NULL,
+  levels = NULL,
+  ties = TRUE,
+  cc = FALSE
+)
 }
 \arguments{
-\item{dataVar}{A vector with the scores data}
+\item{catField}{A vector with the scores data}
 
-\item{groupVar}{A vector with the group data}
+\item{ordField}{A vector with the group data}
 
-\item{ties}{boolean to indicate the use of a ties correction}
+\item{categories}{optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.}
 
-\item{cc}{boolean to indicate the use of a continuity correction}
+\item{levels}{optional vector with the labels of the ordinal field in order.}
+
+\item{ties}{boolean to indicate the use of a ties correction. Default is TRUE}
+
+\item{cc}{boolean to indicate the use of a continuity correction. Default is FALSE}
 }
 \value{
-dataframe with the test statistic, p-value, and the test used
+A dataframe with:
+\item{n}{the sample size}
+\item{statistic}{test statistic}
+\item{p-value}{significance (p-value)}
+\item{test}{description of the test used}
 }
 \description{
-Fligner-Policello Test
+An alternative for the more famous Mann-Whitney U test. The MWU test has as an assumption that the scores in the two categories have the same shape and have unequal variances (Fong & Huang, 2019). The Fligner-Policello test does not, although the distribution around their medians should be symmetric in the population Zaiontz (n.d.).
+
+Roughly put the assumption for this test is that the two categories have the same median in the population.
 }
 \details{
 The formula used is:
@@ -46,13 +63,18 @@ In case of a tie correction (Hollander et al., 2014, p. 146):
 The test is described by Fligner and Policello (1981), and can also be found in Kloke and McKean (2015, p. 68)
 }
 \examples{
-scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-groups = c("A","A","A","B","B","B","B", NA, "C")
-ts_fligner_policello(scores, groups)
-ts_fligner_policello(scores, groups, ties=FALSE, cc=FALSE)
-ts_fligner_policello(scores, groups, ties=FALSE, cc=TRUE)
-ts_fligner_policello(scores, groups, ties=TRUE, cc=FALSE)
-ts_fligner_policello(scores, groups, ties=TRUE, cc=TRUE)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+myLevels = c('Not scientific at all', 'Not too scientific', 'Pretty scientific', 'Very scientific')
+ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels)
+ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels, ties= FALSE, cc=TRUE)
+ts_fligner_policello(df1[['sex']], df1[['accntsci']], levels = myLevels, ties= TRUE, cc=FALSE)
+
+#Example 2: vectors
+binary = c("apple", "apple", "apple", "peer", "peer", "peer", "peer")
+ordinal = c(4, 3, 1, 6, 5, 7, 2)
+ts_fligner_policello(binary, ordinal, categories=c("peer", "apple"))
 
 }
 \references{
@@ -63,9 +85,5 @@ Hollander, M., Wolfe, D. A., & Chicken, E. (2014). \emph{Nonparametric statistic
 Kloke, J., & McKean, J. W. (2015). \emph{Nonparametric statistical methods using R}. CRC Press, Taylor & Francis.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
