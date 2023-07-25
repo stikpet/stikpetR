@@ -40,6 +40,13 @@ This uses (Borenstein et. al, 2009, p. 3):
 
 \deqn{OR = e^{\frac{d\times\pi}{\sqrt{3}}}}
 
+\strong{Cohen d to Rank Biserial (Cliff delta)}
+
+fr = "cohend", to = "rb"
+
+This uses (Marfo & Okyere, 2019, p. 4):
+\deqn{r_b = \Phi\left(\frac{d}{\sqrt{2}}\right)}
+
 \strong{COHEN D'}
 
 \strong{Convert a Cohen d' to Cohen d}
@@ -158,6 +165,31 @@ fr="omegasq", to="epsilonsq", ex1=MS_w, ex2 = SS_t
 
 This uses:
 \deqn{\epsilon^2 = \frac{\hat{\omega}^2}{1 - \frac{MS_w}{SS_t + MS_w}}}
+
+\strong{RANK BISERIAL (CLIFF DELTA)}
+
+\strong{Rank Biserial (Cliff delta) to Cohen d}
+
+fr = "rb", to = "cohend"
+
+This uses (Marfo & Okyere, 2019, p. 4):
+\deqn{d =\sqrt{2} \times \Phi^{-1}\left(r_b\right)}
+
+\strong{Rank Biserial (Cliff delta) to Vargha-Delaney A}
+
+fr = "rb", to = "vda"
+
+This uses:
+\deqn{r_b = 2\times A - 1}
+
+\strong{VARGHA-DELANEY A}
+
+\strong{Vargha-Delaney A to Rank Biserial (Cliff delta)}
+
+fr = "vda", to = "rb"
+
+This uses:
+\deqn{A = \frac{r_b + 1}{2}}
 
 \strong{YULE Q}
 

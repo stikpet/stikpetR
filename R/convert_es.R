@@ -27,9 +27,15 @@
 #' This uses (Borenstein et. al, 2009, p. 3):
 #'
 #' \deqn{OR = e^{\frac{d\times\pi}{\sqrt{3}}}}
-#'
-
-#'
+#' 
+#' **Cohen d to Rank Biserial (Cliff delta)**
+#' 
+#' fr = "cohend", to = "rb"
+#' 
+#' This uses (Marfo & Okyere, 2019, p. 4):
+#' \deqn{r_b = \Phi\left(\frac{d}{\sqrt{2}}\right)}
+#' 
+#' 
 #' **COHEN D'**
 #'
 #' **Convert a Cohen d' to Cohen d**
@@ -113,7 +119,8 @@
 #'
 #' This uses (Johnston et al., 2006, p. 413):
 #' \deqn{w = \sqrt{\frac{E\times\left(1 - \right)}{q}}}
-#'
+#' 
+#' 
 #' **ODDS RATIO**
 #'
 #' **Odds Ratio to Cohen d**
@@ -151,8 +158,32 @@
 #'
 #' This uses:
 #' \deqn{\epsilon^2 = \frac{\hat{\omega}^2}{1 - \frac{MS_w}{SS_t + MS_w}}}
-#'
-#'
+#' 
+#' **RANK BISERIAL (CLIFF DELTA)**
+#' 
+#' **Rank Biserial (Cliff delta) to Cohen d**
+#' 
+#' fr = "rb", to = "cohend"
+#' 
+#' This uses (Marfo & Okyere, 2019, p. 4):
+#' \deqn{d =\sqrt{2} \times \Phi^{-1}\left(r_b\right)}
+#' 
+#' **Rank Biserial (Cliff delta) to Vargha-Delaney A**
+#' 
+#' fr = "rb", to = "vda"
+#' 
+#' This uses:
+#' \deqn{r_b = 2\times A - 1}
+#' 
+#' **VARGHA-DELANEY A**
+#' 
+#' **Vargha-Delaney A to Rank Biserial (Cliff delta)**
+#' 
+#' fr = "vda", to = "rb"
+#' 
+#' This uses:
+#' \deqn{A = \frac{r_b + 1}{2}}
+#' 
 #' **YULE Q**
 #'
 #' **Yule Q to Odds Ratio**
@@ -219,6 +250,9 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
     else{res = exp(es*pi/sqrt(3))}
   }
   
+  #Cohen d to Rank Biserial (Cliff delta)
+  else if (fr=="cohend" && to=="rb"){res = pnorm(es/sqrt(2))}
+  
   #COHEN F
   #Cohen f to eta squared
   else if(fr=="cohenf" && to=="etasq") {res = es**2/(1 + es**2)}
@@ -278,6 +312,8 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
 
 
   #RANK BISERIAL
+  #Rank Biserial (Cliff delta) to Cohen d
+  else if (fr=="rb" && to=="cohend"){res = qnorm(es)*sqrt(2)}
   #Rank Biserial to Vargha and Delaney A
   else if(fr=="rb" && to=="vda") {res = (es + 1)/2}
 
