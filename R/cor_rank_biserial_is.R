@@ -1,10 +1,14 @@
 #' (Glass) Rank Biserial Correlation / Cliff Delta
-#' 
+#' @description 
 #' This function will calculate Rank biserial correlation coefficient (independent-samples)
 #' 
-#' @param dataVar vector with the scores data
-#' @param groupVar vector with the group data
-#' @return Rank Biserial Correlation value
+#' @param catField A vector with the scores data
+#' @param ordField A vector with the group data
+#' @param categories optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.
+#' @param levels optional vector with the labels of the ordinal field in order.
+#' 
+#' @returns
+#' (Glass) Rank Biserial Correlation / Cliff Delta value
 #' 
 #' @details
 #' 
@@ -21,17 +25,15 @@
 #' \item \eqn{n_i} the number of scores in category i
 #' }
 #' 
-#' Glass (1966) showed that the formula was the same as that of the 
-#' rank biserial from Cureton (1956). Cliff's delta (Cliff, 1993, p. 495) 
-#' is actually also the same.
+#' Glass (1966) showed that the formula was the same as that of the rank biserial from Cureton (1956). Cliff's delta (Cliff, 1993, p. 495) is actually also the same.
 #' 
-#' @author 
-#' P. Stikker
+#' The rank biserial can be converted to a Cohen d (using the **es_convert()** function), and then the rules-of-thumb for Cohen d could be used (**th_cohen_d()**)
 #' 
-#' Please visit: https://PeterStatistics.com
+#' @seealso 
+#' \code{\link{es_convert}}, to convert to Cohen d, use `fr="rb", to="cohend"`.
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
+#' \code{\link{th_cohen_d}}, rules of thumb for Cohen d
+#' 
 #' @references 
 #' Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. *Psychological Bulletin, 114*(3), 494–509. https://doi.org/10.1037/0033-2909.114.3.494
 #' 
@@ -39,35 +41,69 @@
 #' 
 #' Glass, G. V. (1966). Note on rank biserial correlation. *Educational and Psychological Measurement, 26*(3), 623–631. https://doi.org/10.1177/001316446602600307
 #' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @examples 
-#' scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-#' groups = c("A","A","A","B","B","B","B", NA, "C")
-#' r_rank_biserial_is(scores, groups)
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' myLevels = c('Not scientific at all', 'Not too scientific', 'Pretty scientific', 'Very scientific')
+#' r_rank_biserial_is(df1['sex'], df1['accntsci'], levels=myLevels)
+#' 
+#' #Example 2: vectors
+#' binary = c("apple", "apple", "apple", "peer", "peer", "peer", "peer")
+#' ordinal = c(4, 3, 1, 6, 5, 7, 2)
+#' r_rank_biserial_is(binary, ordinal, categories=c("peer", "apple"))
 #' 
 #' @export
-r_rank_biserial_is <- function(dataVar, groupVar){
-  
-  #make sure data is numeric
-  scores = as.numeric(dataVar)
+r_rank_biserial_is <- function(catField, ordField, categories=NULL, levels=NULL){
   
   #remove rows with missing values
-  df = data.frame(scores, groupVar)
+  df = data.frame(ordField, catField)
   df = na.omit(df)
   colnames(df) = c("score", "group")
   
-  n = length(df$group)
-  n1 = sum(df$group==df$group[1])
-  n2 = n - n1
+  #replace the ordinal values if levels is provided
+  if (!is.null(levels)){
+    df$score = factor(df$score, ordered = TRUE, levels = levels)        
+  }
+  df$score = as.numeric(df$score)
   
-  rankScores = rank(df$score)
+  #the two categories
+  if (!is.null(categories)){
+    cat1 = categories[1]
+    cat2 = categories[2]
+  }
+  else {
+    cat1 = names(table(df$group))[1]
+    cat2 = names(table(df$group))[2]
+  }
   
-  R1 = sum(rankScores[df$group==df$group[1]])
-  R1a = R1 / n1
-  R2 = n*(n+1)/2 - R1
-  R2a = R2 / n2
+  #seperate the scores for each category
+  scoresCat1 = unname(unlist((subset(df, group == cat1)[1])))
+  scoresCat2 = unname(unlist((subset(df, group == cat2)[1])))
   
-  rb = 2*(R1a - R2a)/n
+  n1 = length(scoresCat1)
+  n2 = length(scoresCat2)    
+  n = n1 + n2
   
-  return(rb)
+  #combine this into one long list
+  allScores = c(scoresCat1, scoresCat2)
   
+  #get the ranks
+  allRanks = rank(allScores)
+  
+  #get the ranks per category
+  cat1Ranks = allRanks[1:n1]
+  cat2Ranks = allRanks[(n1+1):n]
+  
+  r1 = sum(cat1Ranks)
+  r2 = sum(cat2Ranks)
+  
+  r1Avg = r1/n1
+  r2Avg = r2/n2
+  
+  rb = 2*(r1Avg - r2Avg)/n  
+  return(rb)  
 }

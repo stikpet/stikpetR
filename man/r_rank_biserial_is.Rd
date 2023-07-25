@@ -4,15 +4,19 @@
 \alias{r_rank_biserial_is}
 \title{(Glass) Rank Biserial Correlation / Cliff Delta}
 \usage{
-r_rank_biserial_is(dataVar, groupVar)
+r_rank_biserial_is(catField, ordField, categories = NULL, levels = NULL)
 }
 \arguments{
-\item{dataVar}{vector with the scores data}
+\item{catField}{A vector with the scores data}
 
-\item{groupVar}{vector with the group data}
+\item{ordField}{A vector with the group data}
+
+\item{categories}{optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.}
+
+\item{levels}{optional vector with the labels of the ordinal field in order.}
 }
 \value{
-Rank Biserial Correlation value
+(Glass) Rank Biserial Correlation / Cliff Delta value
 }
 \description{
 This function will calculate Rank biserial correlation coefficient (independent-samples)
@@ -31,14 +35,21 @@ With:
 \item \eqn{n_i} the number of scores in category i
 }
 
-Glass (1966) showed that the formula was the same as that of the
-rank biserial from Cureton (1956). Cliff's delta (Cliff, 1993, p. 495)
-is actually also the same.
+Glass (1966) showed that the formula was the same as that of the rank biserial from Cureton (1956). Cliff's delta (Cliff, 1993, p. 495) is actually also the same.
+
+The rank biserial can be converted to a Cohen d (using the \strong{es_convert()} function), and then the rules-of-thumb for Cohen d could be used (\strong{th_cohen_d()})
 }
 \examples{
-scores = c(5, 12, 3, 4, 6, 1, 11, 13, NA)
-groups = c("A","A","A","B","B","B","B", NA, "C")
-r_rank_biserial_is(scores, groups)
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+myLevels = c('Not scientific at all', 'Not too scientific', 'Pretty scientific', 'Very scientific')
+r_rank_biserial_is(df1['sex'], df1['accntsci'], levels=myLevels)
+
+#Example 2: vectors
+binary = c("apple", "apple", "apple", "peer", "peer", "peer", "peer")
+ordinal = c(4, 3, 1, 6, 5, 7, 2)
+r_rank_biserial_is(binary, ordinal, categories=c("peer", "apple"))
 
 }
 \references{
@@ -48,10 +59,11 @@ Cureton, E. E. (1956). Rank-biserial correlation. \emph{Psychometrika, 21}(3), 2
 
 Glass, G. V. (1966). Note on rank biserial correlation. \emph{Educational and Psychological Measurement, 26}(3), 623–631. https://doi.org/10.1177/001316446602600307
 }
+\seealso{
+\code{\link{es_convert}}, to convert to Cohen d, use \verb{fr="rb", to="cohend"}.
+
+\code{\link{th_cohen_d}}, rules of thumb for Cohen d
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
