@@ -45,7 +45,7 @@ This uses (Borenstein et. al, 2009, p. 3):
 fr = "cohend", to = "rb"
 
 This uses (Marfo & Okyere, 2019, p. 4):
-\deqn{r_b = \Phi\left(\frac{d}{\sqrt{2}}\right)}
+\deqn{r_b = \frac{2\times\Phi\left(\frac{d}{2}\right)-1}{\Phi\left(\frac{d}{2}\right)}}
 
 \strong{COHEN D'}
 
@@ -173,7 +173,7 @@ This uses:
 fr = "rb", to = "cohend"
 
 This uses (Marfo & Okyere, 2019, p. 4):
-\deqn{d =\sqrt{2} \times \Phi^{-1}\left(r_b\right)}
+\deqn{d =\sqrt{2} \times \Phi^{-1}\left(-\frac{1}{r_b-2}\right)}
 
 \strong{Rank Biserial (Cliff delta) to Vargha-Delaney A}
 

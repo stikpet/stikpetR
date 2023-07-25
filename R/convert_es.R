@@ -33,7 +33,7 @@
 #' fr = "cohend", to = "rb"
 #' 
 #' This uses (Marfo & Okyere, 2019, p. 4):
-#' \deqn{r_b = \Phi\left(\frac{d}{\sqrt{2}}\right)}
+#' \deqn{r_b = \frac{2\times\Phi\left(\frac{d}{2}\right)-1}{\Phi\left(\frac{d}{2}\right)}}
 #' 
 #' 
 #' **COHEN D'**
@@ -166,7 +166,7 @@
 #' fr = "rb", to = "cohend"
 #' 
 #' This uses (Marfo & Okyere, 2019, p. 4):
-#' \deqn{d =\sqrt{2} \times \Phi^{-1}\left(r_b\right)}
+#' \deqn{d =\sqrt{2} \times \Phi^{-1}\left(-\frac{1}{r_b-2}\right)}
 #' 
 #' **Rank Biserial (Cliff delta) to Vargha-Delaney A**
 #' 
@@ -251,7 +251,10 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   }
   
   #Cohen d to Rank Biserial (Cliff delta)
-  else if (fr=="cohend" && to=="rb"){res = pnorm(es/sqrt(2))}
+  else if (fr=="cohend" && to=="rb"){
+    pf = pnorm(es/2)
+    res = (2*pf - 1)/pf
+  }
   
   #COHEN F
   #Cohen f to eta squared
@@ -313,7 +316,7 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
 
   #RANK BISERIAL
   #Rank Biserial (Cliff delta) to Cohen d
-  else if (fr=="rb" && to=="cohend"){res = qnorm(es)*sqrt(2)}
+  else if (fr=="rb" && to=="cohend"){res = 2*qnorm(-1/(es-2))}
   #Rank Biserial to Vargha and Delaney A
   else if(fr=="rb" && to=="vda") {res = (es + 1)/2}
 
