@@ -106,7 +106,7 @@ es_vargha_delaney_a <- function(catField, ordField, categories=NULL, levels=NULL
   r2 = sum(cat2Ranks)
   
   a1 = 1/n2 * (r1/n1 - (n1 + 1)/2)
-  a2 = 1/n1 * (r2/n1 - (n2 + 1)/2)  
+  a2 = 1/n1 * (r2/n2 - (n2 + 1)/2)  
   
   results <- data.frame(a1, a2)
   colnames(results)<-c(paste("A-", cat1),paste("A-", cat2))
