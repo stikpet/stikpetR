@@ -4,18 +4,34 @@
 \alias{ts_welch_t_is}
 \title{Welch t Test (Independent Samples)}
 \usage{
-ts_welch_t_is(scores, groups)
+ts_welch_t_is(catField, scaleField, categories = NULL, dmu = 0)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{catField}{A vector with the categorical data}
 
-\item{groups}{A vector with the group data}
+\item{scaleField}{A vector with the scores}
+
+\item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
+
+\item{dmu}{Optional difference according to null hypothesis (default is 0)}
 }
 \value{
-dataframe with the test statistic, degrees of freedom and p-value
+A dataframe with:
+\item{n cat. 1}{the sample size of the first category}
+\item{n cat. 2}{the sample size of the second category}
+\item{mean cat. 1}{the sample mean of the first category}
+\item{mean cat. 2}{the sample mean of the second category}
+\item{diff.}{difference between the two sample means}
+\item{hyp. diff.}{hypothesized difference between the two population means}
+\item{statistic}{the test statistic (t-value)}
+\item{df}{degrees of freedom}
+\item{pValue}{the significance (p-value)}
+\item{test}{name of test used}
 }
 \description{
-Welch t Test (Independent Samples)
+A test to compare two means. The null hypothesis would be that the means of each category are equal in the population.
+
+Unlike the Student t-test, the Welch test does not assume the variances of the two categories to be equal in the population. Ruxten (2006) even argues that the Welch t-test should always be prefered over the Student t-test.
 }
 \details{
 The formula used is:
@@ -35,18 +51,24 @@ With:
 }
 }
 \examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+ts_welch_t_is(df1['sex'], ex1)
+
+#Example 2: vectors
 scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-ts_welch_t_is(scores, groups)
+groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+ts_welch_t_is(groups, scores)
 
 }
 \references{
+Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student’s t-test and the Mann–Whitney U test. \emph{Behavioral Ecology, 17}(4), 688–690. https://doi.org/10.1093/beheco/ark016
+
 Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28–35. https://doi.org/10.2307/2332510
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

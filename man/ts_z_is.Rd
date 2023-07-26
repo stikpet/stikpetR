@@ -4,26 +4,44 @@
 \alias{ts_z_is}
 \title{Independent Samples Z Test}
 \usage{
-ts_z_is(scores, groups, dmu = 0, sigma1 = NULL, sigma2 = NULL)
+ts_z_is(
+  catField,
+  scaleField,
+  categories = NULL,
+  dmu = 0,
+  sigma1 = NULL,
+  sigma2 = NULL
+)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{catField}{A vector with the categorical data}
 
-\item{groups}{A vector with the group data}
+\item{scaleField}{A vector with the scores}
 
-\item{dmu}{difference according to null hypothesis (default is 0)}
+\item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
 
-\item{sigma1}{population standard deviation of the first group, if NULL sample results will be used}
+\item{dmu}{Optional difference according to null hypothesis (default is 0)}
 
-\item{sigma2}{population standard deviation of the second group, if NULL sample results will be used}
+\item{sigma1}{Optional population standard deviation of the first group, if NULL sample results will be used}
+
+\item{sigma2}{Optional population standard deviation of the second group, if NULL sample results will be used}
 }
 \value{
 A dataframe with:
-\item{statistic}{the test statistic}
+\item{n cat. 1}{the sample size of the first category}
+\item{n cat. 2}{the sample size of the second category}
+\item{mean cat. 1}{the sample mean of the first category}
+\item{mean cat. 2}{the sample mean of the second category}
+\item{diff.}{difference between the two sample means}
+\item{hyp. diff.}{hypothesized difference between the two population means}
+\item{statistic}{the test statistic (z-value)}
 \item{pValue}{the significance (p-value)}
+\item{test}{name of test used}
 }
 \description{
-Independent Samples Z Test
+A test to compare two means. It requires the population variances, but if these are unknown for large enough sample sizes, the sample variances can be used instead.
+
+For smaller sample sizes a t-test (Student, Welch or Trimmed Means) could be used instead.
 }
 \details{
 The formula used is:
@@ -42,15 +60,19 @@ With:
 }
 }
 \examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+ts_z_is(df1['sex'], ex1)
+
+#Example 2: vectors
 scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-ts_z_is(scores, groups)
+groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+ts_z_is(groups, scores)
 
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

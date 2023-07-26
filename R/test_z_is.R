@@ -1,14 +1,27 @@
 #' Independent Samples Z Test
+#' @description
+#' A test to compare two means. It requires the population variances, but if these are unknown for large enough sample sizes, the sample variances can be used instead.
 #' 
-#' @param scores A vector with the scores data
-#' @param groups A vector with the group data
-#' @param dmu difference according to null hypothesis (default is 0)
-#' @param sigma1 population standard deviation of the first group, if NULL sample results will be used
-#' @param sigma2 population standard deviation of the second group, if NULL sample results will be used
+#' For smaller sample sizes a t-test (Student, Welch or Trimmed Means) could be used instead.
+#' 
+#' @param catField A vector with the categorical data
+#' @param scaleField A vector with the scores
+#' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
+#' @param dmu Optional difference according to null hypothesis (default is 0)
+#' @param sigma1 Optional population standard deviation of the first group, if NULL sample results will be used
+#' @param sigma2 Optional population standard deviation of the second group, if NULL sample results will be used
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the test statistic}
+#' \item{n cat. 1}{the sample size of the first category}
+#' \item{n cat. 2}{the sample size of the second category}
+#' \item{mean cat. 1}{the sample mean of the first category}
+#' \item{mean cat. 2}{the sample mean of the second category}
+#' \item{diff.}{difference between the two sample means}
+#' \item{hyp. diff.}{hypothesized difference between the two population means}
+#' \item{statistic}{the test statistic (z-value)}
 #' \item{pValue}{the significance (p-value)}
+#' \item{test}{name of test used}
 #' 
 #' @details
 #' 
@@ -27,30 +40,44 @@
 #' \item \eqn{n_i} the number of scores in category i
 #' }
 #' 
-#' @examples 
-#' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-#' groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-#' ts_z_is(scores, groups)
-#' 
 #' @author 
-#' P. Stikker
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' Please visit: https://PeterStatistics.com
+#' @examples
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['age']
+#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+#' ts_z_is(df1['sex'], ex1)
 #' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' #Example 2: vectors
+#' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
+#' groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+#' ts_z_is(groups, scores)
 #' 
 #' @export
-ts_z_is <- function(scores, groups, dmu=0, sigma1=NULL, sigma2=NULL){
-  #make sure data is numeric
-  scores = as.numeric(scores)
+ts_z_is <- function(catField, scaleField, categories=NULL, dmu=0, sigma1=NULL, sigma2=NULL){
   
   #remove rows with missing values
-  df = data.frame(scores, groups)
+  df = data.frame(scaleField, catField)
   df = na.omit(df)
   colnames(df) = c("score", "group")
   
-  X1 = df$score[df$group == df$group[1]]
-  X2 = df$score[df$group != df$group[1]]
+  df$score = as.numeric(df$score)
+  
+  #the two categories
+  if (!is.null(categories)){
+    cat1 = categories[1]
+    cat2 = categories[2]
+  }
+  else {
+    cat1 = names(table(df$group))[1]
+    cat2 = names(table(df$group))[2]
+  }
+  
+  X1 = df$score[df$group == cat1]
+  X2 = df$score[df$group == cat2]
   
   n1 = length(X1)
   n2 = length(X2)
@@ -76,13 +103,13 @@ ts_z_is <- function(scores, groups, dmu=0, sigma1=NULL, sigma2=NULL){
   m2 = mean(X2)
   
   z = (m1 - m2 - dmu)/se
-  
   pValue = 2*(1-pnorm(abs(z)))
-  
   statistic = z
+  testUsed = "independent samples z-test"
   
-  testResults <- data.frame(statistic, pValue)
+  results <- data.frame(n1, n2, m1, m2, m1 - m2, dmu, statistic, pValue, testUsed)
+  colnames(results) = c(paste("n", cat1), paste("n", cat2), paste("mean", cat1), paste("mean", cat2), "diff.", "hyp. diff.", "statistic", "p-value", "test")
   
-  return(testResults)
+  return(results)
   
 }

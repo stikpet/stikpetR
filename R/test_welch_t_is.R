@@ -1,8 +1,27 @@
 #' Welch t Test (Independent Samples)
+#' @description
+#' A test to compare two means. The null hypothesis would be that the means of each category are equal in the population.
 #' 
-#' @param scores A vector with the scores data
-#' @param groups A vector with the group data
-#' @return dataframe with the test statistic, degrees of freedom and p-value
+#' Unlike the Student t-test, the Welch test does not assume the variances of the two categories to be equal in the population. Ruxten (2006) even argues that the Welch t-test should always be prefered over the Student t-test.
+#' 
+#' @param catField A vector with the categorical data
+#' @param scaleField A vector with the scores
+#' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
+#' @param dmu Optional difference according to null hypothesis (default is 0)
+#' 
+#' @returns 
+#' A dataframe with:
+#' \item{n cat. 1}{the sample size of the first category}
+#' \item{n cat. 2}{the sample size of the second category}
+#' \item{mean cat. 1}{the sample mean of the first category}
+#' \item{mean cat. 2}{the sample mean of the second category}
+#' \item{diff.}{difference between the two sample means}
+#' \item{hyp. diff.}{hypothesized difference between the two population means}
+#' \item{statistic}{the test statistic (t-value)}
+#' \item{df}{degrees of freedom}
+#' \item{pValue}{the significance (p-value)}
+#' \item{test}{name of test used}
+#' 
 #' 
 #' @details
 #' 
@@ -22,33 +41,49 @@
 #' \item \eqn{n_i} the number of scores in category i
 #' }
 #' 
-#' @author 
-#' P. Stikker
+#' @references
+#' Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student’s t-test and the Mann–Whitney U test. *Behavioral Ecology, 17*(4), 688–690. https://doi.org/10.1093/beheco/ark016
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
-#' @references 
 #' Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. *Biometrika, 34*(1/2), 28–35. https://doi.org/10.2307/2332510
 #' 
-#' @examples 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['age']
+#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+#' ts_welch_t_is(df1['sex'], ex1)
+#' 
+#' #Example 2: vectors
 #' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-#' groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-#' ts_welch_t_is(scores, groups)
+#' groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+#' ts_welch_t_is(groups, scores)
 #' 
 #' @export
-ts_welch_t_is <- function(scores, groups){
-  #make sure data is numeric
-  scores = as.numeric(scores)
+ts_welch_t_is <- function(catField, scaleField, categories=NULL, dmu=0){
   
   #remove rows with missing values
-  df = data.frame(scores, groups)
+  df = data.frame(scaleField, catField)
   df = na.omit(df)
   colnames(df) = c("score", "group")
   
-  X1 = df$score[df$group == df$group[1]]
-  X2 = df$score[df$group != df$group[1]]
+  df$score = as.numeric(df$score)
+  
+  #the two categories
+  if (!is.null(categories)){
+    cat1 = categories[1]
+    cat2 = categories[2]
+  }
+  else {
+    cat1 = names(table(df$group))[1]
+    cat2 = names(table(df$group))[2]
+  }
+  
+  X1 = df$score[df$group == cat1]
+  X2 = df$score[df$group == cat2]
   
   n1 = length(X1)
   n2 = length(X2)
@@ -62,16 +97,18 @@ ts_welch_t_is <- function(scores, groups){
   m1 = mean(X1)
   m2 = mean(X2)
   
-  t = (m1 - m2)/se
+  t = (m1 - m2 - dmu)/se
   
   df = sse**2/(var1**2/(n1**2*(n1 - 1)) + var2**2/(n2**2*(n2 - 1)))
   
   pValue = 2*(1-pt(abs(t), df))
   
   statistic = t
+  testUsed = "Welch independent samples t-test"
   
-  testResults <- data.frame(statistic, df, pValue)
+  results <- data.frame(n1, n2, m1, m2, m1 - m2, dmu, statistic, df, pValue, testUsed)
+  colnames(results) = c(paste("n", cat1), paste("n", cat2), paste("mean", cat1), paste("mean", cat2), "diff.", "hyp. diff.", "statistic", "df", "p-value", "test")
   
-  return(testResults)
+  return(results)
   
 }
