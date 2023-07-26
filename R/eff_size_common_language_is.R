@@ -1,8 +1,16 @@
 #' Common Language (CL/CLES) (Independent Samples)
+#' @description 
+#' the probability that a randomly selected score from the one population will be greater than a randomly sampled score from the other population.
 #' 
-#' @param scores A vector with the scores data
-#' @param groups A vector with the group data
-#' @return The Common Language Effect Size value
+#' @param catField A vector with the categorical data
+#' @param scaleField A vector with the scores
+#' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
+#' @param dmu Optional difference according to null hypothesis (default is 0)
+#' 
+#' @returns 
+#' A dataframe with:
+#' \item{CLE cat. 1}{the effect size for the first category}
+#' \item{CLE cat. 2}{the effect size for  the second category}
 #' 
 #' @details
 #' 
@@ -21,34 +29,53 @@
 #' \item \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
 #' }
 #' 
-#' @author 
-#' P. Stikker
+#' The CLE for the other category is simply 1 - CLE.
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
 #' @references 
 #' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
 #' 
-#' @examples 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples
+#' #Example 1: dataframe
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = df1['age']
+#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+#' es_common_language_is(df1['sex'], ex1)
+#' 
+#' #Example 2: vectors
 #' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-#' groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-#' es_common_language_is(scores, groups)
+#' groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+#' es_common_language_is(groups, scores)
+#' 
 #' 
 #' @export
-es_common_language_is <- function(scores, groups){
-
-  #make sure data is numeric
-  scores = as.numeric(scores)
+es_common_language_is <- function(catField, scaleField, categories=NULL, dmu=0){
   
   #remove rows with missing values
-  df = data.frame(scores, groups)
+  df = data.frame(scaleField, catField)
   df = na.omit(df)
   colnames(df) = c("score", "group")
   
-  X1 = df$score[df$group == df$group[1]]
-  X2 = df$score[df$group != df$group[1]]
+  df$score = as.numeric(df$score)
+  
+  #the two categories
+  if (!is.null(categories)){
+    cat1 = categories[1]
+    cat2 = categories[2]
+  }
+  else {
+    cat1 = names(table(df$group))[1]
+    cat2 = names(table(df$group))[2]
+  }
+  
+  X1 = df$score[df$group == cat1]
+  X2 = df$score[df$group == cat2]
+  
+  n1 = length(X1)
+  n2 = length(X2)
   
   var1 = var(X1)
   var2 = var(X2)
@@ -56,9 +83,13 @@ es_common_language_is <- function(scores, groups){
   m1 = mean(X1)
   m2 = mean(X2)
   
-  z = abs(m1 - m2)/sqrt(var1 + var2)
+  z = abs(m1 - m2 - dmu)/sqrt(var1 + var2)
   
-  cl = pnorm(z)
+  c1 = pnorm(z)
+  c2 = 1 - c1
   
-  return(cl)
+  results <- data.frame(c1, c2)
+  colnames(results) = c(paste("CLE", cat1), paste("CLE", cat2))
+  
+  return(results)
 }

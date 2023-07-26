@@ -4,20 +4,30 @@
 \alias{es_glass_delta}
 \title{Glass Delta}
 \usage{
-es_glass_delta(scores, groups, control = NULL)
+es_glass_delta(
+  catField,
+  scaleField,
+  categories = NULL,
+  dmu = 0,
+  control = NULL
+)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{catField}{A vector with the categorical data}
 
-\item{groups}{A vector with the group data}
+\item{scaleField}{A vector with the scores}
 
-\item{control}{Optional to indicate which group is the 'control' group, otherwise the 1st found will be used.}
+\item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
+
+\item{dmu}{Optional difference according to null hypothesis (default is 0)}
+
+\item{control}{Optional to indicate which category to use as control group. Default is first category found.}
 }
 \value{
-Hedges g value
+Glass Delata value
 }
 \description{
-Glass Delta
+An effect size measure when comparing two means, with a specified control group.
 }
 \details{
 The formula used is (Glass, 1976, p. 7):
@@ -36,19 +46,22 @@ With:
 Glass actually uses a ‘control group’ and \eqn{s_2} is then the standard deviation of the control group.
 }
 \examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+es_glass_delta(df1['sex'], ex1)
+
+#Example 2: vectors
 scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-es_glass_delta(scores, groups)
-es_glass_delta(scores, groups, control="international")
+groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+es_glass_delta(groups, scores)
 
 }
 \references{
 Glass, G. V. (1976). Primary, secondary, and meta-analysis of research. \emph{Educational Researcher, 5}(10), 3–8. https://doi.org/10.3102/0013189X005010003
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

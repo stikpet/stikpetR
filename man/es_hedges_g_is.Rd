@@ -4,27 +4,42 @@
 \alias{es_hedges_g_is}
 \title{Hedges g / Cohen ds (independent samples)}
 \usage{
-es_hedges_g_is(scores, groups, corr = "none")
+es_hedges_g_is(
+  catField,
+  scaleField,
+  categories = NULL,
+  dmu = 0,
+  varWeighted = TRUE,
+  corr = c(NULL, "exact", "hedges", "durlak", "xue")
+)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{catField}{A vector with the categorical data}
 
-\item{groups}{A vector with the group data}
+\item{scaleField}{A vector with the scores}
 
-\item{corr}{c(NULL, 'hedges-exact', 'hedges-appr', 'durlak', 'xue') approximation to use, NULL will use biased version.}
+\item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
+
+\item{dmu}{Optional difference according to null hypothesis (default is 0)}
+
+\item{varWeighted}{Optional boolean to indicate the use of weighted variances or not. Default is TRUE.}
+
+\item{corr}{approximation to use. Either NULL (default), 'exact', 'hedges', 'durlak', 'xue'}
 }
 \value{
-Hedges g value
+A dataframe with:
+\item{g}{the effect size value}
+\item{version}{description of the effect size calculated}
 }
 \description{
-Hedges g / Cohen ds (independent samples)
+An effect size measure when comparing two means. A few different variations are available. See the details for more information on them.
 }
 \details{
 The formula used is (Hedges, 1981, p. 110):
 \deqn{g = \frac{\bar{x}_1 - \bar{x}_2}{s_p}}
 
 With:
-\deqn{s_p = \frac{\sqrt{s_1^2 + s_2^2}}{n - 2}}
+\deqn{s_p = \frac{\sqrt{SS_1^2 + SS_2^2}}{n - 2}}
 \deqn{SS_i = \sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}
 \deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
 
@@ -33,6 +48,11 @@ With:
 \item \eqn{x_{i,j}} the j-th score in category i
 \item \eqn{n_i} the number of scores in category i
 }
+
+This is also what Cohen refers to as \eqn{d_s} (Cohen, 1988, p. 66).
+
+This uses by default the formula as shown above for \eqn{s_p}. However, sometimes the unweighted version is used. If \emph{varWeighted=FALSE} the following will be used instead:
+\deqn{s_p = \frac{\sqrt{s_1^2 + s_2^2}}{2}}
 
 Hedges proposes the following exact bias correction (Hedges, 1981, p. 111):
 \deqn{g_{c} = g \times\frac{\Gamma\left(m\right)}{\Gamma\left(m - \frac{1}{2}\right)\times\sqrt{m}}}
@@ -58,13 +78,19 @@ The formula used for the approximation from Durlak (2009, p. 927) (appr="durlak"
 
 The formula used for the approximation from Xue (2020, p. 3) (appr="xue"):
 \deqn{g_c = g \times \sqrt[12]{1 - \frac{9}{df} + \frac{69}{2\times df^2} - \frac{72}{df^3} + \frac{687}{8\times df^4} - \frac{441}{8\times df^5} + \frac{247}{16\times df^6}}}
-
-Cohen (1988, pp. 66-67) d_s is the same as Hedges g (biased).
 }
 \examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+es_hedges_g_is(df1['sex'], ex1)
+
+#Example 2: vectors
 scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-es_hedges_g_is(scores, groups)
+groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+es_hedges_g_is(groups, scores)
 
 }
 \references{
@@ -79,9 +105,5 @@ Hedges, L. V., & Olkin, I. (1985). \emph{Statistical methods for meta-analysis}.
 Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

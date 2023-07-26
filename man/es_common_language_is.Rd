@@ -4,18 +4,24 @@
 \alias{es_common_language_is}
 \title{Common Language (CL/CLES) (Independent Samples)}
 \usage{
-es_common_language_is(scores, groups)
+es_common_language_is(catField, scaleField, categories = NULL, dmu = 0)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{catField}{A vector with the categorical data}
 
-\item{groups}{A vector with the group data}
+\item{scaleField}{A vector with the scores}
+
+\item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
+
+\item{dmu}{Optional difference according to null hypothesis (default is 0)}
 }
 \value{
-The Common Language Effect Size value
+A dataframe with:
+\item{CLE cat. 1}{the effect size for the first category}
+\item{CLE cat. 2}{the effect size for  the second category}
 }
 \description{
-Common Language (CL/CLES) (Independent Samples)
+the probability that a randomly selected score from the one population will be greater than a randomly sampled score from the other population.
 }
 \details{
 The formula used is (McGraw & Wong, 1992, p. 361):
@@ -32,20 +38,27 @@ With:
 \item \eqn{n_i} the number of scores in category i
 \item \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
 }
+
+The CLE for the other category is simply 1 - CLE.
 }
 \examples{
+#Example 1: dataframe
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = df1['age']
+ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
+es_common_language_is(df1['sex'], ex1)
+
+#Example 2: vectors
 scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-es_common_language_is(scores, groups)
+groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
+es_common_language_is(groups, scores)
+
 
 }
 \references{
 McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
