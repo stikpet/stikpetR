@@ -4,55 +4,41 @@
 \alias{r_point_biserial}
 \title{Point Biserial Correlation Coefficient}
 \usage{
-r_point_biserial(scores, groups)
+r_point_biserial(t, df)
 }
 \arguments{
-\item{scores}{A vector with the scores data}
+\item{t}{the test statistic value}
 
-\item{groups}{A vector with the group data}
+\item{df}{the degrees of freedom}
 }
 \value{
 Point Biserial Correlation Coefficient
 }
 \description{
-Point Biserial Correlation Coefficient
+This can be seen as coding a binary variable with the groups into 0 and 1, and then calculates a Pearson correlation coefficient between the those values and the scores.
+
+This gives the same result as the formula used and as input the Student t-test statistic and corresponding degrees of freedom.
 }
 \details{
 The formula used is (Friedman, 1968, p. 245):
 \deqn{r_{pb} = \sqrt{\frac{t^2}{t^2 + df}}}
 
-With:
-\deqn{df = n_1 + n_2 - 2}
-\deqn{t = \frac{\bar{x}_1 - \bar{x}_2}{SE}}
-\deqn{SE = s_p\times\sqrt{\frac{1}{n_1} + \frac{1}{n_2}}}
-\deqn{s_p = \sqrt{\frac{\left(n_1 - 1\right)\times s_1^2 + \left(n_2 - 1\right)\times s_2^2}{df}}}
-\deqn{s_i^2 = \frac{\sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
-\deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
-
 \emph{Symbols used:}
 \itemize{
 \item \eqn{t} the test statistic of the independent samples Student t-test
-\item \eqn{x_{i,j}} the j-th score in category i
-\item \eqn{n_i} the number of scores in category i
+\item \eqn{df} the degrees of freedom of the independent samples Student t-test
 }
-
-This is codes the binary variable with the groups into 0 and 1, and then
-calculates a Pearson correlation coefficient between the those values and
-the scores.
 }
 \examples{
-scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("national","international","international","national","international", "international","national","national","international","international","international","international","international","international","national", "international" ,NA,"national","international","international")
-r_point_biserial(scores, groups)
+r_point_biserial(0.9984, 1967)
 
 }
 \references{
 Friedman, H. (1968). Magnitude of experimental effect and a table for its rapid estimation. \emph{Psychological Bulletin, 70}(4), 245–251. https://doi.org/10.1037/h0026258
 }
+\seealso{
+\code{\link{ts_student_t_is}}, Student t-test
+}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
