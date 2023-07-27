@@ -4,6 +4,16 @@
 #' 
 #' Unlike the Student t-test, the Welch test does not assume the variances of the two categories to be equal in the population. Ruxten (2006) even argues that the Welch t-test should always be prefered over the Student t-test.
 #' 
+#' There are four similar tests, with different assumptions.
+#' |test|equal variance|normality|
+#' |-------|-----------|---------|
+#' |Student| yes | yes|
+#' |Welch | no | yes|
+#' |Trimmed | yes | no | 
+#' |Yuen-Welch |no | no |
+#' 
+#' The Trimmed and Yuen-Welch can be found in the **ts_trimmed_mean_is()**, and the Student t-test with the **ts_student_t_is().**
+#' 
 #' @param catField A vector with the categorical data
 #' @param scaleField A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.

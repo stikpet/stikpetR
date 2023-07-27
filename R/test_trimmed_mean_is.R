@@ -110,11 +110,11 @@
 #' #Example 2: vectors
 #' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
 #' groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
-#' ts_trimmed_mean_t_is(groups, scores)
-#' ts_trimmed_mean_t_is(groups, scores, se="yuen-dixon")
+#' ts_trimmed_mean_is(groups, scores)
+#' ts_trimmed_mean_is(groups, scores, se="yuen-dixon")
 #' 
 #' @export
-ts_trimmed_mean_t_is <- function(catField, 
+ts_trimmed_mean_is <- function(catField, 
                                  scaleField, 
                                  categories=NULL, 
                                  dmu=0, 

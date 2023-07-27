@@ -32,6 +32,17 @@ A dataframe with:
 A test to compare two means. The null hypothesis would be that the means of each category are equal in the population.
 
 Unlike the Student t-test, the Welch test does not assume the variances of the two categories to be equal in the population. Ruxten (2006) even argues that the Welch t-test should always be prefered over the Student t-test.
+
+There are four similar tests, with different assumptions.\tabular{lll}{
+   test \tab equal variance \tab normality \cr
+   Student \tab yes \tab yes \cr
+   Welch \tab no \tab yes \cr
+   Trimmed \tab yes \tab no \cr
+   Yuen-Welch \tab no \tab no \cr
+}
+
+
+The Trimmed and Yuen-Welch can be found in the \strong{ts_trimmed_mean_is()}, and the Student t-test with the \strong{ts_student_t_is().}
 }
 \details{
 The formula used is:
