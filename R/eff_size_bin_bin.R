@@ -557,7 +557,7 @@ es_bin_bin <- function(field1,
   } else if (method == "tarantula"){
       es = a * r2 / (c * r1)
   } else if (method == "ample"){
-      es = Abs(a * r2 / (c * r1))
+      es = abs(a * r2 / (c * r1))
   } else if (method == "gilbert"){
       es = (a * n - r1 * c1) / (c1 * n + r1 * n - a * n - r1 * c1)
   } else if (method == "fossum-kaskey"){
@@ -759,7 +759,7 @@ es_bin_bin <- function(field1,
         chimax = n * r2 * c2 / r1 * c1
       }
       chimin = n ^ 3 * (ahat - gahat) ^ 2 / (r1 * r2 * c1 * c2)
-      es = (a * d - b * c) / Abs(a * d - b * c) * sqrt((chi - chimin) / (chimax - chimin))
+      es = (a * d - b * c) / abs(a * d - b * c) * sqrt((chi - chimin) / (chimax - chimin))
   } else if (method == "stiles"){
       es = log((a + b + c + d) * (abs(a * d - b * c) - (a + b + c + d) / 2) ^ 2 / ((a + b) * (a + c) * (b + d) * (c + d))) / log(10)
   } else if (method == "bonett-price"){
