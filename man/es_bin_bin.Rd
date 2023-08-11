@@ -4,7 +4,13 @@
 \alias{es_bin_bin}
 \title{Effect Sizes for Binary vs. Binary}
 \usage{
-es_bin_bin(field1, field2, categories1, categories2, method = "odds-ratio")
+es_bin_bin(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  method = "odds-ratio"
+)
 }
 \arguments{
 \item{field1}{: dataframe field with categories for the rows}

@@ -422,8 +422,8 @@
 #' @export
 es_bin_bin <- function(field1, 
                        field2, 
-                       categories1, 
-                       categories2, 
+                       categories1=NULL, 
+                       categories2=NULL, 
                        method = "odds-ratio"){
 
   #order in code:
