@@ -507,7 +507,7 @@ es_bin_bin <- function(field1,
   #  1.  "odds-ratio"
 
   #get the cross table
-      tb = tab_cross(field1, field2, categories1, categories2, totals="exclude")
+      tb = tab_cross(field1, field2, order1=categories1, order2=categories2)
       
   #cell values of sample cross table
   a = tb[1, 1]
