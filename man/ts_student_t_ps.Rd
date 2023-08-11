@@ -28,7 +28,7 @@ The formula used is:
 \deqn{sig. = 2\times\left(1 - \text{T}\left(\left|t_p\right|, df\right)\right)}
 With:
 \deqn{\bar{d} = \bar{x}_1 - \bar{x}_2}
-\deqn{SE = \sqrt{\frac{\sigma_s^2}{n}}}
+\deqn{SE = \sqrt{\frac{\sigma_{s^2}}{n}}}
 \deqn{s_d^2 = \frac{\sum_{i=1}^n \left(d_i - \bar{d}_i\right)^2}{n - 1}}
 \deqn{d_i = x_{i,1} - x_{i,2}}
 \deqn{\bar{d} = \frac{\sum_{i=1}^n d_i}{n}}

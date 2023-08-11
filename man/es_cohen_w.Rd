@@ -15,8 +15,7 @@ es_cohen_w(chi2, n)
 value of Cohen's w
 }
 \description{
-An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to
-Cohen's rules-of-thumb.
+An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to Cohen's rules-of-thumb.
 }
 \details{
 The formula used is (Cohen, 1988, p. 216):

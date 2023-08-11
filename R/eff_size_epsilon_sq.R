@@ -6,7 +6,7 @@
 #' @returns the effect size value
 #'
 #' The formula used (Kelley, 1935, p. 557):
-#' \deqn{\epsilon^2 = \frac{n\times\eta^2 - k + \left(1 - \eta^2\right)}{n - l}}
+#' \deqn{\epsilon^2 = \frac{n\times\eta^2 - k + \left(1 - \eta^2\right)}{n - k}}
 #'
 #' *Symbols used:*
 #' \itemize{

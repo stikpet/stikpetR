@@ -1,8 +1,7 @@
 #' Cohen's w
 #' 
 #' @description 
-#' An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to 
-#' Cohen's rules-of-thumb. 
+#' An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to Cohen's rules-of-thumb. 
 #' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size

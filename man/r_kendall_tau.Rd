@@ -117,7 +117,7 @@ The calculation of \eqn{\sum_{j=1}^c F_{i,j}\times\left(C_{i,j} - D_{i,j}\right)
 can then also be accomplished using:
 \deqn{\sum_{i=1}^n \left(P_i - Q_i\right)^2}
 
-Or a version from Kendall (1962, p. 35):
+Or a version from Kendall (1962, p. 55):
 \deqn{ASE = 2\times\sqrt{v}}
 With:
 \deqn{v = \frac{v_0 - v_r - v_c}{18} + v_1 + v_2}
@@ -125,7 +125,7 @@ With:
 \deqn{v_r = \sum_{i=1}^r RS_i\times\left(RS_i - 1\right)\times\left(2\times RS_i + 5\right)}
 \deqn{v_c = \sum_{j=1}^c CS_j\times\left(CS_j - 1\right)\times\left(2\times CS_j + 5\right)}
 \deqn{v_1 = \frac{\left(\sum_{i=1}^r RS_i\times\left(RS_i - 1\right)\times\left(RS_i - 2\right)\right) \times \left(\sum_{j=1}^c CS_j\times\left(CS_j - 1\right)\times\left(CS_j - 2\right)\right)}{9\times n\times\left(n - 1\right)\times\left(n - 2\right)}}
-This is used when \emph{test="kg"} and the default
+This is used when \emph{test="kendall"} and the default
 
 For the AS 71 algorithm the test statistic is given by:
 \deqn{S = \binom{n}{2}\times\left|\tau\right| = \frac{n\times\left(n - 1\right)}{2}\times\left|\tau\right|}
