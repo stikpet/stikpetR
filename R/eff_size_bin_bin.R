@@ -672,7 +672,7 @@ es_bin_bin <- function(field1,
   } else if (method == "gilbert-wells"){
       es = log(a) - log(n) - log(r1 / n) - log(c1 / n)
   } else if (method == "pearson-heron"){
-      es = Cos(pi * sqrt(b * c) / (sqrt(a * d) + sqrt(b * c)))
+      es = cos(pi * sqrt(b * c) / (sqrt(a * d) + sqrt(b * c)))
   } else if (method == "anderberg"){
       S = max(a, b) + max(c, d) + max(a, c) + max(b, d)
       s2 = max(r1, r2) + max(c1, c2)
