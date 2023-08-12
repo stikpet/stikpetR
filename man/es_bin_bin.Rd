@@ -38,27 +38,27 @@ The method can be set to any of the following:\tabular{llll}{
    camp-1 \tab camp-2 \tab camp-3 \tab chen-popovich \cr
    clement \tab cohen-kappa \tab cohen-w \tab cole-c1 \cr
    cole-c2 \tab cole-c3 \tab cole-c4 \tab cole-c5 \cr
-   cole-c6 \tab cole-c7 \tab cole-c8 \tab colligation \cr
-   contingency \tab czekanowski \tab dennis \tab dice-1 \cr
-   dice-2 \tab dice-3 \tab digby \tab doolittle \cr
-   driver-kroeber-1 \tab driver-kroeber-2 \tab edward \tab eyraud \cr
-   fager-mcgowan-1 \tab fager-mcgowan-2 \tab faith \tab fleiss \cr
-   forbes-1 \tab forbes-2 \tab fossum-kaskey \tab gilbert \cr
-   gilbert-wells \tab gk-lambda-1 \tab gk-lambda-2 \tab gleason \cr
-   gower \tab gower-legendre \tab hamann \tab harris-lahey \cr
-   hawkins-dotson \tab hurlbert \tab jaccard \tab johnson \cr
-   kent-foster-1 \tab kent-foster-2 \tab kuder-richardson \tab kulczynski-1 \cr
-   kulczynski-2 \tab loevinger \tab matching \tab maxwell-pilliner \cr
-   mcconnaughey \tab mcewen-michael \tab mountford \tab nei-li \cr
-   ochiai-1 \tab ochiai-2 \tab odds-ratio \tab otsuka \cr
-   pearson \tab pearson-heron \tab pearson-q1 \tab pearson-q1 \cr
-   pearson-q3 \tab pearson-q4 \tab pearson-q5 \tab peirce-1 \cr
-   peirce-2 \tab peirce-3 \tab phi \tab rogers-tanimoto \cr
-   rogot-goldberg \tab russell-rao \tab scott \tab simpson \cr
-   sokal-michener \tab sokal-sneath-1 \tab sokal-sneath-2 \tab sokal-sneath-3 \cr
-   sokal-sneath-4 \tab sokal-sneath-5 \tab sorgenfrei \tab stiles \cr
-   tanimoto \tab tarantula \tab tarwid \tab tulloss \cr
-   yule-q \tab yule-r \tab yule-y \tab  \cr
+   cole-c6 \tab cole-c7 \tab cole-c8 \tab contingency \cr
+   czekanowski \tab dennis \tab dice-1 \tab dice-2 \cr
+   dice-3 \tab digby \tab doolittle \tab driver-kroeber-1 \cr
+   driver-kroeber-2 \tab edward \tab eyraud \tab fager-mcgowan-1 \cr
+   fager-mcgowan-2 \tab faith \tab fleiss \tab forbes-1 \cr
+   forbes-2 \tab fossum-kaskey \tab gilbert \tab gilbert-wells \cr
+   gk-lambda-1 \tab gk-lambda-2 \tab gleason \tab gower \cr
+   gower-legendre \tab hamann \tab harris-lahey \tab hawkins-dotson \cr
+   hurlbert \tab jaccard \tab johnson \tab kent-foster-1 \cr
+   kent-foster-2 \tab kuder-richardson \tab kulczynski-1 \tab kulczynski-2 \cr
+   loevinger \tab matching \tab maxwell-pilliner \tab mcconnaughey \cr
+   mcewen-michael \tab mountford \tab nei-li \tab ochiai-1 \cr
+   ochiai-2 \tab odds-ratio \tab otsuka \tab pearson \cr
+   pearson-heron \tab pearson-q1 \tab pearson-q2 \tab pearson-q3 \cr
+   pearson-q4 \tab pearson-q5 \tab peirce-1 \tab peirce-2 \cr
+   peirce-3 \tab phi \tab rogers-tanimoto \tab rogot-goldberg \cr
+   russell-rao \tab scott \tab simpson \tab sokal-michener \cr
+   sokal-sneath-1 \tab sokal-sneath-2 \tab sokal-sneath-3 \tab sokal-sneath-4 \cr
+   sokal-sneath-5 \tab sorgenfrei \tab stiles \tab tanimoto \cr
+   tarantula \tab tarwid \tab tulloss \tab yule-q \cr
+   yule-r \tab yule-y \tab  \tab  \cr
 }
 
 

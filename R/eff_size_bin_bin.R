@@ -22,27 +22,27 @@
 #' |camp-1|camp-2|camp-3|chen-popovich|
 #' |clement|cohen-kappa|cohen-w|cole-c1|
 #' |cole-c2|cole-c3|cole-c4|cole-c5|
-#' |cole-c6|cole-c7|cole-c8|colligation|
-#' |contingency|czekanowski|dennis|dice-1|
-#' |dice-2|dice-3|digby|doolittle|
-#' |driver-kroeber-1|driver-kroeber-2|edward|eyraud|
-#' |fager-mcgowan-1|fager-mcgowan-2|faith|fleiss|
-#' |forbes-1|forbes-2|fossum-kaskey|gilbert|
-#' |gilbert-wells|gk-lambda-1|gk-lambda-2|gleason|
-#' |gower|gower-legendre|hamann|harris-lahey|
-#' |hawkins-dotson|hurlbert|jaccard|johnson|
-#' |kent-foster-1|kent-foster-2|kuder-richardson|kulczynski-1|
-#' |kulczynski-2|loevinger|matching|maxwell-pilliner|
-#' |mcconnaughey|mcewen-michael|mountford|nei-li|
-#' |ochiai-1|ochiai-2|odds-ratio|otsuka|
-#' |pearson|pearson-heron|pearson-q1|pearson-q1|
-#' |pearson-q3|pearson-q4|pearson-q5|peirce-1|
-#' |peirce-2|peirce-3|phi|rogers-tanimoto|
-#' |rogot-goldberg|russell-rao|scott|simpson|
-#' |sokal-michener|sokal-sneath-1|sokal-sneath-2|sokal-sneath-3|
-#' |sokal-sneath-4|sokal-sneath-5|sorgenfrei|stiles|
-#' |tanimoto|tarantula|tarwid|tulloss|
-#' |yule-q|yule-r|yule-y|  |
+#' |cole-c6|cole-c7|cole-c8|contingency|
+#' |czekanowski|dennis|dice-1|dice-2|
+#' |dice-3|digby|doolittle|driver-kroeber-1|
+#' |driver-kroeber-2|edward|eyraud|fager-mcgowan-1|
+#' |fager-mcgowan-2|faith|fleiss|forbes-1|
+#' |forbes-2|fossum-kaskey|gilbert|gilbert-wells|
+#' |gk-lambda-1|gk-lambda-2|gleason|gower|
+#' |gower-legendre|hamann|harris-lahey|hawkins-dotson|
+#' |hurlbert|jaccard|johnson|kent-foster-1|
+#' |kent-foster-2|kuder-richardson|kulczynski-1|kulczynski-2|
+#' |loevinger|matching|maxwell-pilliner|mcconnaughey|
+#' |mcewen-michael|mountford|nei-li|ochiai-1|
+#' |ochiai-2|odds-ratio|otsuka|pearson|
+#' |pearson-heron|pearson-q1|pearson-q2|pearson-q3|
+#' |pearson-q4|pearson-q5|peirce-1|peirce-2|
+#' |peirce-3|phi|rogers-tanimoto|rogot-goldberg|
+#' |russell-rao|scott|simpson|sokal-michener|
+#' |sokal-sneath-1|sokal-sneath-2|sokal-sneath-3|sokal-sneath-4|
+#' |sokal-sneath-5|sorgenfrei|stiles|tanimoto|
+#' |tarantula|tarwid|tulloss|yule-q|
+#' |yule-r|yule-y|  |  |
 #' 
 #' 
 #'  If we have a 2x2 table with the following values:
@@ -783,7 +783,7 @@ es_bin_bin <- function(field1,
       es = sqrt(f1 * f2 * f3)
   } else if (method == "gilbert-wells"){
       es = log(a) - log(n) - log(r1 / n) - log(c1 / n)
-  } else if (method == "pearson-heron"){
+  } else if (method == "yule-r" || method == "pearson-q3" || method == "cole-c6" || method == "pearson-heron"){
       es = cos(pi * sqrt(b * c) / (sqrt(a * d) + sqrt(b * c)))
   } else if (method == "anderberg"){
       S = max(a, b) + max(c, d) + max(a, c) + max(b, d)
@@ -792,7 +792,7 @@ es_bin_bin <- function(field1,
   } else if (method == "alroy"){
       na = a + b + c
       es = a * (na + sqrt(na)) / (a * (na + sqrt(na)) + 3 / 2 * b * c)
-  } else if (method == "yule-r" || method == "pearson-q3" || method == "cole-c6" || method == "pearson-heron"){
+  } else if (method == "pearson-q1"){
       #Pearson requires for Q1 that ad>bc, a>d, and c>b
       sw = 1
       Runs = 0
@@ -874,6 +874,7 @@ es_bin_bin <- function(field1,
       es = (a * d - b * c) / abs(a * d - b * c) * sqrt((chi - chimin) / (chimax - chimin))
   } else if (method == "stiles"){
       es = log((a + b + c + d) * (abs(a * d - b * c) - (a + b + c + d) / 2) ^ 2 / ((a + b) * (a + c) * (b + d) * (c + d))) / log(10)
+      
   } else if (method == "bonett-price-1"){
       w = ((a + 0.1) * (d + 0.1)) / ((b + 0.1) * (c + 0.1))
       pmin = min(r1, r2, c1, c2) / n
@@ -898,7 +899,7 @@ es_bin_bin <- function(field1,
       
       #step 1: if C1 < C2 swop the two columns
       switch=1
-      if (C1 < C2){
+      if (c1 < c2){
         a2 = ca
         ca = cb
         cb = a2
@@ -982,7 +983,7 @@ es_bin_bin <- function(field1,
     pMin2 = (min(r1,r2, c1,c2) + 1)/(n+2)
     cBP2 = (1 - abs(r1 - c1)/(5*(n+2)) - (0.5 - pMin2)**2)/2
     omg2 = (a+0.5)*(d+0.5)/((b+0.5)*(c+0.5)) 
-    r = cos(pi  / (1 + omg2**cBP2))
+    es = cos(pi  / (1 + omg2**cBP2))
   } else if(method == "chen-popovich"){
     p1 = r1 / n
     p2 = c1 / n
