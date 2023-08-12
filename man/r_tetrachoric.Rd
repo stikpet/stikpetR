@@ -9,7 +9,7 @@ r_tetrachoric(
   field2,
   categories1 = NULL,
   categories2 = NULL,
-  method = "search"
+  method = "divgi"
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ r_tetrachoric(
 
 \item{categories2}{: optional list with selection and/or order for categories of field2}
 
-\item{method}{c("search", "kirk", "brown", "divgi") method to use (see details)}
+\item{method}{method to use (see details). Either "divgi" (default), "search", "kirk", "brown"}
 }
 \value{
 Tetrachoric Correlation Coefficient
@@ -31,7 +31,7 @@ In essence this attempts to mimic a correlation coefficient between two scale va
 
 This assumes the two binary variables have ‘hidden’ underlying normal distribution. If so, the combination of the two forms a bivariate normal distribution with a specific correlation between them. The quest is then to find the correlation, such that the cumulative density function of the z-values of the two marginal totals of the top-left cell (a) match that value.
 
-This is quite tricky to do, so a few have proposed an approximation for this. These include Yule r (\code{\link{es_yule_r}}), Pearson Q4 (\code{\link{es_pearson_q4}}) and Q5 (\code{\link{es_pearson_q5}}), Camp (\code{\link{es_camp_r}}), Becker and Clogg (\code{\link{es_becker_clogg_r}}), and Bonett and Price (\code{\link{es_bonett_price_r}}).
+This is quite tricky to do, so a few have proposed an approximation for this. These include Yule r, Pearson Q4 and Q5, Camp, Becker and Clogg, and Bonett and Price , all available and more with (\code{\link{es_bin_bin}}).
 
 Besides closed form approximation formula's, various algorithms have been designed as well. The three most often mentioned are Brown (1977), Kirk (1973), and Divgi (1979), available in this function.
 }
@@ -45,7 +45,7 @@ from the \emph{fMultivar} library.
 
 "divgi" will use Divgi (1979) algorithm
 
-Flow charts of these algorithms can be found at https://peterstatistics.com/CrashCourse/3-TwoVarUnpair/BinBin/BinBin-2b-EffectSize.html
+Flow charts of these algorithms can be found at https://peterstatistics.com
 }
 \examples{
 #Example: dataframe
