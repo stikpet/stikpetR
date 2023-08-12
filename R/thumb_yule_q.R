@@ -22,7 +22,7 @@
 #' |0.70 or more | very strong |
 #' 
 #' @seealso 
-#' \code{\link{es_yule_q}}, to determine Yule Q
+#' \code{\link{es_bin_bin}}, to determine Yule Q
 #' 
 #' @references
 #' Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/

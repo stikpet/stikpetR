@@ -33,29 +33,32 @@ Various measures of association/agreement/similarity for binary vs. binary cases
 The method can be set to any of the following:\tabular{llll}{
     \tab  \tab  \tab  \cr
    alroy \tab ample \tab anderberg \tab austin-colwell \cr
-   baroni-urbani-buser-1 \tab baroni-urbani-buser-2 \tab bonett-price \tab braun-blanquet \cr
+   baroni-urbani-buser-1 \tab baroni-urbani-buser-2 \tab becker-clogg-1 \tab becker-clogg-2 \cr
+   bonett-price-1 \tab bonett-price-2 \tab bonett-price-3 \tab braun-blanquet \cr
+   camp-1 \tab camp-2 \tab camp-3 \tab chen-popovich \cr
    clement \tab cohen-kappa \tab cohen-w \tab cole-c1 \cr
    cole-c2 \tab cole-c3 \tab cole-c4 \tab cole-c5 \cr
-   cole-c7 \tab cole-c8 \tab colligation \tab contingency \cr
-   czekanowski \tab dennis \tab dice-1 \tab dice-2 \cr
-   dice-3 \tab digby \tab doolittle \tab driver-kroeber-1 \cr
-   driver-kroeber-2 \tab edward \tab eyraud \tab fager-mcgowan-1 \cr
-   fager-mcgowan-2 \tab faith \tab fleiss \tab forbes-1 \cr
-   forbes-2 \tab fossum-kaskey \tab gilbert \tab gilbert-wells \cr
-   gk-lambda-1 \tab gk-lambda-2 \tab gleason \tab gower \cr
-   gower-legendre \tab hamann \tab harris-lahey \tab hawkins-dotson \cr
-   hurlbert \tab jaccard \tab johnson \tab kent-foster-1 \cr
-   kent-foster-2 \tab kuder-richardson \tab kulczynski-1 \tab kulczynski-2 \cr
-   loevinger \tab matching \tab maxwell-pilliner \tab mcconnaughey \cr
-   mcewen-michael \tab mountford \tab nei-li \tab ochiai-1 \cr
-   ochiai-2 \tab odds-ratio \tab otsuka \tab pearson \cr
-   pearson-heron \tab pearson-q1 \tab pearson-q1 \tab peirce-1 \cr
+   cole-c6 \tab cole-c7 \tab cole-c8 \tab colligation \cr
+   contingency \tab czekanowski \tab dennis \tab dice-1 \cr
+   dice-2 \tab dice-3 \tab digby \tab doolittle \cr
+   driver-kroeber-1 \tab driver-kroeber-2 \tab edward \tab eyraud \cr
+   fager-mcgowan-1 \tab fager-mcgowan-2 \tab faith \tab fleiss \cr
+   forbes-1 \tab forbes-2 \tab fossum-kaskey \tab gilbert \cr
+   gilbert-wells \tab gk-lambda-1 \tab gk-lambda-2 \tab gleason \cr
+   gower \tab gower-legendre \tab hamann \tab harris-lahey \cr
+   hawkins-dotson \tab hurlbert \tab jaccard \tab johnson \cr
+   kent-foster-1 \tab kent-foster-2 \tab kuder-richardson \tab kulczynski-1 \cr
+   kulczynski-2 \tab loevinger \tab matching \tab maxwell-pilliner \cr
+   mcconnaughey \tab mcewen-michael \tab mountford \tab nei-li \cr
+   ochiai-1 \tab ochiai-2 \tab odds-ratio \tab otsuka \cr
+   pearson \tab pearson-heron \tab pearson-q1 \tab pearson-q1 \cr
+   pearson-q3 \tab pearson-q4 \tab pearson-q5 \tab peirce-1 \cr
    peirce-2 \tab peirce-3 \tab phi \tab rogers-tanimoto \cr
    rogot-goldberg \tab russell-rao \tab scott \tab simpson \cr
    sokal-michener \tab sokal-sneath-1 \tab sokal-sneath-2 \tab sokal-sneath-3 \cr
    sokal-sneath-4 \tab sokal-sneath-5 \tab sorgenfrei \tab stiles \cr
    tanimoto \tab tarantula \tab tarwid \tab tulloss \cr
-   yule-q \tab yule-y \tab  \tab  \cr
+   yule-q \tab yule-r \tab yule-y \tab  \cr
 }
 
 
@@ -127,59 +130,155 @@ then the following formula are used:\tabular{lll}{
    56 \tab Digby H \tab \eqn{\frac{\left(ad\right)^{3/4}-\left(bc\right)^{3/4}}{\left(ad\right)^{3/4}+\left(bc\right)^{3/4}}} \cr
    57 \tab Edward Q \tab \eqn{\frac{OR^{\pi/4}-1}{OR^{\pi/4}+1}} \cr
    58 \tab Tarwid \tab \eqn{\frac{na-R_1 C_1}{na+R_1 C_1}} \cr
-   59 \tab Bonett-Price Y* \tab \eqn{\frac{\hat{w}^x-1}{\hat{w}^x+1}} \cr
+   59 \tab Bonett-Price-1 \tab \eqn{\frac{\hat{w}^x-1}{\hat{w}^x+1}} \cr
    60 \tab Contingency coefficient \tab \eqn{\sqrt{\frac{\chi^2}{n+\chi^2}}} \cr
    61 \tab Cohen w \tab \eqn{\sqrt{\frac{\chi^2}{\chi^2}}} \cr
    62 \tab Pearson \tab \eqn{\sqrt{\frac{\phi^2}{n+\phi^2}}} \cr
-   63 \tab Hurlbert \tab \eqn{\frac{ad-bc}{\left|ad-bc\right|}\sqrt{\frac{\chi^2-\chi_{min}^2}{\chi_{max}^2-\chi_{min}^2}}} \cr
-   64 \tab Stiles \tab \eqn{\log_{10}\left(\frac{n\left(\left|ad-bc\right|-\frac{n}{2}\right)^2}{R_1 R_2 C_1 C_2}\right)} \cr
+   63 \tab Hurlbert \tab \eqn{\frac{ad-bc}{\left\lvert ad-bc\right\rvert}\sqrt{\frac{\chi^2-\chi_{min}^2}{\chi_{max}^2-\chi_{min}^2}}} \cr
+   64 \tab Stiles \tab \eqn{\log_{10}\left(\frac{n\left(\left\lvert ad-bc \right\rvert -\frac{n}{2}\right)^2}{R_1 R_2 C_1 C_2}\right)} \cr
    65 \tab McConnaughey \tab \eqn{\frac{a^2-bc}{R_1 C_1}} \cr
    66 \tab Baroni-Urbani-Buser-2 \tab \eqn{\frac{a-b-c+\sqrt{ad}}{a+b+c+\sqrt{ad}}} \cr
    67 \tab Kent-Foster-1 \tab \eqn{\frac{-bc}{bR_1 + cC_1 + bc}} \cr
    68 \tab Kent-Foster-2 \tab \eqn{\frac{-bc}{bR_2 + cC_2 + bc}} \cr
    69 \tab Tulloss \tab \eqn{\sqrt{U\times S\times R}} \cr
    70 \tab Gilbert-Wells \tab \eqn{\ln\left(a\right)-\ln\left(n\right)-\ln\left(\frac{R_1}{n}\right)-\ln\left(\frac{C_1}{n}\right)} \cr
-   71 \tab Pearson-Heron \tab \eqn{\cos\left(\frac{\pi\sqrt{bc}}{\sqrt{ad}+\sqrt{bc}}\right)} \cr
+   71 \tab Yule r \tab \eqn{\cos\left(\frac{\pi\sqrt{bc}}{\sqrt{ad}+\sqrt{bc}}\right)} \cr
    72 \tab Anderberg \tab \eqn{\frac{\sigma-\sigma'}{2n}} \cr
    73 \tab Alroy F \tab \eqn{\frac{a\left(n' + \sqrt{n'}\right)}{a\left(n' + \sqrt{n'}\right)+\frac{3}{2}bc}} \cr
    74 \tab Pearson Q1 \tab \eqn{\sin\left(\frac{\pi}{2}\times\frac{R_2 C_1}{R_1 C_2}\right)} \cr
    75 \tab Goodman-Kruskal Lambda-1 \tab \eqn{\frac{\sigma-\sigma'}{2n-\sigma'}} \cr
    76 \tab Goodman-Kruskal Lambda-2 \tab \eqn{\frac{2\min\left(a,d\right)-b-c}{2\min\left(a,d\right)+b+c}} \cr
    77 \tab Odds Ratio \tab \eqn{\frac{ad}{bc}} \cr
+   78 \tab Pearson Q4 \tab \eqn{\sin\frac{\pi}{2}\times\frac{1}{1+\frac{2bcn}{\left(ad-bc\right)\left(b+c\right)}}} \cr
+   79 \tab Pearson Q5 \tab \eqn{\sin\frac{\pi}{2}\times\frac{1}{\sqrt{1+\frac{4abcdn^2}{\left(ad-bc\right)^2\left(a+d\right)\left(b+c\right)}}}} \cr
+   80 \tab Camp (3 ver.) \tab \eqn{\frac{m}{\sqrt{1+\Theta\times m^2}}} \cr
+   81 \tab Becker-Clogg-1 \tab \eqn{\frac{g-1}{g+1}} \cr
+   82 \tab Becker-Clogg-2 \tab \eqn{\frac{OR^{13.3/ \delta}-1}{OR^{13.3/ \delta}+1}} \cr
+   83 \tab Bonett-Price-r \tab \eqn{\cos\left(\frac{\pi}{1+\omega^c}\right)} \cr
+   84 \tab Bonett-Price-rhat \tab \eqn{\cos\left(\frac{\pi}{1+\hat{\omega}^{\hat{c}}}\right)} \cr
+   85 \tab Chen-Popovich \tab \eqn{\frac{ad-bc}{\lambda_x \lambda_y n^2}} \cr
 }
 
 
-Equation 57:
+\strong{Equation 57}
+
 \deqn{OR = \frac{ad}{bc}}
 
-Equation 59:
+\strong{Equation 59}
+
 \deqn{x = \frac{1}{2}-\left(\frac{1}{2}-p_{min}\right)^2}
 \deqn{p_{min} = \frac{\min\left(R_1, R_2, C_1, C_2\right)}{n}}
 \deqn{\hat{\omega} = \frac{\left(a+0.1\right)\times\left(d+0.1\right)}{\left(b+0.1\right)\times\left(c+0.1\right)}}
 
-Equations 60, 61, and 63:
+\strong{Equations 60, 61, and 63}
+
 \deqn{\chi^2 = \frac{n\left(ad-bc\right)^2}{R_1 R_2 C_1 C_2}}
 
-Equation 62
+\strong{Equation 62}
+
 \deqn{\frac{ad-bc}{\sqrt{R_1 R_2 C_1 C_2}}}
 
-Equation 63:
+\strong{Equation 63:}
+
 \deqn{\chi_{max}^2 = \begin{cases} \frac{nR_1 C_2}{R_2 C_1} & \text{ if } ad \geq bc \\  \frac{nR_1 C_1}{R_2 C_2} & \text{ if } ad < bc \text{ and } a \leq d \\  \frac{nR_2 C_2}{R_1 C_1} & \text{ if } ad < bc \text{ and } a > d \end{cases}}
 \deqn{\chi_{min}^2 = \frac{n^3\left(\hat{a} - g\left(\hat{a}\right)\right)^2}{R_1 R_2 C_1 C_2}}
 \deqn{\hat{a}=\frac{R_1 C_1}{n}}
 \deqn{g\left(\hat{a}\right) = \begin{cases} \lfloor \hat{a} \rfloor & \text{ if } ad < bc \\  \lceil \hat{a}\rceil & \text{ if } ad \geq bc \end{cases}}
 
-Equation 69
+\strong{Equation 69}
+
 \deqn{U = \log_2\left(1+\frac{\min\left(b,c\right)+a}{\max\left(b,c\right)+a}\right)}
 \deqn{S = \frac{1}{\sqrt{\log_2\left(2+\frac{\min\left(b,c\right)}{a+1}\right)}}}
 \deqn{R = \log_2\left(1+\frac{a}{R_1}\right)\log_2\left(1+\frac{a}{RC1}\right)}
 
-Equation 71 and 75
+\strong{Equation 71 and 75}
+
 \deqn{\sigma = \max\left(a,b\right)+\max\left(c,d\right)+\max\left(a,c\right)+\max\left(b,d\right)}
 \deqn{\sigma' = \max\left(R_1, R_2\right)+\max\left(C_1, C_2\right)}
 
-Equation 73
+\strong{Equation 73}
+
 \deqn{n' = a+b+c}
+
+\strong{Equation 80}
+
+Camp (1934, pp. 309) describes the following steps for the calculation:
+Step 1: If total of column 1 (C1) is less than column 2 (C2), swop the two columns
+
+Step 2: Calculate \eqn{p = \frac{C1}{n}}, \eqn{p_1 = \frac{a}{n}}, and \eqn{p_2 = \frac{c}{C2}}
+
+Step 3: Determine \eqn{z_1}, \eqn{z_2} as the normal deviate
+corresponding to the area \eqn{p_1}, \eqn{p_2} resp. (inverse standard normal cumulative distribution)
+
+Step 4: Determine y the normal ordinate corresponding to \eqn{p} (the height of the normal distribution)
+
+Step 5: Calculate \eqn{m = \frac{p\times\left(1-p\right)\times\left(z_1 + z_2\right)}{y}}
+
+Step 6: Find phi in a table of phi values
+
+Camp suggested for a very basic approximation to simply use \eqn{\phi=1}.
+
+For a better approximation Camp made the following table:\tabular{llllll}{
+   p \tab 0.5 \tab 0.6 \tab 0.7 \tab 0.8 \tab 0.9 \cr
+   phi \tab 0.637 \tab 0.63 \tab 0.62 \tab 0.60 \tab 0.56 \cr
+}
+
+
+Cureton (1968, p. 241) expanded on this table and produced:\tabular{llllllllllll}{
+   p \tab 0 \tab 1 \tab 2 \tab 3 \tab 4 \tab 5 \tab 6 \tab 7 \tab 8 \tab 9 \tab 10 \cr
+   0.5 \tab 0.637 \tab 0.636 \tab 0.636 \tab 0.635 \tab 0.635 \tab 0.634 \tab 0.634 \tab 0.633 \tab 0.633 \tab 0.632 \tab 0.631 \cr
+   0.6 \tab 0.631 \tab 0.631 \tab 0.630 \tab 0.629 \tab 0.628 \tab 0.627 \tab 0.626 \tab 0.625 \tab 0.624 \tab 0.622 \tab 0.621 \cr
+   0.7 \tab 0.621 \tab 0.620 \tab 0.618 \tab 0.616 \tab 0.614 \tab 0.612 \tab 0.610 \tab 0.608 \tab 0.606 \tab 0.603 \tab 0.600 \cr
+   0.8 \tab 0.600 \tab 0.597 \tab 0.594 \tab 0.591 \tab 0.587 \tab 0.583 \tab 0.579 \tab 0.574 \tab 0.569 \tab 0.564 \tab 0.559 \cr
+}
+
+
+Step 7: Calculate \eqn{r_t = \frac{m}{\sqrt{1+\phi\times m^2}}}
+
+Cureton (1968) describes quite a few shortcomings with this approximation, and circumstances when it might be appropriate.
+
+\strong{Equation 81 and 82}
+
+Version 81 will calculate:
+\deqn{\rho^* = \frac{g-1}{g+1}}
+
+Version 82 will calculate:
+\deqn{\rho^{**} = \frac{OR^{13.3/\Delta} - 1}{OR^{13.3/\Delta} + 1}}
+
+With:
+\deqn{g=e^{12.4\times\phi - 24.6\times\phi^3}}
+\deqn{\phi = \frac{\ln\left(OR\right)}{\Delta}}
+\deqn{OR=\frac{\left(\frac{a}{c}\right)}{\left(\frac{b}{d}\right)} = \frac{a\times d}{b\times c}}
+\deqn{\Delta = \left(\mu_{R1} - \mu_{R2}\right) \times \left(v_{C1} - v_{C2}\right)}
+\deqn{\mu_{R1} = \frac{-e^{-\frac{t_r^2}{2}}}{p_{R1}}, \mu_{R2} = \frac{e^{-\frac{t_r^2}{2}}}{p_{R2}}}
+\deqn{v_{C1} = \frac{-e^{-\frac{t_c^2}{2}}}{p_{C1}}, v_{C2} = \frac{e^{-\frac{t_c^2}{2}}}{p_{C2}}}
+\deqn{t_r = \Phi^{-1}\left(p_{R1}\right), t_c = \Phi^{-1}\left(p_{C1}\right)}
+\deqn{p_{x} = \frac{x}{n}}
+
+\strong{Equations 83 and 84}
+
+Formula for version 1 is (Bonett & Price, 2005, p. 216):
+\deqn{\rho^* = \cos\left(\frac{\pi}{1+\omega^c}\right)}
+With:
+\deqn{\omega = OR = \frac{a\times d}{b\times c}}
+\deqn{c = \frac{1-\frac{\left|R_1-C_1\right|}{5\times n} - \left(\frac{1}{2}-p_{min}\right)^2}{2}}
+\deqn{p_{min} = \frac{\text{MIN}\left(R_1, R_2, C_1, C_2\right)}{n}}
+
+Formula for version 2 is  (Bonett & Price, 2005, p. 216):
+\deqn{\hat{\rho}^* = \cos\left(\frac{\pi}{1+\hat{\omega}^{\hat{c}}}\right)}
+with:
+\deqn{\hat{\omega} = \frac{\left(a+\frac{1}{2}\right)\times \left(d+\frac{1}{2}\right)}{\left(b+\frac{1}{2}\right)\times \left(c+\frac{1}{2}\right)}}
+\deqn{\hat{c} = \frac{1-\frac{\left|R_1-C_1\right|}{5\times \left(n+2\right)} - \left(\frac{1}{2}-\hat{p}_{min}\right)^2}{2}}
+\deqn{\hat{p}_{min} = \frac{\text{MIN}\left(R_1, R_2, C_1, C_2\right)+1}{n+2}}
+
+\strong{Equation 85}
+
+\deqn{\lambda_x = \Phi^{-1}\left(\frac{R_1}{n}\right)}
+\deqn{\lambda_y = \Phi^{-1}\left(\frac{C_1}{n}\right)}
+
+with \eqn{\Phi^{-1}\left(\dots\right)} being the inverse standard normal cumulative distribution
+
+\strong{Sources for formulas}
 
 The formulas were obtained from the following sources.
 The columns W-C-H show which equation corresponds to my label in:
@@ -264,7 +363,7 @@ If no page number is listed in the original source, the formula was taken from W
    56 \tab Digby H \tab (Digby, 1983, p. 754) \tab 41 \tab  \tab  \cr
    57 \tab Edward Q \tab (Edwards, 1957; Becker & Clogg, 1988, p. 409) \tab  \tab  \tab  \cr
    58 \tab Tarwid \tab (Tarwid, 1960, p. 117) \tab  \tab 40 \tab 43 \cr
-   59 \tab Bonett-Price Y* \tab (Bonett & Price, 2007, p. 433) \tab  \tab  \tab  \cr
+   59 \tab Bonett-Price-1 \tab (Bonett & Price, 2007, p. 433) \tab  \tab  \tab  \cr
    60 \tab Contingency \tab (Pearson, 1904, p. 9) \tab  \tab 52 \tab 28 \cr
    61 \tab Cohen w \tab (Cohen, 1988, p. 216) \tab  \tab  \tab  \cr
    62 \tab Pearson \tab (Pearson, 1904) \tab  \tab 53 \tab  \cr
@@ -275,14 +374,25 @@ If no page number is listed in the original source, the formula was taken from W
    67 \tab Kent-Foster-1 \tab (Kent & Foster, 1977, p. 311) \tab 39a \tab  \tab  \cr
    68 \tab Kent-Foster-2 \tab (Kent & Foster, 1977, p. 311) \tab 39b \tab  \tab  \cr
    69 \tab Tulloss \tab (Tulloss, 1997, p. 133) \tab  \tab  \tab  \cr
-   70 \tab Gilbert-Wells \tab (Gilbert & Wells, 1966) \tab  \tab 32 \tab 41 \cr
-   71 \tab Pearson-Heron \tab (Pearson & Heron, 1913) \tab  \tab 55 \tab 38 \cr
+   70 \tab Gilbert-Wells \tab (Gilbert & Wells, 1966) \tab  \tab  \tab  \cr
+   71 \tab Yule r \tab (Yule, 1900, p. 276) \tab  \tab  \tab  \cr
+    \tab Pearson-Q3 \tab (Pearson, 1900a, p. 16) \tab  \tab  \tab  \cr
+    \tab Cole C6 \tab (Cole, 1949, p. 416) \tab  \tab  \tab  \cr
+    \tab Pearson-Heron \tab (Pearson & Heron, 1913) \tab  \tab 55 \tab 38 \cr
    72 \tab Anderberg \tab (Anderberg, 1973) \tab  \tab 70 \tab  \cr
    73 \tab Alroy F \tab (Alroy, 2015, eq. 6) \tab  \tab  \tab  \cr
    74 \tab Pearson Q1 \tab (Pearson, 1900a, p. 15) \tab  \tab  \tab  \cr
    75 \tab Goodman-Kruskal Lambda-1 \tab (Goodman & Kruskal, 1954, p. 743) \tab  \tab 69 \tab  \cr
    76 \tab Goodman-Kruskal Lambda-2 \tab (Goodman & Kruskal, 1954) \tab 20 \tab  \tab  \cr
    77 \tab Odds Ratio \tab (Fisher, 1935, p. 50) \tab  \tab  \tab  \cr
+   78 \tab Pearson Q4 \tab (Pearson, 1900, p. 16) \tab  \tab  \tab  \cr
+   79 \tab Pearson Q5 \tab (Pearson, 1900, p. 16) \tab  \tab  \tab  \cr
+   80 \tab Camp \tab (Camp, 1934, p. 309) \tab  \tab  \tab  \cr
+   81 \tab Becker-Clogg-1 \tab (Becker & Clogg, 1988, pp. 410–412) \tab  \tab  \tab  \cr
+   82 \tab Becker-Clogg-2 \tab (Becker & Clogg, 1988, pp. 410–412) \tab  \tab  \tab  \cr
+   83 \tab Bonett-Price-2 \tab (Bonett & Price, 2005, p. 216) \tab  \tab  \tab  \cr
+   84 \tab Bonett-Price-3 \tab (Bonett & Price, 2005, p. 216) \tab  \tab  \tab  \cr
+   85 \tab Ched-Popovich \tab (Chen & Popovich, 2002, p. 37) \tab  \tab  \tab  \cr
 }
 }
 \references{

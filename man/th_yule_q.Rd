@@ -37,7 +37,7 @@ th_yule_q(q)
 Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 }
 \seealso{
-\code{\link{es_yule_q}}, to determine Yule Q
+\code{\link{es_bin_bin}}, to determine Yule Q
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -17,29 +17,32 @@
 #' | | | | |
 #' |----|----|----|----|
 #' |alroy|ample|anderberg|austin-colwell|
-#' |baroni-urbani-buser-1|baroni-urbani-buser-2|bonett-price|braun-blanquet|
+#' |baroni-urbani-buser-1|baroni-urbani-buser-2|becker-clogg-1|becker-clogg-2|
+#' |bonett-price-1|bonett-price-2|bonett-price-3|braun-blanquet|
+#' |camp-1|camp-2|camp-3|chen-popovich|
 #' |clement|cohen-kappa|cohen-w|cole-c1|
 #' |cole-c2|cole-c3|cole-c4|cole-c5|
-#' |cole-c7|cole-c8|colligation|contingency|
-#' |czekanowski|dennis|dice-1|dice-2|
-#' |dice-3|digby|doolittle|driver-kroeber-1|
-#' |driver-kroeber-2|edward|eyraud|fager-mcgowan-1|
-#' |fager-mcgowan-2|faith|fleiss|forbes-1|
-#' |forbes-2|fossum-kaskey|gilbert|gilbert-wells|
-#' |gk-lambda-1|gk-lambda-2|gleason|gower|
-#' |gower-legendre|hamann|harris-lahey|hawkins-dotson|
-#' |hurlbert|jaccard|johnson|kent-foster-1|
-#' |kent-foster-2|kuder-richardson|kulczynski-1|kulczynski-2|
-#' |loevinger|matching|maxwell-pilliner|mcconnaughey|
-#' |mcewen-michael|mountford|nei-li|ochiai-1|
-#' |ochiai-2|odds-ratio|otsuka|pearson|
-#' |pearson-heron|pearson-q1|pearson-q1|peirce-1|
+#' |cole-c6|cole-c7|cole-c8|colligation|
+#' |contingency|czekanowski|dennis|dice-1|
+#' |dice-2|dice-3|digby|doolittle|
+#' |driver-kroeber-1|driver-kroeber-2|edward|eyraud|
+#' |fager-mcgowan-1|fager-mcgowan-2|faith|fleiss|
+#' |forbes-1|forbes-2|fossum-kaskey|gilbert|
+#' |gilbert-wells|gk-lambda-1|gk-lambda-2|gleason|
+#' |gower|gower-legendre|hamann|harris-lahey|
+#' |hawkins-dotson|hurlbert|jaccard|johnson|
+#' |kent-foster-1|kent-foster-2|kuder-richardson|kulczynski-1|
+#' |kulczynski-2|loevinger|matching|maxwell-pilliner|
+#' |mcconnaughey|mcewen-michael|mountford|nei-li|
+#' |ochiai-1|ochiai-2|odds-ratio|otsuka|
+#' |pearson|pearson-heron|pearson-q1|pearson-q1|
+#' |pearson-q3|pearson-q4|pearson-q5|peirce-1|
 #' |peirce-2|peirce-3|phi|rogers-tanimoto|
 #' |rogot-goldberg|russell-rao|scott|simpson|
 #' |sokal-michener|sokal-sneath-1|sokal-sneath-2|sokal-sneath-3|
 #' |sokal-sneath-4|sokal-sneath-5|sorgenfrei|stiles|
 #' |tanimoto|tarantula|tarwid|tulloss|
-#' |yule-q|yule-y|  |  |
+#' |yule-q|yule-r|yule-y|  |
 #' 
 #' 
 #'  If we have a 2x2 table with the following values:
@@ -112,57 +115,155 @@
 #'  |56|Digby H|\eqn{\frac{\left(ad\right)^{3/4}-\left(bc\right)^{3/4}}{\left(ad\right)^{3/4}+\left(bc\right)^{3/4}}}|
 #'  |57|Edward Q|\eqn{\frac{OR^{\pi/4}-1}{OR^{\pi/4}+1}}|
 #'  |58|Tarwid|\eqn{\frac{na-R_1 C_1}{na+R_1 C_1}}|
-#'  |59|Bonett-Price Y*|\eqn{\frac{\hat{w}^x-1}{\hat{w}^x+1}}|
+#'  |59|Bonett-Price-1|\eqn{\frac{\hat{w}^x-1}{\hat{w}^x+1}}|
 #'  |60|Contingency coefficient|\eqn{\sqrt{\frac{\chi^2}{n+\chi^2}}}|
 #'  |61|Cohen w|\eqn{\sqrt{\frac{\chi^2}{\chi^2}}}|
 #'  |62|Pearson|\eqn{\sqrt{\frac{\phi^2}{n+\phi^2}}}|
-#'  |63|Hurlbert|\eqn{\frac{ad-bc}{\left|ad-bc\right|}\sqrt{\frac{\chi^2-\chi_{min}^2}{\chi_{max}^2-\chi_{min}^2}}}|
-#'  |64|Stiles|\eqn{\log_{10}\left(\frac{n\left(\left|ad-bc\right|-\frac{n}{2}\right)^2}{R_1 R_2 C_1 C_2}\right)}|
+#'  |63|Hurlbert|\eqn{\frac{ad-bc}{\left\lvert ad-bc\right\rvert}\sqrt{\frac{\chi^2-\chi_{min}^2}{\chi_{max}^2-\chi_{min}^2}}}|
+#'  |64|Stiles|\eqn{\log_{10}\left(\frac{n\left(\left\lvert ad-bc \right\rvert -\frac{n}{2}\right)^2}{R_1 R_2 C_1 C_2}\right)}|
 #'  |65|McConnaughey|\eqn{\frac{a^2-bc}{R_1 C_1}}|
 #'  |66|Baroni-Urbani-Buser-2|\eqn{\frac{a-b-c+\sqrt{ad}}{a+b+c+\sqrt{ad}}}|
 #'  |67|Kent-Foster-1|\eqn{\frac{-bc}{bR_1 + cC_1 + bc}}|
 #'  |68|Kent-Foster-2|\eqn{\frac{-bc}{bR_2 + cC_2 + bc}}|
 #'  |69|Tulloss|\eqn{\sqrt{U\times S\times R}}|
 #'  |70|Gilbert-Wells|\eqn{\ln\left(a\right)-\ln\left(n\right)-\ln\left(\frac{R_1}{n}\right)-\ln\left(\frac{C_1}{n}\right)}|
-#'  |71|Pearson-Heron|\eqn{\cos\left(\frac{\pi\sqrt{bc}}{\sqrt{ad}+\sqrt{bc}}\right)}|
+#'  |71|Yule r|\eqn{\cos\left(\frac{\pi\sqrt{bc}}{\sqrt{ad}+\sqrt{bc}}\right)}|
 #'  |72|Anderberg|\eqn{\frac{\sigma-\sigma'}{2n}}|
 #'  |73|Alroy F|\eqn{\frac{a\left(n' + \sqrt{n'}\right)}{a\left(n' + \sqrt{n'}\right)+\frac{3}{2}bc}}|
 #'  |74|Pearson Q1|\eqn{\sin\left(\frac{\pi}{2}\times\frac{R_2 C_1}{R_1 C_2}\right)}|
 #'  |75|Goodman-Kruskal Lambda-1|\eqn{\frac{\sigma-\sigma'}{2n-\sigma'}}|
 #'  |76|Goodman-Kruskal Lambda-2|\eqn{\frac{2\min\left(a,d\right)-b-c}{2\min\left(a,d\right)+b+c}}|
 #'  |77|Odds Ratio|\eqn{\frac{ad}{bc}}|
+#'  |78|Pearson Q4|\eqn{\sin\frac{\pi}{2}\times\frac{1}{1+\frac{2bcn}{\left(ad-bc\right)\left(b+c\right)}}}|
+#'  |79|Pearson Q5|\eqn{\sin\frac{\pi}{2}\times\frac{1}{\sqrt{1+\frac{4abcdn^2}{\left(ad-bc\right)^2\left(a+d\right)\left(b+c\right)}}}}|
+#'  |80|Camp (3 ver.)|\eqn{\frac{m}{\sqrt{1+\Theta\times m^2}}}|
+#'  |81|Becker-Clogg-1|\eqn{\frac{g-1}{g+1}}|
+#'  |82|Becker-Clogg-2|\eqn{\frac{OR^{13.3/ \delta}-1}{OR^{13.3/ \delta}+1}}|
+#'  |83|Bonett-Price-r|\eqn{\cos\left(\frac{\pi}{1+\omega^c}\right)}|
+#'  |84|Bonett-Price-rhat|\eqn{\cos\left(\frac{\pi}{1+\hat{\omega}^{\hat{c}}}\right)}|
+#'  |85|Chen-Popovich|\eqn{\frac{ad-bc}{\lambda_x \lambda_y n^2}}|
+#' 
+#' 
+#'  **Equation 57**
 #'  
-#'  Equation 57:
 #'  \deqn{OR = \frac{ad}{bc}}
 #'  
-#'  Equation 59:
+#'  **Equation 59**
+#'  
 #'  \deqn{x = \frac{1}{2}-\left(\frac{1}{2}-p_{min}\right)^2}
 #' \deqn{p_{min} = \frac{\min\left(R_1, R_2, C_1, C_2\right)}{n}}
 #' \deqn{\hat{\omega} = \frac{\left(a+0.1\right)\times\left(d+0.1\right)}{\left(b+0.1\right)\times\left(c+0.1\right)}}
 #' 
-#' Equations 60, 61, and 63:
+#' **Equations 60, 61, and 63**
+#' 
 #' \deqn{\chi^2 = \frac{n\left(ad-bc\right)^2}{R_1 R_2 C_1 C_2}}
 #' 
-#' Equation 62
+#' **Equation 62**
+#' 
 #' \deqn{\frac{ad-bc}{\sqrt{R_1 R_2 C_1 C_2}}}
 #' 
-#' Equation 63:
+#' **Equation 63:**
+#' 
 #' \deqn{\chi_{max}^2 = \begin{cases} \frac{nR_1 C_2}{R_2 C_1} & \text{ if } ad \geq bc \\  \frac{nR_1 C_1}{R_2 C_2} & \text{ if } ad < bc \text{ and } a \leq d \\  \frac{nR_2 C_2}{R_1 C_1} & \text{ if } ad < bc \text{ and } a > d \end{cases}}
 #' \deqn{\chi_{min}^2 = \frac{n^3\left(\hat{a} - g\left(\hat{a}\right)\right)^2}{R_1 R_2 C_1 C_2}}
 #' \deqn{\hat{a}=\frac{R_1 C_1}{n}}
 #' \deqn{g\left(\hat{a}\right) = \begin{cases} \lfloor \hat{a} \rfloor & \text{ if } ad < bc \\  \lceil \hat{a}\rceil & \text{ if } ad \geq bc \end{cases}}
 #' 
-#' Equation 69
+#' **Equation 69**
+#' 
 #' \deqn{U = \log_2\left(1+\frac{\min\left(b,c\right)+a}{\max\left(b,c\right)+a}\right)}
 #' \deqn{S = \frac{1}{\sqrt{\log_2\left(2+\frac{\min\left(b,c\right)}{a+1}\right)}}}
 #' \deqn{R = \log_2\left(1+\frac{a}{R_1}\right)\log_2\left(1+\frac{a}{RC1}\right)}
 #' 
-#' Equation 71 and 75
+#' **Equation 71 and 75**
+#' 
 #' \deqn{\sigma = \max\left(a,b\right)+\max\left(c,d\right)+\max\left(a,c\right)+\max\left(b,d\right)}
 #' \deqn{\sigma' = \max\left(R_1, R_2\right)+\max\left(C_1, C_2\right)}
 #' 
-#' Equation 73
+#' **Equation 73**
+#' 
 #' \deqn{n' = a+b+c}
+#' 
+#' **Equation 80**
+#' 
+#' Camp (1934, pp. 309) describes the following steps for the calculation:
+#' Step 1: If total of column 1 (C1) is less than column 2 (C2), swop the two columns
+#' 
+#' Step 2: Calculate \eqn{p = \frac{C1}{n}}, \eqn{p_1 = \frac{a}{n}}, and \eqn{p_2 = \frac{c}{C2}}
+#' 
+#' Step 3: Determine \eqn{z_1}, \eqn{z_2} as the normal deviate 
+#' corresponding to the area \eqn{p_1}, \eqn{p_2} resp. (inverse standard normal cumulative distribution)
+#' 
+#' Step 4: Determine y the normal ordinate corresponding to \eqn{p} (the height of the normal distribution)
+#' 
+#' Step 5: Calculate \eqn{m = \frac{p\times\left(1-p\right)\times\left(z_1 + z_2\right)}{y}}
+#' 
+#' Step 6: Find phi in a table of phi values
+#' 
+#' Camp suggested for a very basic approximation to simply use \eqn{\phi=1}.
+#' 
+#' For a better approximation Camp made the following table:
+#' 
+#' | p | 0.5 | 0.6 | 0.7 | 0.8 | 0.9 |
+#' |---|-----|-----|-----|-----|-----|
+#' |phi|0.637|0.63|0.62|0.60|0.56|
+#' 
+#' Cureton (1968, p. 241) expanded on this table and produced:
+#' 
+#' | p | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+#' |-----|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+#' | 0.5 | 0.637 | 0.636 | 0.636 | 0.635 | 0.635 | 0.634 | 0.634 | 0.633 | 0.633 | 0.632 | 0.631 |
+#' | 0.6 | 0.631 | 0.631 | 0.630 | 0.629 | 0.628 | 0.627 | 0.626 | 0.625 | 0.624 | 0.622 | 0.621 |
+#' | 0.7 | 0.621 | 0.620 | 0.618 | 0.616 | 0.614 | 0.612 | 0.610 | 0.608 | 0.606 | 0.603 | 0.600 |
+#' | 0.8 | 0.600 | 0.597 | 0.594 | 0.591 | 0.587 | 0.583 | 0.579 | 0.574 | 0.569 | 0.564 | 0.559 |
+#' 
+#' Step 7: Calculate \eqn{r_t = \frac{m}{\sqrt{1+\phi\times m^2}}}
+#' 
+#' 
+#' Cureton (1968) describes quite a few shortcomings with this approximation, and circumstances when it might be appropriate.
+#' 
+#' **Equation 81 and 82**
+#' 
+#' Version 81 will calculate:
+#' \deqn{\rho^* = \frac{g-1}{g+1}}
+#' 
+#' Version 82 will calculate:
+#' \deqn{\rho^{**} = \frac{OR^{13.3/\Delta} - 1}{OR^{13.3/\Delta} + 1}}
+#' 
+#' With:
+#' \deqn{g=e^{12.4\times\phi - 24.6\times\phi^3}}
+#' \deqn{\phi = \frac{\ln\left(OR\right)}{\Delta}}
+#' \deqn{OR=\frac{\left(\frac{a}{c}\right)}{\left(\frac{b}{d}\right)} = \frac{a\times d}{b\times c}}
+#' \deqn{\Delta = \left(\mu_{R1} - \mu_{R2}\right) \times \left(v_{C1} - v_{C2}\right)}
+#' \deqn{\mu_{R1} = \frac{-e^{-\frac{t_r^2}{2}}}{p_{R1}}, \mu_{R2} = \frac{e^{-\frac{t_r^2}{2}}}{p_{R2}}}
+#' \deqn{v_{C1} = \frac{-e^{-\frac{t_c^2}{2}}}{p_{C1}}, v_{C2} = \frac{e^{-\frac{t_c^2}{2}}}{p_{C2}}}
+#' \deqn{t_r = \Phi^{-1}\left(p_{R1}\right), t_c = \Phi^{-1}\left(p_{C1}\right)}
+#' \deqn{p_{x} = \frac{x}{n}}
+#' 
+#' **Equations 83 and 84**
+#' 
+#' Formula for version 1 is (Bonett & Price, 2005, p. 216):
+#' \deqn{\rho^* = \cos\left(\frac{\pi}{1+\omega^c}\right)}
+#' With:
+#' \deqn{\omega = OR = \frac{a\times d}{b\times c}}
+#' \deqn{c = \frac{1-\frac{\left|R_1-C_1\right|}{5\times n} - \left(\frac{1}{2}-p_{min}\right)^2}{2}}
+#' \deqn{p_{min} = \frac{\text{MIN}\left(R_1, R_2, C_1, C_2\right)}{n}}
+#' 
+#' Formula for version 2 is  (Bonett & Price, 2005, p. 216):
+#' \deqn{\hat{\rho}^* = \cos\left(\frac{\pi}{1+\hat{\omega}^{\hat{c}}}\right)}
+#' with:
+#' \deqn{\hat{\omega} = \frac{\left(a+\frac{1}{2}\right)\times \left(d+\frac{1}{2}\right)}{\left(b+\frac{1}{2}\right)\times \left(c+\frac{1}{2}\right)}}
+#' \deqn{\hat{c} = \frac{1-\frac{\left|R_1-C_1\right|}{5\times \left(n+2\right)} - \left(\frac{1}{2}-\hat{p}_{min}\right)^2}{2}}
+#' \deqn{\hat{p}_{min} = \frac{\text{MIN}\left(R_1, R_2, C_1, C_2\right)+1}{n+2}}
+#' 
+#' **Equation 85**
+#' 
+#' \deqn{\lambda_x = \Phi^{-1}\left(\frac{R_1}{n}\right)}
+#' \deqn{\lambda_y = \Phi^{-1}\left(\frac{C_1}{n}\right)}
+#' 
+#' with \eqn{\Phi^{-1}\left(\dots\right)} being the inverse standard normal cumulative distribution
+#' 
+#' **Sources for formulas**
 #' 
 #' The formulas were obtained from the following sources.
 #' The columns W-C-H show which equation corresponds to my label in:
@@ -248,7 +349,7 @@
 #' |56|Digby H|(Digby, 1983, p. 754)|41|||
 #' |57|Edward Q|(Edwards, 1957; Becker & Clogg, 1988, p. 409)||||
 #' |58|Tarwid|(Tarwid, 1960, p. 117)||40|43|
-#' |59|Bonett-Price Y*|(Bonett & Price, 2007, p. 433)||||
+#' |59|Bonett-Price-1|(Bonett & Price, 2007, p. 433)||||
 #' |60|Contingency|(Pearson, 1904, p. 9)||52|28|
 #' |61|Cohen w|(Cohen, 1988, p. 216)||||
 #' |62|Pearson|(Pearson, 1904)||53||
@@ -259,14 +360,25 @@
 #' |67|Kent-Foster-1|(Kent & Foster, 1977, p. 311)|39a|||
 #' |68|Kent-Foster-2|(Kent & Foster, 1977, p. 311)|39b|||
 #' |69|Tulloss|(Tulloss, 1997, p. 133)||||
-#' |70|Gilbert-Wells|(Gilbert & Wells, 1966)||32|41|
-#' |71|Pearson-Heron|(Pearson & Heron, 1913)||55|38|
+#' |70|Gilbert-Wells|(Gilbert & Wells, 1966)||||
+#' |71|Yule r|(Yule, 1900, p. 276)||||
+#' | |Pearson-Q3|(Pearson, 1900a, p. 16)||||
+#' | |Cole C6|(Cole, 1949, p. 416)||||
+#' | |Pearson-Heron|(Pearson & Heron, 1913)||55|38|
 #' |72|Anderberg|(Anderberg, 1973)||70||
 #' |73|Alroy F|(Alroy, 2015, eq. 6)||||
 #' |74|Pearson Q1|(Pearson, 1900a, p. 15)||||
 #' |75|Goodman-Kruskal Lambda-1|(Goodman & Kruskal, 1954, p. 743)||69||
 #' |76|Goodman-Kruskal Lambda-2|(Goodman & Kruskal, 1954)|20|||
 #' |77|Odds Ratio|(Fisher, 1935, p. 50)||||
+#' |78|Pearson Q4|(Pearson, 1900, p. 16)|   |   |   |
+#' |79|Pearson Q5|(Pearson, 1900, p. 16)|   |   |   |
+#' |80|Camp|(Camp, 1934, p. 309)|   |   |   |
+#' |81|Becker-Clogg-1|(Becker & Clogg, 1988, pp. 410–412)|   |   |   |
+#' |82|Becker-Clogg-2|(Becker & Clogg, 1988, pp. 410–412)|   |   |   |
+#' |83|Bonett-Price-2|(Bonett & Price, 2005, p. 216)|   |   |   |
+#' |84|Bonett-Price-3|(Bonett & Price, 2005, p. 216)|   |   |   |
+#' |85|Ched-Popovich|(Chen & Popovich, 2002, p. 37)|   |   |   |
 #' 
 #' @references
 #' Alroy, J. (2015). A new twist on a very old binary similarity coefficient. *Ecology, 96*(2), 575–586. doi:10.1890/14-0471.1
@@ -680,7 +792,7 @@ es_bin_bin <- function(field1,
   } else if (method == "alroy"){
       na = a + b + c
       es = a * (na + sqrt(na)) / (a * (na + sqrt(na)) + 3 / 2 * b * c)
-  } else if (method == "pearson-q1"){
+  } else if (method == "yule-r" || method == "pearson-q3" || method == "cole-c6" || method == "pearson-heron"){
       #Pearson requires for Q1 that ad>bc, a>d, and c>b
       sw = 1
       Runs = 0
@@ -762,7 +874,7 @@ es_bin_bin <- function(field1,
       es = (a * d - b * c) / abs(a * d - b * c) * sqrt((chi - chimin) / (chimax - chimin))
   } else if (method == "stiles"){
       es = log((a + b + c + d) * (abs(a * d - b * c) - (a + b + c + d) / 2) ^ 2 / ((a + b) * (a + c) * (b + d) * (c + d))) / log(10)
-  } else if (method == "bonett-price"){
+  } else if (method == "bonett-price-1"){
       w = ((a + 0.1) * (d + 0.1)) / ((b + 0.1) * (c + 0.1))
       pmin = min(r1, r2, c1, c2) / n
       x = 1 / 2 - (1 / 2 - pmin) ^ 2
@@ -770,7 +882,114 @@ es_bin_bin <- function(field1,
   
   } else if (method == "odds-ratio"){
         es = a * d / (b * c)
-  }      
+  } else if (method == "pearson-q4"){
+        es = sin(pi / 2 * 1 / (1 + 2 * b * c * n / ((a * d - b * c) * (b + c))))
+  } else if (method == "pearson-q5"){
+      k = 4 * a * b * c * d * n ^ 2 / ((a * d - b * c) ^ 2 * (a + d) * (b + c))
+      es = sin(pi / 2 * 1 / ((1 + k) ^ 0.5))
+  } else if (method == "camp-1" || method == "camp-2" || method == "camp-3"){
+      #create duplicates of original
+      C1a = c1
+      C2a = c2
+      ca=a
+      cb=b
+      cc=c
+      cd=d
+      
+      #step 1: if C1 < C2 swop the two columns
+      switch=1
+      if (C1 < C2){
+        a2 = ca
+        ca = cb
+        cb = a2
+        c2 = cc
+        cc = cd
+        cd = c2
+        C1a = ca + cc
+        C2a = cb + cd
+        switch=-1
+      }
+      
+      #step 2: determine three proportions
+      p1 = ca/C1a
+      p2 = cd/C2a
+      p = C1a/n
+      
+      #step 3: determine the corresponding z-values
+      z1 = qnorm(p1)
+      z2 = qnorm(p2)
+      
+      #step 4: determine the height of the normal distribution
+      y = dnorm(p)
+      
+      #step 5: calculate m
+      m = p*(1-p)*(z1+z2)/y
+      
+      #step 6: find phi in table of phi-values
+      if (method=="camp-1"){
+        phi = 1
+      }
+      else if (method=="camp-2"){
+        phiValues = data.frame("0.5" = 0.637, "0.6" = 0.63, "0.7" = 0.62, "0.8" = 0.6, "0.9" = 0.56)
+        if (p<0.5){
+          phi = phiValues[paste("X" ,round((1-p)*10)/10, sep="")]
+        }
+        else{
+          phi = phiValues[paste("X" ,round(p*10)/10, sep="")]  
+        }
+        
+        
+      }
+      else {
+        phiValues = data.frame("0.5" = c(0.637, 0.636, 0.636, 0.635, 0.635, 0.634, 0.634, 0.633, 0.633, 0.632, 0.631), "0.6" = c(0.631, 0.631, 0.63, 0.629, 0.628, 0.627, 0.626, 0.625, 0.624, 0.622, 0.621), "0.7" = c(0.621, 0.62, 0.618, 0.616, 0.614, 0.612, 0.61, 0.608, 0.606, 0.603, 0.6), "0.8" = c(0.6, 0.597, 0.594, 0.591, 0.587, 0.583, 0.579, 0.574, 0.569, 0.564, 0.559))
+        
+        if (p<0.5){
+          phi = phiValues[round((1-p)*100,0)-floor((1-p)*10)*10+1, paste("X" ,floor((1-p)*10)/10, sep="")]  
+        }
+        else {
+          phi = phiValues[round(p*100,0)-floor(p*10)*10+1, paste("X" ,floor(p*10)/10, sep="")]  
+        }
+      }
+      
+      #step 7: calculate r
+      es = switch * m/(1+phi*m**2)**0.5
+      
+  } else if (method=="becker-clogg-1" || method=="becker-clogg-2") {
+      pR1 = r1/n
+      pR2 = r2/n
+      pC1 = c1/n
+      pC2 = c2/n
+      tr = qnorm(pR1)
+      tc = qnorm(pC1)
+      mR1 = -exp(-tr**2/2) / pR1
+      mR2 = exp(-tr**2/2) / pR2
+      vC1 = -exp(-tc**2/2) / pC1
+      vC2 = exp(-tc**2/2) / pC2
+      delta = (mR1 - mR2)*(vC1 - vC2)
+      OR = a*d/(b*c)
+      if (method=="becker-clogg-2") {
+        es = (OR**(13.3/delta) - 1) / (OR**(13.3/delta) + 1)}
+      else {
+        phiBC = log(OR) / delta
+        g = exp(12.4*phiBC - 24.6*phiBC**3)
+        es = (g - 1)/(g + 1)}
+  } else if(method=="bonett-price-2"){
+      pMin = min(r1,r2, c1,c2)/n
+      cBP = (1 - abs(r1 - c1)/(5*n) - (0.5 - pMin)**2)/2
+      omg = a*d/(b*c) 
+      es = cos(pi / (1 + omg**cBP))
+  } else if(method=="bonett-price-3"){
+    pMin2 = (min(r1,r2, c1,c2) + 1)/(n+2)
+    cBP2 = (1 - abs(r1 - c1)/(5*(n+2)) - (0.5 - pMin2)**2)/2
+    omg2 = (a+0.5)*(d+0.5)/((b+0.5)*(c+0.5)) 
+    r = cos(pi  / (1 + omg2**cBP2))
+  } else if(method == "chen-popovich"){
+    p1 = r1 / n
+    p2 = c1 / n
+    z1 = qnorm(p1)
+    z2 = qnorm(p2)
+    es = (a * d - b * c) / (z1 * z2 * n ^ 2)
+  }
   
   return (es)
   
