@@ -1,28 +1,3 @@
-hEfn1 <- function(xx, w) {
-  f = exp(-1 * xx * w / 2);
-  return (f)
-}
-
-#' helper function for Kirk method
-#' 
-#' @param h2k2 see Kirk method flowchart
-#' @param hk2 see Kirk method flowchart
-#' @param x see Kirk method flowchart
-#' @param xx see Kirk method flowchart
-#' @param v see Kirk method flowchart
-#' @param w see Kirk method flowchart
-#' @return f value
-#' 
-#' @description 
-#' R INTEGRAND EVALUATION
-#' 
-#' @export
-hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
-  f = exp((-1 * h2k2 + hk2 * v * x) / (2 * (1 - w * xx))) / sqrt(1 - w * xx);
-  return (f)
-}
-
-
 #' Tetrachoric Correlation Coefficient
 #' @importFrom fMultivar pnorm2d
 #' 
@@ -83,45 +58,106 @@ r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, me
   c = ct[2,1]
   d = ct[2,2]
   
-  if(method=="search"){
-    
-    #the row totals
-    rowTots <- margin.table(ct, 1)
-    R1 <- as.numeric(unname(rowTots[1]))
-    R2 <- as.numeric(unname(rowTots[2]))
-    
-    #the column totals
-    colTots <- margin.table(ct, 2)
-    C1 <- as.numeric(unname(colTots[1]))
-    C2 <- as.numeric(unname(colTots[2]))
-    
-    n = a+b+c+d
-    
-    p1 <- R1/n
-    p2 <- C2/n
-    p <- a/n
-    
-    z1 <- qnorm(p1)
-    z2 <- -qnorm(p2)
-
-    #Iterate to find optimal value for rt
-    
-    nDecimals <- 10
-    
-    rt = -1
-    for (nd in 1:nDecimals) {
-      prt<-0
-      i <- -1
-      while (prt < p && i < 1) {
-        rt <- rt + 1/(10**nd)
-        prt <- fMultivar::pnorm2d(z1, z2, rt)[1]
-        i <- i + 0.1
-      }
-      rt <- rt - 1/(10**nd)
-    }
+  if (method=="search"){
+    rt = r_tetrachoric_search(a, b, c, d)
   }
   
-  if (method=="kirk") {
+  else if (method=="kirk"){
+    rt = r_tetrachoric_kirt(a, b, c, d)
+  }
+  
+  else if (method=="brown"){
+    rt = r_tetrachoric_brown(a, b, c, d)
+  }
+  
+  else if (method=="divgi"){
+    rt = r_tetrachoric_divgi(a, b, c, d)
+  }
+  
+  return(rt)
+  
+}
+
+r_tetrachoric_search <- function(a,b,c,d){
+  
+  #the row totals
+  R1 <- a+b
+  R2 <- c+d
+  
+  #the column totals
+  C1 <- a+c
+  C2 <- b+d
+  
+  n = a+b+c+d
+  
+  p1 <- R1/n
+  p2 <- C2/n
+  p <- a/n
+  
+  z1 <- qnorm(p1)
+  z2 <- -qnorm(p2)
+  
+  #Iterate to find optimal value for rt
+  
+  nDecimals <- 10
+  
+  rt = -1
+  for (nd in 1:nDecimals) {
+    prt<-0
+    i <- -1
+    while (prt < p && i < 1) {
+      rt <- rt + 1/(10**nd)
+      prt <- fMultivar::pnorm2d(z1, z2, rt)[1]
+      i <- i + 0.1
+    }
+    rt <- rt - 1/(10**nd)
+  }
+  
+  return (rt)
+}
+
+r_tetrachoric_divgi <- function(a,b,c,d){
+  R1 = a+b
+  C1 = a+c
+  n = a+b+c+d
+  
+  p1 <- R1/n
+  p2 <- C1/n
+  
+  h <- qnorm(p1)
+  k <- qnorm(p2)
+  
+  hAdj <- max(abs(h), abs(k))
+  kAdj <- min(abs(h), abs(k))
+  
+  sg <- sign(h)*sign(k)
+  
+  #initial guess = Odds Ratio
+  OR <- a*d/(b*c)
+  
+  dA <- 0.5/(1+(hAdj**2+kAdj**2)*(0.12454-0.27102*(1-hAdj/(sqrt(hAdj**2+kAdj**2)))))
+  dB <- 0.5/(1+(hAdj**2+kAdj**2)*(0.82281-1.03514*kAdj/(sqrt(hAdj**2+kAdj**2)))) 
+  dC <- 0.07557*hAdj+(hAdj-kAdj)**2*(0.51141/(hAdj+2.05793)-0.07557/hAdj)
+  dD <- kAdj*(0.79289+4.28981/(1+3.30231*hAdj))
+  
+  alp <- dA + dB*(-1 + 1/(1 + dC*(log(OR)-dD)**2))
+  
+  r <- cos(pi/(1+OR**alp))
+  
+  for (i in 1:10) {
+    L <- fMultivar::pnorm2d(h, k, r)[1]
+    Ld <- exp(-(h**2-2*r*h*k+k**2)/(2*(1-r**2)))/(2*pi*sqrt(1-r**2))
+    r <- r - (L - a/n)/Ld
+  }
+  r <- r*sg
+  
+  rt= r
+  
+  return (rt)
+  
+}
+
+r_tetrachoric_kirt <- function(a, b, c, d){
     # P. Stikker adaptation of Fortran IV code from:
     # Kirk, D. B. (1973). On the numerical approximation of the bivariate normal (tetrachoric) correlation coefficient. Psychometrika, 38(2), 259–268. doi: 10.1007/BF02291118
     af = a
@@ -321,10 +357,15 @@ r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, me
     }
     # 200
     # 1000
-    rt = r;
-  }
+    rt = r
+    
+    return (rt)
   
-  if (method=="brown") {
+  
+}
+
+
+r_tetrachoric_brown <- function(a, b, c, d){
     x = c(0.9972638618, 0.9856115115, 0.9647622556, 0.9349060759, 
           0.8963211558, 0.8493676137, 0.794483796, 0.7321821187, 
           0.6630442669, 0.5877157572, 0.5068999089, 0.4213512761, 
@@ -695,47 +736,17 @@ r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, me
       }
     }
     rt = r
-  }
-  
-  if (method=="divgi") {
-    R1 = a+b
-    C1 = a+c
-    n = a+b+c+d
     
-    p1 <- R1/n
-    p2 <- C1/n
-    
-    h <- qnorm(p1)
-    k <- qnorm(p2)
-    
-    hAdj <- max(abs(h), abs(k))
-    kAdj <- min(abs(h), abs(k))
-    
-    sg <- sign(h)*sign(k)
-    
-    #initial guess = Odds Ratio
-    OR <- a*d/(b*c)
-    
-    dA <- 0.5/(1+(hAdj**2+kAdj**2)*(0.12454-0.27102*(1-hAdj/(sqrt(hAdj**2+kAdj**2)))))
-    dB <- 0.5/(1+(hAdj**2+kAdj**2)*(0.82281-1.03514*kAdj/(sqrt(hAdj**2+kAdj**2)))) 
-    dC <- 0.07557*hAdj+(hAdj-kAdj)**2*(0.51141/(hAdj+2.05793)-0.07557/hAdj)
-    dD <- kAdj*(0.79289+4.28981/(1+3.30231*hAdj))
-    
-    alp <- dA + dB*(-1 + 1/(1 + dC*(log(OR)-dD)**2))
-    
-    r <- cos(pi/(1+OR**alp))
-    
-    for (i in 1:10) {
-      L <- fMultivar::pnorm2d(h, k, r)[1]
-      Ld <- exp(-(h**2-2*r*h*k+k**2)/(2*(1-r**2)))/(2*pi*sqrt(1-r**2))
-      r <- r - (L - a/n)/Ld
-    }
-    r <- r*sg
-    
-    rt= r
-    
-  }
-  
-  return(rt)
-  
+    return (rt)
 }
+
+hEfn1 <- function(xx, w) {
+  f = exp(-1 * xx * w / 2);
+  return (f)
+}
+
+hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
+  f = exp((-1 * h2k2 + hk2 * v * x) / (2 * (1 - w * xx))) / sqrt(1 - w * xx);
+  return (f)
+}
+
