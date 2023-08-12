@@ -1,13 +1,3 @@
-#' helper function for Kirk method
-#' 
-#' @param xx H
-#' @param w K value
-#' @return f value
-#' 
-#' @description 
-#' H AND K INTEGRAND EVALUATION FOR GAUSSIAN QUADRATURE
-#' 
-#' @export
 hEfn1 <- function(xx, w) {
   f = exp(-1 * xx * w / 2);
   return (f)

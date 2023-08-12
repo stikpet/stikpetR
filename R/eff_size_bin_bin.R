@@ -160,7 +160,9 @@
 #' 
 #' **Equation 62**
 #' 
-#' \deqn{\frac{ad-bc}{\sqrt{R_1 R_2 C_1 C_2}}}
+#' \deqn{\Phi = \frac{\left\lvert ad-bc\right\rvert}{\sqrt{R_1 R_2 C_1 C_2}}}
+#' Note that Choi et. al ommit the absolute value, but this would create problems with taking the square root if bc>ad.
+#' 
 #' 
 #' **Equation 63:**
 #' 
@@ -391,9 +393,15 @@
 #' 
 #' Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. *Sociological Methods & Research, 16*(3), 407–424. doi:10.1177/0049124188016003003
 #' 
+#' Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. *Journal of Educational and Behavioral Statistics, 30*(2), 213–225. https://doi.org/10.3102/10769986030002213
+#' 
 #' Bonett, D. G., & Price, R. M. (2007). Statistical inference for generalized yule coefficients in 2 x 2 contingency tables. *Sociological Methods & Research, 35*(3), 429–446. doi:10.1177/0049124106292358
 #' 
 #' Braun-Blanquet, J. (1932). *Plant sociology: The study of plant communities*. McGraw Hill.
+#' 
+#' Camp, B. H. (1934). *Mathematical part of elementary statistics*. D.C. Heath and Company, London.
+#' 
+#' Chen, P. Y., & Popovich, P. M. (2002). *Correlation: Parametric and nonparametric measures*. Sage Publications.
 #' 
 #' Choi, S.-S., Cha, S.-H., & Tappert, C. (2010). A survey of binary similarity and distance measures. *Journal on Systemics, Cybernetics and Informatics, 8*(1), 43–48.
 #' 
@@ -404,6 +412,8 @@
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #' 
 #' Cole, L. C. (1949). *The measurement of interspecific associaton. Ecology, 30*(4), 411–424. doi:10.2307/1932444
+#' 
+#' Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. *Educational and Psychological Measurement, 28*(2), 239–244. doi:10.1177/001316446802800202
 #' 
 #' Dennis, S. F. (1965). The construction of a thesaurus automatically from a sample of text. In M. E. Stevens, V. E. Giuliano, & L. B. Heilprin (Eds.), *Statistical Association Methods for Mechanized Documentation* (Vol. 14, pp. 61–148). U.S. Government Printing Office.
 #' 
@@ -416,6 +426,8 @@
 #' Driver, H. E., & Kroeber, A. L. (1932). Quantitative expression of cultural relationships. *University Of California Publications in American Archeology and Ethnology, 31*(4), 211–256.
 #' 
 #' Edwards, J. H. (1957). A note on the practical interpretation of 2 x 2 tables. *Journal of Epidemiology & Community Health, 11*(2), 73–78. doi:10.1136/jech.11.2.73
+#' 
+#' Edwards, J. H., & Edwards, A. W. F. (1984). Approximating the tetrachoric correlation coefficient. *Biometrics, 40*(2), 563–563.
 #' 
 #' Eyraud, H. (1936). Les principes de la mesure des correlations. *Ann. Univ. Lyon, III. Ser., Sect. A, 1*(30–47), 111.
 #' 
@@ -438,6 +450,8 @@
 #' Gilbert, N., & Wells, T. C. E. (1966). *Analysis of quadrat data. Journal of Ecology, 54*(3), 675–685. doi:10.2307/2257810
 #' 
 #' Gleason, H. A. (1920). Some applications of the quadrat method. *Bulletin of the Torrey Botanical Club, 47*(1), 21–33. doi:10.2307/2480223
+#' 
+#' Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 #' 
 #' Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. *Journal of the American Statistical Association, 49*(268), 732–764. doi:10.2307/2281536
 #' 
@@ -521,6 +535,8 @@
 #' 
 #' Tulloss, R. E. (1997). Assessment of similarity indices for undesirable properties and a new tripartite similarity index based on cost functions. In M. E. Palm & I. H. Chapela (Eds.), *Mycology in sustainable development: Expanding concepts, vanishing borders* (pp. 122–143). Parkway Pub.
 #' 
+#' Walker, H. M., & Lev, J. (1953). *Statistical inference*. Holt. 
+#' 
 #' Warrens, M. J. (2008). Similarity coefficients for binary data: Properties of coefficients, coefficient matrices, multi-way metrics and multivariate coefficients [Doctoral dissertation, Universiteit Leiden]. https://hdl.handle.net/1887/12987
 #' 
 #' Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. *Philosophical Transactions of the Royal Society of London, 194*, 257–319. doi:10.1098/rsta.1900.0019
@@ -537,86 +553,6 @@ es_bin_bin <- function(field1,
                        categories1=NULL, 
                        categories2=NULL, 
                        method = "odds-ratio"){
-
-  #order in code:
-  #  1.  "russell-rao"
-  #  2.  "dice-1"
-  #  3.  "dice-2"
-  #  4.  "braun-blanquet"
-  #  5.  "simpson"
-  #  6.  "kulczynski-1"
-  #  7.  "jaccard" = "tanimoto"
-  #  8.  "sokal-sneath-1"
-  #  9.  "gleason" = "dice-3" = "nei-li" = "czekanowski"
-  # 10.  "mountford"
-  # 11.  "driver-kroeber-1" = "ochiai-1" = "otsuka"
-  # 12.  "sorgenfrei"
-  # 13.  "johnson"
-  # 14.  "kulcsynski-2" = "driver-kroeber-2"
-  # 15.  "fager-mcgowan-1"
-  # 16.  "fager-mcgowan-2"
-  # 17.  "tarantula"
-  # 18.  "ample"
-  # 19.  "gilbert"
-  # 20.  "fossum-kaskey"
-  # 21.  "eyraud"
-  # 22.  "sokal-michener" = "matching"
-  # 23.  "faith"
-  # 24.  "sokal-sneath-5"
-  # 25.  "rogers-tanimoto"
-  # 26.  "sokal-sneath-2" = "gower-legendre"
-  # 27.  "gower"
-  # 28.  "sokal-sneath-4" = "ochiai-2"
-  # 29.  "rogot-goldberg"
-  # 30.  "sokal-sneath-3"
-  # 31.  "hawkins-dotson"
-  # 32.  "clement"
-  # 33.  "harris-lahey"
-  # 34.  "austin-colwell"
-  # 35.  "forbes-1"
-  # 36.  "baroni-urbani-buser-1"
-  # 37.  "peirce-1"
-  # 38.  "peirce-2"
-  # 39.  "cole-c1"
-  # 40.  "loevinger" = "forbes-2"
-  # 41.  "cole-c1"
-  # 42.  "dennis"
-  # 43.  "phi" = "cole-c2"
-  # 44.  "doolittle"
-  # 45.  "peirce-3"
-  # 46.  "cohen-kappa"
-  # 47.  "mcewen-michael" = "cole-c3"
-  # 48.  "kuder-richardson"
-  # 49.  "scott"
-  # 50.  "maxwell-pilliner"
-  # 51.  "cole-c5"
-  # 52.  "hamann"
-  # 53.  "fleiss"
-  # 54.  "yule-q" = "cole-c4" = "pearson-q2"
-  # 55.  "yule-y"
-  # 56.  "digby"
-  # 57.  "edward"
-  # 58.  "tarwid"
-  # 59.  "mcconnaughey"
-  # 60.  "baroni-urbani-buser-2"
-  # 61.  "kent-foster-1"
-  # 62.  "kent-foster-2"
-  # 63.  "tulloss"
-  # 64.  "gilbert-wells"
-  # 65.  "pearson-heron"
-  # 66.  "anderberg"
-  # 67.  "alroy"
-  # 68.  "pearson-q1"
-  # 69.  "gk-lambda-1"
-  # 70.  "gk-lambda-2"
-  # 71.  "contigency"
-  # 72.  "cohen-w"
-  # 73.  "pearson"
-  # 74.  "hurlbert" = "cole-c8"
-  # 75.  "stiles"
-  # 76.  "bonett-price"
-  
-  #  1.  "odds-ratio"
 
   #get the cross table
       tb = tab_cross(field1, field2, order1=categories1, order2=categories2)
@@ -856,7 +792,7 @@ es_bin_bin <- function(field1,
       chi = n * (a * d - b * c) ^ 2 / (r1 * r2 * c1 * c2)
       es = sqrt(chi / n)
   } else if (method == "pearson"){
-      Phi = (a * d - b * c) / sqrt(r1 * r2 * c1 * c2)
+      Phi = abs(a * d - b * c) / sqrt(r1 * r2 * c1 * c2)
       es = sqrt(Phi / (n + Phi))
   } else if (method == "hurlbert" || method == "cole-c8"){
       chi = n * (a * d - b * c) ^ 2 / (r1 * r2 * c1 * c2)

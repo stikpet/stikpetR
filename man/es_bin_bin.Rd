@@ -176,7 +176,8 @@ then the following formula are used:\tabular{lll}{
 
 \strong{Equation 62}
 
-\deqn{\frac{ad-bc}{\sqrt{R_1 R_2 C_1 C_2}}}
+\deqn{\Phi = \frac{\left\lvert ad-bc\right\rvert}{\sqrt{R_1 R_2 C_1 C_2}}}
+Note that Choi et. al ommit the absolute value, but this would create problems with taking the square root if bc>ad.
 
 \strong{Equation 63:}
 
@@ -406,9 +407,15 @@ Baroni-Urbani, C., & Buser, M. W. (1976). Similarity of binary data. \emph{Syste
 
 Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. \emph{Sociological Methods & Research, 16}(3), 407–424. doi:10.1177/0049124188016003003
 
+Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. \emph{Journal of Educational and Behavioral Statistics, 30}(2), 213–225. https://doi.org/10.3102/10769986030002213
+
 Bonett, D. G., & Price, R. M. (2007). Statistical inference for generalized yule coefficients in 2 x 2 contingency tables. \emph{Sociological Methods & Research, 35}(3), 429–446. doi:10.1177/0049124106292358
 
 Braun-Blanquet, J. (1932). \emph{Plant sociology: The study of plant communities}. McGraw Hill.
+
+Camp, B. H. (1934). \emph{Mathematical part of elementary statistics}. D.C. Heath and Company, London.
+
+Chen, P. Y., & Popovich, P. M. (2002). \emph{Correlation: Parametric and nonparametric measures}. Sage Publications.
 
 Choi, S.-S., Cha, S.-H., & Tappert, C. (2010). A survey of binary similarity and distance measures. \emph{Journal on Systemics, Cybernetics and Informatics, 8}(1), 43–48.
 
@@ -419,6 +426,8 @@ Cohen, J. (1960). A coefficient of agreement for nominal scales. \emph{Education
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
 Cole, L. C. (1949). \emph{The measurement of interspecific associaton. Ecology, 30}(4), 411–424. doi:10.2307/1932444
+
+Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. \emph{Educational and Psychological Measurement, 28}(2), 239–244. doi:10.1177/001316446802800202
 
 Dennis, S. F. (1965). The construction of a thesaurus automatically from a sample of text. In M. E. Stevens, V. E. Giuliano, & L. B. Heilprin (Eds.), \emph{Statistical Association Methods for Mechanized Documentation} (Vol. 14, pp. 61–148). U.S. Government Printing Office.
 
@@ -431,6 +440,8 @@ Doolittle, M. H. (1885). The verification of predictions. \emph{Bulletin of the 
 Driver, H. E., & Kroeber, A. L. (1932). Quantitative expression of cultural relationships. \emph{University Of California Publications in American Archeology and Ethnology, 31}(4), 211–256.
 
 Edwards, J. H. (1957). A note on the practical interpretation of 2 x 2 tables. \emph{Journal of Epidemiology & Community Health, 11}(2), 73–78. doi:10.1136/jech.11.2.73
+
+Edwards, J. H., & Edwards, A. W. F. (1984). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 40}(2), 563–563.
 
 Eyraud, H. (1936). Les principes de la mesure des correlations. \emph{Ann. Univ. Lyon, III. Ser., Sect. A, 1}(30–47), 111.
 
@@ -453,6 +464,8 @@ Gilbert, G. K. (1884). Finley’s tornado predictions. \emph{American Meteorolog
 Gilbert, N., & Wells, T. C. E. (1966). \emph{Analysis of quadrat data. Journal of Ecology, 54}(3), 675–685. doi:10.2307/2257810
 
 Gleason, H. A. (1920). Some applications of the quadrat method. \emph{Bulletin of the Torrey Botanical Club, 47}(1), 21–33. doi:10.2307/2480223
+
+Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 
 Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732–764. doi:10.2307/2281536
 
@@ -535,6 +548,8 @@ Tanimoto, T. T. (1958). An elementary mathematical theory of classification and 
 Tarwid, K. (1960). Szacowanie zbieinosci nisz ekologicznych gatunkow droga oceny prawdopodobienstwa spotykania sie ich w polowach. \emph{Ekologia Polska, 6}, 115–130.
 
 Tulloss, R. E. (1997). Assessment of similarity indices for undesirable properties and a new tripartite similarity index based on cost functions. In M. E. Palm & I. H. Chapela (Eds.), \emph{Mycology in sustainable development: Expanding concepts, vanishing borders} (pp. 122–143). Parkway Pub.
+
+Walker, H. M., & Lev, J. (1953). \emph{Statistical inference}. Holt.
 
 Warrens, M. J. (2008). Similarity coefficients for binary data: Properties of coefficients, coefficient matrices, multi-way metrics and multivariate coefficients \link{Doctoral dissertation, Universiteit Leiden}. https://hdl.handle.net/1887/12987
 
