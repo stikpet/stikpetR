@@ -87,7 +87,7 @@ me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high"))
   n = length(dataN)
   medIndex = (n + 1)/2
   
-  if (medIndex == round(medIndex)) {med = sData[medIndex]}
+  if (medIndex == round(medIndex)) {medN = sData[medIndex]}
   else{
     medLow = sData[medIndex - 0.5]
     medHigh = sData[medIndex + 0.5]

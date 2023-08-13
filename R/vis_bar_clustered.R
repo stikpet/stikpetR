@@ -5,7 +5,9 @@
 #' 
 #' The bars can be split into multiple bars based on another variable. This is then known as a multiple bar-chart (Kemp, 2004, p. 150) or clustered bar-chart (Brase, 2009, p. 50; Griffith, 2007, p. 168).
 #' 
-#' It can be defined as “a bar chart for comparing the frequencies of a categorical variable in two or more situations” (Upton & Cook, 2014, p. 283). 
+#' It can be defined as “a bar chart for comparing the frequencies of a categorical variable in two or more situations” (Upton & Cook, 2014, p. 283).
+#' 
+#' The first field will be placed on the horizontal axis, and the second used for the clusters. 
 #' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns

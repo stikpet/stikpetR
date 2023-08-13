@@ -32,6 +32,8 @@ A bar-chart is defined as “a graph in which bars of varying height with spaces
 The bars can be split into multiple bars based on another variable. This is then known as a multiple bar-chart (Kemp, 2004, p. 150) or clustered bar-chart (Brase, 2009, p. 50; Griffith, 2007, p. 168).
 
 It can be defined as “a bar chart for comparing the frequencies of a categorical variable in two or more situations” (Upton & Cook, 2014, p. 283).
+
+The first field will be placed on the horizontal axis, and the second used for the clusters.
 }
 \examples{
 #Example 1: Clustered Bar Chart in percentages
