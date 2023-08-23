@@ -185,7 +185,7 @@ tab_nbins <- function(data, method='src', maxBins=NULL, qmethod="cdf"){
     else if(method=='doane'){
         sdPop <- sqrt((n-1)/n)*sd(data)
         varPop <- sdPop^2
-        g1 <- sum((data-mean(data)/varPop)^3)/n
+        g1 <- mean(((data-mean(data))/varPop)^3)
         sg1 <- sqrt(6*(n-2)/((n+1)*(n+3)))
         k <- 1 + log2(n) + log2(1+abs(g1)/sg1)
     }
