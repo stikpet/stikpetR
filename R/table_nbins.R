@@ -146,11 +146,17 @@
 #' tab_nbins(ex2)
 #' 
 #' @export
-tab_nbins <- function(data, method='src', maxBins=100, qmethod="cdf"){
+tab_nbins <- function(data, method='src', maxBins=NULL, qmethod="cdf"){
+    data = data.frame(data)
     data <- na.omit(data) # remove missing values
+    
     data <- as.numeric(data[,1]) # convert to numeric
     # Number of scores
     n <- length(data)
+    
+    if (is.null(maxBins)){
+        maxBins=n
+    }
 
     #Square-root choice
     if(method=='src'){k <- sqrt(n)}

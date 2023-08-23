@@ -3,6 +3,8 @@
 #' @description
 #' A test that could be used with ordinal data that includes ties
 #' 
+#' Similar as a sign-test but instead of ignoring scores that are tied with the hypothesized median they get included, hence instead of the binomial distribution, this will use the trinomial distribution.
+#' 
 #' @param data A vector or dataframe
 #' @param levels optional list to indicate what values represent
 #' @param mu optional hypothesized median, otherwise the midrange will be used
