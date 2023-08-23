@@ -5,7 +5,7 @@
 #' 
 #' @param data list or dataframe
 #' @param nbins optional, either the number of bins to create, or a specific method from the *tab_nbins()* function. Default is "sturges"
-#' @param bins optional list of tuples, optional
+#' @param bins optional dataframe with lower and upper bounds
 #' @param incl_lower optional boolean, to include the lower bound, otherwise the upper bound is included. Default is True
 #' @param adjust optional value to add  or subtract to guarantee all scores will fit in a bin
 #' 
