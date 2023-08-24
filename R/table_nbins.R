@@ -233,5 +233,8 @@ tab_nbins <- function(data, method='src', adjust=1, maxBins=NULL, qmethod="cdf")
             k <- which.min(C) + 1            
         }
     }
+    
+    k = ceiling(k)
+    
     return (k)
 }
