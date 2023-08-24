@@ -6,6 +6,7 @@
 #' 
 #' @param data vector or dataframe
 #' @param method optional to indicate the method to use. Either "src", "sturges", "qr", "rice", "ts", "exp", "velleman", "doane", "scott", "fd", "shinshim", "stone", or "knuth"
+#' @param adjust optional adjustment to upper bound to guarantee all scores will fit in range.
 #' @param maxBins optional for in iterations with "shinshim", "stone" and "knuth"
 #' @param qmethod optional quartile method calculation to use for IQR when "fd" is used. See me_quartiles for options
 #' 
@@ -146,7 +147,7 @@
 #' tab_nbins(ex2)
 #' 
 #' @export
-tab_nbins <- function(data, method='src', maxBins=NULL, qmethod="cdf"){
+tab_nbins <- function(data, method='src', adjust=1, maxBins=NULL, qmethod="cdf"){
     data = data.frame(data)
     data <- na.omit(data) # remove missing values
     
@@ -157,30 +158,30 @@ tab_nbins <- function(data, method='src', maxBins=NULL, qmethod="cdf"){
     if (is.null(maxBins)){
         maxBins=n
     }
-
+    
     #Square-root choice
     if(method=='src'){k <- sqrt(n)}
-
+    
     #Sturges
     else if(method=='sturges'){k <- log2(n) + 1}
-
+    
     else if(method=='qr'){k <- 2.5*n^(1/4)}
-
+    
     #Rice
     else if(method=='rice'){k <- 2*(n^(1/3))}
-
+    
     #Terrell and Scott
     else if(method=='ts'){k <- (2*n)^(1/3)} 
-
+    
     #Exponential
     else if(method=='exp'){k <- log2(n)}  
-
+    
     #Exponential
     else if(method=='velleman'){
         if(n<=100){k <- 2*n^0.5}
         else{k <- 10*log10(n)}
     }  
-
+    
     #Doane
     else if(method=='doane'){
         sdPop <- sqrt((n-1)/n)*sd(data)
@@ -189,47 +190,48 @@ tab_nbins <- function(data, method='src', maxBins=NULL, qmethod="cdf"){
         sg1 <- sqrt(6*(n-2)/((n+1)*(n+3)))
         k <- 1 + log2(n) + log2(1+abs(g1)/sg1)
     }
-
+    
     else {
         dataRange <- max(data)-min(data)
-
+        
         #Scott
         if(method=='scott'){
             h <- 3.49*sd(data)/(n^(1/3))
             k <- dataRange/h
         }
-
+        
         #Freedman-Diaconis
         else if(method=='fd'){
             iqr = me_quartile_range(data, method = qmethod)[1,3]
             h <- 2*iqr/(n^(1/3))
             k <- dataRange/h
         }
-
+        
         else {
             k <- 2: maxBins
             C <- numeric(length(k))
             h <- C
-
+            
             for (i in 1:length(k)) {
-                h[i] <- diff(range(data))/k[i]
-                edges = seq(min(data),max(data),length=k[i])
+                w <-diff(range(data)+adjust)/k[i]
+                h[i] <- w
+                edges = seq(min(data),max(data)+adjust,length=k[i]+1)
                 hp <- hist(data, breaks = edges, plot=FALSE )
                 ki <- hp$counts
-
-                avg <- mean(ki)
-                v <- sum((ki-avg)^2)/k[i]
-
-                if(method=="shinshim"){C[i] <- (2*avg-v)/(h[i]^2)}
+                
+                if(method=="shinshim"){
+                    avg <- n/k[i]
+                    v <- sum((ki-avg)^2)/k[i]
+                    C[i] <- (2*avg-v)/((n*h[i])^2)}
                 else if(method=="stone"){C[i] <- 1/h[i] * (2/(n-1) - (n+1)/(n-1)*sum((ki/n)^2))}
                 else if(method=="knuth"){
-                    C[i] <- n*log(k[i]) + lgamma(k[i]/2) - k[i]*lgamma(1/2) - lgamma(n+k[i]/2) + sum(lgamma(ki+0.5)) #Profit Function
+                    C[i] <- n*log(k[i]) + lgamma(k[i]/2) - k[i]*lgamma(1/2) - lgamma(n+k[i]/2) + sum(lgamma(ki+0.5)) 
+                    #Profit Function
                     C[i] <- -C[i]}
-                    }
-                idx <- which.min(C)
-                h <- h[idx]
-                k <- ceiling(dataRange/h)
             }
+            
+            k <- which.min(C) + 1            
         }
-    return (ceiling(k))
+    }
+    return (k)
 }
