@@ -145,7 +145,8 @@ me_mean <- function(data,
   else if (version=="olympic"){
     res = (sum(data) - max(data) - min(data))/(length(data)-2)}
   else if (version=="geometric"){
-    res = exp(sum(log(data)))}
+    n = length(data)
+    res = exp(sum(log(data))/n)}
   else if (version=="harmonic"){
     n = length(data)
     res = n/sum(1/data)}

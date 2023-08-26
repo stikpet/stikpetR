@@ -113,7 +113,7 @@ me_variation <- function(data,
     lbl = "mean absolute deviation around median"
     m = median(dataN)
     res = sum(abs(dataN - m))/n}
-  else if (measure=="medmad"){
+  else if (measure=="medad"){
     lbl = "median absolute deviation"
     m = median(dataN)
     res = median(abs(dataN - m))}

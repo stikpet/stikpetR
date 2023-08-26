@@ -192,7 +192,7 @@ tab_nbins <- function(data, method='src', adjust=1, maxBins=NULL, qmethod="cdf")
     }
     
     else {
-        dataRange <- max(data)-min(data)
+        dataRange <- max(data)+adjust-min(data)
         
         #Scott
         if(method=='scott'){

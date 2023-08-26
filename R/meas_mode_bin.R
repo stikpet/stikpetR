@@ -12,7 +12,10 @@
 #' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 #' 
 #' @param data list or dataframe
-#' @param bins dataframe with the lower and upper bounds
+#' @param nbins optional, either the number of bins to create, or a specific method from the *tab_nbins()* function. Default is "sturges"
+#' @param bins optional dataframe with lower and upper bounds
+#' @param incl_lower optional boolean, to include the lower bound, otherwise the upper bound is included. Default is True
+#' @param adjust optional value to add  or subtract to guarantee all scores will fit in a bin
 #' @param allEq optional indicator on what to do if maximum frequency is equal for more than one category. Either "none" (default) or "all"
 #' @param value optional which value to show in the output. Either "none" (default), "midpoint", or "quadratic"
 #' 
@@ -22,6 +25,9 @@
 #' \item{mode fd}{frequency density of the mode}
 #' 
 #' @details 
+#' 
+#' The function will use the **tab_frequency_bins()** function with the given parameters *nbins*, *bins*, *incl_lower* and *adjust*. See details of that function for more info.
+#' 
 #' **Value to return**
 #' 
 #' If *value="midpoint"* is used the modal bin(s) midpoints are shown, using:
@@ -69,20 +75,15 @@
 #' me_mode_bin(ex1, bins)
 #' 
 #' @export
-me_mode_bin <- function(data, bins, allEq="none", value="none"){
+me_mode_bin <- function(data, nbins="sturges", bins=NULL, incl_lower=TRUE, adjust=1, allEq="none", value="none"){
   data = na.omit(data)
-  k = nrow(bins)
   
-  tab = data.frame(matrix(ncol=2, nrow=0))
-  colnames(tab) = c("f", "fd")
-  for (i in 1:k ){
-    f = sum(data >= bins[i,1]) - sum(data >= bins[i,2])
-    fd = f/(bins[i,2] - bins[i,1])
-    tab[nrow(tab) + 1, ] = c(f, fd)
-  }
+  binTable = tab_frequency_bins(data, nbins, bins, incl_lower, adjust)
   
-  modeFD = max(tab[,'fd'])
-  nModes = sum(tab[,'fd'] == modeFD)
+  k = nrow(binTable)-1
+  
+  modeFD = max(binTable[,'frequency density'])
+  nModes = sum(binTable[,'frequency density'] == modeFD)
   
   if ((nModes==k) & (allEq=="none")){
     mode = "none"
@@ -92,8 +93,8 @@ me_mode_bin <- function(data, bins, allEq="none", value="none"){
     if (value=="midpoint"){
       ff = 0
       for (i in 1:k){
-        if (tab[i, "fd"]==modeFD){
-          newMode = (bins[i,1] + bins[i,2])/2
+        if (binTable[i, "frequency density"]==modeFD){
+          newMode = (binTable[i,1] + binTable[i,2])/2
           if (ff==0){
             mode=newMode
             ff = ff + 1}
@@ -106,16 +107,18 @@ me_mode_bin <- function(data, bins, allEq="none", value="none"){
     else if (value=="quadratic"){
       ff = 0
       for (i in 1:k){
-        if (tab[i, "fd"]==modeFD){
+        if (binTable[i, "frequency density"]==modeFD){
           if (i==1){
-            d1 = modeFD}
+            d1 = modeFD
+            d2 = modeFD - binTable[(i + 1), "frequency density"]}
           else if (i==k){
+            d1 = modeFD - binTable[(i - 1), "frequency density"]
             d2 = modeFD}
           else{
-            d1 = modeFD - tab[(i - 1), "fd"]
-            d2 = modeFD - tab[(i + 1), "fd"]}
+            d1 = modeFD - binTable[(i - 1), "frequency density"]
+            d2 = modeFD - binTable[(i + 1), "frequency density"]}
           
-          newMode = bins[i, 1] + d1/(d1 + d2) * (bins[i, 2] - bins[i,1])
+          newMode = binTable[i, 1] + d1/(d1 + d2) * (binTable[i, 2] - binTable[i,1])
           
           if (ff==0){
             mode=newMode
@@ -129,8 +132,8 @@ me_mode_bin <- function(data, bins, allEq="none", value="none"){
     else if (value=="none"){
       ff = 0
       for (i in 1:k){
-        if (tab[i, "fd"]==modeFD){
-          newMode = paste(bins[i,1], "<", bins[i,2])
+        if (binTable[i, "frequency density"]==modeFD){
+          newMode = paste(binTable[i,1], "<", binTable[i,2])
           if (ff==0){
             mode=newMode
             ff = ff + 1}
