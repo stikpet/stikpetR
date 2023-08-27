@@ -36,7 +36,6 @@ scor = c(1, 2, 1, 1, 2, 1, 1, 1, 2)
 vi_bar_stacked_multiple(cats, scor, ylab= "percent", col=1:5)
 
 
-
 }
 \references{
 Upton, G., & Cook, I. (2014). \emph{Oxford: Dictionary of statistics} (3rd ed.). Oxford University Press.

@@ -34,7 +34,7 @@
 #' vi_bar_stacked_multiple(cats, scor, ylab= "percent", col=1:5)
 #' 
 #' 
-#' 
+#' @export
 vi_bar_stacked_multiple <- function(catField, ordField, levels=NULL, ...){
   #replace the ordinal values if levels is provided
   if (!is.null(levels)){
