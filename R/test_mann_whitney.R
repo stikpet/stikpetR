@@ -167,5 +167,5 @@ ts_mann_whitney <- function(catField, ordField, categories=NULL, levels=NULL, me
   results <- data.frame(n, U1, U2, statistic, pValue, testUsed)
   colnames(results)<-c("n", "U1", "U2", "statistic", "p-value", "test")
   
-  return(zabs)  
+  return(results)  
 }
