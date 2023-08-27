@@ -78,7 +78,7 @@
 #' fr="cramervgof", to = "cohenw", ex1 = k
 #'
 #' This uses (Cohen, 1988, p. 223):
-#' \deqn{w = v\times\sqrt{df - 1}}
+#' \deqn{w = v\times\sqrt{df}}
 #'
 #' **EPSILON SQUARED**
 #'

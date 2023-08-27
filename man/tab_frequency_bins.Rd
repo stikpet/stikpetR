@@ -17,7 +17,7 @@ tab_frequency_bins(
 
 \item{nbins}{optional, either the number of bins to create, or a specific method from the \emph{tab_nbins()} function. Default is "sturges"}
 
-\item{bins}{optional list of tuples, optional}
+\item{bins}{optional dataframe with lower and upper bounds}
 
 \item{incl_lower}{optional boolean, to include the lower bound, otherwise the upper bound is included. Default is True}
 

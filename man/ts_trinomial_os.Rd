@@ -24,6 +24,8 @@ A dataframe with:
 }
 \description{
 A test that could be used with ordinal data that includes ties
+
+Similar as a sign-test but instead of ignoring scores that are tied with the hypothesized median they get included, hence instead of the binomial distribution, this will use the trinomial distribution.
 }
 \details{
 The p-value is calculated using (Bian et al., 2009, p. 6):

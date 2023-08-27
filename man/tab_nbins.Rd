@@ -4,12 +4,14 @@
 \alias{tab_nbins}
 \title{Number of Bins}
 \usage{
-tab_nbins(data, method = "src", maxBins = 100, qmethod = "cdf")
+tab_nbins(data, method = "src", adjust = 1, maxBins = NULL, qmethod = "cdf")
 }
 \arguments{
 \item{data}{vector or dataframe}
 
 \item{method}{optional to indicate the method to use. Either "src", "sturges", "qr", "rice", "ts", "exp", "velleman", "doane", "scott", "fd", "shinshim", "stone", or "knuth"}
+
+\item{adjust}{optional adjustment to upper bound to guarantee all scores will fit in range.}
 
 \item{maxBins}{optional for in iterations with "shinshim", "stone" and "knuth"}
 

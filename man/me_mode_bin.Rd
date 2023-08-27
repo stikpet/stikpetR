@@ -4,12 +4,26 @@
 \alias{me_mode_bin}
 \title{Mode for Binned Data}
 \usage{
-me_mode_bin(data, bins, allEq = "none", value = "none")
+me_mode_bin(
+  data,
+  nbins = "sturges",
+  bins = NULL,
+  incl_lower = TRUE,
+  adjust = 1,
+  allEq = "none",
+  value = "none"
+)
 }
 \arguments{
 \item{data}{list or dataframe}
 
-\item{bins}{dataframe with the lower and upper bounds}
+\item{nbins}{optional, either the number of bins to create, or a specific method from the \emph{tab_nbins()} function. Default is "sturges"}
+
+\item{bins}{optional dataframe with lower and upper bounds}
+
+\item{incl_lower}{optional boolean, to include the lower bound, otherwise the upper bound is included. Default is True}
+
+\item{adjust}{optional value to add  or subtract to guarantee all scores will fit in a bin}
 
 \item{allEq}{optional indicator on what to do if maximum frequency is equal for more than one category. Either "none" (default) or "all"}
 
@@ -32,6 +46,8 @@ If one category has the highest frequency this category will be the modal catego
 An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 }
 \details{
+The function will use the \strong{tab_frequency_bins()} function with the given parameters \emph{nbins}, \emph{bins}, \emph{incl_lower} and \emph{adjust}. See details of that function for more info.
+
 \strong{Value to return}
 
 If \emph{value="midpoint"} is used the modal bin(s) midpoints are shown, using:
