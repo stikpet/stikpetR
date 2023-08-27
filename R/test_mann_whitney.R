@@ -95,7 +95,7 @@ ts_mann_whitney <- function(catField, ordField, categories=NULL, levels=NULL, me
     cat1 = names(table(df$group))[1]
     cat2 = names(table(df$group))[2]
   }
-  
+  df = na.omit(df)
   #seperate the scores for each category
   scoresCat1 = unname(unlist((subset(df, group == cat1)[1])))
   scoresCat2 = unname(unlist((subset(df, group == cat2)[1])))
@@ -161,12 +161,11 @@ ts_mann_whitney <- function(catField, ordField, categories=NULL, levels=NULL, me
     
     #still need abs since cc could make it negative
     pValue = 2*(1 - pnorm(abs(zabs)))
-    statistic = z
+    statistic = zabs
   }
   
   results <- data.frame(n, U1, U2, statistic, pValue, testUsed)
   colnames(results)<-c("n", "U1", "U2", "statistic", "p-value", "test")
   
-  return(results)
-  
+  return(zabs)  
 }
