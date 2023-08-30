@@ -4,7 +4,6 @@
 #' @importFrom ggplot2 geom_histogram
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 facet_wrap
-#' @importFrom ggplot2 labs
 #' 
 #' @description 
 #' Based on a categorical field the scores for each category are plotted in a separate histogram and each of the histograms is placed underneath each other.
@@ -40,6 +39,6 @@ vi_histogram_split <- function(catField, scaleField, categories=NULL, ...){
   colnames(data) = c("category", "score")
   ggplot(data, aes(x=score)) + 
     geom_histogram(...) + 
-    facet_wrap(~ category, ncol=1) + labs(x = argnames[2])
+    facet_wrap(~ category, ncol=1)
   
 }
