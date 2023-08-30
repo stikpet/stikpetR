@@ -30,13 +30,13 @@ vi_histogram_split <- function(catField, scaleField, categories=NULL, ...){
   #create a dataframe
   data = data.frame(catField, scaleField)
   data = na.omit(data)
+  colnames(data) = c("category", "score")
   
   if (!is.null(categories)){
     data = data[data[, 1] %in% categories, ]
   }
   
   #create the split histogram
-  colnames(data) = c("category", "score")
   ggplot(data, aes(x=score)) + 
     geom_histogram(...) + 
     facet_wrap(~ category, ncol=1)
