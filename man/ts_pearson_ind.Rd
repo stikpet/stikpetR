@@ -4,81 +4,101 @@
 \alias{ts_pearson_ind}
 \title{Pearson Chi-Square Test of Independence}
 \usage{
-ts_pearson_ind(nom1, nom2, cc = NULL)
+ts_pearson_ind(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  cc = NULL
+)
 }
 \arguments{
-\item{nom1}{A vector with the data of the first variable}
+\item{field1}{list or dataframe with the first categorical field}
 
-\item{nom2}{A vector with the data of the second variable}
+\item{field2}{list or dataframe with the second categorical field}
 
-\item{cc}{c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)}
+\item{categories1}{optional list with order and/or selection for categories of field1}
+
+\item{categories2}{optional list with order and/or selection for categories of field2}
+
+\item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "william".}
 }
 \value{
-dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+A dataframe with:
+\item{n}{the sample size}
+\item{n rows}{number of categories used in first field}
+\item{n col.}{number of categories used in second field}
+\item{statistic}{the test statistic (chi-square value)}
+\item{df}{the degrees of freedom}
+\item{p-value}{the significance (p-value)}
+\item{min. exp.}{the minimum expected count}
+\item{prop. exp. below 5}{proportion of cells with expected count less than 5}
+\item{test}{description of the test used}
 }
 \description{
-Pearson Chi-Square Test of Independence
+To test if two nominal variables have an association, the most commonly used test is the Pearson chi-square test of independence (Pearson, 1900). If the significance of this test is below 0.05, the two nominal variables have a significant association.
+
+The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.
+
+If for example I had 50 male and 50 female respondents, and 50 agreed with a statement and 50 disagreed with the statement, the expected value for each combination (male-agree, female-agree, male-disagree, and female-disagree) would be 25.
+
+Note that if in the survey the real results would be that all male disagreed, and all female would agree, there is a full dependency (i.e. gender fully decides if you agree or disagree), even though the row and column totals would still be 50. In essence the Pearson chi-square test, checks if your data is more toward the expected values (independence) or the full dependency one.
+
+One problem though is that the Pearson chi-square test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often ‘not too many cells’ is fixed at no more than 20\% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
 }
 \details{
 The formula used is (Pearson, 1900, p. 165):
-\deqn{\chi_{P}^{2}=\sum_{i=1}^r \sum_{j=1}^c\frac{\left(F_{i,j}-E_{i,j}\right)^{2}}{E_{i,j}}}
+\deqn{\chi_p^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{\left(F_{i,j} - E_{i,j}\right)^2}{E_{i,j}}}
 \deqn{df = \left(r - 1\right)\times\left(c - 1\right)}
-\deqn{sig. = 1 - \chi^2\left(\chi_{P}^{2},df\right)}
+\deqn{sig. = 1 - \chi^2\left(\chi_p^2, df\right)}
 
 With:
-\deqn{n = \sum_{i=1}^r \sum_{j=1}^c F_{i,j}}
-\deqn{E_{i,j} = \frac{R_i\times C_j}{n}}
+\deqn{E_{i,j} = \frac{R_i \times C_j}{n}}
 \deqn{R_i = \sum_{j=1}^c F_{i,j}}
 \deqn{C_j = \sum_{i=1}^r F_{i,j}}
+\deqn{n = \sum_{i=1}^r \sum_{j=1}^c F_{i,j} = \sum_{i=1}^r R_i = \sum_{j=1}^c C_j}
 
-\emph{Symbols used:}
+Symbols:
 \itemize{
-\item \eqn{r} the number of categories in the first variable (the number of rows)
-\item \eqn{c} the number of categories in the second variable (the number of columns)
-\item \eqn{F_{i,j}} the observed count in row i and column j
-\item \eqn{E_{i,j}} the expected count in row i and column j
-\item \eqn{R_i} the i-th row total
-\item \eqn{C_j} the j-th column total
-\item \eqn{n} the sum of all counts
-\item \eqn{\chi^2\left(\dots\right)}	the chi-square cumulative density function
+\item \eqn{r}, the number of rows
+\item \eqn{c}, the number of columns
+\item \eqn{F_{i,j}}, the observed count in row i and column j.
+\item \eqn{E_{i,j}}, the expected count in row i and column j.
+\item \eqn{R_i}, the row total of row i
+\item \eqn{C_j}, the column total of column j
+\item \eqn{n}, the overall total.
+\item \eqn{df}, the degrees of freedom
 }
 
-The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
+The \strong{Yates} correction uses \eqn{F_{i,j}'} instead of \eqn{F_{i,j}}, defined as (Yates, 1934, p. 222):
+\deqn{F_{i,j}' = \begin{cases} F_{i,j}-\frac{1}{2} & \text{ if } F_{i,j}> E_{i,j} \\ F_{i,j}+\frac{1}{2} & \text{ if } F_{i,j}< E_{i,j} \\ F_{i,j} & \text{ if } F_{i,j}= E_{i,j} \end{cases}}
 
-Use instead of \eqn{F_{i,j}} the adjusted version defined by:
-\deqn{F_{i,j}^\ast = \begin{cases} F_{i,j} - 0.5 & \text{ if } F_{i,j}>E_{i,j}  \\ F_{i,j} & \text{ if } F_{i,j}= E_{i,j}\\ F_{i,j} + 0.5 & \text{ if } F_{i,j}<E_{i,j} \end{cases}}
+The \strong{Williams} correction, adjusts the Pearson chi-square value:
+\deqn{\chi_{wil}^2 = \frac{\chi_p^2}{q}}
 
-The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
-\deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
-
-The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
-\deqn{\chi_{PW}^2 = \frac{\chi_{P}^2}{q}}
 With:
-\deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
-}
-\examples{
- 
-nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-ts_pearson_ind(nom1, nom2)
-ts_pearson_ind(nom1, nom2, cc="yates")
-ts_pearson_ind(nom1, nom2, cc="pearson")
-ts_pearson_ind(nom1, nom2, cc="williams")
- 
+\deqn{q = 1+\frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right) - 1\right)\times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_i}\right) - 1\right)}{6\times n \times\left(r - 1\right)\times\left(c - 1\right)}}
+
+The formula is probably from Williams (1976) but the one shown here is taken from McDonald (1976, p. 36).
+
+The \strong{Pearson} correction also adjusts the Pearson chi-square value with (E.S. Pearson, 1947, p. 157):
+\deqn{\chi_{epearson}^2 = \frac{n - 1}{n}\times \chi_p^2}
 }
 \references{
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. https://doi.org/10.2307/2332518
+Cochran, W. G. (1954). Some methods for strengthening the common \eqn{\chi^2} tests. \emph{Biometrics, 10}(4), 417. doi:10.2307/3001616
 
-Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. \emph{Philosophical Magazine Series 5, 50}(302), 157–175. https://doi.org/10.1080/14786440009463897
+Fisher, R. A. (1925). \emph{Statistical methods for research workers}. Oliver and Boyd.
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
+McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
+
+Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. \emph{Philosophical Magazine Series 5, 50}(302), 157–175. doi:10.1080/14786440009463897
+
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
+
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
