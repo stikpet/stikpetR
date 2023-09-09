@@ -1,8 +1,9 @@
 #' Goodman-Kruskal Lambda
 #' 
-#' @param nom1 the scores on the first variable
-#' @param nom2 the scores on the second variable
-#' @param dir c("both", "rows", "columns") optional to select which lambda to return (rows = first variable)
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
+#' @param categories1 optional, categories to use for field1
+#' @param categories2 optional, categories to use for field2
 #' @param ties c("first", "random", "average") optional to indicate what to do in case of multimodal situations.
 #' @return dataframe with the effect size value, asymptotic standard error (both assuming null and alternative), the test statistic, and p-value
 #' 
@@ -69,26 +70,22 @@
 #' 
 #' YouTube channel: https://www.youtube.com/stikpet
 #'  
-#' @examples 
-#' nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-#' nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="rows")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="columns")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="both")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="rows", ties="random")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="columns", ties="random")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="both", ties="random")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="rows", ties="average")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="columns", ties="average")
-#' es_goodman_kruskal_lambda(nom1, nom2, dir="both", ties="average")
 #' 
 #' @export
-es_goodman_kruskal_lambda <- function(nom1, nom2, dir="both", ties="first"){
-
+es_goodman_kruskal_lambda <- function(field1, field2, categories1=NULL, categories2=NULL, ties="first"){
+  
   #The average method only averages column and row maximums (rm and cm),
   #it uses "first" for ties in fim and fmj.
-    
-  dFra = na.omit(data.frame(nom1, nom2))
+  
+  #remove if not in categories
+  if (!is.null(categories1)){
+    field1[! field1 %in% categories1] = NA
+  }
+  if (!is.null(categories2)){
+    field2[! field2 %in% categories2] = NA
+  }
+  
+  dFra = na.omit(data.frame(field1, field2))
   ct = table(dFra)
   
   r = nrow(ct)
@@ -102,7 +99,12 @@ es_goodman_kruskal_lambda <- function(nom1, nom2, dir="both", ties="first"){
   cm = max(Cs)
   
   ASE_0s = c(0)
+  ASE_0sXY = c(0)
+  ASE_0sYX = c(0)
+  
   ASE_1s = c(0)
+  ASE_1sXY = c(0)
+  ASE_1sYX = c(0)  
   nRuns = 0
   RsLoop = TRUE
   RsLoopIndex = 1
@@ -170,111 +172,108 @@ es_goodman_kruskal_lambda <- function(nom1, nom2, dir="both", ties="first"){
         }
       }
       
-        dijc = matrix(0, nrow=r, ncol=c)
-        djc = matrix(0, nrow=r, ncol=c)
-        for (i in 1:r) {
-          for (j in 1:c) {
-            if (j==fimUniqueIndex[i]) {
-              dijc[i,j] = 1
-            }
-            if (j == CsUniqueIndex) {
-              djc[i,j] = 1
-            }
+      dijc = matrix(0, nrow=r, ncol=c)
+      djc = matrix(0, nrow=r, ncol=c)
+      for (i in 1:r) {
+        for (j in 1:c) {
+          if (j==fimUniqueIndex[i]) {
+            dijc[i,j] = 1
+          }
+          if (j == CsUniqueIndex) {
+            djc[i,j] = 1
           }
         }
+      }
+      
+      #fmj is the maximum count of column j
+      fmj = rep(0, c)
+      fmjIndex = list()
+      fmjUniqueIndex = rep(0,c)
+      for (i in 1:c) {
+        fmj[i] = max(ct[,i])
+        fmjIndex[[i]] = seq(along=ct[,i])[ct[,i]==max(ct[,i])]
         
-        #fmj is the maximum count of column j
-        fmj = rep(0, c)
-        fmjIndex = list()
-        fmjUniqueIndex = rep(0,c)
-        for (i in 1:c) {
-          fmj[i] = max(ct[,i])
-          fmjIndex[[i]] = seq(along=ct[,i])[ct[,i]==max(ct[,i])]
-          
-          if (ties=="first" || ties=="average") {
-            fmjUniqueIndex[i] = fmjIndex[[i]][1]
+        if (ties=="first" || ties=="average") {
+          fmjUniqueIndex[i] = fmjIndex[[i]][1]
+        }
+        else if (ties=="random") {
+          fmjUniqueIndex[i] = fmjIndex[[i]][sample(1:length(fmjIndex[[i]]),1)]
+        }
+      }
+      
+      dijr = matrix(0, nrow=r, ncol = c)
+      djr = matrix(0, nrow=r, ncol = c)
+      for (i in 1:r) {
+        for (j in 1:c) {
+          if (i==fmjUniqueIndex[j]) {
+            dijr[i,j] = 1
           }
-          else if (ties=="random") {
-            fmjUniqueIndex[i] = fmjIndex[[i]][sample(1:length(fmjIndex[[i]]),1)]
+          if (i == RsUniqueIndex) {
+            djr[i,j] = 1
           }
         }
-        
-        dijr = matrix(0, nrow=r, ncol = c)
-        djr = matrix(0, nrow=r, ncol = c)
-        for (i in 1:r) {
-          for (j in 1:c) {
-            if (i==fmjUniqueIndex[j]) {
-              dijr[i,j] = 1
-            }
-            if (i == RsUniqueIndex) {
-              djr[i,j] = 1
-            }
-          }
-        }
-        
-        
-        if (dir =="rows"){
-          Lyx = (sum(fim) - cm)/(n - cm)
-          L = Lyx
-          
-          ASE_Lyx_0 = sum(ct*(dijc - djc)**2)
-          ASE_Lyx_1 = sum(ct*dijc*djc)
-          
-          ASE_Lyx_0 = sqrt(ASE_Lyx_0 - (sum(fim)-cm)**2/n)/(n - cm)
-          ASE_Lyx_1 = sqrt((n - sum(fim))*(sum(fim)+cm - 2*ASE_Lyx_1)/(n - cm)**3)
-          
-          ASE_0s[nRuns] = ASE_Lyx_0
-          ASE_1s[nRuns] = ASE_Lyx_1
-          
-        }
-        
-        else if (dir =="columns"){
-          
-          Lxy = (sum(fmj) - rm)/(n - rm)
-          L = Lxy
-          
-          ASE_Lxy_0 = sum(ct*(dijr - djr)**2)
-          ASE_Lxy_1 = sum(ct*dijr*djr)
-          
-          ASE_Lxy_0 = sqrt(ASE_Lxy_0 - (sum(fmj)-rm)**2/n)/(n - rm)
-          ASE_Lxy_1 = sqrt((n - sum(fmj))*(sum(fmj)+rm - 2*ASE_Lxy_1)/(n - rm)**3)
-          
-          ASE_0s[nRuns] = ASE_Lxy_0
-          ASE_1s[nRuns] = ASE_Lxy_1
-          
-        }
-        
-        else {
-          
-          L = (sum(fim) + sum(fmj) - cm - rm)/(2*n - rm - cm)
-          
-          ASE_0b = sum(ct*(dijr + dijc - djr - djc)**2)
-          ASE_1b = sum(ct*(dijr+dijc-djr-djc+L*(djr+djc))**2)
-          
-          ASE_0s[nRuns] = sqrt(ASE_0b - (sum(fim)+sum(fmj)-rm-cm)**2/n)/(2*n - rm - cm)
-          ASE_1s[nRuns] = sqrt(ASE_1b - 4*n*L**2)/(2*n - rm - cm)
-        }
+      }
+      
+      
+      
+      Lyx = (sum(fim) - cm)/(n - cm)
+      L = Lyx
+      
+      ASE_Lyx_0 = sum(ct*(dijc - djc)**2)
+      ASE_Lyx_1 = sum(ct*dijc*djc)
+      
+      ASE_Lyx_0 = sqrt(ASE_Lyx_0 - (sum(fim)-cm)**2/n)/(n - cm)
+      ASE_Lyx_1 = sqrt((n - sum(fim))*(sum(fim)+cm - 2*ASE_Lyx_1)/(n - cm)**3)
+      
+      ASE_0sYX[nRuns] = ASE_Lyx_0
+      ASE_1sYX[nRuns] = ASE_Lyx_1
+      
+      
+      
+      Lxy = (sum(fmj) - rm)/(n - rm)
+      L = Lxy
+      
+      ASE_Lxy_0 = sum(ct*(dijr - djr)**2)
+      ASE_Lxy_1 = sum(ct*dijr*djr)
+      
+      ASE_Lxy_0 = sqrt(ASE_Lxy_0 - (sum(fmj)-rm)**2/n)/(n - rm)
+      ASE_Lxy_1 = sqrt((n - sum(fmj))*(sum(fmj)+rm - 2*ASE_Lxy_1)/(n - rm)**3)
+      
+      ASE_0sXY[nRuns] = ASE_Lxy_0
+      ASE_1sXY[nRuns] = ASE_Lxy_1
+      
+      
+      
+      L = (sum(fim) + sum(fmj) - cm - rm)/(2*n - rm - cm)
+      
+      ASE_0b = sum(ct*(dijr + dijc - djr - djc)**2)
+      ASE_1b = sum(ct*(dijr+dijc-djr-djc+L*(djr+djc))**2)
+      
+      ASE_0s[nRuns] = sqrt(ASE_0b - (sum(fim)+sum(fmj)-rm-cm)**2/n)/(2*n - rm - cm)
+      ASE_1s[nRuns] = sqrt(ASE_1b - 4*n*L**2)/(2*n - rm - cm)
+      
     }
   }
   
   if (ties=="max") {
-    ASE_0 = max(ASE_0s)
-    ASE_1 = max(ASE_1s)
+    ASE_0 = c(max(ASE_0s), max(ASE_0sXY), max(ASE_0sYX))
+    ASE_1 = c(max(ASE_1s), max(ASE_1sXY), max(ASE_1sYX))
   }
   else if(ties=="average"){
-    ASE_0 = mean(ASE_0s)
-    ASE_1 = mean(ASE_1s)
+    ASE_0 = c(mean(ASE_0s), mean(ASE_0sXY), mean(ASE_0sYX))
+    ASE_1 = c(mean(ASE_1s), mean(ASE_1sXY), mean(ASE_1sYX))
   }
   else {
-    ASE_0 = ASE_0s[1]
-    ASE_1 = ASE_1s[1]
+    ASE_0 = c(ASE_0s[1], ASE_0sXY[1], ASE_0sYX[1])
+    ASE_1 = c(ASE_1s[1], ASE_1sXY[1], ASE_1sYX[1])
   }
   
-  z = L/ASE_0
+  dependent = c("symmetric", "field1", "field2")
+  Ls = c(L, Lxy, Lyx)    
+  statistic = Ls/ASE_0
+  p = 2*(1-pnorm(abs(statistic)))
   
-  pValue = pnorm(z)
-  
-  results = data.frame(L, ASE_0, ASE_1, z, pValue)
+  results = data.frame(dependent, Ls, n, ASE_0, ASE_1, statistic, p)
   
   return(results)
   

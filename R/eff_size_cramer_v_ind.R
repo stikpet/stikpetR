@@ -50,14 +50,15 @@
 #' 
 #' @export
 es_cramer_v_ind <- function(chi2, n, r, c, cc=NULL){
+  m = min(r, c)
   
   if (!is.null(cc) && cc=="bergsma") {
     phi2 = chi2/n
-    r = r - (r - 1)^2/(n - 1)
-    c = c - (c - 1)^2/(n - 1)
-    phi2 = max(0, phi2 - (r - 1)*(c - 1)/(n - 1))
+    mHat = m - (m - 1)^2/(n - 1)
+    df = (r - 1)*(c - 1)
+    phi2 = max(0, phi2 - df/(n - 1))
     
-    es = sqrt(phi2/(min(r - 1, c - 1)))
+    es = sqrt(phi2/(mHat - 1))
   }
   else{
     es = sqrt(chi2/(n*min(r-1, c-1)))  

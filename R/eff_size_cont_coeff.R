@@ -3,7 +3,8 @@
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
 #' @param adj c(NULL, "sakoda") adjustment to use (see details)
-#' @param m the number of rows or columns, whichever is smaller, required if adj="sakado"
+#' @param r the number of rows, required if adj="sakado"
+#' @param c the number of columns, required if adj="sakado"
 #' @return value of (Pearson) Contingency Coefficient
 #' 
 #' @examples 
@@ -47,11 +48,13 @@
 #' Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. *In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III* (pp. 777–780).
 #' 
 #' @export
-es_cont_coeff <- function(chi2, n, adj=NULL, m=NULL){
+es_cont_coeff <- function(chi2, n, adj=NULL, r=NULL, c=NULL){
   
   es = sqrt(chi2/(n + chi2))
   
   if (!is.null(adj) && adj=="sakoda") {
+    m = r
+    if (c < r){m = c}
     cmax = sqrt((m - 1)/m)
     es = es/cmax
   }

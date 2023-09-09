@@ -1,23 +1,6 @@
-#' Power Divergence Tests
-#' 
-#' @param var1 A vector with the data
-#' @param var2 Optional vector with data for tests of independence 
-#' @param expCounts Optional counts according to null hypothesis
-#' @param lambd Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3
-#' @param corr Optional correction to be used.
-#' @returns 
-#' Dataframe with:
-#' \item{statistic}{the chi-square statistic}
-#' \item{df}{the degrees of freedom}
-#' \item{pValue}{two-sided p-value}
-#' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
-#' 
+#' Power Divergence Test of Independence
 #' @description 
-#' A test that can be used with a single nominal variable, to test if the probabilities in all 
-#' the categories are equal (the null hypothesis), or with two nominal variables to test if they are 
-#' independent.
+#' A test that can be used with two nominal variables to test if they are independent.
 #' 
 #' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square 
 #' test (\eqn{\chi^2}), but also an exact multinomial, G-test (\eqn{G^2}), Freeman-Tukey (\eqn{T^2}), 
@@ -36,6 +19,27 @@
 #' \item{\eqn{\lambda = -2}}{Neyman}
 #' \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
 #' }
+#' 
+#' 
+#' @param field1 list or dataframe with the first categorical field
+#' @param field2 list or dataframe with the second categorical field
+#' @param categories1 optional list with order and/or selection for categories of field1
+#' @param categories2 optional list with order and/or selection for categories of field2
+#' @param cc optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".
+#' @param lambd Optional either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3
+#' 
+#' @returns
+#' A dataframe with:
+#' \item{n}{the sample size}
+#' \item{n rows}{number of categories used in first field}
+#' \item{n col.}{number of categories used in second field}
+#' \item{statistic}{the test statistic (chi-square value)}
+#' \item{df}{the degrees of freedom}
+#' \item{p-value}{the significance (p-value)}
+#' \item{min. exp.}{the minimum expected count}
+#' \item{prop. exp. below 5}{proportion of cells with expected count less than 5}
+#' \item{test}{description of the test used}
+#' 
 #' 
 #' @details 
 #' The formula used is (Cressie & Read, 1984, p. 442):
@@ -119,153 +123,113 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
 #' 
 #' @export
-ts_powerdivergence <- function(var1, var2=NULL, expCounts=NULL, lambd=c("cressie-read", "g", "mod-log", "freeman-tukey", "neyman"), corr=c("none", "yates", "pearson", "williams")){
+ts_powerdivergence_ind <- function(field1, field2, categories1=NULL, categories2=NULL, cc=NULL, lambd=2/3){
   
-  #set defaults
-  if (length(corr)>1) {corr="none"}
-  if (length(lambd)>1) {lambd=2/3}
-  
-  #Set correction factor to 1 (no correction)
-  corFactor = 1
+  if (is.null(cc)){cc = "none"}
   
   #Test Used
-  if (lambd == 2/3 || lambd == "cressie-read"){
-    lambd = 2/3
-    testUsed = "Cressie-Read"}
-  else if (lambd==0 || lambd == "g"){
-    lambd=0
-    testUsed = "likelihood-ratio"}    
-  else if (lambd==-1 || lambd == "mod-log"){
-    lambd=-1
-    testUsed = "mod-log likelihood ratio"}    
-  else if (lambd==1 || lambd=="pearson"){
-    lambd=1
-    testUsed = "Pearson chi-square"}
-  else if (lambd==-0.5 || lambd=="freeman-tukey"){
-    lambd=-0.5
-    testUsed = "Freeman-Tukey"}        
-  else if (lambd==-2 || lambd=="neyman"){
-    lambd==-2
-    testUsed = "Neyman"}
-  else {
-    testUsed = "power divergence with lambda = " + "lambd"}
+  if (lambd == 2 / 3 || lambd == "cressie-read"){
+    lambd = 2 / 3
+    testUsed = "Cressie-Read test of independence"}    
+  else if (lambd == 0 || lambd == "likelihood-ratio"){
+    lambd = 0
+    testUsed = "likelihood ratio test of independence"}        
+  else if (lambd == -1 || lambd == "mod-log"){
+    lambd = -1
+    testUsed = "mod-log likelihood ratio test of independence"}        
+  else if (lambd == 1 || lambd == "pearson"){
+    lambd = 1
+    testUsed = "Pearson chi-square test of independence"}    
+  else if (lambd == -0.5 || lambd == "freeman-tukey"){
+    lambd = -0.5
+    testUsed = "Freeman-Tukey test of independence"}        
+  else if (lambd == -2 || lambd == "neyman"){
+    lambd = -2
+    testUsed = "Neyman test of independence"}
+  else{
+    testUsed = paste("power divergence test of independence with lambda = ", lambd)}  
   
-  #The test itself
+  if (cc == "yates"){
+    testUsed = paste(testUsed ,", with Yates continuity correction")}
   
-  if (is.null(var2)){
-    #only one variable, so goodness-of-fit version
-    
-    freqs = table(var1)
-    k = length(freqs)
-    n = sum(freqs)
-    r = k
-    c = 1
-    
-    #Determine expected counts if not provided
-    if (is.null(expCounts)){
-      expCounts = rep(n/k, k)}
-    
-    df = k - 1
-    
-    #set williams correction factor
-    if (corr=="williams"){
-      corFactor = 1/(1 + (k**2 - 1)/(6*n*df))
-      testUsed = testUsed + ", and Williams correction"}
-    
-    #adjust frequencies if Yates correction is requested
-    if (corr=="yates"){
-      adjFreq = freqs
-      for (i in 1:k){
-        if (adjFreq[i] > expCounts[i]){
-          adjFreq[i] = adjFreq[i] - 0.5}
-        else if (adjFreq[i] < expCounts[i]){
-          adjFreq[i] = adjFreq[i] + 0.5}
+  #create the cross table
+  ct = tab_cross(field1, field2, categories1, categories2, totals="include")
+  
+  #basic counts
+  nrows = nrow(ct) - 1
+  ncols =  ncol(ct) - 1
+  n = ct[nrows+1, ncols+1]
+  
+  #determine the expected counts & chi-square value
+  chi2Val = 0
+  expMin = -1
+  nExpBelow5 = 0    
+  expC = data.frame()
+  for (i in 1:nrows){
+    for (j in 1:ncols){
+      expC[i, j] = ct[nrows+1, j] * ct[i, ncols+1] / n
+      
+      #add or remove a half in case Yates correction
+      if (cc=="yates"){
+        if (ct[i,j] > expC[i,j]){
+          ct[i,j] = ct[i,j] - 0.5}
+        else if (ct[i,j] < expC[i,j]){
+          ct[i,j] = ct[i,j] + 0.5}
       }
       
-      freqs = adjFreq
-      testUsed = testUsed + ", and Yates correction"
+      if (lambd == 0){
+        chi2Val = chi2Val + ct[i,j] * log(ct[i,j] / expC[i,j])}
+      else if (lambd == -1){
+        chi2Val = chi2Val + expC[i,j] * log(expC[i,j] / ct[i,j])}
+      else{
+        chi2Val = chi2Val + ct[i,j] * ((ct[i,j] / expC[i,j]) ^ lambd - 1)}
+      
+      
+      
+      #check if below 5
+      if (expMin < 0 || expC[i,j] < expMin){
+        expMin = expC[i,j]}
+      if (expC[i,j] < 5){
+        nExpBelow5 = nExpBelow5 + 1}
     }
-  }    
-  else{
-    #two variables, so use test of independence
-    
-    #create a cross table
-    ct = table(var1, var2)
-    rowTotals = rowSums(ct)
-    colTotals = colSums(ct)
-    
-    n = sum(rowTotals)
-    r = nrow(ct)
-    c = ncol(ct)
-    
-    df = (r - 1)*(c - 1)
-    
-    #Determine expected counts if not provided
-    if (is.null(expCounts)){
-      expCounts = outer(rowTotals, colTotals, '*')/n}
-    
-    #set williams correction factor
-    if (corr=="williams"){
-      corFactor = 1/(1 + (n*sum(1/rowTotals) - 1)*(n*sum(1/colTotals) - 1)/(6*n*(r - 1)*(c - 1)))
-      testUsed = testUsed + ", and Williams correction"}
-    
-    #adjust frequencies if Yates correction is requested
-    if (corr=="yates"){
-      adjFreq = ct
-      for (i in 1:r){
-        for (j in 1:c){
-          if (adjFreq[i,j] > expCounts[i,j]){
-            adjFreq[i,j] = adjFreq[i,j] - 0.5}
-          else if (adjFreq[i,j] < expCounts[i,j]){
-            adjFreq[i,j] = adjFreq[i,j] + 0.5}
-        }
-      }
-      ct = adjFreq
-      testUsed = testUsed + ", and Yates correction"
-    }
-    
-    freqs = ct
   }
   
-  #determine the test statistic
-  if (lambd==0){
-    ts = 2*sum(freqs*log(freqs/expCounts))}
-  else if (lambd==-1){
-    ts = 2*sum(expCounts*log(expCounts/freqs))}
+  if (lambd == 0){
+    chi2Val = 2 * chi2Val}
+  else if (lambd == -1){
+    chi2Val = 2 * chi2Val}
   else{
-    ts = 2*sum(freqs*((freqs/expCounts)**(lambd) - 1))/(lambd*(lambd + 1))}
+    chi2Val = 2 / (lambd * (lambd + 1)) * chi2Val}
   
-  #set E.S. Pearson correction
-  if (corr=="pearson"){
-    corFactor = (n - 1)/n
-    testUsed = testUsed + ", and Pearson correction"}
+  nExpBelow5 = nExpBelow5/(nrows*ncols)
   
-  #Adjust test statistic
-  ts = ts*corFactor
+  #Degrees of freedom
+  df = (nrows - 1)*(ncols - 1)
   
-  #Determine p-value
-  pVal = pchisq(ts, df, lower.tail = FALSE)
+  #Williams and Pearson correction
+  if (cc == "williams"){
+    testUsed = paste(testUsed, ", with Williams continuity correction")
+    rTotInv = 0
+    for (i in 1:nrows){
+      rTotInv = rTotInv + 1 / ct[i, ncols+1]}
+    
+    cTotInv = 0
+    for (j in 1:ncols){
+      cTotInv = cTotInv + 1 / ct[nrows+1, j]}
+    
+    q = 1 + (n * rTotInv - 1) * (n * cTotInv - 1) / (6 * n * df)
+    chi2Val = chi2Val / q}
+  else if (cc == "pearson"){
+    testUsed = paste(testUsed, ", with E.S. Pearson continuity correction")
+    chi2Val = chi2Val * (n - 1) / n}
   
-  #Check minimum expected counts
-  #Cells with expected count less than 5
-  nbelow = length(which(expCounts<5))
-  #Number of cells
-  ncells = r*c
-  #As proportion
-  pBelow = nbelow/ncells
-  #the minimum expected count
-  minExp = min(expCounts)
+  #The test
+  pvalue = 1 - pchisq(chi2Val, df)
   
+  #Prepare the results
+  results <- data.frame(n, nrows, ncols, chi2Val, df, pvalue, expMin, nExpBelow5, testUsed)
+  colnames(results)<-c("n", "n rows", "n col.", "statistic", "df", "p-value", "min. exp.", "prop. exp. below 5", "test")
   
-  #prepare results
-  if (is.null(var2)){
-    testResults = data.frame(n, k, ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
-    colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
-    }
-  else {
-    testResults = data.frame(ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
-    colnames(testResults)<-c("statistic", "df", "p-value", "minExp", "propBelow5", "test")
-  }
+  return (results)
   
-  return (testResults)
 }

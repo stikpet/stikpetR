@@ -1,8 +1,10 @@
 #' Goodman-Kruskal tau
 #' 
-#' @param nom1 the scores on the first variable
-#' @param nom2 the scores on the second variable
-#' @param dir c("rows", "columns") optional to select which lambda to return (rows = first variable)
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
+#' @param categories1 optional, categories to use for field1
+#' @param categories2 optional, categories to use for field2
+#' 
 #' @return dataframe with the effect size value, the test statistic, degrees of freedom, and p-value
 #' 
 #' @details 
@@ -49,23 +51,22 @@
 #' 
 #' YouTube channel: https://www.youtube.com/stikpet
 #'  
-#' @examples 
-#' nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-#' nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' es_goodman_kruskal_tau(nom1, nom2, dir="rows")
-#' es_goodman_kruskal_tau(nom1, nom2, dir="columns")
+#' 
 #' 
 #' @export
-es_goodman_kruskal_tau <- function(nom1, nom2, dir="rows"){
+es_goodman_kruskal_tau <- function(field1, field2, categories1=NULL, categories2=NULL){
   
-  if (dir=="columns") {
-    dFra = na.omit(data.frame(nom2, nom1))
-    
+  #remove if not in categories
+  if (!is.null(categories1)){
+    field1[! field1 %in% categories1] = NA
   }
-  else {
-    dFra = na.omit(data.frame(nom1, nom2))
-    
+  if (!is.null(categories2)){
+    field2[! field2 %in% categories2] = NA
   }
+  
+  
+  dFra = na.omit(data.frame(field2, field1))
+  
   ct = table(dFra)
   
   r = nrow(ct)
@@ -76,24 +77,34 @@ es_goodman_kruskal_tau <- function(nom1, nom2, dir="rows"){
   n = sum(Rs)
   
   t1 = 0
+  tr1 = 0
   for (i in 1:r) {
     for (j in 1:c) {
       t1 = t1 + ct[i,j]**2/Rs[i]
+      tr1 = tr1 + ct[i,j]**2/Cs[j]  
     }
     
   }
   
   t2 = sum(Cs**2)
+  tr2 = sum(Rs**2)
   
   tau = (n*t1 - t2)/(n**2  - t2)
+  tau2= (n*tr1 - tr2)/(n**2  - tr2)
+  value = c(tau, tau2)
   
   chi2Value = (n - 1)*(c - 1)*tau
+  chi2Value2 = (n - 1)*(r - 1)*tau2  
+  statistic = c(chi2Value, chi2Value2)  
+  
   df = (r - 1)*(c - 1)
   
   pValue = 1 - pchisq(chi2Value, df)
+  pValue2 = 1 - pchisq(chi2Value2, df)
+  p = c(pValue, pValue2)
   
-  statistic = chi2Value
-  results = data.frame(tau, statistic, df, pValue)
+  dependent = c("field1", "field2")
+  results = data.frame(dependent, value, statistic, df, p)
   
   return(results)
   

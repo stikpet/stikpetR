@@ -1,8 +1,9 @@
 #' Theil U / Uncertainty Coefficient
 #' 
-#' @param var1 the scores on the first variable
-#' @param var2 the scores on the second variable
-#' @param dir c("both", "rows", "columns") optional to select which U to return (rows = first variable)
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
+#' @param categories1 optional, categories to use for field1
+#' @param categories2 optional, categories to use for field2
 #' @return dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)
 #' 
 #' @details 
@@ -66,12 +67,16 @@
 #' es_theil_u(nom1, nom2, dir="columns")
 #' 
 #' @export
-es_theil_u <- function(var1, var2, dir="both"){
-  #rows = for var1
-  #columns = for var2
+es_theil_u <- function(field1, field2, categories1=NULL, categories2=NULL){
+  #remove if not in categories
+  if (!is.null(categories1)){
+    field1[! field1 %in% categories1] = NA
+  }
+  if (!is.null(categories2)){
+    field2[! field2 %in% categories2] = NA
+  }
   
-  
-  dFra = na.omit(data.frame(var1, var2))
+  dFra = na.omit(data.frame(field1, field2))
   
   ct = table(dFra)
   
@@ -97,69 +102,45 @@ es_theil_u <- function(var1, var2, dir="both"){
   
   num = hx + hy - hxy
   
-  if (dir=="columns") {
-    U = num/hy
-    
-    ASE_1 = 0
-    p = 0
-    for (i in 1:r) {
-      for (j in 1:c) {
-        if (ct[i,j]>0) {
-          ASE_1 = ASE_1 + ct[i,j]*(hy*log(ct[i,j]/Rs[i]) + (hx - hxy)*log(Cs[j]/n))**2
-          p = p + ct[i,j]*log(Rs[i]*Cs[j]/(n*ct[i,j]))**2
-          
-        }
-      }
-    }
-    ASE_1 = sqrt(ASE_1)/(n*hy**2)
-    ASE_0 = sqrt(p - n*num**2)/(n*hy)
-
-  }
-  else if (dir=="rows") {
-    U = num/hx
-    
-    ASE_1 = 0
-    p = 0
-    for (i in 1:r) {
-      for (j in 1:c) {
-        if (ct[i,j]>0) {
-          ASE_1 = ASE_1 + ct[i,j]*(hx*log(ct[i,j]/Cs[j]) + (hy - hxy)*log(Rs[i]/n))**2
-
-          p = p + ct[i,j]*log(Rs[i]*Cs[j]/(n*ct[i,j]))**2
-          
-        }
-      }
-    }
-    ASE_1 = sqrt(ASE_1)/(n*hx**2)
-
-    ASE_0 = sqrt(p - n*num**2)/(n*hx)
-
-  }
-  else {
-    U = 2*num/(hx + hy)  
-    
-    ASE_1 = 0
-    p = 0
-    for (i in 1:r) {
-      for (j in 1:c) {
-        if (ct[i,j]>0) {
-          ASE_1 = ASE_1 + ct[i,j]*(hxy*log(Rs[i]*Cs[j]/n**2) - (hx + hy)*log(ct[i,j]/n))**2
-          
-          p = p + ct[i,j]*log(Rs[i]*Cs[j]/(n*ct[i,j]))**2
-          
-        }
-      }
-    }
-    ASE_1 = 2*sqrt(ASE_1)/(n*(hx+hy)**2)
-    
-    ASE_0 = 2*sqrt(p - n*num**2)/(n*(hx+hy))
-    
-  }
+  U = 2*num/(hx + hy)   
+  UY = num/hy
+  UX = num/hx
   
-  statistic = U/ASE_0
   
-  results = data.frame(U, ASE_0, ASE_1, statistic)
+  ASE_1 = 0
+  ASE_1Y = 0
+  ASE_1X = 0    
+  p = 0
+  for (i in 1:r) {
+    for (j in 1:c) {
+      if (ct[i,j]>0) {
+        ASE_1 = ASE_1 + ct[i,j]*(hxy*log(Rs[i]*Cs[j]/n**2) - (hx + hy)*log(ct[i,j]/n))**2  
+        ASE_1Y = ASE_1Y + ct[i,j]*(hy*log(ct[i,j]/Rs[i]) + (hx - hxy)*log(Cs[j]/n))**2
+        ASE_1X = ASE_1X + ct[i,j]*(hx*log(ct[i,j]/Cs[j]) + (hy - hxy)*log(Rs[i]/n))**2  
+        p = p + ct[i,j]*log(Rs[i]*Cs[j]/(n*ct[i,j]))**2
+        
+      }
+    }
+  }
+  ASE_1Y = sqrt(ASE_1Y)/(n*hy**2)
+  ASE_0Y = sqrt(p - n*num**2)/(n*hy)
+  
+  ASE_1X = sqrt(ASE_1X)/(n*hx**2)
+  ASE_0X = sqrt(p - n*num**2)/(n*hx)
+  
+  ASE_1 = 2*sqrt(ASE_1)/(n*(hx+hy)**2)
+  ASE_0 = 2*sqrt(p - n*num**2)/(n*(hx+hy))
+  
+  #results
+  
+  value = c(U, UX, UY)
+  ase0 = c(ASE_0, ASE_0X, ASE_0Y)
+  ase1 = c(ASE_1, ASE_1X, ASE_1Y)
+  dependent = c("symmetric", "field1", "field2")
+  statistic = value/ase0
+  pvalue = 2*(1-pnorm(abs(statistic))) 
+  results = data.frame(dependent, value, ase0, ase1, statistic, pvalue)
   
   return(results)
-
+  
 }

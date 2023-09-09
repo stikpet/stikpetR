@@ -1,9 +1,22 @@
 #' G (Likelihood Ratio / Wilks) Test of Independence
 #' 
-#' @param var1 A vector with the data of the first variable
-#' @param var2 A vector with the data of the second variable
-#' @param cc c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)
-#' @return dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+#' @param field1 list or dataframe with the first categorical field
+#' @param field2 list or dataframe with the second categorical field
+#' @param categories1 optional list with order and/or selection for categories of field1
+#' @param categories2 optional list with order and/or selection for categories of field2
+#' @param cc optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".
+#' 
+#' @returns
+#' A dataframe with:
+#' \item{n}{the sample size}
+#' \item{n rows}{number of categories used in first field}
+#' \item{n col.}{number of categories used in second field}
+#' \item{statistic}{the test statistic (chi-square value)}
+#' \item{df}{the degrees of freedom}
+#' \item{p-value}{the significance (p-value)}
+#' \item{min. exp.}{the minimum expected count}
+#' \item{prop. exp. below 5}{proportion of cells with expected count less than 5}
+#' \item{test}{description of the test used}
 #' 
 #' @details 
 #' The formula used (Wilks, 1938, p. 62):
@@ -55,63 +68,78 @@
 #' ts_g_ind(nom1, nom2, cc="williams")
 #'  
 #' @export
-ts_g_ind <- function(var1, var2, cc=NULL){
+ts_g_ind <- function(field1, field2, categories1=NULL, categories2=NULL, cc=NULL){
   
-  datFr = na.omit(data.frame(var1, var2))
+  if (is.null(cc)){cc = "none"}
   
-  obs = table(datFr)
+  testUsed = "G test of independence"
+  if (cc == "yates"){
+    testUsed = paste(testUsed ,", with Yates continuity correction")}
   
-  R = rowSums(obs)
-  nr = length(R)
-  C = colSums(obs)
-  nc = length(C)
-  n = sum(R)
+  #create the cross table
+  ct = tab_cross(field1, field2, categories1, categories2, totals="include")
   
-  expCount = matrix(1, nrow=nr, ncol=nc)
-  for (j in 1:nc) {
-    for (i in 1:nr){
-      expCount[i,j] = R[i]*C[j]/n
-    }
-  }
+  #basic counts
+  nrows = nrow(ct) - 1
+  ncols =  ncol(ct) - 1
+  n = ct[nrows+1, ncols+1]
   
-  if (is.null(cc)==FALSE && cc=="yates") {
-    #Yates correction
-    for (j in 1:nc) {
-      for (i in 1:nr){
-        if (obs[i,j] > expCount[i,j]) {
-          obs[i,j] = obs[i,j] - 0.5
-        }
-        else if (obs[i,j] < expCount[i,j]) {
-          obs[i,j] = obs[i,j] + 0.5
-        }
+  #determine the expected counts & chi-square value
+  chi2Val = 0
+  expMin = -1
+  nExpBelow5 = 0    
+  expC = data.frame()
+  for (i in 1:nrows){
+    for (j in 1:ncols){
+      expC[i, j] = ct[nrows+1, j] * ct[i, ncols+1] / n
+      
+      #add or remove a half in case Yates correction
+      if (cc=="yates"){
+        if (ct[i,j] > expC[i,j]){
+          ct[i,j] = ct[i,j] - 0.5}
+        else if (ct[i,j] < expC[i,j]){
+          ct[i,j] = ct[i,j] + 0.5}
       }
+      
+      chi2Val = chi2Val + ct[i, j]*log(ct[i, j]/expC[i, j])
+      
+      #check if below 5
+      if (expMin < 0 || expC[i,j] < expMin){
+        expMin = expC[i,j]}
+      if (expC[i,j] < 5){
+        nExpBelow5 = nExpBelow5 + 1}
     }
   }
+  chi2Val= 2*chi2Val
+  nExpBelow5 = nExpBelow5/(nrows*ncols)
   
-  chiVal = 2*sum(obs*log(obs/expCount))
+  #Degrees of freedom
+  df = (nrows - 1)*(ncols - 1)
   
-  if (is.null(cc)==FALSE){
-    if (cc=="pearson") {
-      #Pearson Correction
-      chiVal = (n - 1)/n * chiVal
-    }
-    else if (cc=="williams"){
-      #Williams Correction
-      q = 1 + (n*sum(1/R)-1) * (n*sum(1/C)-1) / (6*n*(nr - 1)*(nc - 1))
-      chiVal = chiVal/q
-    }
-  }
+  #Williams and Pearson correction
+  if (cc == "williams"){
+    testUsed = paste(testUsed, ", with Williams continuity correction")
+    rTotInv = 0
+    for (i in 1:nrows){
+      rTotInv = rTotInv + 1 / ct[i, ncols+1]}
+    
+    cTotInv = 0
+    for (j in 1:ncols){
+      cTotInv = cTotInv + 1 / ct[nrows+1, j]}
+    
+    q = 1 + (n * rTotInv - 1) * (n * cTotInv - 1) / (6 * n * df)
+    chi2Val = chi2Val / q}
+  else if (cc == "pearson"){
+    testUsed = paste(testUsed, ", with E.S. Pearson continuity correction")
+    chi2Val = chi2Val * (n - 1) / n}
   
-  df = (nr - 1)*(nc - 1)
+  #The test
+  pvalue = 1 - pchisq(chi2Val, df)
   
-  pValue = 1 - pchisq(chiVal, df)
+  #Prepare the results
+  results <- data.frame(n, nrows, ncols, chi2Val, df, pvalue, expMin, nExpBelow5, testUsed)
+  colnames(results)<-c("n", "n rows", "n col.", "statistic", "df", "p-value", "min. exp.", "prop. exp. below 5", "test")
   
-  minExp = min(expCount)
-  propBelow5 = sum(expCount < 5)/(nr*nc)
-  
-  statistic = chiVal
-  testResults <- data.frame(statistic, df, pValue, minExp, propBelow5)
-  
-  return(testResults)
+  return (results)
   
 }

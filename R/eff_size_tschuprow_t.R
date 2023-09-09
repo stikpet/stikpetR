@@ -57,11 +57,12 @@ es_tschuprow_t <- function(chi2, n, r, c, cc=NULL){
   
   if (!is.null(cc) && cc=="bergsma") {
     phi2 = chi2/n
-    r = r - (r - 1)^2/(n - 1)
-    c = c - (c - 1)^2/(n - 1)
-    phi2 = max(0, phi2 - (r - 1)*(c - 1)/(n - 1))
+    rHat = r - (r - 1)^2/(n - 1)
+    cHat = c - (c - 1)^2/(n - 1)
+    df = (r - 1)*(c - 1)
+    phi2 = max(0, phi2 - df/(n - 1))
     
-    es = sqrt(phi2/sqrt((r - 1)*(c - 1)))
+    es = sqrt(phi2/sqrt((rHat - 1)*(cHat - 1)))
   }
   else{
     es = sqrt(chi2/(n*sqrt((r - 1)*(c - 1))))  

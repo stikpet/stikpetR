@@ -14,7 +14,7 @@
 #' @param field2 list or dataframe with the second categorical field
 #' @param categories1 optional list with order and/or selection for categories of field1
 #' @param categories2 optional list with order and/or selection for categories of field2
-#' @param cc optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "william".
+#' @param cc optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".
 #' 
 #' @returns
 #' A dataframe with:
