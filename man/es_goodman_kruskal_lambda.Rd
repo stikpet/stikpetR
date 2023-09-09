@@ -4,14 +4,22 @@
 \alias{es_goodman_kruskal_lambda}
 \title{Goodman-Kruskal Lambda}
 \usage{
-es_goodman_kruskal_lambda(nom1, nom2, dir = "both", ties = "first")
+es_goodman_kruskal_lambda(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  ties = "first"
+)
 }
 \arguments{
-\item{nom1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{nom2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
-\item{dir}{c("both", "rows", "columns") optional to select which lambda to return (rows = first variable)}
+\item{categories1}{optional, categories to use for field1}
+
+\item{categories2}{optional, categories to use for field2}
 
 \item{ties}{c("first", "random", "average") optional to indicate what to do in case of multimodal situations.}
 }
@@ -67,20 +75,6 @@ Hartwig proposed three options in case multi-modal situation occurs: choose rand
 choose the largest ASE, or average them.
 This function can allow you to simply choose the first only (I think SPSS uses this),
 average them, or simply choose one at random.
-}
-\examples{
-nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-es_goodman_kruskal_lambda(nom1, nom2, dir="rows")
-es_goodman_kruskal_lambda(nom1, nom2, dir="columns")
-es_goodman_kruskal_lambda(nom1, nom2, dir="both")
-es_goodman_kruskal_lambda(nom1, nom2, dir="rows", ties="random")
-es_goodman_kruskal_lambda(nom1, nom2, dir="columns", ties="random")
-es_goodman_kruskal_lambda(nom1, nom2, dir="both", ties="random")
-es_goodman_kruskal_lambda(nom1, nom2, dir="rows", ties="average")
-es_goodman_kruskal_lambda(nom1, nom2, dir="columns", ties="average")
-es_goodman_kruskal_lambda(nom1, nom2, dir="both", ties="average")
-
 }
 \references{
 Goodman, L. A., & Kruskal, W. H. (1954). Measures of Association for Cross Classifications. \emph{Journal of the American Statistical Association, 49}(268), 732–764. https://doi.org/10.2307/2281536

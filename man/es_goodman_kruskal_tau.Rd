@@ -4,14 +4,16 @@
 \alias{es_goodman_kruskal_tau}
 \title{Goodman-Kruskal tau}
 \usage{
-es_goodman_kruskal_tau(nom1, nom2, dir = "rows")
+es_goodman_kruskal_tau(field1, field2, categories1 = NULL, categories2 = NULL)
 }
 \arguments{
-\item{nom1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{nom2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
-\item{dir}{c("rows", "columns") optional to select which lambda to return (rows = first variable)}
+\item{categories1}{optional, categories to use for field1}
+
+\item{categories2}{optional, categories to use for field2}
 }
 \value{
 dataframe with the effect size value, the test statistic, degrees of freedom, and p-value
@@ -46,13 +48,6 @@ This was a chi-square test (p. 538). Sarndal (1974, p. 178) concluded that
 R2 from Light and Mangolin, was the same as Goodman-Kendal tau, and uses their
 test for tau. Margolin and Light (1974) reach the same conclusion and proof the
 equivelance.
-}
-\examples{
-nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-es_goodman_kruskal_tau(nom1, nom2, dir="rows")
-es_goodman_kruskal_tau(nom1, nom2, dir="columns")
-
 }
 \references{
 Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732–764. https://doi.org/10.2307/2281536

@@ -21,7 +21,7 @@ ts_pearson_ind(
 
 \item{categories2}{optional list with order and/or selection for categories of field2}
 
-\item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "william".}
+\item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".}
 }
 \value{
 A dataframe with:

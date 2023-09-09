@@ -4,14 +4,16 @@
 \alias{es_theil_u}
 \title{Theil U / Uncertainty Coefficient}
 \usage{
-es_theil_u(var1, var2, dir = "both")
+es_theil_u(field1, field2, categories1 = NULL, categories2 = NULL)
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
-\item{dir}{c("both", "rows", "columns") optional to select which U to return (rows = first variable)}
+\item{categories1}{optional, categories to use for field1}
+
+\item{categories2}{optional, categories to use for field2}
 }
 \value{
 dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)

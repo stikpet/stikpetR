@@ -4,7 +4,7 @@
 \alias{es_cont_coeff}
 \title{(Pearson) Contingency Coefficient}
 \usage{
-es_cont_coeff(chi2, n, adj = NULL, m = NULL)
+es_cont_coeff(chi2, n, adj = NULL, r = NULL, c = NULL)
 }
 \arguments{
 \item{chi2}{the chi-square test statistic}
@@ -13,7 +13,9 @@ es_cont_coeff(chi2, n, adj = NULL, m = NULL)
 
 \item{adj}{c(NULL, "sakoda") adjustment to use (see details)}
 
-\item{m}{the number of rows or columns, whichever is smaller, required if adj="sakado"}
+\item{r}{the number of rows, required if adj="sakado"}
+
+\item{c}{the number of columns, required if adj="sakado"}
 }
 \value{
 value of (Pearson) Contingency Coefficient

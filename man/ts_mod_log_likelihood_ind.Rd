@@ -4,17 +4,36 @@
 \alias{ts_mod_log_likelihood_ind}
 \title{Mod-Log Likelihood Test of Independence}
 \usage{
-ts_mod_log_likelihood_ind(nom1, nom2, cc = NULL)
+ts_mod_log_likelihood_ind(
+  field1,
+  field2,
+  categories1 = NULL,
+  categories2 = NULL,
+  cc = NULL
+)
 }
 \arguments{
-\item{nom1}{A vector with the data of the first variable}
+\item{field1}{list or dataframe with the first categorical field}
 
-\item{nom2}{A vector with the data of the second variable}
+\item{field2}{list or dataframe with the second categorical field}
 
-\item{cc}{c(NULL, "yates", "pearson", or "williams") Optional continuity correction (default is NULL)}
+\item{categories1}{optional list with order and/or selection for categories of field1}
+
+\item{categories2}{optional list with order and/or selection for categories of field2}
+
+\item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".}
 }
 \value{
-dataframe with test statistic, degrees of freedom, p-value, minimum expected count, proportion of expected counts below 5, and test used
+A dataframe with:
+\item{n}{the sample size}
+\item{n rows}{number of categories used in first field}
+\item{n col.}{number of categories used in second field}
+\item{statistic}{the test statistic (chi-square value)}
+\item{df}{the degrees of freedom}
+\item{p-value}{the significance (p-value)}
+\item{min. exp.}{the minimum expected count}
+\item{prop. exp. below 5}{proportion of cells with expected count less than 5}
+\item{test}{description of the test used}
 }
 \description{
 Mod-Log Likelihood Test of Independence
