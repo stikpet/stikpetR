@@ -1,4 +1,16 @@
 #' G (Likelihood Ratio / Wilks) Test of Independence
+#' @description
+#' This test is similar as a Pearson Chi-Square test of independence, but approaches it from a likelihood-ratio approach (see Monica, 2015).
+#' 
+#' If the significance of this test is below 0.05, the two nominal variables have a significant association.
+#' 
+#' The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.
+#' 
+#' If for example I had 50 male and 50 female respondents, and 50 agreed with a statement and 50 disagreed with the statement, the expected value for each combination (male-agree, female-agree, male-disagree, and female-disagree) would be 25.
+#' 
+#' Note that if in the survey the real results would be that all male disagreed, and all female would agree, there is a full dependency (i.e. gender fully decides if you agree or disagree), even though the row and column totals would still be 50. In essence the Pearson chi-square test, checks if your data is more toward the expected values (independence) or the full dependency one.
+#' 
+#' One problem though is that the test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often ‘not too many cells’ is fixed at no more than 20% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
 #' 
 #' @param field1 list or dataframe with the first categorical field
 #' @param field2 list or dataframe with the second categorical field
@@ -36,21 +48,23 @@
 #' \deqn{F_{i,j}^\ast = \begin{cases} F_{i,j} - 0.5 & \text{ if } F_{i,j}>E_{i,j}  \\ F_{i,j} & \text{ if } F_{i,j}= E_{i,j}\\ F_{i,j} + 0.5 & \text{ if } F_{i,j}<E_{i,j} \end{cases}}
 #' 
 #' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
-#' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
+#' \deqn{\chi_{PP}^2 = G^{2}\times\frac{n - 1}{n}}
 #' 
-#' The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
-#' \deqn{\chi_{PW}^2 = \frac{\chi_{P}^2}{q}}
+#' The Williams correction (williams) is calculated using:
+#' \deqn{\chi_{PW}^2 = \frac{G}{q}}
 #' With:
 #' \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
+#' 	The formula is probably from Williams (1976, p. 36) but the one shown here is taken from McDonald (1976, p. 36).
 #' 	
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#' 
 #' @references 
+#' Cochran, W. G. (1954). Some methods for strengthening the common \eqn{\chi^2} tests. *Biometrics, 10*(4), 417. doi:10.2307/3001616
+#' 
+#' Fisher, R. A. (1925). *Statistical methods for research workers*. Oliver and Boyd.
+#' 
+#' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
+#' 
+#' Monica,  gung-R. (2015, April 2). Answer to “Why do my p-values differ between logistic regression output, chi-squared test, and the confidence interval for the OR?” Cross Validated. https://stats.stackexchange.com/a/144608
+#' 
 #' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
 #' 
 #' Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. *The Annals of Mathematical Statistics, 9*(1), 60–62. https://doi.org/10.1214/aoms/1177732360
@@ -59,14 +73,10 @@
 #' 
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
-#' @examples  
-#' nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-#' ts_g_ind(nom1, nom2)
-#' ts_g_ind(nom1, nom2, cc="yates")
-#' ts_g_ind(nom1, nom2, cc="pearson")
-#' ts_g_ind(nom1, nom2, cc="williams")
-#'  
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' 
 #' @export
 ts_g_ind <- function(field1, field2, categories1=NULL, categories2=NULL, cc=NULL){
   

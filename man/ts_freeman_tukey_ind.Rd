@@ -9,7 +9,8 @@ ts_freeman_tukey_ind(
   field2,
   categories1 = NULL,
   categories2 = NULL,
-  cc = NULL
+  cc = NULL,
+  version = 1
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ ts_freeman_tukey_ind(
 \item{categories2}{optional list with order and/or selection for categories of field2}
 
 \item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".}
+
+\item{version}{optional integer to indicate which version to use. Either 1 (default) or 2.}
 }
 \value{
 A dataframe with:
@@ -36,11 +39,20 @@ A dataframe with:
 \item{test}{description of the test used}
 }
 \description{
-Freeman-Tukey Test of Independence
+To test if two nominal variables have an association, the most commonly used test is the Pearson chi-square test of independence (Pearson, 1900). If the significance of this test is below 0.05, the two nominal variables have a significant association.
+
+The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.
+
+The Freeman-Tukey test does the same, but attempts to approximate the normal distribution with a binomial or Poisson distribution.
+
+One problem though is that the test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often ‘not too many cells’ is fixed at no more than 20\% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
 }
 \details{
-The formula used is (Bishop et al., 2007, p. 513):
+The formula used for version 1 is (Bishop et al., 2007, p. 513):
 \deqn{T^2=4\times\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}} - \sqrt{E_{i,j}}\right)^2}
+The formula used for version 2 is (Lawal, 1984, p. 415):
+\deqn{T^2=\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}}+\sqrt{F_{i,j}+1} - \sqrt{4\times E_{i,j}+1}\right)^2}
+
 \deqn{df = \left(r - 1\right)\times\left(c - 1\right)}
 \deqn{sig. = 1 - \chi^2\left(T^2,df\right)}
 
@@ -63,7 +75,7 @@ With:
 }
 
 The test is attributed to Freeman and Tukey (1950), but couldn't really find it in there.
-Ayinde and Abidoye (2010) also show the formula in more modern notation.
+Ayinde and Abidoye (2010) also show the formula in more modern notation from version 1, and an another source for version 2 is Ozturk et al. (2023).
 
 The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
@@ -73,30 +85,25 @@ The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
 With:
 \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
 }
-\examples{
- 
-nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-ts_freeman_tukey_ind(nom1, nom2)
-ts_freeman_tukey_ind(nom1, nom2, cc="pearson")
-ts_freeman_tukey_ind(nom1, nom2, cc="williams")
- 
-}
 \references{
-Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. \emph{Science World Journal, 2}(2), 21–27. https://doi.org/10.4314/swj.v2i2.51730
+Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. \emph{Science World Journal, 2}(2), 21–27. doi:10.4314/swj.v2i2.51730
 
 Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). \emph{Discrete multivariate analysis}. Springer.
 
-Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. \emph{The Annals of Mathematical Statistics, 21}(4), 607–611. https://doi.org/10.1214/aoms/1177729756
+Fisher, R. A. (1925). \emph{Statistical methods for research workers}. Oliver and Boyd.
 
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. https://doi.org/10.2307/2332518
+Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. \emph{The Annals of Mathematical Statistics, 21}(4), 607–611. doi:10.1214/aoms/1177729756
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
+Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams’s improved G 2 test statistics in small samples of one-way multinomials. \emph{Biometrika, 71}(2), 415–418. doi:10.2307/2336263
+
+McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
+
+Ozturk, E., Basol, M., Goksuluk, D., & Karahan, S. (2023). Performance comparison of independence tests in two-way contingency table. \emph{REVSTAT-Statistical Journal, 21}(2), Article 2. doi:10.57805/revstat.v21i2.403
+
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
+
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
