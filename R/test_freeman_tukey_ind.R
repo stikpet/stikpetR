@@ -1,6 +1,6 @@
 #' Freeman-Tukey Test of Independence
 #' @description
-#' To test if two nominal variables have an association, the most commonly used test is the Pearson chi-square test of independence (Pearson, 1900). If the significance of this test is below 0.05, the two nominal variables have a significant association.
+#' To test if two nominal variables have an association, the most commonly used test is the Pearson chi-square test of independence (Pearson, 1900). If the significance of this test is below 0.05 (or another pre-defined threshold), the two nominal variables have a significant association.
 #' 
 #' The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.
 #' 

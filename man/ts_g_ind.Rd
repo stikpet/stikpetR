@@ -34,11 +34,7 @@ This test is similar as a Pearson Chi-Square test of independence, but approache
 
 If the significance of this test is below 0.05, the two nominal variables have a significant association.
 
-The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.
-
-If for example I had 50 male and 50 female respondents, and 50 agreed with a statement and 50 disagreed with the statement, the expected value for each combination (male-agree, female-agree, male-disagree, and female-disagree) would be 25.
-
-Note that if in the survey the real results would be that all male disagreed, and all female would agree, there is a full dependency (i.e. gender fully decides if you agree or disagree), even though the row and column totals would still be 50. In essence the Pearson chi-square test, checks if your data is more toward the expected values (independence) or the full dependency one.
+The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.See the Pearson Chi-Square test of independence for more details on expected counts.
 
 One problem though is that the test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often ‘not too many cells’ is fixed at no more than 20\% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
 }
