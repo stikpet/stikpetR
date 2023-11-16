@@ -2,20 +2,30 @@
 % Please edit documentation in R/test_mcnemar_bowker.R
 \name{ts_mcnemar_bowker}
 \alias{ts_mcnemar_bowker}
-\title{McNemar-Bowker Test}
+\title{(McNemar-)Bowker Test}
 \usage{
-ts_mcnemar_bowker(nom1, nom2)
+ts_mcnemar_bowker(field1, field2, categories = NULL, cc = FALSE)
 }
 \arguments{
-\item{nom1}{the scores on the first variable}
+\item{field1}{vector, the first categorical field}
 
-\item{nom2}{the scores on the second variable}
+\item{field2}{vector, the first categorical field}
+
+\item{categories}{vector, optional, order and/or selection for categories of field1 and field2}
+
+\item{cc}{boolean, optional, use of a continuity correction (default is False)}
 }
 \value{
-dataframe with the test statistic, degrees of freedom, and p-value (sig.)
+Dataframe with:
+\item{n}{the sample size}
+\item{statistic}{the chi-squared value}
+\item{df}{the degrees of freedom used in the test}
+\item{p-value}{the significance (p-value)}
 }
 \description{
-McNemar-Bowker Test
+The Bowker test (Bowker, 1948) is an extension of the McNemar (1947) test, which was only for 2x2 tables.
+
+It tests if there is a change in symmetric opinion changes. It assumes there is no change, and if the p-value is below a pre-set threshold (usually 0.05) this assumption is rejected.
 }
 \details{
 The formula used is (Bowker, 1948, p. 573):
@@ -30,14 +40,6 @@ The formula used is (Bowker, 1948, p. 573):
 \item \eqn{n} is the total number of scores
 \item \eqn{F_{i,j}} is the frequency (count) of scores equal to the i-th category in the first variable, and the j-th category in the second.
 }
-
-This test is an extension of the McNemar (1947) test, which is only for 2x2 tables
-}
-\examples{
-nom1 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-nom2 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-ts_mcnemar_bowker(nom1, nom2)
-
 }
 \references{
 Bowker, A. H. (1948). A test for symmetry in contingency tables. \emph{Journal of the American Statistical Association, 43}(244), 572–574. https://doi.org/10.2307/2280710
@@ -45,9 +47,5 @@ Bowker, A. H. (1948). A test for symmetry in contingency tables. \emph{Journal o
 McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. \emph{Psychometrika, 12}(2), 153–157. https://doi.org/10.1007/BF02295996
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

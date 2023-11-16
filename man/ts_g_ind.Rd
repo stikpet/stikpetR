@@ -32,7 +32,7 @@ A dataframe with:
 \description{
 This test is similar as a Pearson Chi-Square test of independence, but approaches it from a likelihood-ratio approach (see Monica, 2015).
 
-If the significance of this test is below 0.05, the two nominal variables have a significant association.
+If the significance of this test is below 0.05 (or another pre-defined threshold), the two nominal variables have a significant association.
 
 The test compares the observed counts of the cross table with the so-called expected counts. The expected values are the number of respondents you would expect if the two variables would be independent.See the Pearson Chi-Square test of independence for more details on expected counts.
 

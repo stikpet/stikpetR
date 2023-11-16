@@ -1,8 +1,19 @@
 #' Stuart-Maxwell / Marginal Homogeneity Test
+#' @description
+#' If you are only interested if the overall distribution changed (i.e. if the percentages from each category changed or not), you can perform a marginal homogeneity test. There are two that seem to be quite popular for this, the Stuart-Maxwell test (Stuart, 1955; Maxwell, 1970), and the Bhapkar test (Bhapkar, 1961; 1966). According Uebersax (2006) (which also has a nice example) the Bhapkar one is preferred.
 #' 
-#' @param nom1 the scores on the first variable
-#' @param nom2 the scores on the second variable
-#' @return dataframe with the test statistic, degrees of freedom, and p-value (sig.)
+#' Simply put, a marginal homogeneity test, looks at the row vs column proportions. Since in a paired test, the options are the same, if the row and column proportions are the same, nothing changed between the two variables.
+#' 
+#' @param field1 vector, the first categorical field
+#' @param field2 vector, the first categorical field
+#' @param categories vector, optional, order and/or selection for categories of field1 and field2
+#' 
+#' @returns
+#' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{statistic}{the chi-squared value}
+#' \item{df}{the degrees of freedom used in the test}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' The formula used is:
@@ -32,54 +43,53 @@
 #' \item \eqn{\chi^2\left(\dots, \dots\right)} is the cumulative distribution function of the chi-square distribution
 #' }
 #' 
-#' Note that the d vector and S matrix are one row (and column) less.
-#' 
-#' This test only differs from the Bhapkar test in the calculation of S
-#' 	
-#' The procedure is found ins Maxwell (1970) which is founded by Stuart (1955).
+#' *Note* 
+#' \itemize{
+#' \item the d vector and S matrix are one row (and column) less.
+#' \item This test only differs from the Bhapkar test in the calculation of S
+#' \item The procedure is found ins Maxwell (1970) which is founded by Stuart (1955).
+#' }
 #' 
 #' @references 
-#' Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. *The British Journal of Psychiatry, 116*(535), 651–655. https://doi.org/10.1192/bjp.116.535.651
+#' Bhapkar, V. P. (1961). Some tests for categorical data. *The Annals of Mathematical Statistics, 32*(1), 72–83. doi:10.1214/aoms/1177705140
 #' 
-#' Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. *Biometrika, 42*(3/4), 412–416. https://doi.org/10.2307/2333387
+#' Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. *Journal of the American Statistical Association, 61*(313), 228–235. doi:10.1080/01621459.1966.10502021
+#' 
+#' Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. *The British Journal of Psychiatry, 116*(535), 651–655. doi:10.1192/bjp.116.535.651
+#' 
+#' Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. *Biometrika, 42*(3/4), 412–416. doi:10.2307/2333387
+#' 
+#' Uebersax, J. (2006, August 30). McNemar tests of marginal homogeneity. http://www.john-uebersax.com/stat/mcnemar.htm
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' nom1 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-#' nom2 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-#' ts_stuart_maxwell(nom1, nom2)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_stuart_maxwell <- function(nom1, nom2){
-  datFrame = na.omit(data.frame(nom1, nom2))
+ts_stuart_maxwell <- function(field1, field2, categories=NULL){
+  #create the cross table
+  ct = tab_cross(field1, field2, categories, categories, totals="include")
   
-  ct = table(datFrame$nom1, datFrame$nom2)
-  r = nrow(ct)
-  c = ncol(ct)
+  #basic counts
+  k = nrow(ct)-1
+  n = ct[k+1, k+1]
   
-  n = sum(ct)
-  pct = ct/n
-  RS = rowSums(pct)
-  CS = colSums(pct)
-  d = (RS - CS)[1:(r - 1)]
+  #STEP 1: Convert to percentages based on grand total
+  p = ct/n
   
-  S = matrix(0, nrow=r-1, ncol=c-1)
-  for (i in 1:(r-1)) {
-    for (j in 1:(c-1)) {
+  #STEP 2: Determine the differences between the row and the column totals
+  d = c()
+  for (i in 1:(k-1)){
+    d[i] = p[i,k+1] - p[k+1,i]}
+  
+  #STEP 3: Create the variance and covariance matrix
+  S = matrix(0, nrow=k-1, ncol=k-1)
+  for (i in 1:(k-1)) {
+    for (j in 1:(k-1)) {
       if (i==j) {
-        S[i,j] = RS[i] + CS[j] - 2*pct[i,j]
-      }
+        S[i,j] = p[i,k+1] + p[k+1,j] - 2*p[i,j]}
       else{
-        S[i,j] = -(pct[i,j] + pct[j,i])
-      }
+        S[i,j] = -(p[i,j] + p[j,i])}
     }
-    
   }
   
   Sinv = solve(S)
@@ -87,12 +97,13 @@ ts_stuart_maxwell <- function(nom1, nom2){
   dT = t(d)
   
   chi2Value = (n*dT %*% Sinv %*% d)[1]
-  df = r - 1
+  df = k - 1
   pValue = pchisq(chi2Value, df, lower.tail = FALSE)
   
   statistic = chi2Value  
-  results = data.frame(statistic, df, pValue)
+  res = data.frame(n, statistic, df, pValue)
+  colnames(res) = c("n", "statistic", "df", "p-value")
   
-  return(results)
+  return(res)
   
 }

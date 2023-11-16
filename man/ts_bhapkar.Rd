@@ -4,66 +4,77 @@
 \alias{ts_bhapkar}
 \title{Bhapkar Test}
 \usage{
-ts_bhapkar(nom1, nom2)
+ts_bhapkar(field1, field2, categories = NULL)
 }
 \arguments{
-\item{nom1}{the scores on the first variable}
+\item{field1}{vector, the first categorical field}
 
-\item{nom2}{the scores on the second variable}
+\item{field2}{vector, the first categorical field}
+
+\item{categories}{vector, optional, order and/or selection for categories of field1 and field2}
 }
 \value{
-dataframe with the test statistic, degrees of freedom, and p-value (sig.)
+Dataframe with:
+\item{n}{the sample size}
+\item{statistic}{the chi-squared value}
+\item{df}{the degrees of freedom used in the test}
+\item{p-value}{the significance (p-value)}
 }
 \description{
-Bhapkar Test
+If you are only interested if the overall distribution changed (i.e. if the percentages from each category changed or not), you can perform a marginal homogeneity test. There are two that seem to be quite popular for this, the Stuart-Maxwell test (Stuart, 1955; Maxwell, 1970), and the Bhapkar test (Bhapkar, 1961; 1966). According Uebersax (2006) (which also has a nice example) the Bhapkar one is preferred.
+
+Simply put, a marginal homogeneity test, looks at the row vs column proportions. Since in a paired test, the options are the same, if the row and column proportions are the same, nothing changed between the two variables.
 }
 \details{
 The formula used is:
-\deqn{\chi_B^2 = n\times d' \times S^{-1}\times d}
-\deqn{df = r - 1 = c - 1}
-\deqn{sig. = 1 - \chi^2\left(\chi_B\right)}
+\deqn{\chi_{B}^2 = n\times d^{\prime} \times S^{-1} \times d}
 
 With:
-\deqn{S_{i,i} = p_{i,.} + p_{.,i} - 2\times p_{i,i} - \left(p_{i,.} \times p_{.,i}\right)^2}
-\deqn{S_{i,j} = -\left(p_{i,j} + p_{j,i}\right) - \left(p_{i,.} - p_{.,i}\right)\times \left(p_{j,.} - p_{.,j}\right)}
+\deqn{S_{i,i} = p_{i,.} + p_{.,i} - 2\times p_{i,i} - \left(p_{i,.} - p_{.,i}\right)^2}
+\deqn{S_{i,j} = -\left(p_{i,j} + p_{j,i}\right) - \left(p_{i,.} - p_{.,i}\right)\times\left(p_{j,.} - p_{.,j}\right)}
 \deqn{d_i = p_{i,.} - p_{.,i}}
 \deqn{p_{i,j} = \frac{F_{i,j}}{n}}
-\deqn{d = \begin{bmatrix} d_1 \\ d_2 \\ \dots \\ d_{r-1} \end{bmatrix}}
-\deqn{S = \begin{bmatrix} S_{1,1} & S_{1,2} & \dots & S_{1,c-1} \\ S_{2,1} & S_{2,2} & \dots & S_{2,c-1} \\ \dots & \dots & \dots & \dots \\ S_{r-1,1} & S_{r-1,2} & \dots & S_{r-1,c-1} \\ \end{bmatrix}}
-\deqn{n = \sum_{i=1}^r\sum_{j=1}^c F_{i,j}}
+\deqn{d = \begin{bmatrix} d_1 \\ d_2 \\ \dots \\ d_{r-1} \ \end{bmatrix}}
+\deqn{S = \begin{bmatrix} S_{1,1} & S_{1,2} & \dots & S_{1,c-1} \\ S_{2,1} & S_{2,2} & \dots & S_{2,c-1} \\  \dots & \dots & \dots & \dots \\ S_{r-1,1} & S_{r-1,2} & \dots & S_{r-1,c-1} \\ \end{bmatrix}}
+\deqn{n = \sum_{i=1}^r \sum_{j=1}^c F_{i,j}}
 
-\emph{Symbols used}
+The p-value (sig.):
+\deqn{df = r - 1 = c - 1}
+\deqn{sig. = 1 - \chi^2\left(\chi_B^2, df\right)}
+
+\emph{Symbols used:}
+
 \itemize{
-\item \eqn{r} is the number of rows (categories in the first variable)
-\item \eqn{c} is the number of columns (categories in the second variable)
-\item \eqn{n} is the total number of scores
-\item \eqn{F_{i,j}} is the frequency (count) of scores equal to the i-th category in the first variable, and the j-th category in the second.
-\item \eqn{p_{i,.}} The sum of the proportions in row i
-\item \eqn{p_{.,i}} The sum of the proportions in column i
-\item \eqn{d'} is the transpose of the d vector
-\item \eqn{S^{-1}} is the inverse of the S matrix.
-\item \eqn{\chi^2\left(\dots, \dots\right)} is the cumulative distribution function of the chi-square distribution
+\item \eqn{r}, is the number of rows (categories in the first variable)
+\item \eqn{c}, is the number of columns (categories in the second variable)
+\item \eqn{n}, is the total number of scores
+\item \eqn{F_{i,j}}, is the frequency (count) of scores equal to the i-th category in the first variable, and the j-th category in the second.
+\item \eqn{p_{i,.}}, The sum of the proportions in row i
+\item \eqn{p_{.,i}}, The sum of the proportions in column i
+\item \eqn{d^{\prime}}, is the transpose of the d vector
+\item \eqn{S^{-1}}, is the inverse of the S matrix.
+\item \eqn{\chi^2\left(\dots\right)}, the cumulative distribution function for the chi-square distribution.
 }
 
-Note that the d vector and S matrix are one row (and column) less.
+\emph{Note}
 
-This test only differs from the Stuart-Maxwell test in the calculation of S
-
-The test was described by Bhapkar (1966)
+\itemize{
+\item The d vector and S matrix are one row (and column) less.
+\item This test only differs from the Stuart-Maxwell test in the calculation of S
+\item The test was introduced by Bhapkar (1961, 1966)
 }
-\examples{
-nom1 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-nom2 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-ts_bhapkar(nom1, nom2)
-
 }
 \references{
-Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. \emph{Journal of the American Statistical Association, 61}(313), 228–235. https://doi.org/10.1080/01621459.1966.10502021
+Bhapkar, V. P. (1961). Some tests for categorical data. \emph{The Annals of Mathematical Statistics, 32}(1), 72–83. doi:10.1214/aoms/1177705140
+
+Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. \emph{Journal of the American Statistical Association, 61}(313), 228–235. doi:10.1080/01621459.1966.10502021
+
+Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. \emph{The British Journal of Psychiatry, 116}(535), 651–655. doi:10.1192/bjp.116.535.651
+
+Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. \emph{Biometrika, 42}(3/4), 412–416. doi:10.2307/2333387
+
+Uebersax, J. (2006, August 30). McNemar tests of marginal homogeneity. http://www.john-uebersax.com/stat/mcnemar.htm
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

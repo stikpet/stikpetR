@@ -4,18 +4,26 @@
 \alias{ts_stuart_maxwell}
 \title{Stuart-Maxwell / Marginal Homogeneity Test}
 \usage{
-ts_stuart_maxwell(nom1, nom2)
+ts_stuart_maxwell(field1, field2, categories = NULL)
 }
 \arguments{
-\item{nom1}{the scores on the first variable}
+\item{field1}{vector, the first categorical field}
 
-\item{nom2}{the scores on the second variable}
+\item{field2}{vector, the first categorical field}
+
+\item{categories}{vector, optional, order and/or selection for categories of field1 and field2}
 }
 \value{
-dataframe with the test statistic, degrees of freedom, and p-value (sig.)
+Dataframe with:
+\item{n}{the sample size}
+\item{statistic}{the chi-squared value}
+\item{df}{the degrees of freedom used in the test}
+\item{p-value}{the significance (p-value)}
 }
 \description{
-Stuart-Maxwell / Marginal Homogeneity Test
+If you are only interested if the overall distribution changed (i.e. if the percentages from each category changed or not), you can perform a marginal homogeneity test. There are two that seem to be quite popular for this, the Stuart-Maxwell test (Stuart, 1955; Maxwell, 1970), and the Bhapkar test (Bhapkar, 1961; 1966). According Uebersax (2006) (which also has a nice example) the Bhapkar one is preferred.
+
+Simply put, a marginal homogeneity test, looks at the row vs column proportions. Since in a paired test, the options are the same, if the row and column proportions are the same, nothing changed between the two variables.
 }
 \details{
 The formula used is:
@@ -45,27 +53,24 @@ With:
 \item \eqn{\chi^2\left(\dots, \dots\right)} is the cumulative distribution function of the chi-square distribution
 }
 
-Note that the d vector and S matrix are one row (and column) less.
-
-This test only differs from the Bhapkar test in the calculation of S
-
-The procedure is found ins Maxwell (1970) which is founded by Stuart (1955).
+\emph{Note}
+\itemize{
+\item the d vector and S matrix are one row (and column) less.
+\item This test only differs from the Bhapkar test in the calculation of S
+\item The procedure is found ins Maxwell (1970) which is founded by Stuart (1955).
 }
-\examples{
-nom1 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-nom2 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-ts_stuart_maxwell(nom1, nom2)
-
 }
 \references{
-Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. \emph{The British Journal of Psychiatry, 116}(535), 651–655. https://doi.org/10.1192/bjp.116.535.651
+Bhapkar, V. P. (1961). Some tests for categorical data. \emph{The Annals of Mathematical Statistics, 32}(1), 72–83. doi:10.1214/aoms/1177705140
 
-Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. \emph{Biometrika, 42}(3/4), 412–416. https://doi.org/10.2307/2333387
+Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. \emph{Journal of the American Statistical Association, 61}(313), 228–235. doi:10.1080/01621459.1966.10502021
+
+Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. \emph{The British Journal of Psychiatry, 116}(535), 651–655. doi:10.1192/bjp.116.535.651
+
+Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. \emph{Biometrika, 42}(3/4), 412–416. doi:10.2307/2333387
+
+Uebersax, J. (2006, August 30). McNemar tests of marginal homogeneity. http://www.john-uebersax.com/stat/mcnemar.htm
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

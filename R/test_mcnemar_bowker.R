@@ -1,8 +1,20 @@
-#' McNemar-Bowker Test
+#' (McNemar-)Bowker Test
+#' @description 
+#' The Bowker test (Bowker, 1948) is an extension of the McNemar (1947) test, which was only for 2x2 tables.
 #' 
-#' @param nom1 the scores on the first variable
-#' @param nom2 the scores on the second variable
-#' @return dataframe with the test statistic, degrees of freedom, and p-value (sig.)
+#' It tests if there is a change in symmetric opinion changes. It assumes there is no change, and if the p-value is below a pre-set threshold (usually 0.05) this assumption is rejected.
+#' 
+#' @param field1 vector, the first categorical field
+#' @param field2 vector, the first categorical field
+#' @param categories vector, optional, order and/or selection for categories of field1 and field2
+#' @param cc boolean, optional, use of a continuity correction (default is False)
+#' 
+#' @returns
+#' Dataframe with:
+#' \item{n}{the sample size}
+#' \item{statistic}{the chi-squared value}
+#' \item{df}{the degrees of freedom used in the test}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' The formula used is (Bowker, 1948, p. 573):
@@ -18,47 +30,40 @@
 #' \item \eqn{F_{i,j}} is the frequency (count) of scores equal to the i-th category in the first variable, and the j-th category in the second.
 #' }
 #' 
-#' This test is an extension of the McNemar (1947) test, which is only for 2x2 tables
-#' 
 #' @references 
-#' Bowker, A. H. (1948). A test for symmetry in contingency tables. *Journal of the American Statistical Association, 43*(244), 572–574. https://doi.org/10.2307/2280710
+#' Bowker, A. H. (1948). A test for symmetry in contingency tables. *Journal of the American Statistical Association, 43*(244), 572–574. doi:10.2307/2280710
 #' 
-#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153–157. https://doi.org/10.1007/BF02295996
+#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153–157. doi:10.1007/BF02295996
+#' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' nom1 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-#' nom2 = c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3)
-#' ts_mcnemar_bowker(nom1, nom2)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_mcnemar_bowker <- function(nom1, nom2){
-  datFrame = na.omit(data.frame(nom1, nom2))
+ts_mcnemar_bowker <- function(field1, field2, categories=NULL, cc=FALSE){
+  #create the cross table
+  ct = tab_cross(field1, field2, categories, categories, totals="include")
   
-  ct = table(datFrame$nom1, datFrame$nom2)
-  r = nrow(ct)
-  c = ncol(ct)
+  #basic counts
+  k = nrow(ct)-1
+  n = ct[k+1, k+1]
   
   chi2Value = 0
-  for (i in 1:r) {
-    for (j in 1:c) {
-      if (i>j) {
-        chi2Value = chi2Value + (ct[i,j] - ct[j,i])**2/(ct[i,j] + ct[j,i])
+  for (i in 1:(k-1)) {
+    for (j in (i+1):k) {
+      if (cc){
+        chi2Value = chi2Value + (abs(ct[i,j] - ct[j,i])-1)**2/(ct[i,j] + ct[j,i])
       }
+      else{
+        chi2Value = chi2Value + (ct[i,j] - ct[j,i])**2/(ct[i,j] + ct[j,i])}
     }
   }
   
-  df = r*(r - 1)/2
+  df = k*(k - 1)/2
   pValue = pchisq(chi2Value, df, lower.tail = FALSE)
   
   statistic = chi2Value
-  results = data.frame(statistic, df, pValue)
-  
-  return(results)
+  res = data.frame(n, statistic, df, pValue)
+  colnames(res) = c("n", "statistic", "df", "p-value")
+  return(res)
   
 }
