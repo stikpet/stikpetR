@@ -139,7 +139,7 @@ es_theil_u <- function(field1, field2, categories1=NULL, categories2=NULL){
   dependent = c("symmetric", "field1", "field2")
   statistic = value/ase0
   pvalue = 2*(1-pnorm(abs(statistic))) 
-  results = data.frame(dependent, value, ase0, ase1, statistic, pvalue)
+  results = data.frame(dependent, value, n, ase0, ase1, statistic, pvalue)
   
   return(results)
   
