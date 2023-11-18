@@ -1,150 +1,141 @@
 #' Mood Median Test
+#' @description 
+#' This test looks if the median from different categories would be the same in the population. If not, at least one is different then at least one other category. A Kruskal-Wallis test (see ts_kruksal_wallis()) is very similar but checks the average ranks instead of median.
 #' 
+#' The test only looks at the number of scores above the overall median and those that are equal or below. A cross table is made with each category and the numbers below and above the overall median. From this table a test of independence can be used.
 #' 
-#' @param scores the variable with the scores
-#' @param groups the variable with the groups
-#' @param cc optional continuity correction to use
+#' @param catField vector with categories
+#' @param ordField vector with the scores
+#' @param categories vector, optional. the categories to use from catField
+#' @param levels vector, optional. the levels or order used in ordField.
+#' @param test string, optional. the test of independence to use. Default is "pearson". Other options are "pearson", "fisher", "freeman-tukey", "g", "mod-log", "neyman", "power"
+#' @param cc : string, optional. method for continuity correction. Either NULL (default), "yates", "pearson", "williams"
+#' @param lambd float or string, optional. either name of test or specific value. Default is "cressie-read" i.e. lambda of 2/3. Only applies to Power Divergence test. Other options include float, "cressie-read", "likelihood-ratio", "mod-log", "pearson", "freeman-tukey", "neyman"
+#' 
 #' @returns 
-#' Returns a dataframe with:statistic, df, pValue, minExp, propBelow5
-#' \item{statistic}{the test statistic}
-#' \item{df}{the degrees of freedom}
-#' \item{pValue}{the two-tailed significance, a.k.a. p-value}
-#' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of cells with expected count below 5}
+#' A dataframe with the results of the specified test.
 #' 
 #' @details 
-#' This test simply counts how many scores fall above the median in each category and 
-#' how many equal or below, and then perform a Pearson chi-square test on the table
+#' The Mood Median test creates a 2xk cross table, with k being the number of categories. The two rows are one for the number of scores in that category that are above the overall median, and the second row the number of scores in that category that are equal or below the overall median.
 #' 
-#' The formula used is:
-#' \deqn{\chi_M^2 = \sum_{i=1}^2 \sum_{j=1}^k \frac{\left(F_{i,j} - E_{i,j}\right)^2}{E_{i,j}}}
-#' \deqn{df = k - 1}
-#' \deqn{sig. = 1 - \chi^2\left(\chi_M^2, df\right)}
-#' With:
-#' \deqn{E_{i,j} = \frac{R_i\times C_j}{n}}
-#' \deqn{R_i = \sum_{j=1}^k F_{i,j}}
-#' \deqn{C_i = \sum_{i=1}^2 F_{i,j}}
-#' \deqn{n = \sum_{i=1}^2 \sum_{j=1}^k F_{i,j}}
+#' A chi-square test of independence on this cross table can then be performed. There are quite some different options for this:
 #' 
-#' *Symbols used*
 #' \itemize{
-#' \item \eqn{F_{1,j}} the number of scores is category j that are above the overall median
-#' \item \eqn{F_{2,j}} the number of scores is category j that are equal or below the overall median
-#' \item \eqn{E_{i,j}} the expected count for row i, column j
-#' \item \eqn{R_i} the row total of row i
-#' \item \eqn{C_i} the column total of column i
-#' \item \eqn{n} the total sample size
-#' \item \eqn{k} the number of categories
-#' \item \eqn{\chi^2\left(\dots, \dots\right)} the cumulative distribution function of the chi-square distribution
+#' \item "pearson", will perform a Pearson chi-square test of independence using the ts_pearson_ind() function.
+#' \item "fisher", will perform a Fisher exact test using the ts_fisher() function, but only if there are 2 categories, if there are more the test will be set to "pearson"
+#' \item "freeman-tukey", will perform a Freeman-Tukey test of independence using the ts_freeman_tukey_ind() function
+#' \item "g", will perform a G test of independence using the ts_g_ind() function
+#' \item "mod-log", will perform a Mod-Log Likelihood test of independence using the ts_mod_log_likelihood_ind() function
+#' \item "neyman", will perform a Neyman test of independence using the ts_neyman_ind() function
+#' \item "power", will perform a Power Divergence test of independence using the ts_powerdivergence_ind() function.
 #' }
 #' 
-#' The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
+#' The formula using the default Pearson test is:
+#' \deqn{\chi_{M}^2 = \sum_{i=1}^2 \sum_{j=1}^k \frac{\left(F_{i,j}-E_{i,j}\right)^2}{E_{i,j}}}
+#' \deqn{df = k - 1}
+#' \deqn{sig. = 1 - \chi^2\left(\chi_{M}^2, df\right)}
 #' 
-#' Use instead of \eqn{F_{i,j}} the adjusted version defined by:
-#' \deqn{F_{i,j}^\ast = \begin{cases} F_{i,j} - 0.5 & \text{ if } F_{i,j}>E_{i,j}  \\ F_{i,j} & \text{ if } F_{i,j}= E_{i,j}\\ F_{i,j} + 0.5 & \text{ if } F_{i,j}<E_{i,j} \end{cases}}
-#' 
-#' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
-#' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
-#' 
-#' The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
-#' \deqn{\chi_{PW}^2 = \frac{\chi_{P}^2}{q}}
 #' With:
-#' \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
-#' 	
-#' Often Mood (1950) is used as a source, but I found the explanation clearer in Brown and Mood (1951)
+#' \deqn{E_{i,j} = \frac{R_i \times C_j}{n}}
+#' \deqn{R_i = \sum_{j=1}^k F_{i,j}}
+#' \deqn{C_j = \sum_{i=1}^2 F_{i,j}}
+#' \deqn{n = \sum_{i=1}^2 \sum_{j=1}^k F_{i,j} = \sum_{i=1}^2 R_i = \sum_{j=1}^k C_j}
 #' 
-#' @references 
-#' Brown, G. W., & Mood, A. M. (1951). On median tests for linear hypotheses. *Proceedings of the Second Berkeley Symposium on Mathematical Statistics and Probability*, 2, 159–167. 
+#' The original source for the formula is most likely Mood (1950), but the ones shown are based on Brown and Mood (1951).
+#' 
+#' *Symbols used:*
+#' 
+#' \itemize{
+#' \item \eqn{k}, the number of categories (columns)
+#' \item \eqn{F_{1,j}}, the number of scores is category j that are above the overall median
+#' \item \eqn{F_{2,j}}, the number of scores is category j that are equal or below the overall median
+#' \item \eqn{E_{i,j}}, the expected count in row i and column j.
+#' \item \eqn{R_i}, the row total of row i 
+#' \item \eqn{C_j}, the column total of column j
+#' \item \eqn{n}, the overall total.
+#' \item \eqn{df}, the degrees of freedom
+#' \item \eqn{\chi^2\left(\dots\right)}, the cumulative distribution function of the chi-square distribution.
+#' }
+#' 
+#' @references
+#' 
+#' Brown, G. W., & Mood, A. M. (1951). On median tests for linear hypotheses. Proceedings of the Second Berkeley Symposium on Mathematical Statistics and Probability, 2, 159–167.
 #' 
 #' Mood, A. M. (1950). *Introduction to the theory of statistics*. McGraw-Hill.
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
-#' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
-#' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
-#' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(1, 2, 5, 1, 1, 5, 3, 1, 5, 1, 1, 5, 1, 1, 3, 3, NA, 3, 4, 2, 4, 2, 1, 3, 2, 2, 4, 1, 1, 3, 1, 2, 4, 1, 5, 4, 2, 3, 4, 1, 2, 5, 1, 1, 3, 3, 3, 1, 4, 3, 1, 1, 2, 3, 1)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_mood_median(scores, groups)
-#' ts_mood_median(scores, groups, cc="yates")
-#' ts_mood_median(scores, groups, cc="pearson")
-#' ts_mood_median(scores, groups, cc="williams")
-#' 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#'
 #' @export
-ts_mood_median <- function(scores, groups, cc=c(NULL,"yates", "pearson", "williams")){
+ts_mood_median <- function(catField, ordField, 
+                            categories=NULL, levels=NULL, 
+                            test="pearson", 
+                            cc=c(NULL,"yates", "pearson", "williams"), 
+                            lambd=2/3){
+  #default for cc to none
+  if (length(cc)>1) {cc = NULL}
   
-  if (length(cc)>1) {
-    cc = cc[1]
+  if (!is.null(levels)){
+    myFieldOrd = factor(ordField, ordered = TRUE, levels = levels)
+    ordField = as.numeric(myFieldOrd)
   }
   
-  datFrame = na.omit(data.frame(groups, scores))
-  med = median(datFrame$scores)
-  
-  datTable = table(datFrame)
-  nr = nrow(datTable) #the number of groups
-  
-  obs = matrix(1, nrow=2, ncol=nr)
-  for (i in 1:nr) {
-    obs[1,i] = sum(datFrame$scores[datFrame$groups == row.names(datTable)[i]] > med)
-    obs[2,i] = sum(datFrame$scores[datFrame$groups == row.names(datTable)[i]] <= med)
-  }
-  
-  R = rowSums(obs)
-  C = colSums(obs)
-  n = sum(R)
-  
-  expCount = matrix(1, nrow=2, ncol=nr)
-  for (j in 1:nr) {
-    for (i in 1:2){
-      expCount[i,j] = R[i]*C[j]/n
+  if (!is.null(categories)){
+    if(!is.null(names(categories))){
+      for (i in 1:length(categories)){catField[catField == unname(categories[i])] = names(categories)[i]}
+      categories = names(categories)
     }
   }
   
-  if (!is.null(cc) && cc=="yates") {
-    #Yates correction
-    for (j in 1:nr) {
-      for (i in 1:2){
-        if (obs[i,j] > expCount[i,j]) {
-          obs[i,j] = obs[i,j] - 0.5
-        }
-        else if (obs[i,j] < expCount[i,j]) {
-          obs[i,j] = obs[i,j] + 0.5
+  datFrame = na.omit(data.frame(catField, ordField))
+  med = median(datFrame$ordField)
+  
+  datTable = table(datFrame)
+  k = nrow(datTable) #the number of groups
+  
+  obs = matrix(1, nrow=2, ncol=k)
+  for (i in 1:k) {
+    obs[1,i] = sum(datFrame$ordField[datFrame$catField == row.names(datTable)[i]] > med)
+    obs[2,i] = sum(datFrame$ordField[datFrame$catField == row.names(datTable)[i]] <= med)
+  }
+  
+  # New dataframe with simply above or below or equal.
+  catArr = c()
+  ordArr = c()
+  arrRow = 1
+  for (j in 1:k){
+    for (i in 1:2){
+      for (sc in 1:obs[i, j]){
+        if (obs[i,j]>0){
+          catArr[arrRow] = colnames(datTable)[j]
+          ordArr[arrRow] = i+1
+          arrRow = arrRow + 1
         }
       }
     }
   }
   
-  chiVal = sum((obs - expCount)^2/expCount)
-  
-  if (!is.null(cc) && cc=="pearson") {
-    #Pearson Correction
-    chiVal = (n - 1)/n * chiVal
-  }
-  else if (cc=="williams"){
-    #Williams Correction
-    q = 1 + (n*sum(1/R)-1) * (n*sum(1/C)-1) / (6*n*(nr - 1)*(2 - 1))
-    chiVal = chiVal/q
+  #now for the test
+  if (test=="fisher"){
+    if (k>2){test = "pearson"}
+    else{
+      res = ts_fisher(catArr, ordArr)}
   }
   
-  df = nr - 1
+  if (test=="freeman-tukey"){
+    res = ts_freeman_tukey_ind(catArr, ordArr, cc=cc)}
+  else if (test=="g"){
+    res = ts_g_ind(catArr, ordArr, cc=cc)}
+  else if (test=="mod-log"){
+    res = ts_mod_log_likelihood_ind(catArr, ordArr, cc=cc)}
+  else if (test=="neyman"){
+    res = ts_neyman_ind(catArr, ordArr, cc=cc)}
+  else if (test=="pearson"){
+    res = ts_pearson_ind(catArr, ordArr, cc=cc)}
+  else if (test=="power"){
+    res = ts_powerdivergence_ind(catArr, ordArr, cc=cc, lambd=lambd)}
   
-  pValue = 1 - pchisq(chiVal, df)
   
-  minExp = min(expCount)
-  propBelow5 = sum(expCount < 5)
-  
-  statistic = chiVal
-  results <- data.frame(statistic, df, pValue, minExp, propBelow5)
-  
-  return(results)
+  return(res)
   
 }
