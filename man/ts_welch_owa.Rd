@@ -4,22 +4,29 @@
 \alias{ts_welch_owa}
 \title{Welch One-Way ANOVA}
 \usage{
-ts_welch_owa(scores, groups)
+ts_welch_owa(nomField, scaleField, categories = NULL)
 }
 \arguments{
-\item{scores}{the numeric scores variable}
+\item{nomField}{the groups variable}
 
-\item{groups}{the groups variable}
+\item{scaleField}{the numeric scores variable}
+
+\item{categories}{vector, optional. the categories to use from catField}
 }
 \value{
 A dataframe with:
-\item{statistic}{the F-statistic from the test}
-\item{df1}{the first degrees of freedom}
-\item{df2}{the second degrees of freedom}
+\item{n}{the sample size}
+\item{statistic}{the test statistic (F value)}
+\item{df1}{the degrees of freedom}
+\item{df2}{the degrees of freedom}
 \item{pValue}{the significance (p-value)}
 }
 \description{
-Welch One-Way ANOVA
+Tests if the means (averages) of each category could be the same in the population.
+
+If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+
+Delacre et al. (2019) recommend to use the Welch ANOVA instead of the classic and Brown-Forsythe versions, but there are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula used is (Welch, 1951, pp. 334-335):
@@ -58,23 +65,17 @@ while in the Welch-Aspin version 2×k-2. I think this is a mistake in their form
 
 Johansen F test (Johansen, 1980) will give the same results
 }
-\examples{
-scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-ts_welch_owa(scores, groups)
-
-}
 \references{
-Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. \emph{Biometrika, 67}(1), 85–92. https://doi.org/10.1093/biomet/67.1.85
+Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. \emph{The R Journal, 12}(2), 134. doi:10.32614/RJ-2021-008
 
-Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28–35. https://doi.org/10.2307/2332510
+Delacre, M., Leys, C., Mora, Y. L., & Lakens, D. (2019). Taking parametric assumptions seriously: Arguments for the use of Welch’s F-test instead of the classical F-test in one-way ANOVA. \emph{International Review of Social Psychology, 32}(1), 1–12. doi:10.5334/irsp.198
 
-Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. \emph{Biometrika, 38}(3/4), 330–336. https://doi.org/10.2307/2332579
+Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. \emph{Biometrika, 67}(1), 85–92. doi:10.1093/biomet/67.1.85
+
+Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28–35. doi:10.2307/2332510
+
+Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. \emph{Biometrika, 38}(3/4), 330–336. doi:10.2307/2332579
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

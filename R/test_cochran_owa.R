@@ -1,9 +1,20 @@
 #' Cochran One-Way ANOVA
+#' @description 
+#' Tests if the means (averages) of each category could be the same in the population.
 #' 
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
+#' Note that according to Hartung et al. (2002, p. 225) the Cochran test is the standard test in meta-analysis, but should not be used, since it is always too liberal.
+#' 
+#' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+#' 
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' 
 #' @returns 
 #' A dataframe with:
+#' \item{n}{the sample size}
 #' \item{statistic}{the chi-square-statistic from the test}
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{the significance (p-value)}
@@ -47,30 +58,24 @@
 #' Mezui-Mbeng, P. (2015). A note on Cochran test for homogeneity in two ways ANOVA and meta-analysis. *Open Journal of Statistics, 5*(7), 787–796. https://doi.org/10.4236/ojs.2015.57078
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_cochran_owa(scores, groups)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_cochran_owa <- function(scores, groups){
+ts_cochran_owa <- function(nomField, scaleField, categories=NULL){
   
-  dfr = na.omit(data.frame(scores, groups))
+  dfr = na.omit(data.frame(scaleField, nomField))
+  #replace categories if provided
+  if (!is.null(categories)){
+    dfr = dfr[(dfr$nomField %in% categories),]}
   
   #overall mean and count
-  xBar = mean(dfr$scores)
+  xBar = mean(dfr$scaleField)
   n = nrow(dfr)
   
   #means and counts and variances per category
-  xBars = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=mean)$x
-  ns = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=length)$x
-  vars = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=var)$x
+  xBars = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=mean)$x
+  ns = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=length)$x
+  vars = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=var)$x
   
   #number of categories
   k = length(ns)
@@ -88,8 +93,9 @@ ts_cochran_owa <- function(scores, groups){
   pValue = 1 - pchisq(chi2Coch, df)
   
   statistic = chi2Coch
-  results = data.frame(statistic, df, pValue)
+  res = data.frame(n, statistic, df, pValue)
+  colnames(res) = c("n", "statistic", "df", "p-value")  
   
-  return(results)
+  return(res)
   
 }

@@ -1,18 +1,23 @@
 #' Scott-Smith Test
 #' 
 #' @description 
-#' This test could be used to compare means from different categories. It is an alternative
-#' for the classic Fisher one-way ANOVA. However, Yiğit and Gökpina (2010, p. 32) concluded that this test is inferior to some
-#' other alternatives when there is heteroscedasticity (variances in the groups not the same)
-#' are preferred (for example the Welch one-way ANOVA).
+#' Tests if the means (averages) of each category could be the same in the population.
 #' 
-#' See details on the calculations from this test.
+#' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+#' 
+#' Yiğit and Gökpina (2010, p. 32) concluded that this test is inferior to some other alternatives when there is heteroscedasticity (variances in the groups not the same) are preferred (for example the Welch one-way ANOVA).
+#' 
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #'  
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the chi-square-statistic from the test}
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
+#' \item{statistic}{the test statistic (chi-square value)}
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{the significance (p-value)}
 #' 
@@ -40,11 +45,7 @@
 #' \item \eqn{\chi^2\left(\dots,\dots\right)} the cumulative distribution function of the chi-square distribution.
 #' }
 #' 
-#' I couldn't find the chi-square test itself in the original article, but
-#' the calculation for an independent samples test repeated usually indeed
-#' leads to a chi-square distribution. The formula and chi-square distribution
-#' can also be found in Adepoju et al. (2016, p. 64), Cavus and Yazici (2020, p. 7)
-#' and Yiğit and Gökpina (2010, p. 17)
+#' I couldn't find the chi-square test itself in the original article, but the calculation for an independent samples test repeated usually indeed leads to a chi-square distribution. The formula and chi-square distribution can also be found in Adepoju et al. (2016, p. 64), Cavus and Yazici (2020, p. 7) and Yiğit and Gökpina (2010, p. 17)
 #' 
 #' @references 
 #' Adepoju, K. A., Shittu, O. I., & Chukwu, A. U. (2016). On the development of an exponentiated F test for one-way ANOVA in the presence of outlier(s). *Mathematics and Statistics, 4*(2), 62–69. https://doi.org/10.13189/ms.2016.040203
@@ -57,34 +58,28 @@
 #' 
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_scott_smith(scores, groups)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_scott_smith <- function(scores, groups){
+ts_scott_smith_owa <- function(nomField, scaleField, categories=NULL){
   
-  selData <- data.frame(scores, groups)
+  selData <- na.omit(data.frame(scaleField, nomField))
   
-  #Remove any missing values:
-  selData <- na.omit(selData)
+  #replace categories if provided
+  if (!is.null(categories)){
+    selData = selData[(selData$nomField %in% categories),]}
   
+  scores=selData$scaleField
+  groups = selData$nomField
   counts <- setNames(aggregate(scores~groups, FUN=length), c("category", "n"))
   means <- setNames(aggregate(scores~groups, FUN=mean), c("category", "mean"))
   vars <- setNames(aggregate(scores~groups, FUN=var), c("category", "var"))
   myRes <- merge(counts, means, by = 'category')
-  myRes <- merge(myRes, vars, by = 'category')
-  
-  
+  myRes <- merge(myRes, vars, by = 'category')  
+  n = sum(myRes$n)
   myRes$sd <- sqrt(myRes$var)
-  xbar = mean(selData$scores)
+  
+  xbar = mean(selData$scaleField)
   myRes$t <- (myRes$mean - xbar)*sqrt(myRes$n) / myRes$sd
   myRes$d <- myRes$t*sqrt((myRes$n - 3)/(myRes$n - 1))
   chi2Stat <- sum(myRes$d^2)
@@ -92,8 +87,8 @@ ts_scott_smith <- function(scores, groups){
   df <- k
   pVal <- pchisq(chi2Stat, df, lower.tail=FALSE)
   
-  testResults <- data.frame(chi2Stat, df, pVal)
-  colnames(testResults)<-c("statistic", "df", "pValue")
+  testResults <- data.frame(n, chi2Stat, df, pVal)
+  colnames(testResults)<-c("n", "statistic", "df", "pValue")
   
   return (testResults)
   

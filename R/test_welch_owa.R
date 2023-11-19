@@ -1,12 +1,21 @@
 #' Welch One-Way ANOVA
+#' @description 
+#' Tests if the means (averages) of each category could be the same in the population.
 #' 
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
+#' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+#' 
+#' Delacre et al. (2019) recommend to use the Welch ANOVA instead of the classic and Brown-Forsythe versions, but there are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the F-statistic from the test}
-#' \item{df1}{the first degrees of freedom}
-#' \item{df2}{the second degrees of freedom}
+#' \item{n}{the sample size}
+#' \item{statistic}{the test statistic (F value)}
+#' \item{df1}{the degrees of freedom}
+#' \item{df2}{the degrees of freedom}
 #' \item{pValue}{the significance (p-value)}
 #' 
 #' @details 
@@ -45,38 +54,37 @@
 #' while in the Welch-Aspin version 2×k-2. I think this is a mistake in their formula, since the article they refer to from Aspin is about two means.
 #' 
 #' Johansen F test (Johansen, 1980) will give the same results
+#' 
 #' @references 
-#' Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. *Biometrika, 67*(1), 85–92. https://doi.org/10.1093/biomet/67.1.85
+#' Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. *The R Journal, 12*(2), 134. doi:10.32614/RJ-2021-008
 #' 
-#' Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. *Biometrika, 34*(1/2), 28–35. https://doi.org/10.2307/2332510
+#' Delacre, M., Leys, C., Mora, Y. L., & Lakens, D. (2019). Taking parametric assumptions seriously: Arguments for the use of Welch’s F-test instead of the classical F-test in one-way ANOVA. *International Review of Social Psychology, 32*(1), 1–12. doi:10.5334/irsp.198
 #' 
-#' Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. *Biometrika, 38*(3/4), 330–336. https://doi.org/10.2307/2332579
+#' Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. *Biometrika, 67*(1), 85–92. doi:10.1093/biomet/67.1.85
+#' 
+#' Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. *Biometrika, 34*(1/2), 28–35. doi:10.2307/2332510
+#' 
+#' Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. *Biometrika, 38*(3/4), 330–336. doi:10.2307/2332579
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_welch_owa(scores, groups)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_welch_owa <- function(scores, groups){
+ts_welch_owa <- function(nomField, scaleField, categories=NULL){
   
-  dfr = na.omit(data.frame(scores, groups))
+  dfr = na.omit(data.frame(scaleField, nomField))
+  #replace categories if provided
+  if (!is.null(categories)){
+    dfr = dfr[(dfr$nomField %in% categories),]}
   
   #overall mean and count
-  xBar = mean(dfr$scores)
+  xBar = mean(dfr$scaleField)
   n = nrow(dfr)
   
   #means and counts and variances per category
-  xBars = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=mean)$x
-  ns = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=length)$x
-  vars = aggregate(dfr$scores, by=list(group=dfr$groups), FUN=var)$x
+  xBars = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=mean)$x
+  ns = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=length)$x
+  vars = aggregate(dfr$scaleField, by=list(group=dfr$nomField), FUN=var)$x
   
   #number of categories
   k = length(ns)
@@ -97,8 +105,10 @@ ts_welch_owa <- function(scores, groups){
   pValue = 1 - pf(Fvalue, df1, df2)
   
   statistic = Fvalue
-  results = data.frame(statistic, df1, df2, pValue)
+  res = data.frame(n, statistic, df1, df2, pValue)
+  colnames(res) = c("n", "statistic", "df", "p-value")  
   
-  return(results)
+  
+  return(res)
   
 }

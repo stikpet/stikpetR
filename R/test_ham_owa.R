@@ -1,14 +1,26 @@
 #' Hartung-Argaç-Makambi Test
+#' @description 
+#' Tests if the means (averages) of each category could be the same in the population.
 #' 
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
+#' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+#' 
+#' This test is a modification of the Welch one-way ANOVA.
+#' 
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
 #' @param version the phi method calculation to use (see details)
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the F-statistic from the test}
-#' \item{df1}{the first degrees of freedom}
-#' \item{df2}{the second degrees of freedom}
-#' \item{pValue}{the significance (p-value)}
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
+#' \item{statistic}{the test statistic (F value)}
+#' \item{df1}{the degrees of freedom 1}
+#' \item{df2}{the degrees of freedom 2}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' The formula used (Hartung et al., 2002, p. 206):
@@ -40,12 +52,8 @@
 #' 
 #' Note that the numerator in \eqn{W} is the same as the Cochran test statistic.
 #' 
-#' Cavis and Yazici (2020, p. 6) uses \eqn{\phi_j=\frac{n_j-1}{n_j-3}}. 
-#' However the original article states that these are unbalanced weights of the Welch test 
-#' and in their experience, using these makes the test too conservative. 
-#' In the original article they find from their simulation experience 
-#' that using (n_j+2)/(n_j+1) gives reliable results for small sample sizes, 
-#' and a large number of populations (Hartung et al. p. 207).
+#' Cavis and Yazici (2020, p. 6) uses \eqn{\phi_j=\frac{n_j-1}{n_j-3}}. However the original article states that these are unbalanced weights of the Welch test and in their experience, using these makes the test too conservative. In the original article they find from their simulation experience 
+#' that using (n_j+2)/(n_j+1) gives reliable results for small sample sizes, and a large number of populations (Hartung et al. p. 207).
 #' 
 #' By setting 'version=2' the same version for \eqn{\phi} as in the Doex library will be used
 #' 
@@ -55,30 +63,23 @@
 #' Hartung, J., Argaç, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. *Statistical Papers, 43*(2), 197–235. https://doi.org/10.1007/s00362-002-0097-8
 #' 
 #' @author 
-#' P. Stikker
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_hartung_agac_makabi(scores, groups)
-#' ts_hartung_agac_makabi(scores, groups, version=2)
-#' 
-#' @export 
-ts_hartung_agac_makabi <- function(scores, groups, version=c(1, 2)){
+#' @export
+ts_ham_owa <- function(nomField, scaleField, categories=NULL, version=c(1, 2)){
   
   if (length(version)>1) {
     version=1
   }
   
-  datFrame = na.omit(data.frame(groups, scores))
+  datFrame = na.omit(data.frame(scaleField, nomField))
+  #replace categories if provided
+  if (!is.null(categories)){
+    datFrame = datFrame[(datFrame$nomField %in% categories),]}
   
-  counts <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=length), c("category", "n"))
-  means <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=mean), c("category", "mean"))
-  vars <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=var), c("category", "var"))
+  counts <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=length), c("category", "n"))
+  means <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=mean), c("category", "mean"))
+  vars <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=var), c("category", "var"))
   myRes <- merge(counts, means, by = 'category')
   myRes <- merge(myRes, vars, by = 'category')
   
@@ -97,8 +98,9 @@ ts_hartung_agac_makabi <- function(scores, groups, version=c(1, 2)){
   df2 <- (k^2 - 1)/(3*sum((1 - myRes$h)^2/(myRes$n - 1)))
   pVal <- pf(W, df1, df2, lower.tail = FALSE)
   
-  testResults <- data.frame(W, df1, df2, pVal)
-  colnames(testResults)<-c("statistic", "df1", "df2", "pValue")
+  n <- sum(myRes$n)
+  testResults <- data.frame(n, k, W, df1, df2, pVal)
+  colnames(testResults)<-c("n", "k", "statistic", "df1", "df2", "p-value")
   
   return (testResults)
   

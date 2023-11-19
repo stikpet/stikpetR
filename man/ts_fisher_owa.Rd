@@ -2,24 +2,32 @@
 % Please edit documentation in R/test_fisher_owa.R
 \name{ts_fisher_owa}
 \alias{ts_fisher_owa}
-\title{Fischer/Classic One-Way ANOVA}
+\title{Fisher/Classic One-Way ANOVA / F-Test}
 \usage{
-ts_fisher_owa(scores, groups)
+ts_fisher_owa(nomField, scaleField, categories = NULL)
 }
 \arguments{
-\item{scores}{the numeric scores variable}
+\item{nomField}{the groups variable}
 
-\item{groups}{the groups variable}
+\item{scaleField}{the numeric scores variable}
+
+\item{categories}{vector, optional. the categories to use from catField}
 }
 \value{
-A dataframe with:
-\item{statistic}{the F-statistic from the test}
-\item{df1}{the first degrees of freedom}
-\item{df2}{the second degrees of freedom}
+A dataframe with an ANOVA table showing:
+\item{variance}{which variance is shown in that row}
+\item{SS}{sum of squared deviations from the mean}
+\item{df}{degrees of freedom}
+\item{MS}{the mean square}
+\item{F}{the F-statistic value}
 \item{pValue}{the significance (p-value)}
 }
 \description{
-Fischer/Classic One-Way ANOVA
+Tests if the means (averages) of each category could be the same in the population.
+
+If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+
+There are quite some alternatives for this, the stikpet library has Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes for some discussion on the differences.
 }
 \details{
 The formula used:
@@ -55,32 +63,46 @@ Note that the Fisher-Pitman test (Pitman, 1937a, 1937b, 1938) uses a different a
 
 I'm not fully sure what the original source is for the Fisher test, but likely either of his
 sources from 1918, 1921, 1925 or 1935.
-}
-\examples{
-scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-ts_fisher_owa(scores, groups)
 
+\strong{Choosing a test}
+
+The classic/Fisher one-way ANOVA assumes the data is normally distributed and that the variances in each group are the same in the population (homoscedasticity). Many have tried to cover the situations when one or both of these conditions are not met.
+
+Delacre et al. (2019) recommend to use the Welch ANOVA instead of the classic and Brown-Forsythe versions. How2stats (2018) give a slightly different recommendation based on Tomarken and Serlin (1986). They agree that usually the Welch ANOVA is preferred of the classic version, but if the average sample size is below six to still use the Brown-Forsythe.
+
+The researchers in the previous paragraph did not take into consideration other approaches. A few comments found on those other methods.
+
+According to Hartung et al. (2002, p. 225) the Cochran test is the standard test in meta-analysis, but should not be used, since it is always too liberal.
+
+Schneider and Penfield (1997) looked at the Welch, Alexander-Govern and the James test (they ignored the Brown-Forsythe since they found it to perform worse than Welch or James), and concluded: “Under variance heterogeneity, Alexander-Govern’s approximation was not only comparable to the Welch test and the James second-order test but was superior, in certain instances, when coupled with the power results for those tests” (p. 285).
+
+Cavus and Yazici (2020) compared many different tests. They showed that the Brown-Forsythe, Box correction, Cochran, Hartung-Agac-Makabi adjusted Welch, and Scott-Smith test, all do not perform well, compared to the Asiribo-Gurland correction, Alexander-Govern test, Özdemir-Kurt B2, Mehrotra modified Brown-Forsythe, and Welch.
+
+I only came across the Johansen test in Algina et. al. (1991) and it appears to give the same results as the Welch test.
+
+In my experience the one-way ANOVA is widely known and often discussed in textbooks. The Welch anova is gaining popularity. The Brown-Forsythe is already more obscure and some confuse it with the Brown-Forsythe test for variances. The James test and the Alexander-Govern are perhaps the least known and the Johansen even less than that (at least they were for me). So, although the Alexander-Govern test might be preferred over the Welch test, some researchers prefer to use a more commonly used test than a more obscure version. In the end it is up to you to decide on what might be the best test, and also depending on the importance of your research you might want to investigate which test fits your situation best, rather than taking my word for it.
+
+Besides these, there are more methods, some using simulation (bootstrapping) (see Cavus and Yazici (2020) for a few of them), others using different techniques (see Yiğit and Gökpinar (2010) for a few more methods not in here).
 }
 \references{
-Fisher, R. A. (1918). The correlation between relatives on the supposition of mendelian inheritance. \emph{Transactions of the Royal Society of Edinburgh, 52}, 399–433.
+Algina, J., Oshima, T. C., & Tang, K. L. (1991). Robustness of Yao’s, James’, and Johansen’s Tests under variance-covariance heteroscedasticity and nonnormality. \emph{Journal of Educational Statistics, 16}(2), 125–139. doi:10.2307/1165116
+
+Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. \emph{The R Journal, 12}(2), 134. doi:10.32614/RJ-2021-008
+
+Delacre, M., Leys, C., Mora, Y. L., & Lakens, D. (2019). Taking parametric assumptions seriously: Arguments for the use of Welch’s F-test instead of the classical F-test in one-way ANOVA. \emph{International Review of Social Psychology, 32}(1), 1–12. doi:10.5334/irsp.198
 
 Fisher, R. A. (1921). On the “probable error” of a coefficient of correlation deduced from a small sample. \emph{Metron, 1}, 3–32.
 
-Fisher, R. A. (1925). \emph{Statistical methods for research workers}. Oliver and Boyd.
+Hartung, J., Argaç, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. \emph{Statistical Papers, 43}(2), 197–235. doi:10.1007/s00362-002-0097-8
 
-Fisher, R. A. (1935). \emph{The design of experiments}. Oliver and Boyd.
+how2stats (Director). (2018, June 11). Welch’s F-test vs Brown-Forsythe F-test: Which Should You Use and When? https://youtu.be/jteKmatBgF8
 
-Pitman, E. J. G. (1937a). Significance tests which may be applied to samples from any populations. \emph{Supplement to the Journal of the Royal Statistical Society, 4}(1), 119–130. https://doi.org/10.2307/2984124
+Schneider, P. J., & Penfield, D. A. (1997). Alexander and Govern’s approximation: Providing an alternative to ANOVA under variance heterogeneity. \emph{The Journal of Experimental Education, 65}(3), 271–286. doi:10.1080/00220973.1997.9943459
 
-Pitman, E. J. G. (1937b). Significance tests which may be applied to samples from any populations. II. The correlation coefficient test. \emph{Supplement to the Journal of the Royal Statistical Society, 4}(2), 225–232. https://doi.org/10.2307/2983647
+Tomarken, A. J., & Serlin, R. C. (1986). Comparison of ANOVA alternatives under variance heterogeneity and specific noncentrality structures. \emph{Psychological Bulletin, 99}(1), 90–99. doi:10.1037/0033-2909.99.1.90
 
-Pitman, E. J. G. (1938). Significance tests which may be applied to samples from any populations: III The analysis of variance test. \emph{Biometrika, 29}(3–4), 322–335. https://doi.org/10.1093/biomet/29.3-4.322
+Yiğit, E., & Gökpinar, F. (2010). A simulation study on tests for one-way ANOVA under the unequal variance assumption. Communications, Faculty Of Science, University of Ankara, 15–34. doi:10.1501/Commua1_0000000660
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

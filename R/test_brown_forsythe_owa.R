@@ -1,13 +1,23 @@
 #' Brown-Forsythe Means Test
+#' @description 
+#' Tests if the means (averages) of each category could be the same in the population.
 #' 
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
+#' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
+#' 
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the F-statistic from the test}
-#' \item{df1}{the first degrees of freedom}
-#' \item{df2}{the second degrees of freedom}
-#' \item{pValue}{the significance (p-value)}
+#' \item{n}{the sample size}
+#' \item{k}{the number of categories}
+#' \item{statistic}{the test statistic (F value)}
+#' \item{df1}{the degrees of freedom 1}
+#' \item{df2}{the degrees of freedom 2}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' The formula used (Brown & Forsythe, 1974, p. 130):
@@ -39,25 +49,19 @@
 #' Brown, M. B., & Forsythe, A. B. (1974). The small sample behavior of some statistics which test the equality of several means. *Technometrics, 16*(1), 129–132. https://doi.org/10.1080/00401706.1974.10489158
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' ts_brown_forsythe_means(scores, groups)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_brown_forsythe_means <- function(scores, groups){
+ts_brown_forsythe_owa <- function(nomField, scaleField, categories=NULL){
   
-  datFrame = na.omit(data.frame(groups, scores))
+  datFrame = na.omit(data.frame(scaleField, nomField))
+  #replace categories if provided
+  if (!is.null(categories)){
+    datFrame = datFrame[(datFrame$nomField %in% categories),]}
   
-  counts <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=length), c("category", "n"))
-  means <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=mean), c("category", "mean"))
-  vars <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=var), c("category", "var"))
+  counts <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=length), c("category", "n"))
+  means <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=mean), c("category", "mean"))
+  vars <- setNames(aggregate(datFrame$scaleField~datFrame$nomField, FUN=var), c("category", "var"))
   myRes <- merge(counts, means, by = 'category')
   myRes <- merge(myRes, vars, by = 'category')
   
@@ -69,8 +73,8 @@ ts_brown_forsythe_means <- function(scores, groups){
   df2 <- 1/(sum((((1 - myRes$n/n)*myRes$var/sum((1 - myRes$n/n)*myRes$var))^2)/(myRes$n - 1)))
   pVal <- pf(Fstat, df1, df2, lower.tail = FALSE)
   
-  testResults <- data.frame(Fstat, df1, df2, pVal)
-  colnames(testResults)<-c("statistic", "df1", "df2", "pValue")
+  testResults <- data.frame(n, k, Fstat, df1, df2, pVal)
+  colnames(testResults)<-c("n", "k", "statistic", "df1", "df2", "p-value")
   
   return (testResults)
   
