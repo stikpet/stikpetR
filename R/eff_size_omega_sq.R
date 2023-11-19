@@ -1,26 +1,31 @@
 #' Omega Squared
-#'
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
-#' @param version which version to use for the calculation (see details)
-#' @returns the effect size value
+#' @description 
+#' An effect size measure for a one-way ANOVA. It indicates the the strength of the categories on the scale field. A 0 would indicate no influence, and 1 a perfect relationship.
+#' 
+#' Although a popular belief is that \eqn{\omega^2} is preferred over \eqn{\epsilon^2} (Keselman, 1975), a later study actually showed that \eqn{\epsilon^2} might be preferred (Okada, 2013).
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' @returns the omega squared value
 #'
 #' @details
-#' The formula used when version="hays1" is (Hays, 1973, p. 485):
-#' \deqn{\hat{\omega}^2 = \frac{SS_b - df_b\times MS_w}{SS_t + MS_w}}
-#' With:
-#' \deqn{MS_w = \frac{SS_w}{df_w}}
-#' \deqn{df_b = k - 1}
-#' \deqn{df_w = n - k}
-#' \deqn{SS_b = \sum_{j=1}^k n_j\times\left(\bar{x}_j - \bar{x}\right)^2}
-#' \deqn{SS_w = SS_t - SS_b}
-#' \deqn{SS_t = \sum_{j=1}^k \sum_{i=1}^{n_j}\left(x_{i,j} - \bar{x}\right)^2}
-#' \deqn{\bar{x}_j = \frac{\sum_{i=1}^{n_j} x_{i,j}}{n_j}}
-#' \deqn{\bar{x} = \frac{\sum_{j=1}^k n_j\times\bar{x}_j }{n} = \frac{\sum_{j=1}^k \sum_{i=1}^{n_j} x_{i,j}}{n}}
-#' \deqn{n = \sum_{j=1}^k n_j}
-#'
-#' If version="hays2" the formula used is (Hays, 1973, p. 486):
-#' \deqn{\hat{\omega} = \frac{\frac{\left(df_w - 2\right)\times F_F}{df_w}-1}{\frac{df_w + 1}{df_b} + \frac{\left(df_w - 2\right)\times F_F}{df_w}}}
+#' The formula used (Kirk, 1996, p. 751):
+#' \deqn{\omega^2 = \frac{\left(F - 1\right)\times df_b}{df_b\times\left(F-1\right)+n}}
+#' 
+#' There are quite some variations on the formula above, all giving the same final result. 
+#' 
+#' Hays (1973, p. 486) and Albers and Lakens (2018, p. 194):
+#' \deqn{\omega^2 = \frac{F - 1}{\frac{df_w + 1}{df_b} + F}}
+#' 
+#' Caroll and Nordholm (1975, p. 547)
+#' \deqn{\omega^2 = \frac{F - 1}{\frac{N - k + 1}{k - 1} + F}}
+#' 
+#' Hays (1973, p. 485):
+#' \deqn{\omega^2 = \frac{SS_b - \left(k - 1\right)\times MS_w}{SS_t + MS_w}}
+#' 
+#' Olejnik and Algina (2003, p. 435):
+#' \deqn{\omega^2 = \frac{SS_b - df_b\times MS_w}{SS_b + \left(n - df_b\right)\times MS_w}}
 #'
 #' *Symbols*
 #' \itemize{
@@ -64,66 +69,33 @@
 #' omega_squared(aov(scores~groups))
 #'
 #' @references
-#' Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. *Journal of Experimental Social Psychology, 74*, 187–195. https://doi.org/10.1016/j.jesp.2017.09.004
-#'
-#' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s \eqn{\epsilon} and Hays’ \eqn{\omega}. *Educational and Psychological Measurement, 35*(3), 541–554. https://doi.org/10.1177/001316447503500304
-#'
+#' Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. *Journal of Experimental Social Psychology, 74*, 187–195. doi:10.1016/j.jesp.2017.09.004
+#' 
+#' Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s \eqn{\epsilon} and Hays’ \eqn{\omega}. *Educational and Psychological Measurement, 35*(3), 541–554. doi:10.1177/001316447503500304
+#' 
 #' Hays, W. L. (1973). *Statistics for the social sciences* (2nd ed.). Holt, Rinehart and Winston.
+#' 
+#' Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. *Canadian Psychological Review / Psychologie Canadienne, 16*(1), 44–48. doi:10.1037/h0081789
+#' 
+#' Kirk, R. E. (1996). Practical significance: A concept whose time has come. *Educational and Psychological Measurement, 56*(5), 746–759. doi:10.1177/0013164496056005002
+#' 
+#' Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. *Behaviormetrika, 40*(2), 129–147. doi:10.2333/bhmk.40.129
+#' 
+#' Olejnik, S., & Algina, J. (2003). Generalized eta and omega squared statistics: Measures of effect size for some common research designs. *Psychological Methods, 8*(4), 434–447. doi:10.1037/1082-989X.8.4.434
 #'
-#' Kirk, R. E. (1996). Practical significance: A concept whose time has come. *Educational and Psychological Measurement, 56*(5), 746–759. https://doi.org/10.1177/0013164496056005002
-#'
-#' Olejnik, S., & Algina, J. (2003). Generalized eta and omega squared statistics: Measures of effect size for some common research designs. *Psychological Methods, 8*(4), 434–447. https://doi.org/10.1037/1082-989X.8.4.434
-#'
-#' @author
-#' P. Stikker
-#'
-#' Please visit: https://PeterStatistics.com
-#'
-#' YouTube channel: https://www.youtube.com/stikpet
-#'
-#' @examples
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' es_omega_sq(scores, groups)
-#' es_omega_sq(scores, groups, version="hays2")
-#'
-#'
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @export
-es_omega_sq <- function(scores, groups, version=c("hays1", "hays2")){
-
-  if (length(version)>1) {
-    version="hays1"
-  }
-
-  datFrame = na.omit(data.frame(groups, scores))
-
-  counts <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=length), c("group", "n"))
-  means <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=mean), c("group", "mean"))
-  vars <- setNames(aggregate(datFrame$scores~datFrame$groups, FUN=var), c("group", "var"))
-  myRes <- merge(counts, means, by = 'group')
-  myRes <- merge(myRes, vars, by = 'group')
-
-  n = sum(myRes$n)
-  xBar = sum(myRes$n*myRes$mean)/n
-  SSb = sum(myRes$n*(myRes$mean - xBar)**2)
-  SSt = var(datFrame$scores)*(n - 1)
-  SSw = SSt - SSb
-
-  k = length(myRes$n)
-
-  dfw = n - k
-  dfb = k - 1
-
-  MSw = SSw/dfw
-  MSb = SSb/dfb
-  Fstat = MSb/MSw
-
-  if (version=="hays1") {
-    es = (SSb - dfb*MSw)/(SSt + MSw)
-  }
-  else if (version=="hays2") {
-    es = ((dfw - 2)*Fstat/dfw - 1)/((dfw + 1)/dfb + (dfw - 2)*Fstat/dfw)
-  }
-
-  return(es)
+es_omega_sq <- function(nomField, scaleField, categories=NULL){
+  #Anova table
+  aTab = ts_fisher_owa(nomField, scaleField, categories)
+  
+  f = aTab[1, 5]
+  dfb = aTab[1, 3]
+  n = aTab[3, 3] + 1
+  
+  om2 = (f - 1) * dfb / (dfb * (f - 1) + n)
+  
+  return(om2)
 }

@@ -1,8 +1,13 @@
 #' Root Mean Square Standardized Effect Size (RMSSE)
+#' @description 
+#' An effect size measure for a one-way ANOVA.
 #' 
-#' @param scores the numeric scores variable
-#' @param groups the groups variable
-#' @returns the effect size value
+#' Similar as Hedges g, but for a one-way ANOVA. According to Wikipedia "this essentially presents the omnibus difference of the entire model adjusted by the root mean square" (2023).    
+#' 
+#' @param nomField the groups variable
+#' @param scaleField the numeric scores variable
+#' @param categories vector, optional. the categories to use from catField
+#' @returns the rmsse value
 #' 
 #' @details 
 #' The formula used (Steiger & Fouladi, 1997, pp. 244-245):
@@ -37,33 +42,29 @@
 #' 
 #' Zhang and Algina (2011) create a robust version of the RMSSE for one-way fixed effects anova.
 #'
-#' 
 #' @references 
 #' Smith, B., & Dowd, M. (2014). One-way analysis of variance (ANOVA). Dalhousie University. https://www.mathstat.dal.ca/~stat2080/Fall14/Lecturenotes/anova1.pdf
 #' 
 #' Steiger, J. H., & Fouladi, R. T. (1997). *Noncentrality interval estimation and the evaluation of statistical models*. In L. L. Harlow, S. A. Mulaik, & J. H. Steiger, What if there were no significance tests? (pp. 221–257). Lawrence Erlbaum Associates.
 #' 
+#' Wikipedia. (2023). Effect size. In Wikipedia. https://en.wikipedia.org/w/index.php?title=Effect_size&oldid=1175948622
+#' 
 #' Zhang, G., & Algina, J. (2011). A robust root mean square standardized effect size in one-way fixed-effects ANOVA. *Journal of Modern Applied Statistical Methods, 10*(1), 77–96. https://doi.org/10.22237/jmasm/1304222880
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-#' groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' es_rmsse(scores, groups)
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-es_rmsse <- function(scores, groups){
-  dfr = na.omit(data.frame(scores, groups))
+es_rmsse <- function(nomField, scaleField, categories=NULL){
   
-  counts <- setNames(aggregate(dfr$scores~dfr$groups, FUN=length), c("category", "n"))
-  means <- setNames(aggregate(dfr$scores~dfr$groups, FUN=mean), c("category", "mean"))
-  vars <- setNames(aggregate(dfr$scores~dfr$groups, FUN=var), c("category", "var"))
+  dfr = na.omit(data.frame(scaleField, nomField))
+  #replace categories if provided
+  if (!is.null(categories)){
+    dfr = dfr[(dfr$nomField %in% categories),]}
+  
+  counts <- setNames(aggregate(dfr$scaleField~dfr$nomField, FUN=length), c("category", "n"))
+  means <- setNames(aggregate(dfr$scaleField~dfr$nomField, FUN=mean), c("category", "mean"))
+  vars <- setNames(aggregate(dfr$scaleField~dfr$nomField, FUN=var), c("category", "var"))
   res <- merge(counts, means, by = 'category')
   res <- merge(res, vars, by = 'category')
   

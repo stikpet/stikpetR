@@ -4,18 +4,22 @@
 \alias{es_rmsse}
 \title{Root Mean Square Standardized Effect Size (RMSSE)}
 \usage{
-es_rmsse(scores, groups)
+es_rmsse(nomField, scaleField, categories = NULL)
 }
 \arguments{
-\item{scores}{the numeric scores variable}
+\item{nomField}{the groups variable}
 
-\item{groups}{the groups variable}
+\item{scaleField}{the numeric scores variable}
+
+\item{categories}{vector, optional. the categories to use from catField}
 }
 \value{
-the effect size value
+the rmsse value
 }
 \description{
-Root Mean Square Standardized Effect Size (RMSSE)
+An effect size measure for a one-way ANOVA.
+
+Similar as Hedges g, but for a one-way ANOVA. According to Wikipedia "this essentially presents the omnibus difference of the entire model adjusted by the root mean square" (2023).
 }
 \details{
 The formula used (Steiger & Fouladi, 1997, pp. 244-245):
@@ -49,23 +53,15 @@ This can be approximated with \eqn{MS_w} (Smith & Down, 2014, p. 2).
 
 Zhang and Algina (2011) create a robust version of the RMSSE for one-way fixed effects anova.
 }
-\examples{
-scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-es_rmsse(scores, groups)
-
-}
 \references{
 Smith, B., & Dowd, M. (2014). One-way analysis of variance (ANOVA). Dalhousie University. https://www.mathstat.dal.ca/~stat2080/Fall14/Lecturenotes/anova1.pdf
 
 Steiger, J. H., & Fouladi, R. T. (1997). \emph{Noncentrality interval estimation and the evaluation of statistical models}. In L. L. Harlow, S. A. Mulaik, & J. H. Steiger, What if there were no significance tests? (pp. 221–257). Lawrence Erlbaum Associates.
 
+Wikipedia. (2023). Effect size. In Wikipedia. https://en.wikipedia.org/w/index.php?title=Effect_size&oldid=1175948622
+
 Zhang, G., & Algina, J. (2011). A robust root mean square standardized effect size in one-way fixed-effects ANOVA. \emph{Journal of Modern Applied Statistical Methods, 10}(1), 77–96. https://doi.org/10.22237/jmasm/1304222880
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
