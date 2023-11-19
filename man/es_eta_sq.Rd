@@ -4,19 +4,36 @@
 \alias{es_eta_sq}
 \title{Eta Squared}
 \usage{
-es_eta_sq(scores, groups)
+es_eta_sq(
+  catField,
+  ordField,
+  categories = NULL,
+  levels = NULL,
+  useRanks = FALSE
+)
 }
 \arguments{
-\item{scores}{the numeric scores variable}
+\item{catField}{vector with categories}
 
-\item{groups}{the groups variable}
+\item{ordField}{vector with the scores}
+
+\item{categories}{vector, optional. the categories to use from catField}
+
+\item{levels}{vector, optional. the levels or order used in ordField.}
+
+\item{useRanks}{boolean, optional. Use ranks or use the scores as given in ordfield. Default is FALSE.}
 }
 \value{
-the effect size value
+etaSq, float. The eta squared value
 }
 \description{
-Eta squared is “the proportion of the variation in Y that is associated with membership of
-the different groups defined by X “ (Richardson, 2011, p. 136).
+An effect size measure to indicate the the strength of the categories on the ordinal/scale field. A 0 would indicate no influence, and 1 a perfect relationship.
+
+It is “the proportion of the variation in Y that is associated with membership of the different groups defined by X “ (Richardson, 2011, p. 136).
+
+An alternative Epsilon Squared is an attempt to make eta-squared unbiased (applying a population correction ratio) (Kelley, 1935, p. 557). Although a popular belief is that omega-squared is preferred over epsilon-squared (Keselman, 1975), a later study actually showed that epsilon-squared might be preferred (Okada, 2013).
+
+Tomczak and Tomczak (2014) recommend this this as one option to be used with a Kruskal-Wallis test, however I think they labelled epsilon-squared as eta-squared and the other way around.
 }
 \details{
 The formula used is (Pearson, 1911, p. 254):
@@ -41,6 +58,26 @@ There are variations on the formula that will give the same result, for example:
 or
 \deqn{\eta^2 = \frac{F\times df_b}{F\times df_b + df_w}}
 
+If ranks are used, the eta-squared can also be determined using (Tomczak & Tomczak, 2014, p. 24):
+\deqn{\eta^2 = \frac{H}{n - 1}}
+
+\emph{Symbols used:}
+
+\itemize{
+\item \eqn{n}, the total sample size
+\item \eqn{k}, the number of categories
+\item \eqn{SS_b}, the between sum of squares (sum of squared deviation of the mean)
+\item \eqn{SS_t}, the total sum of squares (sum of squared deviation of the mean)
+\item \eqn{F}, the F-statistic
+\item \eqn{H}, H-statistic from Kruskal-Wallis H-test
+\item \eqn{df_i}, the degrees of freedom of i
+\item \eqn{x_{i,j}}, the i-th score in category j
+\item \eqn{n_j}, the number of scores in category j
+\item \eqn{\bar{x}_j}, the mean of the scores in category j
+\item \eqn{b}, is between = factor = treatment = model
+\item \eqn{w}, is within = error (the variability within the groups)
+}
+
 Eta-squared can be converted to Cohen f, using \emph{es_convert(etasq, from="etasq", to="cohenf")}
 
 Eta-squared can be converted to Epsilon square, using \emph{es_convert(etasq, from="etasq", to="epsilonsq", ex1=n, ex2=k)}
@@ -57,21 +94,19 @@ anova_stats(aov(scores~groups))
 
 eta_squared(aov(scores~groups))
 }
-\examples{
-scores = c(20, 50, 80, 15, 40, 85, 30, 45, 70, 60, NA, 90, 25, 40, 70, 65, NA, 70, 98, 40, 65, 60, 35, NA, 50, 40, 75, NA, 65, 70, NA, 20, 80, 35, NA, 68, 70, 60, 70, NA, 80, 98, 10, 40, 63, 75, 80, 40, 90, 100, 33, 36, 65, 78, 50)
-groups = c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-es_eta_sq(scores, groups)
-
-}
 \references{
-Pearson, K. (1911). On a correction to be made to the correlation ratio \eqn{\eta}. \emph{Biometrika, 8}(1/2), 254. https://doi.org/10.2307/2331454
+Kelley, T. L. (1935). An unbiased correlation ratio measure. \emph{Proceedings of the National Academy of Sciences, 21}(9), 554–559. doi:10.1073/pnas.21.9.554
 
-Richardson, J. T. E. (2011). Eta squared and partial eta squared as measures of effect size in educational research. \emph{Educational Research Review, 6}(2), 135–147. https://doi.org/10.1016/j.edurev.2010.12.001
+Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. \emph{Canadian Psychological Review / Psychologie Canadienne, 16}(1), 44–48. doi:10.1037/h0081789
+
+Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. \emph{Behaviormetrika, 40}(2), 129–147. doi:10.2333/bhmk.40.129
+
+Pearson, K. (1911). On a correction to be made to the correlation ratio \eqn{\eta}. \emph{Biometrika, 8}(1/2), 254. doi:10.2307/2331454
+
+Richardson, J. T. E. (2011). Eta squared and partial eta squared as measures of effect size in educational research. \emph{Educational Research Review, 6}(2), 135–147. doi:10.1016/j.edurev.2010.12.001
+
+Tomczak, M., & Tomczak, E. (2014). The need to report effect size estimates revisited. An overview of some recommended measures of effect size. \emph{Trends in Sport Sciences, 1}(21), 19–25.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
