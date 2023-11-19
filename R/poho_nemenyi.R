@@ -89,14 +89,11 @@ ph_nemenyi <- function(catField, ordField,
     ordField = as.numeric(myFieldOrd)
   }
   
-  if (!is.null(categories)){
-    if(!is.null(names(categories))){
-      for (i in 1:length(categories)){catField[catField == unname(categories[i])] = names(categories)[i]}
-      categories = names(categories)
-    }
-  }
-  
   dfr = na.omit(data.frame(ordField, catField))
+  
+  #replace categories if provided
+  if (!is.null(categories)){
+    dfr = dfr[(dfr$catField %in% categories),]}
   
   #add ranks to dataframe
   dfr["r"] = rank(dfr$ordField)
