@@ -2,20 +2,27 @@
 % Please edit documentation in R/eff_size_common_language_ps.R
 \name{es_common_language_ps}
 \alias{es_common_language_ps}
-\title{Common Language (CL/CLES) (Paired Samples)}
+\title{Common Language Effect Size (Paired-Samples)}
 \usage{
-es_common_language_ps(var1, var2, dmu = 0, method = c("dunlap", "mcgraw-wong"))
+es_common_language_ps(
+  field1,
+  field2,
+  dmu = 0,
+  method = c("dunlap", "mcgraw-wong")
+)
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
 \item{dmu}{difference according to null hypothesis (default is 0), only if method="mcgraw-wong"}
 
 \item{method}{method to use for calculating CL (see details)}
 }
 \value{
+cl, float. the common language effect size measure value
+
 The formula used (McGraw & Wong, 1992, p. 363):
 \deqn{CL = \Phi\left(z_{cl}\right)}
 With:
@@ -39,15 +46,7 @@ The formula used for the Dunlap method (Dunlap, 1994, p. 509):
 This equation is used when method="dunlap".
 }
 \description{
-Common Language (CL/CLES) (Paired Samples)
-}
-\examples{
-var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-
-es_common_language_ps(var1, var2, method="dunlap")
-es_common_language_ps(var1, var2, method="mcgraw-wong")
-
+the probability that a randomly selected score from the one population will be greater than a randomly sampled score from the other population.
 }
 \references{
 Dunlap, W. P. (1994). Generalizing the common language effect size indicator to bivariate normal correlations. \emph{Psychological Bulletin, 116}(3), 509–511. https://doi.org/10.1037/0033-2909.116.3.509
@@ -55,9 +54,5 @@ Dunlap, W. P. (1994). Generalizing the common language effect size indicator to 
 McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

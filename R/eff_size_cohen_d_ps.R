@@ -1,13 +1,17 @@
 #' Cohen d_z (for Paired Samples)
+#' @description 
+#' An effect size measure for paired samples. 
 #'
-#' @param var1 the scores on the first variable
-#' @param var2 the scores on the second variable
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
 #' @param within boolean to use a correction for correlated pairs
+#' 
 #' @return the Cohen d effect size
 #'
 #' @details
 #' the formula used (Cohen, 1988, p. 48):
 #' \deqn{d_z = \frac{\bar{d}}{s_d}}
+#' 
 #' With:
 #' \deqn{s_d = \sqrt{\frac{\sum_{i=1}^n\left(d_i - \bar{d}\right)^2}{n - 1}}}
 #' \deqn{d_i = x_{i,1} - x_{i,2}}
@@ -43,31 +47,20 @@
 #'
 #' cohen.d(datF$var1, datF$var2, paired=TRUE, within=FALSE)
 #'
-#' @examples
-#' var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-#' var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-#' es_cohen_d_ps(var1, var2, within=FALSE)
-#' es_cohen_d_ps(var1, var2, within=TRUE)
-#'
-#'
 #' @references
-#' Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In *Introduction to Meta-Analysis* (pp. 21–32). John Wiley & Sons, Ltd. https://doi.org/10.1002/9780470743386
+#' Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In *Introduction to Meta-Analysis* (pp. 21–32). John Wiley & Sons, Ltd. doi:10.1002/9780470743386
 #'
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #'
-#' @author
-#' P. Stikker
-#'
-#' Please visit: https://PeterStatistics.com
-#'
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'
 #' @export
-es_cohen_d_ps <- function(var1, var2, within=TRUE){
+es_cohen_d_ps <- function(field1, field2, within=TRUE){
 
-  datF = na.omit(data.frame(var1, var2))
+  datF = na.omit(data.frame(field1, field2))
 
-  d = datF$var1 - datF$var2
+  d = datF$field1 - datF$field2
   dAvg = mean(d)
 
   s = sd(d)
@@ -76,13 +69,13 @@ es_cohen_d_ps <- function(var1, var2, within=TRUE){
 
     n = nrow(datF)
 
-    mx = mean(datF$var1)
-    my = mean(datF$var2)
+    mx = mean(datF$field1)
+    my = mean(datF$field2)
 
-    sx = sd(datF$var1)
-    sy = sd(datF$var2)
+    sx = sd(datF$field1)
+    sy = sd(datF$field2)
 
-    sxy = sum((datF$var1 - mx)*(datF$var2 - my))
+    sxy = sum((datF$field1 - mx)*(datF$field2 - my))
 
     r = sxy/((n - 1)*sx*sy)
     s = s/sqrt(2*(1 - r))

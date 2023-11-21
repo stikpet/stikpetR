@@ -2,25 +2,26 @@
 % Please edit documentation in R/test_student_t_ps.R
 \name{ts_student_t_ps}
 \alias{ts_student_t_ps}
-\title{Paired Samples (Student) t Test}
+\title{Student t Test (Paired Samples)}
 \usage{
-ts_student_t_ps(var1, var2, dmu = 0)
+ts_student_t_ps(field1, field2, dmu = 0)
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
 \item{dmu}{difference according to null hypothesis (default is 0)}
 }
 \value{
 A dataframe with:
-\item{statistic}{the test statistic}
+\item{n}{the number of scores}
+\item{statistic}{the test statistic (t-value)}
 \item{df}{the degrees of freedom}
 \item{pValue}{the significance (p-value)}
 }
 \description{
-Paired Samples (Student) t Test
+The assumption about the population (null hypothesis) for this test is a pre-defined difference between two means, usually zero (i.e. the difference between the (arithmetic) means is zero, they are the same in the population). If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
 }
 \details{
 The formula used is:
@@ -50,17 +51,9 @@ t.test(var1, var2, paired=TRUE)
 
 t.test(var1, var2, paired=TRUE, mu=5)
 }
-\examples{
-var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-ts_student_t_ps(var1, var2)
-ts_student_t_ps(var1, var2, dmu=5)
-
+\references{
+Student. (1908). The probable error of a mean. \emph{Biometrika, 6}(1), 1–25. doi:10.1093/biomet/6.1.1
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

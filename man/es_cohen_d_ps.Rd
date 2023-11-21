@@ -4,12 +4,12 @@
 \alias{es_cohen_d_ps}
 \title{Cohen d_z (for Paired Samples)}
 \usage{
-es_cohen_d_ps(var1, var2, within = TRUE)
+es_cohen_d_ps(field1, field2, within = TRUE)
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
 \item{within}{boolean to use a correction for correlated pairs}
 }
@@ -17,11 +17,12 @@ es_cohen_d_ps(var1, var2, within = TRUE)
 the Cohen d effect size
 }
 \description{
-Cohen d_z (for Paired Samples)
+An effect size measure for paired samples.
 }
 \details{
 the formula used (Cohen, 1988, p. 48):
 \deqn{d_z = \frac{\bar{d}}{s_d}}
+
 With:
 \deqn{s_d = \sqrt{\frac{\sum_{i=1}^n\left(d_i - \bar{d}\right)^2}{n - 1}}}
 \deqn{d_i = x_{i,1} - x_{i,2}}
@@ -56,23 +57,11 @@ cohen.d(datF$var1, datF$var2, paired=TRUE)
 
 cohen.d(datF$var1, datF$var2, paired=TRUE, within=FALSE)
 }
-\examples{
-var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-es_cohen_d_ps(var1, var2, within=FALSE)
-es_cohen_d_ps(var1, var2, within=TRUE)
-
-
-}
 \references{
-Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In \emph{Introduction to Meta-Analysis} (pp. 21–32). John Wiley & Sons, Ltd. https://doi.org/10.1002/9780470743386
+Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In \emph{Introduction to Meta-Analysis} (pp. 21–32). John Wiley & Sons, Ltd. doi:10.1002/9780470743386
 
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

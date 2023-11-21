@@ -1,10 +1,14 @@
-#' Common Language (CL/CLES) (Paired Samples)
+#' Common Language Effect Size (Paired-Samples)
+#' @description 
+#' the probability that a randomly selected score from the one population will be greater than a randomly sampled score from the other population.
 #'
-#' @param var1 the scores on the first variable
-#' @param var2 the scores on the second variable
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
 #' @param dmu difference according to null hypothesis (default is 0), only if method="mcgraw-wong"
 #' @param method method to use for calculating CL (see details)
+#' 
 #' @returns
+#' cl, float. the common language effect size measure value
 #'
 #' The formula used (McGraw & Wong, 1992, p. 363):
 #' \deqn{CL = \Phi\left(z_{cl}\right)}
@@ -28,43 +32,32 @@
 #'
 #' This equation is used when method="dunlap".
 #'
-#' @examples
-#' var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-#' var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-#'
-#' es_common_language_ps(var1, var2, method="dunlap")
-#' es_common_language_ps(var1, var2, method="mcgraw-wong")
-#'
 #' @references
 #' Dunlap, W. P. (1994). Generalizing the common language effect size indicator to bivariate normal correlations. *Psychological Bulletin, 116*(3), 509–511. https://doi.org/10.1037/0033-2909.116.3.509
 #'
 #' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
 #'
-#' @author
-#' P. Stikker
-#'
-#' Please visit: https://PeterStatistics.com
-#'
-#' YouTube channel: https://www.youtube.com/stikpet
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'
 #' @export
-es_common_language_ps <- function(var1, var2, dmu=0, method=c("dunlap", "mcgraw-wong")){
+es_common_language_ps <- function(field1, field2, dmu=0, method=c("dunlap", "mcgraw-wong")){
 
   if (length(method)>1) {
     method="dunlap"
   }
 
-  datF = na.omit(data.frame(var1, var2))
+  datF = na.omit(data.frame(field1, field2))
 
   n = nrow(datF)
 
-  mx = mean(datF$var1)
-  my = mean(datF$var2)
+  mx = mean(datF$field1)
+  my = mean(datF$field2)
 
-  sx = sd(datF$var1)
-  sy = sd(datF$var2)
+  sx = sd(datF$field1)
+  sy = sd(datF$field2)
 
-  sxy = sum((datF$var1 - mx)*(datF$var2 - my))
+  sxy = sum((datF$field1 - mx)*(datF$field2 - my))
 
   r = sxy/((n - 1)*sx*sy)
 

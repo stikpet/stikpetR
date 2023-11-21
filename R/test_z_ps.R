@@ -1,13 +1,19 @@
-#' Paired Samples Z Test
+#' Z-test (Paired Samples)
+#' @description 
+#' This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test is usually used.
 #' 
-#' @param var1 the scores on the first variable
-#' @param var2 the scores on the second variable
+#' The assumption about the population (null hypothesis) for this test is a pre-defined difference between two means, usually zero (i.e. the difference between the (arithmetic) means is zero, they are the same in the population). If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
+#' 
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
 #' @param dmu difference according to null hypothesis (default is 0)
 #' @param dsigma population standard deviation of the difference, if NULL sample results will be used
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the test statistic}
-#' \item{pValue}{the significance (p-value)}
+#' \item{n}{the number of scores}
+#' \item{z}{the test statistic (z-value)}
+#' \item{p-Value}{the significance (p-value)}
 #' 
 #' @details 
 #' 
@@ -27,6 +33,7 @@
 #' \item \eqn{x_{i,1}} the i-th score of the first variable
 #' \item \eqn{x_{i,2}} the i-th score of the second variable
 #' \item \eqn{d_{H0}} the expected difference in the population
+#' \item \eqn{\Phi\left(\dots\right)}, cumulative density function of the standard normal distribution.
 #' }
 #' 
 #' **Alternatives**
@@ -37,24 +44,15 @@
 #' 
 #' ZTest(dfr$var1, dfr$var2, sd_pop=sqrt(var(dfr$var1-dfr$var2)), paired=TRUE)
 #' 
-#' @examples 
-#' var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-#' var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-#' ts_z_ps(var1, var2)
-#' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_z_ps <- function(var1, var2, dmu=0, dsigma=NULL){
+ts_z_ps <- function(field1, field2, dmu=0, dsigma=NULL){
   
-  datF = na.omit(data.frame(var1, var2))
+  datF = na.omit(data.frame(field1, field2))
   
-  d = datF$var1 - datF$var2
+  d = datF$field1 - datF$field2
   dAvg = mean(d)
   
   if (is.null(dsigma)) {
@@ -69,8 +67,9 @@ ts_z_ps <- function(var1, var2, dmu=0, dsigma=NULL){
   pValue = 2*(1 - pnorm(abs(z)))
   
   statistic=z
-  results = data.frame(statistic, pValue)
+  results = data.frame(n, statistic, pValue)
+  colnames(results) = c("n", "z", "p-value")
   
   return(results)
-
+  
 }

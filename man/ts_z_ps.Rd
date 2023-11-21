@@ -2,14 +2,14 @@
 % Please edit documentation in R/test_z_ps.R
 \name{ts_z_ps}
 \alias{ts_z_ps}
-\title{Paired Samples Z Test}
+\title{Z-test (Paired Samples)}
 \usage{
-ts_z_ps(var1, var2, dmu = 0, dsigma = NULL)
+ts_z_ps(field1, field2, dmu = 0, dsigma = NULL)
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
 \item{dmu}{difference according to null hypothesis (default is 0)}
 
@@ -17,11 +17,14 @@ ts_z_ps(var1, var2, dmu = 0, dsigma = NULL)
 }
 \value{
 A dataframe with:
-\item{statistic}{the test statistic}
-\item{pValue}{the significance (p-value)}
+\item{n}{the number of scores}
+\item{z}{the test statistic (z-value)}
+\item{p-Value}{the significance (p-value)}
 }
 \description{
-Paired Samples Z Test
+This test is often used if there is a large sample size. For smaller sample sizes, a Student t-test is usually used.
+
+The assumption about the population (null hypothesis) for this test is a pre-defined difference between two means, usually zero (i.e. the difference between the (arithmetic) means is zero, they are the same in the population). If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
 }
 \details{
 The formula used is:
@@ -40,6 +43,7 @@ With:
 \item \eqn{x_{i,1}} the i-th score of the first variable
 \item \eqn{x_{i,2}} the i-th score of the second variable
 \item \eqn{d_{H0}} the expected difference in the population
+\item \eqn{\Phi\left(\dots\right)}, cumulative density function of the standard normal distribution.
 }
 
 \strong{Alternatives}
@@ -50,16 +54,6 @@ dfr = na.omit(data.frame(var1, var2))
 
 ZTest(dfr$var1, dfr$var2, sd_pop=sqrt(var(dfr$var1-dfr$var2)), paired=TRUE)
 }
-\examples{
-var1 = c(8, 6, 20, 28, 60, 22, 26, 14, 30, 34, 36, 22, 10, NA, 96, 70, 62, 48, 38, 98, 82, 12, 70, 82, 90, 42)
-var2 = c(0, 2, 2, 8, 12, 14, 14, 18, 18, 20, 22, 26, 32, 23, 32, 42, 44, NA, 48, 50, 52, 54, 54, 66, 68, 76)
-ts_z_ps(var1, var2)
-
-}
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
