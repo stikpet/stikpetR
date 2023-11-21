@@ -1,18 +1,31 @@
 #' Paired Samples Wilcoxon Signed Rank Test
+#' @description 
+#' The paired-sample Wilcoxon signed rank test is often considered the non-parametric version of a paired-samples t-test. It can be used to determine if the median is significantly different between the two variables. It actually doesn't always tests this specifically, but more if the mean rank is significantly different.
 #' 
-#' @param ord1 the scores on the first variable
-#' @param ord2 the scores on the second variable
+#' If the p-value is the probability of a result as in the sample, or more extreme, if the assumption about the population would be true. If this is below a certain threshold (usually 0.05) the assumption about the population is rejected. 
+#' 
+#' Results in software packages for this test can vary, since there are a few different approaches. Especially if there are so-called ties.
+#' 
+#' This function simply determines the differences between the two provided variables, and then passes these differences along to the one-sample version. See ts_wilcoxon_os() for details on this.
+#' 
+#' @param field1 the numeric scores of the first variable
+#' @param field2 the numeric scores of the second variable
+#' @param levels vector, optional. the levels from field1 and field2
+#' @param dmu float, optional. The difference according to the null hypothesis (default is 0)
 #' @param appr c("wilcoxon", "exact", "imanz", "imant") optional which method to use for approximation (default is "wilcoxon")
 #' @param noDiff c("wilcoxon", "pratt", "zsplit") optional method to deal with scores equal on both variables (default is "wilcoxon")
 #' @param ties optional boolean to use a tie correction (default is True)
 #' @param cc optional boolean to use a continuity correction (default is False)
+#' 
 #' @returns 
 #' A dataframe with:
+#' \item{nr}{the number of ranks used in calculation}
+#' \item{mu}{the median according to the null hypothesis}
 #' \item{W}{the Wilcoxon W}
 #' \item{statistic}{the test statistic}
 #' \item{df}{degrees of freedom (only applicable for Iman t approximation)}
-#' \item{pValue}{the significance (p-value)}
-#' \item{testUsed}{the test that was used}
+#' \item{p-value}{the significance (p-value)}
+#' \item{test}{description of the test used}
 #' 
 #' @details 
 #' The unadjusted test statistic is given by:
@@ -50,70 +63,14 @@
 #' 
 #' wilcoxsign_test(ord1 ~ ord2, zero.method = "Pratt")
 #' 
-#' @examples 
-#' ord1 = c(50,45,33,22,99,79,4,36,62,51,27,15,26,83,86)
-#' ord2 = c(47,45,31,24,78,76,13,46,45,44,23,14,34,79,81)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = FALSE, cc = TRUE)
-#' 
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = TRUE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = TRUE, cc = TRUE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = FALSE, cc = FALSE)
-#' ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = FALSE, cc = TRUE)
-#' 
-#' ord1 = c(5, 8, 6, 3, 9, 9, 18, 13, 16)
-#' ord2 = c(4, 11, 8, 7, 3, 16, 5, 18, 7)
-#' ts_wilcoxon_ps(ord1, ord2, appr="exact")
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#' 
 #' @references 
 #' Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin, 1*(6), 80. https://doi.org/10.2307/3001968
-#'  
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @export
-ts_wilcoxon_ps <- function(ord1, ord2,
+ts_wilcoxon_ps <- function(field1, field2, levels=NULL, dmu=0,
                            appr=c("wilcoxon", "exact", "imant", "imanz"), 
                            noDiff=c("wilcoxon", "zsplit", "pratt"), 
                            ties = TRUE, 
@@ -129,11 +86,21 @@ ts_wilcoxon_ps <- function(ord1, ord2,
   
   def="n.a."
   
+  if (!is.null(levels)){
+    myFieldOrd = factor(field1, ordered = TRUE, levels = levels)
+    field1 = as.numeric(myFieldOrd)
+  }
+  
+  if (!is.null(levels)){
+    myFieldOrd = factor(field2, ordered = TRUE, levels = levels)
+    field2 = as.numeric(myFieldOrd)
+  }  
+  
   #remove missing values
-  df = na.omit(data.frame(ord1, ord2))
+  df = na.omit(data.frame(field1, field2))
   
   #calculate differences and absolute differences
-  df$d = df$ord1 - df$ord2
+  df$d = df$field1 - df$field2
   df$dAbs = abs(df$d)
   
   #remove zero differences if noDiff is set to 'wilcoxon'
@@ -143,12 +110,12 @@ ts_wilcoxon_ps <- function(ord1, ord2,
   }
   #rank the absolute differences
   df$rank = rank(df$dAbs)
-  posSum = sum(df$rank[df$d > 0])
-  negSum = sum(df$rank[df$d < 0])
+  posSum = sum(df$rank[df$d > dmu])
+  negSum = sum(df$rank[df$d < dmu])
   nr = nrow(df)
   
   W = min(posSum, negSum)
-
+  
   if (appr=="exact") {
     #check if ties existed
     if (max(table(df$rank)) > 1) {
@@ -163,9 +130,9 @@ ts_wilcoxon_ps <- function(ord1, ord2,
   
   else{
     #add half the equal to median ranks if zsplit is used
-    nD0 = sum(df$dAbs==0)
+    nD0 = sum(df$dAbs==dmu)
     if (noDiff == "zsplit") {
-      W = W + sum(df$rank[df$d == 0])/2}
+      W = W + sum(df$rank[df$d == dmu])/2}
     
     rAvg = nr*(nr + 1)/4
     s2 = nr * (nr+1) * (2*nr + 1)/24
@@ -182,7 +149,7 @@ ts_wilcoxon_ps <- function(ord1, ord2,
     if (ties) {
       #remove ranks of scores equal to hypMed for Pratt (wilcoxon already removed)
       if (noDiff == "pratt") {
-        df = df[df$d != 0,]
+        df = df[df$d != dmu,]
       }
       
       for (i in table(df$rank)){
@@ -235,8 +202,9 @@ ts_wilcoxon_ps <- function(ord1, ord2,
   }
   
   df = def
-  testResults <- data.frame(W, statistic, df, pVal, testUsed)
+  results <- data.frame(nr, dmu, W, statistic, df, pVal, testUsed)
+  colnames(results) = c("nr", "mu", "W", "statistic", "df", "p-value", "test")
   
-  return (testResults)
+  return (results)
   
 }
