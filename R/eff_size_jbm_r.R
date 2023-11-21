@@ -1,7 +1,10 @@
 #' Berry-Johnston-Mielke R
+#' @description 
+#' A chance-corrected version of eta-squared, as an effect size measure for a Cochran Q test.
 #' 
 #' @param data dataframe with the scores
 #' @param success indicator for what is considered a success (default is 1)
+#' 
 #' @returns 
 #' \item{R}{the effect size measure}
 #' 
@@ -29,29 +32,24 @@
 #' \eqn{\frac{2}{k\times\left(k - 1\right)}}. In personal communication with one of the authors 
 #' Alexis (2014) indicated this was wrong and \eqn{n} should be used.
 #' 
-#' @examples 
-#' var1 = c(0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1)
-#' var2 = c(0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
-#' var3 = c(0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0)
-#' var4 = c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1)
-#' dFr = data.frame(var1, var2, var3, var4)
-#' es_berry_johnston_mielke(dFr)
-#' 
 #' @references 
 #' Alexis. (2014, September 7). Answer to “Effect size of Cochran’s Q.” Cross Validated. https://stats.stackexchange.com/a/114649
 #' 
-#' Berry, K. J., Johnston, J. E., & Mielke, P. W. (2007). An alternative measure of effect size for Cochran’s Q test for related proportions. *Perceptual and Motor Skills, 104*(3_suppl), 1236–1242. https://doi.org/10.2466/pms.104.4.1236-1242
+#' Berry, K. J., Johnston, J. E., & Mielke, P. W. (2007). An alternative measure of effect size for Cochran’s Q test for related proportions. *Perceptual and Motor Skills, 104*(3_suppl), 1236–1242. doi:10.2466/pms.104.4.1236-1242
+#' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-es_berry_johnston_mielke <- function(data, success=1){
+es_jbm_r <- function(data, success=NULL){
   dFr = na.omit(data)
-  
-  #make sure we have binary only
-  dFr[dFr == success] = 1
-  dFr[dFr != success] = 0
-  
   k = ncol(dFr)
   n = nrow(dFr)
+  
+  if (is.null(success)){
+    success=dFr[1,1]}
+  
+  dFr <- dFr == success
   
   nColSuc = colSums(dFr)
   nFail = n - nColSuc
@@ -67,7 +65,7 @@ es_berry_johnston_mielke <- function(data, success=1){
   mu = 2/(n*(n - 1))*f2
   
   R = 1 - delta/mu
-
+  
   return(R)  
   
 }

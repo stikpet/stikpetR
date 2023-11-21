@@ -3,6 +3,7 @@
 #' @param Q the Cochran Q statistic
 #' @param n the sample size (number of rows)
 #' @param k the number of variables (number of columns)
+#' 
 #' @returns 
 #' \item{es}{the effect size measure}
 #' 
@@ -21,17 +22,14 @@
 #' The number of rows and columns of a dataframe with R's *nrow(dataframe)* and
 #' *ncol(dataframe)* functions.
 #' 
-#' @examples 
-#' Q = 0.1205357
-#' n = 16
-#' k = 4
-#' es_eta_sq_mc(Q, n, k)
-#' 
 #' @references 
 #' Serlin, R. C., Carr, J., & Marascuilo, L. A. (1982). A measure of association for selected nonparametric procedures. *Psychological Bulletin, 92*(3), 786–790. https://doi.org/10.1037/0033-2909.92.3.786
 #' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @export
-es_eta_sq_mc <- function(Q, n, k){
+es_kendall_w <- function(Q, n, k){
   
   es = Q/(n*(k - 1))
   

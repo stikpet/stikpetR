@@ -1,10 +1,18 @@
 #' Cochran Q Test
+#' @description 
+#' A test for multiple binairy variables. The null hypothesis is that the proportion of successes is the same in all groups.
 #' 
+#' If the p-value (sig.) is below a certain threshold (usually .05) the assumption is rejected and at least one category has a significant different number of successes than at least one other group, in the population.
+#' 
+#' If the test is significant (below the threshold) a post-hoc Dunn test could be used, or pairwise McNemar-Bowker.
+
 #' @param data dataframe with the binary scores
-#' @param success indicator for what is considered a success (default is 1)
+#' @param success indicator for what is considered a success (default is first value found)
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{statistic}{the test statistic}
+#' \item{n}{the sample size}
+#' \item{statistic}{the test statistic (chi-square value)}
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{the significance (p-value)}
 #' 
@@ -37,29 +45,20 @@
 #' 
 #' cochran.qtest(score~var |id, data=myData.long)
 #' 
-#' @examples 
-#' var1 = c(0, 0, 1, 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1)
-#' var2 = c(0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0)
-#' var3 = c(0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0)
-#' var4 = c(0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 0, 1)
-#' dFr = data.frame(var1, var2, var3, var4)
-#' ts_cochran_q(dFr)
-#' 
 #' @references 
 #' Cochran, W. G. (1950). The comparison of percentages in matched samples. *Biometrika, 37*(3/4), 256–266. https://doi.org/10.2307/2332378
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ts_cochran_q <- function(data, success = 1){
+ts_cochran_q <- function(data, success = NULL){
   dFr = na.omit(data)  
   k = ncol(dFr)
   nf = nrow(dFr)
+  
+  if (is.null(success)){
+    success=dFr[1,1]}
   
   C = rep(0, k)
   for (i in 1:k) {
@@ -74,14 +73,15 @@ ts_cochran_q <- function(data, success = 1){
   }
   
   Q = k*(k - 1)*sum((C - mean(C))**2)/(k*sum(R) - sum(R**2))
-
+  
   df = k - 1
   
   pValue = pchisq(Q, df, lower.tail = FALSE)
   
   statistic = Q
-  results = data.frame(statistic, df, pValue)
+  results = data.frame(n, statistic, df, pValue)
+  colnames(results) = c("n", "statistic", "df", "p-value")
   
   return(results)
-
+  
 }
