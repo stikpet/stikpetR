@@ -15,7 +15,7 @@
 #' \item{statistic}{the test statistic (only applicable if method="appr")}
 #' \item{p-Value}{the significance (p-value)}
 #' 
-#' @details
+#' @details 
 #' If method="exact" the binomial distribution will be used. The formula used is (Dixon & Mood, 1946):
 #' \deqn{sig. = 2\times \text{Bin}\left(n, \min\left(n_{pos}, n_{neg}\right), \frac{1}{2}\right)}
 #' 
@@ -24,8 +24,8 @@
 #' \deqn{sig. = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
 #' 
 #' With:
-#' \deqn{n_{pos} = \sum_{i=1}^n \begin{cases} 1 & \text{ if } d_i>d_{H0} \ 0 & \text{ if } d_i \le d_{H0} \end{cases}}
-#' \deqn{n_{neg} = \sum_{i=1}^n \begin{cases} 0 & \text{ if } d_i \ge d_{H0} \ 1 & \text{ if } d_i < d_{H0} \end{cases}}
+#' \deqn{n_{pos} = \sum_{i=1}^n \begin{cases} 1 & \text{ if } d_i>d_{H0} \\ 0 & \text{ if } d_i \le d_{H0} \end{cases}}
+#' \deqn{n_{neg} = \sum_{i=1}^n \begin{cases} 0 & \text{ if } d_i \ge d_{H0} \\ 1 & \text{ if } d_i < d_{H0} \end{cases}}
 #' \deqn{d_i = x_i - y_i}
 #' 
 #' *Symbols used:*

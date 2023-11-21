@@ -60,7 +60,3 @@ rcmdcheck("stikpetR")
 
 #setwd("H:/PeterStatistics/Packages/R")
 #devtools::create("stikpetR")
-
-
-
-

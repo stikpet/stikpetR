@@ -49,6 +49,7 @@ With:
 \deqn{SS_{r_x, r_y} = \sum_{i=1}^n \left(r_{x_i} - \bar{r}_x\right) \times \left(r_{y_i} - \bar{r}_y\right)}
 
 \emph{Symbols}
+
 \itemize{
 \item \eqn{r_{x_i}} the i-th rank of the scores of the first variable
 \item \eqn{r_{y_i}} the i-th rank of the scores of the second variable

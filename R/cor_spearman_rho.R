@@ -1,5 +1,4 @@
 #' Spearman Rho / Rank Correlation Coefficient
-#' 
 #' @description 
 #' The Spearman Rank Correlation Coefficient is the Pearson Correlation Coefficient, 
 #' after the scores first have been converted to ranks.
@@ -21,7 +20,6 @@
 #' \item{statistic}{the statistic from the test (only if applicable)}
 #' \item{df}{the degrees of freedom (only if applicable)}
 #' 
-#' 
 #' @details 
 #' The formula used is (Spearman, 1904, p. 77):
 #' \deqn{r_s = \frac{SS_{r_x, r_y}}{SS_{r_x}\times SS_{r_y}}}
@@ -31,6 +29,7 @@
 #' \deqn{SS_{r_x, r_y} = \sum_{i=1}^n \left(r_{x_i} - \bar{r}_x\right) \times \left(r_{y_i} - \bar{r}_y\right)}
 #' 
 #' *Symbols*
+#' 
 #' \itemize{
 #' \item \eqn{r_{x_i}} the i-th rank of the scores of the first variable
 #' \item \eqn{r_{y_i}} the i-th rank of the scores of the second variable
