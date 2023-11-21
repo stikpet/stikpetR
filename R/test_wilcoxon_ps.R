@@ -64,7 +64,7 @@
 #' wilcoxsign_test(ord1 ~ ord2, zero.method = "Pratt")
 #' 
 #' @references 
-#' Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin, 1*(6), 80. https://doi.org/10.2307/3001968
+#' Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin, 1*(6), 80. doi:10.2307/3001968
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

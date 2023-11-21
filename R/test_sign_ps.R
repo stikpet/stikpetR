@@ -16,7 +16,6 @@
 #' \item{p-Value}{the significance (p-value)}
 #' 
 #' @details
-#' 
 #' If method="exact" the binomial distribution will be used. The formula used is (Dixon & Mood, 1946):
 #' \deqn{sig. = 2\times \text{Bin}\left(n, \min\left(n_{pos}, n_{neg}\right), \frac{1}{2}\right)}
 #' 
@@ -30,6 +29,7 @@
 #' \deqn{d_i = x_i - y_i}
 #' 
 #' *Symbols used:*
+#' 
 #' \itemize{
 #' \item \eqn{n} is the number of pairs with a difference unequal to zero
 #' \item \eqn{n_{pos}} the number of pairs with a positive difference
@@ -55,7 +55,6 @@
 #' *library(BSDA)*
 #' 
 #' SIGN.test(ord1, ord2)
-#' 
 #' 
 #' @references 
 #' Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observed in the births of both sexes. *Philosophical Transactions of the Royal Society of London, 27*(328), 186–190. doi:10.1098/rstl.1710.0011

@@ -5,31 +5,33 @@
 \title{Pearson Correlation Coefficient}
 \usage{
 r_pearson(
-  var1,
-  var2,
-  test = c("t", "z"),
-  adj = c("none", "wherry", "fisher", "olkin-pratt-1", "olkin-pratt-2",
-    "olkin-pratt-3", "smith", "cattin", "pratt", "herzberg")
+  field1,
+  field2,
+  corr = c("none", "wherry", "fisher", "olkin-pratt-1", "olkin-pratt-2",
+    "olkin-pratt-3", "smith", "cattin", "pratt", "herzberg"),
+  test = c("t", "z")
 )
 }
 \arguments{
-\item{var1}{the scores on the first variable}
+\item{field1}{the scores on the first variable}
 
-\item{var2}{the scores on the second variable}
+\item{field2}{the scores on the second variable}
 
-\item{test}{which test to use (see details) (default is "t")}
+\item{corr}{string, optional. Which adjustment to make if any (default is "none")}
 
-\item{adj}{which adjustment to make if any (default is "none")}
+\item{test}{string, optional. Which test to use (see details). Either "t" (default), "z"}
 }
 \value{
 A dataframe with:
 \item{r}{the Pearson Correlation Coefficient}
 \item{statistic}{the test statistic}
 \item{df}{degrees of freedom (only applicable for t test)}
-\item{pValue}{the significance (p-value)}
+\item{p-value}{the significance (p-value)}
 }
 \description{
-Pearson Correlation Coefficient
+A measure of linear correlation. A -1 indicates a perfect negative linear correlation (i.e. a straight line going down, if the score in one field goes up, the other one goes down), a 0 would indicate no correlation, and a +1 a perfect positive linear correlation (i.e. a straight line going up, if the score in one field goes up, the other one goes up as well).
+
+Various tests can be used to determine if the coefficient is significantly different from zero. See notes for details.
 }
 \details{
 This function makes use of the \emph{hyperg_2F1} function from the \emph{gsl} library.
@@ -103,25 +105,6 @@ R's \emph{stats} library has a similar function.
 
 cor.test(var1, var2)
 }
-\examples{
-var1 = c(1,2,5,1,1,5,3,1,5,1,5,1,1,3,3,3,4,2,4,2,1,2,2,4,1,3,2,4,1,4,2,3,4,2,5,1,1,3,3,3,1,4,3,1,1,2,3,1)
-var2 = c(20,50,80,15,40,85,30,45,70,60,90,25,40,70,65,70,98,40,65,60,35,50,40,75,65,70,20,80,35,68,70,60,70,80,98,10,40,63,75,80,40,90,100,33,36,65,78,50)
-
-r_pearson(var1, var2, test="t")
-r_pearson(var1, var2, test="z")
-r_pearson(var1, var2, test="t", adj="smith")
-r_pearson(var1, var2, test="t", adj="wherry")
-r_pearson(var1, var2, test="t", adj="fisher")
-r_pearson(var1, var2, test="t", adj="ezekiel")
-r_pearson(var1, var2, test="t", adj="olkin-pratt-1")
-r_pearson(var1, var2, test="t", adj="olkin-pratt-2")
-r_pearson(var1, var2, test="t", adj="olkin-pratt-3")
-r_pearson(var1, var2, test="t", adj="cattin")
-r_pearson(var1, var2, test="t", adj="pratt")
-r_pearson(var1, var2, test="t", adj="herzberg")
-r_pearson(var1, var2, test="t", adj="claudy")
-
-}
 \references{
 Cattin, P. (1980a). Note on the estimation of the squared cross-validated multiple correlation of a regression model. \emph{Psychological Bulletin, 87}(1), 63–65. https://doi.org/10.1037/0033-2909.87.1.63
 
@@ -152,9 +135,5 @@ Steiger, J. H. (1980). Tests for comparing elements of a correlation matrix. \em
 Wherry, R. J. (1931). A new formula for predicting the shrinkage of the coefficient of multiple correlation. \emph{The Annals of Mathematical Statistics, 2}(4), 440–457. https://doi.org/10.1214/aoms/1177732951
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -2,30 +2,33 @@
 % Please edit documentation in R/test_trinomial_ps.R
 \name{ts_trinomial_ps}
 \alias{ts_trinomial_ps}
-\title{Paired Samples Trinomial Test}
+\title{Trinomial Test (Paired Samples)}
 \usage{
-ts_trinomial_ps(ord1, ord2, mu = 0)
+ts_trinomial_ps(field1, field2, levels = NULL, dmu = 0)
 }
 \arguments{
-\item{ord1}{the numeric scores of the first variable}
+\item{field1}{the numeric scores of the first variable}
 
-\item{ord2}{the numeric scores of the second variable}
+\item{field2}{the numeric scores of the second variable}
 
-\item{mu}{the difference according to the null hypothesis (default is 0)}
+\item{levels}{vector, optional. the levels from field1 and field2}
+
+\item{dmu}{float, optional. The difference according to the null hypothesis (default is 0)}
 }
 \value{
 A dataframe with:
-\item{pos}{the number of scores with a positive difference}
-\item{neg}{the number of scores with a negative difference}
-\item{ties}{the number of scores with a no difference}
-\item{pValue}{the significance (p-value)}
+\item{n pos}{the number of scores with a positive difference}
+\item{n neg}{the number of scores with a negative difference}
+\item{n 0}{the number of scores with a no difference}
+\item{p-Value}{the significance (p-value)}
 }
 \description{
-Paired Samples Trinomial Test
+A similar test as the sign test, but also includes the pairs that are tied.
 }
 \details{
 The formula used  (Bian et al., 2009, p. 6):
 \deqn{sig. = 2\times \text{TRI}\left(\left(n_{pos}, n_{neg}, n_0\right), \left(p_{pos}, p_{neg}, p_0\right)\right)}
+
 With:
 \deqn{n_{pos} = \sum_{i=1}^n \begin{cases} 1 & \text{ if } d_i>d_{H0} \\ 0 & \text{ if } d_i \le d_{H0} \end{cases}}
 \deqn{n_{neg} = \sum_{i=1}^n \begin{cases} 0 & \text{ if } d_i \ge d_{H0} \\ 1 & \text{ if } d_i < d_{H0} \end{cases}}
@@ -33,8 +36,13 @@ With:
 \deqn{d_i = x_i - y_i}
 \deqn{p_0 = \frac{n_0}{n}}
 \deqn{p_{pos}=p_{neg}=\frac{1 - p_0}{2}}
+
+The cumulative mass function of the trinomial distribution is then calculated using:
 \deqn{\text{TRI}\left(\left(n_{pos}, n_{neg}, n_0\right), \left(p_{pos}, p_{neg}, p_0\right)\right) = \sum_{i=n_d}^n\sum_{j=0}^{\left\lfloor\frac{n-i}{2}\right\rfloor} \text{tri}\left(\left(j, j+i, n-j-\left(j+i\right)\right), \left(p_{pos}, p_{neg}, p_0\right)\right)}
 \deqn{n_d = \left|n_{pos} - n_{neg}\right|}
+
+The probability mass function of the trinomial distribution is (Bian et al., 2009, p. 5):
+\deqn{\text{tri} = \left(\left(n_a, n_b, n_c\right), \left(p_{a}, p_b, p_c\right)\right) = \frac{n!}{a!\times b! \times c!}\times p_a^{n_a}\times p_b^{n_b}\times p_c^{n_c}}
 
 \emph{Symbols used:}
 \itemize{
@@ -47,9 +55,6 @@ With:
 \item \eqn{y_i} the i-th score from the second variable
 \item \eqn{\text{tri}\left(\dots,\dots\right)} the probability mass function of the trinomial distribution
 }
-
-The probability mass function of the trinomial distribution is (Bian et al., 2009, p. 5):
-\deqn{\text{tri} = \left(\left(n_a, n_b, n_c\right), \left(p_{a}, p_b, p_c\right)\right) = \frac{n!}{a!\times b! \times c!}\times p_a^{n_a}\times p_b^{n_b}\times p_c^{n_c}}
 
 \strong{Alternatives}
 
@@ -73,21 +78,9 @@ p1 = (1 - p0)/2
 
 multinomial.test(c(pos, neg, ties), c(p1, p1, p0))
 }
-\examples{
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(1, 3, 3, 3, 3, 3, 2, 1, 3, 4, 5, 3, 2, 5, 2)
-
-ts_trinomial_ps(ord1, ord2)
-ts_trinomial_ps(ord1, ord2, mu=1)
-
-}
 \references{
-Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. \emph{SSRN Electronic Journal}. https://doi.org/10.2139/ssrn.1410589
+Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. \emph{SSRN Electronic Journal}. doi:10.2139/ssrn.1410589
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -5,8 +5,10 @@
 \title{Paired Samples Wilcoxon Signed Rank Test}
 \usage{
 ts_wilcoxon_ps(
-  ord1,
-  ord2,
+  field1,
+  field2,
+  levels = NULL,
+  dmu = 0,
   appr = c("wilcoxon", "exact", "imant", "imanz"),
   noDiff = c("wilcoxon", "zsplit", "pratt"),
   ties = TRUE,
@@ -14,9 +16,13 @@ ts_wilcoxon_ps(
 )
 }
 \arguments{
-\item{ord1}{the scores on the first variable}
+\item{field1}{the numeric scores of the first variable}
 
-\item{ord2}{the scores on the second variable}
+\item{field2}{the numeric scores of the second variable}
+
+\item{levels}{vector, optional. the levels from field1 and field2}
+
+\item{dmu}{float, optional. The difference according to the null hypothesis (default is 0)}
 
 \item{appr}{c("wilcoxon", "exact", "imanz", "imant") optional which method to use for approximation (default is "wilcoxon")}
 
@@ -28,14 +34,22 @@ ts_wilcoxon_ps(
 }
 \value{
 A dataframe with:
+\item{nr}{the number of ranks used in calculation}
+\item{mu}{the median according to the null hypothesis}
 \item{W}{the Wilcoxon W}
 \item{statistic}{the test statistic}
 \item{df}{degrees of freedom (only applicable for Iman t approximation)}
-\item{pValue}{the significance (p-value)}
-\item{testUsed}{the test that was used}
+\item{p-value}{the significance (p-value)}
+\item{test}{description of the test used}
 }
 \description{
-Paired Samples Wilcoxon Signed Rank Test
+The paired-sample Wilcoxon signed rank test is often considered the non-parametric version of a paired-samples t-test. It can be used to determine if the median is significantly different between the two variables. It actually doesn't always tests this specifically, but more if the mean rank is significantly different.
+
+If the p-value is the probability of a result as in the sample, or more extreme, if the assumption about the population would be true. If this is below a certain threshold (usually 0.05) the assumption about the population is rejected.
+
+Results in software packages for this test can vary, since there are a few different approaches. Especially if there are so-called ties.
+
+This function simply determines the differences between the two provided variables, and then passes these differences along to the one-sample version. See ts_wilcoxon_os() for details on this.
 }
 \details{
 The unadjusted test statistic is given by:
@@ -73,66 +87,9 @@ wilcoxsign_test(ord1 ~ ord2, zero.method = "Wilcoxon")
 
 wilcoxsign_test(ord1 ~ ord2, zero.method = "Pratt")
 }
-\examples{
-ord1 = c(50,45,33,22,99,79,4,36,62,51,27,15,26,83,86)
-ord2 = c(47,45,31,24,78,76,13,46,45,44,23,14,34,79,81)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="pratt", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="wilcoxon", noDiff="zsplit", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="pratt", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imanz", noDiff="zsplit", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="wilcoxon", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="pratt", ties = FALSE, cc = TRUE)
-
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = TRUE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = TRUE, cc = TRUE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = FALSE, cc = FALSE)
-ts_wilcoxon_ps(ord1, ord2, appr="imant", noDiff="zsplit", ties = FALSE, cc = TRUE)
-
-ord1 = c(5, 8, 6, 3, 9, 9, 18, 13, 16)
-ord2 = c(4, 11, 8, 7, 3, 16, 5, 18, 7)
-ts_wilcoxon_ps(ord1, ord2, appr="exact")
-
-}
 \references{
-Wilcoxon, F. (1945). Individual comparisons by ranking methods. \emph{Biometrics Bulletin, 1}(6), 80. https://doi.org/10.2307/3001968
+Wilcoxon, F. (1945). Individual comparisons by ranking methods. \emph{Biometrics Bulletin, 1}(6), 80. doi:10.2307/3001968
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

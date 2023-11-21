@@ -1,20 +1,24 @@
 #' Pearson Correlation Coefficient
-#' 
 #' @importFrom gsl hyperg_2F1
 #' 
-#' @param var1 the scores on the first variable
-#' @param var2 the scores on the second variable
-#' @param test which test to use (see details) (default is "t")
-#' @param adj which adjustment to make if any (default is "none")
+#' @description 
+#' A measure of linear correlation. A -1 indicates a perfect negative linear correlation (i.e. a straight line going down, if the score in one field goes up, the other one goes down), a 0 would indicate no correlation, and a +1 a perfect positive linear correlation (i.e. a straight line going up, if the score in one field goes up, the other one goes up as well).
+#' 
+#' Various tests can be used to determine if the coefficient is significantly different from zero. See notes for details.
+#' 
+#' @param field1 the scores on the first variable
+#' @param field2 the scores on the second variable
+#' @param corr string, optional. Which adjustment to make if any (default is "none")
+#' @param test string, optional. Which test to use (see details). Either "t" (default), "z"
+#' 
 #' @returns 
 #' A dataframe with:
 #' \item{r}{the Pearson Correlation Coefficient}
 #' \item{statistic}{the test statistic}
 #' \item{df}{degrees of freedom (only applicable for t test)}
-#' \item{pValue}{the significance (p-value)}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
-#' 
 #' This function makes use of the *hyperg_2F1* function from the *gsl* library.
 #' 
 #' The formula used (Pearson, 1896, p. 265):
@@ -86,31 +90,6 @@
 #' 
 #' cor.test(var1, var2)
 #' 
-#' @examples 
-#' var1 = c(1,2,5,1,1,5,3,1,5,1,5,1,1,3,3,3,4,2,4,2,1,2,2,4,1,3,2,4,1,4,2,3,4,2,5,1,1,3,3,3,1,4,3,1,1,2,3,1)
-#' var2 = c(20,50,80,15,40,85,30,45,70,60,90,25,40,70,65,70,98,40,65,60,35,50,40,75,65,70,20,80,35,68,70,60,70,80,98,10,40,63,75,80,40,90,100,33,36,65,78,50)
-#' 
-#' r_pearson(var1, var2, test="t")
-#' r_pearson(var1, var2, test="z")
-#' r_pearson(var1, var2, test="t", adj="smith")
-#' r_pearson(var1, var2, test="t", adj="wherry")
-#' r_pearson(var1, var2, test="t", adj="fisher")
-#' r_pearson(var1, var2, test="t", adj="ezekiel")
-#' r_pearson(var1, var2, test="t", adj="olkin-pratt-1")
-#' r_pearson(var1, var2, test="t", adj="olkin-pratt-2")
-#' r_pearson(var1, var2, test="t", adj="olkin-pratt-3")
-#' r_pearson(var1, var2, test="t", adj="cattin")
-#' r_pearson(var1, var2, test="t", adj="pratt")
-#' r_pearson(var1, var2, test="t", adj="herzberg")
-#' r_pearson(var1, var2, test="t", adj="claudy")
-#' 
-#' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#' 
 #' @references 
 #' Cattin, P. (1980a). Note on the estimation of the squared cross-validated multiple correlation of a regression model. *Psychological Bulletin, 87*(1), 63–65. https://doi.org/10.1037/0033-2909.87.1.63
 #' 
@@ -140,66 +119,70 @@
 #' 
 #' Wherry, R. J. (1931). A new formula for predicting the shrinkage of the coefficient of multiple correlation. *The Annals of Mathematical Statistics, 2*(4), 440–457. https://doi.org/10.1214/aoms/1177732951
 #' 
+#' @author 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' @export
-r_pearson <- function(var1, 
-                        var2, 
-                        test=c("t", "z"),
-                        adj=c("none", "wherry", "fisher", "olkin-pratt-1", "olkin-pratt-2", 
-                              "olkin-pratt-3", "smith", "cattin", "pratt", "herzberg")){
+r_pearson <- function(field1, 
+                      field2, 
+                      corr=c("none", "wherry", "fisher", "olkin-pratt-1", "olkin-pratt-2", 
+                             "olkin-pratt-3", "smith", "cattin", "pratt", "herzberg"),
+                      test=c("t", "z")
+                      ){
   
   if (length(test)>1) {
     test="t"
   }
   
-  if (length(adj)>1) {
-    adj="none"
+  if (length(corr)>1) {
+    corr="none"
   }
   
-  dFr = na.omit(data.frame(var1, var2))
+  dFr = na.omit(data.frame(field1, field2))
   
   n = nrow(dFr)
   
-  varX = var(dFr$var1)
-  varY = var(dFr$var2)
+  varX = var(dFr$field1)
+  varY = var(dFr$field2)
   
-  mX = mean(dFr$var1)
-  mY = mean(dFr$var2)
+  mX = mean(dFr$field1)
+  mY = mean(dFr$field2)
   
-  sxy = sum((dFr$var1 - mX)*(dFr$var2 - mY))
+  sxy = sum((dFr$field1 - mX)*(dFr$field2 - mY))
   
   r = sxy/((n-1)*sqrt(varX*varY))
   
-  if (adj=="fisher") {
+  if (corr=="fisher") {
     r = r*(1+(1 - r**2)/(2*n))
   }
-  else if (adj=="smith") {
+  else if (corr=="smith") {
     r = sqrt(1 - n/(n - 2)*(1 - r**2))
   }
-  else if (adj=="wherry") {
+  else if (corr=="wherry") {
     r = sqrt(1 - (n - 1)/(n - 2)*(1 - r**2))
   }
-  else if (adj=="ezekiel") {
+  else if (corr=="ezekiel") {
     r = sqrt(1 - (n - 1)/(n - 3)*(1 - r**2))
   }
-  else if (adj=="olkin-pratt-1") {
+  else if (corr=="olkin-pratt-1") {
     r = r*hyperg_2F1(1/2, 1/2, (n - 1)/2, 1 - r**2)
   }
-  else if (adj=="olkin-pratt-2") {
+  else if (corr=="olkin-pratt-2") {
     r = r*(1+(1 - r**2)/(2*(n-3)))
   }
-  else if (adj=="olkin-pratt-3") {
+  else if (corr=="olkin-pratt-3") {
     r = sqrt(1 - (1 - r**2)*gsl::hyperg_2F1(1, 1, (n - 1)/2, 1 - r**2))
   }
-  else if (adj=="cattin") {
+  else if (corr=="cattin") {
     r = sqrt(1 - (1 - r**2)*(1 + 2*(1 - r**2)/(n - 1) + 8*(1 - r**2)**2/((n - 3)*(n + 1))))
   }
-  else if (adj=="pratt") {
+  else if (corr=="pratt") {
     r = sqrt(1 - (1 - r**2)*(1 + 2*(1 - r**2)/(n - 4.3)))
   }
-  else if (adj=="herzberg") {
+  else if (corr=="herzberg") {
     r = sqrt(1 - (1 - r**2)*(1 + 2*(1 - r**2)/(n - 1)))
   }
-  else if (adj=="claudy") {
+  else if (corr=="claudy") {
     r = sqrt(1 - (n - 4)*(1 - r**2)/(n - 3)*(1 + 2*(1 - r**2)/(n - 1)))
   }
   
@@ -208,16 +191,17 @@ r_pearson <- function(var1,
     t = r*sqrt((n - 2)/(1 - r**2))
     df = n - 2
     pValue = 2*(1 - pt(abs(t), df))
-    statistic = t
-    results = data.frame(r, statistic, df, pValue)
+    statistic = t    
   }
   else if (test=="z") {
+    df = NA  
     z = abs(atanh(r))*sqrt(n - 3)
     pValue = 2*(1 - pnorm(abs(z)))
     statistic = z
-    results = data.frame(r, statistic, pValue)
   }
   
+  results = data.frame(r, statistic, df, pValue)
+  colnames(results) = c("r", "statistic", "df", "p-value")  
   return(results)
   
 }

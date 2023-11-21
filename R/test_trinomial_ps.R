@@ -68,7 +68,7 @@
 #' multinomial.test(c(pos, neg, ties), c(p1, p1, p0))
 #' 
 #' @references 
-#' Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. *SSRN Electronic Journal*. https://doi.org/10.2139/ssrn.1410589
+#' Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. *SSRN Electronic Journal*. doi:10.2139/ssrn.1410589
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

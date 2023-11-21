@@ -5,30 +5,33 @@
 \title{Spearman Rho / Rank Correlation Coefficient}
 \usage{
 r_spearman_rho(
-  ord1,
-  ord2,
-  method = c("t", "z-fieller", "z-olds", "iman-conover", "AS89", "exact"),
-  cc = FALSE,
-  iters = 500
+  ordField1,
+  ordField2,
+  levels1 = NULL,
+  levels2 = NULL,
+  test = c("t", "z-fieller", "z-olds", "iman-conover", "as89", "exact"),
+  cc = FALSE
 )
 }
 \arguments{
-\item{ord1}{the numeric scores of the first variable}
+\item{ordField1}{the numeric scores of the first variable}
 
-\item{ord2}{the numeric scores of the second variable}
+\item{ordField2}{the numeric scores of the second variable}
 
-\item{method}{the test to be used}
+\item{levels1}{vector, optional. the categories to use from ordField1}
+
+\item{levels2}{vector, optional. the categories to use from ordField2}
+
+\item{test}{the test to be used. Either "t" (default), "as89", "exact", "iman-conover", "z-fieller", "z-olds", "none"}
 
 \item{cc}{boolean to indicate the use of a continuity correction}
-
-\item{iters}{the number of iterations to use, only applicable if Iman-Conover is used}
 }
 \value{
 A dataframe with:
 \item{rs}{the correlation coefficient}
+\item{pValue}{the significance (p-value)}
 \item{statistic}{the statistic from the test (only if applicable)}
 \item{df}{the degrees of freedom (only if applicable)}
-\item{pValue}{the significance (p-value)}
 }
 \description{
 The Spearman Rank Correlation Coefficient is the Pearson Correlation Coefficient,
@@ -94,33 +97,13 @@ spearman.test(ord1, ord2, approximation="AS89")
 
 spearman.test(ord1, ord2, approximation="exact")
 }
-\examples{
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-
-r_spearman_rho(ord1, ord2, method="t")
-r_spearman_rho(ord1, ord2, method="z-fieller")
-r_spearman_rho(ord1, ord2, method="z-olds")
-r_spearman_rho(ord1, ord2, method="iman-conover")
-r_spearman_rho(ord1, ord2, method="AS89")
-r_spearman_rho(ord1, ord2, method="exact")
-
-r_spearman_rho(ord1, ord2, method="t", cc=TRUE)
-r_spearman_rho(ord1, ord2, method="z-fieller", cc=TRUE)
-r_spearman_rho(ord1, ord2, method="z-olds", cc=TRUE)
-r_spearman_rho(ord1, ord2, method="iman-conover", cc=TRUE)
-r_spearman_rho(ord1, ord2, method="AS89", cc=TRUE)
-
-}
 \references{
+Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+
 Spearman, C. (1904). The proof and measurement of association between two things. \emph{The American Journal of Psychology, 15}(1), 72–101.
 
-Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. \emph{Journal of the American Statistical Association, 67}(339), 578–580. https://doi.org/10.1080/01621459.1972.10481251
+Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. \emph{Journal of the American Statistical Association, 67}(339), 578–580. doi:10.1080/01621459.1972.10481251
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

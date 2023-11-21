@@ -4,33 +4,44 @@
 \alias{ts_sign_ps}
 \title{Paired Samples Sign Test}
 \usage{
-ts_sign_ps(ord1, ord2, mu = 0)
+ts_sign_ps(field1, field2, levels = NULL, dmu = 0, method = "exact")
 }
 \arguments{
-\item{ord1}{the numeric scores of the first variable}
+\item{field1}{the numeric scores of the first variable}
 
-\item{ord2}{the numeric scores of the second variable}
+\item{field2}{the numeric scores of the second variable}
 
-\item{mu}{the difference according to the null hypothesis (default is 0)}
+\item{levels}{vector, optional. the levels from field1 and field2}
+
+\item{dmu}{float, optional. The difference according to the null hypothesis (default is 0)}
+
+\item{method}{string, optional. Test to be used. Either "exact" (default), "appr".}
 }
 \value{
 A dataframe with:
-\item{pos}{the number of scores with a positive difference}
-\item{neg}{the number of scores with a negative difference}
-\item{pValue}{the significance (p-value)}
+\item{n pos}{the number of scores with a positive difference}
+\item{n neg}{the number of scores with a negative difference}
+\item{statistic}{the test statistic (only applicable if method="appr")}
+\item{p-Value}{the significance (p-value)}
 }
 \description{
-Paired Samples Sign Test
+This test compares the number of pairs that have a difference above the hypothesized difference, with those below the difference. It can be considered an alternative for the paired samples t-test.
 }
 \details{
-The formula used:
+If method="exact" the binomial distribution will be used. The formula used is (Dixon & Mood, 1946):
 \deqn{sig. = 2\times \text{Bin}\left(n, \min\left(n_{pos}, n_{neg}\right), \frac{1}{2}\right)}
+
+When using the approximation, the standard normal distribution is used (SPSS, 2006, p. 483):
+\deqn{z = \frac{\max\left(n_{pos}, n_{neg}\right)-0.5\times\left(n_{pos} + n_{neg}\right)-0.5}{0.5\times\sqrt{n_{pos}+n_{neg}}}}
+\deqn{sig. = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
+
 With:
-\deqn{n_{pos} = \sum_{i=1}^n \begin{cases} 1 & \text{ if } d_i>d_{H0} \\ 0 & \text{ if } d_i \le d_{H0} \end{cases}}
-\deqn{n_{neg} = \sum_{i=1}^n \begin{cases} 0 & \text{ if } d_i \ge d_{H0} \\ 1 & \text{ if } d_i < d_{H0} \end{cases}}
+\deqn{n_{pos} = \sum_{i=1}^n \begin{cases} 1 & \text{ if } d_i>d_{H0} \ 0 & \text{ if } d_i \le d_{H0} \end{cases}}
+\deqn{n_{neg} = \sum_{i=1}^n \begin{cases} 0 & \text{ if } d_i \ge d_{H0} \ 1 & \text{ if } d_i < d_{H0} \end{cases}}
 \deqn{d_i = x_i - y_i}
 
 \emph{Symbols used:}
+
 \itemize{
 \item \eqn{n} is the number of pairs with a difference unequal to zero
 \item \eqn{n_{pos}} the number of pairs with a positive difference
@@ -57,23 +68,13 @@ signTest(ord1, ord2, paired=TRUE)
 
 SIGN.test(ord1, ord2)
 }
-\examples{
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(1, 3, 3, 3, 3, 3, 2, 1, 3, 4, 5, 3, 2, 5, 2)
-
-ts_sign_ps(ord1, ord2)
-ts_sign_ps(ord1, ord2, mu=1)
-
-}
 \references{
-Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observ’d in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186–190. https://doi.org/10.1098/rstl.1710.0011
+Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observed in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186–190. doi:10.1098/rstl.1710.0011
 
-Dixon, W. J., & Mood, A. M. (1946). The statistical sign test. \emph{Journal of the American Statistical Association, 41}(236), 557–566. https://doi.org/10.1080/01621459.1946.10501898
+Dixon, W. J., & Mood, A. M. (1946). The statistical sign test. \emph{Journal of the American Statistical Association, 41}(236), 557–566. doi:10.1080/01621459.1946.10501898
+
+SPSS. (2006). SPSS 15.0 algorithms.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
