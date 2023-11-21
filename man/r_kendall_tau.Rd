@@ -5,33 +5,50 @@
 \title{Kendall Tau (a and b)}
 \usage{
 r_kendall_tau(
-  ord1,
-  ord2,
-  ver = c("a", "b"),
-  test = c("kendall", "bb", "exact-AS71", "exact-kendall"),
-  cc = FALSE
+  ordField1,
+  ordField2,
+  levels1 = NULL,
+  levels2 = NULL,
+  version = c("a", "b"),
+  test = c("kendall-appr", "bb", "as71", "kendall-exact"),
+  cc = FALSE,
+  useRanks = FALSE
 )
 }
 \arguments{
-\item{ord1}{the numeric scores of the first variable}
+\item{ordField1}{the numeric scores of the first variable}
 
-\item{ord2}{the numeric scores of the second variable}
+\item{ordField2}{the numeric scores of the second variable}
 
-\item{ver}{for tau a, or tau b}
+\item{levels1}{vector, optional. the categories to use from ordField1}
 
-\item{test}{which test to use (see details)}
+\item{levels2}{vector, optional. the categories to use from ordField2}
+
+\item{version}{string, optional. tau to be determined. Either "b" (default) or "a"}
+
+\item{test}{string, optional. Which test to use. Only applies if version="b". Either "bb" (default), "kendall-appr", "as71", "kendall-exact"}
 
 \item{cc}{boolean to indicate the use of a continuity correction}
+
+\item{useRanks}{boolean, optional. rank the data first or not. Default is False}
 }
 \value{
 A dataframe with:
-\item{tau}{the correlation coefficient}
-\item{statistic}{the statistic from the test (only if applicable)}
-\item{df}{the degrees of freedom (only if applicable)}
+\item{tau}{the tau value}
+\item{statistic}{the statistic from the test (z-value)}
 \item{pValue}{the significance (p-value)}
+\item{test}{description of the test used}
 }
 \description{
-Kendall Tau (a and b)
+A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+
+A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+
+Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
+
+Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+
+Kendall Tau a is the same as Goodman-Kruskal Gamma. See r_stuart_tau() for Stuart-Kendall-Tau c.
 }
 \details{
 Kendall tau looks at concordant pairs versus discordant pairs. These can be calculated using:
@@ -160,46 +177,23 @@ cor.test(ord1, ord2, method="kendall", exact=FALSE, continuity = TRUE)
 
 ord.tau(table(ord1, ord2))
 }
-\examples{
-ord1 = c(5, 8, 6, 3, 2, 9)
-ord2 = c(2, 1, 4, 5, 7, 8)
-r_kendall_tau(ord1, ord2, ver="a")
-r_kendall_tau(ord1, ord2, ver="a", cc=TRUE)
-r_kendall_tau(ord1, ord2, ver="b", test="kendall")
-r_kendall_tau(ord1, ord2, ver="b", test="bb")
-r_kendall_tau(ord1, ord2, ver="b", test="bb", cc=TRUE)
-r_kendall_tau(ord1, ord2, ver="b", test="kendall", cc=TRUE)
-r_kendall_tau(ord1, ord2, ver="b", test="exact-AS71")
-r_kendall_tau(ord1, ord2, ver="b", test="exact-kendall")
-
-ord1 = c(5, 8, 6, 3, 2, 9)
-ord2 = c(8, 7, 4, 1, 3, 6)
-r_kendall_tau(ord1, ord2, ver="b")
-
-ord1 = c(5, 8, 6, 3, 2, 9, 11, 13, 1)
-ord2 = c(8, 7, 4, 1, 3, 6, 5, 11, 2)
-r_kendall_tau(ord1, ord2, ver="b")
-
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-r_kendall_tau(ord1, ord2, ver="b")
-
-}
 \references{
-Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309–315. https://doi.org/10.2307/2286793
+Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall’s tau. \emph{Applied Statistics, 23}(1), 98–100. doi:10.2307/2347062
 
-Kendall, M. G. (1938). A new measure of rank correlation. \emph{Biometrika, 30}(1–2), 81–93. https://doi.org/10.1093/biomet/30.1-2.81
+Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309–315. doi:10.2307/2286793
 
-Kendall, M. G. (1945). The treatment of ties in ranking problems. \emph{Biometrika, 33}(3), 239–251. https://doi.org/10.1093/biomet/33.3.239
+Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+
+Kendall, M. G. (1938). A new measure of rank correlation. \emph{Biometrika, 30}(1–2), 81–93. doi:10.1093/biomet/30.1-2.81
+
+Kendall, M. G. (1945). The treatment of ties in ranking problems. \emph{Biometrika, 33}(3), 239–251. doi:10.1093/biomet/33.3.239
 
 Kendall, M. G. (1962). \emph{Rank correlation methods} (3rd ed.). Charles Griffin.
 
-Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338–346. https://doi.org/10.1037/h0045013
+Kendall, M., & Gibbons, J. D. (1990). \emph{Rank correlation methods} (5th ed.). Oxford University Press.
+
+Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338–346. doi:10.1037/h0045013
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

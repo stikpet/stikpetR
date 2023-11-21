@@ -1,11 +1,26 @@
 #' Stuart Tau c / Kendall Tau c
-#' @param ord1 the numeric scores of the first variable
-#' @param ord2 the numeric scores of the second variable
+#' @description 
+#' A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+#' 
+#' A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+#' 
+#' Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
+#' 
+#' Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+#' 
+#' Kendall Tau a is the same as Goodman-Kruskal Gamma.
+#' 
+#' @param ordField1 the numeric scores of the first variable
+#' @param ordField2 the numeric scores of the second variable
+#' @param levels1 vector, optional. the categories to use from ordField1
+#' @param levels2 vector, optional. the categories to use from ordField2
 #' @param cc boolean to indicate the use of a continuity correction
+#' @param useRanks boolean, optional. rank the data first or not. Default is False
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{tau}{the correlation coefficient}
-#' \item{statistic}{the statistic from the test}
+#' \item{tau}{the tau value}
+#' \item{statistic}{the test statistic (z-value)}
 #' \item{pValue}{the significance (p-value)}
 #' 
 #' @details
@@ -70,45 +85,45 @@
 #' 
 #' ord.tau(table(ord1, ord2))
 #' 
-#' @examples 
-#' ord1 = c(78,78,60,53,85,84,73,78,78,75,65,72,58,92,65)
-#' ord2 = c(4,23,25,48,17,8,4,26,23,19,24,35,29,4,14)
-#' 
-#' r_stuart_tau(ord1, ord2)
-#' r_stuart_tau(ord1, ord2, cc=TRUE)
-#' 
 #' @references 
-#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. https://doi.org/10.2307/2286793
+#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. doi:10.2307/2286793
 #' 
-#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338–346. https://doi.org/10.1037/h0045013
+#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
 #' 
-#' Stuart, A. (1953). The estimation and comparison of strengths of association in contingency tables. *Biometrika, 40*(1/2), 105. https://doi.org/10.2307/2333101
+#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338–346. doi:10.1037/h0045013
+#' 
+#' Stuart, A. (1953). The estimation and comparison of strengths of association in contingency tables. *Biometrika, 40*(1/2), 105. doi:10.2307/2333101
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#'
 #' @export
-r_stuart_tau <- function(ord1, ord2, cc=FALSE){
+r_stuart_tau <- function(ordField1, ordField2, levels1=NULL, levels2=NULL, cc=FALSE, useRanks=FALSE){
   
-  datFrame = na.omit(data.frame(ord1, ord2))
-  ct = table(datFrame$ord1, datFrame$ord2)
+  if (!is.null(levels1)){
+    myFieldOrd = factor(ordField1, ordered = TRUE, levels = levels1)
+    ordField1 = as.numeric(myFieldOrd)
+  }
+  
+  if (!is.null(levels2)){
+    myFieldOrd = factor(ordField2, ordered = TRUE, levels = levels2)
+    ordField2 = as.numeric(myFieldOrd)
+  }
+  
+  datFrame = na.omit(data.frame(ordField1, ordField2))
+  ct = table(datFrame$ordField1, datFrame$ordField2)
   
   nr = nrow(ct)
   nc = ncol(ct)
   
-  datFrame = na.omit(data.frame(ord1, ord2))
-  n = length(datFrame$ord1)
+  datFrame = na.omit(data.frame(ordField1, ordField2))
+  n = length(datFrame$ordField1)
   ASE0 = P = Q = 0
   for (i in 1:n) {
     pC = pD = 0
     for (j in 1:n){
-      if (ord1[i] != datFrame$ord1[j] && datFrame$ord2[i] != datFrame$ord2[j]) {
-        if(sign(datFrame$ord1[i] - datFrame$ord1[j]) == sign(datFrame$ord2[i] - datFrame$ord2[j])){
+      if (datFrame$ordField1[i] != datFrame$ordField1[j] && datFrame$ordField2[i] != datFrame$ordField2[j]) {
+        if(sign(datFrame$ordField1[i] - datFrame$ordField1[j]) == sign(datFrame$ordField2[i] - datFrame$ordField2[j])){
           P = P + 1
           pC = pC + 1
         }
@@ -139,7 +154,8 @@ r_stuart_tau <- function(ord1, ord2, cc=FALSE){
   
   pValue = 2*(1 - pnorm(abs(z)))
   
-  results = data.frame(tau, ASE0, z, pValue)
+  results = data.frame(tau, z, pValue)
+  colnames(results) = c("Stuart-Kendall Tau c", "statistic", "p-value")
   
   return(results)
 }

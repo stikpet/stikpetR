@@ -1,15 +1,30 @@
 #' Kendall Tau (a and b)
-#' @param ord1 the numeric scores of the first variable
-#' @param ord2 the numeric scores of the second variable
-#' @param ver for tau a, or tau b
-#' @param test which test to use (see details)
+#' @description 
+#' A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+#' 
+#' A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+#' 
+#' Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
+#' 
+#' Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+#' 
+#' Kendall Tau a is the same as Goodman-Kruskal Gamma. See r_stuart_tau() for Stuart-Kendall-Tau c.
+#' 
+#' @param ordField1 the numeric scores of the first variable
+#' @param ordField2 the numeric scores of the second variable
+#' @param levels1 vector, optional. the categories to use from ordField1
+#' @param levels2 vector, optional. the categories to use from ordField2
+#' @param version string, optional. tau to be determined. Either "b" (default) or "a"
+#' @param test string, optional. Which test to use. Only applies if version="b". Either "bb" (default), "kendall-appr", "as71", "kendall-exact"
 #' @param cc boolean to indicate the use of a continuity correction
+#' @param useRanks boolean, optional. rank the data first or not. Default is False
+#' 
 #' @returns 
 #' A dataframe with:
-#' \item{tau}{the correlation coefficient}
-#' \item{statistic}{the statistic from the test (only if applicable)}
-#' \item{df}{the degrees of freedom (only if applicable)}
+#' \item{tau}{the tau value}
+#' \item{statistic}{the statistic from the test (z-value)}
 #' \item{pValue}{the significance (p-value)}
+#' \item{test}{description of the test used}
 #' 
 #' @details
 #' 
@@ -140,68 +155,64 @@
 #' 
 #' ord.tau(table(ord1, ord2))
 #' 
-#' @examples 
-#' ord1 = c(5, 8, 6, 3, 2, 9)
-#' ord2 = c(2, 1, 4, 5, 7, 8)
-#' r_kendall_tau(ord1, ord2, ver="a")
-#' r_kendall_tau(ord1, ord2, ver="a", cc=TRUE)
-#' r_kendall_tau(ord1, ord2, ver="b", test="kendall")
-#' r_kendall_tau(ord1, ord2, ver="b", test="bb")
-#' r_kendall_tau(ord1, ord2, ver="b", test="bb", cc=TRUE)
-#' r_kendall_tau(ord1, ord2, ver="b", test="kendall", cc=TRUE)
-#' r_kendall_tau(ord1, ord2, ver="b", test="exact-AS71")
-#' r_kendall_tau(ord1, ord2, ver="b", test="exact-kendall")
-#' 
-#' ord1 = c(5, 8, 6, 3, 2, 9)
-#' ord2 = c(8, 7, 4, 1, 3, 6)
-#' r_kendall_tau(ord1, ord2, ver="b")
-#' 
-#' ord1 = c(5, 8, 6, 3, 2, 9, 11, 13, 1)
-#' ord2 = c(8, 7, 4, 1, 3, 6, 5, 11, 2)
-#' r_kendall_tau(ord1, ord2, ver="b")
-#' 
-#' ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-#' ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-#' r_kendall_tau(ord1, ord2, ver="b")
-#' 
 #' @references 
-#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. https://doi.org/10.2307/2286793
+#' Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall’s tau. *Applied Statistics, 23*(1), 98–100. doi:10.2307/2347062
 #' 
-#' Kendall, M. G. (1938). A new measure of rank correlation. *Biometrika, 30*(1–2), 81–93. https://doi.org/10.1093/biomet/30.1-2.81
+#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. doi:10.2307/2286793
 #' 
-#' Kendall, M. G. (1945). The treatment of ties in ranking problems. *Biometrika, 33*(3), 239–251. https://doi.org/10.1093/biomet/33.3.239
+#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
+#' 
+#' Kendall, M. G. (1938). A new measure of rank correlation. *Biometrika, 30*(1–2), 81–93. doi:10.1093/biomet/30.1-2.81
+#' 
+#' Kendall, M. G. (1945). The treatment of ties in ranking problems. *Biometrika, 33*(3), 239–251. doi:10.1093/biomet/33.3.239
 #' 
 #' Kendall, M. G. (1962). *Rank correlation methods* (3rd ed.). Charles Griffin.
 #' 
-#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338–346. https://doi.org/10.1037/h0045013
+#' Kendall, M., & Gibbons, J. D. (1990). *Rank correlation methods* (5th ed.). Oxford University Press.
+#' 
+#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338–346. doi:10.1037/h0045013
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#'
 #' @export
-r_kendall_tau <- function(ord1, ord2, ver=c("a", "b"), test=c("kendall", "bb", "exact-AS71", "exact-kendall"), cc=FALSE){
+r_kendall_tau <- function(ordField1, ordField2, levels1=NULL, levels2=NULL, version=c("a", "b"), 
+                          test=c("kendall-appr", "bb", "as71", "kendall-exact"), cc=FALSE,
+                          useRanks=FALSE){
   
-  if (length(ver)>1) {
-    ver="b"
+  if (length(version)>1) {
+    version="b"
   }
   
   if (length(test)>1) {
-    test="kendall"
+    test="kendall-appr"
   }
   
-  datFrame = na.omit(data.frame(ord1, ord2))
-  n = length(datFrame$ord1)
+  if (!is.null(levels1)){
+    myFieldOrd = factor(ordField1, ordered = TRUE, levels = levels1)
+    ordField1 = as.numeric(myFieldOrd)
+  }
+  
+  if (!is.null(levels2)){
+    myFieldOrd = factor(ordField2, ordered = TRUE, levels = levels2)
+    ordField2 = as.numeric(myFieldOrd)
+  }  
+  
+  datFrame = na.omit(data.frame(ordField1, ordField2))
+  
+  if (useRanks){
+    ordField1 = rank(datFrame$ordField1)
+    ordField2 = rank(datFrame$ordField2)
+    datFrame = data.frame(ordField1, ordField2)
+  }
+  
+  n = length(datFrame$ordField1)
   ASE0 = P = Q = 0
   for (i in 1:n) {
     pC = pD = 0
     for (j in 1:n){
-      if (ord1[i] != datFrame$ord1[j] && datFrame$ord2[i] != datFrame$ord2[j]) {
-        if(sign(datFrame$ord1[i] - datFrame$ord1[j]) == sign(datFrame$ord2[i] - datFrame$ord2[j])){
+      if ((datFrame$ordField1[i] != datFrame$ordField1[j]) & (datFrame$ordField2[i] != datFrame$ordField2[j])) {
+        if(sign(datFrame$ordField1[i] - datFrame$ordField1[j]) == sign(datFrame$ordField2[i] - datFrame$ordField2[j])){
           P = P + 1
           pC = pC + 1
         }
@@ -217,7 +228,8 @@ r_kendall_tau <- function(ord1, ord2, ver=c("a", "b"), test=c("kendall", "bb", "
   nco = P/2
   nd = Q/2
   
-  if (ver=="a") {
+  if (version=="a") {
+    tauUsed = "Kendall Tau-a"
     tau = (nco - nd)/(n * (n - 1)/2)
     
     tauTest = tau
@@ -225,28 +237,31 @@ r_kendall_tau <- function(ord1, ord2, ver=c("a", "b"), test=c("kendall", "bb", "
       tauTest = abs(tau) - 2/(n*(n - 1))
     }
     
-    z = 3*tauTest/sqrt(((4*n + 10)/(n - 1))/n)
+    z = 3*n*tauTest/sqrt((4*n + 10)/(n - 1))
     pValue = 2*(1 - pnorm(abs(z)))
     
     statistic = z
     if (tau < 0) {
       statistic = -abs(z)
     }
-
-  }
-  else if (ver=="b"){
     
-    t1 = table(datFrame$ord1)
-    t2 = table(datFrame$ord2)
+    testUsed = "Kendall approximation"
+    
+  }
+  else if (version=="b"){
+    tauUsed = "Kendall Tau-b"
+    
+    t1 = table(datFrame$ordField1)
+    t2 = table(datFrame$ordField2)
     
     #check for ties:
     if (max(t1)>1 || max(t2)>1) {
-      if (test=="AS71" || test=="kendall") {
-        test="kendall"
+      if (test=="as71" || test=="kendall-exact") {
+        test="kendall-appr"
         warning("Ties present, switch method to Kendall-Gibbons") 
       }
     }
-
+    
     Dr = n**2 - sum(t1**2)
     Dc = n**2 - sum(t2**2)
     
@@ -265,8 +280,9 @@ r_kendall_tau <- function(ord1, ord2, ver=c("a", "b"), test=c("kendall", "bb", "
       if (tau < 0) {
         statistic = -abs(z)
       }
+      testUsed = "Brown and Benedetti approximation"
     }
-    else if (test=="kendall") {
+    else if (test=="kendall-appr") {
       #Kendall (1962, p. 55)
       v0 = n*(n - 1)*(2*n + 5)
       vt1 = sum(t1*(t1 - 1)*(2*t1 + 5))
@@ -286,20 +302,24 @@ r_kendall_tau <- function(ord1, ord2, ver=c("a", "b"), test=c("kendall", "bb", "
       if (tau < 0) {
         statistic = -abs(z)
       }
+      testUsed = "Kendall approximation"
     }
     
-    else if (test=="exact-AS71"){
+    else if (test=="as71"){
       S = choose(n, 2)*abs(tau)
       pValue = di_kendall_tau(n, tau, method="AS71")
       statistic = S
+      testUsed = "exact with AS71 algorithm"
     }
-    else if (test=="exact-kendall"){
+    else if (test=="kendall-exact"){
       pValue = di_kendall_tau(n, tau, method="kendall")
       statistic = nco
+      testUsed = "Kendall exact"
     }
   }
   
-  results = data.frame(tau, statistic, pValue)
+  results = data.frame(tau, statistic, pValue, testUsed)
+  colnames(results) = c(tauUsed, "statistic", "p-value", "test")
   
   return(results)
 }

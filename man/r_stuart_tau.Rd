@@ -4,23 +4,44 @@
 \alias{r_stuart_tau}
 \title{Stuart Tau c / Kendall Tau c}
 \usage{
-r_stuart_tau(ord1, ord2, cc = FALSE)
+r_stuart_tau(
+  ordField1,
+  ordField2,
+  levels1 = NULL,
+  levels2 = NULL,
+  cc = FALSE,
+  useRanks = FALSE
+)
 }
 \arguments{
-\item{ord1}{the numeric scores of the first variable}
+\item{ordField1}{the numeric scores of the first variable}
 
-\item{ord2}{the numeric scores of the second variable}
+\item{ordField2}{the numeric scores of the second variable}
+
+\item{levels1}{vector, optional. the categories to use from ordField1}
+
+\item{levels2}{vector, optional. the categories to use from ordField2}
 
 \item{cc}{boolean to indicate the use of a continuity correction}
+
+\item{useRanks}{boolean, optional. rank the data first or not. Default is False}
 }
 \value{
 A dataframe with:
-\item{tau}{the correlation coefficient}
-\item{statistic}{the statistic from the test}
+\item{tau}{the tau value}
+\item{statistic}{the test statistic (z-value)}
 \item{pValue}{the significance (p-value)}
 }
 \description{
-Stuart Tau c / Kendall Tau c
+A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+
+A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+
+Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
+
+Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+
+Kendall Tau a is the same as Goodman-Kruskal Gamma.
 }
 \details{
 Tau looks at concordant pairs versus discordant pairs. These can be calculated using:
@@ -83,25 +104,15 @@ StuartTauC(ord1, ord2)
 
 ord.tau(table(ord1, ord2))
 }
-\examples{
-ord1 = c(78,78,60,53,85,84,73,78,78,75,65,72,58,92,65)
-ord2 = c(4,23,25,48,17,8,4,26,23,19,24,35,29,4,14)
-
-r_stuart_tau(ord1, ord2)
-r_stuart_tau(ord1, ord2, cc=TRUE)
-
-}
 \references{
-Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309–315. https://doi.org/10.2307/2286793
+Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309–315. doi:10.2307/2286793
 
-Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338–346. https://doi.org/10.1037/h0045013
+Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
 
-Stuart, A. (1953). The estimation and comparison of strengths of association in contingency tables. \emph{Biometrika, 40}(1/2), 105. https://doi.org/10.2307/2333101
+Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338–346. doi:10.1037/h0045013
+
+Stuart, A. (1953). The estimation and comparison of strengths of association in contingency tables. \emph{Biometrika, 40}(1/2), 105. doi:10.2307/2333101
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

@@ -7,17 +7,20 @@
 #' This function makes use of *di_spearman()* for the test of this correlation,
 #' which requires the *pspearman* library for exact computations.
 #' 
-#' @param ord1 the numeric scores of the first variable
-#' @param ord2 the numeric scores of the second variable
-#' @param method the test to be used
+#' @param ordField1 the numeric scores of the first variable
+#' @param ordField2 the numeric scores of the second variable
+#' @param levels1 vector, optional. the categories to use from ordField1
+#' @param levels2 vector, optional. the categories to use from ordField2
+#' @param test the test to be used. Either "t" (default), "as89", "exact", "iman-conover", "z-fieller", "z-olds", "none"
 #' @param cc boolean to indicate the use of a continuity correction
-#' @param iters the number of iterations to use, only applicable if Iman-Conover is used
+#' 
 #' @returns 
 #' A dataframe with:
 #' \item{rs}{the correlation coefficient}
+#' \item{pValue}{the significance (p-value)}
 #' \item{statistic}{the statistic from the test (only if applicable)}
 #' \item{df}{the degrees of freedom (only if applicable)}
-#' \item{pValue}{the significance (p-value)}
+#' 
 #' 
 #' @details 
 #' The formula used is (Spearman, 1904, p. 77):
@@ -77,47 +80,38 @@
 #' spearman.test(ord1, ord2, approximation="exact")
 #' 
 #' @references 
+#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
+#' 
 #' Spearman, C. (1904). The proof and measurement of association between two things. *The American Journal of Psychology, 15*(1), 72–101.
 #' 
-#' Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. *Journal of the American Statistical Association, 67*(339), 578–580. https://doi.org/10.1080/01621459.1972.10481251
+#' Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. *Journal of the American Statistical Association, 67*(339), 578–580. doi:10.1080/01621459.1972.10481251
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-#' ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-#' 
-#' r_spearman_rho(ord1, ord2, method="t")
-#' r_spearman_rho(ord1, ord2, method="z-fieller")
-#' r_spearman_rho(ord1, ord2, method="z-olds")
-#' r_spearman_rho(ord1, ord2, method="iman-conover")
-#' r_spearman_rho(ord1, ord2, method="AS89")
-#' r_spearman_rho(ord1, ord2, method="exact")
-#' 
-#' r_spearman_rho(ord1, ord2, method="t", cc=TRUE)
-#' r_spearman_rho(ord1, ord2, method="z-fieller", cc=TRUE)
-#' r_spearman_rho(ord1, ord2, method="z-olds", cc=TRUE)
-#' r_spearman_rho(ord1, ord2, method="iman-conover", cc=TRUE)
-#' r_spearman_rho(ord1, ord2, method="AS89", cc=TRUE)
-#' 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#'
 #' @export
-r_spearman_rho <- function(ord1, ord2, 
-                           method=c("t", "z-fieller", "z-olds", "iman-conover", "AS89", "exact"), 
-                           cc=FALSE, iters=500){
+r_spearman_rho <- function(ordField1, ordField2, levels1=NULL, levels2=NULL, 
+                           test=c("t", "z-fieller", "z-olds", "iman-conover", "as89", "exact"), 
+                           cc=FALSE){
   
-  if (length(method)>1) {
-    method = "t"
+  if (length(test)>1) {
+    test = "t"
   }
   
-  dFr = na.omit(data.frame(ord1, ord2))
+  if (!is.null(levels1)){
+    myFieldOrd = factor(ordField1, ordered = TRUE, levels = levels1)
+    ordField1 = as.numeric(myFieldOrd)
+  }
   
-  rx = rank(dFr$ord1)
-  ry = rank(dFr$ord2)
+  if (!is.null(levels2)){
+    myFieldOrd = factor(ordField2, ordered = TRUE, levels = levels2)
+    ordField2 = as.numeric(myFieldOrd)
+  }  
+  
+  dFr = na.omit(data.frame(ordField1, ordField2))
+  
+  rx = rank(dFr$ordField1)
+  ry = rank(dFr$ordField2)
   
   mrx = mean(rx)
   mry = mean(ry)
@@ -129,35 +123,39 @@ r_spearman_rho <- function(ord1, ord2,
   
   SSxy = sum((rx - mrx)*(ry - mry))
   
-  rs = SSxy / sqrt(SSrx*SSry)
+  rs = SSxy / sqrt(SSrx*SSry)  
   
-  if (cc && method!="exact") {
+  if (cc && test!="exact") {
     #(Zar, 1972, p. 579)
     rs = abs(rs) - 6/(n**3 - n)
   }
   
-  df = n - 2
-  
-  if (method=="iman-conover") {
-    distRes = di_spearman(n, rs, method=method, iters=iters)
-  }
+  if (test=="none"){
+    results = rs}
   else{
-    distRes = di_spearman(n, rs, method=method)
-  }
-  
-  pValue = distRes$pValue
-  
-  if (method=="t" || method=="iman-conover" || method=="AS89") {
-    statistic = distRes$statistic
-    results = data.frame(rs, statistic, df, pValue)
-  }
-  else if (method=="z-fieller" || method=="z-olds"){
-    statistic = distRes$statistic
-    results = data.frame(rs, statistic, pValue)
-  }
-  
-  else if (method=="exact") {
-    results = data.frame(pValue)
+    df = n - 2
+    
+    if (test=="as89") {
+      distRes = di_spearman(n, rs, method="AS89")
+    }
+    else{
+      distRes = di_spearman(n, rs, method=test)
+    }
+    
+    pValue = distRes$pValue
+    
+    if (test=="t" || test=="iman-conover" || test=="as89") {
+      statistic = distRes$statistic
+      results = data.frame(rs, pValue, statistic, df)
+    }
+    else if (test=="z-fieller" || test=="z-olds"){
+      statistic = distRes$statistic
+      results = data.frame(rs, pValue, statistic)
+    }
+    
+    else if (test=="exact") {
+      results = data.frame(rs, pValue)
+    }
   }
   return(results)
 }

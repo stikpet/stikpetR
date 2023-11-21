@@ -1,13 +1,26 @@
 #' Somers' d
-#' @param var1 the numeric scores of the first variable
-#' @param var2 the numeric scores of the second variable
-#' @param dir direction of the measure
+#' @description 
+#' A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+#' 
+#' A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+#' 
+#' Alternatives for Somers D are Gamma, Kendall Tau, and Stuart-Kendall Tau, but also Spearman rho could be considered.
+#' 
+#' Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+#' 
+#' Kendall Tau a is the same as Goodman-Kruskal Gamma.
+#' 
+#' @param ordField1 the numeric scores of the first variable
+#' @param ordField2 the numeric scores of the second variable
+#' @param levels1 vector, optional. the categories to use from ordField1
+#' @param levels2 vector, optional. the categories to use from ordField2
+#' @param useRanks boolean, optional. rank the data first or not. Default is False
+#' 
 #' @returns 
 #' A dataframe with:
+#' \item{dependent}{which version (all three are in the rows)}
 #' \item{d}{the Sommers d value}
-#' \item{ASE_1}{the asymptotic standard error}
-#' \item{ASE_0}{the asymptotic standard error, under hypothesis of independence}
-#' \item{statistic}{the statistic from the test}
+#' \item{statistic}{the test statistic (z-value)}
 #' \item{pValue}{the significance (p-value)}
 #' 
 #' @details
@@ -83,35 +96,31 @@
 #' 
 #' ord.somers.d(table(ord1,ord2))
 #' 
-#' @examples 
-#' ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-#' ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-#' 
-#' r_somers_d(ord1, ord2, dir="both")
-#' r_somers_d(ord1, ord2, dir="rows")
-#' r_somers_d(ord1, ord2, dir="columns")
-#' 
 #' @references 
-#' Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. *American Sociological Review, 27*(6), 799–811. https://doi.org/10.2307/2090408
+#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
+#' 
+#' Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. *American Sociological Review, 27*(6), 799–811. doi:10.2307/2090408
 #' 
 #' SPSS. (2006). SPSS 15.0 algorithms.
 #' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' 
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#'
 #' @export
-
-r_somers_d <- function(var1, var2, dir=c("both", "rows", "columns")){
-  if (length(dir)>1) {
-    dir="rows"
+r_somers_d <- function(ordField1, ordField2, levels1=NULL, levels2=NULL, useRanks=FALSE){
+  
+  if (!is.null(levels1)){
+    myFieldOrd = factor(ordField1, ordered = TRUE, levels = levels1)
+    ordField1 = as.numeric(myFieldOrd)
   }
-  datFrame = na.omit(data.frame(var1, var2))
-  ct = table(datFrame$var1, datFrame$var2)
+  
+  if (!is.null(levels2)){
+    myFieldOrd = factor(ordField2, ordered = TRUE, levels = levels2)
+    ordField2 = as.numeric(myFieldOrd)
+  }
+  
+  datFrame = na.omit(data.frame(ordField1, ordField2))
+  ct = table(datFrame$ordField1, datFrame$ordField2)
   
   nr = nrow(ct)
   nc = ncol(ct)
@@ -198,66 +207,42 @@ r_somers_d <- function(var1, var2, dir=c("both", "rows", "columns")){
   
   s = sqrt(sum(ct*(conc - disc)**2) - (P - Q)**2/n)
   
-  if (dir=="columns") {
-    dyx = (P - Q)/Dr
-    d = dyx
-    
-    ASE_yx1 = 0
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        ASE_yx1 = ASE_yx1 + ct[i,j]*(Dr*(conc[i,j] - disc[i,j]) - (P - Q)*(n - Rs[i]))**2
-        
-      }
-    }
-    ASE_yx1 = 2*sqrt(ASE_yx1)/Dr**2
-    ASE_1 = ASE_yx1
-    
-    ASE_0 = 2*s/Dr
-    
-  }
   
-  else if (dir=="rows") {
-    dxy = (P - Q)/Dc
-    d = dxy
-    
-    ASE_xy1 = 0
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        ASE_xy1 = ASE_xy1 + ct[i,j]*(Dc*(conc[i,j] - disc[i,j]) - (P - Q)*(n - Cs[j]))**2
-        
-      }
-    }
-    ASE_xy1 = 2*sqrt(ASE_xy1)/Dc**2
-    ASE_1 = ASE_xy1
-    
-    ASE_0 = 2*s/Dc
-    
-  }
+  dyx = (P - Q)/Dr
+  dxy = (P - Q)/Dc  
+  d = (P - Q)/(0.5*(Dr + Dc))
+  tau_b = (P - Q)/sqrt(Dr*Dc)
   
-  else {
-    d = (P - Q)/(0.5*(Dr + Dc))
-    
-    tau_b = (P - Q)/sqrt(Dr*Dc)
-    ASE_1_tau_b = 0
-    for (i in 1:nr) {
-      for (j in 1:nc) {
-        v = Rs[i]*Dc + Cs[j]*Dr
-        ASE_1_tau_b = ASE_1_tau_b + ct[i,j]*(2*sqrt(Dr*Dc)*(conc[i,j] - disc[i,j]) + tau_b*v)**2
-      }
-    }
-    
-    ASE_1_tau_b = sqrt(ASE_1_tau_b - n**3*tau_b**2*(Dr+Dc)**2)/(Dr*Dc)
-    ASE_1 = 2*ASE_1_tau_b/(Dr + Dc)*sqrt(Dr*Dc)
-    
-    ASE_0 = 4*s/(Dc + Dr)
-  }
+  #Calculations for ASE1 are redundant, so following commented out
+  #ASE_1_tau_b = 0      
+  #ASE_yx1 = 0
+  #  ASE_xy1 = 0
+  #for (i in 1:nr) {
+  #  for (j in 1:nc) {
+  #    ASE_yx1 = ASE_yx1 + ct[i,j]*(Dr*(conc[i,j] - disc[i,j]) - (P - Q)*(n - Rs[i]))**2
+  #    ASE_xy1 = ASE_xy1 + ct[i,j]*(Dc*(conc[i,j] - disc[i,j]) - (P - Q)*(n - Cs[j]))**2
+  #      v = Rs[i]*Dc + Cs[j]*Dr
+  #    ASE_1_tau_b = ASE_1_tau_b + ct[i,j]*(2*sqrt(Dr*Dc)*(conc[i,j] - disc[i,j]) + tau_b*v)**2
+  #  }
+  #}
+  #ASE_yx1 = 2*sqrt(ASE_yx1)/Dr**2
+  #  ASE_xy1 = 2*sqrt(ASE_xy1)/Dc**2          
+  #ASE_1_tau_b = sqrt(ASE_1_tau_b - n**3*tau_b**2*(Dr+Dc)**2)/(Dr*Dc)
+  #ASE_1 = 2*ASE_1_tau_b/(Dr + Dc)*sqrt(Dr*Dc)
   
-  z = d/ASE_0
-  pValue = 2*(1 - pnorm(abs(z)))
+  ASE_0yx = 2*s/Dr
+  ASE_0xy = 2*s/Dc
+  ASE_0 = 4*s/(Dc + Dr)
   
-  statistic = z
-  results = data.frame(d, ASE_1, ASE_0, statistic, pValue)
+  lbl = c("symmetric", "field 1", "field 2")
+  ase0 = c(ASE_0, ASE_0xy, ASE_0yx)
   
+  dj = c(d, dxy, dyx)
+  zj = dj/ase0
+  pj = 2*(1 - pnorm(abs(zj)))
+  
+  results = data.frame(lbl, dj, zj, pj)
+  colnames(results) = c("dependent", "Somers d", "statistic", "p-value")
   return(results)
   
 }

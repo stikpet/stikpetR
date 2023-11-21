@@ -4,25 +4,42 @@
 \alias{r_somers_d}
 \title{Somers' d}
 \usage{
-r_somers_d(var1, var2, dir = c("both", "rows", "columns"))
+r_somers_d(
+  ordField1,
+  ordField2,
+  levels1 = NULL,
+  levels2 = NULL,
+  useRanks = FALSE
+)
 }
 \arguments{
-\item{var1}{the numeric scores of the first variable}
+\item{ordField1}{the numeric scores of the first variable}
 
-\item{var2}{the numeric scores of the second variable}
+\item{ordField2}{the numeric scores of the second variable}
 
-\item{dir}{direction of the measure}
+\item{levels1}{vector, optional. the categories to use from ordField1}
+
+\item{levels2}{vector, optional. the categories to use from ordField2}
+
+\item{useRanks}{boolean, optional. rank the data first or not. Default is False}
 }
 \value{
 A dataframe with:
+\item{dependent}{which version (all three are in the rows)}
 \item{d}{the Sommers d value}
-\item{ASE_1}{the asymptotic standard error}
-\item{ASE_0}{the asymptotic standard error, under hypothesis of independence}
-\item{statistic}{the statistic from the test}
+\item{statistic}{the test statistic (z-value)}
 \item{pValue}{the significance (p-value)}
 }
 \description{
-Somers' d
+A rank correlation coefficient. It ranges from -1 (perfect negative association) to 1 (perfect positive association). A zero would indicate no correlation at all.
+
+A positive correlation indicates that if someone scored high on the first field, they also likely score high on the second, while a negative correlation would indicate a high score on the first would give a low score on the second.
+
+Alternatives for Somers D are Gamma, Kendall Tau, and Stuart-Kendall Tau, but also Spearman rho could be considered.
+
+Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+
+Kendall Tau a is the same as Goodman-Kruskal Gamma.
 }
 \details{
 \strong{Asymmetric versions}
@@ -96,24 +113,13 @@ SomersDelta(ord1, ord2, direction = "column")
 
 ord.somers.d(table(ord1,ord2))
 }
-\examples{
-ord1 = c(5, 3, 3, 4, 3, 4, 3, 4, 4, 4, 5, 3, 1, 3, 2)
-ord2 = c(5, 3, 3, 3, 3, 3, 5, 4, 3, 4, 5, 3, 2, 5, 2)
-
-r_somers_d(ord1, ord2, dir="both")
-r_somers_d(ord1, ord2, dir="rows")
-r_somers_d(ord1, ord2, dir="columns")
-
-}
 \references{
-Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. \emph{American Sociological Review, 27}(6), 799–811. https://doi.org/10.2307/2090408
+Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+
+Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. \emph{American Sociological Review, 27}(6), 799–811. doi:10.2307/2090408
 
 SPSS. (2006). SPSS 15.0 algorithms.
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }
