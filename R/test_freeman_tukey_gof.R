@@ -193,7 +193,8 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
   pValue = pchisq(T2, df, lower.tail = FALSE)
   
   #Which test was used
-  testUsed = "Freeman-Tukey test of goodness-of-fit"
+  if (modified){testUsed = "modified Freeman-Tukey test of goodness-of-fit"}
+  else{testUsed = "Freeman-Tukey test of goodness-of-fit"}
   if (cc == "pearson"){
     testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
