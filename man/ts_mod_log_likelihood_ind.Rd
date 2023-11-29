@@ -68,8 +68,15 @@ With:
 }
 \examples{
  
-nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
+nom1 <- c("female", "female","female","female","female","female","female",
+"female", "female","female","female", "male", "male", "male", "male", "male", 
+"male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+"male","male", "male", "male", "male", "male", "male", "male", "male", "male", 
+"male", "male", "male", "male", "male", "male")
+nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
+"nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl",
+"other", "other", "other", "other", "other", "other", "other", "other", "other", 
+"other", "other", "other", "other", "other", "other")
 ts_g_ind(nom1, nom2)
 ts_g_ind(nom1, nom2, cc="yates")
 ts_g_ind(nom1, nom2, cc="pearson")

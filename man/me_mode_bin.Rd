@@ -71,16 +71,6 @@ On a rare occasion someone might argue that if all categories have the same freq
 
 The function can return the bins that are the modal bins, by setting \emph{value="none"}.
 }
-\examples{
-#Example 1: dataframe
-dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
-df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
-ex1 = df1['age']
-ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
-bins = data.frame(lb = c(0, 20, 50, 70), ub = c(20, 50, 70, 90))
-me_mode_bin(ex1, bins)
-
-}
 \references{
 Larson, R., & Farber, E. (2014). \emph{Elementary statistics: Picturing the world} (6th ed.). Pearson.
 

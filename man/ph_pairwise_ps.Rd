@@ -28,8 +28,6 @@ ph_pairwise_ps(
 \item{ties}{boolean, optional. Apply a ties correction. Default is True}
 
 \item{cc}{boolean, optional. use a continuity correction. Default is False. Only applies if test="wilcoxon"}
-
-\item{method}{string, optional. Post-Hoc method to use. Either "dunn" (default), "conover", "nemenyi"}
 }
 \value{
 res, a dataframe with the test results and:

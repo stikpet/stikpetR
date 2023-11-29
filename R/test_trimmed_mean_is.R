@@ -98,21 +98,6 @@
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' @examples
-#' #Example 1: dataframe
-#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
-#' df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
-#' ex1 = df1['age']
-#' ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
-#' ts_trimmed_mean_t_is(df1['sex'], ex1)
-#' ts_trimmed_mean_t_is(df1['sex'], ex1, se="yuen-dixon")
-#' 
-#' #Example 2: vectors
-#' scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-#' groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
-#' ts_trimmed_mean_is(groups, scores)
-#' ts_trimmed_mean_is(groups, scores, se="yuen-dixon")
-#' 
 #' @export
 ts_trimmed_mean_is <- function(catField, 
                                  scaleField, 

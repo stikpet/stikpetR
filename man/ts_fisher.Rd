@@ -11,9 +11,9 @@ ts_fisher(field1, field2, categories1 = NULL, categories2 = NULL)
 
 \item{field2}{: dataframe field with categories for the columns}
 
-\item{order1}{: optional list with order for categories of field1}
+\item{categories1}{: optional list with order for categories of field1}
 
-\item{order2}{: optional list with order for categories of field2}
+\item{categories2}{: optional list with order for categories of field2}
 }
 \value{
 pval : the two-sided p-value (sig.)

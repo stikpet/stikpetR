@@ -10,8 +10,8 @@
 #' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
-#' @param order1 : optional list with order for categories of field1
-#' @param order2 : optional list with order for categories of field2
+#' @param categories1 : optional list with order for categories of field1
+#' @param categories2 : optional list with order for categories of field2
 #' 
 #' @return phi coefficient
 #' 

@@ -16,10 +16,19 @@ es_theil_u(field1, field2, categories1 = NULL, categories2 = NULL)
 \item{categories2}{optional, categories to use for field2}
 }
 \value{
-dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)
+dataframe with
+\item{dependent}{the field used as dependent variable}
+\item{n}{the sample size}
+\item{value}{the Theil U value}
+\item{ASE_0}{the asymptotic standard error assuming the null hypothesis}
+\item{ASE_1}{the asymptotic standard error assuming the alternative hypothesis}
+\item{statistic}{the z-value}
+\item{p-value}{the significance (p-value)}
 }
 \description{
-Theil U / Uncertainty Coefficient
+Theil U is a measure of nominal association. According to Wikipedia: "given Y, what fraction of the bits of X can we predict? In this case we can think of X as containing the total information, and of Y as allowing one to predict part of such information." (2022).
+
+The term Theil U can also refer to two completely different measures, often used in forecasting and sometimes referred to as index of inequality.
 }
 \details{
 The formula used:
@@ -60,25 +69,15 @@ The test statistic is:
 The formula’s were taken from SPSS 15 Algorithms (2006, p. 117),
 unclear what the original source is, probably Theil (1970) or Theil (1972)
 }
-\examples{
-nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-es_theil_u(nom1, nom2, dir="both")
-es_theil_u(nom1, nom2, dir="rows")
-es_theil_u(nom1, nom2, dir="columns")
-
-}
 \references{
 SPSS. (2006). SPSS 15.0 algorithms.
 
-Theil, H. (1970). On the estimation of relationships involving qualitative variables. \emph{American Journal of Sociology, 76}(1), 103–154. https://doi.org/10.1086/224909
+Theil, H. (1970). On the estimation of relationships involving qualitative variables. \emph{American Journal of Sociology, 76}(1), 103–154. doi:10.1086/224909
 
 Theil, H. (1972). \emph{Statistical decomposition analysis: With applications in the social and administrative sciences} (Vol. 14). North-Holland Pub. Co.; American Elsevier Pub. Co.
+
+Wikipedia. (2022). Uncertainty coefficient. In Wikipedia. https://en.wikipedia.org/w/index.php?title=Uncertainty_coefficient&oldid=1099636947#Definition
 }
 \author{
-P. Stikker
-
-Please visit: https://PeterStatistics.com
-
-YouTube channel: https://www.youtube.com/stikpet
+P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

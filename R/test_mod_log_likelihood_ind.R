@@ -63,8 +63,15 @@
 #' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
 #' 
 #' @examples  
-#' nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-#' nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
+#' nom1 <- c("female", "female","female","female","female","female","female",
+#' "female", "female","female","female", "male", "male", "male", "male", "male", 
+#' "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", 
+#' "male","male", "male", "male", "male", "male", "male", "male", "male", "male", 
+#' "male", "male", "male", "male", "male", "male")
+#' nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other",
+#' "nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl",
+#' "other", "other", "other", "other", "other", "other", "other", "other", "other", 
+#' "other", "other", "other", "other", "other", "other")
 #' ts_g_ind(nom1, nom2)
 #' ts_g_ind(nom1, nom2, cc="yates")
 #' ts_g_ind(nom1, nom2, cc="pearson")

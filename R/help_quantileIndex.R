@@ -6,10 +6,10 @@
 #' @param data dataframe with scores as numbers
 #' @param k : number of quantiles
 #' @param indexMethod optional to indicate which type of indexing to use
-#' @param q1Frac optional to indicate what type of rounding to use for first quarter
-#' @param q1Int optional to indicate the use of the integer or the midpoint method for first quarter
-#' @param q3Frac optional to indicate what type of rounding to use for third quarter
-#' @param q3Int optional to indicate the use of the integer or the midpoint method for third quarter
+#' @param qLfrac optional to indicate what type of rounding to use for quantiles below median
+#' @param qLint optional to indicate the use of the integer or the midpoint method for quantiles below median
+#' @param qHfrac optional to indicate what type of rounding to use for quantiles above median
+#' @param qHint optional to indicate the use of the integer or the midpoint method for quantiles above median
 #' 
 #' @returns
 #' A vector with the quantiles

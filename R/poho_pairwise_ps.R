@@ -6,7 +6,6 @@
 #' 
 #' @param data dataframe. A column for each variable
 #' @param levels vector, optional. Indication of what the levels are in order
-#' @param method string, optional. Post-Hoc method to use. Either "dunn" (default), "conover", "nemenyi"
 #' @param test string, optional. Test to use in pairwise comparisons. Either "sign" (details), "wilcoxon", "trinomial".
 #' @param appr string, optional. Option for sign and wilcoxon test. Default for wilcoxon is wilcoxon, for sign is appr. Either "exact", "appr", "wilcoxon", "imanz", "imant"
 #' @param noDiff string, optional. Method to deal with scores equal to mu. Either "wilcoxon" (default), "pratt", "zsplit". Only applies if test="wilcoxon"

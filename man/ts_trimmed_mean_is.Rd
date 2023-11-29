@@ -110,22 +110,6 @@ With:
 \item \eqn{p_t} the proportion of trimming on each side, we can define
 }
 }
-\examples{
-#Example 1: dataframe
-dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
-df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
-ex1 = df1['age']
-ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
-ts_trimmed_mean_t_is(df1['sex'], ex1)
-ts_trimmed_mean_t_is(df1['sex'], ex1, se="yuen-dixon")
-
-#Example 2: vectors
-scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("nat.","int.","int.","nat.","int.", "int.","nat.","nat.","int.","int.","int.","int.","int.","int.","nat.", "int." ,NA,"nat.","int.","int.")
-ts_trimmed_mean_is(groups, scores)
-ts_trimmed_mean_is(groups, scores, se="yuen-dixon")
-
-}
 \references{
 Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. \emph{Biometrika, 61}(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
 

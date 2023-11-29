@@ -21,13 +21,13 @@ he_quantilesIndex(
 
 \item{indexMethod}{optional to indicate which type of indexing to use}
 
-\item{q1Frac}{optional to indicate what type of rounding to use for first quarter}
+\item{qLfrac}{optional to indicate what type of rounding to use for quantiles below median}
 
-\item{q1Int}{optional to indicate the use of the integer or the midpoint method for first quarter}
+\item{qLint}{optional to indicate the use of the integer or the midpoint method for quantiles below median}
 
-\item{q3Frac}{optional to indicate what type of rounding to use for third quarter}
+\item{qHfrac}{optional to indicate what type of rounding to use for quantiles above median}
 
-\item{q3Int}{optional to indicate the use of the integer or the midpoint method for third quarter}
+\item{qHint}{optional to indicate the use of the integer or the midpoint method for quantiles above median}
 }
 \value{
 A vector with the quantiles

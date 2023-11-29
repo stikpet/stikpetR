@@ -76,13 +76,13 @@ r_rank_biserial_is <- function(catField, ordField, categories=NULL, levels=NULL)
     cat2 = categories[2]
   }
   else {
-    cat1 = names(table(df$group))[1]
-    cat2 = names(table(df$group))[2]
+    cat1 = names(table(df[ ,2]))[1]
+    cat2 = names(table(df[ ,2]))[2]
   }
   
   #seperate the scores for each category
-  scoresCat1 = unname(unlist((subset(df, group == cat1)[1])))
-  scoresCat2 = unname(unlist((subset(df, group == cat2)[1])))
+  scoresCat1 = unname(unlist((subset(df, df[ ,2] == cat1)[1])))
+  scoresCat2 = unname(unlist((subset(df, df[ ,2] == cat2)[1])))
   
   n1 = length(scoresCat1)
   n2 = length(scoresCat2)    

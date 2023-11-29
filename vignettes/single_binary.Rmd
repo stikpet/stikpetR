@@ -85,7 +85,7 @@ h_os
 ```
 Unfortunately no rule-of-thumb for this, but it can be converted to a regular Cohen h using:
 ```{r}
-h = es_convert(h_os, from="cohenhos", to="cohenh")
+h = es_convert(h_os, fr="cohenhos", to="cohenh")
 h
 ```
 We can now use the rule-of-thumb from Cohen h to get a classification:

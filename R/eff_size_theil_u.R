@@ -1,10 +1,23 @@
 #' Theil U / Uncertainty Coefficient
+#' @description 
+#' Theil U is a measure of nominal association. According to Wikipedia: "given Y, what fraction of the bits of X can we predict? In this case we can think of X as containing the total information, and of Y as allowing one to predict part of such information." (2022).
+#' 
+#' The term Theil U can also refer to two completely different measures, often used in forecasting and sometimes referred to as index of inequality.
 #' 
 #' @param field1 the scores on the first variable
 #' @param field2 the scores on the second variable
 #' @param categories1 optional, categories to use for field1
 #' @param categories2 optional, categories to use for field2
-#' @return dataframe with the effect size value, the asymptotic standard errors (assuming null and alternative)
+#' 
+#' @returns 
+#' dataframe with 
+#' \item{dependent}{the field used as dependent variable}
+#' \item{n}{the sample size}
+#' \item{value}{the Theil U value}
+#' \item{ASE_0}{the asymptotic standard error assuming the null hypothesis}
+#' \item{ASE_1}{the asymptotic standard error assuming the alternative hypothesis}
+#' \item{statistic}{the z-value}
+#' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
 #' The formula used:
@@ -48,23 +61,14 @@
 #' @references 
 #' SPSS. (2006). SPSS 15.0 algorithms.
 #' 
-#' Theil, H. (1970). On the estimation of relationships involving qualitative variables. *American Journal of Sociology, 76*(1), 103–154. https://doi.org/10.1086/224909
+#' Theil, H. (1970). On the estimation of relationships involving qualitative variables. *American Journal of Sociology, 76*(1), 103–154. doi:10.1086/224909
 #' 
 #' Theil, H. (1972). *Statistical decomposition analysis: With applications in the social and administrative sciences* (Vol. 14). North-Holland Pub. Co.; American Elsevier Pub. Co.
 #' 
+#' Wikipedia. (2022). Uncertainty coefficient. In Wikipedia. https://en.wikipedia.org/w/index.php?title=Uncertainty_coefficient&oldid=1099636947#Definition
+#' 
 #' @author 
-#' P. Stikker
-#' 
-#' Please visit: https://PeterStatistics.com
-#' 
-#' YouTube channel: https://www.youtube.com/stikpet
-#'  
-#' @examples 
-#' nom1 <- c("Fully Disagree", "Disagree", "Fully agree", "Neither disagree nor agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Agree", "Agree", "Agree", "Agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Fully Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Disagree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully Disagree", "Fully agree", "Agree", "Agree", "Neither disagree nor agree", "Disagree", "Neither disagree nor agree", "Fully agree", "Fully agree", "Disagree", "Disagree", "Neither disagree nor agree", "Disagree", "Agree", "Disagree", "Fully agree", "Fully agree", "Disagree", "Agree", "Disagree", "Neither disagree nor agree", "Fully Disagree")
-#' nom2 <- c("Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Rotterdam", "Haarlem", "Diemen", "Haarlem", "Diemen", "Haarlem", "Haarlem", "Haarlem", "Haarlem", "Haarlem")
-#' es_theil_u(nom1, nom2, dir="both")
-#' es_theil_u(nom1, nom2, dir="rows")
-#' es_theil_u(nom1, nom2, dir="columns")
+#' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
 es_theil_u <- function(field1, field2, categories1=NULL, categories2=NULL){
@@ -139,7 +143,8 @@ es_theil_u <- function(field1, field2, categories1=NULL, categories2=NULL){
   dependent = c("symmetric", "field1", "field2")
   statistic = value/ase0
   pvalue = 2*(1-pnorm(abs(statistic))) 
-  results = data.frame(dependent, value, n, ase0, ase1, statistic, pvalue)
+  results = data.frame(dependent, n, value, ase0, ase1, statistic, pvalue)
+  colnames(results)<-c("dependent", "n", "value", "ASE_0", "ASE_1", "statistic", "p-value")
   
   return(results)
   

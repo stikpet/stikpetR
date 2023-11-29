@@ -1,17 +1,18 @@
 #' Freeman-Tukey Test of Goodness-of-Fit
 #' 
 #' @description 
-#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories 
-#' are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the
-#' assumption they are all equal in the population will be rejected. 
+#' A test that can be used with a single nominal variable, to test if the probabilities in all the categories are equal (the null hypothesis). If the test has a p-value below a pre-defined threshold (usually 0.05) the assumption they are all equal in the population will be rejected. 
 #' 
-#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
-#' but also an exact multinomial, G-test, Neyman, Mod-Log Likelihood, Cressie-Read, and 
-#' Freeman-Tukey-Read test are possible.
+#' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, but also an exact multinomial, G-test, Neyman, Mod-Log Likelihood, Cressie-Read, and Freeman-Tukey-Read test are possible.
+#' 
+#' The Freeman-Tukey attempts to make the distribution more like a normal distribution by using a square root transformation.
+#' 
+#' Lawal (1984) continued some work from Larntz (1978) and compared the modified Freeman-Tukey, G-test and the Pearson chi-square test, and concluded that for small samples the Pearson test is preferred, while for large samples either the Pearson or G-test. Making this Freeman-Tukey test perhaps somewhat redundant....
 #' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
 #' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", "williams"
+#' @param modified boolean, optional. indicate the use of the modified version. Default is False
 #' 
 #' @returns 
 #' Dataframe with:
@@ -39,6 +40,9 @@
 #' \deqn{E_i = n\times\frac{E_{p_i}}{n_p}}
 #' \deqn{n_p = \sum_{i=1}^k E_{p_i}}
 #' 
+#' A modified version uses another possible smoothing (Larntz, 1978, p.253):
+#' \deqn{T_{mod}^2 = \sum_{i=1}^{k}\left(\sqrt{F_{i}} + \sqrt{F_{i} + 1} - \sqrt{4\times E_{i} + 1}\right)^2}
+#' 
 #' *Symbols used:*
 #' \itemize{
 #' \item \eqn{k} the number of categories
@@ -50,8 +54,7 @@
 #' \item \eqn{\chi^2\left(\dots\right)}	the chi-square cumulative density function
 #' }
 #' 
-#' The test is attributed to Freeman and Tukey (1950), but couldn't really find it in there.
-#' Another source often mentioned is Bishop et al. (2007)
+#' The test is attributed to Freeman and Tukey (1950), but couldn't really find it in there. Another source often mentioned is Bishop et al. (2007)
 #' 
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
@@ -73,6 +76,10 @@
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
 #' 
 #' Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607–611. https://doi.org/10.1214/aoms/1177729756
+#'  
+#'  Larntz, K. (1978). Small-sample comparisons of exact levels for chi-squared goodness-of-fit statistics. *Journal of the American Statistical Association, 73*(362), 253–263. doi:10.1080/01621459.1978.10481567
+#'  
+#'  Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams’s improved G 2 test statistics in small samples of one-way multinomials. *Biometrika, 71*(2), 415–418. doi:10.2307/2336263
 #'  
 #' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
 #' 
@@ -105,7 +112,7 @@
 #' ts_freeman_tukey_gof(ex3, expCount=eCounts)
 #' 
 #' @export
-ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){
+ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams"), modified=FALSE){
   
   data = na.omit(data)
   
@@ -169,9 +176,14 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
   #calculate the chi-square value
   T2 = 0
   for (i in 1:k){
+    if (modified){
+      T2 = T2 + (sqrt(as.numeric(freq[i, 2])) + sqrt(as.numeric(freq[i, 2])+1) - sqrt(4*expC[i]+1)) ^ 2
+    }
+    else {
     T2 = T2 + (sqrt(as.numeric(freq[i, 2])) - sqrt(expC[i])) ^ 2
+    }
   }
-  T2 = 4*T2
+  if (!modified){T2 = 4*T2}
     
   if (cc == "pearson"){
     T2 = (n - 1) / n * T2}

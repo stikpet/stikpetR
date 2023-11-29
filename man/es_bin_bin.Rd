@@ -551,7 +551,7 @@ Tulloss, R. E. (1997). Assessment of similarity indices for undesirable properti
 
 Walker, H. M., & Lev, J. (1953). \emph{Statistical inference}. Holt.
 
-Warrens, M. J. (2008). Similarity coefficients for binary data: Properties of coefficients, coefficient matrices, multi-way metrics and multivariate coefficients \link{Doctoral dissertation, Universiteit Leiden}. https://hdl.handle.net/1887/12987
+Warrens, M. J. (2008). Similarity coefficients for binary data: Properties of coefficients, coefficient matrices, multi-way metrics and multivariate coefficients [Doctoral dissertation, Universiteit Leiden]. https://hdl.handle.net/1887/12987
 
 Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. \emph{Philosophical Transactions of the Royal Society of London, 194}, 257–319. doi:10.1098/rsta.1900.0019
 

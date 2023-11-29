@@ -10,10 +10,10 @@
 #' @param k : number of quantiles
 #' @param method : string, optional which method to use to calculate quartiles
 #' @param indexMethod : {"sas1", "sas4", "excel", "hl", "hf8", "hf9"}, optional to indicate which type of indexing to use. Default is "sas1"
-#' @param qLfrac : {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"
-#' @param qLint : {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"
-#' @param qHfrac : {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"
-#' @param qHint : {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
+#' @param q1Frac : {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"
+#' @param q1Int : {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"
+#' @param q3Frac : {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"
+#' @param q3Int : {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
 #' 
 #' method can be set to "own" and then provide the next parameters, or any of the methods listed in the notes.
 #' 

@@ -27,13 +27,13 @@ me_quantiles(
 
 \item{indexMethod}{: {"sas1", "sas4", "excel", "hl", "hf8", "hf9"}, optional to indicate which type of indexing to use. Default is "sas1"}
 
-\item{qLfrac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"}
+\item{q1Frac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"}
 
-\item{qLint}{: {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"}
+\item{q1Int}{: {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"}
 
-\item{qHfrac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"}
+\item{q3Frac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"}
 
-\item{qHint}{: {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
+\item{q3Int}{: {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
 
 method can be set to "own" and then provide the next parameters, or any of the methods listed in the notes.}
 }

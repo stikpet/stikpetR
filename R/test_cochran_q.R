@@ -79,7 +79,7 @@ ts_cochran_q <- function(data, success = NULL){
   pValue = pchisq(Q, df, lower.tail = FALSE)
   
   statistic = Q
-  results = data.frame(n, statistic, df, pValue)
+  results = data.frame(nf, statistic, df, pValue)
   colnames(results) = c("n", "statistic", "df", "p-value")
   
   return(results)

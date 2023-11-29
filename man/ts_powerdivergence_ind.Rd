@@ -112,14 +112,6 @@ The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
 With:
 \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
 }
-\examples{
- 
-nom1 <- c("female", "female","female","female","female","female","female","female", "female","female","female", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male","male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male", "male")
-nom2 <- c("nl", "nl","nl","nl","nl","nl","nl","nl", "other", "other", "other","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","nl","other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other", "other")
-ts_powerdivergence(nom1)
-ts_powerdivergence(nom1, nom2)
-
-}
 \references{
 Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). \emph{Discrete multivariate analysis}. Springer.
 

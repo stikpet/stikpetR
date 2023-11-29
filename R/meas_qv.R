@@ -1,8 +1,53 @@
 #' Measures of Qualitative Variation
 #' 
 #' @description
-#' Various methods exist that can be used to measure qualitative variation. This function has a few of them.
+#' The mode is the measure of central tendancy, to indicate the center for categorical data. Similar as the arithmetic mean is for numeric data. As with numeric data, the center alone is not always so informative. If your head is in a burning oven, and your feet are in a freezer, you are on average fine.
 #' 
+#' This is one of the reasons, why it is often recommended to add a measure of dispersion. It gives a clearer picture of the data, and can indicate how diverse it was (how much variation).
+#' 
+#' For categorical data there are a lot of different measures proposed, but I don't often see them being used. The most common one is probably the Variation Ratio. This is simply the percentage of cases that were not in the modal category.
+#' 
+#' The specific name of the type of measure for this qualitative variation can vary quite a lot. Some talk about dominance, differentiation, evenness, entropy, equitability, diversity, and apportionment.
+#' 
+#' I've tried to categorise the measures a bit, based on the calculations. Below is the overview of all measures available in this function.
+#' 
+#' |nr.|group|measure|source|original type|
+#' |---|-----|-------|------|-------------|
+#' |1|mode|Freeman Variation Ratio|(Freeman, 1965)| |
+#' |2|mode|Berger-Parker Index|(Berger & Parker, 1970, p. 1345)|dominance|
+#' |3|mode|Wilcox MODVR|(Wilcox, 1973, p. 7)| |
+#' |4|mode|Wilcox RANVR|(Wilcox, 1973, p. 8)| |
+#' |5|mean|Wilcox AVDEV|(Wilcox, 1973, p. 9)| |
+#' |6|mean|Gibbs-Poston M4|(Gibbs & Poston, 1975, p. 473)|differentiation|
+#' |7|mean|Gibbs-Poston M5|(Gibbs & Poston, 1975, p. 474)|differentiation|
+#' |8|mean|Gibbs-Poston M6|(Gibbs & Poston, 1975, p. 474)|differentiation|
+#' |9|mean|Wilcox VARNC = |(Wilcox, 1973, p. 11)| |
+#' |9|mean|Gibbs-Poston M2 = |(Gibbs & Poston, 1975, p. 472)|differentiation|
+#' |9|mean|Smith-Wilson E1*|(Smith & Wilson, 1996, p. 71)|evenness|
+#' |10|mean|Wilcox STDEV|(Wilcox, 1973, p. 14)| |
+#' |11|entropy|Shannon-Weaver Entropy|(Shannon & Weaver, 1949, p. 20)|entropy|
+#' |12|entropy|Rényi Entropy|(Rényi, 1961, p. 549)|entropy|
+#' |13|entropy|Wilcox HREL = |(Wilcox, 1973, p. 16)| |
+#' |13|entropy|Pielou J|(Pielou, 1966, p. 141)|diversity|
+#' |14|entropy|Sheldon Index|(Sheldon, 1969, p. 467)|equitability = relative diversity|
+#' |15|entropy|Heip Evenness|(Heip, 1974, p. 555)|evenness|
+#' |16|evenness|Hill Diversity|(Hill, 1973, p. 428)|diversity|
+#' |17|evenness|Hill Evenness|(Hill, 1973, p. 429)|evenness|
+#' |18|evenness|Bulla E|(Bulla, 1994, pp. 168-169)|evenness|
+#' |19|evenness|Bulla D|(Bulla, 1994, p. 169)|diversity|
+#' |20a|evenness|Simpson D|(Simpson, 1949, p. 688)|diversity|
+#' |20b|evenness|Simpson D biased|(Smith & Wilson, 1996, p. 71)| |
+#' |20c|evenness|Simpson D as diversity|(Wikipedia, n.d.)| |
+#' |20d|evenness|Simpson D as diversity biased =|(Berger & Parker, 1970, p. 1345)| |
+#' |20d|evenness|Gibbs-Poston M1|(Gibbs & Poston, 1975, p. 471)|differentiation|
+#' |21|evenness|Gibbs-Poston M3|(Gibbs & Poston, 1975, p. 472)|differentiation|
+#' |22|evenness|Smith-Wilson E2|(Smith & Wilson, 1996, p. 71)|evenness|
+#' |23|evenness|Smith-Wilson E3|(Smith & Wilson, 1996, p. 71)|evenness|
+#' |24|other|Wilcox MNDIF|(Wilcox, 1973, p. 9)| |
+#' |25|other|Kaiser b|(Kaiser, 1968, p. 211)|apportionment|
+#' 
+#' \* Smith-Wilson E1 is listed with the mean group, since it uses the average frequency. It could of course also be placed in the evenness group.
+#'  
 #' @param data list or dataframe
 #' @param measure optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd"
 #' @param var1 optional additional value for some measures
@@ -49,17 +94,29 @@
 #' 
 #' **MODE BASED MEASURES**
 #' 
+#' Dispersion can be seen as how much variation there is, using as a norm the center. For nominal data the measure of central tendancy is the mode, and therefor some measures of qualitative variation use the mode as the starting point.
+#' 
+#' The frequency of the modal category is then useful. This is simply the maximum of the frequencies.
+#' 
 #' **Freeman Variation Ratio** ("vr")
+#' 
+#' Perhaps one of the most popular measures of qualitative variation uses the mode. The (Freeman) Variation Ratio. It is simply the proportion of scores that do not belong to the modal category. In formula notation (Freeman, 1965, p. 41):
 #' 
 #' Formula used from Freeman (1965, p. 41):
 #' \deqn{v = 1 - \frac{F_{mode}}{n}}
 #' 
+#' This variation ratio would become 0% if all cases fitted in the modal category, and all other categories don't have any cases.
+#' 
+#' A 0 (0%) would mean that all cases were in the modal category. A 1 (100%) would indicate that no cases were in the modal category. However, this seems impossible to ever occur, since the modal category is the category with the highest frequency, which is impossible to be 0, unless there are no cases at all.
+#' 
 #' **Berger–Parker index** ("bpi")
 #' 
-#' A very simplistic measure that just informs how much percentage the modal category is.
-#' 
-#' The formula used is (Berger & Parker, 1970, p. 1345):
+#' The variation ratio is the opposite of the Berger-Parker Index, which is simply the proportion of scores that did fit in the modal category. In formula notation (Berger & Parker, 1970, p. 1345):
 #' \deqn{BPI = \frac{F_{mode}}{n}}
+#' 
+#' Berger and Parker refer to this as a dominance measure, to indicate how "dominant" the modal category is.
+#' 
+#' A 1 (100%) would mean that all cases were in the modal category. A 0 (0%) would indicate that no cases were in the modal category. However, this seems impossible to ever occur, since the modal category is the category with the highest frequency, which is impossible to be 0, unless there are no cases at all.
 #' 
 #' **Wilcox MODVR** ("modvr")
 #' 
@@ -84,35 +141,10 @@
 #' 
 #' **Wilcox AVDEV** ("avdev")
 #' 
-#' This simply follows the mean absolute deviation analogue but then using frequencies.Again this is then standardized.
+#' This simply follows the mean absolute deviation analogue but then using frequencies. Again this is then standardized.
 #' 
 #' The formula used is (Wilcox, 1973, p. 9):
 #' \deqn{\text{AVDEV} = 1-\frac{\sum_{i=1}^k \left|F_i-\bar{F}\right|}{2\times \frac{n}{k}\times \left(k-1\right)}= 1-\frac{k\times \sum_{i=1}^k \left|F_i-\bar{F}\right|}{2\times n \times \left(k-1\right)}} 
-#' 
-#' **Wilcox VARNC** ("varnc"), **Gibbs-Poston M2** ("m2"), and **Smith & Wilson E1** ("sw1")
-#' 
-#' This is similar as the variance for scale variables.
-#' 
-#' The formula used is (Wilcox, 1973, p. 11):
-#' \deqn{\text{VARNC} = 1-\frac{\sum_{i=1}^{k}\left(f_i-\bar{F}\right)^2}{\frac{n^2\times\left(k-1\right)}{k}} = \frac{k\times\left(n^2-\sum_{i=1}^k f_i^2\right)}{n^2\times\left(k-1\right)}}
-#' 
-#' This is the same as Gibbs and Poston's **M2** ("m2"). Their formula looks different but has the same result (Gibbs & Poston, 1975, p. 472)
-#' \deqn{\text{M2} = \frac{1-\sum_{i=1}^k p_i^2}{1-\frac{1}{k}} = \frac{\text{M1}}{1-\frac{1}{k}} = \frac{k}{k-1}\times\text{M1}}
-#' 
-#' It is also the same as Smith and Wilson's first evenness measure ("sw1").
-#' 
-#' The formula used (Smith & Wilson, 1996, p. 71):
-#' \deqn{E_1 = \frac{1 - D_s}{1 - \frac{1}{k}}}
-#' 
-#' With \eqn{D_s} being Simpson's D, but defined as:
-#' \deqn{D_s = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
-#' 
-#' **Wilcox STDEV** ("stdev")
-#' 
-#' As with the variance for scale variables, we can take the square root to obtain the standard deviation.
-#' 
-#' The formula used can be from the VARNC or the MNDIF (Wilcox, 1973, p. 14):
-#' \deqn{\text{STDEV} = 1-\sqrt{\frac{\sum_{i=1}^k \left(F_i-\frac{n}{k}\right)^2}{\left(n-\frac{n}{k}\right)^2+\left(k-1\right)\left(\frac{n}{k}\right)^2}}= 1-\sqrt{\frac{\sum_{i=1}^{k-1}\sum_{j=i+1}^k \left(F_i-F_j\right)^2}{n^2\times\left(k-1\right)}}}
 #' 
 #' **Gibbs-Poston M4** ("m4")
 #' 
@@ -131,12 +163,50 @@
 #' The formula used (Gibbs & Poston, 1975, p. 474):
 #' \deqn{\text{M6} = k\times\left(1-\frac{\sum_{i=1}^k \left|F_i-\bar{F}\right|}{2\times n}\right) = k\times\text{M4}}
 #' 
-#' **ENTROPY and EVENNESS**
+#' **Wilcox VARNC** ("varnc"), **Gibbs-Poston M2** ("m2"), and **Smith & Wilson E1** ("sw1")
+#' 
+#' This is similar as the variance for scale variables.
+#' 
+#' The formula used is (Wilcox, 1973, p. 11):
+#' \deqn{\text{VARNC} = 1-\frac{\sum_{i=1}^{k}\left(F_i-\bar{F}\right)^2}{\frac{n^2\times\left(k-1\right)}{k}} = \frac{k\times\left(n^2-\sum_{i=1}^k F_i^2\right)}{n^2\times\left(k-1\right)}}
+#' 
+#' This is the same as Gibbs and Poston's **M2** ("m2"). Their formula looks different but has the same result (Gibbs & Poston, 1975, p. 472)
+#' \deqn{\text{M2} = \frac{1-\sum_{i=1}^k p_i^2}{1-\frac{1}{k}} = \frac{\text{M1}}{1-\frac{1}{k}} = \frac{k}{k-1}\times\text{M1}}
+#' 
+#' It is also the same as Smith and Wilson's first evenness measure ("sw1").
+#' 
+#' The formula used (Smith & Wilson, 1996, p. 71):
+#' \deqn{E_1 = \frac{1 - D_s}{1 - \frac{1}{k}}}
+#' 
+#' With \eqn{D_s} being Simpson's D, but defined as:
+#' \deqn{D_s = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
+#' 
+#' **Wilcox STDEV** ("stdev")
+#' 
+#' As with the variance for scale variables, we can take the square root to obtain the standard deviation.
+#' 
+#' The formula used can be from the VARNC or the MNDIF (Wilcox, 1973, p. 14):
+#' \deqn{\text{STDEV} = 1-\sqrt{\frac{\sum_{i=1}^k \left(F_i-\bar{F}\right)^2}{\left(n-\bar{F}\right)^2+\left(k-1\right)\bar{F}^2}}= 1-\sqrt{\frac{\sum_{i=1}^{k-1}\sum_{j=i+1}^k \left(F_i-F_j\right)^2}{n^2\times\left(k-1\right)}}}
+#' 
+#' **ENTROPY**
+#' 
+#' Entropy is sometimes referred to as the expected value of the surprise. It tells on average how surprised we might be about the outcome, and is also used as a measure with qualitative data.
+#' 
+#' I enjoyed the simple explanation on entropy from StatQuest, their video is available <a href="https://www.youtube.com/watch?v=YtebGVx-Fxw">here</a>.
+#' 
+#' It deals a lot with proportions rather than the counts themselves
 #' 
 #' **Shannon-Weaver Entropy** ("swe")
 #' 
 #' The formula used (Shannon & Weaver, 1949, p. 20):
 #' \deqn{H_{sw}=-\sum_{i=1}^k p_i\times\ln\left(p_i\right)}
+#' 
+#' **Rényi entropy** ("re")
+#' 
+#' This is a generalisation for Shannon entropy.
+#' 
+#' The formula used is (Rényi, 1961, p. 549):
+#' \deqn{H_q = \frac{1}{1 - q}\times\log_2\left(\sum_{i=1}^k p_i^q\right)}
 #' 
 #' **Wilcox HREL** ("hrel") and **Pielou J** ("j")
 #' 
@@ -153,29 +223,23 @@
 #' **Sheldon Index** ("si")
 #' 
 #' The formula used (Sheldon, 1969, p. 467):
-#' \deqn{E = \frac{e^{H_{sw}}}{k}}
-#' 
-#' **Renyi entropy** ("re")
-#' 
-#' This is a generalisation for Shannon entropy.
-#' 
-#' The formula used is (Renyi, 1961, p. 549):
-#' \deqn{H_q = \frac{1}{1 - q}\times\ln\left(\sum_{i=1}^k p_i^q\right)}
+#' \deqn{E = \frac{e^{H_{sw}}}{k}}    
 #' 
 #' **Heip Index** ("hi")
 #' 
 #' The formula used is (Heip, 1974, p. 555):
 #' \deqn{E_h = \frac{e^{H_{sw}} - 1}{k - 1}} 
 #' 
+#' **EVENNESS and DIVERSITY**
+#' 
 #' **Hill Diversity** ("hd")
 #' 
 #' The formula used is (Hill, 1973, p. 428):
-#' \deqn{N_a = \begin{cases}\frac{1}{\left(\sum_{i=1}^k p_i^a\right)^{1-a}} & \text{ if } a\neq 1 \\ e^{H_{sw}} & \text{ if }  =1 \end{cases}}
+#' \deqn{N_a = \begin{cases}\left(\sum_{i=1}^k p_i^a\right)^{\frac{1}{1-a}} & \text{ if } a\neq 1 \\ e^{H_{sw}} & \text{ if }  =1 \end{cases}}
 #' 
 #' **Hill Eveness** ("he")
 #' 
 #' The formula used is (Hill, 1973, p. 429):
-#' 
 #' \deqn{E_{a,b} = \frac{N_a}{N_b}}
 #' 
 #' Where \eqn{N_a} and \eqn{N_b} are Hill's diversity values for a and b.
@@ -198,6 +262,34 @@
 #' \deqn{D_b = E_b\times k}
 #' 
 #' Where \eqn{E_b} is Bulla E value.
+#' 
+#' With:
+#' \deqn{O = \sum_{i=1}^k \min\left(p_i, \frac{1}{k}\right)}
+#' 
+#' **Simpson D** ("d1", "d2", "d3", "d4" = Gibbs-Poston M1)
+#' 
+#' The formula used is based on Simpson (1949, p. 688):
+#' \deqn{D_1 = \frac{\sum_{i=1}^k F_i\times\left(F_i-1\right)}{n\times\left(n-1\right)}}
+#' 
+#' Another alternative is for a population:
+#' \deqn{D_2 = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
+#' 
+#' Often the result is subtracted from 1 to reverse the scale. 
+#' 
+#' \deqn{D_3 = 1-\frac{\sum_{i=1}^k F_i\times\left(F_i-1\right)}{n\times\left(n-1\right)}}
+#' 
+#' and
+#' \deqn{D_4 = 1 - \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
+#' 
+#' This last one is then the same as Gibb-Poston M1 (Gibbs & Poston, 1975, p. 471):
+#' \deqn{\text{M1} = 1 - \sum_{i=1}^k p_i^2}
+#' 
+#' **Gibbs-Poston M3** ("m3")
+#' 
+#' The formula used (Gibbs & Poston, 1975, p. 472):
+#' \deqn{\text{M3} = \frac{1-\sum_{i=1}^k p_i^2-p_{min}}{1-\frac{1}{k}-p_{min}}}
+#' 
+#' With \eqn{p_{min}} the lowest proportion
 #' 
 #' **Smith & Wilson E2** ("sw2")
 #' 
@@ -224,67 +316,41 @@
 #' The formula used is (Wilcox, 1973, p. 9):
 #' \deqn{\text{MNDIF} = 1-\frac{\sum_{i=1}^{k-1}\sum_{j=i+1}^k \left|F_i-F_j\right|}{n\times\left(k-1\right)}}
 #' 
-#' **Gibbs-Poston M1** ("m1")
-#' 
-#' The formula used (Gibbs & Poston, 1975, p. 471):
-#' \deqn{\text{M1} = 1 - \sum_{i=1}^k p_i^2}
-#' 
-#' **Gibbs-Poston M3** ("m3")
-#' 
-#' The formula used (Gibbs & Poston, 1975, p. 472):
-#' \deqn{\text{M3} = \frac{1-\sum_{i=1}^k p_i^2-p_{min}}{1-\frac{1}{k}-p_{min}}}
-#' 
-#' With \eqn{p_{min}} the lowest proportion
-#' 
-#' **Simpson D** ("d1", "d2", "d3", "d4")
-#' 
-#' The formula used is based on Simpson (1949, p. 688):
-#' \deqn{D_1 = \frac{\sum_{i=1}^k f_i\times\left(f_i-1\right)}{n\times\left(n-1\right)}}
-#' 
-#' Another alternative is:
-#' \deqn{D_2 = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
-#' 
-#' Often the result is subtracted from 1 to reverse the scale. 
-#' \deqn{D_3 = 1-\frac{\sum_{i=1}^k f_i\times\left(f_i-1\right)}{n\times\left(n-1\right)}}
-#' 
-#' and
-#' \deqn{D_4 = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
-#' 
 #' **Kaiser b**
 #' 
 #' The formula used (Kaiser, 1968, p. 211):
 #' \deqn{B = 1 - \sqrt{1 - \left(\sqrt[k]{\prod_{i=1}^k\frac{f_i\times k}{n}}\right)^2}}
 #' 
 #' @references
-#' Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. *Science, 168*(3937), 1345–1347. https://doi.org/10.1126/science.168.3937.1345
+#' Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. *Science, 168*(3937), 1345–1347. doi:10.1126/science.168.3937.1345
 #' 
-#' Bulla, L. (1994). An index of evenness and its associated diversity measure. *Oikos, 70*(1), 167–171. https://doi.org/10.2307/3545713
+#' Bulla, L. (1994). An index of evenness and its associated diversity measure. *Oikos, 70*(1), 167–171. doi:10.2307/3545713
 #' 
-#' Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. *The Journal of Animal Ecology, 12*(1), 42–58. https://doi.org/10.2307/1411
+#' Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. *The Journal of Animal Ecology, 12*(1), 42–58. doi:10.2307/1411
 #' 
 #' Freeman, L. C. (1965). *Elementary applied statistics: For students in behavioral science*. Wiley.
 #' 
-#' Gibbs, J. P., & Poston, D. L. (1975). The division of labor: Conceptualization and related measures. *Social Forces, 53*(3), 468. https://doi.org/10.2307/2576589
+#' Gibbs, J. P., & Poston, D. L. (1975). The division of labor: Conceptualization and related measures. *Social Forces, 53*(3), 468. doi:10.2307/2576589
 #' 
-#' Heip, C. (1974). A new index measuring evenness. *Journal of the Marine Biological Association of the United Kingdom, 54*(3), 555–557. https://doi.org/10.1017/S0025315400022736
+#' Heip, C. (1974). A new index measuring evenness. *Journal of the Marine Biological Association of the United Kingdom, 54*(3), 555–557. doi:10.1017/S0025315400022736
 #' 
-#' Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. *Ecology, 54*(2), 427–432. https://doi.org/10.2307/1934352
+#' Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. *Ecology, 54*(2), 427–432. doi:10.2307/1934352
 #' 
-#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208–215. https://doi.org/10.2307/1953335
+#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208–215. doi:10.2307/1953335
 #' 
-#' Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. *Journal of Theoretical Biology, 13*, 131–144. https://doi.org/10.1016/0022-5193(66)90013-0
+#' Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. *Journal of Theoretical Biology, 13*, 131–144. doi:10.1016/0022-5193(66)90013-0
 #' 
 #' Renyi, A. (1961). On measures of entropy and information. *Contributions to the Theory of Statistics, 1*, 547–562.
 #' 
 #' Shannon, C. E., & Weaver, W. (1949). *The mathematical theory of communication*. The university of Illinois press.
 #' 
-#' Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. *Ecology, 50*(3), 466–467. https://doi.org/10.2307/1933900
+#' Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. *Ecology, 50*(3), 466–467. doi:10.2307/1933900
 #' 
-#' Simpson, E. H. (1949). Measurement of diversity. *Nature, 163*(4148), Article 4148. https://doi.org/10.1038/163688a0
+#' Simpson, E. H. (1949). Measurement of diversity. *Nature, 163*(4148), Article 4148. doi:10.1038/163688a0
 #' 
-#' Smith, B., & Wilson, J. B. (1996). A consumer’s guide to evenness indices. *Oikos, 76*(1), 70–82. https://doi.org/10.2307/3545749
+#' Smith, B., & Wilson, J. B. (1996). A consumer’s guide to evenness indices. *Oikos, 76*(1), 70–82. doi:10.2307/3545749
 #' 
-#' Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. *Political Research Quarterly, 26*(2), 325–343. https://doi.org/10.1177/106591297302600209
+#' Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. *Political Research Quarterly, 26*(2), 325–343. doi:10.1177/106591297302600209
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -438,7 +504,7 @@ me_qv <- function(data, measure="vr", var1=2, var2=1){
     if (var1 == 1){
       qv = exp(-1*sum(props*log(props)))}
     else {
-      qv = 1/(sum(props**var1)**(var1 - 1))}
+      qv = (sum(props**var1)**(1/(1-var1)))}
   }
   else if (measure=="he"){
     #Hill's Evenness
