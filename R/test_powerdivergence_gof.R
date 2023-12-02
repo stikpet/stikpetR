@@ -34,24 +34,19 @@
 #' 
 #' @details 
 #' The formula used is (Cressie & Read, 1984, p. 442):
-#' \deqn{\chi_{C}^{2} = \begin{cases} 2\times\sum_{i=1}^{r}\sum_{j=1}^c\left(F_{i,j}\times ln\left(\frac{F_{i,j}}{E_{i,j}}\right)\right) & \text{ if } \lambda=0 \\ 2\times\sum_{i=1}^{r}\sum_{j=1}^c\left(E_{i,j}\times ln\left(\frac{E_{i,j}}{F_{i,j}}\right)\right) & \text{ if } \lambda=-1 \\ \frac{2}{\lambda\times\left(\lambda + 1\right)} \times \sum_{i=1}^{r}\sum_{j=1}^{c} F_{i,j}\times\left(\left(\frac{F_{i,j}}{E_{i,j}}\right)^{\lambda} - 1\right) & \text{ else } \end{cases}}
-#' \deqn{df = \left(r - 1\right)\times\left(c - 1\right)}
+#' \deqn{\chi_{C}^{2} = \begin{cases} 2\times\sum_{i=1}^{k}F_{i}\times ln\left(\frac{F_{i}}{E_{i}}\right) & \text{ if } \lambda=0 \\ 2\times\sum_{i=1}^{k} E_{i}\times ln\left(\frac{E_{i}}{F_{i}}\right) & \text{ if } \lambda=-1 \\ \frac{2}{\lambda\times\left(\lambda + 1\right)} \times \sum_{i=1}^{k} F_{i}\times\left(\left(\frac{F_{i}}{E_{i}}\right)^{\lambda} - 1\right) & \text{ else } \end{cases}}
+#' \deqn{df = k - 1}
 #' \deqn{sig. = 1 - \chi^2\left(\chi_{C}^{2},df\right)}
 #' 
 #' With:
 #' \deqn{n = \sum_{i=1}^r \sum_{j=1}^c F_{i,j}}
-#' \deqn{E_{i,j} = \frac{R_i\times C_j}{n}}
-#' \deqn{R_i = \sum_{j=1}^c F_{i,j}}
-#' \deqn{C_j = \sum_{i=1}^r F_{i,j}}
+#' \deqn{E_{i} = \frac{n}{k}}
 #' 
 #' *Symbols used:*
 #' \itemize{
-#' \item \eqn{r} the number of categories in the first variable (the number of rows)
-#' \item \eqn{c} the number of categories in the second variable (the number of columns)
-#' \item \eqn{F_{i,j}} the observed count in row i and column j
-#' \item \eqn{E_{i,j}} the expected count in row i and column j
-#' \item \eqn{R_i} the i-th row total
-#' \item \eqn{C_j} the j-th column total
+#' \item \eqn{k} the number of categories
+#' \item \eqn{F_{i}} the observed count of category i
+#' \item \eqn{E_{i}} the expected count of category i
 #' \item \eqn{n} the sum of all counts
 #' \item \eqn{\chi^2\left(\dots\right)}	the chi-square cumulative density function
 #' }
@@ -59,31 +54,23 @@
 #' Cressie and Read (1984, p. 463) suggest to use \eqn{\lambda = \frac{2}{3}},  which
 #' is therefor the default in this function.
 #' 
-#' The **Pearson chi-square statistic** can be obtained by setting \eqn{\lambda = 1}. Pearson's original 
-#' formula is (Pearson, 1900, p. 165):
-#' \deqn{\chi_{P}^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{\left(F_{i,j} - E_{i,j}\right)^2}{E_{i,j}}}
+#' The **Pearson chi-square statistic** can be obtained by setting \eqn{\lambda = 1}. 
 #' 
-#' The **Freeman-Tukey test** has as a formula (Bishop et al., 2007, p. 513):
-#' \deqn{T^2 = 4\times\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}} - \sqrt{E_{i,j}}\right)^2}
-#' This will be same as setting lambda to \eqn{-\frac{1}{2}}. Note that the source for the formula is often quoted to be from Freeman and Tukey (1950) 
-#' but couldn't really find it in that article.
+#' The **Freeman-Tukey test** will be same as setting lambda to \eqn{-\frac{1}{2}}. 
 #' 
-#' **Neyman test** formula was very similar to Pearson's, but the observed and expected counts swapped (Neyman, 1949, p. 250):
-#' \deqn{\chi_{N}^2 = \sum_{i=1}^r \sum_{j=1}^c \frac{\left(E_{i,j} - F_{i,j}\right)^2}{F_{i,j}}}
-#' This will be same as setting lambda to \eqn{-2}.
+#' **Neyman test** will be same as setting lambda to \eqn{-2}.
 #' 
-#' The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
+#' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
 #' 
-#' Use instead of \eqn{F_{i,j}} the adjusted version defined by:
-#' \deqn{F_{i,j}^\ast = \begin{cases} F_{i,j} - 0.5 & \text{ if } F_{i,j}>E_{i,j}  \\ F_{i,j} & \text{ if } F_{i,j}= E_{i,j}\\ F_{i,j} + 0.5 & \text{ if } F_{i,j}<E_{i,j} \end{cases}}
+#' The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
+#' \deqn{\chi_{adj}^2 = \chi_{C}^{2}\times\frac{n - 1}{n}}
 #' 
-#' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
-#' \deqn{\chi_{PP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
-#' 
-#' The Williams correction (williams) is calculated using (Williams, 1976, p. 36):
-#' \deqn{\chi_{PW}^2 = \frac{\chi_{P}^2}{q}}
+#' The Williams correction (cc="williams") is calculated using (Williams, 1976, p. 36):
+#' \deqn{\chi_{adj}^2 = \frac{\chi_{C}^2}{q}}
 #' With:
-#' \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
+#' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
+#' The formula is also used by McDonald (2014, p. 87)
 #' 
 #' @references 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.

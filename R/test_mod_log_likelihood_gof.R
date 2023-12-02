@@ -26,7 +26,7 @@
 #' 
 #' @details 
 #' The formula used (Cressie & Read, 1984, p. 441):
-#' \deqn{MG=2\times\sum_{i=1}^{k}\left(F_{i}\times \ln\left(\frac{F_{i}}{E_{i}}\right)\right)}
+#' \deqn{MG=2\times\sum_{i=1}^{k}\left(E_{i}\times \ln\left(\frac{E_{i}}{F_{i}}\right)\right)}
 #' \deqn{df = k - 1}
 #' \deqn{sig. = 1 - \chi^2\left(MG,df\right)}
 #' 
@@ -55,7 +55,7 @@
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
 #' \deqn{MG_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
-#' Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
+#' Where if \eqn{E_i = 0} then \eqn{E_i\times ln\left(\frac{E_i}{F_i^\ast}\right) = 0}
 #' 
 #' The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{MG_{P} = G\times\frac{n - 1}{n}}
