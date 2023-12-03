@@ -71,6 +71,7 @@ I've tried to categorise the measures a bit, based on the calculations. Below is
 }
 \details{
 The following measures can be determined:
+
 \itemize{
 \item \emph{"modvr"}, Wilcox MODVR
 \item \emph{"ranvr"}, Wilcox RANVR

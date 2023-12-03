@@ -26,9 +26,9 @@
 #' 
 #' @details 
 #' The formula used (Cressie & Read, 1984, p. 441):
-#' \deqn{MG=2\times\sum_{i=1}^{k}\left(E_{i}\times \ln\left(\frac{E_{i}}{F_{i}}\right)\right)}
+#' \deqn{\chi_{MLR}^2=2\times\sum_{i=1}^{k}\left(E_{i}\times \ln\left(\frac{E_{i}}{F_{i}}\right)\right)}
 #' \deqn{df = k - 1}
-#' \deqn{sig. = 1 - \chi^2\left(MG,df\right)}
+#' \deqn{sig. = 1 - \chi^2\left(\chi_{MLR}^2,df\right)}
 #' 
 #' With:
 #' \deqn{n = \sum_{i=1}^k F_i}
@@ -54,14 +54,14 @@
 #' 
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
-#' \deqn{MG_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
+#' \deqn{\chi_{MLRY}^2=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
 #' Where if \eqn{E_i = 0} then \eqn{E_i\times ln\left(\frac{E_i}{F_i^\ast}\right) = 0}
 #' 
 #' The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
-#' \deqn{MG_{P} = G\times\frac{n - 1}{n}}
+#' \deqn{\chi_{MLREP}^2 = \chi_{MLR}^2\times\frac{n - 1}{n}}
 #' 
 #' The Williams correction (cc="williams") is calculated using (Williams, 1976, p. 36):
-#' \deqn{MG_{W} = \frac{G}{q}}
+#' \deqn{\chi_{MLRW}^2 = \frac{\chi_{MLR}^2}{q}}
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 

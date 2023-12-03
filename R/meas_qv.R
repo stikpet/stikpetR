@@ -62,35 +62,37 @@
 #' @details
 #' The following measures can be determined:
 #' 
-#' * *"modvr"*, Wilcox MODVR
-#' * *"ranvr"*, Wilcox RANVR
-#' * *"avdev"*, Wilcox AVDEV
-#' * *"mndif"*, Wilcox MNDIF
-#' * *"varnc"*, Wilcox VARNC (equal to Gibbs-Poston M2 and Smith-Wilson E1)
-#' * *"stdev"*, Wilcox STDEV
-#' * *"hrel"*, Wilcox HREL (equal to Pielou J)
-#' * *"m1"*, Gibbs-Poston M1
-#' * *"m2"*, Gibbs-Poston M2 (equal to Wilcox VARNC and Smith-Wilson E1)
-#' * *"m3"*, Gibbs-Poston M3
-#' * *"m4"*, Gibbs-Poston M4
-#' * *"m5"*, Gibbs-Poston M5
-#' * *"m6"*, Gibbs-Poston M6
-#' * *"b"*, Kaiser b
-#' * *"bd"*, Bulla D
-#' * *"be"*, Bulla E
-#' * *"bpi"*, Berger-Parker index
-#' * *"d1"*, *"d2"*, *"d3"*, *"d4"*, Simpson D and variations
-#' * *"hd"*, Hill Diversity, requires a value for *var1*
-#' * *"he"*, Hill Eveness, requires a value for *var1* and *var2*
-#' * *"hi"*, Heip Index
-#' * *"j"*, Pielou J (equal to Wilcox HREL)
-#' * *"si"*, Sheldon Index
-#' * *"sw1"*, Smith & Wilson E1 (equal to Wilcox VARNC and Gibbs-Poston M2)
-#' * *"sw2"*, Smith-Wilson E2
-#' * *"sw3"*, Smith-Wilson E3
-#' * *"swe"*, Shannon-Weaver Entropy
-#' * *"re"*, Renyi entropy, requires a value for *var1*
-#' * *"vr"*, Freeman's variation ratio
+#' \itemize{
+#' \item *"modvr"*, Wilcox MODVR
+#' \item *"ranvr"*, Wilcox RANVR
+#' \item *"avdev"*, Wilcox AVDEV
+#' \item *"mndif"*, Wilcox MNDIF
+#' \item *"varnc"*, Wilcox VARNC (equal to Gibbs-Poston M2 and Smith-Wilson E1)
+#' \item *"stdev"*, Wilcox STDEV
+#' \item *"hrel"*, Wilcox HREL (equal to Pielou J)
+#' \item *"m1"*, Gibbs-Poston M1
+#' \item *"m2"*, Gibbs-Poston M2 (equal to Wilcox VARNC and Smith-Wilson E1)
+#' \item *"m3"*, Gibbs-Poston M3
+#' \item *"m4"*, Gibbs-Poston M4
+#' \item *"m5"*, Gibbs-Poston M5
+#' \item *"m6"*, Gibbs-Poston M6
+#' \item *"b"*, Kaiser b
+#' \item *"bd"*, Bulla D
+#' \item *"be"*, Bulla E
+#' \item *"bpi"*, Berger-Parker index
+#' \item *"d1"*, *"d2"*, *"d3"*, *"d4"*, Simpson D and variations
+#' \item *"hd"*, Hill Diversity, requires a value for *var1*
+#' \item *"he"*, Hill Eveness, requires a value for *var1* and *var2*
+#' \item *"hi"*, Heip Index
+#' \item *"j"*, Pielou J (equal to Wilcox HREL)
+#' \item *"si"*, Sheldon Index
+#' \item *"sw1"*, Smith & Wilson E1 (equal to Wilcox VARNC and Gibbs-Poston M2)
+#' \item *"sw2"*, Smith-Wilson E2
+#' \item *"sw3"*, Smith-Wilson E3
+#' \item *"swe"*, Shannon-Weaver Entropy
+#' \item *"re"*, Renyi entropy, requires a value for *var1*
+#' \item *"vr"*, Freeman's variation ratio
+#' }
 #' 
 #' **MODE BASED MEASURES**
 #' 
