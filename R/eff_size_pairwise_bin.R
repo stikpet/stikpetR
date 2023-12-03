@@ -37,7 +37,7 @@ es_pairwise_bin <- function(data, expCounts=NULL, es="coheng"){
   Fi = table(data)
   categ = names(Fi)
   res = as.data.frame(t(combn(categ, 2)))
-  nPairs = nrow(results)
+  nPairs = nrow(res)
   res["n1"] = as.integer(Fi[res[,1]])
   res["n2"] = as.integer(Fi[res[,2]])
   
