@@ -31,7 +31,7 @@
 #' \deqn{m = n - 2\times g}
 #' \deqn{SE = \sqrt{\frac{SSD_w}{m}\times\left(m - 1\right)}}
 #' or:
-#' \deqn{SE = \frac{\sqrt{SSD_w}}{\left(1 - 2\times p_t\right)\times\sqrt{n}}}
+#' \deqn{SE = \frac{\sqrt{\frac{SSD_w}{n - 1}}}{\left(1 - 2\times p_t\right)\times\sqrt{n}}}
 #' \deqn{SSD_w = g\times\left(y_{g+1} - \bar{x}_w\right)^2 + g\times\left(y_{n-g} - \bar{x}_w\right)^2 + \sum_{i=g+1}^{n - g} \left(y_i - \bar{x}_w\right)^2}
 #' \deqn{\bar{x}_w = \frac{\bar{x}_t\times m + g\times\left(y_{g+1} + y_{n-g}\right)}{n}}
 #' 
@@ -71,7 +71,7 @@
 #' 
 #' Wilcox, R. R. (2012). *Introduction to robust estimation and hypothesis testing* (3rd ed.). Academic Press.
 #' 
-#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
+#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. doi:10.1093/biomet/61.1.165
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
