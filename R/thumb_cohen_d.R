@@ -56,7 +56,7 @@
 #' |0.80 or more | very large |
 #' 
 #' @seealso 
-#' \code{\link{es_cohen_d_ow}}, to determine Cohen d
+#' \code{\link{es_cohen_d}}, to determine Cohen d
 #' 
 #' \code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
 #' 

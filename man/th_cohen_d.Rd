@@ -76,7 +76,7 @@ Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and 
 Sawilowsky, S. (2009). New effect size rules of thumb. \emph{Journal of Modern Applied Statistical Methods, 8}(2). https://doi.org/10.22237/jmasm/1257035100
 }
 \seealso{
-\code{\link{es_cohen_d_ow}}, to determine Cohen d
+\code{\link{es_cohen_d}}, to determine Cohen d
 
 \code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
 }

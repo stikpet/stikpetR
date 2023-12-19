@@ -87,13 +87,13 @@ Which if there are no ties is equal to:
 \examples{
 n = 12
 rs = 0.8
-di_spearman(n, rs)
-di_spearman(n, rs, method="exact")
-di_spearman(n, rs, method="t")
-di_spearman(n, rs, method="z-fieller")
-di_spearman(n, rs, method="z-olds")
-di_spearman(n, rs, method="iman-conover")
-di_spearman(n, rs, method="AS89")
+di_scdf(n, rs)
+di_scdf(n, rs, method="exact")
+di_scdf(n, rs, method="t")
+di_scdf(n, rs, method="z-fieller")
+di_scdf(n, rs, method="z-olds")
+di_scdf(n, rs, method="iman-conover")
+di_scdf(n, rs, method="AS89")
 
 }
 \references{

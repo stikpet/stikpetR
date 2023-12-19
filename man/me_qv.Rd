@@ -204,7 +204,7 @@ The formula used can be from the VARNC or the MNDIF (Wilcox, 1973, p. 14):
 
 Entropy is sometimes referred to as the expected value of the surprise. It tells on average how surprised we might be about the outcome, and is also used as a measure with qualitative data.
 
-I enjoyed the simple explanation on entropy from StatQuest, their video is available <a href="https://www.youtube.com/watch?v=YtebGVx-Fxw">here</a>.
+I enjoyed the simple explanation on entropy from StatQuest, their video is available \href{https://www.youtube.com/watch?v=YtebGVx-Fxw}{here}.
 
 It deals a lot with proportions rather than the counts themselves
 
