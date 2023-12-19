@@ -106,7 +106,7 @@
 #' di_spearman(n, rs, method="AS89")
 #'
 #' @export
-di_spearman <- function(n, rs,
+di_scdf <- function(n, rs,
                         method=c("t", "z-fieller", "z-olds", "iman-conover", "AS89", "exact"),
                         iters=500){
   if (length(method)>1) {

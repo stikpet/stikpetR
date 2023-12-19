@@ -135,10 +135,10 @@ r_spearman_rho <- function(ordField1, ordField2, levels1=NULL, levels2=NULL,
     df = n - 2
     
     if (test=="as89") {
-      distRes = di_spearman(n, rs, method="AS89")
+      distRes = di_scdf(n, rs, method="AS89")
     }
     else{
-      distRes = di_spearman(n, rs, method=test)
+      distRes = di_scdf(n, rs, method=test)
     }
     
     pValue = distRes$pValue

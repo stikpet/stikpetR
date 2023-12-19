@@ -33,7 +33,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-es_cohen_d_ow <- function(nomField, scaleField, categories=NULL){
+es_cohen_d <- function(nomField, scaleField, categories=NULL){
   
   dfr = na.omit(data.frame(scaleField, nomField))
   #replace categories if provided
