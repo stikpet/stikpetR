@@ -6,6 +6,7 @@
 #' @param scaleField A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
 #' @param dmu Optional difference according to null hypothesis (default is 0)
+#' @param method Optional method to use, either approximate ("appr") or use brute-force ("brute".
 #' 
 #' @returns 
 #' A dataframe with:
@@ -31,6 +32,8 @@
 #' 
 #' The CLE for the other category is simply 1 - CLE.
 #' 
+#' If the brute-force method is used, the chance of a value of one category will be higher than a random score of the second category is calculated by counting all possible pairs. In case of ties a half is added.
+#' 
 #' @references 
 #' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
 #' 
@@ -53,7 +56,7 @@
 #' 
 #' 
 #' @export
-es_common_language_is <- function(catField, scaleField, categories=NULL, dmu=0){
+es_common_language_is2 <- function(catField, scaleField, categories=NULL, dmu=0, method="appr"){
   
   #remove rows with missing values
   df = data.frame(scaleField, catField)
@@ -83,11 +86,48 @@ es_common_language_is <- function(catField, scaleField, categories=NULL, dmu=0){
   
   m1 = mean(X1)
   m2 = mean(X2)
+  print(m1)
+  print(m2)
+  if (method=="appr"){
+    z = abs(m1 - m2 - dmu)/sqrt(var1 + var2)
+    c1 = pnorm(z)
+    c2 = 1 - c1        
+  }    
+  else if (method=="brute"){
+    c1 = 0
+    for (i in X1){
+      p = 0
+      for (j in X2){
+        if (i>j){
+          p = p + 1}
+        if (i==j){
+          p = p + 0.5}
+      }
+      c1 = c1 + p/n2
+    }
+    c1 = c1 / n1
+    
+    c2 = 0
+    for (i in X2){
+      p = 0
+      for (j in X1){
+        if (i>j){
+          p = p + 1}
+        if (i==j){
+          p = p + 0.5}
+      }
+      c2 = c2 + p/n1
+    }
+    c2 = c2 / n2
+  }
   
-  z = abs(m1 - m2 - dmu)/sqrt(var1 + var2)
+  if ((m1>m2 && c1<c2) || (m2>m1 && c2 < c1)){
+    c3 = c1
+    c1 = c2
+    c2 = c3
+  }
   
-  c1 = pnorm(z)
-  c2 = 1 - c1
+  
   
   results <- data.frame(c1, c2)
   colnames(results) = c(paste("CLE", cat1), paste("CLE", cat2))

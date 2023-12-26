@@ -63,7 +63,7 @@ r_tetrachoric <- function(field1, field2, categories1=NULL, categories2=NULL, me
   }
   
   else if (method=="kirk"){
-    rt = r_tetrachoric_kirt(a, b, c, d)
+    rt = r_tetrachoric_kirk(a, b, c, d)
   }
   
   else if (method=="brown"){
@@ -157,7 +157,7 @@ r_tetrachoric_divgi <- function(a,b,c,d){
   
 }
 
-r_tetrachoric_kirt <- function(a, b, c, d){
+r_tetrachoric_kirk <- function(a, b, c, d){
     # P. Stikker adaptation of Fortran IV code from:
     # Kirk, D. B. (1973). On the numerical approximation of the bivariate normal (tetrachoric) correlation coefficient. Psychometrika, 38(2), 259–268. doi: 10.1007/BF02291118
     af = a
