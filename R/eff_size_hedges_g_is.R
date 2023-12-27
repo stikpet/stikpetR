@@ -151,12 +151,12 @@ es_hedges_g_is <- function(catField,
       }
       else {
         print("WARNING: exact method could not be computed due to large sample size, approximation used instead")
-        c = 1 - 3/(4*(n - 2) - 9)
+        c = 1 - 3/(4*(n - 2) - 1)
         comment = "Hedges g (approximation)"
       }
     }
     else if(corr=="hedges") {
-      c = 1 - 3/(4*(n - 2) - 9)
+      c = 1 - 3/(4*(n - 2) - 1)
       comment = "Hedges g (approximation)"
     }
     else if(corr=="durlak") {
