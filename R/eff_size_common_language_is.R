@@ -56,7 +56,7 @@
 #' 
 #' 
 #' @export
-es_common_language_is2 <- function(catField, scaleField, categories=NULL, dmu=0, method="appr"){
+es_common_language_is <- function(catField, scaleField, categories=NULL, dmu=0, method="appr"){
   
   #remove rows with missing values
   df = data.frame(scaleField, catField)
@@ -86,8 +86,7 @@ es_common_language_is2 <- function(catField, scaleField, categories=NULL, dmu=0,
   
   m1 = mean(X1)
   m2 = mean(X2)
-  print(m1)
-  print(m2)
+
   if (method=="appr"){
     z = abs(m1 - m2 - dmu)/sqrt(var1 + var2)
     c1 = pnorm(z)

@@ -39,7 +39,7 @@ The formula used is (Hedges, 1981, p. 110):
 \deqn{g = \frac{\bar{x}_1 - \bar{x}_2}{s_p}}
 
 With:
-\deqn{s_p = \frac{\sqrt{SS_1^2 + SS_2^2}}{n - 2}}
+\deqn{s_p = \sqrt{\frac{SS_1^2 + SS_2^2}{n - 2}}}
 \deqn{SS_i = \sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}
 \deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
 
@@ -52,7 +52,7 @@ With:
 This is also what Cohen refers to as \eqn{d_s} (Cohen, 1988, p. 66).
 
 This uses by default the formula as shown above for \eqn{s_p}. However, sometimes the unweighted version is used. If \emph{varWeighted=FALSE} the following will be used instead:
-\deqn{s_p = \frac{\sqrt{s_1^2 + s_2^2}}{2}}
+\deqn{s_p = \sqrt{\frac{s_1^2 + s_2^2}{2}}}
 
 Hedges proposes the following exact bias correction (Hedges, 1981, p. 111):
 \deqn{g_{c} = g \times\frac{\Gamma\left(m\right)}{\Gamma\left(m - \frac{1}{2}\right)\times\sqrt{m}}}
