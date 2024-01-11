@@ -43,13 +43,14 @@
 #' |21|evenness|Gibbs-Poston M3|(Gibbs & Poston, 1975, p. 472)|differentiation|
 #' |22|evenness|Smith-Wilson E2|(Smith & Wilson, 1996, p. 71)|evenness|
 #' |23|evenness|Smith-Wilson E3|(Smith & Wilson, 1996, p. 71)|evenness|
-#' |24|other|Wilcox MNDIF|(Wilcox, 1973, p. 9)| |
-#' |25|other|Kaiser b|(Kaiser, 1968, p. 211)|apportionment|
+#' |24|evenness|Fisher alpha|(Fisher et al., 1943, p. 55)|diversity|
+#' |25|other|Wilcox MNDIF|(Wilcox, 1973, p. 9)| |
+#' |26|other|Kaiser b|(Kaiser, 1968, p. 211)|apportionment|
 #' 
 #' \* Smith-Wilson E1 is listed with the mean group, since it uses the average frequency. It could of course also be placed in the evenness group.
 #'  
 #' @param data list or dataframe
-#' @param measure optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd"
+#' @param measure optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd", "fisher"
 #' @param var1 optional additional value for some measures
 #' @param var2 optional additional value for some measures
 #' 
@@ -92,6 +93,7 @@
 #' \item *"swe"*, Shannon-Weaver Entropy
 #' \item *"re"*, Renyi entropy, requires a value for *var1*
 #' \item *"vr"*, Freeman's variation ratio
+#' \item *fisher*, Fisher alpha
 #' }
 #' 
 #' **MODE BASED MEASURES**
@@ -308,6 +310,13 @@
 #' 
 #' With \eqn{D_s} being Simpson's D, but defined as:
 #' \deqn{D_s = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
+#' 
+#' **Fisher alpha** ("fisher")
+#' 
+#' The formula used (Fisher et al., 1943, p. 55):
+#' \deqn{k = \alpha \times \ln\left(1 + \frac{n}{\alpha}\right)}
+#' 
+#' The function uses a simple binary search to find the value for \eqn{\alpha} such that the result of the above formula will produce the number of categories (\eqn{k}).
 #' 
 #' **OTHER***
 #' 
@@ -565,6 +574,62 @@ me_qv <- function(data, measure="vr", var1=2, var2=1){
     lbl = "Freeman Variation Ratio"
     pm = fm/n
     qv = 1 - pm}
+  else if (measure=="fisher"){
+    src = "(Fisher et al., 1943, p. 55)"
+    lbl = "Fisher alpha"
+    maxIter = 100
+    a1 = 1
+    k1 = a1 * log(1 + n/a1)
+    
+    if (k1 != k){
+      if (k1 > k){
+        a2 = 0.5}
+      else {
+        a2 = 2}
+      
+      k2 = a2 * log(1 + n / a2)
+      
+      if (k2 != k){
+        k3 = k2
+        iters = 0
+        
+        while (iters < maxIter && k3 != k){
+          iters = iters + 1
+          
+          if (k2 > k){
+            if (k1 > k){
+              a3 = a2 - abs(a2 - a1)}
+            else {
+              a3 = a2 - abs(a2 - a1) / 2}
+          }
+          
+          else {
+            if (k1 < k){
+              a3 = a2 + abs(a2 - a1)}
+            else {
+              a3 = a2 + abs(a2 - a1) / 2}
+          }
+          
+          if (a3 == 0){
+            a3 = a2 - abs(a2 - a1) / 2}
+          
+          k3 = a3 * log(1 + n / a3)
+          
+          a1 = a2
+          a2 = a3
+          k1 = k2
+          k2 = k3
+        }
+      }
+      
+      else {
+        a3 = a2}
+    }
+    else {
+      a3 = a1}
+    qv = a3
+    
+  }
   
   results <- data.frame(unname(qv), lbl, src)
   colnames(results)<-c("value", "measure", "source")

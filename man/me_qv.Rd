@@ -9,7 +9,7 @@ me_qv(data, measure = "vr", var1 = 2, var2 = 1)
 \arguments{
 \item{data}{list or dataframe}
 
-\item{measure}{optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd"}
+\item{measure}{optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd", "fisher"}
 
 \item{var1}{optional additional value for some measures}
 
@@ -62,8 +62,9 @@ I've tried to categorise the measures a bit, based on the calculations. Below is
    21 \tab evenness \tab Gibbs-Poston M3 \tab (Gibbs & Poston, 1975, p. 472) \tab differentiation \cr
    22 \tab evenness \tab Smith-Wilson E2 \tab (Smith & Wilson, 1996, p. 71) \tab evenness \cr
    23 \tab evenness \tab Smith-Wilson E3 \tab (Smith & Wilson, 1996, p. 71) \tab evenness \cr
-   24 \tab other \tab Wilcox MNDIF \tab (Wilcox, 1973, p. 9) \tab  \cr
-   25 \tab other \tab Kaiser b \tab (Kaiser, 1968, p. 211) \tab apportionment \cr
+   24 \tab evenness \tab Fisher alpha \tab (Fisher et al., 1943, p. 55) \tab diversity \cr
+   25 \tab other \tab Wilcox MNDIF \tab (Wilcox, 1973, p. 9) \tab  \cr
+   26 \tab other \tab Kaiser b \tab (Kaiser, 1968, p. 211) \tab apportionment \cr
 }
 
 
@@ -102,6 +103,7 @@ The following measures can be determined:
 \item \emph{"swe"}, Shannon-Weaver Entropy
 \item \emph{"re"}, Renyi entropy, requires a value for \emph{var1}
 \item \emph{"vr"}, Freeman's variation ratio
+\item \emph{fisher}, Fisher alpha
 }
 
 \strong{MODE BASED MEASURES}
@@ -318,6 +320,13 @@ The formula used (Smith & Wilson, 1996, p. 71):
 
 With \eqn{D_s} being Simpson's D, but defined as:
 \deqn{D_s = \sum_{i=1}^k\left(\frac{F_i}{n}\right)^2}
+
+\strong{Fisher alpha} ("fisher")
+
+The formula used (Fisher et al., 1943, p. 55):
+\deqn{k = \alpha \times \ln\left(1 + \frac{n}{\alpha}\right)}
+
+The function uses a simple binary search to find the value for \eqn{\alpha} such that the result of the above formula will produce the number of categories (\eqn{k}).
 
 \strong{OTHER}*
 
