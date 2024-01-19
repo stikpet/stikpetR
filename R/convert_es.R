@@ -69,6 +69,27 @@
 #' **Cohen w to Contingency Coefficient**
 #'
 #' fr="cohenw", to="cc"
+#' 
+#' *Cohen w to Cramér V GoF*
+#' 
+#' fr="cohenw", to="cramervgof", ex1=k
+#' 
+#' This uses (Cohen, 1988, p. 223):
+#' \deqn{v = \frac{w}{\sqrt{k - 1}}}
+#' 
+#' *Cohen w to Cramér V ind.*
+#' 
+#' fr="cohenw", to="cramervind", ex1=r, ex2=c
+#' 
+#' This uses:
+#' \deqn{v = \frac{w}{\sqrt{\min\left(r - 1, c - 1\right)}}}
+#' 
+#' *Cohen w to Fei*
+#' 
+#' fr="cohenw", to="fei", ex1=minExp/n
+#' 
+#' This uses:
+#' \deqn{Fei = \frac{w}{\sqrt{\frac{1}{p_E}-1}}}
 #'
 #'
 #' **CRAMER V GoF**
@@ -110,6 +131,21 @@
 #'
 #' This uses:
 #' \deqn{\epsilon^2 = \frac{n\times\eta^2 - k + \left(1 - \eta^2\right)}{n - l}}
+#' 
+#' **FEI**
+#' 
+#' *Fei to Cohen w*
+#' 
+#' fr="fei", to="cohenw", ex1=minExp/n
+#' 
+#' This uses:
+#' \deqn{w = Fei\times\sqrt{\frac{1}{p_E}-1}}
+#' 
+#' *Fei to Johnston-Berry-Mielke E*
+#' fr="fei", to="jbme"
+#' 
+#' This uses:
+#' \deqn{E = Fei^2}
 #'
 #' **JOHNSTON-BERRY-MIELKE**
 #'
@@ -120,6 +156,12 @@
 #' This uses (Johnston et al., 2006, p. 413):
 #' \deqn{w = \sqrt{\frac{E\times\left(1 - \right)}{q}}}
 #' 
+#' *Johnston-Berry-Mielke E to Cohen w*
+#' 
+#' fr="jbme", to="fei"
+#' 
+#' This uses:
+#' \deqn{Fei = \sqrt(E)}
 #' 
 #' **ODDS RATIO**
 #'
@@ -269,7 +311,13 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   #Cohen w to Contingency Coefficient
   else if(fr=="cohenw" && to=="cc"){res = sqrt(es^2 / (1 + es^2))}
 
-
+  #Cohen w to Cramer V
+  else if(fr=="cohenw" && to=="cramervgof"){res = es/sqrt(ex1 - 1)}
+  else if(fr=="cohenw" && to=="cramervind"){res = es/sqrt(min(ex1 - 1, ex2 -1))}
+  
+  #Cohen w to Fei
+  else if(fr=="cohenw" && to=="fei"){res = es/sqrt(1/ex1 - 1)}
+  
   #CONTINGENCY COEFFICIENT
   #Contingency Coefficient to Cohen w
   else if(fr=="cc" && to=="cohenw"){res = sqrt(es^2 / (1 - es^2))}
@@ -278,6 +326,8 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   #CRAMÉR V
   #Cramer's v GoF to Cohen w
   else if(fr=="cramervgof" && to=="cohenw") {res = es*sqrt(ex1 - 1)}
+  #Cramer's v Ind. to Cohen w
+  else if(fr=="cramervind" && to=="cohenw") {res = es*sqrt(min(ex1 - 1, ex2 - 1))}
 
   #EPSILON SQUARED
   #Epsilon squared to Eta squared
@@ -292,10 +342,20 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
 
   #Eta squared to Epsilon Squared
   else if(fr=="etasq" && to=="epsilonsq") {res = (ex1*es - ex2 + (1 - es))/(ex1 - ex2)}
+  
+  #FEI    
+  #Fei to Cohen w
+  else if(fr=="fei" && to=="cohenw") {res = es*sqrt(1/ex1 - 1)}
+  
+  #Fei to Johnston-Berry-Mielke E
+  else if(fr=="fei" && to=="jbme") {res = es**2}
 
   #JOHNSTON-BERRY-MIELKE E
   #Johnston-Berry-Mielke E to Cohen w
   else if(fr=="jbme" && to=="cohenw") {res = sqrt(es*(1 - ex1)/(ex1))}
+  
+  #Johnston-Berry-Mielke E to Fei
+  else if(fr=="jbme" && to=="fei") {res = sqrt(es)}
 
   #ODDS RATIO
   #Odds Ratio to Cohen d (Chinn, 2000, p. 3129)

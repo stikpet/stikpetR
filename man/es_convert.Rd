@@ -80,6 +80,27 @@ This uses (Cohen, 1988, p. 203):
 
 fr="cohenw", to="cc"
 
+\emph{Cohen w to Cramér V GoF}
+
+fr="cohenw", to="cramervgof", ex1=k
+
+This uses (Cohen, 1988, p. 223):
+\deqn{v = \frac{w}{\sqrt{k - 1}}}
+
+\emph{Cohen w to Cramér V ind.}
+
+fr="cohenw", to="cramervind", ex1=r, ex2=c
+
+This uses:
+\deqn{v = \frac{w}{\sqrt{\min\left(r - 1, c - 1\right)}}}
+
+\emph{Cohen w to Fei}
+
+fr="cohenw", to="fei", ex1=minExp/n
+
+This uses:
+\deqn{Fei = \frac{w}{\sqrt{\frac{1}{p_E}-1}}}
+
 \strong{CRAMER V GoF}
 
 \strong{Cramer's v for Goodness-of-Fit to Cohen w}
@@ -119,6 +140,21 @@ fr="etasq", to="epsilonsq", ex1=n, ex2=k
 This uses:
 \deqn{\epsilon^2 = \frac{n\times\eta^2 - k + \left(1 - \eta^2\right)}{n - l}}
 
+\strong{FEI}
+
+\emph{Fei to Cohen w}
+
+fr="fei", to="cohenw", ex1=minExp/n
+
+This uses:
+\deqn{w = Fei\times\sqrt{\frac{1}{p_E}-1}}
+
+\emph{Fei to Johnston-Berry-Mielke E}
+fr="fei", to="jbme"
+
+This uses:
+\deqn{E = Fei^2}
+
 \strong{JOHNSTON-BERRY-MIELKE}
 
 \strong{Johnston-Berry-Mielke E to Cohen w}
@@ -127,6 +163,13 @@ fr="jbme", to="cohenw", ex1=minExp/n
 
 This uses (Johnston et al., 2006, p. 413):
 \deqn{w = \sqrt{\frac{E\times\left(1 - \right)}{q}}}
+
+\emph{Johnston-Berry-Mielke E to Cohen w}
+
+fr="jbme", to="fei"
+
+This uses:
+\deqn{Fei = \sqrt(E)}
 
 \strong{ODDS RATIO}
 
