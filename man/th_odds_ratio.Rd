@@ -9,7 +9,7 @@ th_odds_ratio(or, qual = "chen")
 \arguments{
 \item{or}{the odds ratio}
 
-\item{qual}{optional rule of thumb to use. Either "chen" (default), "wuensch", or "jones"}
+\item{qual}{optional rule of thumb to use. Either "chen" (default), "wuensch", "jones1", "jones2", or "hopkins"}
 }
 \value{
 Dataframe with:
@@ -22,7 +22,7 @@ This function will give a qualification (classification) for a given Odds Ratio
 \details{
 If the OR is less than 1, the alternative is used, i.e. 1/OR.
 
-Chen et al. (2010, p. 862):\tabular{ll}{
+"chen" => Chen et al. (2010, p. 864)\tabular{ll}{
    OR \tab Interpretation \cr
    1.00 < 1.68 \tab negligible \cr
    1.68 < 3.47 \tab weak \cr
@@ -31,21 +31,41 @@ Chen et al. (2010, p. 862):\tabular{ll}{
 }
 
 
-Wuensch (2009, p. 2):\tabular{ll}{
-   OR \tab Interpretation \cr
-   1.00 < 1.49 \tab negligible \cr
-   1.49 < 3.45 \tab small \cr
-   3.45 < 9 \tab medium \cr
-   9 or more \tab large \cr
+"hopkins" => Hopkins (1997, tbl. 1)\tabular{ll}{
+   \\(OR^{\\ast}\\) \tab Interpretation \cr
+   1.00 < 1.50 \tab trivial \cr
+   1.50 < 3.50 \tab small \cr
+   3.50 < 9.00 \tab moderate \cr
+   9.00 < 32.0 \tab large \cr
+   32.0 < 360 \tab very large \cr
+   360 or more \tab nearly perfect \cr
 }
 
 
-Jones (2014):\tabular{ll}{
+"jones1" => Jones (2014)\tabular{ll}{
    OR \tab Interpretation \cr
    1.00 < 1.5 \tab negligible \cr
    1.5 < 2.5 \tab small \cr
    2.5 < 4.3 \tab medium \cr
    4.3 or more \tab large \cr
+}
+
+
+"jones2" => Jones (2014)\tabular{ll}{
+   OR \tab Interpretation \cr
+   1.00 < 1.5 \tab negligible \cr
+   1.5 < 3.5 \tab small \cr
+   2.5 < 9.0 \tab medium \cr
+   9.0 or more \tab large \cr
+}
+
+
+"wuensch" => Wuensch (2009, p. 2)\tabular{ll}{
+   OR \tab Interpretation \cr
+   1.00 < 1.49 \tab negligible \cr
+   1.49 < 3.45 \tab small \cr
+   3.45 < 9 \tab medium \cr
+   9 or more \tab large \cr
 }
 }
 \examples{
@@ -54,7 +74,9 @@ th_odds_ratio(5.23, qual="wuensch")
 
 }
 \references{
-Chen, H., Cohen, P., & Chen, S. (2010). How big is a big Odds Ratio? Interpreting the magnitudes of Odds Ratios in epidemiological studies. \emph{Communications in Statistics - Simulation and Computation, 39}(4), 860–864. https://doi.org/10.1080/03610911003650383
+Chen, H., Cohen, P., & Chen, S. (2010). How big is a big Odds Ratio? Interpreting the magnitudes of Odds Ratios in epidemiological studies. \emph{Communications in Statistics - Simulation and Computation, 39}(4), 860–864. doi:10.1080/03610911003650383
+
+Hopkins, W. G. (2006, August 7). New view of statistics: Effect magnitudes. http://www.sportsci.org/resource/stats/effectmag.html
 
 Jones, K. (2014, June 5). How do you interpret the odds ratio (OR)? ResearchGate. https://www.researchgate.net/post/How_do_you_interpret_the_odds_ratio_OR
 

@@ -9,7 +9,7 @@ th_pearson_r(r, qual = "bartz")
 \arguments{
 \item{r}{the correlation coefficient}
 
-\item{qual}{optional the rule of thumb to be used. Either "\verb{bartz"} (default), \code{"rafter"}, \code{"cohen"}, \code{"rumsey"}, \code{"rosenthal"}, \code{"agnes"}, \code{"disha"}, \code{"hopkins"}, \code{"funder"}, \code{"gignac"}, \code{"hemphill"}, or \code{"lovakov"}}
+\item{qual}{optional the rule of thumb to be used. Either "\verb{bartz"} (default), \code{"agnes"}, \code{"brydges"}, \code{"cohen"}, \code{"disha"}, \code{"funder"}, \code{"hopkins"}, \code{"lovakov"}, \code{"rafter"}, \code{"rea"}, \code{"rosenthal"}, \code{"rumsey"}, \code{"gignac"}, or \code{"hemphill"}}
 }
 \value{
 A dataframe with:
@@ -22,62 +22,6 @@ This function will give a qualification (classification) to a given correlation 
 \details{
 The following rules-of-thumb can be used:
 
-"rafter" => Rafter et al. (2003, p. 194)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.25 \tab weak \cr
-   0.25 < 0.75 \tab moderate \cr
-   0.75 or more \tab strong \cr
-}
-
-
-"cohen" => Cohen (1988, p. 82)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.20 \tab negligible \cr
-   0.20 < 0.50 \tab small \cr
-   0.50 < 0.80 \tab medium \cr
-   0.80 or more \tab large \cr
-}
-
-
-"rumsey" => Rumsey (2011, p. 284)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.30 \tab negligible \cr
-   0.30 < 0.50 \tab weak \cr
-   0.50 < 0.70 \tab moderate \cr
-   0.70 or more \tab strong \cr
-}
-
-
-"gignac" => Gignac and Szodorai (2016, p. 75)
-
-"hemphill" => Hemphill (2003, p. 78)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.10 \tab negligible \cr
-   0.10 < 0.20 \tab small \cr
-   0.20 < 0.30 \tab medium \cr
-   0.30 or more \tab large \cr
-}
-
-
-"lovakov" => Lovakov and Agadullina (2021, p. 514)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.12 \tab negligible \cr
-   0.12 < 0.24 \tab small \cr
-   0.24 < 0.41 \tab medium \cr
-   0.41 or more \tab large \cr
-}
-
-
-"rosenthal" => Rosenthal (1996, p. 45)\tabular{ll}{
-   |r| \tab Interpretation \cr
-   0.00 < 0.10 \tab negligible \cr
-   0.10 < 0.30 \tab small \cr
-   0.30 < 0.50 \tab medium \cr
-   0.50 < 0.70 \tab large \cr
-   0.70 or more \tab very large \cr
-}
-
-
 "agnes" => Agnes (2011)\tabular{ll}{
    |r| \tab Interpretation \cr
    0.00 < 0.20 \tab negligible \cr
@@ -88,13 +32,35 @@ The following rules-of-thumb can be used:
 }
 
 
-"bartz" => Bartz (1999, p. 184, as cited in Warmbrod 2001)\tabular{ll}{
+"bartz" => Bartz (1988, p. 199)\tabular{ll}{
    |r| \tab Interpretation \cr
    0.00 < 0.20 \tab very low \cr
    0.20 < 0.40 \tab low \cr
    0.40 < 0.60 \tab moderate \cr
    0.60 < 0.80 \tab strong \cr
    0.80 or more \tab very high \cr
+}
+
+
+"brydges" => Brydges (2019, p. 5) =
+
+"gignac" => Gignac and Szodorai (2016, p. 75) =
+
+"hemphill" => Hemphill (2003, p. 78)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.10 \tab negligible \cr
+   0.10 < 0.20 \tab small \cr
+   0.20 < 0.30 \tab medium \cr
+   0.30 or more \tab large \cr
+}
+
+
+"cohen" => Cohen (1988, p. 82)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.20 \tab negligible \cr
+   0.20 < 0.50 \tab small \cr
+   0.50 < 0.80 \tab medium \cr
+   0.80 or more \tab large \cr
 }
 
 
@@ -109,7 +75,18 @@ The following rules-of-thumb can be used:
 }
 
 
-"hopkins" => Hopkins (1997, as cited in Warmbrod 2001)\tabular{ll}{
+"funder" => Funder and Ozer (2019, p. 166)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.05 \tab negligible \cr
+   0.05 < 0.10 \tab very small \cr
+   0.10 < 0.20 \tab small \cr
+   0.20 < 0.30 \tab medium \cr
+   0.30 < 0.40 \tab large \cr
+   0.40 or more \tab very large \cr
+}
+
+
+"hopkins" => Hopkins (2006, tbl. 1)\tabular{ll}{
    |r| \tab Interpretation \cr
    0.00 < 0.10 \tab trivial \cr
    0.10 < 0.30 \tab low \cr
@@ -120,14 +97,49 @@ The following rules-of-thumb can be used:
 }
 
 
-"funder" => Funder and Ozer (2019, p. 166)\tabular{ll}{
+"lovakov" => Lovakov and Agadullina (2021, p. 514)\tabular{ll}{
    |r| \tab Interpretation \cr
-   0.00 < 0.05 \tab negligible \cr
-   0.05 < 0.10 \tab very small \cr
-   0.10 < 0.20 \tab small \cr
-   0.20 < 0.30 \tab medium \cr
-   0.30 < 0.40 \tab large \cr
-   0.40 or more \tab very large \cr
+   0.00 < 0.12 \tab negligible \cr
+   0.12 < 0.24 \tab small \cr
+   0.24 < 0.41 \tab medium \cr
+   0.41 or more \tab large \cr
+}
+
+
+"rafter" => Rafter et al. (2003, p. 194)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.25 \tab weak \cr
+   0.25 < 0.75 \tab moderate \cr
+   0.75 or more \tab strong \cr
+}
+
+
+"rea" => Rea and Parker (2014, pp. 229, 271)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.10 \tab negligible \cr
+   0.10 < 0.30 \tab low \cr
+   0.30 < 0.60 \tab moderate \cr
+   0.60 < 0.75 \tab strong \cr
+   0.75 or more \tab very strong \cr
+}
+
+
+"rosenthal" => Rosenthal (1996, p. 45)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.10 \tab negligible \cr
+   0.10 < 0.30 \tab small \cr
+   0.30 < 0.50 \tab medium \cr
+   0.50 < 0.70 \tab large \cr
+   0.70 or more \tab very large \cr
+}
+
+
+"rumsey" => Rumsey (2011, p. 284)\tabular{ll}{
+   |r| \tab Interpretation \cr
+   0.00 < 0.30 \tab negligible \cr
+   0.30 < 0.50 \tab weak \cr
+   0.50 < 0.70 \tab moderate \cr
+   0.70 or more \tab strong \cr
 }
 }
 \examples{
@@ -138,25 +150,31 @@ th_pearson_r(es)
 \references{
 Agnes. (2011, April 16). Correlation – Correlation coefficient, r. Finance Training Course. https://financetrainingcourse.com/education/2011/04/correlation-correlation-coefficient-r/
 
+Bartz, A. E. (1988). \emph{Basic statistical concepts} (3rd ed.). Macmillan.
+
+Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. \emph{Innovation in Aging, 3}(4), 1–8. doi:10.1093/geroni/igz036
+
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
 Disha, M. (2016, November 3). Correlation: Meaning, types and its computation. Your Article Library. https://www.yourarticlelibrary.com/statistics-2/correlation-meaning-types-and-its-computation-statistics/92001
 
-Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. \emph{Advances in Methods and Practices in Psychological Science, 2}(2), 156–168. https://doi.org/10.1177/2515245919847202
+Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. \emph{Advances in Methods and Practices in Psychological Science, 2}(2), 156–168. doi:10.1177/2515245919847202
 
-Gignac, G. E., & Szodorai, E. T. (2016). Effect size guidelines for individual differences researchers. \emph{Personality and Individual Differences, 102}, 74–78. https://doi.org/10.1016/j.paid.2016.06.069
+Gignac, G. E., & Szodorai, E. T. (2016). Effect size guidelines for individual differences researchers. \emph{Personality and Individual Differences, 102}, 74–78. doi:10.1016/j.paid.2016.06.069
 
-Hemphill, J. F. (2003). Interpreting the magnitudes of correlation coefficients. \emph{American Psychologist, 58}(1), 78–79. https://doi.org/10.1037/0003-066X.58.1.78
+Hemphill, J. F. (2003). Interpreting the magnitudes of correlation coefficients. \emph{American Psychologist, 58}(1), 78–79. doi:10.1037/0003-066X.58.1.78
 
-Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. \emph{European Journal of Social Psychology, 51}(3), 485–504. https://doi.org/10.1002/ejsp.2752
+Hopkins, W. G. (2006, August 7). New view of statistics: Effect magnitudes. http://www.sportsci.org/resource/stats/effectmag.html
+
+Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. \emph{European Journal of Social Psychology, 51}(3), 485–504. doi:10.1002/ejsp.2752
 
 Rafter, J. A., Abell, M. L., & Braselton, J. P. (2003). \emph{Statistics with Maple}. Academic Press.
 
-Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. \emph{Journal of Social Service Research, 21}(4), 37–59. https://doi.org/10.1300/J079v21n04_02
+Rea, L. M., & Parker, R. A. (2014). \emph{Designing and conducting survey research: A comprehensive guide} (4th ed.). Jossey-Bass, a Wiley brand.
+
+Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. \emph{Journal of Social Service Research, 21}(4), 37–59. doi:10.1300/J079v21n04_02
 
 Rumsey, D. J. (2011). \emph{Statistics for dummies} (2nd ed.). Wiley.
-
-Warmbrod, J. R. (2001). Calculating, interpreting, and reporting estimates of “effect size": Magnitude of an effect or the strength of a relationship. https://www.depts.ttu.edu/aged/toolbox/effect_size.pdf
 }
 \seealso{
 \code{\link{r_pearson}}, to determine Pearson correlation coefficient or

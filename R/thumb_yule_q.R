@@ -41,7 +41,7 @@ th_yule_q <- function(q, qual="glen"){
     ref = "Glen (2017)"
     if (abs(q)<0.29) {qual = "very small"}
     else if (abs(q)<0.49) {qual = "moderate"}
-    else if (abs(q)<0.69) {qual = "substantion"}
+    else if (abs(q)<0.69) {qual = "substantial"}
     else{qual = "very strong"}
   }
   

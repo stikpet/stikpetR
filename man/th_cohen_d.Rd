@@ -9,7 +9,7 @@ th_cohen_d(d, qual = "sawilowsky")
 \arguments{
 \item{d}{the Cohen d value}
 
-\item{qual}{optional the rule of thumb to be used. Either "sawilowsky" (default), "cohen", "lovakov", or "rosenthal"}
+\item{qual}{optional the rule of thumb to be used. Either "sawilowsky" (default), "brydges", cohen", "rosenthal", or "lovakov"}
 }
 \value{
 A dataframe with:
@@ -21,6 +21,15 @@ This function will give a qualification (classification) for Cohen d
 }
 \details{
 The following rules-of-thumb can be used:
+
+\emph{"brydges"} => Brydges (2019, p. 5):\tabular{ll}{
+   \|d\| \tab Interpretation \cr
+   0.00 < 0.15 \tab negligible \cr
+   0.15 < 0.40 \tab small \cr
+   0.40 < 0.75 \tab medium \cr
+   0.75 or more \tab large \cr
+}
+
 
 "cohen" => Cohen (1988, p. 40)\tabular{ll}{
    |d| \tab Interpretation \cr
@@ -67,13 +76,15 @@ th_cohen_d(es)
  
 }
 \references{
+Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. \emph{Innovation in Aging, 3}(4), 1–8. doi:10.1093/geroni/igz036
+
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
-Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. \emph{European Journal of Social Psychology, 51}(3), 485–504. https://doi.org/10.1002/ejsp.2752
+Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. \emph{European Journal of Social Psychology, 51}(3), 485–504. doi:10.1002/ejsp.2752
 
-Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. \emph{Journal of Social Service Research, 21}(4), 37–59. https://doi.org/10.1300/J079v21n04_02
+Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. \emph{Journal of Social Service Research, 21}(4), 37–59. doi:10.1300/J079v21n04_02
 
-Sawilowsky, S. (2009). New effect size rules of thumb. \emph{Journal of Modern Applied Statistical Methods, 8}(2). https://doi.org/10.22237/jmasm/1257035100
+Sawilowsky, S. (2009). New effect size rules of thumb. \emph{Journal of Modern Applied Statistical Methods, 8}(2). doi:10.22237/jmasm/1257035100
 }
 \seealso{
 \code{\link{es_cohen_d}}, to determine Cohen d

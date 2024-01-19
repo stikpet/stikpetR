@@ -4,7 +4,7 @@
 #' This function will give a qualification (classification) for Cohen d
 #' 
 #' @param d the Cohen d value
-#' @param qual optional the rule of thumb to be used. Either "sawilowsky" (default), "cohen", "lovakov", or "rosenthal"
+#' @param qual optional the rule of thumb to be used. Either "sawilowsky" (default), "brydges", cohen", "rosenthal", or "lovakov"
 #' 
 #' @returns 
 #' A dataframe with:
@@ -13,6 +13,15 @@
 #' 
 #' @details 
 #' The following rules-of-thumb can be used:
+#' 
+#' *"brydges"* => Brydges (2019, p. 5):
+#' 
+#' |\\|d\\|| Interpretation|
+#' |---|----------|
+#' |0.00 < 0.15 | negligible |
+#' |0.15 < 0.40 | small |
+#' |0.40 < 0.75 | medium |
+#' |0.75 or more | large |
 #' 
 #' "cohen" => Cohen (1988, p. 40)
 #' 
@@ -60,14 +69,16 @@
 #' 
 #' \code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
 #' 
-#' @references 
+#' @references
+#' Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. *Innovation in Aging, 3*(4), 1–8. doi:10.1093/geroni/igz036
+#' 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #' 
-#' Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. *European Journal of Social Psychology, 51*(3), 485–504. https://doi.org/10.1002/ejsp.2752
+#' Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. *European Journal of Social Psychology, 51*(3), 485–504. doi:10.1002/ejsp.2752
 #' 
-#' Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. *Journal of Social Service Research, 21*(4), 37–59. https://doi.org/10.1300/J079v21n04_02
+#' Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. *Journal of Social Service Research, 21*(4), 37–59. doi:10.1300/J079v21n04_02
 #' 
-#' Sawilowsky, S. (2009). New effect size rules of thumb. *Journal of Modern Applied Statistical Methods, 8*(2). https://doi.org/10.22237/jmasm/1257035100
+#' Sawilowsky, S. (2009). New effect size rules of thumb. *Journal of Modern Applied Statistical Methods, 8*(2). doi:10.22237/jmasm/1257035100
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -79,8 +90,21 @@
 #' @export
 th_cohen_d <- function(d, qual="sawilowsky"){
   
+  #Brydges (2019, p. 5)
+  if (qual=="brydges") {
+    ref = "Brydges (2019, p. 5)"
+    if (abs(d) < 0.15) {
+      qual = "negligible"}
+    else if (abs(d) < 0.40){
+      qual = "small"}
+    else if (abs(d) < 0.75){
+      qual = "medium"}
+    else {
+      qual = "large"}
+  }
+  
   #Cohen (1988, p. 40)
-  if (qual=="cohen") {
+  else if (qual=="cohen") {
     ref = "Cohen (1988, p. 40)"
     if (abs(d) < 0.2) {
       qual = "negligible"}
