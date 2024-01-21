@@ -332,6 +332,8 @@
 #' The formula used (Kaiser, 1968, p. 211):
 #' \deqn{B = 1 - \sqrt{1 - \left(\sqrt[k]{\prod_{i=1}^k\frac{f_i\times k}{n}}\right)^2}}
 #' 
+#' Kaiser also provides rules-of-thumb for interpretation (see \code{\link{th_kaiser_b}}, for these).
+#' 
 #' @references
 #' Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. *Science, 168*(3937), 1345–1347. doi:10.1126/science.168.3937.1345
 #' 

@@ -341,6 +341,8 @@ The formula used is (Wilcox, 1973, p. 9):
 
 The formula used (Kaiser, 1968, p. 211):
 \deqn{B = 1 - \sqrt{1 - \left(\sqrt[k]{\prod_{i=1}^k\frac{f_i\times k}{n}}\right)^2}}
+
+Kaiser also provides rules-of-thumb for interpretation (see \code{\link{th_kaiser_b}}, for these).
 }
 \examples{
 #Example 1: dataframe
