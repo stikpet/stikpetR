@@ -70,6 +70,8 @@ The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p
 \deqn{G_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
 Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
 
+Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+
 The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{G_{P} = G\times\frac{n - 1}{n}}
 
@@ -110,21 +112,23 @@ ts_g_gof(ex3)
 
 }
 \references{
-Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1–6. https://doi.org/10.48550/ARXIV.1206.4881
+Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
+
+Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1–6. doi:10.48550/ARXIV.1206.4881
 
 Li, B., & Babu, G. J. (2019). \emph{A graduate course on statistical inference}. Springer.
 
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. https://doi.org/10.2307/2332518
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
 
-Quine, M. P., & Robinson, J. (1985). Efficiencies of chi-square and likelihood Ratio goodness-of-fit tests. \emph{The Annals of Statistics, 13}(2), 727–742. https://doi.org/10.1214/aos/1176349550
+Quine, M. P., & Robinson, J. (1985). Efficiencies of chi-square and likelihood Ratio goodness-of-fit tests. \emph{The Annals of Statistics, 13}(2), 727–742. doi:10.1214/aos/1176349550
 
-Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. \emph{The Annals of Mathematical Statistics, 9}(1), 60–62. https://doi.org/10.1214/aoms/1177732360
+Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. \emph{The Annals of Mathematical Statistics, 9}(1), 60–62. doi:10.1214/aoms/1177732360
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

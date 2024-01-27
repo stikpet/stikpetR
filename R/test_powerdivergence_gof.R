@@ -20,7 +20,7 @@
 #' @param data A vector or dataframe with the data
 #' @param expCounts Optional dataframe with the categories and expected counts
 #' @param lambd Optional either name of test or specific value. Either "cressie-read" (default), "g", "mod-log", "freeman-tukey", or "neyman"
-#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"
 #' 
 #' @returns 
 #' Dataframe with:
@@ -63,6 +63,11 @@
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
 #' 
+#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+#' 
+#' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+#' 
 #' The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{adj}^2 = \chi_{C}^{2}\times\frac{n - 1}{n}}
 #' 
@@ -75,21 +80,23 @@
 #' @references 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
 #' 
-#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. https://doi.org/10.1111/j.2517-6161.1984.tb01318.x
+#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. doi:10.1111/j.2517-6161.1984.tb01318.x
 #' 
-#' Freeman, M. F., & Tukey, J. W. (1950). Transformations related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607–611. https://doi.org/10.1214/aoms/1177729756
+#' Freeman, M. F., & Tukey, J. W. (1950). Transformations related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607–611. doi:10.1214/aoms/1177729756
 #' 
-#' Neyman, J. (1949). Contribution to the theory of the chi-square test. Berkeley Symposium on Math. Stat, and Prob, 239–273. https://doi.org/10.1525/9780520327016-030
+#' Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. *Statistics in Medicine, 9*(4), 363–367. doi:10.1002/sim.4780090403
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
+#' Neyman, J. (1949). Contribution to the theory of the chi-square test. Berkeley Symposium on Math. Stat, and Prob, 239–273. doi:10.1525/9780520327016-030
 #' 
-#' Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. *Philosophical Magazine Series 5, 50*(302), 157–175. https://doi.org/10.1080/14786440009463897
+#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. doi:10.2307/2332518
 #' 
-#' Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. *The Annals of Mathematical Statistics, 9*(1), 60–62. https://doi.org/10.1214/aoms/1177732360
+#' Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. *Philosophical Magazine Series 5, 50*(302), 157–175. doi:10.1080/14786440009463897
 #' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
+#' Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. *The Annals of Mathematical Statistics, 9*(1), 60–62. doi:10.1214/aoms/1177732360
 #' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
+#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. doi:10.2307/2335081
+#' 
+#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. doi:10.2307/2983604
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -224,7 +231,6 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   else{
     ts = 2*sum(freqs*((freqs/expC)**(lambd) - 1))/(lambd*(lambd + 1))}
   
-  print(ts)
   #set E.S. Pearson correction
   if (cc=="pearson"){
     corFactor = (n - 1)/n

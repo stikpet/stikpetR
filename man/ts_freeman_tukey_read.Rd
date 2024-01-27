@@ -107,11 +107,13 @@ ts_freeman_tukey_read(ex3)
 
 }
 \references{
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. https://doi.org/10.2307/2332518
+Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
 
-Read, C. B. (1993). Freeman-Tukey chi-squared goodness-of-fit statistics. \emph{Statistics & Probability Letters, 18}(4), 271–278. https://doi.org/10.1016/0167-7152(93)90015-B
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
+Read, C. B. (1993). Freeman-Tukey chi-squared goodness-of-fit statistics. \emph{Statistics & Probability Letters, 18}(4), 271–278. doi:10.1016/0167-7152(93)90015-B
+
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

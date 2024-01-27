@@ -2,7 +2,7 @@
 #' 
 #' @param data A vector with the data
 #' @param expCount Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction (default is "none")
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"
 #' @param lambda optional power to use in equation (see details)
 #' @returns 
 #' Dataframe with:
@@ -57,6 +57,12 @@
 #' The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
 #' \deqn{\chi_{CY}^2 = \sum_{i=1}^k \frac{\left(\left|F_i - E_i\right| - 0.5\right)^2}{E_i}}
 #' 
+#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+#' 
+#' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+#' 
+#' 
 #' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{CP}^2 = \chi_{P}^{2}\times\frac{n - 1}{n}}
 #' 
@@ -100,13 +106,15 @@
 #' n*powerDivStat(obs/n, exp, lambda=2/3)
 #' 
 #' @references 
-#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. https://doi.org/10.1111/j.2517-6161.1984.tb01318.x
+#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. doi:10.1111/j.2517-6161.1984.tb01318.x
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
+#' Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. *Statistics in Medicine, 9*(4), 363–367. doi:10.1002/sim.4780090403
 #' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
+#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. doi:10.2307/2332518
 #' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
+#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. doi:10.2307/2335081
+#' 
+#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. doi:10.2307/2983604
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
@@ -198,7 +206,10 @@ ts_cressie_read_gof <- function(data, expCount=NULL, cc = c("none", "yates", "pe
     for (i in 1:k){
       chiVal = chiVal + (abs(as.numeric(freq[i, 2]) - expC[i]) - 0.5) ^ 2 / expC[i]}
   }
-  
+  else if (cc == "yates2"){
+    for (i in 1:k){
+      chiVal = chiVal + (max(0, abs(as.numeric(freq[i, 2]) - expC[i]) - 0.5)) ^ 2 / expC[i]}
+  }
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used

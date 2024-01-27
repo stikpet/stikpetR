@@ -11,7 +11,7 @@
 #' 
 #' @param data A vector or dataframe
 #' @param expCounts Optional dataframe with the categories and expected counts 
-#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"
 #' 
 #' @returns 
 #' Dataframe with:
@@ -53,6 +53,11 @@
 #' The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
 #' \deqn{\chi_{NY}^2 = \sum_{i=1}^k \frac{\left(\left|F_i - E_i\right| - 0.5\right)^2}{O_i}}
 #' 
+#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+#' 
+#' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+#' 
 #' The Pearson correction (pearson) is calculated using (E.S. Pearson, 1947, p. 157):
 #' \deqn{\chi_{NP}^2 = \chi_{N}^{2}\times\frac{n - 1}{n}}
 #' 
@@ -61,14 +66,18 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' 
-#' @references 
-#' Neyman, J. (1949). Contribution to the theory of the chi-square test. *Berkeley Symposium on Math. Stat, and Prob*, 239–273. https://doi.org/10.1525/9780520327016-030
+#' @references
+#' Allen, A. O. (1990). *Probability, statistics, and queueing theory with computer science applications* (2nd ed.). Academic Press.
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. https://doi.org/10.2307/2332518
+#' Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. *Statistics in Medicine, 9*(4), 363–367. doi:10.1002/sim.4780090403
+#'  
+#' Neyman, J. (1949). Contribution to the theory of the chi-square test. *Berkeley Symposium on Math. Stat, and Prob*, 239–273. doi:10.1525/9780520327016-030
 #' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. https://doi.org/10.2307/2335081
+#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. doi:10.2307/2332518
 #' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. https://doi.org/10.2307/2983604
+#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. doi:10.2307/2335081
+#' 
+#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. doi:10.2307/2983604
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -148,10 +157,21 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
   
   if (cc == "yates"){
     for (i in 1:k){
-      if (as.numeric(freq[i, 2] > expC[i])){
+      if (as.numeric(freq[i, 2] >= expC[i])){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
       else if (as.numeric(freq[i, 2] < expC[i])){
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+    }
+  }
+  
+  if (cc == "yates2"){
+    for (i in 1:k){
+      if (abs(freq[i, 2] - expC[i])>0.5){
+        if (as.numeric(freq[i, 2] >= expC[i])){
+          freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+        else if (as.numeric(freq[i, 2] < expC[i])){
+          freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+      }
     }
   }
   
@@ -174,7 +194,7 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
     testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (cc == "yates"){
+  else if (cc == "yates" || cc == "yates2"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
   statistic=chiVal

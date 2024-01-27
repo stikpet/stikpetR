@@ -16,7 +16,7 @@ ts_freeman_tukey_gof(
 
 \item{expCounts}{Optional dataframe with the categories and expected counts}
 
-\item{cc}{Optional continuity correction. Either "none" (default), "yates", "pearson", "williams"}
+\item{cc}{Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"}
 
 \item{modified}{boolean, optional. indicate the use of the modified version. Default is False}
 }
@@ -73,6 +73,11 @@ The test is attributed to Freeman and Tukey (1950), but couldn't really find it 
 The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
 
+In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+\deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+
+Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+
 The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{\chi_{adj}^2 = \chi_{FT}^{2}\times\frac{n - 1}{n}}
 
@@ -105,11 +110,15 @@ ts_freeman_tukey_gof(ex3, expCount=eCounts)
 
 }
 \references{
-Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. \emph{Science World Journal, 2}(2), 21–27. https://doi.org/10.4314/swj.v2i2.51730
+Allen, A. O. (1990). \emph{Probability, statistics, and queueing theory with computer science applications} (2nd ed.). Academic Press.
+
+Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. \emph{Science World Journal, 2}(2), 21–27. doi:10.4314/swj.v2i2.51730
 
 Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). \emph{Discrete multivariate analysis}. Springer.
 
-Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. \emph{The Annals of Mathematical Statistics, 21}(4), 607–611. https://doi.org/10.1214/aoms/1177729756
+Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. \emph{The Annals of Mathematical Statistics, 21}(4), 607–611. doi:10.1214/aoms/1177729756
+
+Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
 
 Larntz, K. (1978). Small-sample comparisons of exact levels for chi-squared goodness-of-fit statistics. \emph{Journal of the American Statistical Association, 73}(362), 253–263. doi:10.1080/01621459.1978.10481567
 
@@ -117,9 +126,9 @@ Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams�
 
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. https://doi.org/10.2307/2332518
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. https://doi.org/10.2307/2335081
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
