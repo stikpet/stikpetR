@@ -70,6 +70,8 @@ The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p
 \deqn{\chi_{MLRY}^2=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
 Where if \eqn{E_i = 0} then \eqn{E_i\times ln\left(\frac{E_i}{F_i^\ast}\right) = 0}
 
+Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
+
 The Pearson correction (cc="pearson") is calculated using (E.S. Pearson, 1947, p. 157):
 \deqn{\chi_{MLREP}^2 = \chi_{MLR}^2\times\frac{n - 1}{n}}
 

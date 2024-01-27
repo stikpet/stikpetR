@@ -60,7 +60,7 @@
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
 #' 
 #' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
-#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i - 0.5 > E_i \\ F_i + 0.5 & \text{ if } F_i + 0.5 < E_i \\ F_i & \text{ else } \end{cases}}
 #' 
 #' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
 #' 
@@ -179,6 +179,14 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
+  if (cc == "yates2"){
+    for (i in 1:k){
+      if (as.numeric(freq[i, 2] - 0.5 > expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+      else if (as.numeric(freq[i, 2] + 0.5 < expC[i])){
+        freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+    }
+  }
   
   #calculate the chi-square value
   T2 = 0
@@ -206,7 +214,7 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
     testUsed = paste(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste(testUsed, ", with Williams continuity correction")}
-  else if (cc =="yates"){
+  else if (cc =="yates" || cc=="yates2"){
     testUsed = paste(testUsed, ", with Yates continuity correction")
   }
   

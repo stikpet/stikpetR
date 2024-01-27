@@ -66,7 +66,7 @@ The Yates correction (yates) is calculated using (Yates, 1934, p. 222):
 \deqn{\chi_{NY}^2 = \sum_{i=1}^k \frac{\left(\left|F_i - E_i\right| - 0.5\right)^2}{O_i}}
 
 In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
-\deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
+\deqn{\chi_{NY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{O_i}}
 
 Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
 
@@ -100,8 +100,6 @@ ts_neyman_gof(ex3)
 
 }
 \references{
-Allen, A. O. (1990). \emph{Probability, statistics, and queueing theory with computer science applications} (2nd ed.). Academic Press.
-
 Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
 
 Neyman, J. (1949). Contribution to the theory of the chi-square test. \emph{Berkeley Symposium on Math. Stat, and Prob}, 239–273. doi:10.1525/9780520327016-030

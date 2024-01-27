@@ -192,7 +192,7 @@ ts_pearson_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "yates2
     testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (cc == "yates"){
+  else if (cc == "yates" || cc=="yates2"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
   statistic = chiVal

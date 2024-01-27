@@ -20,7 +20,7 @@
 #' @param data A vector or dataframe with the data
 #' @param expCounts Optional dataframe with the categories and expected counts
 #' @param lambd Optional either name of test or specific value. Either "cressie-read" (default), "g", "mod-log", "freeman-tukey", or "neyman"
-#' @param cc Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"
+#' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
 #' 
 #' @returns 
 #' Dataframe with:
@@ -62,9 +62,6 @@
 #' 
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
-#' 
-#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
-#' \deqn{\chi_{PY}^2 = \sum_{i=1}^k \frac{\max\left(0, \left(\left|F_i - E_i\right| - 0.5\right)\right)^2}{E_i}}
 #' 
 #' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
 #' 
