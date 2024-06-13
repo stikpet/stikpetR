@@ -42,7 +42,7 @@
 #' \deqn{sig. = 1 - \chi^2\left(\chi_{1,2}^2, df\right)}
 #' 
 #' A ties correction found in Pohlert (2016, p. 3) adjusts this to:
-#' \deqn{\chi_{1,2}^2 = \frac{\left(\bar{r}_1 - \bar{r}_2\right)^2}{\frac{1}{1-T}\times\frac{n\times\left(n+1\right)}{12}\times\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}
+#' \deqn{\chi_{1,2}^2 = \frac{\left(\bar{r}_1 - \bar{r}_2\right)^2}{\left(1-T\right)\times\frac{n\times\left(n+1\right)}{12}\times\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}
 #' \deqn{T = \frac{\sum t_i^3 - t_i}{n^3 - n}}
 #' 
 #' The original formula is most likely from Nemenyi (1963) and the Schaich and Hamerle (1984).
@@ -148,7 +148,7 @@ ph_nemenyi <- function(catField, ordField,
       if (version == "exact"){
         Var = ff * (1 / n1 + 1 / n2)}
       else if (version == "sh-ties"){
-        Var = 1 / (1 - t) * ff * (1 / n1 + 1 / n2)}
+        Var = (1 - t) * ff * (1 / n1 + 1 / n2)}
       else{
         Var = ff * (1 / n1 + 1 / n2)}
       
