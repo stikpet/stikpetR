@@ -4,7 +4,7 @@
 #' Simple function to use a rule-of-thumb for the Rank Biserial Correlation.
 #' 
 #' @param rb the rank-biserial correlation value
-#' @param qual optional setting for which rule of thumb to use. Currently only 'cohen'
+#' @param qual optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal"
 #' 
 #' @returns 
 #' A dataframe with:
@@ -21,8 +21,23 @@
 #' |0.304 < 0.465 | medium |
 #' |0.465 or more | large |
 #' 
+#' Vargha and Delaney (2000, p. 106):
+#' 
+#' |\|r_b\|| Interpretation|
+#' |---|----------|
+#' |0.00 < 0.11 | negligible |
+#' |0.11 < 0.28 | small |
+#' |0.28 < 0.43 | medium |
+#' |0.43 or more | large |
+#' 
 #' @seealso 
-#' \code{\link{es_cohen_w}}, to determine Cohen w
+#' \code{\link{r_rank_biserial_is}}, to determine a the rank biserial for independent samples
+#' 
+#' \code{\link{r_rank_biserial_os}}, to determine a the rank biserial for one-sample
+#' 
+#' \code{\link{es_convert}}, to convert this to Cohen d
+#' 
+#' \code{\link{th_cohen_d}}, rules of thumb for Cohen d
 #' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
@@ -37,16 +52,42 @@
 #' @export
 th_rank_biserial <- function(rb, qual="cohen"){
   
-  #Use Cohen (1988, p. 82)
-  ref = "Cohen (1988, p. 82)"
-  if (abs(rb) < 0.125){
-    qual = "negligible"}
-  else if (abs(rb) < 0.304){
-    qual = "small"}
-  else if (abs(rb) < 0.465){
-    qual = "medium"}
-  else{
-    qual = "large"}
+  if (qual=="cohen"){
+    #Use Cohen (1988, p. 82)
+    ref = "Cohen (1988, p. 82)"
+    if (abs(rb) < 0.125){
+      qual = "negligible"}
+    else if (abs(rb) < 0.304){
+      qual = "small"}
+    else if (abs(rb) < 0.465){
+      qual = "medium"}
+    else{
+      qual = "large"}
+  }
+  else if (qual=="vd"){
+    #Use Vargha and Delaney (2000, p. 106)
+    ref = "Vargha and Delaney (2000, p. 106)"
+    if (abs(rb) < 0.11){
+      qual = "negligible"}
+    else if (abs(rb) < 0.28){
+      qual = "small"}
+    else if (abs(rb) < 0.43){
+      qual = "medium"}
+    else{
+      qual = "large"}
+  }
+  else if (qual %in% c("sawilowsky", "cohen-conv", "lovakov", "rosenthal")){
+    if (qual=="cohen-conv"){
+      qual="cohen"}
+    
+    #convert to Cohen's d
+    d = es_convert(rb, fr="rb", to="cohend")
+    
+    res = th_cohen_d(d, qual)
+    qual = res$classification
+    ref = res$reference
+    
+  }
   
   results = data.frame(qual, ref)
   colnames(results)<-c("classification", "reference")

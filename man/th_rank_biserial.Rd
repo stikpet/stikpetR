@@ -9,7 +9,7 @@ th_rank_biserial(rb, qual = "cohen")
 \arguments{
 \item{rb}{the rank-biserial correlation value}
 
-\item{qual}{optional setting for which rule of thumb to use. Currently only 'cohen'}
+\item{qual}{optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal"}
 }
 \value{
 A dataframe with:
@@ -27,6 +27,15 @@ Cohen's rule of thumb for rank-biserial correlation (1988, p. 82):\tabular{ll}{
    0.304 < 0.465 \tab medium \cr
    0.465 or more \tab large \cr
 }
+
+
+Vargha and Delaney (2000, p. 106):\tabular{ll}{
+   |r_b| \tab Interpretation \cr
+   0.00 < 0.11 \tab negligible \cr
+   0.11 < 0.28 \tab small \cr
+   0.28 < 0.43 \tab medium \cr
+   0.43 or more \tab large \cr
+}
 }
 \examples{
 es = 0.6
@@ -37,7 +46,13 @@ th_rank_biserial(es)
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }
 \seealso{
-\code{\link{es_cohen_w}}, to determine Cohen w
+\code{\link{r_rank_biserial_is}}, to determine a the rank biserial for independent samples
+
+\code{\link{r_rank_biserial_os}}, to determine a the rank biserial for one-sample
+
+\code{\link{es_convert}}, to convert this to Cohen d
+
+\code{\link{th_cohen_d}}, rules of thumb for Cohen d
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
