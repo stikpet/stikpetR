@@ -31,6 +31,11 @@
 #' 
 #' For a 2x2 table Cole C1 will also divide by the maximum and produce the same result.
 #' 
+#' Blaikie-Roberts suggest to use as \eqn{C_{max}} (Blaikie, 1969, p.19):
+#' \deqn{C_{max} = \sqrt[4]{\frac{r - 1}{r}\times\frac{c - 1}{c}}}
+#' 
+#' Blaikie refers to his mentor Roberts for this (Blaikie, 2003, p. 115)
+#' 
 #' **Alternative**
 #' 
 #' The *'DescTools'* library also has a function for this: *ContCoef()*
@@ -43,6 +48,10 @@
 #' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references 
+#' Blaikie, N. W. H. (1969). Religion, social status, and community involvement: A study in Christchurch. *The Australian and New Zealand Journal of Sociology, 5*(1), 14–31. doi:10.1177/144078336900500102
+#' 
+#' Blaikie, N. W. H. (2003). *Analyzing quantitative data: From description to explanation*. Sage Publications Ltd.
+#' 
 #' Pearson, K. (1904). *Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation*. Dulau and Co.
 #' 
 #' Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. *In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III* (pp. 777–780).
@@ -56,6 +65,10 @@ es_cont_coeff <- function(chi2, n, adj=NULL, r=NULL, c=NULL){
     m = r
     if (c < r){m = c}
     cmax = sqrt((m - 1)/m)
+    es = es/cmax
+  }
+  else if (!is.null(adj) && adj=="br") {
+    cmax = ((r - 1)/r * (c - 1)/c)**0.25
     es = es/cmax
   }
   
