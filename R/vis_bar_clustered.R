@@ -52,11 +52,21 @@ vi_bar_clustered <- function(field1,
   
   if (length(percent) > 1){percent="none"}
   
-  if (percent=="row"){percent="column"}
-  else if (percent=="column"){percent="row"}
+  if (percent=="row"){
+    percent="column"
+    yLabel = "proportion of categories"}
+  else if (percent=="column"){
+    percent="row"
+    yLabel = "proportion of clusters"}
+  else if (percent=="all"){
+    yLabel = "proportion of total"}
+  else {
+    yLabel = "count"
+  }
   
   tab = tab_cross(field2, field1, order1=order2, order2=order1, percent=percent, totals="exclude")
   
-  barplot(tab, beside=TRUE,legend = rownames(tab))
+  
+  barplot(tab, beside=TRUE,legend = rownames(tab),ylab=yLabel)
   
 }
