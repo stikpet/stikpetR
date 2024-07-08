@@ -14,7 +14,7 @@
 #' @param categories1 optional list with order and/or selection for categories of field1
 #' @param categories2 optional list with order and/or selection for categories of field2
 #' @param cc optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".
-#' @param version optional integer to indicate which version to use. Either 1 (default) or 2.
+#' @param version optional integer to indicate which version to use. Either 1 (default), 2, or 3.
 #' 
 #' @returns
 #' A dataframe with:
@@ -33,7 +33,8 @@
 #' \deqn{T^2=4\times\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}} - \sqrt{E_{i,j}}\right)^2}
 #' The formula used for version 2 is (Lawal, 1984, p. 415):
 #' \deqn{T^2=\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}}+\sqrt{F_{i,j}+1} - \sqrt{4\times E_{i,j}+1}\right)^2}
-#' 
+#' The formula used for version 3 is (Read & Cressie, 1988, p. 82):
+#' \deqn{T^2=\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}}+\sqrt{F_{i,j}+1} - \sqrt{4\times\left(E_{i,j}+1\right)}\right)^2}
 #' \deqn{df = \left(r - 1\right)\times\left(c - 1\right)}
 #' \deqn{sig. = 1 - \chi^2\left(T^2,df\right)}
 #' 
@@ -126,6 +127,9 @@ ts_freeman_tukey_ind <- function(field1, field2, categories1=NULL, categories2=N
         chi2Val = chi2Val + (ct[i, j]**0.5 - expC[i, j]**0.5)**2}
       else if (version==2){
         chi2Val = chi2Val + (ct[i, j]**0.5 + (ct[i, j]+1)**0.5 - (4*expC[i, j]+1)**0.5)**2
+      }
+      else if (version==3){
+        chi2Val = chi2Val + (ct[i, j]**0.5 + (ct[i, j]+1)**0.5 - (4*(expC[i, j]+1))**0.5)**2
       }
       
       #check if below 5

@@ -18,7 +18,7 @@ ts_freeman_tukey_gof(
 
 \item{cc}{Optional continuity correction. Either "none" (default), "yates", "yates2", "pearson", or "williams"}
 
-\item{modified}{boolean, optional. indicate the use of the modified version. Default is False}
+\item{modified}{int, optional. indicate the use of the modified version. Either 0 (default = no modification), 1 or 2}
 }
 \value{
 Dataframe with:
@@ -54,8 +54,11 @@ else:
 \deqn{E_i = n\times\frac{E_{p_i}}{n_p}}
 \deqn{n_p = \sum_{i=1}^k E_{p_i}}
 
-A modified version uses another possible smoothing (Larntz, 1978, p.253):
+A modified version uses another possible smoothing (Bishop, 1969, p. 284; Larntz, 1978, p.253):
 \deqn{\chi_{MFT}^2 = \sum_{i=1}^{k}\left(\sqrt{F_{i}} + \sqrt{F_{i} + 1} - \sqrt{4\times E_{i} + 1}\right)^2}
+
+Or slightly different (Read & Cressie, 1988, p. 82):
+\deqn{\chi_{MFT}^2 = \sum_{i=1}^{k}\left(\sqrt{F_{i}} + \sqrt{F_{i} + 1} - \sqrt{4\times \left(E_{i} + 1\right)}\right)^2}
 
 \emph{Symbols used:}
 \itemize{
@@ -116,6 +119,8 @@ Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics fo
 
 Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). \emph{Discrete multivariate analysis}. Springer.
 
+Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). \emph{Discrete multivariate analysis}. Springer.
+
 Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. \emph{The Annals of Mathematical Statistics, 21}(4), 607–611. doi:10.1214/aoms/1177729756
 
 Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
@@ -127,6 +132,8 @@ Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams�
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
 Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
+
+Read, T. R. C., & Cressie, N. A. C. (1988). Goodness-of-fit statistics for discrete multivariate data. Springer-Verlag.
 
 Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
 }

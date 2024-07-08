@@ -24,7 +24,7 @@ ts_freeman_tukey_ind(
 
 \item{cc}{optional methdod for continuity correction. Either NULL (default), "yates", "pearson", "williams".}
 
-\item{version}{optional integer to indicate which version to use. Either 1 (default) or 2.}
+\item{version}{optional integer to indicate which version to use. Either 1 (default), 2, or 3.}
 }
 \value{
 A dataframe with:
@@ -52,7 +52,8 @@ The formula used for version 1 is (Bishop et al., 2007, p. 513):
 \deqn{T^2=4\times\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}} - \sqrt{E_{i,j}}\right)^2}
 The formula used for version 2 is (Lawal, 1984, p. 415):
 \deqn{T^2=\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}}+\sqrt{F_{i,j}+1} - \sqrt{4\times E_{i,j}+1}\right)^2}
-
+The formula used for version 3 is (Read & Cressie, 1988, p. 82):
+\deqn{T^2=\sum_{i=1}^r \sum_{j=1}^c \left(\sqrt{F_{i,j}}+\sqrt{F_{i,j}+1} - \sqrt{4\times\left(E_{i,j}+1\right)}\right)^2}
 \deqn{df = \left(r - 1\right)\times\left(c - 1\right)}
 \deqn{sig. = 1 - \chi^2\left(T^2,df\right)}
 
