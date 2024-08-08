@@ -1,16 +1,15 @@
 #' Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range
 #' 
 #' @description 
-#' Three different ranges that can be used with quartiles. The Interquartile Range (IQR) is simply the third minus the first quartile.
+#' There are some measures of dispersion that instead of using the full range (i.e. maximum minus minimum), make use of the quartiles. The advantage of this, is that it is less influenced by extreme values.
 #' 
-#' The Semi-Interquartile range (a.k.a. Quartile Deviation) divides the IQR by 2.
+#' The Interquartile Range (Galton, 1881, p. 245) is the range how big the difference is between the third and the first quartile. If Tukey's method for the quartiles is used (*method="tukey"*), referred to as hinges, this is then also known as H-spread (Tukey, 1977, p. 44)
 #' 
-#' The Mid-Quartile Range adds the two quartiles and then divides by 2.
+#' Yule (1911, p. 147) used half the inter-quartile range and labelled this Semi-Interquartile Range which he preferred over the term Quartile Deviation..
 #' 
-#' A special case is the H-spread, which is if Hinges are used the IQR. This can be obtained by 
-#' setting *method="tukey"*.
+#' There is also a measure of central tendency that uses the quartiles, the Mid-Quartile (Parzen, 1980, p. 19), which is the average of the first and second quartile. It is also sometimes referred to as the Mid-Quartile Range (see for example Luo et al. (2018, p. 2), who refer to Triola, but Triola doesn't add the 'range' (Triola, 2010, p. 120))
 #' 
-#' The function uses the *me_quartiles()* function and any of the methods from that function can be used.
+#' The function uses the *me_quartiles* function and any of the methods from that function can be used.
 #' 
 #' @param data vector or dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
@@ -46,9 +45,13 @@
 #' \code{\link{me_quartiles}}, calculating quartiles
 #' 
 #' @references 
-#' Galton, F. (1881). Report of the anthropometric committee. Report of the British Association for the Advancement of Science, 51, 225–272.
+#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225–272.
+#' 
+#' Luo, D., Wan, X., Liu, J., & Tong, T. (2018). Optimally estimating the sample mean from the sample size, median, mid-range, and/or mid-quartile range. *Statistical Methods in Medical Research, 27*(6), 1785–1805. doi:10.1177/0962280216669183
 #' 
 #' Parzen, E. (1980). *Data modeling using quantile and density-quantile functions*. Institute of Statistics, Texas A&M University.
+#' 
+#' Triola, M. F. (2010). *Elementary statistics* (11th ed). Addison-Wesley.
 #' 
 #' Tukey, J. W. (1977). *Exploratory data analysis*. Addison-Wesley Pub. Co.
 #' 
