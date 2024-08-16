@@ -84,7 +84,7 @@ This is used if \emph{trimFrac = "linear"} is set.
 \strong{Winsorized Mean}
 
 Similar as with a trimmed mean, but now the data is not removed, but replaced by the value equal to the nearest value that is still included (Winsor as cited in Dixon, 1960, p. 385).
-\deqn{W = n_l \times \left(x_{n_l + 1} + x_{n - n_l}\right)\times\frac{\sum_{n_l + 1}^{n - n_l} x_i}{n - 2\times n_l}}
+\deqn{W = \frac{n_l \times \left(x_{n_l + 1} + x_{n - n_l}\right) + \sum_{n_l + 1}^{n - n_l} x_i}{n}}
 }
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
