@@ -133,6 +133,8 @@ di_mwwd <- function(u, i, j) {
 #' 
 #' It first uses the di_mwwf function to determine the count for the u value, and divides it by the total number of possible arrangements.
 #' 
+#' The dwilcox() function from R's stats library does the same, and is probably more optimized than this function.
+#' 
 #' @param u int, the U test statistic
 #' @param n1 int, the sample size of the first category
 #' @param n2 int the sample size of the second category
@@ -161,6 +163,8 @@ di_mwwpmf <- function(u, n1, n2) {
 #' This function returns the cumulative probability for the specified U statistic, given n1 and n2 cases in each category.
 #' 
 #' It first uses the di_mwwd function to determine the distribution up to the specified u value, sums these results and divides it by the total number of possible arrangements.
+#' 
+#' The pwilcox() function from R's stats library does the same, and is probably more optimized than this function.
 #' 
 #' @param u int, the U test statistic
 #' @param n1 int, the sample size of the first category

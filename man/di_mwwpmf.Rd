@@ -20,6 +20,8 @@ result : a list with the counts starting with the count for U=0
 This function returns the probability for the specified U statistic, given n1 and n2 cases in each category.
 
 It first uses the di_mwwf function to determine the count for the u value, and divides it by the total number of possible arrangements.
+
+The dwilcox() function from R's stats library does the same, and is probably more optimized than this function.
 }
 \details{
 See the details in di_mwwf() on how the frequency is determined. This is then divided by the total number of possibilities, which is the number of ways we can choose $n_1$ items out of $n$, without replacement. This is the binomial coefficient, or number of combinations:
