@@ -50,8 +50,8 @@
 #' 
 #' The "vda" uses the formula used from Vargha and Delaney (2000, p. 107):
 #' \deqn{A = \frac{1}{n_j}\times\left(\frac{R_i}{n_i} - \frac{n_i + 1}{2}\right)}
-#' *with*
-#' * \deqn{R_i\) the sum of the ranks in category i
+#' with \eqn{R_i} the sum of the ranks in category i
+#' 
 #' It could also be calculated from the Mann-Whitney U value:
 #' \deqn{A = \frac{U}{n_1\times n_2}}
 #' 

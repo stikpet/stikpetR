@@ -68,10 +68,10 @@ th_cle <- function(cle, qual="vd", convert=c()){
     
   }
   else if (convert[1]=="rb"){
-    rb = es_convert(cle, fr="vda", to="rb")
+    rb = es_convert(cle, fr="cle", to="rb")
     results = th_rank_biserial(rb, qual=convert[2])}
   else if (convert[1]=="cohen_d"){
-    rb = es_convert(cle, fr="vda", to="rb")
+    rb = es_convert(cle, fr="cle", to="rb")
     d = es_convert(rb ,fr="rb", to="cohend")
     results = th_cohen_d(d, qual=convert[2])}
     

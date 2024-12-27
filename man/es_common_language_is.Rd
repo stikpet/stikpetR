@@ -48,7 +48,40 @@ For scale data, an approximation using the standard normal distribution is also 
 The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
 }
 \details{
+For "brute" simply all possible pairs are determined and half of the ties are added, i.e. (Grissom, 1994, p. 282):
+\deqn{P(X > Y) + \frac{P(X = Y)}{2}}
 
+With "brute-it" the ties are ignored (it = ignore ties):
+\deqn{P(X > Y)}
+
+The "appr" uses the approximation from McGraw and Wong (1992, p. 361):
+\deqn{CL = \Phi\left(z\right)}
+With:
+\deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{s_1^2 + s_2^2}}}
+\deqn{s_i^2 = \frac{\sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
+\deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
+
+\emph{Symbols used:}
+\itemize{
+\item  \eqn{x_{i,j}} the j-th score in category i
+\item \eqn{n_i} the number of scores in category i
+\item  \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
+}
+
+The "vda" uses the formula used from Vargha and Delaney (2000, p. 107):
+\deqn{A = \frac{1}{n_j}\times\left(\frac{R_i}{n_i} - \frac{n_i + 1}{2}\right)}
+with \eqn{R_i} the sum of the ranks in category i
+
+It could also be calculated from the Mann-Whitney U value:
+\deqn{A = \frac{U}{n_1\times n_2}}
+
+Note that the difference between the two options (using category 1 or category 2) will be the deviation from 0.5. If all scores in the first category are lower than the scores in the second, A will be 0 using the first category, and 1 for the second.
+
+If the number of scores in the first category higher than the second, is the same as the other way around, A (no matter which category used) will be 0.5.
+
+The CLE can be converted to a Rank Biserial (= Cliff delta) using the \strong{es_convert()} function. This can then be converted to a Cohen d, and then the rules-of-thumb for Cohen d could be used (\strong{th_cohen_d()})
+
+The CLE for the other category is simply 1 - CLE, except for the case where ties are ignored ("brute-it").
 }
 \references{
 Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281–284. doi:10.1037/0022-006X.62.2.281
