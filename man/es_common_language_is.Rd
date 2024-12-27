@@ -6,69 +6,92 @@
 \usage{
 es_common_language_is(
   catField,
-  scaleField,
+  scores,
   categories = NULL,
+  levels = NULL,
   dmu = 0,
-  method = "appr"
+  method = "brute"
 )
 }
 \arguments{
 \item{catField}{A vector with the categorical data}
 
-\item{scaleField}{A vector with the scores}
+\item{scores}{A vector with the scores}
 
 \item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
 
+\item{levels}{Optional list with the ordinal text values in order}
+
 \item{dmu}{Optional difference according to null hypothesis (default is 0)}
 
-\item{method}{Optional method to use, either approximate ("appr") or use brute-force ("brute".}
+\item{method}{Optional optional method to use. "brute" will use a brute force " that will split ties evenly, "brute-it" is the same as brute but ignores ties, "vda" will use the calculation from Vargha-Delany, and "appr" a normal approximation from McGraw-Wong}
 }
 \value{
 A dataframe with:
 \item{CLE cat. 1}{the effect size for the first category}
 \item{CLE cat. 2}{the effect size for  the second category}
+
+A dataframe with:
+\item{CLE cat. 1}{the effect size for the first category}
+\item{CLE cat. 2}{the effect size for  the second category}
 }
 \description{
-the probability that a randomly selected score from the one population will be greater than a randomly sampled score from the other population.
+The Common Language Effect Size (a.k.a. Probability of Superiority) is the probability of taking a random pair from two categories, the first is greater than the first, i.e.
+\deqn{P(X > Y)}
+
+Note however that Wolfe and Hogg (1971) actually had this in reverse, i.e.
+\deqn{P(X \leq Y)}
+
+Some will also argue to count ties equally to each of the two categories (Grissom, 1994, p. 282), which makes the definition:
+\deqn{P(X > Y) + \frac{P(X = Y)}{2}}
+
+It was further developed by Vargha and Delaney (2000) especially in light of a Mann-Whitney U test.
+
+For scale data, an approximation using the standard normal distribution is also available.
+
+The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
+
+The Common Language Effect Size (a.k.a. Probability of Superiority) is the probability of taking a random pair from two categories, the first is greater than the first, i.e.
+\deqn{P(X > Y)}
+
+Note however that Wolfe and Hogg (1971) actually had this in reverse, i.e.
+\deqn{P(X \leq Y)}
+
+Some will also argue to count ties equally to each of the two categories (Grissom, 1994, p. 282), which makes the definition:
+\deqn{P(X > Y) + \frac{P(X = Y)}{2}}
+
+It was further developed by Vargha and Delaney (2000) especially in light of a Mann-Whitney U test.
+
+For scale data, an approximation using the standard normal distribution is also available.
+
+The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
 }
 \details{
-The formula used is (McGraw & Wong, 1992, p. 361):
-\deqn{CL = \Phi\left(z\right)}
 
-With:
-\deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{s_1^2 + s_2^2}}}
-\deqn{s_i^2 = \frac{\sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
-\deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
-
-\emph{Symbols used:}
-\itemize{
-\item \eqn{x_{i,j}} the j-th score in category i
-\item \eqn{n_i} the number of scores in category i
-\item \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
-}
-
-The CLE for the other category is simply 1 - CLE.
-
-If the brute-force method is used, the chance of a value of one category will be higher than a random score of the second category is calculated by counting all possible pairs. In case of ties a half is added.
-}
-\examples{
-#Example 1: dataframe
-dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
-df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
-ex1 = df1['age']
-ex1 = replace(ex1, ex1=="89 OR OLDER", "90")
-es_common_language_is(df1['sex'], ex1)
-
-#Example 2: vectors
-scores = c(20,50,80,15,40,85,30,45,70,60, NA, 90,25,40,70,65, NA, 70,98,40)
-groups = c("nat","int","int","nat","int","int","nat","nat","int","int","int",
-"int","int","int","nat","int",NA,"nat","int","int")
-es_common_language_is(groups, scores)
 
 
 }
 \references{
-McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
+Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281–284. doi:10.1037/0022-006X.62.2.281
+
+McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. doi:10.1037/0033-2909.111.2.361
+
+Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101–132. doi:10.3102/10769986025002101
+
+Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27–30. doi:10.1080/00031305.1971.10477278
+
+Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281–284. doi:10.1037/0022-006X.62.2.281
+
+McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. doi:10.1037/0033-2909.111.2.361
+
+Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101–132. doi:10.3102/10769986025002101
+
+Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27–30. doi:10.1080/00031305.1971.10477278
+}
+\seealso{
+\code{\link{th_cle}}, to find rules-of-thumb for the CLE
+
+\code{\link{th_cle}}, to find rules-of-thumb for the CLE
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

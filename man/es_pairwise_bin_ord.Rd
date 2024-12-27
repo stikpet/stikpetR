@@ -9,7 +9,7 @@ es_pairwise_bin_ord(
   ordField,
   categories = NULL,
   levels = NULL,
-  es = "vda"
+  es = "cle"
 )
 }
 \arguments{
@@ -21,7 +21,7 @@ es_pairwise_bin_ord(
 
 \item{levels}{vector, optional. the levels or order used in ordField.}
 
-\item{es}{string, optional. the effect size to determine.Either "vda" (default), "rb" or "rosenthal"}
+\item{es}{string, optional. the effect size to determine.Either "cle" (default), "rb" or "rosenthal"}
 }
 \value{
 dataframe with
@@ -33,10 +33,10 @@ dataframe with
 This function determines the effect size for each comparison in a post-hoc analysis of a nominal vs. ordinal variable (e.g. a Kruskal-Wallis test).
 }
 \details{
-The function simply goes over each possible pair of categories from the \emph{catField} (adjusted with \emph{categories} if used). It then runs for only the scores of those two categories the Vargha-Delaney A or (Glass) Rank Biserial (Cliff delta). If the Rosenthal correlation is requested, it will perform the post-hoc Dunn test to obtain the z-statistic.
+The function simply goes over each possible pair of categories from the \emph{catField} (adjusted with \emph{categories} if used). It then runs for only the scores of those two categories the Common Language Effect Size (Vargha-Delaney A) or (Glass) Rank Biserial (Cliff delta). If the Rosenthal correlation is requested, it will perform the post-hoc Dunn test to obtain the z-statistic.
 }
 \seealso{
-\code{\link{es_vargha_delaney_a}}, Vargha-Delaney A effect size
+\code{\link{es_common_language_is}}, Common Language Effect size
 \code{\link{r_rank_biserial_is}}, rank biserial for independent samples
 \code{\link{ph_dunn}}, post-hoc Dunn test, used to obtain z-value for Rosenthal correlation
 }
