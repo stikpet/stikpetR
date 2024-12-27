@@ -30,27 +30,8 @@ es_common_language_is(
 A dataframe with:
 \item{CLE cat. 1}{the effect size for the first category}
 \item{CLE cat. 2}{the effect size for  the second category}
-
-A dataframe with:
-\item{CLE cat. 1}{the effect size for the first category}
-\item{CLE cat. 2}{the effect size for  the second category}
 }
 \description{
-The Common Language Effect Size (a.k.a. Probability of Superiority) is the probability of taking a random pair from two categories, the first is greater than the first, i.e.
-\deqn{P(X > Y)}
-
-Note however that Wolfe and Hogg (1971) actually had this in reverse, i.e.
-\deqn{P(X \leq Y)}
-
-Some will also argue to count ties equally to each of the two categories (Grissom, 1994, p. 282), which makes the definition:
-\deqn{P(X > Y) + \frac{P(X = Y)}{2}}
-
-It was further developed by Vargha and Delaney (2000) especially in light of a Mann-Whitney U test.
-
-For scale data, an approximation using the standard normal distribution is also available.
-
-The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
-
 The Common Language Effect Size (a.k.a. Probability of Superiority) is the probability of taking a random pair from two categories, the first is greater than the first, i.e.
 \deqn{P(X > Y)}
 
@@ -68,8 +49,6 @@ The term Common Language Effect Size can be found in McGraw and Wong (1992), the
 }
 \details{
 
-
-
 }
 \references{
 Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281–284. doi:10.1037/0022-006X.62.2.281
@@ -79,18 +58,8 @@ McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \e
 Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101–132. doi:10.3102/10769986025002101
 
 Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27–30. doi:10.1080/00031305.1971.10477278
-
-Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281–284. doi:10.1037/0022-006X.62.2.281
-
-McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \emph{Psychological Bulletin, 111}(2), 361–365. doi:10.1037/0033-2909.111.2.361
-
-Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101–132. doi:10.3102/10769986025002101
-
-Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27–30. doi:10.1080/00031305.1971.10477278
 }
 \seealso{
-\code{\link{th_cle}}, to find rules-of-thumb for the CLE
-
 \code{\link{th_cle}}, to find rules-of-thumb for the CLE
 }
 \author{
