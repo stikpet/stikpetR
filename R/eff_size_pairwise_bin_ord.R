@@ -6,7 +6,7 @@
 #' @param ordField vector with the scores
 #' @param categories vector, optional. the categories to use from catField
 #' @param levels vector, optional. the levels or order used in ordField.
-#' @param es string, optional. the effect size to determine.Either "vda" (default), "rb" or "rosenthal"
+#' @param es string, optional. the effect size to determine.Either "cle" (default), "rb" or "rosenthal"
 #' 
 #' @returns
 #' dataframe with 
@@ -15,10 +15,10 @@
 #' \item{effect size}{the value of the effect size}
 #' 
 #' @details
-#' The function simply goes over each possible pair of categories from the *catField* (adjusted with *categories* if used). It then runs for only the scores of those two categories the Vargha-Delaney A or (Glass) Rank Biserial (Cliff delta). If the Rosenthal correlation is requested, it will perform the post-hoc Dunn test to obtain the z-statistic.
+#' The function simply goes over each possible pair of categories from the *catField* (adjusted with *categories* if used). It then runs for only the scores of those two categories the Common Language Effect Size (Vargha-Delaney A) or (Glass) Rank Biserial (Cliff delta). If the Rosenthal correlation is requested, it will perform the post-hoc Dunn test to obtain the z-statistic.
 #' 
 #' @seealso 
-#' \code{\link{es_vargha_delaney_a}}, Vargha-Delaney A effect size
+#' \code{\link{es_common_language_is}}, Common Language Effect size
 #' \code{\link{r_rank_biserial_is}}, rank biserial for independent samples
 #' \code{\link{ph_dunn}}, post-hoc Dunn test, used to obtain z-value for Rosenthal correlation
 #' 
@@ -31,12 +31,12 @@ es_pairwise_bin_ord  <-
            ordField,
            categories = NULL,
            levels = NULL,
-           es = "vda") {
+           es = "cle") {
     cat1 <- c()
     cat2 <- c()
     p_res <- c()
     
-    if (es %in% c('vda', 'rb')) {
+    if (es %in% c('cle', 'rb')) {
       selDf = na.omit(data.frame("groups" = catField, "scores" = ordField))
       
       #only keep the ones in given list
@@ -56,11 +56,12 @@ es_pairwise_bin_ord  <-
           cat2 <- append(cat2, cats[j])
           sel_cats <- c(cats[i], cats[j])
           
-          if (es == 'vda') {
-            es_res = es_vargha_delaney_a(selDf["groups"],
+          if (es == 'cle') {
+            es_res = es_common_language_is(selDf["groups"],
                                          selDf["scores"],
                                          categories = sel_cats,
-                                         levels = myCoding)
+                                         levels = myCoding, 
+                                         method="vda")
             p_res <- append(p_res, c(as.matrix(es_res[1,]))[1])
             p_res2 <- append(p_res2, c(as.matrix(es_res[1,]))[2])
           }
@@ -74,9 +75,9 @@ es_pairwise_bin_ord  <-
         }
       }
       
-      if (es == 'vda') {
+      if (es == 'cle') {
         results = data.frame(cat1, cat2, p_res, p_res2)
-        colnames(results) = c('cat. 1', 'cat. 2', 'A - cat. 1', 'A - cat. 2')
+        colnames(results) = c('cat. 1', 'cat. 2', 'CLE 1', 'CLE 2')
       }
       else{
         results = data.frame(cat1, cat2, p_res)

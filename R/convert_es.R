@@ -378,11 +378,11 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   #Rank Biserial (Cliff delta) to Cohen d
   else if (fr=="rb" && to=="cohend"){res = 2*qnorm(-1/(es-2))}
   #Rank Biserial to Vargha and Delaney A
-  else if(fr=="rb" && to=="vda") {res = (es + 1)/2}
+  else if(fr=="rb" && to=="cle") {res = (es + 1)/2}
 
   #VARGHA AND DELANEY A
   #Vargha and Delaney A to Rank Biserial
-  else if(fr=="vda" && to=="rb") {res = 2*es - 1}
+  else if(fr=="cle" && to=="rb") {res = 2*es - 1}
 
 
   #YULE Q
