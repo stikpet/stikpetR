@@ -4,13 +4,13 @@
 \alias{th_cle}
 \title{Rule-of-Thumb for Common Language Effect Size}
 \usage{
-th_cle(cle, qual = "vd", convert = c())
+th_cle(cle, qual = "vd", convert = "no")
 }
 \arguments{
 \item{cle}{the Vargha-Delaney A value}
 
-\item{qual}{{"vd", "convert"}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure using "convert"
-convert : [], optional list in case to use a rule-of-thumb from a converted measure. Use first element as the measure to convert to, the second to indicate which rule-of-thum.}
+\item{qual}{{"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
+convert : {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.}
 }
 \value{
 A dataframe with:
@@ -33,11 +33,11 @@ Vargha and Delaney (2000, p. 106):\tabular{ll}{
 The CLE can be converted to a Rank Biserial Coefficient using:
 \deqn{r_b = 2\times CLE - 1}
 
-Rules of thumb from the \strong{th_rank_biserial()} function could then be used, by setting: qual="convert", convert=\link{"rb", ...}. Where the second element is any of the options in th_rank_biserial()
+Rules of thumb from the \strong{th_rank_biserial()} function could then be used, by setting: \emph{convert="rb"}, and \emph{qual} is any of the options in th_rank_biserial()
 
 This in turn can be converted to Cohen's d using (Marfo & Okyere, 2019, p.4):
 \deqn{d = 2\times \phi^{-1}\left(-\frac{1}{r_b - 2}\right)}
-Rules of thumb from the \strong{th_cohen_d()} function could then be used, by setting:' qual="convert", convert=\link{"cohen_d", ...}. Where the second element is any of the options in th_cohen_d()
+Rules of thumb from the \strong{th_cohen_d()} function could then be used, by setting: \emph{convert="cohen_d"}, and \emph{qual} is any of the options in th_cohen_d()
 }
 \references{
 Marfo, P., & Okyere, G. A. (2019). The accuracy of effect-size estimates under normals and contaminated normals in meta-analysis. \emph{Heliyon, 5}(6), e01838. doi:10.1016/j.heliyon.2019.e01838

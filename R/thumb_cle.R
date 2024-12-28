@@ -4,8 +4,8 @@
 #' This function will give a qualification (classification) for a Common Language Effect Size (/ Vargha-Delaney A / Probability of Superiority)
 #' 
 #' @param cle the Vargha-Delaney A value
-#' @param qual {"vd", "convert"}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure using "convert"
-#' convert : [], optional list in case to use a rule-of-thumb from a converted measure. Use first element as the measure to convert to, the second to indicate which rule-of-thum.
+#' @param qual {"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
+#' convert : {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
 #' 
 #' @returns 
 #' A dataframe with:
@@ -25,11 +25,11 @@
 #' The CLE can be converted to a Rank Biserial Coefficient using:
 #' \deqn{r_b = 2\times CLE - 1}
 #' 
-#' Rules of thumb from the **th_rank_biserial()** function could then be used, by setting: qual="convert", convert=["rb", ...]. Where the second element is any of the options in th_rank_biserial()
+#' Rules of thumb from the **th_rank_biserial()** function could then be used, by setting: *convert="rb"*, and *qual* is any of the options in th_rank_biserial()
 #' 
 #' This in turn can be converted to Cohen's d using (Marfo & Okyere, 2019, p.4):
 #' \deqn{d = 2\times \phi^{-1}\left(-\frac{1}{r_b - 2}\right)}
-#' Rules of thumb from the **th_cohen_d()** function could then be used, by setting:' qual="convert", convert=["cohen_d", ...]. Where the second element is any of the options in th_cohen_d()
+#' Rules of thumb from the **th_cohen_d()** function could then be used, by setting: *convert="cohen_d"*, and *qual* is any of the options in th_cohen_d()
 #' 
 #' @seealso 
 #' \code{\link{es_common_language_is}}, to determine the CLE.
@@ -48,32 +48,35 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-th_cle <- function(cle, qual="vd", convert=c()){
-  es = abs(0.5 - cle)
+th_cle <- function(cle, qual="vd", convert="no"){
   
-  if (qual=="vd"){
-    #Use Vargha and Delaney (2000, p. 106)
-    ref = "Vargha and Delaney (2000, p. 106)"
-    if (es < 0.06){
-      qual = "negligible"}
-    else if (es < 0.14){
-      qual = "small"}
-    else if (es < 0.21){
-      qual = "medium"}
-    else{
-      qual = "large"}
-    
-    results = data.frame(qual, ref)
-    colnames(results)<-c("classification", "reference")
-    
+  if (convert=="no"){
+    es = abs(0.5 - cle)
+  
+    if (qual=="vd"){
+      #Use Vargha and Delaney (2000, p. 106)
+      ref = "Vargha and Delaney (2000, p. 106)"
+      if (es < 0.06){
+        qual = "negligible"}
+      else if (es < 0.14){
+        qual = "small"}
+      else if (es < 0.21){
+        qual = "medium"}
+      else{
+        qual = "large"}
+      
+      results = data.frame(qual, ref)
+      colnames(results)<-c("classification", "reference")
+      
+    }
   }
-  else if (convert[1]=="rb"){
+  else if (convert=="rb"){
     rb = es_convert(cle, fr="cle", to="rb")
-    results = th_rank_biserial(rb, qual=convert[2])}
-  else if (convert[1]=="cohen_d"){
+    results = th_rank_biserial(rb, qual=qual)}
+  else if (convert=="cohen_d"){
     rb = es_convert(cle, fr="cle", to="rb")
     d = es_convert(rb ,fr="rb", to="cohend")
-    results = th_cohen_d(d, qual=convert[2])}
+    results = th_cohen_d(d, qual=qual)}
     
   return(results)
   
