@@ -67,7 +67,7 @@ es_hodges_lehmann_is <- function(catField, scores, categories=NULL, levels=NULL)
   x1 = df$score[df$group == cat1]
   x2 = df$score[df$group == cat2]
   
-  pairs <- expand.grid(x=x2, y=x2)
+  pairs <- expand.grid(x=x1, y=x2)
   difs <- pairs$x - pairs$y
   
   hl = median(difs)
