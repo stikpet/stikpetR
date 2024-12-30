@@ -1,6 +1,6 @@
 #' Hodges-Lehmann Estimator (Independent Samples)
 #' @description 
-#' The Hodges-Lehmann estimate, is the median of all the possible differences between two sets of data. The authors (Hodges & Lehmann, 1984) describe it as the location shift that is needed to align two distributions (with similar distributions) as much as possible (p. 599).
+#' The Hodges-Lehmann estimate, is the median of all the possible differences between two sets of data. The authors (Hodges & Lehmann, 1963) describe it as the location shift that is needed to align two distributions (with similar distributions) as much as possible (p. 599).
 #' 
 #' It is sometimes incorrectly described as the difference between the two medians, but that is incorrect. It is not uncommon to have a different Hodges-Lehmann estimate than simply taking the difference between the two medians.
 #' 

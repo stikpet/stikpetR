@@ -74,6 +74,19 @@ fr = "cohenhos", to = "cohenh"
 This uses (Cohen, 1988, p. 203):
 \deqn{h = h'\times\sqrt{2}}
 
+\strong{COHEN U}
+
+\strong{Cohen U to Cohen d}
+
+fr="cohenu1", to="cohend"
+fr="cohenu2", to="cohend"
+fr="cohenu3", to="cohend"
+
+This uses (Cohen, 1988, p. 23):
+\deqn{d = \Phi^{-1}\left(U_3\right)}
+\deqn{d = 2\times\Phi^{-1}\left(U_2\right)}
+\deqn{d = 2\times\Phi^{-1}\left(\frac{1}{2 - U_1}\right)}
+
 \strong{COHEN w}
 
 \strong{Cohen w to Contingency Coefficient}

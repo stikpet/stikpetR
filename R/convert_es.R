@@ -63,6 +63,19 @@
 #'
 #' This uses (Cohen, 1988, p. 203):
 #' \deqn{h = h'\times\sqrt{2}}
+#' 
+#' **COHEN U**
+#'
+#' **Cohen U to Cohen d**
+#' 
+#' fr="cohenu1", to="cohend"
+#' fr="cohenu2", to="cohend"
+#' fr="cohenu3", to="cohend"
+#' 
+#' This uses (Cohen, 1988, p. 23):
+#' \deqn{d = \Phi^{-1}\left(U_3\right)}
+#' \deqn{d = 2\times\Phi^{-1}\left(U_2\right)}
+#' \deqn{d = 2\times\Phi^{-1}\left(\frac{1}{2 - U_1}\right)}
 #'
 #' **COHEN w**
 #'
@@ -306,6 +319,12 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   #COHEN h'
   #Cohen h' to Cohen h
   else if(fr=="cohenhos" && to=="cohenh") {res = es*sqrt(2)}
+  
+  #COHEN U
+  #Cohen U to Cohen d
+  else if(fr=="cohenu3" && to=="cohend"){res = qnorm(es)}
+  else if(fr=="cohenu2" && to=="cohend"){res = qnorm(es)*2}
+  else if(fr=="cohenu1" && to=="cohend"){res = qnorm(1/(2 - es))*2}
 
   #COHEN w
   #Cohen w to Contingency Coefficient
