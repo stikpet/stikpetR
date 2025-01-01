@@ -27,6 +27,8 @@
 #' $$P\\left(x \\gt \\mu\\right) = \\frac{\\sum_{i=1}^n \\begin{cases} 1, & \\text{if } x_i \\gt \\mu \\\\ 0, & \\text{otherwise}\\end{cases}}{n}$$
 #' $$P\\left(x = \\mu\\right) = \\frac{\\sum_{i=1}^n \\begin{cases} 1, & \\text{if } x_i = \\mu \\\\ 0, & \\text{otherwise}\\end{cases}}{n}$$
 #' 
+#' This seems to also produce the same result as what Mangiafico (2016, pp. 223–224) calls a VDA-like measure, where VDA is short for Vargha-Delaney A.
+#' 
 #' With "brute-it" the ties are ignored (it = ignore ties):
 #' $$CL = P(X > \\mu_{H_0})$$
 #' 
@@ -49,6 +51,8 @@
 #' Ben-Shachar, M., Lüdecke, D., & Makowski, D. (2020). effectsize: Estimation of Effect Size Indices and Standardized Parameters. *Journal of Open Source Software, 5*(56), 1–7. doi:10.21105/joss.02815
 #'  
 #' Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. *Journal of Consulting and Clinical Psychology, 62*(2), 281–284. doi:10.1037/0022-006X.62.2.281
+#' 
+#' Mangiafico, S. S. (2016). *Summary and analysis of extension program evaluation in R* (1.20.01). Rutger Cooperative Extension.
 #' 
 #' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. doi:10.1037/0033-2909.111.2.361
 #'  
