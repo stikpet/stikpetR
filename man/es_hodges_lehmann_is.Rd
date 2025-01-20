@@ -46,7 +46,7 @@ Hodges, J. L., & Lehmann, E. L. (1963). Estimates of location based on rank test
 
 Monahan, J. F. (1984). Algorithm 616: Fast computation of the Hodges-Lehmann location estimator. \emph{ACM Transactions on Mathematical Software, 10}(3), 265–270. doi:10.1145/1271.319414
 
-van Geloven, N. (2018, March 13). Mann-Whitney U toets \link{Wiki}. Wikistatistiek. https://wikistatistiek.amc.nl/Mann-Whitney_U_toets
+van Geloven, N. (2018, March 13). Mann-Whitney U toets [Wiki]. Wikistatistiek. https://wikistatistiek.amc.nl/Mann-Whitney_U_toets
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -24,7 +24,7 @@ It first uses the di_mwwd function to determine the distribution up to the speci
 The pwilcox() function from R's stats library does the same, and is probably more optimized than this function.
 }
 \details{
-ee the details in di_mwwd() on how the frequency distribution is determined. The sum of these is then divided by the total number of possibilities, which is the number of ways we can choose $n_1$ items out of $n$, without replacement. This is the binomial coefficient, or number of combinations:
+See the details in di_mwwd() on how the frequency distribution is determined. The sum of these is then divided by the total number of possibilities, which is the number of ways we can choose $n_1$ items out of $n$, without replacement. This is the binomial coefficient, or number of combinations:
 \deqn{C(n, n_1) = nCr(n, n_1) = \binom{n}{n_1} = \frac{n!}{n_1!\times\left(n - n_1\right)!}}
 
 To convert a W statistic to a U statistic use:

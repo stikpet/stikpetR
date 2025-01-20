@@ -7,9 +7,9 @@
 th_cohen_f(f, qual = "cohen")
 }
 \arguments{
-\item{qual}{optional setting for which rule of thumb to use. Currently only "cohen"}
+\item{f}{the Cohen f value}
 
-\item{g}{the Cohen f value}
+\item{qual}{optional setting for which rule of thumb to use. Currently only "cohen"}
 }
 \value{
 A dataframe with:
@@ -34,7 +34,7 @@ Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed
 \seealso{
 \code{\link{es_cohen_f}}, to determine Cohen f
 
-\code{\link{cor_rosenthal}}, to determine the Rosenthal correlation, which Cohen called also Cohen f
+\code{\link{r_rosenthal}}, to determine the Rosenthal correlation, which Cohen called also Cohen f
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -4,7 +4,7 @@
 \alias{srf}
 \title{Wilcoxon Sum-of-Ranks Frequency Function}
 \usage{
-srf(x, y)
+srf(T, n)
 }
 \arguments{
 \item{T}{int with the sum of ranks}

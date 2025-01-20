@@ -26,7 +26,7 @@
 #' * \code{\link{es_alt_ratio}} for the Alternative Ratio
 #' 
 #' @seealso 
-#' \code{\link{ph_binomial}}, performs a pairwise binomial test
+#' \code{\link{ph_pairwise_bin}}, performs a pairwise binomial test
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

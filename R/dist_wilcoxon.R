@@ -209,14 +209,14 @@ di_wpmf <- function(T, n, method="shift"){
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'  
 #' @export
-srf <-function(x,y){
+srf <-function(T,n){
   #srf = sum rank frequency
-  if (x<0){
+  if (T<0){
     return (0)}
-  else if (x > y*(y+1)/2){
+  else if (T > n*(n+1)/2){
     return (0)}
-  else if (y==1 && (x==0 || x==1)){
+  else if (n==1 && (T==0 || T==1)){
     return (1)}
-  else if (y>=0){
-    return (srf(x-y, y-1) + srf(x, y-1))}
+  else if (n>=0){
+    return (srf(T-n, n-1) + srf(T, n-1))}
 }

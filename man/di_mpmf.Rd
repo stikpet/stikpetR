@@ -46,7 +46,7 @@ If \emph{method=mprob} the algorithm from García-Pérez (1999) is used:
 }
 }
 \references{
-Arnold, J. (2018, December 3). Maximum Likelihood for the multinomial distribution (bag of words) \link{Blog}. Jakuba. https://blog.jakuba.net/maximum-likelihood-for-multinomial-distribution/
+Arnold, J. (2018, December 3). Maximum Likelihood for the multinomial distribution (bag of words) [Blog]. Jakuba. https://blog.jakuba.net/maximum-likelihood-for-multinomial-distribution/
 
 Berry, K. J., & Mielke, P. W. (1995). Exact cumulative probabilities for the multinomial distribution. \emph{Educational and Psychological Measurement, 55}(5), 769–772. doi:10.1177/0013164495055005008
 

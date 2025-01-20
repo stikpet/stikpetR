@@ -4,7 +4,7 @@
 \alias{di_mwwf}
 \title{Mann-Whitney-Wilcoxon Count}
 \usage{
-di_mwwf(u, i, j, memo = list())
+di_mwwf(u, n1, n2, memo = list())
 }
 \arguments{
 \item{u}{int, the U test statistic}
@@ -12,6 +12,8 @@ di_mwwf(u, i, j, memo = list())
 \item{n1}{int, the sample size of the first category}
 
 \item{n2}{int the sample size of the second category}
+
+\item{memo}{optional list, memoize the result}
 }
 \value{
 result : a list with the counts starting with the count for U=0

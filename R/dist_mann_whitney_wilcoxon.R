@@ -5,6 +5,7 @@
 #' @param u int, the U test statistic
 #' @param n1 int, the sample size of the first category
 #' @param n2 int the sample size of the second category
+#' @param memo optional list, memoize the result
 #' 
 #' @returns
 #' result : a list with the counts starting with the count for U=0
@@ -29,24 +30,24 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'  
 #' @export
-di_mwwf <- function(u, i, j, memo = list()) {
+di_mwwf <- function(u, n1, n2, memo = list()) {
   # Check if result is already computed
-  if (exists(paste(u, i, j, sep = "_"), where = memo)) {
-    return(memo[[paste(u, i, j, sep = "_")]])
+  if (exists(paste(u, n1, n2, sep = "_"), where = memo)) {
+    return(memo[[paste(u, n1, n2, sep = "_")]])
   }
   
   # Base cases
-  if (u < 0 || u > i * j) {
+  if (u < 0 || u > n1 * n2) {
     result <- 0
-  } else if (i == 1 || j == 1) {
+  } else if (n1 == 1 || n2 == 1) {
     result <- 1
   } else {
     # Recursive case
-    result <- di_mwwf(u, i, j - 1, memo) + di_mwwf(u - j, i - 1, j, memo)
+    result <- di_mwwf(u, n1, n2 - 1, memo) + di_mwwf(u - n2, n1 - 1, n2, memo)
   }
   
   # Memoize the result
-  memo[[paste(u, i, j, sep = "_")]] <- result
+  memo[[paste(u, n1, n2, sep = "_")]] <- result
   
   return(result)
 }
@@ -86,21 +87,21 @@ di_mwwf <- function(u, i, j, memo = list()) {
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'  
 #' @export
-di_mwwd <- function(u, i, j) {
+di_mwwd <- function(u, n1, n2) {
   # Create a 3D DP table with dimensions (u+1) x (i+1) x (j+1)
-  dp <- array(0, dim = c(u + 1, i + 1, j + 1))
+  dp <- array(0, dim = c(u + 1, n1 + 1, n2 + 1))
   
   # Initialize base cases
-  for (y in 0:i) {
-    for (z in 0:j) {
+  for (y in 0:n1) {
+    for (z in 0:n2) {
       dp[1, y + 1, z + 1] <- 1
     }
   }
   
   # Fill the DP table based on the recurrence relation
   for (x in 0:u) {
-    for (y in 1:i) {
-      for (z in 1:j) {
+    for (y in 1:n1) {
+      for (z in 1:n2) {
         if (x < 0 || x > y * z) {
           dp[x + 1, y + 1, z + 1] <- 0
         } else if (y == 1 || z == 1) {
@@ -124,7 +125,7 @@ di_mwwd <- function(u, i, j) {
   }
   
   # Return the distribution of results from 0 to u
-  return(sapply(0:u, function(x) dp[x + 1, i + 1, j + 1]))
+  return(sapply(0:u, function(x) dp[x + 1, n1 + 1, n2 + 1]))
 }
 
 #' Mann-Whitney-Wilcoxon Probability Mass Function 
@@ -174,7 +175,7 @@ di_mwwpmf <- function(u, n1, n2) {
 #' p : the cumulative probability
 #' 
 #' @details
-#' ee the details in di_mwwd() on how the frequency distribution is determined. The sum of these is then divided by the total number of possibilities, which is the number of ways we can choose $n_1$ items out of $n$, without replacement. This is the binomial coefficient, or number of combinations:
+#' See the details in di_mwwd() on how the frequency distribution is determined. The sum of these is then divided by the total number of possibilities, which is the number of ways we can choose $n_1$ items out of $n$, without replacement. This is the binomial coefficient, or number of combinations:
 #' \deqn{C(n, n_1) = nCr(n, n_1) = \binom{n}{n_1} = \frac{n!}{n_1!\times\left(n - n_1\right)!}}
 #' 
 #' To convert a W statistic to a U statistic use:

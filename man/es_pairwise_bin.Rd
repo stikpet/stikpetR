@@ -37,7 +37,7 @@ See the separate functions of each effect size for more details.
 }
 }
 \seealso{
-\code{\link{ph_binomial}}, performs a pairwise binomial test
+\code{\link{ph_pairwise_bin}}, performs a pairwise binomial test
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

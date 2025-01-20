@@ -4,7 +4,7 @@
 \alias{di_mwwd}
 \title{Mann-Whitney-Wilcoxon Distribution}
 \usage{
-di_mwwd(u, i, j)
+di_mwwd(u, n1, n2)
 }
 \arguments{
 \item{u}{int, the U test statistic}

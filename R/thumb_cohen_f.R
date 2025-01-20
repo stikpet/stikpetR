@@ -3,7 +3,7 @@
 #' @description 
 #' Simple function to use a rule-of-thumb for the Cohen f effect size.
 #' 
-#' @param g the Cohen f value
+#' @param f the Cohen f value
 #' @param qual optional setting for which rule of thumb to use. Currently only "cohen"
 #' 
 #' @returns 
@@ -24,7 +24,7 @@
 #' @seealso 
 #' \code{\link{es_cohen_f}}, to determine Cohen f
 #' 
-#' \code{\link{cor_rosenthal}}, to determine the Rosenthal correlation, which Cohen called also Cohen f
+#' \code{\link{r_rosenthal}}, to determine the Rosenthal correlation, which Cohen called also Cohen f
 #' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.

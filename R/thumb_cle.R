@@ -5,7 +5,7 @@
 #' 
 #' @param cle the Vargha-Delaney A value
 #' @param qual {"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
-#' convert : {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
+#' @param convert {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
 #' 
 #' @returns 
 #' A dataframe with:
