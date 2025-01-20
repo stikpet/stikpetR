@@ -67,46 +67,77 @@
 #' 
 #' @export
 ts_multinomial_gof <- function(data, expCounts=NULL) {
+
+  if (is.list(data)) {
+    data <- unlist(data)
+  }
   
   data = na.omit(data)
   
-  #determine the observed counts
-  if (is.null(expCounts)){observed <- c(table(data))}
-  else {
-    freq = data.frame(matrix(nrow=0, ncol=2))
-    for (i in expCounts[,1]){
-      freq[nrow(freq) + 1,] = c(i, sum(data==i))
-    }
-    observed <- setNames(as.integer(t(freq[2])), t(freq[1]))
-  }
+  # Determine the observed counts
+  if (is.null(expCounts)) {
+    # Generate frequency table
+    freq <- as.data.frame(table(data))
+    colnames(freq) <- c("category", "count")
+    n <- sum(freq$count)
     
-  n <- sum(observed)
-  k <- length(observed)
-  expProb =rep(1/k, k)
-  
-  pObs = dmultinom(sort(observed, decreasing=TRUE), size=n, expProb)
-  counts <- seq(0, n, by = 1)
-  
-  kCounts <- matrix(0 ,nrow=n+1, ncol=k)
-  for (i in 1:k){kCounts[,i] <- counts}
-  
-  all_perm <- merge(kCounts[,1], as.data.frame(kCounts[,2]),all=TRUE)
-  all_perm <- all_perm[rowSums(all_perm) <= n,]
-  for (i in 3:k){
-    set_to_merge <- data.frame(dummyname=kCounts[,i])
-    colnames(set_to_merge) <- paste0("k_",i)
-    all_perm <- merge(all_perm, set_to_merge,all=TRUE)
-    all_perm <- all_perm[rowSums(all_perm) <= n,]
+    # Number of categories to use (k)
+    k <- nrow(freq)
+    
+    # Number of expected counts is simply sample size
+    nE <- n
+  } else {
+    # If expected counts are given
+    k <- nrow(expCounts)
+    
+    freq <- data.frame(category = character(), count = integer(), stringsAsFactors = FALSE)
+    for (i in 1:k) {
+      nk <- sum(data == expCounts[i, 1])
+      lk <- expCounts[i, 1]
+      freq <- rbind(freq, data.frame(category = lk, count = nk))
+    }
+    nE <- sum(expCounts[, 2])
   }
   
-  all_perm <- all_perm[rowSums(all_perm) == n,]
-  ncomb <- dim(all_perm)[1]
-  pObsAll <- apply(all_perm, 1, function(x) dmultinom(sort(x, decreasing=TRUE), size=n, expProb))
-  dfPs <- data.frame(pObsAll)
-  pValue <- sum(dfPs[which(round(dfPs$pObsAll, digits=8) <= round(pObs, 8)),1])
+  n <- sum(freq$count)
+  
+  # The true expected counts
+  if (is.null(expCounts)) {
+    # Assume all to be equal
+    exp_prop <- rep(1 / k, k)
+  } else {
+    # Check if categories match
+    exp_prop <- numeric(k)
+    for (i in 1:k) {
+      exp_prop[i] <- expCounts[i, 2] / nE
+    }
+  }
+  
+  observed <- freq$count
+  p_obs <- dmultinom(sort(observed), size = n, prob = exp_prop)
+  counts <- 0:n
+  
+  # Generate all permutations of counts
+  all_perm <- as.matrix(expand.grid(rep(list(counts), k)))
+  sum_perm <- all_perm[rowSums(all_perm) == n, ]
+  ncomb <- nrow(sum_perm)
+  
+  # Compute the p-value
+  p_val <- 0
+  for (i in 1:ncomb) {
+    p_perm <- dmultinom(sum_perm[i, ], size = n, prob = exp_prop)
+    if (p_perm <= p_obs) {
+      p_val <- p_val + p_perm
+    }
+  }
   
   testUsed <- "one-sample multinomial exact goodness-of-fit test"
-  testResults <- data.frame(pObs, ncomb, pValue, testUsed)
+  testResults <- data.frame(
+    `p obs.` = p_obs,
+    `n combs.` = ncomb,
+    `p-value` = p_val,
+    `test` = testUsed
+  )
   
-  return(testResults)                 
+  return(testResults)
 }

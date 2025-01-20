@@ -141,16 +141,16 @@ es_common_language_is <- function(catField, scores, categories=NULL, levels=NULL
     n = nrow(pairs)
     
     #pairs where first is greater than second
-    xGTy <- subset(pairs, Var1 > Var2)
+    xGTy <- subset(pairs, var1 > var2)
     
     if (method=="brute"){
-      xEQy <- subset(pairs, Var1 == Var2)
+      xEQy <- subset(pairs, var1 == var2)
       n_xGTEy = nrow(xGTy) + 1/2*nrow(xEQy)
       c1 = n_xGTEy/n
       c2 = 1 - c1}
     else {
       c1 = nrow(xGTy)/n
-      c2 = nrow(subset(pairs, Var1 < Var2))/n
+      c2 = nrow(subset(pairs, var1 < var2))/n
     }
     
     

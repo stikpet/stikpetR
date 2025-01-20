@@ -202,7 +202,6 @@ di_wpmf <- function(T, n, method="shift"){
 #' with:
 #' \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 #' 
-#' }
 #' @references 
 #' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
 #' 

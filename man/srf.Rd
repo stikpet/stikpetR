@@ -18,7 +18,11 @@ A the requested count
 This helper function will give the count for a sum of ranks of T, given a sample size of n, using the recursive formula.
 }
 \details{
+The recursive method uses the formula from McCornack (1965, p. 864):
+\deqn{srf\left(x,y\right)=\begin{cases} 0 & x < 0 \\ 0 & x > \binom{y+1}{2} \\ 1 & y=1 \wedge \left( x=0\vee x=1 \right) \\ srf^*\left(x,y\right) & y\geq 0 \end{cases}}
 
+with:
+\deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 }
 \references{
 McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864–871. doi:10.2307/2283253

@@ -60,7 +60,7 @@ es_pairwise_bin_ord  <-
             es_res = es_common_language_is(selDf["groups"],
                                          selDf["scores"],
                                          categories = sel_cats,
-                                         levels = myCoding, 
+                                         levels = levels, 
                                          method="vda")
             p_res <- append(p_res, c(as.matrix(es_res[1,]))[1])
             p_res2 <- append(p_res2, c(as.matrix(es_res[1,]))[2])
