@@ -11,6 +11,8 @@
 #' @returns
 #' a dataframe with:
 #' \item{category}{the label of the first category}
+#' \item{obs. count}{the observed count}
+#' \item{exp. count}{the expected count}
 #' \item{z-statistic}{the standardized residuals}
 #' \item{p-value}{the unadjusted significance}
 #' \item{adj. p-value}{the adjusted significance}
@@ -93,7 +95,7 @@ ph_residual_gof <- function(data, expCount=NULL){
     
   }
   
-  columns=c("category", "z-statistic","p-value", "adj. p-value")
+  columns=c("category", "obs. count", "exp. count", "z-statistic","p-value", "adj. p-value")
   
   res = data.frame(matrix(nrow = 0, ncol = length(columns)))
   colnames(res) = columns
@@ -103,7 +105,7 @@ ph_residual_gof <- function(data, expCount=NULL){
     z = (as.numeric(freq[i,2]) - expC[i])/(expC[i]**0.5)
     sig = 2*(1 - pnorm(abs(z)))
     adjSig = min(sig*k, 1)
-    res[i,] = c(cat, z, sig, adjSig)
+    res[i,] = c(cat, freq[i,2], expC[i], z, sig, adjSig)
   }
   
   return (res)

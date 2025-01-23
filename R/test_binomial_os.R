@@ -24,6 +24,7 @@
 #' \item{testUsed}{a description of the test used}
 #' 
 #' @details 
+#' For the formulas below it is assumed that the observed proportion is less than the expected proportion, if this isn't the case, the right-tail probabilities are used.
 #' A one sided p-value is calculated first:
 #' \deqn{sig_{one-tail} = \text{Bin}\left(n, n_{min}, p_0^*\right)}
 #' With:

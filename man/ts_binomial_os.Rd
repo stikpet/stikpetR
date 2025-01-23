@@ -37,6 +37,7 @@ A significance in general is the probability of a result as in the sample, or mo
 A \href{https://youtu.be/9OGCi1Q7tBQ}{YouTube} video on the binomial test.
 }
 \details{
+For the formulas below it is assumed that the observed proportion is less than the expected proportion, if this isn't the case, the right-tail probabilities are used.
 A one sided p-value is calculated first:
 \deqn{sig_{one-tail} = \text{Bin}\left(n, n_{min}, p_0^*\right)}
 With:

@@ -14,6 +14,8 @@ ph_residual_gof(data, expCount = NULL)
 \value{
 a dataframe with:
 \item{category}{the label of the first category}
+\item{obs. count}{the observed count}
+\item{exp. count}{the expected count}
 \item{z-statistic}{the standardized residuals}
 \item{p-value}{the unadjusted significance}
 \item{adj. p-value}{the adjusted significance}
