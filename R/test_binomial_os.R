@@ -125,38 +125,54 @@ ts_binomial_os <- function(data,
   
   minCount = n1
   ExpProp = p0
+  ObsProp = n1/n
   if (n2 < n1){
     minCount = n2
     ExpProp = 1 - p0
+    ObsProp = n2/n
   }
   
   #one sided test
-  sig1 = pbinom(minCount,n,ExpProp)  
+  if (ExpProp < ObsProp){
+    sig1 = 1 - pbinom(minCount - 1, n, ExpProp)
+  }
+  else {
+    sig1 = pbinom(minCount,n,ExpProp)
+  }
   
   #two sided
   if (twoSidedMethod=="double"){
-    sigR = sig1
+    sig2 = sig1
     testUsed = paste(testUsed, ", with double one-sided method", sep='')}
   else if(twoSidedMethod=="eqdist"){
     #Equal distance
     ExpCount = n * ExpProp
     Dist = ExpCount - minCount
-    RightCount = ExpCount + Dist
-    sigR = 1 - pbinom(RightCount - 1,n,ExpProp)
+    OtherCount = ExpCount + Dist
+    if (ExpProp < ObsProp){sig2 = pbinom(OtherCount, n, ExpProp)}
+    else {sig2 = 1 - pbinom(OtherCount - 1,n,ExpProp)}
     testUsed = paste(testUsed, ", with equal-distance method", sep='')}
   else {
     #Method of small p
     binSmall = dbinom(minCount, n, ExpProp)
-    sigR = 0
-    for (i in (minCount + 1):n){
+    sig2 = 0
+    if (ExpProp < ObsProp){
+      startAt = 1
+      endAt = minCount-1
+    }
+    else{
+      startAt = minCount + 1
+      endAt = n
+    }
+    for (i in startAt:endAt){
       binDist = dbinom(i, n, ExpProp)
       if (binDist <= binSmall){
-        sigR = sigR + binDist}
+        sig2 = sig2 + binDist}
     }
     testUsed = paste(testUsed, ", with small p method", sep='')
   }
   
-  pValue = sig1 + sigR
+  pValue = sig1 + sig2
   
   if (pValue>1) {
     pValue=1
