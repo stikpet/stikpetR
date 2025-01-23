@@ -4,21 +4,26 @@
 \alias{ph_residual_gof}
 \title{Post-Hoc Residuals Goodness-of-Fit Test}
 \usage{
-ph_residual_gof(data, expCount = NULL)
+ph_residual_gof(data, test = "adj-residual", expCount = NULL, ...)
 }
 \arguments{
 \item{data}{dataframe with scores}
 
+\item{test}{{"adj-residual", "binomial", "wald", "score"} optional test to use}
+
 \item{expCount}{optional dataframe with categories and expected counts}
+
+\item{...}{optional additional parameters to be passed to the test}
 }
 \value{
 a dataframe with:
 \item{category}{the label of the first category}
 \item{obs. count}{the observed count}
 \item{exp. count}{the expected count}
-\item{z-statistic}{the standardized residuals}
+\item{statistic}{the test statistic}
 \item{p-value}{the unadjusted significance}
 \item{adj. p-value}{the adjusted significance}
+\item{test}{description of the test used}
 }
 \description{
 This function will perform a standardized residuals post-hoc test for each of the categories in a nominal field.
@@ -26,7 +31,7 @@ This function will perform a standardized residuals post-hoc test for each of th
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 }
 \details{
-The formula used is:
+The formula used for the residual test:
 \deqn{z = \frac{F_i - E_i}{\sqrt{E_i}}}
 \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
 
@@ -41,6 +46,8 @@ If no expected counts are provide it is assumed they are all equal for each cate
 
 The Bonferroni adjustment is calculated using:
 \deqn{p_{adj} = \min \left(p \times k, 1\right)}
+
+The other tests use the formula from the one-sample test variant, using the expected count/n as the expected proportion.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

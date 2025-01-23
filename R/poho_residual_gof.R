@@ -6,19 +6,22 @@
 #' The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 #' 
 #' @param data dataframe with scores
+#' @param test {"adj-residual", "binomial", "wald", "score"} optional test to use
 #' @param expCount optional dataframe with categories and expected counts
+#' @param ... optional additional parameters to be passed to the test
 #' 
 #' @returns
 #' a dataframe with:
 #' \item{category}{the label of the first category}
 #' \item{obs. count}{the observed count}
 #' \item{exp. count}{the expected count}
-#' \item{z-statistic}{the standardized residuals}
+#' \item{statistic}{the test statistic}
 #' \item{p-value}{the unadjusted significance}
 #' \item{adj. p-value}{the adjusted significance}
+#' \item{test}{description of the test used}
 #' 
 #' @details
-#' The formula used is:
+#' The formula used for the residual test:
 #' \deqn{z = \frac{F_i - E_i}{\sqrt{E_i}}}
 #' \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
 #' 
@@ -33,12 +36,14 @@
 #' 
 #' The Bonferroni adjustment is calculated using:
 #' \deqn{p_{adj} = \min \left(p \times k, 1\right)}
+#' 
+#' The other tests use the formula from the one-sample test variant, using the expected count/n as the expected proportion.
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_residual_gof <- function(data, expCount=NULL){
+ph_residual_gof <- function(data, test="adj-residual", expCount=NULL, ...){
   data = na.omit(data)
   
   #the sample size n
@@ -95,17 +100,43 @@ ph_residual_gof <- function(data, expCount=NULL){
     
   }
   
-  columns=c("category", "obs. count", "exp. count", "z-statistic","p-value", "adj. p-value")
+  columns=c("category", "obs. count", "exp. count", "statistic","p-value", "adj. p-value", "test")
   
   res = data.frame(matrix(nrow = 0, ncol = length(columns)))
   colnames(res) = columns
   adjFactor = k*(k - 1)/2
   for (i in 1:k){
     cat = freq[i,1]
-    z = (as.numeric(freq[i,2]) - expC[i])/(expC[i]**0.5)
-    sig = 2*(1 - pnorm(abs(z)))
+    n1 = as.numeric(freq[i,2])
+    e1 = expC[i]
+    if (test=="adj-residual"){
+      statistic = (as.numeric(freq[i,2]) - expC[i])/(expC[i]**0.5)
+      sig = 2*(1 - pnorm(abs(statistic)))
+      testDescription = "adjusted residuals z-test"
+    }
+    else {
+      tempA = rep('A', n1)
+      tempB = rep('B', n - n1)
+      tempData = c(tempA, tempB)
+      if (test=="binomial"){
+        
+        testResults = ts_binomial_os(tempData, p0 = e1/n, ...)
+        statistic = "n.a."
+        sig = testResults[1,1]
+        testDescription = testResults[1,2]
+      }
+      else{
+        if (test=="wald"){
+          testResults = ts_wald_os(tempData, codes=c('A', 'B'), p0=e1/n, ...)}
+        else if (test=="score"){
+          testResults = ts_score_os(tempData, codes=c('A', 'B'), p0=e1/n, ...)}
+        statistic = testResults[1,2]
+        sig = testResults[1,3]
+        testDescription = testResults[1,4]
+      }
+    }
     adjSig = min(sig*k, 1)
-    res[i,] = c(cat, freq[i,2], expC[i], z, sig, adjSig)
+    res[i,] = c(cat, n1, e1, statistic, sig, adjSig, testDescription)
   }
   
   return (res)
