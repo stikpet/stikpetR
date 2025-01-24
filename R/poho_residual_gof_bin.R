@@ -1,7 +1,7 @@
-#' Post-Hoc Residuals Goodness-of-Fit Test
+#' Post-Hoc Residuals Using Binary Tests for GoF
 #' 
 #' @description 
-#' This function will perform a standardized residuals post-hoc test for each of the categories in a nominal field.
+#' This function will perform a goodness-of-fit test using each category and collapsing the other categories. It also includes z-test on the standardized residuals.
 #' 
 #' The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 #' 
@@ -43,7 +43,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_residual_gof <- function(data, test="adj-residual", expCount=NULL, ...){
+ph_residual_gof_bin <- function(data, test="adj-residual", expCount=NULL, ...){
   data = na.omit(data)
   
   #the sample size n

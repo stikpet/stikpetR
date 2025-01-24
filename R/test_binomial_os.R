@@ -156,19 +156,26 @@ ts_binomial_os <- function(data,
   else {
     #Method of small p
     binSmall = dbinom(minCount, n, ExpProp)
-    sig2 = 0
+    binDist = binSmall + 1
     if (ExpProp < ObsProp){
       startAt = 1
       endAt = minCount-1
+      i = endAt
+      while (binDist >= binSmall && i>=0){
+        binDist = dbinom(i, n, ExpProp)
+        i = i - 1
+      }
+      sig2 = pbinom(i + 1, n, ExpProp)  
     }
     else{
       startAt = minCount + 1
       endAt = n
-    }
-    for (i in startAt:endAt){
-      binDist = dbinom(i, n, ExpProp)
-      if (binDist <= binSmall){
-        sig2 = sig2 + binDist}
+      i = startAt
+      while (binDist >= binSmall && i<=n){
+        binDist = dbinom(i, n, ExpProp)
+        i = i + 1
+      } 
+      sig2 = 1 - pbinom(i - 1 - 1, n, ExpProp)  
     }
     testUsed = paste(testUsed, ", with small p method", sep='')
   }
