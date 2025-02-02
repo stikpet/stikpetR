@@ -8,6 +8,7 @@
 #' @param data dataframe with scores
 #' @param test {"binomial", "score", "wald"}, optional test to use for each pair
 #' @param expCount optional dataframe with categories and expected counts
+#' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional arguments for the specific test that are passed along.
 #' 
 #' @returns
@@ -28,12 +29,13 @@
 #' \code{\link{ts_binomial_os}}, more info on the one-sample binomial test
 #' \code{\link{ts_wald_os}}, more info on the one-sample Wald test
 #' \code{\link{ts_score_os}}, more info on the one-sample score test
+#' \code{\link{ps_adjust}}, the various methods for correction with multiple testing
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_pairwise_bin <- function(data, test="binomial", expCount=NULL, ...){
+ph_pairwise_bin <- function(data, test="binomial", expCount=NULL, mtc='bonferroni', ...){
   data = na.omit(data)
   
   #the sample size n
@@ -122,6 +124,8 @@ ph_pairwise_bin <- function(data, test="binomial", expCount=NULL, ...){
     }
   }
   
+  p_adj = p_adjust(as.numeric(res[, 9]), method=mtc)
+  res[, 10] = p_adj
   
   return (res)
 }

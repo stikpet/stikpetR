@@ -8,6 +8,7 @@
 #' @param data dataframe with scores
 #' @param test {"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use
 #' @param expCount optional dataframe with categories and expected counts
+#' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional parameters to be passed to the test
 #' 
 #' @returns
@@ -55,7 +56,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, ...){
+ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, mtc='bonferroni', ...){
   data = na.omit(data)
   
   #the sample size n
@@ -155,6 +156,9 @@ ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, ...){
     adjSig = min(sig*k, 1)
     res[i,] = c(cat, n1, e1, statistic, sig, adjSig, testDescription)
   }
+  
+  p_adj = p_adjust(as.numeric(res[, 5]), method=mtc)
+  res[, 6] = p_adj
   
   return (res)
 }

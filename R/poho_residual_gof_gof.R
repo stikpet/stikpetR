@@ -8,6 +8,7 @@
 #' @param data dataframe with scores
 #' @param test {"pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"} optional test to use
 #' @param expCount optional dataframe with categories and expected counts
+#' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional parameters to be passed to the test
 #' 
 #' @returns
@@ -36,12 +37,13 @@
 #' \code{\link{ts_freeman_tukey_read}}
 #' \code{\link{ts_freeman_tukey_gof}}
 #' \code{\link{ts_pearson_gof}}
+#' \code{\link{ps_adjust}}
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
+ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, mtc='bonferroni', ...){
   data = na.omit(data)
   
   #the sample size n
@@ -136,9 +138,7 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
       pObs = testResult[1,1]
       nComb = testResult[1,2]
       pValue = testResult[1,3]
-      adjpValue = pValue*adjFactor
-      if (adjpValue > 1){
-        adjpValue = 1}
+      adjpValue = pValue
       testDesc = testResult[1,4]
       res[nrow(res) + 1,] = c(cat, n1/n, e1/n, pObs, nComb, pValue, adjpValue, testDesc)
     }
@@ -146,9 +146,7 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
       statistic = testResult[1,3]
       df = testResult[1,4]
       pValue = testResult[1,5]
-      adjpValue = pValue*adjFactor
-      if (adjpValue > 1){
-        adjpValue = 1}
+      adjpValue = pValue
       minExp = testResult[1,6]
       propBelow5 = testResult[1,7]
       testDesc = testResult[1,8]
@@ -156,6 +154,8 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
     }
   }
   
+  p_adj = p_adjust(as.numeric(res[, 6]), method=mtc)
+  res[, 7] = p_adj
   
   return (res)
 }

@@ -4,7 +4,13 @@
 \alias{ph_pairwise_gof}
 \title{Pairwise Goodness-of-Fit Tests for Post-Hoc Analysis}
 \usage{
-ph_pairwise_gof(data, test = "pearson", expCount = NULL, ...)
+ph_pairwise_gof(
+  data,
+  test = "pearson",
+  expCount = NULL,
+  mtc = "bonferroni",
+  ...
+)
 }
 \arguments{
 \item{data}{dataframe with scores}
@@ -12,6 +18,8 @@ ph_pairwise_gof(data, test = "pearson", expCount = NULL, ...)
 \item{test}{{"pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"}, optional test to use for each pair}
 
 \item{expCount}{optional dataframe with categories and expected counts}
+
+\item{mtc}{optional string. Any of the methods available in p_adjust() to correct for multiple tests}
 
 \item{...}{optional additional arguments for the specific test that are passed along.}
 }
@@ -49,6 +57,7 @@ The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 \code{\link{ts_freeman_tukey_read}}
 \code{\link{ts_freeman_tukey_gof}}
 \code{\link{ts_pearson_gof}}
+\code{\link{ps_adjust}}
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

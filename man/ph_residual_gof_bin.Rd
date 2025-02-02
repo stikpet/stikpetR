@@ -4,7 +4,13 @@
 \alias{ph_residual_gof_bin}
 \title{Post-Hoc Residuals Using Binary Tests for GoF}
 \usage{
-ph_residual_gof_bin(data, test = "std-residual", expCount = NULL, ...)
+ph_residual_gof_bin(
+  data,
+  test = "std-residual",
+  expCount = NULL,
+  mtc = "bonferroni",
+  ...
+)
 }
 \arguments{
 \item{data}{dataframe with scores}
@@ -12,6 +18,8 @@ ph_residual_gof_bin(data, test = "std-residual", expCount = NULL, ...)
 \item{test}{{"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use}
 
 \item{expCount}{optional dataframe with categories and expected counts}
+
+\item{mtc}{optional string. Any of the methods available in p_adjust() to correct for multiple tests}
 
 \item{...}{optional additional parameters to be passed to the test}
 }

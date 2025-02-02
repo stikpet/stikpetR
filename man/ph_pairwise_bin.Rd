@@ -4,7 +4,13 @@
 \alias{ph_pairwise_bin}
 \title{Pairwise Binary Test for Post-Hoc Analysis}
 \usage{
-ph_pairwise_bin(data, test = "binomial", expCount = NULL, ...)
+ph_pairwise_bin(
+  data,
+  test = "binomial",
+  expCount = NULL,
+  mtc = "bonferroni",
+  ...
+)
 }
 \arguments{
 \item{data}{dataframe with scores}
@@ -12,6 +18,8 @@ ph_pairwise_bin(data, test = "binomial", expCount = NULL, ...)
 \item{test}{{"binomial", "score", "wald"}, optional test to use for each pair}
 
 \item{expCount}{optional dataframe with categories and expected counts}
+
+\item{mtc}{optional string. Any of the methods available in p_adjust() to correct for multiple tests}
 
 \item{...}{optional additional arguments for the specific test that are passed along.}
 }
@@ -38,6 +46,7 @@ The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 \code{\link{ts_binomial_os}}, more info on the one-sample binomial test
 \code{\link{ts_wald_os}}, more info on the one-sample Wald test
 \code{\link{ts_score_os}}, more info on the one-sample score test
+\code{\link{ps_adjust}}, the various methods for correction with multiple testing
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
