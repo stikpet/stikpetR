@@ -241,18 +241,17 @@ p_adjust <- function(p_values, method='bonferroni', alpha=.05){
     
     else if (method=='hommel-original'){            
       
-      ai = p_sorted
       i_hommel = -1
       i = 1
       while (i <= k && i_hommel== -1){
         c_min = 1
         for (j in 1:i){
           if (p_sorted[k-i+j,2]*i/j< c_min){
-            c_min = p_sorted[k-i+j,2]
+            c_min = p_sorted[k-i+j,2]*i/j
           }
         }
         if (c_min <= alpha){
-          i_hommel = i
+          i_hommel = i - 1
         }
         i = i + 1
       }
