@@ -152,7 +152,7 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
       minExp = testResult[1,6]
       propBelow5 = testResult[1,7]
       testDesc = testResult[1,8]
-      res[nrow(res) + 1,] = c(cat, n1/n, e1/n, statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
+      res[nrow(res) + 1,] = c(cat, n1, e1, statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
     }
   }
   
