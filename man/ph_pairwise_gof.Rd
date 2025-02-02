@@ -21,6 +21,8 @@ a dataframe with:
 \item{category 2}{the label of the second category}
 \item{n1}{the sample size of the first category}
 \item{n2}{the sample size of the second category}
+\item{obs. prop. 1}{the observed proportion of category 1}
+\item{exp. prop. 1}{the expected proportion of category 1}
 \item{statistic}{the chi-square test statistic}
 \item{df}{the degrees of freedom}
 \item{p-value}{the unadjusted significance}

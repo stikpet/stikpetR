@@ -18,7 +18,8 @@ ph_residual_gof_gof(data, test = "pearson", expCount = NULL, ...)
 \value{
 a dataframe with:
 \item{category}{the label of the first category}
-\item{n1}{the sample size of the first category}
+\item{obs. count}{the observed count of the category}
+\item{exp. count}{the expected count of the category}
 \item{statistic}{the chi-square test statistic}
 \item{df}{the degrees of freedom}
 \item{p-value}{the unadjusted significance}

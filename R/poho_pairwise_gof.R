@@ -16,6 +16,8 @@
 #' \item{category 2}{the label of the second category}
 #' \item{n1}{the sample size of the first category}
 #' \item{n2}{the sample size of the second category}
+#' \item{obs. prop. 1}{the observed proportion of category 1}
+#' \item{exp. prop. 1}{the expected proportion of category 1}
 #' \item{statistic}{the chi-square test statistic}
 #' \item{df}{the degrees of freedom}
 #' \item{p-value}{the unadjusted significance}
@@ -98,10 +100,10 @@ ph_pairwise_gof <- function(data, test="pearson", expCount=NULL, ...){
   }
   
   if (test=="multinomial"){  
-    columns=c("category 1", "category 2", "n1", "n2", "p obs", "n combs.","p-value", "adj. p-value", "test")
+    columns=c("category 1", "category 2", "n1", "n2", "obs. prop. 1", "exp. prop. 1", "p obs", "n combs.","p-value", "adj. p-value", "test")
   }
   else{
-    columns=c("category 1", "category 2", "n1", "n2", "statistic", "df", "p-value", "adj. p-value", "minExp", "propBelow5", "test")
+    columns=c("category 1", "category 2", "n1", "n2", "obs. prop. 1", "exp. prop. 1", "statistic", "df", "p-value", "adj. p-value", "minExp", "propBelow5", "test")
   }
   
   res = data.frame(matrix(nrow = 0, ncol = length(columns)))
@@ -148,7 +150,7 @@ ph_pairwise_gof <- function(data, test="pearson", expCount=NULL, ...){
         if (adjpValue > 1){
           adjpValue = 1}
         testDesc = testResult[1,4]
-        res[nrow(res) + 1,] = c(cat1, cat2, n1, n2, pObs, nComb, pValue, adjpValue, testDesc)
+        res[nrow(res) + 1,] = c(cat1, cat2, n1, n2, n1/(n1+n2), exp_count_1/(n1+n2), pObs, nComb, pValue, adjpValue, testDesc)
       }
       else {
         statistic = testResult[1,3]
@@ -160,7 +162,7 @@ ph_pairwise_gof <- function(data, test="pearson", expCount=NULL, ...){
         minExp = testResult[1,6]
         propBelow5 = testResult[1,7]
         testDesc = testResult[1,8]
-        res[nrow(res) + 1,] = c(cat1, cat2, n1, n2, statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
+        res[nrow(res) + 1,] = c(cat1, cat2, n1, n2, n1/(n1+n2), exp_count_1/(n1+n2), statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
       }
     }
   }

@@ -1,12 +1,12 @@
 #' Post-Hoc Residuals Using Binary Tests for GoF
 #' 
 #' @description 
-#' This function will perform a goodness-of-fit test using each category and collapsing the other categories. It also includes z-test on the standardized residuals.
+#' This function will perform a residuals post-hoc test for each of the categories in a nominal field. This could either be a z-test using the standardized residuals, the adjusted residuals, or any of the one-sample binary tests.
 #' 
 #' The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 #' 
 #' @param data dataframe with scores
-#' @param test {"adj-residual", "binomial", "wald", "score"} optional test to use
+#' @param test {"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use
 #' @param expCount optional dataframe with categories and expected counts
 #' @param ... optional additional parameters to be passed to the test
 #' 
@@ -21,7 +21,11 @@
 #' \item{test}{description of the test used}
 #' 
 #' @details
-#' The formula used for the residual test:
+#' The formula used is for the adjusted residual test:
+#' \deqn{z = \frac{F_i - E_i}{\sqrt{E_i\times\left(1 - \frac{E_i}{n}\right)}}}
+#' \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
+#' 
+#' The formula used for the standardized residual test:
 #' \deqn{z = \frac{F_i - E_i}{\sqrt{E_i}}}
 #' \deqn{sig = 2\times\left(1 - \Phi\left(\left|z\right|\right)\right)}
 #' 
@@ -38,12 +42,20 @@
 #' \deqn{p_{adj} = \min \left(p \times k, 1\right)}
 #' 
 #' The other tests use the formula from the one-sample test variant, using the expected count/n as the expected proportion.
+#' 
+#' The adjusted residuals will gave the same result as using a one-sample score test. Some sources will also call these adjusted residuals as standardized residuals (Agresti, 2007, p. 38), and the standardized residuals used in this function as Pearson residuals (R, n.d.). Haberman (1973, p. 205) and Sharpe (2015, p. 3) are sources for the terminology used in this function. 
 #'  
+#' @references 
+#' Agresti, A. (2007). *An introduction to categorical data analysis* (2nd ed.). Wiley-Interscience.
+#' Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. *Biometrics, 29*(1), 205–220. doi:10.2307/2529686
+#' R. (n.d.). Chisq.test [Computer software]. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
+#' Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, *Research & Evaluation, 20*(8), 1–10.
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-ph_residual_gof_bin <- function(data, test="adj-residual", expCount=NULL, ...){
+ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, ...){
   data = na.omit(data)
   
   #the sample size n
@@ -109,8 +121,13 @@ ph_residual_gof_bin <- function(data, test="adj-residual", expCount=NULL, ...){
     cat = freq[i,1]
     n1 = as.numeric(freq[i,2])
     e1 = expC[i]
-    if (test=="adj-residual"){
+    if (test=="std-residual"){
       statistic = (as.numeric(freq[i,2]) - expC[i])/(expC[i]**0.5)
+      sig = 2*(1 - pnorm(abs(statistic)))
+      testDescription = "standardized residuals z-test"
+    }
+    else if (test=="adj-residual"){
+      statistic = (as.numeric(freq[i,2]) - expC[i])/((expC[i]*(1 - expC[i]/n))**0.5)
       sig = 2*(1 - pnorm(abs(statistic)))
       testDescription = "adjusted residuals z-test"
     }

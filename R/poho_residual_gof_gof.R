@@ -13,7 +13,8 @@
 #' @returns
 #' a dataframe with:
 #' \item{category}{the label of the first category}
-#' \item{n1}{the sample size of the first category}
+#' \item{obs. count}{the observed count of the category}
+#' \item{exp. count}{the expected count of the category}
 #' \item{statistic}{the chi-square test statistic}
 #' \item{df}{the degrees of freedom}
 #' \item{p-value}{the unadjusted significance}
@@ -98,10 +99,10 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
   }
   
   if (test=="multinomial"){  
-    columns=c("category", "n1", "p obs", "n combs.","p-value", "adj. p-value", "test")
+    columns=c("category", "obs. count", "exp. count", "p obs", "n combs.","p-value", "adj. p-value", "test")
   }
   else{
-    columns=c("category", "n1", "statistic", "df", "p-value", "adj. p-value", "minExp", "propBelow5", "test")
+    columns=c("category", "obs. count", "exp. count", "statistic", "df", "p-value", "adj. p-value", "minExp", "propBelow5", "test")
   }
   
   res = data.frame(matrix(nrow = 0, ncol = length(columns)))
@@ -139,7 +140,7 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
       if (adjpValue > 1){
         adjpValue = 1}
       testDesc = testResult[1,4]
-      res[nrow(res) + 1,] = c(cat, n1, pObs, nComb, pValue, adjpValue, testDesc)
+      res[nrow(res) + 1,] = c(cat, n1/n, e1/n, pObs, nComb, pValue, adjpValue, testDesc)
     }
     else {
       statistic = testResult[1,3]
@@ -151,7 +152,7 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, ...){
       minExp = testResult[1,6]
       propBelow5 = testResult[1,7]
       testDesc = testResult[1,8]
-      res[nrow(res) + 1,] = c(cat, n1, statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
+      res[nrow(res) + 1,] = c(cat, n1/n, e1/n, statistic, df, pValue, adjpValue, minExp, propBelow5, testDesc)
     }
   }
   
