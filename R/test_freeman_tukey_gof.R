@@ -126,7 +126,7 @@
 #' ts_freeman_tukey_gof(ex3, expCount=eCounts)
 #' 
 #' @export
-ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams"), modified=FALSE){
+ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams"), modified=0){
   
   data = na.omit(data)
   
@@ -180,17 +180,17 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
   
   if (cc == "yates"){
     for (i in 1:k){
-      if (as.numeric(freq[i, 2] > expC[i])){
+      if (as.numeric(freq[i, 2]) > expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
-      else if (as.numeric(freq[i, 2] < expC[i])){
+      else if (as.numeric(freq[i, 2]) < expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
   if (cc == "yates2"){
     for (i in 1:k){
-      if (as.numeric(freq[i, 2] - 0.5 > expC[i])){
+      if (as.numeric(freq[i, 2]) - 0.5 > expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
-      else if (as.numeric(freq[i, 2] + 0.5 < expC[i])){
+      else if (as.numeric(freq[i, 2]) + 0.5 < expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
@@ -208,7 +208,7 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
     T2 = T2 + (sqrt(as.numeric(freq[i, 2])) - sqrt(expC[i])) ^ 2
     }
   }
-  if (!modified){T2 = 4*T2}
+  if (modified==0){T2 = 4*T2}
     
   if (cc == "pearson"){
     T2 = (n - 1) / n * T2}

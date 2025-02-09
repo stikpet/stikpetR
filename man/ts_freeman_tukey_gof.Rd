@@ -8,7 +8,7 @@ ts_freeman_tukey_gof(
   data,
   expCounts = NULL,
   cc = c("none", "yates", "pearson", "williams"),
-  modified = FALSE
+  modified = 0
 )
 }
 \arguments{
