@@ -151,7 +151,7 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
     lambd==-2
     testUsed = "Neyman"}
   else {
-    testUsed = "power divergence with lambda = " + "lambd"}
+    testUsed = paste("power divergence with lambda = ", lambd)}
   
   #The test itself
   #determine the observed counts
