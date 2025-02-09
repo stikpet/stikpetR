@@ -209,9 +209,9 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   if (cc=="yates"){
     adjFreq = freq
     for (i in 1:k){
-      if (as.numeric(adjFreq[i,2]) > as.numeric(expCounts[i,2])){
+      if (as.numeric(adjFreq[i,2]) > expC[i]){
         adjFreq[i,2] = as.numeric(adjFreq[i,2]) - 0.5}
-      else if (as.numeric(adjFreq[i,2]) < as.numeric(expCounts[i,2])){
+      else if (as.numeric(adjFreq[i,2]) < expC[i]){
         adjFreq[i,2] = as.numeric(adjFreq[i,2]) + 0.5}
     }
     
