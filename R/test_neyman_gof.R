@@ -155,18 +155,18 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
   
   if (cc == "yates"){
     for (i in 1:k){
-      if (as.numeric(freq[i, 2] >= expC[i])){
+      if (as.numeric(freq[i, 2]) >= expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
-      else if (as.numeric(freq[i, 2] < expC[i])){
+      else if (as.numeric(freq[i, 2]) < expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
   
   if (cc == "yates2"){
     for (i in 1:k){
-      if (as.numeric(freq[i, 2] - 0.5 > expC[i])){
+      if (as.numeric(freq[i, 2]) - 0.5 > expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
-      else if (as.numeric(freq[i, 2] + 0.5 < expC[i])){
+      else if (as.numeric(freq[i, 2]) + 0.5 < expC[i]){
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
