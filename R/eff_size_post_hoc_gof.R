@@ -111,7 +111,7 @@ es_post_hoc_gof <- function(post_hoc_results, es='auto', bergsma=FALSE){
     res_col=3}
   else{
     test_type = 'residual'
-    n = sum(as.numeric(testResults[['obs. count']]))
+    n = sum(as.numeric(df[['obs. count']]))
     col_names = unname(c('category', es_labels[es]))
     res_col=2}
   
