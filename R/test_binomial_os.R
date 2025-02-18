@@ -206,7 +206,7 @@ ts_binomial_os <- function(data,
     testUsed = paste(testUsed, ", with small p method", sep='')
   }
   
-  testUsed = paste(testUsed + cat_used)
+  testUsed = paste(testUsed, cat_used)
   
   pValue = sig1 + sig2
   
