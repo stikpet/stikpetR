@@ -130,12 +130,12 @@ ts_binomial_os <- function(data,
     n2 = sum(table(data)) - n1
     
     #determine p0 was for which category
-    p0_cat = names(table(bin_field))[1]
+    p0_cat = names(table(data))[1]
     if (p0 > 0.5 & n1 < n2){
       n3 = n2
       n2 = n1
       n1 = n3
-      p0_cat = names(table(bin_field))[2]
+      p0_cat = names(table(data))[2]
     }
     
     cat_used = paste(" (assuming p0 for ", p0_cat, ")")
