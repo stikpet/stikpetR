@@ -57,7 +57,7 @@ The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 \code{\link{ts_freeman_tukey_read}}
 \code{\link{ts_freeman_tukey_gof}}
 \code{\link{ts_pearson_gof}}
-\code{\link{ps_adjust}}
+\code{\link{p_adjust}}
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

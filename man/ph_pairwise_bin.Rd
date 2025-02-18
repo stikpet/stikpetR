@@ -46,7 +46,7 @@ The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 \code{\link{ts_binomial_os}}, more info on the one-sample binomial test
 \code{\link{ts_wald_os}}, more info on the one-sample Wald test
 \code{\link{ts_score_os}}, more info on the one-sample score test
-\code{\link{ps_adjust}}, the various methods for correction with multiple testing
+\code{\link{p_adjust}}, the various methods for correction with multiple testing
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -40,7 +40,7 @@
 #' \code{\link{ts_freeman_tukey_read}}
 #' \code{\link{ts_freeman_tukey_gof}}
 #' \code{\link{ts_pearson_gof}}
-#' \code{\link{ps_adjust}}
+#' \code{\link{p_adjust}}
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

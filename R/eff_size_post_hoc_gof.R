@@ -1,6 +1,6 @@
 #' Effect Sizes for a Goodness-of-Fit Post-Hoc Analysis
 #' 
-#' @description 
+#' @description
 #' Determines an effect size for each test (row) from the results of ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof().
 #' 
 #' @param post_hoc_results dataframe with the result of either ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof()
@@ -9,13 +9,18 @@
 #' 
 #' @returns
 #' a dataframe with for residual post-hoc:
-#' \item{category}, the label of the category
-#' \item{name effect size}, the effect size value
+#' 
+#' \describe{
+#'  \item{category}{, the label of the category}
+#'  \item{name effect size}{, the effect size value}
+#' }
 #' 
 #' for pairwise post-hoc
-#' \item{category 1}, the label of the first category
-#' \item{category 2}, the label of the second category
-#' \item{name effect size}, the effect size value
+#' \describe{
+#' \item{category 1}{, the label of the first category}
+#' \item{category 2}{, the label of the second category}
+#' \item{name effect size}{, the effect size value}
+#' }
 #' 
 #' @details
 #' 'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramér's V otherwise.

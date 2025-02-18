@@ -10,7 +10,11 @@
 #' 
 #' A significance in general is the probability of a result as in the sample, or more extreme, if the null hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication. There are different methods to approach this problem. See the details for more information.
 #' 
+#' If codes are provided, the first code is assumed to be the category for the p0, if no codes are used p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+#' 
 #' A [YouTube](https://youtu.be/9OGCi1Q7tBQ) video on the binomial test.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/hsIBrbHs9lI) and the binomial test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/binomial-one-sample.html)
 #' 
 #' 
 #' @param data A vector with the data
@@ -77,6 +81,18 @@
 #' 
 #' Fairly straight forward. Just double the one-sided significance.
 #' 
+#' @seealso 
+#' Before running the test you might first want to get an impression using a frequency table: tab_frequency
+#' 
+#' After the test you might want an effect size measure:
+#' \code{\link{es_cohen_g}}, for Cohen g
+#' \code{\link{es_cohen_h_os}}, for Cohen h'
+#' \code{\link{es_alt_ratio}}, for Alternative Ratio
+#' 
+#' Alternatives for this test could be:
+#' \code{\link{ts_score_os}}, for One-Sample Score Test
+#' \code{\link{ts_score_os}}, for One-Sample Wald Test
+#' 
 #' @section Alternatives:
 #' 
 #' R *stats* library: binom.test()
@@ -88,9 +104,7 @@
 #' #Example 1: Numeric list
 #' ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
 #' ts_binomial_os(ex1)
-#' ts_binomial_os(ex1, p0=0.3, twoSidedMethod="eqdist")
-#' ts_binomial_os(ex1, p0=0.3, twoSidedMethod="double")
-#' ts_binomial_os(ex1, p0=0.3, twoSidedMethod="smallp")
+#' ts_binomial_os(ex1, p0=0.3)
 #' 
 #' #Example 2: dataframe
 #' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
@@ -114,11 +128,23 @@ ts_binomial_os <- function(data,
   if (is.null(codes)) {
     n1 = unname(table(data)[1])
     n2 = sum(table(data)) - n1
+    
+    #determine p0 was for which category
+    p0_cat = names(table(bin_field))[1]
+    if (p0 > 0.5 & n1 < n2){
+      n3 = n2
+      n2 = n1
+      n1 = n3
+      p0_cat = names(table(bin_field))[2]
+    }
+    
+    cat_used = paste(" (assuming p0 for ", p0_cat, ")")
   }
   
   else{
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
+    cat_used = paste(" (with p0 for ", codes[1], ")")
   }
   
   #Determine total sample size
@@ -179,6 +205,8 @@ ts_binomial_os <- function(data,
     }
     testUsed = paste(testUsed, ", with small p method", sep='')
   }
+  
+  testUsed = paste(testUsed + cat_used)
   
   pValue = sig1 + sig2
   

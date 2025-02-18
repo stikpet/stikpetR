@@ -34,7 +34,11 @@ The input for the function doesn't have to be a binary variable. A nominal varia
 
 A significance in general is the probability of a result as in the sample, or more extreme, if the null hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication. There are different methods to approach this problem. See the details for more information.
 
+If codes are provided, the first code is assumed to be the category for the p0, if no codes are used p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+
 A \href{https://youtu.be/9OGCi1Q7tBQ}{YouTube} video on the binomial test.
+
+This function is shown in this \href{https://youtu.be/hsIBrbHs9lI}{YouTube video} and the binomial test is also described at \href{https://peterstatistics.com/Terms/Tests/binomial-one-sample.html}{PeterStatistics.com}
 }
 \details{
 For the formulas below it is assumed that the observed proportion is less than the expected proportion, if this isn't the case, the right-tail probabilities are used.
@@ -100,9 +104,7 @@ R \emph{stats} library: binom.test()
 #Example 1: Numeric list
 ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
 ts_binomial_os(ex1)
-ts_binomial_os(ex1, p0=0.3, twoSidedMethod="eqdist")
-ts_binomial_os(ex1, p0=0.3, twoSidedMethod="double")
-ts_binomial_os(ex1, p0=0.3, twoSidedMethod="smallp")
+ts_binomial_os(ex1, p0=0.3)
 
 #Example 2: dataframe
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
@@ -110,6 +112,18 @@ df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
 ts_binomial_os(df1['sex'])
 ts_binomial_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 
+}
+\seealso{
+Before running the test you might first want to get an impression using a frequency table: tab_frequency
+
+After the test you might want an effect size measure:
+\code{\link{es_cohen_g}}, for Cohen g
+\code{\link{es_cohen_h_os}}, for Cohen h'
+\code{\link{es_alt_ratio}}, for Alternative Ratio
+
+Alternatives for this test could be:
+\code{\link{ts_score_os}}, for One-Sample Score Test
+\code{\link{ts_score_os}}, for One-Sample Wald Test
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

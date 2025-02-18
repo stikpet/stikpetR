@@ -15,13 +15,18 @@ es_post_hoc_gof(post_hoc_results, es = "auto", bergsma = FALSE)
 }
 \value{
 a dataframe with for residual post-hoc:
-\item{category}, the label of the category
-\item{name effect size}, the effect size value
+
+\describe{
+\item{category}{, the label of the category}
+\item{name effect size}{, the effect size value}
+}
 
 for pairwise post-hoc
-\item{category 1}, the label of the first category
-\item{category 2}, the label of the second category
-\item{name effect size}, the effect size value
+\describe{
+\item{category 1}{, the label of the first category}
+\item{category 2}{, the label of the second category}
+\item{name effect size}{, the effect size value}
+}
 }
 \description{
 Determines an effect size for each test (row) from the results of ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof().

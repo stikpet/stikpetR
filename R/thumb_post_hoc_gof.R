@@ -10,11 +10,12 @@
 #' 
 #' @returns
 #' df, dataframe with the same dataframe as the provided *eff_sizes*, but added:
-#' \item{qualification}, the qualification using the rule-of-thumb.
-#' \item{reference}, a reference to the source for the rule-of-thumb.
+#' 
+#' \item{qualification}{, the qualification using the rule-of-thumb.}
+#' \item{reference}{, a reference to the source for the rule-of-thumb.}
 #' 
 #' If a conversion was done or needed:
-#' \item{conversion description}, the value of the converted measure
+#' \item{conversion description}{, the value of the converted measure}
 #' 
 #' @details
 #' For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramér V, when setting *convert=True* it will convert it again to Cohen w.

@@ -49,7 +49,7 @@
 #' @references 
 #' Agresti, A. (2007). *An introduction to categorical data analysis* (2nd ed.). Wiley-Interscience.
 #' Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. *Biometrics, 29*(1), 205–220. doi:10.2307/2529686
-#' R. (n.d.). Chisq.test [Computer software]. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
+#' R. (n.d.). Chisq.test \[Computer software\]. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
 #' Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, *Research & Evaluation, 20*(8), 1–10.
 #' 
 #' @author 

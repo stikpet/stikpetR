@@ -17,11 +17,12 @@ th_post_hoc_gof(eff_sizes, convert = FALSE, ph_results = NULL, ...)
 }
 \value{
 df, dataframe with the same dataframe as the provided \emph{eff_sizes}, but added:
-\item{qualification}, the qualification using the rule-of-thumb.
-\item{reference}, a reference to the source for the rule-of-thumb.
+
+\item{qualification}{, the qualification using the rule-of-thumb.}
+\item{reference}{, a reference to the source for the rule-of-thumb.}
 
 If a conversion was done or needed:
-\item{conversion description}, the value of the converted measure
+\item{conversion description}{, the value of the converted measure}
 }
 \description{
 This function will add a classification to the results of \strong{es_post_hoc_gof()} using a rules-of-thumb. This is frowned upon by some, and the rule-of-thumb can vary per discipline.
