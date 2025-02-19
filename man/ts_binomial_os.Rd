@@ -6,24 +6,27 @@
 \usage{
 ts_binomial_os(
   data,
-  codes = NULL,
   p0 = 0.5,
+  p0Cat = NULL,
+  codes = NULL,
   twoSidedMethod = c("eqdist", "double", "smallp")
 )
 }
 \arguments{
 \item{data}{A vector with the data}
 
-\item{codes}{Optional vector with the two codes to use}
-
 \item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
+
+\item{p0Cat}{Optional the category for which p0 was used}
+
+\item{codes}{Optional vector with the two codes to use}
 
 \item{twoSidedMethod}{Optional method to be used for 2-sided significance (see details)}
 }
 \value{
 Dataframe with:
 \item{pValue}{two-sided p-value}
-\item{testUsed}{a description of the test used}
+\item{test}{a description of the test used}
 }
 \description{
 Performs a one-sample (exact) binomial test.
@@ -34,13 +37,19 @@ The input for the function doesn't have to be a binary variable. A nominal varia
 
 A significance in general is the probability of a result as in the sample, or more extreme, if the null hypothesis is true. For a two-tailed binomial test the 'or more extreme' causes a bit of a complication. There are different methods to approach this problem. See the details for more information.
 
-If codes are provided, the first code is assumed to be the category for the p0, if no codes are used p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
-
 A \href{https://youtu.be/9OGCi1Q7tBQ}{YouTube} video on the binomial test.
 
 This function is shown in this \href{https://youtu.be/hsIBrbHs9lI}{YouTube video} and the binomial test is also described at \href{https://peterstatistics.com/Terms/Tests/binomial-one-sample.html}{PeterStatistics.com}
 }
 \details{
+To decide on which category is associated with p0 the following is used:
+\itemize{
+\item If codes are provided, the first code is assumed to be the category for the p0.
+\item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+\item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+\item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+}
+
 For the formulas below it is assumed that the observed proportion is less than the expected proportion, if this isn't the case, the right-tail probabilities are used.
 A one sided p-value is calculated first:
 \deqn{sig_{one-tail} = \text{Bin}\left(n, n_{min}, p_0^*\right)}

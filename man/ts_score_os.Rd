@@ -4,23 +4,25 @@
 \alias{ts_score_os}
 \title{One-Sample Score Test}
 \usage{
-ts_score_os(data, codes = NULL, p0 = 0.5, cc = c("none", "yates"))
+ts_score_os(datap0 = 0.5, p0Cat = NULL, codes = NULL, cc = c("none", "yates"))
 }
 \arguments{
-\item{data}{A vector or dataframe with the data}
+\item{p0Cat}{Optional the category for which p0 was used}
 
-\item{codes}{optional vector with the two codes to use}
-
-\item{p0}{optional the hypothesized proportion for the first category (default is 0.5)}
+\item{codes}{Optional vector with the two codes to use}
 
 \item{cc}{optional use of continuity correction. Either "none" (default) or "Yates".}
+
+\item{data}{A vector or dataframe with the data}
+
+\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
 }
 \value{
 Dataframe with:
 \item{n}{the sample size}
 \item{statistic}{the test value}
 \item{pValue}{two-sided p-value}
-\item{testUsed}{a description of the test used}
+\item{test}{a description of the test used}
 }
 \description{
 A one-sample score test could be used with binary data, to test if the two categories
@@ -44,6 +46,15 @@ Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTG
 }
 \details{
 Also sometimes called a 'proportion' test.
+
+To decide on which category is associated with p0 the following is used:
+\itemize{
+\item If codes are provided, the first code is assumed to be the category for the p0.
+\item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+\item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+\item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+}
+
 The formula used is (Wilson, 1927):
 \deqn{z=\frac{x - \mu}{SE}}
 With:
