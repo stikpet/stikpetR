@@ -22,7 +22,7 @@
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
 #' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
+#' \item{test used}{a description of the test used}
 #' 
 #' @details 
 #' The formula used (Cressie & Read, 1984, p. 441):
@@ -54,6 +54,9 @@
 #' 
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i - 0.5 > E_i \\ F_i + 0.5 & \text{ if } F_i + 0.5 < E_i \\ F_i & \text{ else } \end{cases}}
+#' 
 #' \deqn{\chi_{MLRY}^2=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
 #' Where if \eqn{E_i = 0} then \eqn{E_i\times ln\left(\frac{E_i}{F_i^\ast}\right) = 0}
 #' 
@@ -66,6 +69,37 @@
 #' \deqn{\chi_{MLRW}^2 = \frac{\chi_{MLR}^2}{q}}
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
+#' 
+#' @section Before, After and Alternatives:
+#' BBefore this an impression using a frequency table or a visualisation might be helpful:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
+#' \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+#' \code{\link{vi_dot_plot}}, for Dot Plot.
+#' \code{\link{vi_pareto_chart}}, for Pareto Chart.
+#' \code{\link{vi_pie}}, for Pie Chart.
+#' 
+#' After this you might an effect size measure:
+#' \code{\link{es_cohen_w}}, for Cohen w.
+#' \code{\link{es_cramer_v_gof}},  for Cramer's V for Goodness-of-Fit.
+#' \code{\link{es_fei}}, for Fei.
+#' \code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
+#' 
+#' or perform a post-hoc test:
+#' \code{\link{ph_pairwise_bin}}, for Pairwise Binary Tests.
+#' \code{\link{ph_pairwise_gof}}, for Pairwise Goodness-of-Fit Tests.
+#' \code{\link{ph_residual_gof_bin}}, for Residuals Tests using Binary tests.
+#' \code{\link{ph_residual_gof_gof}}, for Residuals Using Goodness-of-Fit Tests.
+#' 
+#' Alternative tests:
+#' \code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test. 
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test. 
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit. 
+#' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test. 
+#' 
 #' 
 #' @references 
 #' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. doi:10.1111/j.2517-6161.1984.tb01318.x
@@ -102,7 +136,7 @@
 #' ts_g_gof(ex3)
 #' 
 #' @export
-ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson", "williams")){
+ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "yates2", "pearson", "williams")){
   
   data = na.omit(data)
   
@@ -162,6 +196,14 @@ ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yate
         freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
     }
   }
+  else if (cc == "yates2"){
+    for (i in 1:k){
+      if (as.numeric(freq[i, 2]) - 0.5 > expC[i]){
+        freq[i, 2] = as.numeric(freq[i, 2]) - 0.5}
+      else if (as.numeric(freq[i, 2]) + 0.5 < expC[i]){
+        freq[i, 2] = as.numeric(freq[i, 2]) + 0.5}
+    }
+  }
   
   #calculate the chi-square value
   chiVal = 0
@@ -176,6 +218,7 @@ ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yate
   else if (cc == "williams"){
     chiVal = chiVal / (1 + (k ^ 2 - 1) / (6 * n * (k - 1)))}
   
+  
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used
@@ -184,13 +227,13 @@ ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yate
     testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
   else if (cc == "williams"){
     testUsed = paste0(testUsed, ", with Williams continuity correction")}
-  else if (cc == "yates"){
+  else if (cc == "yates" || cc=="yates2"){
     testUsed = paste0(testUsed, ", with Yates continuity correction")}
   
   statistic = chiVal
   
   testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
   
   return (testResults)
   

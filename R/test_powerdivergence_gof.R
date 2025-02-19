@@ -29,7 +29,7 @@
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
 #' \item{propBelow5}{the proportion of expected counts below 5}
-#' \item{testUsed}{a description of the test used}
+#' \item{test used}{a description of the test used}
 #' 
 #' 
 #' @details 
@@ -62,6 +62,8 @@
 #' 
 #' The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 #' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+#' In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+#' \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i - 0.5 > E_i \\ F_i + 0.5 & \text{ if } F_i + 0.5 < E_i \\ F_i & \text{ else } \end{cases}}
 #' 
 #' Note that the Yates correction is usually only considered if there are only two categories. Some also argue this correction is too conservative (see for details Haviland (1990)).
 #' 
@@ -73,6 +75,36 @@
 #' With:
 #' \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 #' The formula is also used by McDonald (2014, p. 87)
+#' 
+#' @section Before, After and Alternatives:
+#' BBefore this an impression using a frequency table or a visualisation might be helpful:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
+#' \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+#' \code{\link{vi_dot_plot}}, for Dot Plot.
+#' \code{\link{vi_pareto_chart}}, for Pareto Chart.
+#' \code{\link{vi_pie}}, for Pie Chart.
+#' 
+#' After this you might an effect size measure:
+#' \code{\link{es_cohen_w}}, for Cohen w.
+#' \code{\link{es_cramer_v_gof}},  for Cramer's V for Goodness-of-Fit.
+#' \code{\link{es_fei}}, for Fei.
+#' \code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
+#' 
+#' or perform a post-hoc test:
+#' \code{\link{ph_pairwise_bin}}, for Pairwise Binary Tests.
+#' \code{\link{ph_pairwise_gof}}, for Pairwise Goodness-of-Fit Tests.
+#' \code{\link{ph_residual_gof_bin}}, for Residuals Tests using Binary tests.
+#' \code{\link{ph_residual_gof_gof}}, for Residuals Using Goodness-of-Fit Tests.
+#' 
+#' Alternative tests:
+#' \code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test. 
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit. 
+#' \code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test. 
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
 #' 
 #' @references 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
@@ -119,7 +151,7 @@
 #' ts_powerdivergence_gof(ex3)
 #' 
 #' @export
-ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read", "g", "mod-log", "freeman-tukey", "neyman"), cc=c("none", "yates", "pearson", "williams")){
+ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read", "g", "mod-log", "freeman-tukey", "neyman"), cc=c("none", "yates", "yates2", "pearson", "williams")){
   
   #set defaults
   if (length(cc)>1) {cc="none"}
@@ -218,6 +250,17 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
     freq = adjFreq
     testUsed = paste(testUsed, ", and Yates correction")
   }
+  else if (cc == "yates2"){
+    adjFreq = freq
+    for (i in 1:k){
+      if (as.numeric(freq[i, 2]) - 0.5 > expC[i]){
+        adjFreq[i,2] = as.numeric(adjFreq[i,2]) - 0.5}
+      else if (as.numeric(freq[i, 2]) + 0.5 < expC[i]){
+        adjFreq[i,2] = as.numeric(adjFreq[i,2]) + 0.5}
+    }
+    freq = adjFreq
+    testUsed = paste(testUsed, ", and Yates correction")
+  }
   
   freqs = as.numeric(freq[,2])
   #determine the test statistic
@@ -252,7 +295,7 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   
   #prepare results
   testResults = data.frame(n, k, ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
   
   return (testResults)
 }

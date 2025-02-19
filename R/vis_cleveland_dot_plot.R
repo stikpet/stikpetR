@@ -13,6 +13,30 @@
 #' @param size the size of the dots (default is 2)
 #' @return chart the Cleveland dot plot
 #' 
+#' @section Before, After and Alternatives:
+#' Before the visualisation you might first want to get an impression using a frequency table:
+#' \code{\link{tab_frequency}}
+#' 
+#' After visualisation you might want some descriptive measures:
+#' \code{\link{me_mode}}, for the mode. 
+#' \code{\link{me_qv}}, for Measures of Qualitative Variation.
+#' 
+#' or perform a test:
+#' \code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test. 
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit. 
+#' \code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test. 
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit. 
+#' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test. 
+#' 
+#' Alternatives for this visualisation could be:
+#' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
+#' \code{\link{vi_dot_plot}}, for Dot Plot.
+#' \code{\link{vi_pareto_chart}}, for Pareto Chart.
+#' \code{\link{vi_pie}}, for Pie Chart.
+#' 
 #' @references 
 #' Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. *Journal of the American Statistical Association, 79*(387), 531–554. https://doi.org/10.2307/2288400
 #' 

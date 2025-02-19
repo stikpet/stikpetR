@@ -20,7 +20,7 @@
 #' \item{pObs}{probability of the observed data}
 #' \item{ncomb}{number of combinations used}
 #' \item{pValue}{two-sided p-value}
-#' \item{testUsed}{a description of the test used}
+#' \item{test used}{a description of the test used}
 #'  
 #' @details 
 #' The exact multinomial test of goodness of fit is done in four steps
@@ -35,11 +35,29 @@
 #' 
 #' Step 4: Sum all probabilities found in step 3 that are equal or less than the one found in step 1.
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' BBefore this an impression using a frequency table or a visualisation might be helpful:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
+#' \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+#' \code{\link{vi_dot_plot}}, for Dot Plot.
+#' \code{\link{vi_pareto_chart}}, for Pareto Chart.
+#' \code{\link{vi_pie}}, for Pie Chart.
 #' 
-#' The *EMT* library has a similar function: *multinomial.test()*
+#' After this you want to perform a post-hoc test:
+#' \code{\link{ph_pairwise_bin}}, for Pairwise Binary Tests.
+#' \code{\link{ph_pairwise_gof}}, for Pairwise Goodness-of-Fit Tests.
+#' \code{\link{ph_residual_gof_bin}}, for Residuals Tests using Binary tests.
+#' \code{\link{ph_residual_gof_gof}}, for Residuals Using Goodness-of-Fit Tests.
 #' 
-#' The *XNomial* library has a similar function: *xmulti()*
+#' Alternative tests:
+#' \code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test. 
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit. 
+#' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
 #' 
 #' @references 
 #' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
@@ -133,10 +151,10 @@ ts_multinomial_gof <- function(data, expCounts=NULL) {
   
   testUsed <- "one-sample multinomial exact goodness-of-fit test"
   testResults <- data.frame(
-    `p obs.` = p_obs,
-    `n combs.` = ncomb,
-    `p-value` = p_val,
-    `test` = testUsed
+    'p obs.' = p_obs,
+    'n combs.' = ncomb,
+    'p-value' = p_val,
+    'test used' = testUsed
   )
   
   return(testResults)
