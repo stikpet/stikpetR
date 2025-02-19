@@ -40,14 +40,20 @@
 #' \item \eqn{p_{h_0}} the expected proportion (i.e. the proportion according to the null hypothesis)
 #' }
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' Before this effect size you might first want to perform a test:
+#' \code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+#' \code{\link{ts_score_os}}, for One-Sample Score Test
+#' \code{\link{ts_wald_os}}, for One-Sample Wald Test
 #' 
-#' The *'pwr'* library has a similar function: *ES.h()*
-#' 
-#' @seealso 
+#' After this, you might want a rule-of-thumb or first convert this to a 'regular' Cohen h:
 #' \code{\link{es_convert}}, to convert Cohen h' to Cohen h, use fr="cohenhos" and to=cohenh
+#' \code{\link{th_cohen_h}}, for rules-of-thumb for Cohen h
 #' 
-#' \code{\link{th_cohen_h}}, rules-of-thumb for Cohen g
+#' Alternatives for this effect size could be:
+#' \code{\link{es_cohen_g}}, for Cohen g
+#' \code{\link{es_alt_ratio}}, for Alternative Ratio
+#' \code{\link{r_rosenthal}}, for Rosenthal Correlation if a z-value is available
 #'   
 #' @references 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.

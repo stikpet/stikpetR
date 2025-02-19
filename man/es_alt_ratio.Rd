@@ -44,6 +44,21 @@ The formula used is:
 \item \eqn{\pi} the expected proportion
 }
 }
+\section{Before, After and Alternatives}{
+
+Before this effect size you might first want to perform a test:
+\code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+\code{\link{ts_score_os}}, for One-Sample Score Test
+\code{\link{ts_wald_os}}, for One-Sample Wald Test
+
+Unfortunately I'm not aware of any rule-of-thumb for this measure.
+
+Alternatives for this effect size could be:
+\code{\link{es_cohen_g}}, for Cohen g
+\code{\link{es_cohen_h_os}}, for Cohen h'
+\code{\link{r_rosenthal}}, for Rosenthal Correlation if a z-value is available
+}
+
 \examples{
 # Example 1: Numeric list
 ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)

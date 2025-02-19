@@ -32,8 +32,19 @@
 #' \item \eqn{p} is the sample proportion
 #' }
 #'  
-#' @seealso 
-#' \code{\link{th_cohen_g}}, rules-of-thumb for Cohen g
+#' @section Before, After and Alternatives:
+#' Before this effect size you might first want to perform a test:
+#' \code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+#' \code{\link{ts_score_os}}, for One-Sample Score Test
+#' \code{\link{ts_wald_os}}, for One-Sample Wald Test
+#' 
+#' After this, you might want a rule-of-thumb:
+#' \code{\link{th_cohen_g}}, for rules-of-thumb for Cohen g
+#' 
+#' Alternatives for this effect size could be:
+#' \code{\link{es_cohen_h_os}}, for Cohen h'
+#' \code{\link{es_alt_ratio}}, for Alternative Ratio
+#' \code{\link{r_rosenthal}}, for Rosenthal Correlation if a z-value is available
 #' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.

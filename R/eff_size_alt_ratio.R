@@ -34,6 +34,19 @@
 #' \item \eqn{\pi} the expected proportion
 #' } 
 #' 
+#' @section Before, After and Alternatives:
+#' Before this effect size you might first want to perform a test:
+#' \code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+#' \code{\link{ts_score_os}}, for One-Sample Score Test
+#' \code{\link{ts_wald_os}}, for One-Sample Wald Test
+#' 
+#' Unfortunately I'm not aware of any rule-of-thumb for this measure.
+#' 
+#' Alternatives for this effect size could be:
+#' \code{\link{es_cohen_g}}, for Cohen g
+#' \code{\link{es_cohen_h_os}}, for Cohen h'
+#' \code{\link{r_rosenthal}}, for Rosenthal Correlation if a z-value is available
+#' 
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
 #' 

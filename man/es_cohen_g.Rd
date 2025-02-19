@@ -41,6 +41,22 @@ The formula used is (Cohen, 1988, p. 147):
 \item \eqn{p} is the sample proportion
 }
 }
+\section{Before, After and Alternatives}{
+
+Before this effect size you might first want to perform a test:
+\code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+\code{\link{ts_score_os}}, for One-Sample Score Test
+\code{\link{ts_wald_os}}, for One-Sample Wald Test
+
+After this, you might want a rule-of-thumb:
+\code{\link{th_cohen_g}}, for rules-of-thumb for Cohen g
+
+Alternatives for this effect size could be:
+\code{\link{es_cohen_h_os}}, for Cohen h'
+\code{\link{es_alt_ratio}}, for Alternative Ratio
+\code{\link{r_rosenthal}}, for Rosenthal Correlation if a z-value is available
+}
+
 \examples{
 #Example 1: Numeric list
 ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)
@@ -56,9 +72,6 @@ es_cohen_g(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{th_cohen_g}}, rules-of-thumb for Cohen g
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
