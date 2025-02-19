@@ -91,11 +91,22 @@ ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=c("none", "yates")){
   if (is.null(codes)) {
     n1 = unname(table(data)[1])
     n2 = sum(table(data)) - n1
+    #determine p0 was for which category
+    p0_cat = names(table(data))[1]
+    if (p0 > 0.5 & n1 < n2){
+      n3 = n2
+      n2 = n1
+      n1 = n3
+      p0_cat = names(table(data))[2]
+    }
+    
+    cat_used = paste("(assuming p0 for ", p0_cat, ")")
   }
   
   else{
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
+    cat_used = paste("(with p0 for ", codes[1], ")")
   }
   n = n1 + n2
   
@@ -125,6 +136,7 @@ ts_wald_os <- function(data, codes=NULL, p0=0.5, cc=c("none", "yates")){
     statistic = Z
     testUsed = "one-sample Wald with Yates continuity correction"}
   
+  testUsed = paste(testUsed, cat_used)
   testResults <- data.frame(n, statistic, pValue, testUsed)
   colnames(testResults)<-c("n", "statistic", "p-value (2-sided)", "test")
   

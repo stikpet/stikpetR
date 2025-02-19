@@ -138,13 +138,13 @@ ts_binomial_os <- function(data,
       p0_cat = names(table(data))[2]
     }
     
-    cat_used = paste(" (assuming p0 for ", p0_cat, ")")
+    cat_used = paste("(assuming p0 for ", p0_cat, ")")
   }
   
   else{
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
-    cat_used = paste(" (with p0 for ", codes[1], ")")
+    cat_used = paste("(with p0 for ", codes[1], ")")
   }
   
   #Determine total sample size
