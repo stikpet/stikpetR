@@ -61,9 +61,17 @@
 #' 
 #' The formula used and naming comes from IBM (2021, p. 997) who refer to Agresti, most likeli Agresti (2013, p. 10)
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' Before running the test you might first want to get an impression using a frequency table: tab_frequency
 #' 
-#' R's *stats* library: prop.test().
+#' After the test you might want an effect size measure:
+#' \code{\link{es_cohen_g}}, for Cohen g
+#' \code{\link{es_cohen_h_os}}, for Cohen h'
+#' \code{\link{es_alt_ratio}}, for Alternative Ratio
+#' 
+#' Alternatives for this test could be:
+#' \code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+#' \code{\link{ts_wald_os}}, for One-Sample Wald Test
 #' 
 #' @references 
 #' Agresti, A. (2013). *Categorical data analysis* (3rd ed.). Wiley.

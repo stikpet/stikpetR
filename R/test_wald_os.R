@@ -65,6 +65,18 @@
 #' IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 #' refer to Wald (1943)
 #' 
+#' @section Before, After and Alternatives:
+#' Before running the test you might first want to get an impression using a frequency table: tab_frequency
+#' 
+#' After the test you might want an effect size measure:
+#' \code{\link{es_cohen_g}}, for Cohen g
+#' \code{\link{es_cohen_h_os}}, for Cohen h'
+#' \code{\link{es_alt_ratio}}, for Alternative Ratio
+#' 
+#' Alternatives for this test could be:
+#' \code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+#' \code{\link{ts_score_os}}, for One-Sample Score Test
+#' 
 #' @references 
 #' Agresti, A. (2013). *Categorical data analysis* (3rd ed.). Wiley.
 #' 
@@ -91,7 +103,8 @@
 #' ts_wald_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
-ts_wald_os <- function(datap0 = 0.5,
+ts_wald_os <- function(data,
+                       p0 = 0.5,
                        p0Cat = NULL,
                        codes=NULL,
                        cc=c("none", "yates")){

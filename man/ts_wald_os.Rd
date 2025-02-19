@@ -4,18 +4,18 @@
 \alias{ts_wald_os}
 \title{One-Sample Wald Test}
 \usage{
-ts_wald_os(datap0 = 0.5, p0Cat = NULL, codes = NULL, cc = c("none", "yates"))
+ts_wald_os(data, p0 = 0.5, p0Cat = NULL, codes = NULL, cc = c("none", "yates"))
 }
 \arguments{
+\item{data}{A vector with the data}
+
+\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
+
 \item{p0Cat}{Optional the category for which p0 was used}
 
 \item{codes}{Optional vector with the two codes to use}
 
 \item{cc}{use of continuity correction (default is "none")}
-
-\item{data}{A vector with the data}
-
-\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
 }
 \value{
 Dataframe with:
@@ -76,6 +76,20 @@ The formula used in the calculation is the one from IBM (2021, p. 997).
 IBM refers to Agresti, most likely Agresti (2013, p. 10), who in turn
 refer to Wald (1943)
 }
+\section{Before, After and Alternatives}{
+
+Before running the test you might first want to get an impression using a frequency table: tab_frequency
+
+After the test you might want an effect size measure:
+\code{\link{es_cohen_g}}, for Cohen g
+\code{\link{es_cohen_h_os}}, for Cohen h'
+\code{\link{es_alt_ratio}}, for Alternative Ratio
+
+Alternatives for this test could be:
+\code{\link{ts_binomial_os}}, for One-Sample Binomial Test
+\code{\link{ts_score_os}}, for One-Sample Score Test
+}
+
 \examples{
 #Example 1: Numeric list
 ex1 = c(1, 1, 2, 1, 2, 1, 2, 1)

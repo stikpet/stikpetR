@@ -103,10 +103,18 @@ will also have a lower probability, so we only need to sum over the ones above i
 
 Fairly straight forward. Just double the one-sided significance.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before running the test you might first want to get an impression using a frequency table: tab_frequency
 
-R \emph{stats} library: binom.test()
+After the test you might want an effect size measure:
+\code{\link{es_cohen_g}}, for Cohen g
+\code{\link{es_cohen_h_os}}, for Cohen h'
+\code{\link{es_alt_ratio}}, for Alternative Ratio
+
+Alternatives for this test could be:
+\code{\link{ts_score_os}}, for One-Sample Score Test
+\code{\link{ts_wald_os}}, for One-Sample Wald Test
 }
 
 \examples{
@@ -121,18 +129,6 @@ df1 <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
 ts_binomial_os(df1['sex'])
 ts_binomial_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 
-}
-\seealso{
-Before running the test you might first want to get an impression using a frequency table: tab_frequency
-
-After the test you might want an effect size measure:
-\code{\link{es_cohen_g}}, for Cohen g
-\code{\link{es_cohen_h_os}}, for Cohen h'
-\code{\link{es_alt_ratio}}, for Alternative Ratio
-
-Alternatives for this test could be:
-\code{\link{ts_score_os}}, for One-Sample Score Test
-\code{\link{ts_score_os}}, for One-Sample Wald Test
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

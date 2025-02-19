@@ -88,7 +88,7 @@
 #' 
 #' Fairly straight forward. Just double the one-sided significance.
 #' 
-#' @seealso 
+#' @section Before, After and Alternatives:
 #' Before running the test you might first want to get an impression using a frequency table: tab_frequency
 #' 
 #' After the test you might want an effect size measure:
@@ -98,11 +98,7 @@
 #' 
 #' Alternatives for this test could be:
 #' \code{\link{ts_score_os}}, for One-Sample Score Test
-#' \code{\link{ts_score_os}}, for One-Sample Wald Test
-#' 
-#' @section Alternatives:
-#' 
-#' R *stats* library: binom.test()
+#' \code{\link{ts_wald_os}}, for One-Sample Wald Test
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
