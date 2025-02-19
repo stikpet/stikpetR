@@ -7,11 +7,23 @@
 #' A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
 #' 
 #' @param data vector with the data
-#' @param codes optional vector with the two codes to use
+#' @param p0Cat Optional the category for which p0=0.5 was used
+#' @param codes Optional vector with the two codes to use
 #' 
-#' @return Cohen's g as a single value
+#' @returns 
+#' Dataframe with:
+#' \item{g for cat 1}{Cohen g for category 1}
+#' \item{g for cat 2}{Cohen g for category 2}
 #' 
 #' @details 
+#' To decide on which category is associated with p0 the following is used:
+#' \itemize{
+#' \item If codes are provided, the first code is assumed to be the category for the p0.
+#' \item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+#' \item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+#' \item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+#' }
+#' 
 #' The formula used is (Cohen, 1988, p. 147):
 #' \deqn{g=p-0.5}
 #' 
@@ -42,24 +54,66 @@
 #' es_cohen_g(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
-es_cohen_g <- function(data, codes=NULL){
+es_cohen_g <- function(data, p0Cat=NULL, codes=NULL){
   
   data = na.omit(data)
   
-  if (is.null(codes)){
-    freq <- table(data)
-    prop <- freq / sum(freq)
-    p1 <- unname(prop[1])
+  #if no codes provided use first found
+  if (is.null(codes)) {
+    freq = table(data)
     
-  } else {
-    #Determine number of successes
+    if (is.null(p0Cat)){
+      #check if there were exactly two categories or not
+      if (length(freq) != 2){
+        # unable to determine which category p0 would belong to, so print warning and end
+        print("WARNING: data does not have two unique categories, please specify two categories using codes parameter")
+        return
+      }
+      else{
+        n1 = unname(freq[1])
+        n2 = unname(freq[2])
+        n = n1 + n2
+        
+        #assume p0 was for first category
+        cat1_lbl = names(freq)[1]
+        cat2_lbl = names(freq)[2]
+        
+      }
+    }
+    else {
+      n = sum(table(data))
+      n1 = sum(data==p0Cat)
+      n2 = n - n1
+      cat1_lbl = p0Cat
+      if (length(freq)==2){
+        if (cat1_lbl == names(freq)[1]){
+          cat2_lbl = names(freq)[2]
+        }
+        else{
+          cat2_lbl = names(freq)[1]
+        }
+      }
+      else{
+        cat2_lbl = "all other"
+      }
+    }
+  }
+  
+  else{
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
-    
-    #Determine total sample size
-    n<-n1 + n2
-    p1 <- n1/n
+    n = n1 + n2
+    cat1_lbl = codes[1]
+    cat2_lbl = codes[2]
   }
-  g <- p1 - 0.5
-  return (g)
+  
+  p1 = n1/n
+  p2 = 1 - p1
+  g1 <- p1 - 0.5
+  g2 <- p2 - 0.5
+  
+  results <- data.frame(g1, g2)
+  colnames(results)<-c(paste0("g for ", cat1_lbl), paste0("g for ", cat2_lbl))
+  
+  return (results)
 }

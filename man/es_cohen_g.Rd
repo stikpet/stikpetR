@@ -4,15 +4,19 @@
 \alias{es_cohen_g}
 \title{Cohen's g}
 \usage{
-es_cohen_g(data, codes = NULL)
+es_cohen_g(data, p0Cat = NULL, codes = NULL)
 }
 \arguments{
 \item{data}{vector with the data}
 
-\item{codes}{optional vector with the two codes to use}
+\item{p0Cat}{Optional the category for which p0=0.5 was used}
+
+\item{codes}{Optional vector with the two codes to use}
 }
 \value{
-Cohen's g as a single value
+Dataframe with:
+\item{g for cat 1}{Cohen g for category 1}
+\item{g for cat 2}{Cohen g for category 2}
 }
 \description{
 Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003),
@@ -21,6 +25,14 @@ score or Wald test. It is simply the difference of the sample proportion with 0.
 A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
 }
 \details{
+To decide on which category is associated with p0 the following is used:
+\itemize{
+\item If codes are provided, the first code is assumed to be the category for the p0.
+\item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+\item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+\item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+}
+
 The formula used is (Cohen, 1988, p. 147):
 \deqn{g=p-0.5}
 

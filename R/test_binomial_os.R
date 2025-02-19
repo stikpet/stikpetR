@@ -157,7 +157,7 @@ ts_binomial_os <- function(data,
           p0_cat = names(table(data))[2]
         }
         
-        cat_used = paste("(assuming p0 for ", p0_cat, ")")
+        cat_used = paste0(" (assuming p0 for ", p0_cat, ")")
       }
     }
     else {
@@ -165,7 +165,7 @@ ts_binomial_os <- function(data,
       n1 = sum(data==p0Cat)
       n2 = n - n1
       p0_cat = p0Cat
-      cat_used = paste("(with p0 for ", p0Cat, ")")
+      cat_used = paste0(" (with p0 for ", p0Cat, ")")
     }
   }
   
@@ -173,7 +173,7 @@ ts_binomial_os <- function(data,
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
     n = n1 + n2
-    cat_used = paste("(with p0 for ", codes[1], ")")
+    cat_used = paste0(" (with p0 for ", codes[1], ")")
   }
   
   minCount = n1
@@ -196,7 +196,7 @@ ts_binomial_os <- function(data,
   #two sided
   if (twoSidedMethod=="double"){
     sig2 = sig1
-    testUsed = paste(testUsed, ", with double one-sided method", sep='')}
+    testUsed = paste0(testUsed, ", with double one-sided method", sep='')}
   else if(twoSidedMethod=="eqdist"){
     #Equal distance
     ExpCount = n * ExpProp
@@ -204,7 +204,7 @@ ts_binomial_os <- function(data,
     OtherCount = ExpCount + Dist
     if (ExpProp < ObsProp){sig2 = pbinom(OtherCount, n, ExpProp)}
     else {sig2 = 1 - pbinom(OtherCount - 1,n,ExpProp)}
-    testUsed = paste(testUsed, ", with equal-distance method", sep='')}
+    testUsed = paste0(testUsed, ", with equal-distance method", sep='')}
   else {
     #Method of small p
     binSmall = dbinom(minCount, n, ExpProp)
@@ -229,10 +229,10 @@ ts_binomial_os <- function(data,
       } 
       sig2 = 1 - pbinom(i - 1 - 1, n, ExpProp)  
     }
-    testUsed = paste(testUsed, ", with small p method", sep='')
+    testUsed = paste0(testUsed, ", with small p method", sep='')
   }
   
-  testUsed = paste(testUsed, cat_used)
+  testUsed = paste0(testUsed, cat_used)
   
   pValue = sig1 + sig2
   

@@ -6,20 +6,24 @@
 #' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
 #' 
 #' @param data vector with the data
-#' @param codes optional vector with the two codes to use
-#' @param p0 optional the hypothesized proportion for the first category (default is 0.5)
-#' @param category optional category to label as 'success', otherwise the first category found is used.
+#' @param p0 Optional hypothesized proportion for the first category (default is 0.5)
+#' @param p0Cat Optional the category for which p0 was used
+#' @param codes Optional vector with the two codes to use
 #' 
 #' @returns 
 #' Dataframe with:
 #' \item{AR1}{the alternative category for one category}
 #' \item{AR2}{the alternative category for the other category}
+#' \item{comment}{the category for which p0 was}
 #' 
 #' @details 
-#' 
-#' If codes and category are not provided the first category will be the first data point.
-#' 
-#' If codes only are provided the first category in the codes is used.
+#' To decide on which category is associated with p0 the following is used:
+#' \itemize{
+#' \item If codes are provided, the first code is assumed to be the category for the p0.
+#' \item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+#' \item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+#' \item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+#' }
 #' 
 #' The formula used is:
 #' \deqn{AR=\frac{p}{\pi}}
@@ -57,32 +61,52 @@
 #' es_alt_ratio(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #' 
 #' @export
-es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
+es_alt_ratio <- function(data, p0=0.5, p0Cat=NULL, codes=NULL){
   
   data = na.omit(data)
   
-  if (is.null(codes)){
-    freq <- table(data)
-    n <- sum(freq)
+  #if no codes provided use first found
+  if (is.null(codes)) {
+    freq = table(data)
     
-    if (is.null(category)){
-      n1 <- sum(data==rownames(freq)[1])}
-    else{
-      n1<-sum(data==category)}
-    
-    n2 = n - n1
+    if (is.null(p0Cat)){
+      #check if there were exactly two categories or not
+      if (length(freq) != 2){
+        # unable to determine which category p0 would belong to, so print warning and end
+        print("WARNING: data does not have two unique categories, please specify two categories using codes parameter")
+        return
+      }
+      else{
+        n1 = unname(freq[1])
+        n2 = unname(freq[2])
+        n = n1 + n2
+        
+        #determine p0 was for which category
+        p0_cat = names(freq)[1]
+        if (p0 > 0.5 & n1 < n2){
+          n3 = n2
+          n2 = n1
+          n1 = n3
+          p0_cat = names(table(data))[2]
+        }
+        
+        cat_used = paste0("assuming p0 for ", p0_cat)
+      }
+    }
+    else {
+      n = sum(table(data))
+      n1 = sum(data==p0Cat)
+      n2 = n - n1
+      p0_cat = p0Cat
+      cat_used = paste0("with p0 for ", p0Cat)
+    }
   }
+  
   else{
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
-    n<-n1 + n2
-    
-    if(!is.null(category)){
-      if(codes[2]==category){
-        n3 = n1
-        n1 = n2
-        n2 = n3}
-    }
+    n = n1 + n2
+    cat_used = paste0("with p0 for ", codes[1])
   }
   
   p1 = n1 / n
@@ -91,8 +115,8 @@ es_alt_ratio <- function(data, codes=NULL, p0=0.5, category=NULL){
   AR1 = p1 / p0
   AR2 = p2 / (1 - p0)
   
-  results <- data.frame(AR1, AR2)
-  colnames(results)<-c("Alt. Ratio Cat. 1", "Alt. Ratio Cat. 2")
+  results <- data.frame(AR1, AR2, cat_used)
+  colnames(results)<-c("Alt. Ratio Cat. 1", "Alt. Ratio Cat. 2", "comment")
   
   return (results)
   

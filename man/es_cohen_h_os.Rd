@@ -4,17 +4,21 @@
 \alias{es_cohen_h_os}
 \title{Cohen's h'}
 \usage{
-es_cohen_h_os(data, codes = NULL, p0 = 0.5)
+es_cohen_h_os(data, p0 = 0.5, p0Cat = NULL, codes = NULL)
 }
 \arguments{
 \item{data}{a vector with the data}
 
-\item{codes}{optional vector with the two codes to use}
+\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
 
-\item{p0}{optional the hypothesized proportion for the first category (default is 0.5)}
+\item{p0Cat}{Optional the category for which p0 was used}
+
+\item{codes}{Optional vector with the two codes to use}
 }
 \value{
-Cohen's h'
+Dataframe with:
+\item{Cohen h'}{the Cohen h' value}
+\item{comment}{the category for which p0 was}
 }
 \description{
 An adaptation of Cohen h (\code{\link{es_cohen_h}}) for a one-sample case. It is an effect size measure that could
@@ -23,6 +27,14 @@ be accompanying a one-sample binomial, score or Wald test.
 A \href{https://youtu.be/ddWe94VKX_8}{YouTube} video on Cohen h'.
 }
 \details{
+To decide on which category is associated with p0 the following is used:
+\itemize{
+\item If codes are provided, the first code is assumed to be the category for the p0.
+\item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+\item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+\item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+}
+
 Formula used (Cohen, 1988, p. 202):
 \deqn{h'=\phi_{1}-\phi_{h_0}}
 With:

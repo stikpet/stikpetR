@@ -125,7 +125,7 @@ ts_score_os <- function(datap0 = 0.5,
           p0_cat = names(table(data))[2]
         }
         
-        cat_used = paste("(assuming p0 for ", p0_cat, ")")
+        cat_used = paste0(" (assuming p0 for ", p0_cat, ")")
       }
     }
     else {
@@ -133,7 +133,7 @@ ts_score_os <- function(datap0 = 0.5,
       n1 = sum(data==p0Cat)
       n2 = n - n1
       p0_cat = p0Cat
-      cat_used = paste("(with p0 for ", p0Cat, ")")
+      cat_used = paste0(" (with p0 for ", p0Cat, ")")
     }
   }
   
@@ -141,7 +141,7 @@ ts_score_os <- function(datap0 = 0.5,
     n1<-sum(data==codes[1])
     n2<-sum(data==codes[2])
     n = n1 + n2
-    cat_used = paste("(with p0 for ", codes[1], ")")
+    cat_used = paste0(" (with p0 for ", codes[1], ")")
   }
   
   #use minimum of the two
@@ -171,7 +171,7 @@ ts_score_os <- function(datap0 = 0.5,
     statistic = Z
     testUsed = "one-Sample Score with Yates continuity correction"}
   
-  testUsed = paste(testUsed, cat_used)
+  testUsed = paste0(testUsed, cat_used)
   testResults <- data.frame(n, statistic, pValue, testUsed)
   colnames(testResults)<-c("n", "statistic", "p-value (2-sided)", "test")
   

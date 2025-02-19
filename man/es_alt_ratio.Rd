@@ -4,21 +4,22 @@
 \alias{es_alt_ratio}
 \title{Alternative Ratio}
 \usage{
-es_alt_ratio(data, codes = NULL, p0 = 0.5, category = NULL)
+es_alt_ratio(data, p0 = 0.5, p0Cat = NULL, codes = NULL)
 }
 \arguments{
 \item{data}{vector with the data}
 
-\item{codes}{optional vector with the two codes to use}
+\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
 
-\item{p0}{optional the hypothesized proportion for the first category (default is 0.5)}
+\item{p0Cat}{Optional the category for which p0 was used}
 
-\item{category}{optional category to label as 'success', otherwise the first category found is used.}
+\item{codes}{Optional vector with the two codes to use}
 }
 \value{
 Dataframe with:
 \item{AR1}{the alternative category for one category}
 \item{AR2}{the alternative category for the other category}
+\item{comment}{the category for which p0 was}
 }
 \description{
 The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
@@ -26,9 +27,13 @@ The Alternative Ratio is an effect size measure that could be accompanying a one
 The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
 }
 \details{
-If codes and category are not provided the first category will be the first data point.
-
-If codes only are provided the first category in the codes is used.
+To decide on which category is associated with p0 the following is used:
+\itemize{
+\item If codes are provided, the first code is assumed to be the category for the p0.
+\item If p0Cat is specified that will be used for p0 and all other categories will be considered as category 2, this means if there are more than two categories the remaining two or more (besides p0Cat) will be merged as one large category.
+\item If neither codes or p0Cat is specified and more than two categories are in the data a warning is printed and no results.
+\item If neither codes or p0Cat is specified and there are two categories, p0 is assumed to be for the category closest matching the p0 value (i.e. if p0 is above 0.5 the category with the highest count is assumed to be used for p0)
+}
 
 The formula used is:
 \deqn{AR=\frac{p}{\pi}}
