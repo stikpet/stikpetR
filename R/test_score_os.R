@@ -91,7 +91,8 @@
 #' ts_score_os(df1['mar1'], codes=c("DIVORCED", "NEVER MARRIED"))
 #'  
 #' @export
-ts_score_os <- function(datap0 = 0.5,
+ts_score_os <- function(data,
+                        p0 = 0.5,
                         p0Cat = NULL,
                         codes=NULL,
                         cc = c("none", "yates")){

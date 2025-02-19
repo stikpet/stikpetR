@@ -4,18 +4,24 @@
 \alias{ts_score_os}
 \title{One-Sample Score Test}
 \usage{
-ts_score_os(datap0 = 0.5, p0Cat = NULL, codes = NULL, cc = c("none", "yates"))
+ts_score_os(
+  data,
+  p0 = 0.5,
+  p0Cat = NULL,
+  codes = NULL,
+  cc = c("none", "yates")
+)
 }
 \arguments{
+\item{data}{A vector or dataframe with the data}
+
+\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
+
 \item{p0Cat}{Optional the category for which p0 was used}
 
 \item{codes}{Optional vector with the two codes to use}
 
 \item{cc}{optional use of continuity correction. Either "none" (default) or "Yates".}
-
-\item{data}{A vector or dataframe with the data}
-
-\item{p0}{Optional hypothesized proportion for the first category (default is 0.5)}
 }
 \value{
 Dataframe with:
