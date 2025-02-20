@@ -63,6 +63,47 @@ The other tests use the formula from the one-sample test variant, using the expe
 
 The adjusted residuals will gave the same result as using a one-sample score test. Some sources will also call these adjusted residuals as standardized residuals (Agresti, 2007, p. 38), and the standardized residuals used in this function as Pearson residuals (R, n.d.). Haberman (1973, p. 205) and Sharpe (2015, p. 3) are sources for the terminology used in this function.
 }
+\section{Before, After and Alternatives}{
+
+Before this an omnibus test might be helpful:
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+
+After this you might want to add an effect size measure:
+\code{\link{es_post_hoc_gof}} for various effect sizes.
+
+Alternative post-hoc tests:
+\code{\link{ph_pairwise_bin}} for Pairwise Binary Tests.
+\code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
+
+The binary test that is performed on each category:
+\code{\link{ts_binomial_os}} for One-Sample Binomial Test.
+\code{\link{ts_score_os}} for One-Sample Score Test.
+\code{\link{ts_wald_os}} for One-Sample Wald Test.
+
+More info on the adjustment for multiple testing:
+\code{\link{p_adjust}}, various adjustment methods.
+}
+
+\examples{
+# Examples: get data
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+gssDf <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = gssDf['mar1']
+
+#Example 1 using default settings
+ph_residual_gof_bin(ex1)
+
+#Example 2 using a binomial test and Holm correction:
+ph_residual_gof_bin(ex1, test="binomial", mtc='holm')
+
+}
 \references{
 Agresti, A. (2007). \emph{An introduction to categorical data analysis} (2nd ed.). Wiley-Interscience.
 Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. \emph{Biometrics, 29}(1), 205–220. doi:10.2307/2529686

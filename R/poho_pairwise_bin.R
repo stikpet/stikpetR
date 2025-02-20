@@ -25,11 +25,31 @@
 #' \item{adj. p-value}{the adjusted significance}
 #' \item{test}{description of the test used}
 #' 
-#' @seealso 
-#' \code{\link{ts_binomial_os}}, more info on the one-sample binomial test
-#' \code{\link{ts_wald_os}}, more info on the one-sample Wald test
-#' \code{\link{ts_score_os}}, more info on the one-sample score test
-#' \code{\link{p_adjust}}, the various methods for correction with multiple testing
+#' @section Before, After and Alternatives:
+#' Before this an omnibus test might be helpful:
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit. 
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit. 
+#' \code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit. 
+#' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+#' 
+#' After this you might want to add an effect size measure:
+#' \code{\link{es_post_hoc_gof}} for various effect sizes.
+#' 
+#' Alternative post-hoc tests:
+#' \code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+#' \code{\link{ph_residual_gof_bin}} for Residuals Tests using Binary Tests
+#' \code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
+#' 
+#' The binary test that is performed on each pair:
+#' \code{\link{ts_binomial_os}} for One-Sample Binomial Test.
+#' \code{\link{ts_score_os}} for One-Sample Score Test.
+#' \code{\link{ts_wald_os}} for One-Sample Wald Test.
+#' 
+#' More info on the adjustment for multiple testing:
+#' \code{\link{p_adjust}}, various adjustment methods.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

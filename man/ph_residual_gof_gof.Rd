@@ -45,16 +45,41 @@ This function will perform a goodness-of-fit test using each category and collap
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 }
-\seealso{
-\code{\link{ts_multinomial_gof}}
-\code{\link{ts_powerdivergence_gof}}
-\code{\link{ts_neyman_gof}}
-\code{\link{ts_mod_log_likelihood_gof}}
-\code{\link{ts_g_gof}}
-\code{\link{ts_freeman_tukey_read}}
-\code{\link{ts_freeman_tukey_gof}}
-\code{\link{ts_pearson_gof}}
-\code{\link{p_adjust}}
+\section{Before, After and Alternatives}{
+
+Before this an omnibus test might be helpful, these are also the tests used on each category:
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+
+After this you might want to add an effect size measure:
+\code{\link{es_post_hoc_gof}} for various effect sizes.
+
+Alternative post-hoc tests:
+\code{\link{ph_pairwise_bin}} for Pairwise Binary Tests.
+\code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_bin}} for Residuals Tests using Binary Tests
+
+More info on the adjustment for multiple testing:
+\code{\link{p_adjust}}, various adjustment methods.
+}
+
+\examples{
+# Examples: get data
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+gssDf <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = gssDf['mar1']
+
+#Example 1 using default settings
+ph_residual_gof_gof(ex1)
+
+#Example 2 using a G test and Holm correction:
+ph_residual_gof_gof(ex1, test="g", mtc='holm')
+
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
