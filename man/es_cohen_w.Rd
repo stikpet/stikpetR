@@ -16,6 +16,8 @@ value of Cohen's w
 }
 \description{
 An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to Cohen's rules-of-thumb.
+
+This function is shown in this \url{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenW.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Cohen, 1988, p. 216):
@@ -27,25 +29,36 @@ The formula used is (Cohen, 1988, p. 216):
 \item \eqn{n} the sample size, i.e. the sum of all frequencies
 }
 }
-\section{Alternative}{
+\section{Before, After and Alternatives}{
 
+Before this you will need a chi-square value. From either:
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+\code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
 
-The \emph{'rcompanion'} library also has a function for this: \emph{cohenW()}
+After this you might want to use some rule-of-thumb for the interpretation:
+\code{\link{th_cohen_w}} for various rules-of-thumb for Cohen w.
+
+Alternative effect sizes that use a chi-square value:
+\code{\link{es_cramer_v_gof}},  for Cramer's V for Goodness-of-Fit.
+\code{\link{es_fei}}, for Fei.
+\code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
 }
 
 \examples{
-chi2Value <- 3.105263
+chi2Value <- 3.106
 n <- 19
 es_cohen_w(chi2Value, n)
 
 }
 \references{
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{ts_pearson_gof}}, to obtain a chi-square value
-
-\code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

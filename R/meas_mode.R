@@ -11,6 +11,8 @@
 #' 
 #' A video on the mode is available [here](https://youtu.be/oPpTE8qt2go).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/WHm7nqlQMHE) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/Mode.html)
+#' 
 #' @param data vector with the scores to determine the mode from
 #' @param allEq optional indicator on what to do if maximum frequency is equal for more than one category. Either `"none"` (default), or `"all"`
 #' 

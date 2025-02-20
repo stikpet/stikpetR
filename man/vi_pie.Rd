@@ -20,6 +20,8 @@ each wedge being proportional to the percentage of cases in the category represe
 that wedge” (Zedeck, 2014, p. 260).
 
 A video on pie charts is available \href{https://youtu.be/e6JtJsh-6iw}{here}.
+
+This function is shown in this \href{https://youtu.be/VS4Aw4zc9nQ}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/PieChart.html}{PeterStatistics.com}
 }
 \details{
 It is possible to either show only the labels (label="none"), the counts (label="counts"),

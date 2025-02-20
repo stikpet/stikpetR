@@ -23,7 +23,9 @@ so that the frequencies for each value can easily be counted" (Upton & Cook, 201
 
 This function uses ggplot2 geom_dotplot() to create a simple dot plot.
 
-A \href{https://youtu.be/qs1nh0CMiIY}{YouTube} video on pie charts.
+A \href{https://youtu.be/qs1nh0CMiIY}{YouTube} video on dot plots.
+
+This function is shown in this \href{https://youtu.be/pq3mA9m47p4}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/DotPlot.html}{PeterStatistics.com}
 }
 \details{
 In the definition a \emph{bar chart} is mentioned. A bar chart can be defined as

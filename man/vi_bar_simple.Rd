@@ -17,6 +17,8 @@ vi_bar_simple(data, varname = NULL, height = "count")
 A bar-chart is defined as “a graph in which bars of varying height with spaces between them are used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20).
 
 A \href{https://youtu.be/zT52FTyC6P8}{YouTube} video on pie charts.
+
+This function is shown in this \href{https://youtu.be/_PIc8lDbTUc}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
 }
 \details{
 The function uses the basic R's graphics library \emph{barplot} function.

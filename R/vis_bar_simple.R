@@ -5,6 +5,8 @@
 #' 
 #' A [YouTube](https://youtu.be/zT52FTyC6P8) video on pie charts.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/_PIc8lDbTUc) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
+#' 
 #' @param data A vector or dataframe
 #' @param varname Optional name for the variable
 #' @param height Optional to indicate what the height should represent

@@ -12,6 +12,8 @@
 #' (which was just picked as a nice round number, when n is very large the exact test becomes 
 #' computational heavy even for computers).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/z4P_GuodZvk) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Multinomial-GoF.html)
+#' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
 #' 

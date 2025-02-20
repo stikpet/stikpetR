@@ -26,7 +26,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{test used}{a description of the test used}
 }
 \description{
@@ -45,6 +45,8 @@ By setting \eqn{\lambda} to different values, we get the different tests:
 \item{\eqn{\lambda = -2}}{Neyman}
 \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
 }
+
+This function is shown in this \href{https://youtu.be/ghvDQZrMruY}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/PowerDivergence.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Cressie & Read, 1984, p. 442):

@@ -34,6 +34,18 @@
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
+#' @examples
+#' # Examples: get data
+#' dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+#' gssDf <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+#' ex1 = gssDf['mar1']
+#' 
+#' #Example 1 using default settings (one-sample binomial tests with equal-distance method)
+#' ph_pairwise_bin(ex1)
+#' 
+#' #Example 2 using a score test with Yates correction:
+#' ph_pairwise_bin(nominal_field, test="score", mtc='holm', cc='yates')
+#' 
 #' @export
 ph_pairwise_bin <- function(data, test="binomial", expCount=NULL, mtc='bonferroni', ...){
   data = na.omit(data)

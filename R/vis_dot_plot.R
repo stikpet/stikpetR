@@ -17,7 +17,9 @@
 #' 
 #' This function uses ggplot2 geom_dotplot() to create a simple dot plot.
 #' 
-#' A [YouTube](https://youtu.be/qs1nh0CMiIY) video on pie charts.
+#' A [YouTube](https://youtu.be/qs1nh0CMiIY) video on dot plots.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/pq3mA9m47p4) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/DotPlot.html)
 #' 
 #' @details 
 #' In the definition a *bar chart* is mentioned. A bar chart can be defined as 

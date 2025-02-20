@@ -6,8 +6,9 @@
 #' assumption they are all equal in the population will be rejected. 
 #' 
 #' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
-#' but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and 
-#' Freeman-Tukey-Read test are possible.
+#' but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and Freeman-Tukey-Read test are possible.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/qNp0alJB6Wc) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Neyman.html)
 #' 
 #' @param data A vector or dataframe
 #' @param expCounts Optional dataframe with the categories and expected counts 
@@ -21,7 +22,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{testUsed}{a description of the test used}
 #' 
 #' 
@@ -185,18 +186,18 @@ ts_neyman_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "pearson
   pValue = pchisq(chiVal, df, lower.tail = FALSE)
   
   #Which test was used
-  testUsed = "Neyman chi-square test of goodness-of-fit"
+  testUsed = "Neyman goodness-of-fit test"
   if (cc == "pearson"){
-    testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
+    testUsed = paste0(testUsed, ", and Pearson continuity correction")}
   else if (cc == "williams"){
-    testUsed = paste0(testUsed, ", with Williams continuity correction")}
+    testUsed = paste0(testUsed, ", and Williams continuity correction")}
   else if (cc == "yates" || cc=="yates2"){
-    testUsed = paste0(testUsed, ", with Yates continuity correction")}
+    testUsed = paste0(testUsed, ", and Yates continuity correction")}
   
   statistic=chiVal
   
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5*100, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test")
   
   return (testResults)
   

@@ -69,6 +69,8 @@ I've tried to categorise the measures a bit, based on the calculations. Below is
 
 
 \* Smith-Wilson E1 is listed with the mean group, since it uses the average frequency. It could of course also be placed in the evenness group.
+
+This function is shown in this \href{https://youtu.be/9DDGMa0m4t8}{YouTube video} and the measures are also described at \href{https://peterstatistics.com/Terms/Measures/QualitativeVariation.html}{PeterStatistics.com}
 }
 \details{
 The following measures can be determined:

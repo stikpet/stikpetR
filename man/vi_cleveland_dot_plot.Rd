@@ -22,6 +22,8 @@ It is a dot plot only showing the top dot.This requires less ink.
 The function simply uses the dotplot() function from the lattice library.
 
 A video on (Cleveland) dot plots is available \href{https://youtu.be/qs1nh0CMiIY}{here}.
+
+This function is shown in this \href{https://youtu.be/K1Jb7XCDcDg}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/DotPlot.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

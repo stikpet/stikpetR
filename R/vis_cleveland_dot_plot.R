@@ -9,6 +9,8 @@
 #' 
 #' A video on (Cleveland) dot plots is available [here](https://youtu.be/qs1nh0CMiIY).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/K1Jb7XCDcDg) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/DotPlot.html)
+#' 
 #' @param data the data from which to create the plot
 #' @param size the size of the dots (default is 2)
 #' @return chart the Cleveland dot plot

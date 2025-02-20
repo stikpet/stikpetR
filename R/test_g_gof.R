@@ -8,6 +8,8 @@
 #' There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test, 
 #' but also an exact multinomial, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read test are possible.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/nQhHsGmsaN0) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Gtest.html)
+#' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
 #' @param cc Optional continuity correction. Either "none" (default), "yates", "pearson", or "williams"
@@ -20,7 +22,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{test used}{a description of the test used}
 #' 
 #' 
@@ -232,16 +234,16 @@ ts_g_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "yates2", "pe
   #Which test was used
   testUsed = "G test of goodness-of-fit"
   if (cc == "pearson"){
-    testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
+    testUsed = paste0(testUsed, ", and Pearson correction")}
   else if (cc == "williams"){
-    testUsed = paste0(testUsed, ", with Williams continuity correction")}
+    testUsed = paste0(testUsed, ", and Williams correction")}
   else if (cc == "yates" || cc=="yates2"){
-    testUsed = paste0(testUsed, ", with Yates continuity correction")}
+    testUsed = paste0(testUsed, ", and Yates correction")}
   
   statistic = chiVal
   
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5*100, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test used")
   
   return (testResults)
   

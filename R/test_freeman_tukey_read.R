@@ -13,6 +13,8 @@
 #' 16/15, 8/15 gives the same results as Cressie-Read with lambda = 3/2. The Pearson chi-square test is the 
 #' same when setting weights to 1, 2, 1 and setting the weight simply to 4 gives the original Freeman-Tukey.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Njc0YeiJLqE) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Freeman-Tukey-Read.html)
+#' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
 #' @param weights the weights to be used (should sum to 4)
@@ -26,7 +28,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{testUsed}{a description of the test used}
 #' 
 #' 
@@ -224,16 +226,16 @@ ts_freeman_tukey_read <- function(data, expCounts=NULL, weights=c(4/3, 8/3), cc 
   #Which test was used
   testUsed = "Freeman-Tukey-Read test of goodness-of-fit"
   if (cc == "pearson"){
-    testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
+    testUsed = paste0(testUsed, ", and Pearson correction")}
   else if (cc == "williams"){
-    testUsed = paste0(testUsed, ", with Williams continuity correction")}
+    testUsed = paste0(testUsed, ", and Williams correction")}
   else if (cc =="yates" || cc=="yates2"){
-    testUsed = paste0(testUsed, ", with Yates continuity correction")
+    testUsed = paste0(testUsed, ", and Yates correction")
   }
   
   statistic = FT
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5*100, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test used")
   
   return (testResults)
   

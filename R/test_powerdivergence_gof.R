@@ -17,6 +17,8 @@
 #' \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
 #' }
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/ghvDQZrMruY) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PowerDivergence.html)
+#' 
 #' @param data A vector or dataframe with the data
 #' @param expCounts Optional dataframe with the categories and expected counts
 #' @param lambd Optional either name of test or specific value. Either "cressie-read" (default), "g", "mod-log", "freeman-tukey", or "neyman"
@@ -28,7 +30,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{test used}{a description of the test used}
 #' 
 #' 
@@ -166,24 +168,24 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   #Test Used
   if (lambd == 2/3 || lambd == "cressie-read"){
     lambd = 2/3
-    testUsed = "Cressie-Read"}
+    testUsed = "Cressie-Read goodness-of-fit test"}
   else if (lambd==0 || lambd == "g"){
     lambd=0
     testUsed = "likelihood-ratio"}    
   else if (lambd==-1 || lambd == "mod-log"){
     lambd=-1
-    testUsed = "mod-log likelihood ratio"}    
+    testUsed = "mod-log likelihood ratio goodness-of-fit test"}    
   else if (lambd==1 || lambd=="pearson"){
     lambd=1
-    testUsed = "Pearson chi-square"}
+    testUsed = "Pearson goodness-of-fit test"}
   else if (lambd==-0.5 || lambd=="freeman-tukey"){
     lambd=-0.5
     testUsed = "Freeman-Tukey"}        
   else if (lambd==-2 || lambd=="neyman"){
     lambd=-2
-    testUsed = "Neyman"}
+    testUsed = "Neyman goodness-of-fit test"}
   else {
-    testUsed = paste("power divergence with lambda = ", lambd)}
+    testUsed = paste("power divergence goodness-of-fit test with lambda = ", lambd)}
   
   #The test itself
   #determine the observed counts
@@ -295,7 +297,7 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   
   #prepare results
   testResults = data.frame(n, k, ts, df, pVal, minExp=minExp, percBelow5=pBelow*100, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test used")
   
   return (testResults)
 }

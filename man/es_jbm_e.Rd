@@ -20,6 +20,8 @@ JBM's E value
 }
 \description{
 An effect size measure that could be used with a chi-square test or g-test.
+
+The function is shown in this \url{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/JohnstonBerryMielke-E.html}{PeterStatistics.com}
 }
 \details{
 Two versions of this effect size. The formula for a chi-square test is:
@@ -42,20 +44,39 @@ Both formulas are from Johnston et al. (2006, p. 413)
 
 A qualification rule-of-thumb could be obtained by converting this to Cohen's w
 }
+\section{Before, After and Alternatives}{
+
+Before this you will need a chi-square value. From either:
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+\code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
+
+After this you might want to use some rule-of-thumb for the interpretation by converting it to Cohen w:
+\code{\link{es_convert}} to convert JBM-E to Cohen w (using fr="jbme", to="cohenw", ex1=minExp/n).
+\code{\link{th_cohen_w}} for various rules-of-thumb for Cohen w.
+
+Alternative effect sizes that use a chi-square value:
+\code{\link{es_cohen_w}}, for Cohen w.
+\code{\link{es_cramer_v_gof}},  for Cramer's V for Goodness-of-Fit.
+\code{\link{es_fei}}, for Fei.
+}
+
 \examples{
-chi2Value <- 3.105263
+chi2Value <- 3.106
 n <- 19
-minExp <- n/4
+minExp <- 3
 es_jbm_e(chi2Value, n, minExp)
 es_jbm_e(chi2Value, n, minExp, test="g")
 
 }
 \references{
 Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. \emph{Perceptual and Motor Skills, 103}(2), 412–414. https://doi.org/10.2466/pms.103.2.412-414
-}
-\seealso{
-\code{\link{es_convert}} to convert JBM-E to Cohen w, use from="jbme", to="cohenw", and ex1=minExp/n
-\code{\link{th_cohen_w}} rules-of-thumb for Cohen w
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

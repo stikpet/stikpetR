@@ -25,7 +25,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{test used}{a description of the test used}
 }
 \description{
@@ -36,6 +36,8 @@ assumption they are all equal in the population will be rejected.
 There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test,
 but also an exact multinomial, G-test, Freeman-Tukey, Neyman, Cressie-Read, and
 Freeman-Tukey-Read test are possible.
+
+This function is shown in this \href{https://youtu.be/RP8zn0Dhr8g}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/ModLogLikelihood.html}{PeterStatistics.com}
 }
 \details{
 The formula used (Cressie & Read, 1984, p. 441):

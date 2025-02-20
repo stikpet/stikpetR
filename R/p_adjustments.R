@@ -6,13 +6,16 @@
 #' FWER methods want to minimize the chance of making at least one Type I error (incorrectly rejecting the null hypothesis), while FDR methods attempt to balance the false positive and false negatives.
 #' 
 #' @param p_values list with the various p-values
-#' @param method {'bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original'} optional method to use for adjustment, Default is 'bonferroni'
+#' @param method {'bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original', 'none'} optional method to use for adjustment, Default is 'bonferroni'
 #' @param alpha : float, optional alpha level to use, only applies to 'hommel-original'. Default is 0.05.
 #' 
 #' @returns
 #' p_adj_val : list with the adjusted p-values
 #' 
 #' @details
+#' **none**
+#' simply returns the provided p-values
+#' 
 #' **Bonferroni**
 #' 
 #' The formula used for the Bonferroni adjustment:
@@ -149,7 +152,10 @@
 p_adjust <- function(p_values, method='bonferroni', alpha=.05){
   k = length(p_values)
   
-  if (method=="bonferroni"){
+  if (method=="none"){
+    p_adj_val = p_values
+  }
+  else if (method=="bonferroni"){
     p_adj_val = pmin(1, p_values*k)
   }
   else if (method=='sidak'){

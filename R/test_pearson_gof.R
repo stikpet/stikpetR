@@ -12,6 +12,8 @@
 #' expected count is at least 5 (Peck & Devore, 2012, p. 593).
 #' 
 #' A YouTube video with explanation on this test is available [here](https://youtu.be/NVR5dZhp4vY)
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/r_txnCmsVD0) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PearsonChiSquare.html)
 #'  
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
@@ -25,7 +27,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{test used}{a description of the test used}
 #' 
 #' @details 
@@ -71,7 +73,7 @@
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
 #' @section Before, After and Alternatives:
-#' BBefore this an impression using a frequency table or a visualisation might be helpful:
+#' Before this an impression using a frequency table or a visualisation might be helpful:
 #' \code{\link{tab_frequency}}, for a frequency table
 #' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
 #' \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
@@ -219,15 +221,15 @@ ts_pearson_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "yates2
   #Which test was used
   testUsed = "Pearson chi-square test of goodness-of-fit"
   if (cc == "pearson"){
-    testUsed = paste0(testUsed, ", with E. Pearson continuity correction")}
+    testUsed = paste0(testUsed, ", and Pearson continuity correction")}
   else if (cc == "williams"){
-    testUsed = paste0(testUsed, ", with Williams continuity correction")}
+    testUsed = paste0(testUsed, ", and Williams continuity correction")}
   else if (cc == "yates" || cc=="yates2"){
-    testUsed = paste0(testUsed, ", with Yates continuity correction")}
+    testUsed = paste0(testUsed, ", and Yates continuity correction")}
   
   statistic = chiVal
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test")
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5*100, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test")
   
   return (testResults)
   

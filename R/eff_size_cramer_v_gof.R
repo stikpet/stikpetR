@@ -9,6 +9,8 @@
 #' 
 #' A Bergsma correction is also possible.
 #' 
+#' A general explanation can also be found in this [YouTube video](https://youtu.be/FZcnk4EYpek). The function is shown in this [YouTube video]() and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CramerV.html)
+#' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
 #' @param k the number of categories
@@ -50,10 +52,30 @@
 #' The *DescTools* library has a similar function: *CramerV()*
 #' 
 #' 
-#' @seealso 
-#' \code{\link{es_convert}}, to convert Cramér's V (GoF) to Cohen w, use fr="cramervgof" and to="cohenw"
+#' @section Before, After and Alternatives:
+#' Before this you will need a chi-square value. From either:
+#' \code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit. 
+#' \code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+#' \code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test. 
+#' \code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit. 
+#' \code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit. 
+#' \code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit. 
+#' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test. 
+#' \code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+#' \code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
 #' 
-#' \code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
+#' After this you might want to use some rule-of-thumb for the interpretation:
+#' \code{\link{th_cramer_v}} for various rules-of-thumb for Cramér V.
+#' 
+#' or convert to Cohen w:
+#' \code{\link{es_convert}} to convert Cramér's V to Cohen w (using fr="cramervgof", to="cohenw", ex1=k).
+#' \code{\link{th_cohen_w}} for various rules-of-thumb for Cohen w.
+#' 
+#' Alternative effect sizes that use a chi-square value:
+#' \code{\link{es_cohen_w}}, for Cohen w.
+#' \code{\link{es_fei}}, for Fei.
+#' \code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
+#' 
 #' 
 #' @references 
 #' Bergsma, W. (2013). A bias-correction for Cramér’s and Tschuprow’s. *Journal of the Korean Statistical Society, 42*(3), 323–328. https://doi.org/10.1016/j.jkss.2012.10.002
@@ -68,9 +90,9 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @examples 
-#' chi2Value <- 3.105263
+#' chi2Value <- 3.106
 #' n <- 19
-#' k <- 4
+#' k <- 3
 #' es_cramer_v_gof(chi2Value, n, k)
 #' es_cramer_v_gof(chi2Value, n, k, bergsma=TRUE)
 #' 

@@ -28,7 +28,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{testUsed}{a description of the test used}
 }
 \description{
@@ -43,6 +43,8 @@ This is actually a family (class) of tests, similar as the Cressie-Read. Weights
 will give the same results as the default for Cressie-Read with lambda = 0.5. Setting the weights to 4/5, 8/5,
 16/15, 8/15 gives the same results as Cressie-Read with lambda = 3/2. The Pearson chi-square test is the
 same when setting weights to 1, 2, 1 and setting the weight simply to 4 gives the original Freeman-Tukey.
+
+This function is shown in this \href{https://youtu.be/Njc0YeiJLqE}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/Freeman-Tukey-Read.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Read, 1987, p. 271):

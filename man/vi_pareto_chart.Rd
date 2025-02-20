@@ -35,6 +35,8 @@ in descending order of frequency. Usually an ogive is added in the chart as well
 An ogive (oh-jive) is: "the graphs of cumulative frequencies" (Kenney, 1939).
 
 A video on Pareto charts is available \href{https://youtu.be/kDp5zPfK-Po}{here}.
+
+This function is shown in this \href{https://youtu.be/uTAxQdpZPNI}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/ParetoChart.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

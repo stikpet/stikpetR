@@ -48,6 +48,8 @@
 #' |26|other|Kaiser b|(Kaiser, 1968, p. 211)|apportionment|
 #' 
 #' \* Smith-Wilson E1 is listed with the mean group, since it uses the average frequency. It could of course also be placed in the evenness group.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/9DDGMa0m4t8) and the measures are also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/QualitativeVariation.html)
 #'  
 #' @param data list or dataframe
 #' @param measure optional to indicate which method to use. Either "vr" (default), "modvr", "ranvr", "avdev", "mndif", "varnc", "stdev", "hrel", "b", "m1", "m2", "m3", "m4", "m5", "m6", "d1", "d2", "d3", "d4", "bpi", "hd", "he", "swe", "re", "sw1", "sw2", "sw3", "hi", "si", "j", "b", "be", "bd", "fisher"

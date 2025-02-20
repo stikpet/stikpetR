@@ -9,7 +9,7 @@ p_adjust(p_values, method = "bonferroni", alpha = 0.05)
 \arguments{
 \item{p_values}{list with the various p-values}
 
-\item{method}{{'bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original'} optional method to use for adjustment, Default is 'bonferroni'}
+\item{method}{{'bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original', 'none'} optional method to use for adjustment, Default is 'bonferroni'}
 
 \item{alpha}{: float, optional alpha level to use, only applies to 'hommel-original'. Default is 0.05.}
 }
@@ -22,6 +22,9 @@ Various methods exist to counter a problem with multiple testing. Bonferroni, Š
 FWER methods want to minimize the chance of making at least one Type I error (incorrectly rejecting the null hypothesis), while FDR methods attempt to balance the false positive and false negatives.
 }
 \details{
+\strong{none}
+simply returns the provided p-values
+
 \strong{Bonferroni}
 
 The formula used for the Bonferroni adjustment:

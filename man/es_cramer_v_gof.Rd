@@ -26,6 +26,8 @@ It gives an estimate of how well the data then fits the expected values, where 0
 As for a classification Cramér's V can be converted to Cohen w, for which Cohen provides rules of thumb.
 
 A Bergsma correction is also possible.
+
+A general explanation can also be found in this \href{https://youtu.be/FZcnk4EYpek}{YouTube video}. The function is shown in this \url{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CramerV.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:
@@ -61,10 +63,36 @@ The \emph{lsr} library has a similar function: \emph{cramersV()}
 The \emph{DescTools} library has a similar function: \emph{CramerV()}
 }
 
+\section{Before, After and Alternatives}{
+
+Before this you will need a chi-square value. From either:
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_pearson_gof}}, for Pearson Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+\code{\link{ph_pairwise_gof}} for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
+
+After this you might want to use some rule-of-thumb for the interpretation:
+\code{\link{th_cramer_v}} for various rules-of-thumb for Cramér V.
+
+or convert to Cohen w:
+\code{\link{es_convert}} to convert Cramér's V to Cohen w (using fr="cramervgof", to="cohenw", ex1=k).
+\code{\link{th_cohen_w}} for various rules-of-thumb for Cohen w.
+
+Alternative effect sizes that use a chi-square value:
+\code{\link{es_cohen_w}}, for Cohen w.
+\code{\link{es_fei}}, for Fei.
+\code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
+}
+
 \examples{
-chi2Value <- 3.105263
+chi2Value <- 3.106
 n <- 19
-k <- 4
+k <- 3
 es_cramer_v_gof(chi2Value, n, k)
 es_cramer_v_gof(chi2Value, n, k, bergsma=TRUE)
 
@@ -77,11 +105,6 @@ Cramér, H. (1946). \emph{Mathematical methods of statistics}. Princeton Univers
 Kelley, K., & Preacher, K. J. (2012). On effect size. \emph{Psychological Methods, 17}(2), 137–152. https://doi.org/10.1037/a0028086
 
 Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.13.5). Rutger Cooperative Extension.
-}
-\seealso{
-\code{\link{es_convert}}, to convert Cramér's V (GoF) to Cohen w, use fr="cramervgof" and to="cohenw"
-
-\code{\link{th_cohen_w}}, rules-of-thumb for Cohen w
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

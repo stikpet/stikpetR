@@ -7,7 +7,9 @@
 #' 
 #' The Freeman-Tukey attempts to make the distribution more like a normal distribution by using a square root transformation.
 #' 
-#' Lawal (1984) continued some work from Larntz (1978) and compared the modified Freeman-Tukey, G-test and the Pearson chi-square test, and concluded that for small samples the Pearson test is preferred, while for large samples either the Pearson or G-test. Making this Freeman-Tukey test perhaps somewhat redundant....
+#' Lawal (1984) continued some work from Larntz (1978) and compared the modified Freeman-Tukey, G-test and the Pearson chi-square test, and concluded that for small samples the Pearson test is preferred, while for large samples either the Pearson or G-test. Making this Freeman-Tukey test perhaps somewhat redundant.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/ZPodOwCDuCM) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Freeman-Tukey.html)
 #' 
 #' @param data A vector with the data
 #' @param expCounts Optional dataframe with the categories and expected counts 
@@ -22,7 +24,7 @@
 #' \item{df}{the degrees of freedom}
 #' \item{pValue}{two-sided p-value}
 #' \item{minExp}{the minimum expected count}
-#' \item{propBelow5}{the proportion of expected counts below 5}
+#' \item{percBelow5}{the percentage of expected counts below 5}
 #' \item{test Used}{a description of the test used}
 #' 
 #' 
@@ -248,8 +250,8 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
   pValue = pchisq(T2, df, lower.tail = FALSE)
   
   #Which test was used
-  if (modified){testUsed = "modified Freeman-Tukey"}
-  else{testUsed = "Freeman-Tukey"}
+  if (modified){testUsed = "modified Freeman-Tukey test of goodness-of-fit"}
+  else{testUsed = "Freeman-Tukey test of goodness-of-fit"}
   if (cc == "pearson"){
     testUsed = paste0(testUsed, ", and Pearson correction")}
   else if (cc == "williams"){
@@ -259,8 +261,8 @@ ts_freeman_tukey_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "
   }
   
   statistic = T2
-  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5, testUsed)
-  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "propBelow5", "test used")
+  testResults <- data.frame(n, k, statistic, df, pValue, minExp, propBelow5*100, testUsed)
+  colnames(testResults)<-c("n", "k", "statistic", "df", "p-value", "minExp", "percBelow5", "test used")
   
   return (testResults)
   

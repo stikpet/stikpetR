@@ -29,6 +29,8 @@ but also a G-test, Freeman-Tukey, Neyman, Mod-Log Likelihood and Cressie-Read te
 McDonald (2014, p. 82) suggests to always use this exact test as long as the sample size is less than 1000
 (which was just picked as a nice round number, when n is very large the exact test becomes
 computational heavy even for computers).
+
+This function is shown in this \href{https://youtu.be/z4P_GuodZvk}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/Multinomial-GoF.html}{PeterStatistics.com}
 }
 \details{
 The exact multinomial test of goodness of fit is done in four steps

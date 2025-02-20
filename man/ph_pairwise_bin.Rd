@@ -42,6 +42,19 @@ This function will perform a one-sample binary test for each possible pair in th
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 }
+\examples{
+# Examples: get data
+dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
+gssDf <- read.csv(dataFile, sep=",", na.strings=c("", "NA"))
+ex1 = gssDf['mar1']
+
+#Example 1 using default settings (one-sample binomial tests with equal-distance method)
+ph_pairwise_bin(ex1)
+
+#Example 2 using a score test with Yates correction:
+ph_pairwise_bin(nominal_field, test="score", mtc='holm', cc='yates')
+
+}
 \seealso{
 \code{\link{ts_binomial_os}}, more info on the one-sample binomial test
 \code{\link{ts_wald_os}}, more info on the one-sample Wald test

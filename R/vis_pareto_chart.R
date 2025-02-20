@@ -22,6 +22,8 @@
 #' 
 #' A video on Pareto charts is available [here](https://youtu.be/kDp5zPfK-Po).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/uTAxQdpZPNI) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/ParetoChart.html)
+#' 
 #' @param data the data from which to create a Pareto chart
 #' @param varname a name for the data, if not provided the name of the data variable is used
 #' 

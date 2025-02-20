@@ -25,7 +25,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{testUsed}{a description of the test used}
 }
 \description{
@@ -34,8 +34,9 @@ are equal (the null hypothesis). If the test has a p-value below a pre-defined t
 assumption they are all equal in the population will be rejected.
 
 There are quite a few tests that can do this. Perhaps the most commonly used is the Pearson chi-square test,
-but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and
-Freeman-Tukey-Read test are possible.
+but also an exact multinomial, G-test, Freeman-Tukey, Mod-Log Likelihood, Cressie-Read, and Freeman-Tukey-Read test are possible.
+
+This function is shown in this \href{https://youtu.be/qNp0alJB6Wc}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/Neyman.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Neyman, 1949, p. 250):

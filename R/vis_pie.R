@@ -7,6 +7,8 @@
 #' 
 #' A video on pie charts is available [here](https://youtu.be/e6JtJsh-6iw).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/VS4Aw4zc9nQ) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PieChart.html)
+#' 
 #' @param data the data for which to create a pie-chart from
 #' @param labels what to show besides the labels Either "count" (default), "percent", "none", or "both"
 #' 

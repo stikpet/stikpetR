@@ -28,7 +28,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{test Used}{a description of the test used}
 }
 \description{
@@ -38,7 +38,9 @@ There are quite a few tests that can do this. Perhaps the most commonly used is 
 
 The Freeman-Tukey attempts to make the distribution more like a normal distribution by using a square root transformation.
 
-Lawal (1984) continued some work from Larntz (1978) and compared the modified Freeman-Tukey, G-test and the Pearson chi-square test, and concluded that for small samples the Pearson test is preferred, while for large samples either the Pearson or G-test. Making this Freeman-Tukey test perhaps somewhat redundant....
+Lawal (1984) continued some work from Larntz (1978) and compared the modified Freeman-Tukey, G-test and the Pearson chi-square test, and concluded that for small samples the Pearson test is preferred, while for large samples either the Pearson or G-test. Making this Freeman-Tukey test perhaps somewhat redundant.
+
+This function is shown in this \href{https://youtu.be/ZPodOwCDuCM}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/Freeman-Tukey.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Ayinde & Abidoye, 2010, p. 21):

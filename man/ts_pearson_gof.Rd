@@ -25,7 +25,7 @@ Dataframe with:
 \item{df}{the degrees of freedom}
 \item{pValue}{two-sided p-value}
 \item{minExp}{the minimum expected count}
-\item{propBelow5}{the proportion of expected counts below 5}
+\item{percBelow5}{the percentage of expected counts below 5}
 \item{test used}{a description of the test used}
 }
 \description{
@@ -40,6 +40,8 @@ The test compares the observed counts with the expected counts. It is often reco
 expected count is at least 5 (Peck & Devore, 2012, p. 593).
 
 A YouTube video with explanation on this test is available \href{https://youtu.be/NVR5dZhp4vY}{here}
+
+This function is shown in this \href{https://youtu.be/r_txnCmsVD0}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/PearsonChiSquare.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Pearson, 1900):
@@ -85,7 +87,7 @@ The formula is also used by McDonald (2014, p. 87)
 }
 \section{Before, After and Alternatives}{
 
-BBefore this an impression using a frequency table or a visualisation might be helpful:
+Before this an impression using a frequency table or a visualisation might be helpful:
 \code{\link{tab_frequency}}, for a frequency table
 \code{\link{vi_bar_simple}}, for Simple Bar Chart.
 \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.

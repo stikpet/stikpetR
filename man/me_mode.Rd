@@ -26,6 +26,8 @@ If one category has the highest frequency this category will be the modal catego
 An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 
 A video on the mode is available \href{https://youtu.be/oPpTE8qt2go}{here}.
+
+This function is shown in this \href{https://youtu.be/WHm7nqlQMHE}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/Mode.html}{PeterStatistics.com}
 }
 \details{
 One small controversy exists if all categories have the same frequency. In this case none of them has a higher occurence than the others, so none of them would be the mode (see for example Spiegel & Stephens, 2008, p. 64, Larson & Farber, 2014, p. 69). This is used when \emph{allEq="none"} and the default.
