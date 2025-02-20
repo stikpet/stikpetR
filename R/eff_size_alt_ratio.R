@@ -5,6 +5,8 @@
 #' 
 #' The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/IwZph3C9xFc) and the effect size is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/AlternativeRatio.html)
+#' 
 #' @param data vector with the data
 #' @param p0 Optional hypothesized proportion for the first category (default is 0.5)
 #' @param p0Cat Optional the category for which p0 was used

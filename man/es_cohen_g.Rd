@@ -23,6 +23,8 @@ Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a
 score or Wald test. It is simply the difference of the sample proportion with 0.5.
 
 A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
+
+This function is shown in this \href{https://youtu.be/3DEmngmws2U}{YouTube video} and the effect size is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenG.html}{PeterStatistics.com}
 }
 \details{
 To decide on which category is associated with p0 the following is used:

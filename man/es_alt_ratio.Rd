@@ -25,6 +25,8 @@ Dataframe with:
 The Alternative Ratio is an effect size measure that could be accompanying a one-sample binomial, score or Wald test.It is simply the sample proportion (percentage), divided by the expected population proportion (often set at 0.5)
 
 The Alternative Ratio is only mentioned in the documentation of a program called PASS from NCSS (n.d.), and referred to as Relative Risk by JonB (2015).
+
+This function is shown in this \href{https://youtu.be/IwZph3C9xFc}{YouTube video} and the effect size is also described at \href{https://peterstatistics.com/Terms/EffectSizes/AlternativeRatio.html}{PeterStatistics.com}
 }
 \details{
 To decide on which category is associated with p0 the following is used:

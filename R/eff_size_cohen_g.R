@@ -6,6 +6,8 @@
 #' 
 #' A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/3DEmngmws2U) and the effect size is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenG.html)
+#' 
 #' @param data vector with the data
 #' @param p0Cat Optional the category for which p0=0.5 was used
 #' @param codes Optional vector with the two codes to use

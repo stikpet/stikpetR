@@ -19,6 +19,7 @@
 #' or more extreme, if the null hypothesis is true. 
 #' 
 #' Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
+#' This function is shown in this [YouTube video](https://youtu.be/1_KPlWx2vLk) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/SignOneSample.html)
 #' 
 #' @param data A vector with the data
 #' @param p0 Optional hypothesized proportion for the first category (default is 0.5)

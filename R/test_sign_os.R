@@ -3,6 +3,7 @@
 #' @description 
 #' This function will perform one-sample sign test.
 #' 
+#'  
 #' @param data A vector or dataframe
 #' @param levels optional vector with levels in order
 #' @param mu optional hypothesized median, otherwise the midrange will be used

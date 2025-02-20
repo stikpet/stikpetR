@@ -6,6 +6,8 @@
 #' 
 #' A [YouTube](https://youtu.be/ddWe94VKX_8) video on Cohen h'.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/sGfFB7Zzeas) and the effect size is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenH.html)
+#' 
 #' @param data a vector with the data
 #' @param p0 Optional hypothesized proportion for the first category (default is 0.5)
 #' @param p0Cat Optional the category for which p0 was used

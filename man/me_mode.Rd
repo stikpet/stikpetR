@@ -32,6 +32,33 @@ One small controversy exists if all categories have the same frequency. In this 
 
 On a rare occasion someone might argue that if all categories have the same frequency, then all categories are part of the mode since they all have the highest frequency. This is used when \emph{allEq="all"}.
 }
+\section{Before, After and Alternatives}{
+
+Before this an impression using a frequency table or a visualisation might be helpful:
+\code{\link{tab_frequency}}, for a frequency table.
+\code{\link{vi_bar_simple}}, for Simple Bar Chart.
+\code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+\code{\link{vi_dot_plot}}, for Dot Plot.
+\code{\link{vi_pareto_chart}}, for for Pareto Chart.
+\code{\link{vi_pie}}, for Pie Chart.
+
+After this you might want some variation measure:
+\code{\link{me_qv}}, for Measures of Qualitative Variation.
+
+or perform a test:
+\code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test.
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+
+If you are looking to determine the mode of binned data use:
+\code{\link{me_mode_bin}}, for the mode with binned data
+}
+
 \examples{
 #Example 1: dataframe
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
@@ -66,9 +93,6 @@ Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. S
 Spiegel, M. R., & Stephens, L. J. (2008). \emph{Schaum’s outline of theory and problems of statistics} (4th ed.). McGraw-Hill.
 
 Weisstein, E. W. (2002). \emph{CRC concise encyclopedia of mathematics} (2nd ed.). Chapman & Hall/CRC.
-}
-\seealso{
-\code{\link{me_mode_bin}}, to determine the mode with binned data
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

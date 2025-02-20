@@ -8,7 +8,7 @@ ts_freeman_tukey_read(
   data,
   expCounts = NULL,
   weights = c(4/3, 8/3),
-  cc = c("none", "yates", "pearson", "williams")
+  cc = c("none", "yates", "yates2", "pearson", "williams")
 )
 }
 \arguments{
@@ -73,6 +73,9 @@ be the same as using a Cressie-Read power divergence with \eqn{\lambda = \frac{1
 
 The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
 \deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i > E_i \\ F_i + 0.5 & \text{ if } F_i < E_i \\ F_i & \text{ if } F_i = E_i \end{cases}}
+In some cases the Yates correction is slightly changed to (yates2) (Allen, 1990, p. 523):
+\deqn{F_i^\ast  = \begin{cases} F_i - 0.5 & \text{ if } F_i - 0.5 > E_i \\ F_i + 0.5 & \text{ if } F_i + 0.5 < E_i \\ F_i & \text{ else } \end{cases}}
+
 \deqn{G_Y=2\times\sum_{i=1}^{k}\left(F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right)\right)}
 Where if \eqn{F_i^\ast = 0} then \eqn{F_i^\ast\times ln\left(\frac{F_i^\ast}{E_{i}}\right) = 0}
 
@@ -85,6 +88,38 @@ With:
 \deqn{q = 1 + \frac{k^2 - 1}{6\times n\times df}}
 The formula is also used by McDonald (2014, p. 87)
 }
+\section{Before, After and Alternatives}{
+
+BBefore this an impression using a frequency table or a visualisation might be helpful:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_simple}}, for Simple Bar Chart.
+\code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+\code{\link{vi_dot_plot}}, for Dot Plot.
+\code{\link{vi_pareto_chart}}, for Pareto Chart.
+\code{\link{vi_pie}}, for Pie Chart.
+
+After this you might an effect size measure:
+\code{\link{es_cohen_w}}, for Cohen w.
+\code{\link{es_cramer_v_gof}},  for Cramer's V for Goodness-of-Fit.
+\code{\link{es_fei}}, for Fei.
+\code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
+
+or perform a post-hoc test:
+\code{\link{ph_pairwise_bin}}, for Pairwise Binary Tests.
+\code{\link{ph_pairwise_gof}}, for Pairwise Goodness-of-Fit Tests.
+\code{\link{ph_residual_gof_bin}}, for Residuals Tests using Binary tests.
+\code{\link{ph_residual_gof_gof}}, for Residuals Using Goodness-of-Fit Tests.
+
+Alternative tests:
+\code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test.
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+}
+
 \examples{
 #Example 1: dataframe
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"

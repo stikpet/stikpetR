@@ -133,7 +133,7 @@
 #' ex3 = c("MARRIED", "DIVORCED", "MARRIED", "SEPARATED", "DIVORCED", "NEVER MARRIED", 
 #' "DIVORCED", "DIVORCED", "NEVER MARRIED", "MARRIED", "MARRIED", "MARRIED", 
 #' "SEPARATED", "DIVORCED", "NEVER MARRIED", "NEVER MARRIED", "DIVORCED", "DIVORCED", "MARRIED")
-#' ts_g_gof(ex3)
+#' ts_mod_log_likelihood_gof(ex3)
 #' 
 #' @export
 ts_mod_log_likelihood_gof <- function(data, expCounts=NULL, cc = c("none", "yates", "yates2", "pearson", "williams")){

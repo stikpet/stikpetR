@@ -344,6 +344,27 @@ The formula used (Kaiser, 1968, p. 211):
 
 Kaiser also provides rules-of-thumb for interpretation (see \code{\link{th_kaiser_b}}, for these).
 }
+\section{Before, After and Alternatives}{
+
+Before this an impression using a frequency table or a visualisation might be helpful:
+\code{\link{tab_frequency}}, for a frequency table.
+\code{\link{vi_bar_simple}}, for Simple Bar Chart.
+\code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.
+\code{\link{vi_dot_plot}}, for Dot Plot.
+\code{\link{vi_pareto_chart}}, for for Pareto Chart.
+\code{\link{vi_pie}}, for Pie Chart.
+
+After this you might want to perform a test:
+\code{\link{ts_pearson_gof}}, for Pearson Chi-Square Goodness-of-Fit Test.
+\code{\link{ts_freeman_tukey_gof}}, for Freeman-Tukey Test of Goodness-of-Fit.
+\code{\link{ts_freeman_tukey_read}}, for Freeman-Tukey-Read Test of Goodness-of-Fit.
+\code{\link{ts_g_gof}}, for G (Likelihood Ratio) Goodness-of-Fit Test.
+\code{\link{ts_mod_log_likelihood_gof}}, for Mod-Log Likelihood Test of Goodness-of-Fit.
+\code{\link{ts_multinomial_gof}}, for Multinomial Goodness-of-Fit Test.
+\code{\link{ts_neyman_gof}}, for Neyman Test of Goodness-of-Fit.
+\code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test.
+}
+
 \examples{
 #Example 1: dataframe
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"

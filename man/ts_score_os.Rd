@@ -49,6 +49,7 @@ A significance in general is the probability of a result as in the sample,
 or more extreme, if the null hypothesis is true.
 
 Some info on the different tests can be found in \href{https://youtu.be/jQ-nSPTGOgE}{video}.
+This function is shown in this \href{https://youtu.be/06q7qlTOs-s}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/proportion-one-sample.html}{PeterStatistics.com}
 }
 \details{
 Also sometimes called a 'proportion' test.

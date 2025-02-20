@@ -25,6 +25,8 @@ An adaptation of Cohen h (\code{\link{es_cohen_h}}) for a one-sample case. It is
 be accompanying a one-sample binomial, score or Wald test.
 
 A \href{https://youtu.be/ddWe94VKX_8}{YouTube} video on Cohen h'.
+
+This function is shown in this \href{https://youtu.be/sGfFB7Zzeas}{YouTube video} and the effect size is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenH.html}{PeterStatistics.com}
 }
 \details{
 To decide on which category is associated with p0 the following is used:

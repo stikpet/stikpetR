@@ -180,7 +180,7 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
     lambd=-0.5
     testUsed = "Freeman-Tukey"}        
   else if (lambd==-2 || lambd=="neyman"){
-    lambd==-2
+    lambd=-2
     testUsed = "Neyman"}
   else {
     testUsed = paste("power divergence with lambda = ", lambd)}
