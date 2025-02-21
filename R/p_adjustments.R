@@ -256,7 +256,7 @@ p_adjust <- function(p_values, method='bonferroni', alpha=.05){
             c_min = p_sorted[k-i+j,2]*i/j
           }
         }
-        if (c_min <= alpha){
+        if (c_min > alpha){
           i_hommel = i
         }
         i = i + 1
