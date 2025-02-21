@@ -270,7 +270,7 @@ p_adjust <- function(p_values, method='bonferroni', alpha=.05){
       }
       else {
         for (i in 1:k){
-          ai[i,3] = 1
+          ai[i,3] = min(alpha, ai[i,2])
         }
       }
     }
