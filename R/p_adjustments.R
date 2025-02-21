@@ -257,7 +257,7 @@ p_adjust <- function(p_values, method='bonferroni', alpha=.05){
           }
         }
         if (c_min <= alpha){
-          i_hommel = i - 1
+          i_hommel = i
         }
         i = i + 1
       }
