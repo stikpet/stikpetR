@@ -19,11 +19,29 @@ A dual axis bar-chart is a bar-chart with two vertical axis. In this function it
 show both the count and cumulative proportion.
 
 This chart could be used with a single ordinal variable.
-}
-\section{Alternatives}{
 
-It is also possible to do this with the library \emph{ggplot2}.
-A video on how to use ggplot2 for this can be found \href{https://youtu.be/EhK9K9jwsco}{here}
+The visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
+}
+\section{Before, After and Alternatives}{
+
+Before the visualisation you might first want to get an impression using a frequency table:
+\code{\link{tab_frequency}}, for a frequency table
+
+After visualisation you might want some descriptive measures:
+\code{\link{me_consensus}}, for the Consensus.
+\code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+\code{\link{me_median}}, for the Median.
+\code{\link{me_quantiles}}, for Quantiles.
+\code{\link{me_quartiles}}, for Quartiles / Hinges.
+\code{\link{me_quartile_range}}, for Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range.
+
+or perform a test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+Alternatives for this visualisation could be:
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
 }
 
 \examples{

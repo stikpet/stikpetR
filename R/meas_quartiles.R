@@ -7,6 +7,8 @@
 #' 
 #' There are quite a few different methods to determine the quartiles. This function has 19 different ones. See the details for a description.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/119HkHrMu0M) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/Quantiles.html)
+#' 
 #' @param data vector or dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param method optional which method to use to calculate quartiles
@@ -81,6 +83,24 @@
 #' The names *linear*, *lower*, *higher*, *nearest* and *midpoint* are all used by pandas quantile function and numpy 
 #' percentile function. Numpy also uses *inverted_cdf*, *averaged_inverted_cdf*, *closest_observation*, 
 #' *interpolated_inverted_cdf*, *hazen*, *weibull*, *median_unbiased*, and *normal_unbiased*. 
+#' 
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+#' 
+#' After this you might want some other descriptive measures:
+#' \code{\link{me_consensus}}, for the Consensus. 
+#' \code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+#' \code{\link{me_median}}, for the Median.
+#' \code{\link{me_quantiles}}, for Quantiles.
+#' \code{\link{me_quartile_range}}, for Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range.
+#' 
+#' or perform a test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
 #' 
 #' @references 

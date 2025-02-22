@@ -2,6 +2,8 @@
 #' 
 #' This function will calculate Rosenthal Correlation Coefficient. A simple correlation coefficient that divides a z-score by the square root of the sample size.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/ycip6vF-7_U) and the effect size is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Correlations/RosenthalCorrelationCoefficient.html)
+#' 
 #' @param zVal z-value of test
 #' @param n total sample size
 #' 
@@ -21,8 +23,15 @@
 #' 
 #' For a classification the same as for Pearson correlation use *th_pearson_r()*
 #' 
-#' @seealso 
-#' \code{\link{th_pearson_r}}, rules of thumb for a Pearson correlation coefficient.
+#' @section Before, After and Alternatives:
+#' Before this measure you might want to perform the test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+#' 
+#' After this you might want to use the rules-of-thumb for a Pearson Correlation or Cohen f:
+#' \code{\link{th_pearson_r}}, for rules of thumb for a Pearson correlation coefficient
+#' \code{\link{th_cohen_f}}, for rules of thumb for a Cohen f
 #' 
 #' @references 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.

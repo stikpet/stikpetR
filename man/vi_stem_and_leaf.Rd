@@ -19,6 +19,18 @@ A stem-and-leaf display is defined as: "a method of displaying data in which eac
 
 In some variations of this, the cumulative frequencies are also shown, but currently this function does not provide for that.
 }
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+# Example 1: dataframe
+ex1 = studentDf['Gen_Age']
+vi_stem_and_leaf(ex1);
+
+# Example 2: Numeric list
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+vi_stem_and_leaf(ex2);
+
+}
 \references{
 Everitt, B. (2004). \emph{The Cambridge dictionary of statistics} (2nd ed.). Cambridge University Press.
 

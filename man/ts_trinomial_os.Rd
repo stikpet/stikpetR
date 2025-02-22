@@ -26,6 +26,8 @@ A dataframe with:
 A test that could be used with ordinal data that includes ties
 
 Similar as a sign-test but instead of ignoring scores that are tied with the hypothesized median they get included, hence instead of the binomial distribution, this will use the trinomial distribution.
+
+This function is shown in this \href{https://youtu.be/OiVUfX5lRww}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/WilcoxonSignedRankOneSample.html}{PeterStatistics.com}.
 }
 \details{
 The p-value is calculated using (Bian et al., 2009, p. 6):
@@ -49,6 +51,23 @@ With:
 
 The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can also be used for one-sample situations.
 }
+\section{Before, After and Alternatives}{
+
+Before this measure you might want an impression using a frequency table or a visualisation:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+
+After this you might want to determine an effect size measure:
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+\code{\link{es_dominance}}, for the Dominance score.
+\code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
+
+Alternative tests:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

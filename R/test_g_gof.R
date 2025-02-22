@@ -75,7 +75,7 @@
 #' The formula is also used by McDonald (2014, p. 87)
 #' 
 #' @section Before, After and Alternatives:
-#' BBefore this an impression using a frequency table or a visualisation might be helpful:
+#' Before this an impression using a frequency table or a visualisation might be helpful:
 #' \code{\link{tab_frequency}}, for a frequency table
 #' \code{\link{vi_bar_simple}}, for Simple Bar Chart. 
 #' \code{\link{vi_cleveland_dot_plot}}, for Cleveland Dot Plot.

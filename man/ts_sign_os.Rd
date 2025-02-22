@@ -21,6 +21,8 @@ Dataframe with:
 }
 \description{
 This function will perform one-sample sign test.
+
+This function is shown in this \href{https://youtu.be/Hj15elBte44}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/SignOneSample.html}{PeterStatistics.com}
 }
 \details{
 The test statistic is calculated using (Stewart, 1941, p. 236):
@@ -39,14 +41,21 @@ The test is described in Stewart (1941), although there are earlier uses.
 
 The paired version for example was already described by Arbuthnott (1710)
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this measure you might want an impression using a frequency table or a visualisation:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 
-The library \emph{BSDA} has a \strong{SIGN.test()} function
+After this you might want to determine an effect size measure:
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+\code{\link{es_dominance}}, for the Dominance score.
+\code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 
-The library \emph{DescTools} has a \strong{SignTest()} function
-
-The library \emph{nonpar} has a \strong{signtest()} function
+Alternative tests:
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 }
 
 \examples{

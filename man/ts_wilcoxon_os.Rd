@@ -47,8 +47,9 @@ If the p-value is the probability of a result as in the sample, or more extreme,
 population would be true. If this is below a certain threshold (usually 0.05) the assumption about the
 population is rejected. For this test the assumed median for the population is then incorrect.
 
-Results in software packages for this test can vary, since there are a few different approaches. Especially if
-there are so-called ties. See the details for more information.
+Results in software packages for this test can vary, since there are a few different approaches. Especially if there are so-called ties. See the details for more information.
+
+This function is shown in this \href{https://youtu.be/1r2lpPkJ1Vo}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/WilcoxonSignedRankOneSample.html}{PeterStatistics.com}.
 }
 \details{
 The unadjusted test statistic is given by:
@@ -145,12 +146,21 @@ For both methods now \eqn{n_r=n}, where n is the number of scores.
 The Pratt (1959) method and z-split method were found in Python’s documentation
 for scipy’s Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this measure you might want an impression using a frequency table or a visualisation:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 
-R's stats library has a similar function: \emph{wilcox.test()}
+After this you might want to determine an effect size measure:
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+\code{\link{es_dominance}}, for the Dominance score.
+\code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 
-The \emph{exactRankTests} library has a function for the exact test: \emph{wilcox.exact()}
+Alternative tests:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
 }
 
 \examples{

@@ -23,10 +23,34 @@ component bar chart (Zedeck, 2014, p. 54).
 
 It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category,
 each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
+
+The visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
 }
 \details{
 This function basically uses barplot(...,beside = FALSE) from R's \emph{graphics} library
 }
+\section{Before, After and Alternatives}{
+
+Before the visualisation you might first want to get an impression using a frequency table:
+\code{\link{tab_frequency}}, for a frequency table
+
+After visualisation you might want some descriptive measures:
+\code{\link{me_consensus}}, for the Consensus.
+\code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+\code{\link{me_median}}, for the Median.
+\code{\link{me_quantiles}}, for Quantiles.
+\code{\link{me_quartiles}}, for Quartiles / Hinges.
+\code{\link{me_quartile_range}}, for Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range.
+
+or perform a test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+Alternatives for this visualisation could be:
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

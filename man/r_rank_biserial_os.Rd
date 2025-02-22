@@ -20,6 +20,8 @@ dataframe with the hypothesized median (mu) and the effect size measure
 This function will calculate Rank biserial correlation coefficient (one-sample)
 }
 \details{
+This function is shown in this \href{https://youtu.be/31jr7jUCni4}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html}{PeterStatistics.com}
+
 The formula used (Kerby, 2014, p. 5):
 \deqn{r_{rb} = \frac{\left|R_{pos} - R_{neg}\right|}{R}}
 This is actually the same as (King & Minium, 2008, p. 403):
@@ -37,11 +39,23 @@ This is actually the same as (King & Minium, 2008, p. 403):
 If no hypothesized median is provided, the midrange is used, defined as:
 \deqn{\frac{x_{max} - x_{min}}{2}}
 Where \eqn{x_{max}} is the maximum value of the scores, and \eqn{x_{min}} the minimum
-
-\strong{Alternative}
-
-The \emph{effectsize} library has a similar function: \emph{rank_biserial()}
 }
+\section{Before, After and Alternatives}{
+
+Before this measure you might want to perform the test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+After this you might want a rule-of-thumb:
+\code{\link{th_rank_biserial}}, for Rank Biserial Correlation rule-of-thumb
+
+Alternative effect size measure with ordinal data:
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+\code{\link{es_dominance}}, for the Dominance score.
+\code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

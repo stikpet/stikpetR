@@ -3,6 +3,7 @@
 #' @description 
 #' This function will perform one-sample sign test.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Hj15elBte44) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/SignOneSample.html)
 #'  
 #' @param data A vector or dataframe
 #' @param levels optional vector with levels in order
@@ -31,13 +32,20 @@
 #' 
 #' The paired version for example was already described by Arbuthnott (1710)
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 #' 
-#' The library *BSDA* has a **SIGN.test()** function
+#' After this you might want to determine an effect size measure:
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size. 
+#' \code{\link{es_dominance}}, for the Dominance score.
+#' \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 #' 
-#' The library *DescTools* has a **SignTest()** function
-#' 
-#' The library *nonpar* has a **signtest()** function
+#' Alternative tests:
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
 #' @references 
 #' Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observ’d in the births of both sexes. *Philosophical Transactions of the Royal Society of London, 27*(328), 186–190. https://doi.org/10.1098/rstl.1710.0011

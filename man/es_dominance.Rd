@@ -19,7 +19,9 @@ es_dominance(data, levels = NULL, mu = NULL, out = "dominance")
 dataframe with the hypothesized median (mu) and the effect size value
 }
 \description{
-Dominance and a Vargha-Delaney A like effect size measure
+This measure could be used with a sign test, since it does not rely on a z-value.
+
+This function is shown in this \href{https://youtu.be/IlVUjzNouFg}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/DominanceScore.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Mangiafico, 2016, p. 223-224):
@@ -42,9 +44,17 @@ A Vargha-Delaney A (VDA) style effect size is calculated with (Mangiafico, 2016,
 
 This will range from 0 to 1, with 0.5 being the same as a dominance score of 0.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
-The \emph{rcompanion} library has a similar function: \emph{oneSampleDominance()}
+Before this measure you might want to perform the test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+Alternative effect size measure with ordinal data:
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+\code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
+\code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
 }
 
 \examples{

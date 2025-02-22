@@ -16,9 +16,22 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
-#'  
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' # Example 1: dataframe
+#' ex1 = studentDf['Gen_Age']
+#' vi_stem_and_leaf(ex1);
+#' 
+#' # Example 2: Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' vi_stem_and_leaf(ex2);
+#' 
 #' @export
 vi_stem_and_leaf <- function(data, key=NULL){
+  data = na.omit(data)
+  
   if (is.null(key)){
     key = 10**floor(log10(abs(max(data))))
   }

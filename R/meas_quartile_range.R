@@ -11,6 +11,8 @@
 #' 
 #' The function uses the *me_quartiles* function and any of the methods from that function can be used.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/mUl3LFzfsfg) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/QuartileRanges.html)
+#' 
 #' @param data vector or dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param measure the specific measure to determine. Either `"iqr"` (default), `"siqr"`, `"qd"`, or `"mqr"`
@@ -41,8 +43,24 @@
 #' 
 #' This formula can be found in Parzen (1980, p. 19), but there are probably older references.
 #' 
-#' @seealso 
-#' \code{\link{me_quartiles}}, calculating quartiles
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+#' 
+#' After this you might want some other descriptive measures:
+#' \code{\link{me_consensus}}, for the Consensus. 
+#' \code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+#' \code{\link{me_median}}, for the Median.
+#' \code{\link{me_quantiles}}, for Quantiles.
+#' \code{\link{me_quartiles}}, for Quartiles / Hinges.
+#' 
+#' or perform a test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+#' 
 #' 
 #' @references 
 #' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225–272.

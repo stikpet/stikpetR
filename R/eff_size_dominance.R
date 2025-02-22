@@ -1,4 +1,9 @@
 #' Dominance and a Vargha-Delaney A like effect size measure
+#' @description 
+#' 
+#' This measure could be used with a sign test, since it does not rely on a z-value.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/IlVUjzNouFg) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/DominanceScore.html)
 #' 
 #' @param data dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
@@ -29,8 +34,17 @@
 #' 
 #' This will range from 0 to 1, with 0.5 being the same as a dominance score of 0.
 #' 
-#' @section Alternatives:
-#' The *rcompanion* library has a similar function: *oneSampleDominance()*
+#' @section Before, After and Alternatives:
+#' Before this measure you might want to perform the test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+#' 
+#' Alternative effect size measure with ordinal data:
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size. 
+#' \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
+#' \code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
+#' 
 #' 
 #' @references 
 #' Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.20.01). Rutger Cooperative Extension.

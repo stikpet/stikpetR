@@ -18,6 +18,8 @@ the median
 }
 \description{
 Function to determine the median of a set of data. The median can be defined as "the middle value in a distribution, below and above which lie values with equal total frequencies or probabilities" (Porkess, 1991, p. 134). This means that 50\% of the respondents scored equal or higher to the median, and also 50\% of the respondents scored lower or equal.
+
+This function is shown in this \href{https://youtu.be/rgzET32QpsM}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/Quantiles.html}{PeterStatistics.com}
 }
 \details{
 The formula that is used, assuming the data has been sorted, is:
@@ -39,12 +41,24 @@ If the number of scores is an odd number, and the median falls between two categ
 Some old references to the median are Pacioli (1523) in Italian, Cournot (1843, p. 120) in French,
 and Galton (1881, p. 246) in English.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this measure you might want an impression using a frequency table or a visualisation:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 
-R's \emph{stats} library has a function \emph{median}, and also \emph{DescTools}, \emph{missMethods}, and probably
-more. Note that many of these do not make it possible to return the "between" score if the data
-are ordered factors.
+After this you might want some other descriptive measures:
+\code{\link{me_consensus}}, for the Consensus.
+\code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+\code{\link{me_quantiles}}, for Quantiles.
+\code{\link{me_quartiles}}, for Quartiles / Hinges.
+\code{\link{me_quartile_range}}, for Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range.
+
+or perform a test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 }
 
 \examples{

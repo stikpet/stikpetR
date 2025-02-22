@@ -2,6 +2,8 @@
 #' 
 #' This function will calculate Rank biserial correlation coefficient (one-sample)
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/31jr7jUCni4) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html)
+#' 
 #' @param data vector with the numeric scores
 #' @param levels optional vector with levels in order
 #' @param mu optional parameter to set the hypothesized median. If not used the midrange is used
@@ -26,9 +28,19 @@
 #' \deqn{\frac{x_{max} - x_{min}}{2}}
 #' Where \eqn{x_{max}} is the maximum value of the scores, and \eqn{x_{min}} the minimum
 #' 
-#' **Alternative**
+#' @section Before, After and Alternatives:
+#' Before this measure you might want to perform the test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
-#' The *effectsize* library has a similar function: *rank_biserial()*
+#' After this you might want a rule-of-thumb:
+#' \code{\link{th_rank_biserial}}, for Rank Biserial Correlation rule-of-thumb
+#' 
+#' Alternative effect size measure with ordinal data:
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size. 
+#' \code{\link{es_dominance}}, for the Dominance score.
+#' \code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
 #' 
 #' @references 
 #' Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonparametric correlation. *Comprehensive Psychology*, 3, 1–9. https://doi.org/10.2466/11.IT.3.1

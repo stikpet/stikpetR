@@ -18,6 +18,8 @@ r the effect size measure
 This function will calculate Rosenthal Correlation Coefficient. A simple correlation coefficient that divides a z-score by the square root of the sample size.
 }
 \details{
+This function is shown in this \href{https://youtu.be/ycip6vF-7_U}{YouTube video} and the effect size is also described at \href{https://peterstatistics.com/Terms/Correlations/RosenthalCorrelationCoefficient.html}{PeterStatistics.com}
+
 The formula used (Rosenthal, 1991, p. 19):
 \deqn{r = \frac{z}{\sqrt{n}}}
 
@@ -31,6 +33,18 @@ Rosenthal (1991) is the oldest reference I could find for this correlation coeff
 
 For a classification the same as for Pearson correlation use \emph{th_pearson_r()}
 }
+\section{Before, After and Alternatives}{
+
+Before this measure you might want to perform the test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+After this you might want to use the rules-of-thumb for a Pearson Correlation or Cohen f:
+\code{\link{th_pearson_r}}, for rules of thumb for a Pearson correlation coefficient
+\code{\link{th_cohen_f}}, for rules of thumb for a Cohen f
+}
+
 \examples{
 z = 1.143943
 n = 20
@@ -41,9 +55,6 @@ r_rosenthal(z, n)
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
 Rosenthal, R. (1991). \emph{Meta-analytic procedures for social research} (Rev. ed). Sage Publications.
-}
-\seealso{
-\code{\link{th_pearson_r}}, rules of thumb for a Pearson correlation coefficient.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -9,8 +9,9 @@
 #' population would be true. If this is below a certain threshold (usually 0.05) the assumption about the 
 #' population is rejected. For this test the assumed median for the population is then incorrect.
 #' 
-#' Results in software packages for this test can vary, since there are a few different approaches. Especially if 
-#' there are so-called ties. See the details for more information.
+#' Results in software packages for this test can vary, since there are a few different approaches. Especially if there are so-called ties. See the details for more information.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/1r2lpPkJ1Vo) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/WilcoxonSignedRankOneSample.html).
 #' 
 #' @param data dataframe with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
@@ -125,11 +126,21 @@
 #' The Pratt (1959) method and z-split method were found in Python’s documentation 
 #' for scipy’s Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 #' 
-#' R's stats library has a similar function: *wilcox.test()*
+#' After this you might want to determine an effect size measure:
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size. 
+#' \code{\link{es_dominance}}, for the Dominance score.
+#' \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 #' 
-#' The *exactRankTests* library has a function for the exact test: *wilcox.exact()*
+#' Alternative tests:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' 
 #' 
 #' @references 
 #' Cureton, E. E. (1967). The normal approximation to the signed-rank sampling distribution when zero differences are present. *Journal of the American Statistical Association, 62*(319), 1068–1069. https://doi.org/10.1080/01621459.1967.10500917

@@ -3,6 +3,8 @@
 #' @description 
 #' The Consensus is a measure of agreement or dispersion for ordinal data. If there is no agreement the value is 0, and with full agreement 1. 
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/81iJtQtZbGI) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/Consensus.html)
+#' 
 #' @param data a vector with the data
 #' @param levels optional to indicate the categories in order if data is non-numeric
 #' 
@@ -23,15 +25,47 @@
 #' \item \eqn{k} the number of categories.
 #' }
 #' 
-#' @section Alternatives:
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
 #' 
-#' The *agrmt* library has a function *consensus(table(ordData))*
+#' After this you might want some other descriptive measures:
+#' \code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+#' \code{\link{me_median}}, for the Median.
+#' \code{\link{me_quantiles}}, for Quantiles.
+#' \code{\link{me_quartiles}}, for Quartiles / Hinges.
+#' \code{\link{me_quartile_range}}, for Interquartile Range, Semi-Interquartile Range and Mid-Quartile Range.
+#' 
+#' or perform a test:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+#' 
 #' 
 #' @references 
 #' Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. *International Journal of Approximate Reasoning, 45*(3), 531–545. https://doi.org/10.1016/j.ijar.2006.06.024
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' # Example 1: Dataframe
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' ex1 = studentDf[['Teach_Motivate']]
+#' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+#' me_consensus(ex1, levels=order)
+#' 
+#' #Example 2: Numeric data
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+#' me_consensus(ex2)
+#' 
+#' #Example 3: Text data with
+#' ex3 = c("a", "b", "f", "d", "e", "c")
+#' order = c("a", "b", "c", "d", "e", "f")
+#' me_consensus(ex3, levels=order)
 #' 
 #' @export
 me_consensus <- function(data, levels=NULL){

@@ -5,6 +5,8 @@
 #' 
 #' Similar as a sign-test but instead of ignoring scores that are tied with the hypothesized median they get included, hence instead of the binomial distribution, this will use the trinomial distribution.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/OiVUfX5lRww) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/WilcoxonSignedRankOneSample.html).
+#' 
 #' @param data A vector or dataframe
 #' @param levels optional list to indicate what values represent
 #' @param mu optional hypothesized median, otherwise the midrange will be used
@@ -39,6 +41,21 @@
 #' }
 #' 
 #' The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can also be used for one-sample situations.
+#' 
+#' @section Before, After and Alternatives:
+#' Before this measure you might want an impression using a frequency table or a visualisation:
+#' \code{\link{tab_frequency}}, for a frequency table
+#' \code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+#' \code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+#' 
+#' After this you might want to determine an effect size measure:
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size. 
+#' \code{\link{es_dominance}}, for the Dominance score.
+#' \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
+#' 
+#' Alternative tests:
+#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
+#' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
 #' @references 
 #' Bian, G., McAleer, M., & Wong, W.-K. (2009). A trinomial test for paired data when there are many ties. *SSRN Electronic Journal*. https://doi.org/10.2139/ssrn.1410589

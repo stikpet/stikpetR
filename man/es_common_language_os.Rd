@@ -30,6 +30,8 @@ $$P(X > \\mu_{H_0}) + \\frac{P(X = \\mu_{H_0})}{2}$$
 This version is implemented in MatLab (see https://nl.mathworks.com/matlabcentral/fileexchange/113020-cles) based on a Python version from Tulimieri (2021)
 
 For scale data, an approximation using the standard normal distribution is also available using Cohen's d, alternatively a conversion via the rank-biserial coefficient can be done. These two are used in R’s \emph{effectsize} library from Ben-Shachar et al. (2020).
+
+The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
 }
 \details{
 For "brute" simply counts all scores above the test statistic and half of the ones that are equal (Tulimieri, 2021):
@@ -52,6 +54,44 @@ The "rb", uses the rank-biserial correlation coefficient (Ben-Shachar et al., 20
 $$CL = \\frac{1+r_b}{2}$$
 The CLE can be converted to a Rank Biserial (= Cliff delta) using the \strong{es_convert()} function. This can then be converted to a Cohen d, and then the rules-of-thumb for Cohen d could be used (\strong{th_cohen_d()})
 }
+\section{Before, After and Alternatives}{
+
+Before this measure you might want to perform the test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+
+After this you might want a rule-of-thumb directly or by converting this to either rank biserial or Cohen d:
+\code{\link{th_cle}}, for CLES rule-of-thumb (incl. conversion options)
+
+Alternative effect size measure with ordinal data:
+\code{\link{es_dominance}}, for the Dominance score.
+\code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
+\code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
+
+Alternative tests:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for the Rosenthal Correlation if a z-value is available
+}
+
+\examples{
+# Example 1: Dataframe
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+ex1 = studentDf[['Teach_Motivate']]
+order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
+es_common_language_os(ex1, levels=order)
+
+# Example 2: Numeric data
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
+es_common_language_os(ex2)
+
+# Example 3: Text data with
+ex3 = c("a", "b", "f", "d", "e", "c")
+order = c("a", "b", "c", "d", "e", "f")
+es_common_language_os(ex3, levels=order)
+
+}
 \references{
 Ben-Shachar, M., Lüdecke, D., & Makowski, D. (2020). effectsize: Estimation of Effect Size Indices and Standardized Parameters. \emph{Journal of Open Source Software, 5}(56), 1–7. doi:10.21105/joss.02815
 
@@ -64,12 +104,6 @@ McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \e
 Tulimieri, D. (2021). CLES/CLES. https://github.com/tulimid1/CLES/tree/main
 
 Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27–30. doi:10.1080/00031305.1971.10477278
-}
-\seealso{
-\code{\link{es_cohen_d_os}}, Cohen d' for one-sample
-\code{\link{r_rank_biserial_os}}, Rank Biserial Correlation Coefficient (one-sample)
-\code{\link{es_convert}}, to convert an CLE to a rank biserial use \verb{fr="cle", to="rb"}. To convert the result to Cohen d, use \verb{fr="rb", to="cohend"}.
-\code{\link{th_cohen_d}}, rules of thumb for Cohen d
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

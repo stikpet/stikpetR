@@ -36,6 +36,8 @@ Yule (1911, p. 147) used half the inter-quartile range and labelled this Semi-In
 There is also a measure of central tendency that uses the quartiles, the Mid-Quartile (Parzen, 1980, p. 19), which is the average of the first and second quartile. It is also sometimes referred to as the Mid-Quartile Range (see for example Luo et al. (2018, p. 2), who refer to Triola, but Triola doesn't add the 'range' (Triola, 2010, p. 120))
 
 The function uses the \emph{me_quartiles} function and any of the methods from that function can be used.
+
+This function is shown in this \href{https://youtu.be/mUl3LFzfsfg}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/QuartileRanges.html}{PeterStatistics.com}
 }
 \details{
 The formula used for the Interquartile Range is:
@@ -56,6 +58,26 @@ This can be obtained by setting \emph{range="mqr"}.
 
 This formula can be found in Parzen (1980, p. 19), but there are probably older references.
 }
+\section{Before, After and Alternatives}{
+
+Before this measure you might want an impression using a frequency table or a visualisation:
+\code{\link{tab_frequency}}, for a frequency table
+\code{\link{vi_bar_stacked_single}}, or Single Stacked Bar-Chart.
+\code{\link{vi_bar_dual_axis}}, for Dual-Axis Bar Chart.
+
+After this you might want some other descriptive measures:
+\code{\link{me_consensus}}, for the Consensus.
+\code{\link{me_hodges_lehmann_os}}, for the Hodges-Lehmann Estimate (One-Sample).
+\code{\link{me_median}}, for the Median.
+\code{\link{me_quantiles}}, for Quantiles.
+\code{\link{me_quartiles}}, for Quartiles / Hinges.
+
+or perform a test:
+\code{\link{ts_sign_os}}, for One-Sample Sign Test.
+\code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
+\code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
@@ -81,9 +103,6 @@ Triola, M. F. (2010). \emph{Elementary statistics} (11th ed). Addison-Wesley.
 Tukey, J. W. (1977). \emph{Exploratory data analysis}. Addison-Wesley Pub. Co.
 
 Yule, G. U. (1911). \emph{An introduction to the theory of statistics}. Charles Griffin.
-}
-\seealso{
-\code{\link{me_quartiles}}, calculating quartiles
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
