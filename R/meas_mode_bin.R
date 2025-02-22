@@ -71,7 +71,7 @@ me_mode_bin <- function(data, nbins="sturges", bins=NULL, incl_lower=TRUE, adjus
   
   binTable = tab_frequency_bins(data, nbins, bins, incl_lower, adjust)
   
-  k = nrow(binTable)-1
+  k = nrow(binTable)
   
   modeFD = max(binTable[,'frequency density'])
   nModes = sum(binTable[,'frequency density'] == modeFD)

@@ -21,7 +21,7 @@
 #' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 #' studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
 #' # Example 1: dataframe
-#' ex1 = studentDf['Gen_Age']
+#' ex1 = studentDf[['Gen_Age']]
 #' vi_stem_and_leaf(ex1);
 #' 
 #' # Example 2: Numeric list

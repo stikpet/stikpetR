@@ -97,7 +97,7 @@
 #' me_mean(ex2)
 #' 
 #' #Example 3: Ordinal Pandas Series
-#' ex3 = df2['Teach_Motivate']
+#' ex3 = df2[['Teach_Motivate']]
 #' order = c("Fully Disagree", "Disagree", "Neither disagree nor agree", "Agree", "Fully agree")
 #' me_mean(ex3, levels=order)
 #' 
