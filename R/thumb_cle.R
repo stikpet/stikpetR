@@ -3,6 +3,8 @@
 #' @description
 #' This function will give a qualification (classification) for a Common Language Effect Size (/ Vargha-Delaney A / Probability of Superiority)
 #' 
+#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
+#' 
 #' @param cle the Vargha-Delaney A value
 #' @param qual {"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
 #' @param convert {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
@@ -31,21 +33,35 @@
 #' \deqn{d = 2\times \phi^{-1}\left(-\frac{1}{r_b - 2}\right)}
 #' Rules of thumb from the **th_cohen_d()** function could then be used, by setting: *convert="cohen_d"*, and *qual* is any of the options in th_cohen_d()
 #' 
-#' @seealso 
-#' \code{\link{es_common_language_is}}, to determine the CLE.
+#' @section Before, After and Alternatives:
+#' Before this you might want to obtain the measure:
+#' \code{\link{es_common_language_os}}, o determine the CLE for one-sample.
+#' \code{\link{es_common_language_is}}, o determine the CLE for independent samples.
 #' 
+#' The function uses the convert function and corresponding rules of thumb: 
+#' \code{\link{es_convert}}, for the conversions.
 #' \code{\link{th_rank_biserial}}, for options for rules of thumb when converting to Rank Biserial.
-#' 
 #' \code{\link{th_cohen_d}}, for options for rules of thumb when converting to Cohen d.
 #' 
-#' @references 
 #' 
+#' @references 
 #' Marfo, P., & Okyere, G. A. (2019). The accuracy of effect-size estimates under normals and contaminated normals in meta-analysis. *Heliyon, 5*(6), e01838. doi:10.1016/j.heliyon.2019.e01838
 #' 
 #' Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. *Journal of Educational and Behavioral Statistics, 25*(2), 101–132. doi:10.3102/10769986025002101
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' 
+#' @examples 
+#' # Example 1: Using Vargha and Delaney rules:
+#' cle = 0.23
+#' th_cle(cle)
+#' 
+#' # Example 2: Convert to rank-biserial and use Sawilowsky rules:
+#' cle = 0.23
+#' th_cle(cle, qual="sawilowsky", convert="rb")
 #' 
 #' @export
 th_cle <- function(cle, qual="vd", convert="no"){

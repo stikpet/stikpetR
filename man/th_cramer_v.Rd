@@ -18,6 +18,8 @@ A dataframe with:
 }
 \description{
 Simple function to use a rule-of-thumb for the Cramér V effect size. Note however that many will actually use the rule-of-thumb for Cohen w and convert Cramér V to Cohen w first.
+
+The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CramerV.html}{PeterStatistics.com}
 }
 \details{
 \emph{"rea-parker"} => Uses Rea and Parker (1992, p. 203):\tabular{ll}{
@@ -55,9 +57,17 @@ Simple function to use a rule-of-thumb for the Cramér V effect size. Note howev
 
 Note that the original source has a gap from 0.40 < 0.50, I added this to the 'worrisomely strong' category.
 }
+\section{Before, After and Alternatives}{
+
+Before using this function you need to obtain a Cramer v value:
+\code{\link{es_cramer_v_gof}}, to determine Cramér V for a Goodness-of-Fit test.
+\code{\link{es_cramer_v_ind}}, to determine Cramér V for a test of independence.
+}
+
 \examples{
 es = 0.6
 th_cramer_v(es)
+
 
 }
 \references{
@@ -66,10 +76,6 @@ Akoglu, H. (2018). User’s guide to correlation coefficients. \emph{Turkish Jou
 Calamba, S. S., & Rustico, E. M. P. (2019). Usefulness of code of ethics for professional accountants in resolving ethical conflicts in the Philippines.
 
 Rea, L. M., & Parker, R. A. (1992). \emph{Designing and conducting survey research: A comprehensive guide}. Jossey-Bass Publishers.
-}
-\seealso{
-\code{\link{es_cramer_v_gof}}, to determine Cramér V for a Goodness-of-Fit test
-\code{\link{es_cramer_v_ind}}, to determine Cramér V for a test of independence
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -9,7 +9,7 @@ th_rank_biserial(rb, qual = "cohen")
 \arguments{
 \item{rb}{the rank-biserial correlation value}
 
-\item{qual}{optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal"}
+\item{qual}{optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal", "brydges"}
 }
 \value{
 A dataframe with:
@@ -18,6 +18,8 @@ A dataframe with:
 }
 \description{
 Simple function to use a rule-of-thumb for the Rank Biserial Correlation.
+
+This function is shown in this \href{https://youtu.be/31jr7jUCni4}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html}{PeterStatistics.com}
 }
 \details{
 Cohen's rule of thumb for rank-biserial correlation (1988, p. 82):\tabular{ll}{
@@ -37,22 +39,29 @@ Vargha and Delaney (2000, p. 106):\tabular{ll}{
    0.43 or more \tab large \cr
 }
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to obtain the measure:
+\code{\link{r_rank_biserial_is}}, to determine a the rank biserial for independent samples.
+\code{\link{r_rank_biserial_os}}, to determine a the rank biserial for one-sample.
+
+The function uses the convert function and corresponding rules of thumb:
+\code{\link{es_convert}}, to convert this to Cohen d.
+\code{\link{th_cohen_d}}, rules of thumb for Cohen d.
+}
+
 \examples{
-es = 0.6
-th_rank_biserial(es)
+# Example 1: using Cohen's rules:
+rb = 0.6
+th_rank_biserial(rb)
+
+# Example 2: Convert to Cohen d, then use Cohen d rules:
+rb= 0.23
+th_rank_biserial(rb, qual="cohen-conv")
 
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{r_rank_biserial_is}}, to determine a the rank biserial for independent samples
-
-\code{\link{r_rank_biserial_os}}, to determine a the rank biserial for one-sample
-
-\code{\link{es_convert}}, to convert this to Cohen d
-
-\code{\link{th_cohen_d}}, rules of thumb for Cohen d
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

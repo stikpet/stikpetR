@@ -18,6 +18,8 @@ A float with the requested probability
 }
 \description{
 This function will give the probability of a sum of ranks of T, given a sample size of n.
+
+Some explanation on this distribution can be found in this \href{https://youtu.be/BKWnTJAp58E}{YouTube video}. This function is shown in this \href{https://youtu.be/hSnP6fyAiiw}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Distributions/WilcoxonSignRank.html}{PeterStatistics.com}
 }
 \details{
 The enumeration method will create all possible combinations of ranks 1 to n, sum each of these, and then determines the count of each unique sum of ranks. It then uses this to determine the probability.
@@ -49,4 +51,7 @@ Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomis
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
+
+@examples
+di_wpmf(T=8, n=12)
 }

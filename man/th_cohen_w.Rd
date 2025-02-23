@@ -18,6 +18,8 @@ A dataframe with:
 }
 \description{
 Simple function to use a rule-of-thumb for the Cohen w effect size.
+
+The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenW.html}{PeterStatistics.com}
 }
 \details{
 Cohen's rule of thumb for Cohen w (1988, p. 227):\tabular{ll}{
@@ -28,6 +30,12 @@ Cohen's rule of thumb for Cohen w (1988, p. 227):\tabular{ll}{
    0.50 or more \tab large \cr
 }
 }
+\section{Before, After and Alternatives}{
+
+Before using this function you need to obtain a Cohen w value:
+\code{\link{es_cohen_w}}, to determine Cohen w
+}
+
 \examples{
 es = 0.6
 th_cohen_w(es)
@@ -35,9 +43,6 @@ th_cohen_w(es)
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{es_cohen_w}}, to determine Cohen w
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

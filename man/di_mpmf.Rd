@@ -18,6 +18,8 @@ A float with the requested probability
 }
 \description{
 This is a function for the multinomial probability. It returns the probability of a distribution as given in F for a sample size of sum of F, where the probability for each category is given as in P. It is a generalization of the binomial distribution.
+
+The distribution is also described at \href{https://peterstatistics.com/Terms/Distributions/Multinomial.html}{PeterStatistics.com}
 }
 \details{
 If \emph{method=factorial} the following formula is used:
@@ -44,6 +46,14 @@ If \emph{method=mprob} the algorithm from García-Pérez (1999) is used:
 \item If \eqn{i=k}, then go to step 5, otherwise update \eqn{i = i + 1}, \eqn{m = m + F_i^*} and go to step 3
 \item If \eqn{x < F_1^*} then for \eqn{r=x + 1} to \eqn{F_1^*} update \eqn{pmf = pmf\times P_1^*}
 }
+
+This distribution is used in a Multinomial Goodness-of-Fit Test. The stikpetR library has a function \code{\link{ts_multinomial_gof}} for this, but it uses the dmultinomial function from R.
+}
+\examples{
+freq = c(3, 6, 2, 9)
+prob = c(0.2, 0.3, 0.1, 0.4)
+di_mpmf(freq, prob)
+
 }
 \references{
 Arnold, J. (2018, December 3). Maximum Likelihood for the multinomial distribution (bag of words) [Blog]. Jakuba. https://blog.jakuba.net/maximum-likelihood-for-multinomial-distribution/

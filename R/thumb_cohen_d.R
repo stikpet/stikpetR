@@ -64,10 +64,13 @@
 #' |0.80 < 1.30 | large |
 #' |0.80 or more | very large |
 #' 
-#' @seealso 
-#' \code{\link{es_cohen_d}}, to determine Cohen d
 #' 
-#' \code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
+#' @section Before, After and Alternatives:
+#' Cohen d for one-sample and Hedges g could be converted to Cohen d:
+#' \code{\link{es_convert}}, for the conversions.
+#' \code{\link{es_cohen_d}}, to determine Cohen d'
+#' \code{\link{es_hedges_g_os}}, for Hedges g
+#' 
 #' 
 #' @references
 #' Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. *Innovation in Aging, 3*(4), 1–8. doi:10.1093/geroni/igz036

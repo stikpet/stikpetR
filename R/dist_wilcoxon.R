@@ -2,11 +2,17 @@
 #' @description
 #' This function will give the cumulative probability of a sum of ranks of T, given a sample size of n.
 #' 
+#' Some explanation on this distribution can be found in this [YouTube video](https://youtu.be/BKWnTJAp58E). This function is shown in this [YouTube video](https://youtu.be/hSnP6fyAiiw) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Distributions/WilcoxonSignRank.html)
+#' 
 #' @param T int with the sum of ranks
 #' @param n int with the sample size
 #' @param method optional the calculation method to use. Either "shift" (default), "enumerate", "recursive".
+#' 
+#' 
 #' @returns
 #' A float with the requested probability
+#' 
+#' 
 #' @details 
 #' The enumeration method will create all possible combinations of ranks 1 to n, sum each of these, and then determines the count of each unique sum of ranks. It then uses this to determine the probability and cumulative probabilities.
 #' 
@@ -27,14 +33,23 @@
 #' \item Add the two results (the updated vector with and the two shifted version)
 #' \item Repeat these steps each time shifting by one more than the previous. Stop when n-times shifting has been done.
 #' }
+#' 
+#' This Wilcoxon Signed Rank Test (One-Sample) uses this distribution. The \code{\link{ts_wilcoxon_os}} function performs this test, but uses R's own psignrank
+#' 
 #' @references 
 #' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
 #' 
 #' Munzel, U., & Brunner, E. (2002). An exact paired rank test. *Biometrical Journal, 44*(5), 584. doi:10.1002/1521-4036(200207)44:5<584::AID-BIMJ584>3.0.CO;2-9
 #' 
 #' Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12–19.
+#' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' 
+#' @examples 
+#' di_wcdf(T=8, n=12)
 #'  
 #' @export
 di_wcdf <- function(T, n, method="shift"){
@@ -99,11 +114,18 @@ di_wcdf <- function(T, n, method="shift"){
 #' @description
 #' This function will give the probability of a sum of ranks of T, given a sample size of n.
 #' 
+#' Some explanation on this distribution can be found in this [YouTube video](https://youtu.be/BKWnTJAp58E). This function is shown in this [YouTube video](https://youtu.be/hSnP6fyAiiw) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Distributions/WilcoxonSignRank.html)
+#' 
+#' 
 #' @param T int with the sum of ranks
 #' @param n int with the sample size
 #' @param method optional the calculation method to use. Either "shift" (default), "enumerate", "recursive".
+#' 
+#' 
 #' @returns
 #' A float with the requested probability
+#' 
+#' 
 #' @details 
 #' The enumeration method will create all possible combinations of ranks 1 to n, sum each of these, and then determines the count of each unique sum of ranks. It then uses this to determine the probability.
 #' 
@@ -124,15 +146,23 @@ di_wcdf <- function(T, n, method="shift"){
 #' \item Add the two results (the updated vector with and the two shifted version)
 #' \item Repeat these steps each time shifting by one more than the previous. Stop when n-times shifting has been done.
 #' }
+#' 
+#' 
 #' @references 
 #' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
 #' 
 #' Munzel, U., & Brunner, E. (2002). An exact paired rank test. *Biometrical Journal, 44*(5), 584. doi:10.1002/1521-4036(200207)44:5<584::AID-BIMJ584>3.0.CO;2-9
 #' 
 #' Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12–19.
+#' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #'  
+#'  
+#'  @examples 
+#' di_wpmf(T=8, n=12)
+#' 
 #' @export
 di_wpmf <- function(T, n, method="shift"){
   

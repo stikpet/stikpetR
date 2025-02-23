@@ -18,9 +18,20 @@ A float with the requested probability
 }
 \description{
 This is a function for the cumulative multinomial probability. It returns the probability of a distribution as given in F for a sample size of sum of F, where the probability for each category is given as in P, or a distribution even more rare. It is a generalization of the binomial distribution.
+
+The distribution is also described at \href{https://peterstatistics.com/Terms/Distributions/Multinomial.html}{PeterStatistics.com}
 }
 \details{
 The function first determines all possible arrangements over k categories that sum to n, using the \strong{find_combinations()} function. It then uses the \strong{di_pmf()} function to determine the probability for each of these, and sums those that are less or equal to the sample version.
+
+This distribution is used in a Multinomial Goodness-of-Fit Test. The stikpetR library has a function \code{\link{ts_multinomial_gof}} for this, but it uses the dmultinomial function from R.
+}
+\examples{
+freq = c(3, 6, 2, 9)
+prob = c(0.2, 0.3, 0.1, 0.4)
+di_mcdf(freq, prob)
+
+ 
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

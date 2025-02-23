@@ -3,13 +3,17 @@
 #' @description
 #' Simple function to use a rule-of-thumb for the Cohen w effect size.
 #' 
+#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenW.html)
+#' 
 #' @param w the Cohen w value
 #' @param qual optional setting for which rule of thumb to use. Currently only 'cohen'
+#' 
 #' 
 #' @returns 
 #' A dataframe with:
 #' \item{classification}{the qualification of the effect size}
 #' \item{reference}{a reference for the rule of thumb used}
+#' 
 #' 
 #' @details 
 #' Cohen's rule of thumb for Cohen w (1988, p. 227):
@@ -21,8 +25,11 @@
 #' |0.30 < 0.50 | medium |
 #' |0.50 or more | large |
 #' 
-#' @seealso 
+#' 
+#' @section Before, After and Alternatives:
+#' Before using this function you need to obtain a Cohen w value:
 #' \code{\link{es_cohen_w}}, to determine Cohen w
+#' 
 #' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.

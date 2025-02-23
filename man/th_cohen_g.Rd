@@ -18,6 +18,8 @@ A dataframe with:
 }
 \description{
 Simple function to use a rule-of-thumb for the Cohen g effect size.
+
+This function is shown in this \href{https://youtu.be/3DEmngmws2U}{YouTube video} and the effect size is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenG.html}{PeterStatistics.com}
 }
 \details{
 Cohen's rule of thumb for Cohen g (1988, pp. 147-149):\tabular{ll}{
@@ -28,6 +30,11 @@ Cohen's rule of thumb for Cohen g (1988, pp. 147-149):\tabular{ll}{
    0.25 or more \tab large \cr
 }
 }
+\section{Before, After and Alternatives}{
+
+\code{\link{es_cohen_g}}, to determine Cohen g
+}
+
 \examples{
 es = 0.6
 th_cohen_g(es)
@@ -35,9 +42,6 @@ th_cohen_g(es)
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{es_cohen_g}}, to determine Cohen g
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -18,6 +18,8 @@ A float with the requested probability
 }
 \description{
 This function will give the cumulative probability of a sum of ranks of T, given a sample size of n.
+
+Some explanation on this distribution can be found in this \href{https://youtu.be/BKWnTJAp58E}{YouTube video}. This function is shown in this \href{https://youtu.be/hSnP6fyAiiw}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Distributions/WilcoxonSignRank.html}{PeterStatistics.com}
 }
 \details{
 The enumeration method will create all possible combinations of ranks 1 to n, sum each of these, and then determines the count of each unique sum of ranks. It then uses this to determine the probability and cumulative probabilities.
@@ -39,6 +41,12 @@ The shift-algorithm from Streitberg and Röhmel (1987), and can also be found in
 \item Add the two results (the updated vector with and the two shifted version)
 \item Repeat these steps each time shifting by one more than the previous. Stop when n-times shifting has been done.
 }
+
+This Wilcoxon Signed Rank Test (One-Sample) uses this distribution. The \code{\link{ts_wilcoxon_os}} function performs this test, but uses R's own psignrank
+}
+\examples{
+di_wcdf(T=8, n=12)
+ 
 }
 \references{
 McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864–871. doi:10.2307/2283253

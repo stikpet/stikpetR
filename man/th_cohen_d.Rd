@@ -70,6 +70,14 @@ The following rules-of-thumb can be used:
    0.80 or more \tab very large \cr
 }
 }
+\section{Before, After and Alternatives}{
+
+Cohen d for one-sample and Hedges g could be converted to Cohen d:
+\code{\link{es_convert}}, for the conversions.
+\code{\link{es_cohen_d}}, to determine Cohen d'
+\code{\link{es_hedges_g_os}}, for Hedges g
+}
+
 \examples{
 es = 0.6
 th_cohen_d(es)
@@ -85,11 +93,6 @@ Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effe
 Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. \emph{Journal of Social Service Research, 21}(4), 37–59. doi:10.1300/J079v21n04_02
 
 Sawilowsky, S. (2009). New effect size rules of thumb. \emph{Journal of Modern Applied Statistical Methods, 8}(2). doi:10.22237/jmasm/1257035100
-}
-\seealso{
-\code{\link{es_cohen_d}}, to determine Cohen d
-
-\code{\link{es_cohen_d_os}}, to determine Cohen d', then use \code{\link{es_convert}}
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

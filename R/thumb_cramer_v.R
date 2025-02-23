@@ -3,13 +3,17 @@
 #' @description
 #' Simple function to use a rule-of-thumb for the Cramér V effect size. Note however that many will actually use the rule-of-thumb for Cohen w and convert Cramér V to Cohen w first.
 #' 
+#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CramerV.html)
+#' 
 #' @param v the Cramér V value
 #' @param qual optional setting for which rule of thumb to use. Either "rea-parker" (default), "akoglu", "calamba-rustico"
+#' 
 #' 
 #' @returns 
 #' A dataframe with:
 #' \item{classification}{the qualification of the effect size}
 #' \item{reference}{a reference for the rule of thumb used}
+#' 
 #' 
 #' @details 
 #' *"rea-parker"* => Uses Rea and Parker (1992, p. 203):
@@ -47,9 +51,12 @@
 #' 
 #' Note that the original source has a gap from 0.40 < 0.50, I added this to the 'worrisomely strong' category.
 #' 
-#' @seealso 
-#' \code{\link{es_cramer_v_gof}}, to determine Cramér V for a Goodness-of-Fit test
-#' \code{\link{es_cramer_v_ind}}, to determine Cramér V for a test of independence
+#' 
+#' @section Before, After and Alternatives:
+#' Before using this function you need to obtain a Cramer v value:
+#' \code{\link{es_cramer_v_gof}}, to determine Cramér V for a Goodness-of-Fit test.
+#' \code{\link{es_cramer_v_ind}}, to determine Cramér V for a test of independence.
+#' 
 #' 
 #' @references 
 #' Akoglu, H. (2018). User’s guide to correlation coefficients. *Turkish Journal of Emergency Medicine, 18*(3), 91–93. doi:10.1016/j.tjem.2018.08.001
@@ -58,12 +65,15 @@
 #' 
 #' Rea, L. M., & Parker, R. A. (1992). *Designing and conducting survey research: A comprehensive guide*. Jossey-Bass Publishers.
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples
 #' es = 0.6
 #' th_cramer_v(es)
+#' 
 #' 
 #' @export
 th_cramer_v <- function(v, qual="rea-parker"){

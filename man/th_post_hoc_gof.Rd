@@ -34,12 +34,22 @@ Other possible conversions are Cohen h' to Cohen h, and Cramér V to Cohen w.
 
 See the separate documentation for each of the rules-of-thumb, or conversion.
 }
-\seealso{
-\code{\link{th_cohen_g}}
-\code{\link{th_cohen_h}}
-\code{\link{th_cohen_w}}
-\code{\link{th_cramer_v}}
-\code{\link{th_pearson_r}}
-\code{\link{es_convert}}@author
+\section{Before, After and Alternatives}{
+
+Before using this the post-hoc effect sizes need to be made:
+\code{\link{es_post_hoc_gof}}, to obtain post-hoc effect sizes.
+
+Depending on the measure, the function will use the rules of thumb for:
+\code{\link{th_cohen_g}}, for Cohen g.
+\code{\link{th_cohen_h}}, for Cohen h.
+\code{\link{th_cohen_w}}, for Cohen w.
+\code{\link{th_cramer_v}}, for Cramer V.
+\code{\link{th_pearson_r}}, for Pearson r.
+
+It can also convert using:
+\code{\link{es_convert}}, to convert various effect sizes.
+}
+
+\author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
 }

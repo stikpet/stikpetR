@@ -3,10 +3,12 @@
 #' @description 
 #' This function will add a classification to the results of **es_post_hoc_gof()** using a rules-of-thumb. This is frowned upon by some, and the rule-of-thumb can vary per discipline.
 #' 
+#' 
 #' @param eff_sizes dataframe, the dataframe from es_post_hoc_gof()
 #' @param convert boolean, optional. convert the effect size to use the rule-of-thumb from another, see details
 #' @param ph_results dataframe, optional. the post-hoc analysis results, required for JBM-E and Fei.
 #' @param ... optional. additional arguments for the specific rule-of-thumb that are passed along. Most common 'qual=...' for a specific set of rules-of-thumb.
+#' 
 #' 
 #' @returns
 #' df, dataframe with the same dataframe as the provided *eff_sizes*, but added:
@@ -17,6 +19,7 @@
 #' If a conversion was done or needed:
 #' \item{conversion description}{, the value of the converted measure}
 #' 
+#' 
 #' @details
 #' For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramér V, when setting *convert=True* it will convert it again to Cohen w.
 #' 
@@ -24,15 +27,25 @@
 #' 
 #' See the separate documentation for each of the rules-of-thumb, or conversion.
 #' 
-#' @seealso 
 #' 
-#' \code{\link{th_cohen_g}}
-#' \code{\link{th_cohen_h}}
-#' \code{\link{th_cohen_w}}
-#' \code{\link{th_cramer_v}}
-#' \code{\link{th_pearson_r}}
-#' \code{\link{es_convert}}@author 
+#' @section Before, After and Alternatives:
+#' Before using this the post-hoc effect sizes need to be made:
+#' \code{\link{es_post_hoc_gof}}, to obtain post-hoc effect sizes.
+#' 
+#' Depending on the measure, the function will use the rules of thumb for:
+#' \code{\link{th_cohen_g}}, for Cohen g.
+#' \code{\link{th_cohen_h}}, for Cohen h.
+#' \code{\link{th_cohen_w}}, for Cohen w.
+#' \code{\link{th_cramer_v}}, for Cramer V.
+#' \code{\link{th_pearson_r}}, for Pearson r.
+#' 
+#' It can also convert using:
+#' \code{\link{es_convert}}, to convert various effect sizes.
+#' 
+#' 
+#' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @export
 th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
