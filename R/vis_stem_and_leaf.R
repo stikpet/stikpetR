@@ -4,10 +4,30 @@
 #' 
 #' In some variations of this, the cumulative frequencies are also shown, but currently this function does not provide for that.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/u4XOYJz-aNE) and the visualisation is described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/stemAndLeafDisplay.html)
+#' 
 #' @param data list with the numeric data
 #' @param key optional factor to use for the stems
 #' @returns
 #' prints the display in console and returns a dataframe with the stems and leafs
+#' 
+#' @section Before, After and Alternatives:
+#' Before this you might want to create a binned frequency table
+#' \code{\link{tab_frequency_bins}}, to create a binned frequency table.
+#' 
+#' After this you might want some descriptive measures:
+#' \code{\link{me_mode_bin}}, for Mode for Binned Data.
+#' \code{\link{me_mean}}, for different types of mean.
+#' \code{\link{me_variation}}, for different Measures of Quantitative Variation.
+#' 
+#' Or a perform a test:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z Test.
+#' 
+#' Alternative Visualisations:
+#' \code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+#' \code{\link{vi_histogram}}, for a Histogram.
 #' 
 #' @references 
 #' Everitt, B. (2004). *The Cambridge dictionary of statistics* (2nd ed.). Cambridge University Press.

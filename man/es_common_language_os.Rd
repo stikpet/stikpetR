@@ -60,6 +60,9 @@ Before this measure you might want to perform the test:
 \code{\link{ts_sign_os}}, for One-Sample Sign Test.
 \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
 \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z-Test.
 
 After this you might want a rule-of-thumb directly or by converting this to either rank biserial or Cohen d:
 \code{\link{th_cle}}, for CLES rule-of-thumb (incl. conversion options)
@@ -69,9 +72,9 @@ Alternative effect size measure with ordinal data:
 \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 \code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
 
-Alternative tests:
-\code{\link{ts_sign_os}}, for One-Sample Sign Test.
-\code{\link{ts_trinomial_os}}, for the Rosenthal Correlation if a z-value is available
+Alternative effect size measure with interval or ratio data:
+\code{\link{es_cohen_d_os}}, for for Cohen d'.
+\code{\link{es_hedges_g_os}}, for Hedges g.
 }
 
 \examples{

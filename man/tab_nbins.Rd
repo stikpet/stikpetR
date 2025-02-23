@@ -23,6 +23,8 @@ k : integer with optimum number of bins according to chosen method
 \description{
 To decide on the appropriate number of bins, many different rules can be applied. This function will
 determine the number of bins, based on the chosen method.
+
+This function is shown in this \href{https://youtu.be/Hm4An1bsRkw}{YouTube video} and binning is described at \href{https://peterstatistics.com/Terms/Tables/Binning.html}{PeterStatistics.com}
 }
 \details{
 The first few methods are determining the number of bins (k) using the sample size (n).
@@ -119,6 +121,12 @@ This method uses as a profit function (Knuth, 2019, p. 8):
 
 \deqn{P_k=n\times\ln\left(k\right) + \ln\Gamma\left(\frac{k}{2}\right) - k\times\ln\Gamma\left(\frac{1}{2}\right) - \ln\Gamma\left(n+\frac{k}{2}\right) + \sum_{i=1}^k\ln\Gamma\left(f_i+\frac{1}{2}\right)}
 }
+\section{Before, After and Alternatives}{
+
+After this you might want to create a binned frequency table:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+}
+
 \examples{
 #Example 1
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"

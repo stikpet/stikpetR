@@ -30,6 +30,8 @@ res, the value of the mean
 Different types of means can be determined using this function.
 
 The mean is a measure of central tendency, to indicate the center.
+
+This function is shown in this \href{https://youtu.be/ch2zRuLpw_A}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/mean.html}{PeterStatistics.com}
 }
 \details{
 \strong{Arithmetic Mean}
@@ -86,6 +88,24 @@ This is used if \emph{trimFrac = "linear"} is set.
 Similar as with a trimmed mean, but now the data is not removed, but replaced by the value equal to the nearest value that is still included (Winsor as cited in Dixon, 1960, p. 385).
 \deqn{W = \frac{n_l \times \left(x_{n_l + 1} + x_{n - n_l}\right) + \sum_{n_l + 1}^{n - n_l} x_i}{n}}
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to create a binned frequency table or a visualisation:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+
+After this you might want some other descriptive measures:
+\code{\link{me_mode_bin}}, for Mode for Binned Data.
+\code{\link{me_variation}}, for different Measures of Quantitative Variation.
+
+Or a perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

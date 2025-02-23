@@ -4,6 +4,8 @@
 #' To decide on the appropriate number of bins, many different rules can be applied. This function will 
 #' determine the number of bins, based on the chosen method.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Hm4An1bsRkw) and binning is described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tables/Binning.html)
+#' 
 #' @param data vector or dataframe
 #' @param method optional to indicate the method to use. Either "src", "sturges", "qr", "rice", "ts", "exp", "velleman", "doane", "scott", "fd", "shinshim", "stone", or "knuth"
 #' @param adjust optional adjustment to upper bound to guarantee all scores will fit in range.
@@ -107,6 +109,11 @@
 #' This method uses as a profit function (Knuth, 2019, p. 8):
 #' 
 #' \deqn{P_k=n\times\ln\left(k\right) + \ln\Gamma\left(\frac{k}{2}\right) - k\times\ln\Gamma\left(\frac{1}{2}\right) - \ln\Gamma\left(n+\frac{k}{2}\right) + \sum_{i=1}^k\ln\Gamma\left(f_i+\frac{1}{2}\right)}
+#' 
+#' @section Before, After and Alternatives:
+#' After this you might want to create a binned frequency table:
+#' \code{\link{tab_frequency_bins}}, to create a binned frequency table.
+#' 
 #' 
 #' @references
 #' Doane, D. P. (1976). Aesthetic frequency classifications. *The American Statistician, 30*(4), 181–183. https://doi.org/10.2307/2683757

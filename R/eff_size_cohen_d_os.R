@@ -1,11 +1,17 @@
 #' Cohen d' (for one-sample)
 #' 
 #' This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
-#'
+#' 
+#' The test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenD.html)
+#' 
+#' 
 #' @param data pandas series with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used
+#' 
+#' 
 #' @return Cohen d'. mu is also printed if not provided.
-#'
+#' 
+#' 
 #' @details
 #' The formula used (Cohen, 1988, p. 46):
 #' \deqn{d'=\frac{\bar{x}-\mu_{H_{0}}}{s}}
@@ -26,24 +32,30 @@
 #' *es_convert(d', from="cohendos", to="cohend")*, then use *th_cohen_d(d)*
 #'
 #' Or convert it further to an Odds Ratio using, *es_convert(d, from="cohend", to="or", ex1="chinn")* or *es_convert(d, from="cohend", to="or", ex1="borenstein")*. Then use *th_odds_ratio(or)*
-#'
-#' @section Alternatives:
-#'
-#' The *lsr* library has a similar function: *cohensD()*
 #' 
-#' @seealso 
-#' \code{\link{es_convert}}, to convert Cohen d' to Cohen d, use from="cohendos", to="cohend". To convert Cohen d to an Odds Ratio, use  from="cohend", to="or", ex1="chinn", or ex1="borenstein"
 #' 
-#' \code{\link{th_cohen_d}}, for rule-of-thumb classification of Cohen d
+#' @section Before, After and Alternatives:
+#' Before this you might want to perform a test:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z-Test.
 #' 
-#' \code{\link{th_odds_ratio}}, for rule-of-thumb classification of Odds Ratio.
+#' After this you might want a rule-of-thumb for the effect size, first convert to regular Cohen d:
+#' \code{\link{es_convert}}, to convert Cohen's d one-sample to Cohen d, use *fr = "cohendos"* and *to = "cohend"*.
+#' \code{\link{th_cohen_d}}, for rules-of-thumb for Cohen d.
+#' 
+#' Alternative Effect Sizes:
+#' \code{\link{es_hedges_g_os}}, for Hedges g.
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size.
 #' 
 #' 
 #' @references
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples
 #' #Example 1: Numeric dataframe

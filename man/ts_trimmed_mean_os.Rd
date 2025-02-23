@@ -29,6 +29,8 @@ A dataframe with:
 A variation on a one-sample Student t-test where the data is first trimmed, and the Winsorized variance is used.
 
 The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
+
+This function is shown in this \href{https://youtu.be/6OpfniypELY}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/TrimmedMeanOneSample.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:
@@ -64,15 +66,22 @@ test as proposed by Yuen (1974, p. 167)
 The second version is used in the other libraries, and can be found in Wilcox (2012, p. 157),
 or Peró-Cebollero and Guàrdia-Olmos (2013, p. 409).
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
-R stats library has a similar function: \emph{t.test()}
+Before this you might want to create a binned frequency table or a visualisation:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
 
-The \emph{DescTools} library has a similar function: \emph{YuenTTest()}
+After this you might want an effect size measure:
+\code{\link{es_cohen_d_os}}, for for Cohen d'.
+\code{\link{es_hedges_g_os}}, for Hedges g.
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
 
-The \emph{PairedData} library has a similar functions: \emph{yuen.t.test()} and \emph{yuen1.test}
-
-The \emph{WRS2} library has a similar function: \emph{yuen()}
+Alternative Tests:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
 }
 
 \examples{

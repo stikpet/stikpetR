@@ -5,14 +5,19 @@
 #' 
 #' Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 #' 
+#' TThe measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/HedgesG.html)
+#' 
+#' 
 #' @param data vector or dataframe with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used
 #' @param appr optional approximation to use, NULL will use exact. Either `NULL` (default), `"hedges"`, `"durlak"`, or `"xue"`
+#' 
 #' 
 #' @return dataframe with
 #'    * *mu*, the hypothesized mean used, the effect size value, and method used
 #'    * *g*, Hedges g for a one-sample
 #'    * *version*, description of version used.
+#' 
 #' 
 #' @details
 #' 
@@ -41,14 +46,21 @@
 #' 
 #' Since Hedges g is a correction for Cohen d', it can be converted to a regular Cohen d and then rules of thumb for the interpertation could be used. 
 #' 
-#' @section Alternatives:
 #' 
-#' The *effectsize* library has a similar function: *hedges_g()*
+#' @section Before, After and Alternatives:
+#' Before this you might want to perform a test:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z-Test.
 #' 
-#' @seealso 
-#' \code{\link{es_convert}}, to convert Cohen d one-sample to Cohen d, use fr="cohendos" and to="cohend"
+#' After this you might want a rule-of-thumb for the effect size, first convert to regular Cohen d:
+#' \code{\link{es_convert}}, to convert Hedges g to Cohen d, use *fr = "cohendos"* and *to = "cohend"*.
+#' \code{\link{th_cohen_d}}, for rules-of-thumb for Cohen d.
 #' 
-#' \code{\link{th_cohen_d}}, rules-of-thumb for Cohen d
+#' Alternative Effect Sizes:
+#' \code{\link{es_cohen_d_os}}, for for Cohen d'.
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size.
+#' 
 #' 
 #' @references
 #' Durlak, J. A. (2009). How to select, calculate, and interpret effect sizes. *Journal of Pediatric Psychology, 34*(9), 917–928. https://doi.org/10.1093/jpepsy/jsp004
@@ -57,8 +69,10 @@
 #' 
 #' Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples
 #' #Example 1: Numeric dataframe

@@ -28,6 +28,8 @@ is usually used.
 The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean
 that is expected in the population. If the p-value (significance) is then below a pre-defined threhold
 (usually 0.05), the assumption is rejected.
+
+This function is shown in this \href{https://youtu.be/zq0IjOq-Jzo}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/zOneSample.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:
@@ -50,6 +52,24 @@ With:
 \item \eqn{x_i} the i-th score
 }
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to create a binned frequency table or a visualisation:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+
+After this you might want an effect size measure:
+\code{\link{es_cohen_d_os}}, for for Cohen d'.
+\code{\link{es_hedges_g_os}}, for Hedges g.
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+
+Alternative Tests:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+}
+
 \examples{
 #Example 1: dataframe
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'

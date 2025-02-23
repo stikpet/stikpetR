@@ -33,7 +33,20 @@ dataframe with:
 }
 \description{
 Bins data and creates a frequency table with frequency density.
+
+This function is shown in this \href{https://youtu.be/-1kJrdDkImI}{YouTube video} and frequency tables are also described at \href{https://peterstatistics.com/Terms/Tables/FrequencyTable.html}{PeterStatistics.com}
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to determine the number of bins you use:
+\code{\link{tab_nbins}}, to determine the number of bins.
+
+After this you might want to visualise the result:
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))
@@ -49,9 +62,6 @@ tab_frequency_bins(ex1b, bins=myBins)
 ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5)
 tab_frequency_bins(ex2, adjust=0.1)
 
-}
-\seealso{
-\code{\link{tab_nbins}}, to determine the number of bins
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

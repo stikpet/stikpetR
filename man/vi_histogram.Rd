@@ -20,6 +20,8 @@ The histogram
 }
 \description{
 A histogram is a bit like a bar chart for a scale variable. You would create some bins, and then plot these as bars.
+
+This function is shown in this \href{https://youtu.be/4Yty4u5ihJ8}{YouTube video} and the visualisation is described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
 }
 \details{
 This function is just using some defaults for the \strong{hist()} function from R's \emph{graphics} library.
@@ -28,6 +30,26 @@ To set the bins, the \emph{breaks} argument can be used. This could be a pre-set
 
 If your bins are of equal width, a true histogram than actually should show frequency densities (Pearson, 1895, p. 399). These are the frequencies divided by the bin-width. This can be done using \emph{freq=FALSE} parameter.
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to create a binned frequency table
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+
+After this you might want some descriptive measures:
+\code{\link{me_mode_bin}}, for Mode for Binned Data.
+\code{\link{me_mean}}, for different types of mean.
+\code{\link{me_variation}}, for different Measures of Quantitative Variation.
+
+Or a perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
+
+Alternative Visualisations:
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 df2 = read.csv(file2, sep=';', na.strings=c("", "NA"))

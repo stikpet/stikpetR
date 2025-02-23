@@ -18,6 +18,8 @@ Cohen d'. mu is also printed if not provided.
 This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 }
 \details{
+The test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenD.html}{PeterStatistics.com}
+
 The formula used (Cohen, 1988, p. 46):
 \deqn{d'=\frac{\bar{x}-\mu_{H_{0}}}{s}}
 With:
@@ -38,10 +40,20 @@ Note to use a rule-of-thumb from Cohen d, first convert this to a regular Cohen 
 
 Or convert it further to an Odds Ratio using, \emph{es_convert(d, from="cohend", to="or", ex1="chinn")} or \emph{es_convert(d, from="cohend", to="or", ex1="borenstein")}. Then use \emph{th_odds_ratio(or)}
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this you might want to perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z-Test.
 
-The \emph{lsr} library has a similar function: \emph{cohensD()}
+After this you might want a rule-of-thumb for the effect size, first convert to regular Cohen d:
+\code{\link{es_convert}}, to convert Cohen's d one-sample to Cohen d, use \emph{fr = "cohendos"} and \emph{to = "cohend"}.
+\code{\link{th_cohen_d}}, for rules-of-thumb for Cohen d.
+
+Alternative Effect Sizes:
+\code{\link{es_hedges_g_os}}, for Hedges g.
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
 }
 
 \examples{
@@ -58,13 +70,6 @@ es_cohen_d_os(ex2)
 }
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
-}
-\seealso{
-\code{\link{es_convert}}, to convert Cohen d' to Cohen d, use from="cohendos", to="cohend". To convert Cohen d to an Odds Ratio, use  from="cohend", to="or", ex1="chinn", or ex1="borenstein"
-
-\code{\link{th_cohen_d}}, for rule-of-thumb classification of Cohen d
-
-\code{\link{th_odds_ratio}}, for rule-of-thumb classification of Odds Ratio.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

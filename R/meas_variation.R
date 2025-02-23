@@ -2,6 +2,10 @@
 #' 
 #' @description
 #' Probably the most famous measure of dispersion is the standard deviation, but there are more. This function provides a variety of measures and allows the creation of your own version.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/hhqMByH1vIo) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/QuantitativeVariation.html)
+#' 
+#' 
 #' @param data : list or dataframe
 #' @param levels : dictionary, optional coding to use
 #' @param measure : {"std", "var", "mad", "madmed", "medad", "stddm", "cv", "cd", "own"}, optional the measure to determine. Default is "std"
@@ -9,10 +13,12 @@
 #' @param center : {"mean", "median", "mode"} or float, optional if measure is "own" the value to use as center. Default is "mean"
 #' @param azs : {"square", "abs"}, optional if measure is "own" the way to avoid a zero sum. Either by squaring or absolute value
 #' 
+#' 
 #' @returns
 #' A dataframe with:
 #' * *value*, the value of the measure
 #' * *measure*, description of the measure
+#' 
 #' 
 #' @details
 #' 
@@ -69,6 +75,24 @@
 #' **Own**
 #' it's possible to create one's own method. Decide on a specific center. Default options are the mean, median and mode. Then on either to sum the squared deviations or the absolute differences.
 #' 
+#' 
+#' @section Before, After and Alternatives:
+#' Before this you might want to create a binned frequency table or a visualisation:
+#' \code{\link{tab_frequency_bins}}, to create a binned frequency table.
+#' \code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+#' \code{\link{vi_histogram}}, for a Histogram.
+#' \code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+#' 
+#' After this you might want some other descriptive measures:
+#' \code{\link{me_mode_bin}}, for Mode for Binned Data.
+#' \code{\link{me_mean}}, for different types of mean.
+#' 
+#' Or a perform a test:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z Test.
+#' 
+#' 
 #' @references
 #' Pearson, K. (1896). Contributions to the mathematical theory of evolution. III. Regression, Heredity, and Panmixia. *Philosophical Transactions of the Royal Society of London*. (A.), 1896, 253–318.
 #' 
@@ -76,6 +100,17 @@
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
+#' @examples 
+#' file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+#' studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+#' # Example 1: Numeric dataframe
+#' ex1 = studentDf[['Gen_Age']]
+#' me_variation(ex1)
+#' 
+#' # Example 2: Mean Absolute Deviation of a Numeric list
+#' ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5)
+#' me_variation(ex2, measure='mad')
 #' 
 #' @export
 me_variation <- function(data, 

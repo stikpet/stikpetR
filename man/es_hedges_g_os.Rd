@@ -25,6 +25,8 @@ dataframe with
 This function will calculate Hedges g (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 
 Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
+
+TThe measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/HedgesG.html}{PeterStatistics.com}
 }
 \details{
 The formula used for the exact method (appr=NULL) (Hedges, 1981, p. 111):
@@ -52,10 +54,20 @@ The formula used for the approximation from Xue (2020, p. 3) (appr="xue"):
 
 Since Hedges g is a correction for Cohen d', it can be converted to a regular Cohen d and then rules of thumb for the interpertation could be used.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this you might want to perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z-Test.
 
-The \emph{effectsize} library has a similar function: \emph{hedges_g()}
+After this you might want a rule-of-thumb for the effect size, first convert to regular Cohen d:
+\code{\link{es_convert}}, to convert Hedges g to Cohen d, use \emph{fr = "cohendos"} and \emph{to = "cohend"}.
+\code{\link{th_cohen_d}}, for rules-of-thumb for Cohen d.
+
+Alternative Effect Sizes:
+\code{\link{es_cohen_d_os}}, for for Cohen d'.
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
 }
 
 \examples{
@@ -76,11 +88,6 @@ Durlak, J. A. (2009). How to select, calculate, and interpret effect sizes. \emp
 Hedges, L. V. (1981). Distribution Theory for Glass’s Estimator of Effect Size and Related Estimators. \emph{Journal of Educational Statistics, 6}(2), 107–128. https://doi.org/10.2307/1164588
 
 Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
-}
-\seealso{
-\code{\link{es_convert}}, to convert Cohen d one-sample to Cohen d, use fr="cohendos" and to="cohend"
-
-\code{\link{th_cohen_d}}, rules-of-thumb for Cohen d
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

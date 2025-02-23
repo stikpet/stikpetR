@@ -18,7 +18,29 @@ prints the display in console and returns a dataframe with the stems and leafs
 A stem-and-leaf display is defined as: "a method of displaying data in which each observation is split into two parts labelled the ‘stem’ and the ‘leaf’" (Everitt, 2004, p. 362). A diagram that could be used to visualize scale variables, created by Tukey (1972, p. 296).
 
 In some variations of this, the cumulative frequencies are also shown, but currently this function does not provide for that.
+
+This function is shown in this \href{https://youtu.be/u4XOYJz-aNE}{YouTube video} and the visualisation is described at \href{https://peterstatistics.com/Terms/Visualisations/stemAndLeafDisplay.html}{PeterStatistics.com}
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to create a binned frequency table
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+
+After this you might want some descriptive measures:
+\code{\link{me_mode_bin}}, for Mode for Binned Data.
+\code{\link{me_mean}}, for different types of mean.
+\code{\link{me_variation}}, for different Measures of Quantitative Variation.
+
+Or a perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
+
+Alternative Visualisations:
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+}
+
 \examples{
 file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
 studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))

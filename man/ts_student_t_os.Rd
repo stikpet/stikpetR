@@ -24,6 +24,8 @@ A dataframe with:
 A test for a single (arithmetic) mean.
 
 The assumption about the population (null hypothesis) for this test is a pre-defined mean, i.e. the (arithmetic) mean that is expected in the population. If the p-value (significance) is then below a pre-defined threhold (usually 0.05), the assumption is rejected.
+
+This function is shown in this \href{https://youtu.be/zydBBPT-rOY}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/tOneSample.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:
@@ -50,10 +52,22 @@ With:
 
 The Student t test (Student, 1908) was described by Gosset under the pseudo name Student.
 }
-\section{Alternatives}{
+\section{Before, After and Alternatives}{
 
+Before this you might want to create a binned frequency table or a visualisation:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
 
-R stats library has a similar function: \emph{t.test()}
+After this you might want an effect size measure:
+\code{\link{es_cohen_d_os}}, for for Cohen d'.
+\code{\link{es_hedges_g_os}}, for Hedges g.
+\code{\link{es_common_language_os}}, for the Common Language Effect Size.
+
+Alternative Tests:
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
 }
 
 \examples{

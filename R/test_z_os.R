@@ -8,6 +8,8 @@
 #' that is expected in the population. If the p-value (significance) is then below a pre-defined threhold 
 #' (usually 0.05), the assumption is rejected.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/zq0IjOq-Jzo) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/zOneSample.html)
+#' 
 #' @param data A vector or dataframe with the data as numbers
 #' @param mu optional hypothesized mean, otherwise the midrange will be used
 #' @param sigma population standard deviation, if NULL sample results will be used
@@ -41,8 +43,27 @@
 #' \item \eqn{x_i} the i-th score
 #' }
 #' 
+#' 
+#' @section Before, After and Alternatives:
+#' Before this you might want to create a binned frequency table or a visualisation:
+#' \code{\link{tab_frequency_bins}}, to create a binned frequency table.
+#' \code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+#' \code{\link{vi_histogram}}, for a Histogram.
+#' \code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+#' 
+#' After this you might want an effect size measure:
+#' \code{\link{es_cohen_d_os}}, for for Cohen d'.
+#' \code{\link{es_hedges_g_os}}, for Hedges g.
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size.
+#' 
+#' Alternative Tests:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples 
 #' #Example 1: dataframe

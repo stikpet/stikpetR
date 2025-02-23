@@ -71,6 +71,43 @@ On a rare occasion someone might argue that if all categories have the same freq
 
 The function can return the bins that are the modal bins, by setting \emph{value="none"}.
 }
+\section{Before, After and Alternatives}{
+
+Before this you might want to create a binned frequency table or a visualisation:
+\code{\link{tab_frequency_bins}}, to create a binned frequency table.
+\code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+\code{\link{vi_histogram}}, for a Histogram.
+\code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+
+After this you might want some other descriptive measures:
+\code{\link{me_mean}}, for different types of mean.
+\code{\link{me_variation}}, for different Measures of Quantitative Variation.
+
+Or a perform a test:
+\code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+\code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+\code{\link{ts_z_os}}, for One-Sample Z Test.
+}
+
+\examples{
+file2 = 'https://peterstatistics.com/Packages/ExampleData/StudentStatistics.csv'
+studentDf = read.csv(file2, sep=';', na.strings=c("", "NA"))
+# Example 1: Numeric dataframe
+ex1 = studentDf['Gen_Age']
+myBins = data.frame(c(0, 20, 25, 30), c(20, 25, 30, 120))
+me_mode_bin(ex1, bins=myBins)
+
+# Example 2: Numeric list unimodal
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 5, 5, 5)
+myBins = data.frame(c(0, 3, 5), c(3, 5, 6))
+me_mode_bin(ex2, bins=myBins)
+
+# Example 3: Numeric list bimodal and using midpoint
+ex2 = c(1, 1, 1, 2, 2, 2, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6)
+myBins = data.frame(c(1, 3, 5), c(3, 5, 7))
+me_mode_bin(ex2, bins=myBins, value='midpoint')
+
+}
 \references{
 Larson, R., & Farber, E. (2014). \emph{Elementary statistics: Picturing the world} (6th ed.). Pearson.
 

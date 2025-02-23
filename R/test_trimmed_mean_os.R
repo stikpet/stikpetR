@@ -5,10 +5,14 @@
 #' 
 #' The assumption about the population for this test is that the mean in the population is equal to the provide mu value. The test will show the probability of the found test statistic, or more extreme, if this assumption would be true. If this is below a specific threshold (usually 0.05) the assumption is rejected.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/6OpfniypELY) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/TrimmedMeanOneSample.html)
+#' 
+#' 
 #' @param data A vector or dataframe
 #' @param mu optional hypothesized trimmed mean, otherwise the midrange will be used
 #' @param trimProp optional proportion to trim in total (half will be trimmed from each side)
 #' @param se optional method to use to determine standard error. Either "yuen" (default) or "wilcox"
+#' 
 #' 
 #' @returns 
 #' A dataframe with:
@@ -19,6 +23,7 @@
 #' \item{df}{degrees of freedom}
 #' \item{p-value}{p-value (sig.)}
 #' \item{test used}{test used}
+#' 
 #' 
 #' @details 
 #' The formula used is:
@@ -55,14 +60,22 @@
 #' or Peró-Cebollero and Guàrdia-Olmos (2013, p. 409).
 #' 
 #' 
-#' @section Alternatives:
-#' R stats library has a similar function: *t.test()*
+#' @section Before, After and Alternatives:
+#' Before this you might want to create a binned frequency table or a visualisation:
+#' \code{\link{tab_frequency_bins}}, to create a binned frequency table.
+#' \code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+#' \code{\link{vi_histogram}}, for a Histogram.
+#' \code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
 #' 
-#' The *DescTools* library has a similar function: *YuenTTest()*
+#' After this you might want an effect size measure:
+#' \code{\link{es_cohen_d_os}}, for for Cohen d'.
+#' \code{\link{es_hedges_g_os}}, for Hedges g.
+#' \code{\link{es_common_language_os}}, for the Common Language Effect Size.
 #' 
-#' The *PairedData* library has a similar functions: *yuen.t.test()* and *yuen1.test*
+#' Alternative Tests:
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z Test.
 #' 
-#' The *WRS2* library has a similar function: *yuen()*
 #' 
 #' @references 
 #' Peró-Cebollero, M., & Guàrdia-Olmos, J. (2013). The adequacy of different robust statistical tests in comparing two independent groups. *Psicológica*, 34, 407–424.
@@ -73,8 +86,10 @@
 #' 
 #' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. doi:10.1093/biomet/61.1.165
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples 
 #' #Example 1: Numeric dataframe

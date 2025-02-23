@@ -14,13 +14,16 @@
 #' 
 #' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
 #' 
+#' 
 #' @param scores list with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order
 #' @param mu optional hypothesized statistic, otherwise the midrange will be used
 #' @param version optional {"brute", "brute-it", "rb", "normal"} method to use. see details
 #' 
+#' 
 #' @returns 
 #' CLES : float, the Common Language Effect Size
+#' 
 #' 
 #' @details
 #' For "brute" simply counts all scores above the test statistic and half of the ones that are equal (Tulimieri, 2021):
@@ -43,11 +46,15 @@
 #' $$CL = \\frac{1+r_b}{2}$$
 #' The CLE can be converted to a Rank Biserial (= Cliff delta) using the **es_convert()** function. This can then be converted to a Cohen d, and then the rules-of-thumb for Cohen d could be used (**th_cohen_d()**)
 #' 
+#' 
 #' @section Before, After and Alternatives:
 #' Before this measure you might want to perform the test:
 #' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
 #' \code{\link{ts_trinomial_os}}, for One-Sample Trinomial Test.
 #' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
+#' \code{\link{ts_student_t_os}}, for One-Sample Student t-Test.
+#' \code{\link{ts_trimmed_mean_os}}, for One-Sample Trimmed (Yuen or Yuen-Welch) Mean Test.
+#' \code{\link{ts_z_os}}, for One-Sample Z-Test.
 #' 
 #' After this you might want a rule-of-thumb directly or by converting this to either rank biserial or Cohen d:
 #' \code{\link{th_cle}}, for CLES rule-of-thumb (incl. conversion options)
@@ -57,9 +64,10 @@
 #' \code{\link{r_rank_biserial_os}}, for the Rank-Biserial Correlation
 #' \code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
 #' 
-#' Alternative tests:
-#' \code{\link{ts_sign_os}}, for One-Sample Sign Test.
-#' \code{\link{ts_trinomial_os}}, for the Rosenthal Correlation if a z-value is available
+#' Alternative effect size measure with interval or ratio data:
+#' \code{\link{es_cohen_d_os}}, for for Cohen d'.
+#' \code{\link{es_hedges_g_os}}, for Hedges g.
+#' 
 #' 
 #' @references
 #' Ben-Shachar, M., Lüdecke, D., & Makowski, D. (2020). effectsize: Estimation of Effect Size Indices and Standardized Parameters. *Journal of Open Source Software, 5*(56), 1–7. doi:10.21105/joss.02815
@@ -74,8 +82,10 @@
 #'  
 #' Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. *The American Statistician, 25*(4), 27–30. doi:10.1080/00031305.1971.10477278
 #' 
+#' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
+#' 
 #' 
 #' @examples 
 #' # Example 1: Dataframe

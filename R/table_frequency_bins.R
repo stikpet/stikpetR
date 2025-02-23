@@ -3,6 +3,8 @@
 #' @description
 #' Bins data and creates a frequency table with frequency density.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/-1kJrdDkImI) and frequency tables are also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tables/FrequencyTable.html)
+#' 
 #' @param data list or dataframe
 #' @param nbins optional, either the number of bins to create, or a specific method from the *tab_nbins()* function. Default is "sturges"
 #' @param bins optional dataframe with lower and upper bounds
@@ -17,8 +19,15 @@
 #' \item{frequency}{count of scores in bin}
 #' \item{frequency density}{count divided by bin range}
 #' 
-#' @seealso
-#' \code{\link{tab_nbins}}, to determine the number of bins
+#' @section Before, After and Alternatives:
+#' Before this you might want to determine the number of bins you use:
+#' \code{\link{tab_nbins}}, to determine the number of bins.
+#' 
+#' After this you might want to visualise the result:
+#' \code{\link{vi_boxplot_single}}, for a Box (and Whisker) Plot.
+#' \code{\link{vi_histogram}}, for a Histogram.
+#' \code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
+#' 
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
