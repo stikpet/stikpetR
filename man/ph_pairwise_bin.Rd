@@ -80,7 +80,7 @@ ex1 = gssDf['mar1']
 ph_pairwise_bin(ex1)
 
 #Example 2 using a score test with Yates correction:
-ph_pairwise_bin(nominal_field, test="score", mtc='holm', cc='yates')
+ph_pairwise_bin(ex1, test="score", mtc='holm', cc='yates')
 
 }
 \author{

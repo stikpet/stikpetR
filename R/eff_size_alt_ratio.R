@@ -66,7 +66,7 @@
 #' # Example 2: Text list
 #' ex2 = c("Female", "Male", "Male", "Female", "Male", "Male")
 #' es_alt_ratio(ex2)
-#' es_alt_ratio(ex2, category='Female')
+#' es_alt_ratio(ex2, p0Cat='Female')
 #' es_alt_ratio(ex2, codes=c('Male', 'Female'))
 #' 
 #' # Example 3: dataframe

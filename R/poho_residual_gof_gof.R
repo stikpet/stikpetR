@@ -136,10 +136,10 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, mtc='bonfer
     cat = freq[i,1]
     n1 = as.numeric(freq[i,2])
     e1 = expC[i]
-    tempA = rep('A', n1)
-    tempB = rep('B', n - n1)
+    tempA = rep(cat, n1)
+    tempB = rep('all other', n - n1)
     tempData = c(tempA, tempB)
-    exP = data.frame('category' = c('A', 'B'), 'exp count' = c(e1, n - e1)) 
+    exP = data.frame('category' = c(cat, 'all other'), 'exp count' = c(e1, n - e1)) 
     if (test=="pearson"){              
       testResult = ts_pearson_gof(tempData, expCounts=exP, ...)}
     else if (test=="freeman-tukey"){

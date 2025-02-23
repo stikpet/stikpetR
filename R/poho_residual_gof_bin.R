@@ -171,8 +171,8 @@ ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, mtc='b
       testDescription = "adjusted residuals z-test"
     }
     else {
-      tempA = rep('A', n1)
-      tempB = rep('B', n - n1)
+      tempA = rep(cat, n1)
+      tempB = rep('all other', n - n1)
       tempData = c(tempA, tempB)
       if (test=="binomial"){
         
@@ -183,9 +183,9 @@ ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, mtc='b
       }
       else{
         if (test=="wald"){
-          testResults = ts_wald_os(tempData, codes=c('A', 'B'), p0=e1/n, ...)}
+          testResults = ts_wald_os(tempData, codes=c(cat, 'all other'), p0=e1/n, ...)}
         else if (test=="score"){
-          testResults = ts_score_os(tempData, codes=c('A', 'B'), p0=e1/n, ...)}
+          testResults = ts_score_os(tempData, codes=c(cat, 'all other'), p0=e1/n, ...)}
         statistic = testResults[1,2]
         sig = testResults[1,3]
         testDescription = testResults[1,4]
