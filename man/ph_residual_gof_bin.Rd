@@ -37,6 +37,8 @@ a dataframe with:
 This function will perform a residuals post-hoc test for each of the categories in a nominal field. This could either be a z-test using the standardized residuals, the adjusted residuals, or any of the one-sample binary tests.
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
+
+The test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
 The formula used is for the adjusted residual test:

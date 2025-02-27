@@ -41,6 +41,8 @@ a dataframe with:
 This function will perform a one-sample binary test for each possible pair in the data. This could either be a binomial, Wald or score test.
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
+
+This function is shown in this \href{https://youtu.be/Li_I2D52Kjk}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

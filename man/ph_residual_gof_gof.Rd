@@ -44,6 +44,8 @@ In case of a multinomial test, the same columns except there are no \emph{minExp
 This function will perform a goodness-of-fit test using each category and collapsing the other categories.
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
+
+The test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

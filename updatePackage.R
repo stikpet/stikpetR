@@ -36,7 +36,7 @@ help(package = "stikpetR")
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 check_man()
 
-#in case manual doesn't work.
+#in case manual doesn't work and test all examples.
 setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 

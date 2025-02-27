@@ -5,6 +5,8 @@
 #' 
 #' The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Li_I2D52Kjk) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
+#' 
 #' @param data dataframe with scores
 #' @param test {"binomial", "score", "wald"}, optional test to use for each pair
 #' @param expCount optional dataframe with categories and expected counts

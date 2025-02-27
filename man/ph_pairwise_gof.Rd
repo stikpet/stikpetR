@@ -47,6 +47,8 @@ In case of a multinomial test, the same columns except there are no \emph{minExp
 This function will perform a goodness-of-fit test for each possible pair in the data. This could be any of the goodness-of-fit tests, e.g. a Pearson chi-square.
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
+
+This function is shown in this \href{https://youtu.be/BpciZSpMeKc}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 
