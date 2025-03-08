@@ -113,7 +113,7 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
           if ('n1' %in% colnames(ph_results)){
             n = ph_results[i, 'n1'] + ph_results[i, 'n2']}
           else{
-            n = sum(ph_results[,'obs. count'])}
+            n = sum(as.numeric(ph_results[,'obs. count']))}
           cohenW = es_convert(df[i, 'Johnston-Berry-Mielke E'], fr="jbme", to="cohenw", ex1=ph_results[i,8]/n)
           if (convert){
             cramerV = es_convert(cohenW, fr="cohenw", to="cramervgof", ex1=2)

@@ -5,7 +5,7 @@
 #' 
 #' The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 #' 
-#' The test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
+#' This function is shown in this [YouTube video](https://youtu.be/mioMqScuhZ8) and test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param data dataframe with scores
 #' @param test {"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use

@@ -197,10 +197,20 @@ ts_binomial_os <- function(data,
     #Equal distance
     ExpCount = n * ExpProp
     Dist = ExpCount - minCount
-    OtherCount = ExpCount + Dist
-    if (ExpProp < ObsProp){sig2 = pbinom(OtherCount, n, ExpProp)}
-    else {sig2 = 1 - pbinom(OtherCount - 1,n,ExpProp)}
-    testUsed = paste0(testUsed, ", with equal-distance method", sep='')}
+    if (dist==0){
+      sig2 = 1 - pbinom(minCount - 1,n,ExpProp)
+    }
+    else{
+      OtherCount = ExpCount + Dist
+      if (Dist < 0){sig2 = 0}
+      else if (ExpProp < ObsProp){sig2 = pbinom(OtherCount, n, ExpProp)}
+      else {
+        OtherCount = ExpCount + Dist
+        if (OtherCount > n){sig2 = 0}
+        else{sig2 = 1 - pbinom(OtherCount - 1,n,ExpProp)}
+        }
+      testUsed = paste0(testUsed, ", with equal-distance method", sep='')}
+    }
   else {
     #Method of small p
     binSmall = dbinom(minCount, n, ExpProp)

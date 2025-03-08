@@ -45,7 +45,7 @@ This function will perform a goodness-of-fit test using each category and collap
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 
-The test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/RQw09eg9Ojo}{YouTube video} and test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

@@ -38,7 +38,7 @@ This function will perform a residuals post-hoc test for each of the categories 
 
 The unadjusted p-values and Bonferroni adjusted p-values are both determined.
 
-The test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/mioMqScuhZ8}{YouTube video} and test is also described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
 The formula used is for the adjusted residual test:
