@@ -195,9 +195,10 @@ ts_binomial_os <- function(data,
     testUsed = paste0(testUsed, ", with double one-sided method", sep='')}
   else if(twoSidedMethod=="eqdist"){
     #Equal distance
-    ExpCount = n * ExpProp
+    ExpCount = as.integer(n * ExpProp)
+    if (minCount > ExpCount && n*ExpProp - ExpCount != 0){ExpCount = ExpCount + 1}
     Dist = ExpCount - minCount
-    if (dist==0){
+    if (Dist==0){
       sig2 = 1 - pbinom(minCount - 1,n,ExpProp)
     }
     else{
