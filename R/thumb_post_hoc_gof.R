@@ -114,7 +114,7 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
             n = ph_results[i, 'n1'] + ph_results[i, 'n2']}
           else{
             n = sum(as.numeric(ph_results[,'obs. count']))}
-          cohenW = es_convert(df[i, 'Johnston-Berry-Mielke E'], fr="jbme", to="cohenw", ex1=as.numeric(ph_results[i,8]/n))
+          cohenW = es_convert(df[i, 'Johnston-Berry-Mielke E'], fr="jbme", to="cohenw", ex1=as.numeric(ph_results[i,8])/n)
           if (convert){
             cramerV = es_convert(cohenW, fr="cohenw", to="cramervgof", ex1=2)
             q = th_cramer_v(cramerV, ...)
@@ -133,7 +133,7 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
           else{
             n = sum(ph_results[,'obs. count'])}
           
-          cohenW = es_convert(df[i, 'Fei'], fr="fei", to="cohenw", ex1=as.numeric(ph_results[i,8]/n))
+          cohenW = es_convert(df[i, 'Fei'], fr="fei", to="cohenw", ex1=as.numeric(ph_results[i,8])/n)
           
           if (convert){
             cramerV = es_convert(cohenW, fr="cohenw", to="cramervgof", ex1=2)
