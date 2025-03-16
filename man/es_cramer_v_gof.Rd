@@ -27,7 +27,7 @@ As for a classification Cramér's V can be converted to Cohen w, for which Cohen
 
 A Bergsma correction is also possible.
 
-A general explanation can also be found in this \href{https://youtu.be/FZcnk4EYpek}{YouTube video}. The function is shown in this \url{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CramerV.html}{PeterStatistics.com}
+A general explanation can also be found in this \href{https://youtu.be/FZcnk4EYpek}{YouTube video}. The function is shown in this \href{https://youtu.be/_zKEyc3qXTg}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CramerV.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:

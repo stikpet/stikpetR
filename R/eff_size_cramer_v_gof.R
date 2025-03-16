@@ -9,7 +9,7 @@
 #' 
 #' A Bergsma correction is also possible.
 #' 
-#' A general explanation can also be found in this [YouTube video](https://youtu.be/FZcnk4EYpek). The function is shown in this [YouTube video]() and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CramerV.html)
+#' A general explanation can also be found in this [YouTube video](https://youtu.be/FZcnk4EYpek). The function is shown in this [YouTube video](https://youtu.be/_zKEyc3qXTg) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CramerV.html)
 #' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size

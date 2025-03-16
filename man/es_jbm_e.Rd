@@ -21,7 +21,9 @@ JBM's E value
 \description{
 An effect size measure that could be used with a chi-square test or g-test.
 
-The function is shown in this \url{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/JohnstonBerryMielke-E.html}{PeterStatistics.com}
+Johnston, Berry and Mielke (2006) proposed to simply divide the found chi-square value, by the maximum possible chi-square value. Something Cohen w (an alternative effect size measure) does not. The advantage of this measure is that it will therefor alway be between 0 and 1. Ben-Shachar et al. (2023) expanded on this idea and also took the square root out of the result, and called this Fei.
+
+The function is shown in this \href{https://youtu.be/Xzgaq6gqqxs}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/JohnstonBerryMielke-E.html}{PeterStatistics.com}
 }
 \details{
 Two versions of this effect size. The formula for a chi-square test is:
@@ -76,6 +78,8 @@ es_jbm_e(chi2Value, n, minExp, test="g")
 
 }
 \references{
+Ben-Shachar, M. S., Patil, I., Thériault, R., Wiernik, B. M., & Lüdecke, D. (2023). Phi, fei, fo, fum: Effect sizes for categorical data that use the chi-squared statistic. \emph{Mathematics, 11}(1982), 1–10. doi:10.3390/math11091982
+
 Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. \emph{Perceptual and Motor Skills, 103}(2), 412–414. https://doi.org/10.2466/pms.103.2.412-414
 }
 \author{

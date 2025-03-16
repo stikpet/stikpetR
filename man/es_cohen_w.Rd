@@ -17,7 +17,7 @@ value of Cohen's w
 \description{
 An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to Cohen's rules-of-thumb.
 
-This function is shown in this \url{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenW.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/0l7SmTlmuYs}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenW.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Cohen, 1988, p. 216):

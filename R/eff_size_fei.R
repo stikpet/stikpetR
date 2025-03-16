@@ -3,6 +3,14 @@
 #' @description 
 #' An effect size measure that could be used with a chi-square test or g-test. 
 #' 
+#' Ben-Shachar et al. (2023) developed this effect size measure for goodness-of-fit tests. They divide the found chi-square test statistic by the maximum possible chi-square value, and then take the square root from this.
+#' 
+#' The measure is therefor simply the square root from Johnston-Berry-Mielke E. Although Ben-Shachar et al. reference the article from Johnston et al (2006), in personal communication with them (pers. comm. 2024) they indicated that it was a case of independent discovery and only later found that similar attempts were made as theirs that were very close.
+#' 
+#' Taking the square root makes sense, since as the name implies the chi-square is a squared value, and also other effect sizes use the square root, making Fei more aligned with those.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/FFGlvMd13LM) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/Fei.html)
+#' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
 #' @param minExp the minimum expected count
@@ -46,6 +54,8 @@
 #' 
 #' @references 
 #' Ben-Shachar, M. S., Patil, I., Thériault, R., Wiernik, B. M., & Lüdecke, D. (2023). Phi, fei, fo, fum: Effect sizes for categorical data that use the chi-squared statistic. *Mathematics, 11*(1982), 1–10. doi:10.3390/math11091982
+#' 
+#' Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. *Perceptual and Motor Skills, 103*(2), 412–414. doi:10.2466/pms.103.2.412-414
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

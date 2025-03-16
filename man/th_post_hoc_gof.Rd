@@ -26,6 +26,8 @@ If a conversion was done or needed:
 }
 \description{
 This function will add a classification to the results of \strong{es_post_hoc_gof()} using a rules-of-thumb. This is frowned upon by some, and the rule-of-thumb can vary per discipline.
+
+This function is shown in this \href{https://youtu.be/Oc5Ejp-W2gU}{YouTube video} and described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
 For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramér V, when setting \emph{convert=True} it will convert it again to Cohen w.

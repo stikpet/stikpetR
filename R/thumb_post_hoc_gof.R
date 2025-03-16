@@ -3,6 +3,7 @@
 #' @description 
 #' This function will add a classification to the results of **es_post_hoc_gof()** using a rules-of-thumb. This is frowned upon by some, and the rule-of-thumb can vary per discipline.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Oc5Ejp-W2gU) and described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param eff_sizes dataframe, the dataframe from es_post_hoc_gof()
 #' @param convert boolean, optional. convert the effect size to use the rule-of-thumb from another, see details

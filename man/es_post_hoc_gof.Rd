@@ -30,6 +30,8 @@ for pairwise post-hoc
 }
 \description{
 Determines an effect size for each test (row) from the results of ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof().
+
+This function is shown in this \href{https://youtu.be/Oc5Ejp-W2gU}{YouTube video} and described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
 'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramér's V otherwise.

@@ -3,6 +3,8 @@
 #' @description
 #' Determines an effect size for each test (row) from the results of ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof().
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/Oc5Ejp-W2gU) and described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
+#' 
 #' @param post_hoc_results dataframe with the result of either ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof()
 #' @param es string optional, the effect size to determine. Either 'auto', 'coheng', 'cohenh', 'ar', 'cramerv', 'cohenw', 'jbme', 'fei', 'rosenthal'
 #' @param bergsma optional boolean. Use of Bergsma correction, only for Cramér V

@@ -3,7 +3,7 @@
 #' @description 
 #' An effect size measure that could be used with a chi-square test. It has no upper limit, but can be compared to Cohen's rules-of-thumb. 
 #' 
-#' This function is shown in this [YouTube video]() and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenW.html)
+#' This function is shown in this [YouTube video](https://youtu.be/0l7SmTlmuYs) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenW.html)
 #' 
 #' @param chi2 the chi-square test statistic
 #' @param n the sample size
