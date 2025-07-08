@@ -6,7 +6,7 @@
 #' 
 #' This chart could be used with a single ordinal variable.
 #' 
-#' The visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
+#' This function is shown in this [YouTube video](https://youtu.be/J62B1zyTO3U) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
 #' 
 #' @param data the data from which to create a Pareto chart
 #' @param varname a name for the data, if not provided the name of the data variable is used

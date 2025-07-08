@@ -8,7 +8,7 @@
 #' It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category, 
 #' each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
 #' 
-#' The visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
+#' This function is shown in this [YouTube video](https://youtu.be/j92bv5gFwpI) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
 #' 
 #' @param data the data from which to create the bar-chart
 #' @param catCoding optional vector with the order for the bars

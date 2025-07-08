@@ -30,7 +30,7 @@ This measure is sometimes mentioned as an effect size measure for a Mann-Whitney
 \details{
 The formula for the Hodges-Lehmann estimator with two samples is (Hodges & Lehmann, 1963, p. 602):
 
-\deqn{HL = \text{median}\left(x_i - y_j | 1 \leq i \leq n_x, 1 \leq j \leq n_y\right)}
+\deqn{HL = \text{median}\left(y_j - x_i | 1 \leq i \leq n_x, 1 \leq j \leq n_y\right)}
 
 \emph{Symbols used:}
 \itemize{

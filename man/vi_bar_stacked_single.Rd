@@ -24,7 +24,7 @@ component bar chart (Zedeck, 2014, p. 54).
 It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category,
 each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
 
-The visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/j92bv5gFwpI}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
 }
 \details{
 This function basically uses barplot(...,beside = FALSE) from R's \emph{graphics} library

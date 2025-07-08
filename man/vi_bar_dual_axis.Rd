@@ -20,7 +20,7 @@ show both the count and cumulative proportion.
 
 This chart could be used with a single ordinal variable.
 
-The visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/J62B1zyTO3U}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
 }
 \section{Before, After and Alternatives}{
 

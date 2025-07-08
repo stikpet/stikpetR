@@ -19,7 +19,7 @@
 #' @details
 #' The formula for the Hodges-Lehmann estimator with two samples is (Hodges & Lehmann, 1963, p. 602):
 #' 
-#' \deqn{HL = \text{median}\left(x_i - y_j | 1 \leq i \leq n_x, 1 \leq j \leq n_y\right)}
+#' \deqn{HL = \text{median}\left(y_j - x_i | 1 \leq i \leq n_x, 1 \leq j \leq n_y\right)}
 #' 
 #' *Symbols used:*
 #' \itemize{
@@ -68,7 +68,7 @@ es_hodges_lehmann_is <- function(catField, scores, categories=NULL, levels=NULL)
   x2 = df$score[df$group == cat2]
   
   pairs <- expand.grid(x=x1, y=x2)
-  difs <- pairs$x - pairs$y
+  difs <- pairs$y - pairs$x
   
   hl = median(difs)
   
