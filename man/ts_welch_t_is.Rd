@@ -4,7 +4,7 @@
 \alias{ts_welch_t_is}
 \title{Welch t Test (Independent Samples)}
 \usage{
-ts_welch_t_is(catField, scaleField, categories = NULL, dmu = 0)
+ts_welch_t_is(catField, scaleField, categories = NULL, dmu = 0, df_ver = "ws")
 }
 \arguments{
 \item{catField}{A vector with the categorical data}
@@ -14,6 +14,8 @@ ts_welch_t_is(catField, scaleField, categories = NULL, dmu = 0)
 \item{categories}{Optional to indicate which two categories of catField to use, otherwise first two found will be used.}
 
 \item{dmu}{Optional difference according to null hypothesis (default is 0)}
+
+\item{df_ver}{{'ws', 'w', welch-satterthwaite, 'welch'} optional version of degrees of freedom to use}
 }
 \value{
 A dataframe with:
@@ -60,6 +62,10 @@ With:
 \item \eqn{x_{i,j}} the j-th score in category i
 \item \eqn{n_i} the number of scores in category i
 }
+
+The degrees of freedom can be found in Welch (1938, p. 353, eq. 9; 1947, p. 32, eq. 28) and Satterthwaite (1946, p. 114, eq. 17). Welch (1947, p. 32, eq. 29) also suggests another formula for the degrees of freedom, which can be written as:
+\deqn{df_w = \frac{\left( \frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{s_1^2}{n_1^2 \times \left(n_1 + 1\right)} + \frac{s_2^2}{n_2^2 \times \left(n_2 + 1\right)}} - 2}
+Later, Aspin and Welch (1949, p. 295) indicate this alternative version has little to know advantage over the other version.
 }
 \examples{
 #Example 1: dataframe
@@ -77,7 +83,13 @@ ts_welch_t_is(groups, scores)
 
 }
 \references{
+Aspin, A. A., & Welch, B. L. (1949). Tables for use in comparisons whose accuracy involves two variances, separately estimated. \emph{Biometrika, 36}(3/4), 290. https://doi.org/10.2307/2332668
+
 Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student’s t-test and the Mann–Whitney U test. \emph{Behavioral Ecology, 17}(4), 688–690. https://doi.org/10.1093/beheco/ark016
+
+Satterthwaite, F. E. (1946). An approximate distribution of estimates of variance components. \emph{Biometrics Bulletin, 2}(6), 110. https://doi.org/10.2307/3002019
+
+Welch, B. L. (1938). The significance of the difference between two means when the population variances are unequal. \emph{Biometrika, 29}(3–4), 350–362. https://doi.org/10.1093/biomet/29.3-4.350
 
 Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28–35. https://doi.org/10.2307/2332510
 }
