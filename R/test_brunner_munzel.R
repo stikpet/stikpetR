@@ -247,7 +247,7 @@ ts_brunner_munzel_perm <- function(catField, ordField, categories=NULL, levels=N
   n_below = 0
   n_above = 0
   Ws = c()
-  for (i in 1:(n_iters+1)){
+  for (i in 1:(n_iter+1)){
     
     # get the shuffled scores for each category
     X_s = A_s[1:n1]
