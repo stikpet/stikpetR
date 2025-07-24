@@ -40,6 +40,8 @@ check_man()
 setwd("H:/PeterStatistics/Packages/R")
 rcmdcheck("stikpetR")
 
+#Note that \lt and \gt don't work in equations, just use < and >
+
 # DOCUMENTATION
 #roxygen2 documentation
 #' @param data vector with the scores to determine the mode from

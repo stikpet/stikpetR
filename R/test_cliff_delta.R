@@ -141,13 +141,9 @@ ts_cliff_delta_is <- function(catField, ordField, categories=NULL, levels=NULL, 
   #combine this into one long list
   A = c(X, Y)
   
-  diff <- outer(X, Y, "-")  # Equivalent to X[:, None] - Y[None, :]
-  
-  # Assign row and column names (like DataFrame index/columns)
+  diff <- outer(X, Y, "-")
   rownames(diff) <- names(X)
   colnames(diff) <- names(Y)
-  
-  # Apply sign operation: sign(x) returns -1, 0, or 1 in R
   S <- sign(diff)
   di1 <- rowSums(S) / ncol(S)
   dj2 <- colSums(S) / nrow(S)
