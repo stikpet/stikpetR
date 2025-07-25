@@ -52,7 +52,7 @@
 #' @references
 #' JonB. (2015, October 14). Effect size of a binomial test and its relation to other measures of effect size. StackExchange - Cross Validated. https://stats.stackexchange.com/q/176856
 #' 
-#' NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100–132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
+#' NCSS. (n.d.). Tests for one proportion. In PASS Sample Size Software (pp. 100-1-100-132). Retrieved November 10, 2018, from https://www.ncss.com/wp-content/themes/ncss/pdf/Procedures/PASS/Tests_for_One_Proportion.pdf
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet)
@@ -133,6 +133,8 @@ es_alt_ratio <- function(data, p0=0.5, p0Cat=NULL, codes=NULL){
   results <- data.frame(AR1, AR2, cat_used)
   colnames(results)<-c("Alt. Ratio Cat. 1", "Alt. Ratio Cat. 2", "comment")
   
-  return (results)
-  
+  return(results)
 }
+
+
+

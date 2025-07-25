@@ -69,11 +69,11 @@ es_odds_ratio(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 
 }
 \references{
-Cox, D. R. (1958). The regression analysis of binary sequences. \emph{Journal of the Royal Statistical Society: Series B (Methodological), 20}(2), 215–232. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x
+Cox, D. R. (1958). The regression analysis of binary sequences. \emph{Journal of the Royal Statistical Society: Series B (Methodological), 20}(2), 215-232. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x
 
-Fisher, R. A. (1935). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39–82. https://doi.org/10.2307/2342435
+Fisher, R. A. (1935). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39-82. https://doi.org/10.2307/2342435
 
-McHugh, M. (2009). The odds ratio: Calculation, usage, and interpretation. \emph{Biochemia Medica, 19}(2), 120–126. https://doi.org/10.11613/BM.2009.011
+McHugh, M. (2009). The odds ratio: Calculation, usage, and interpretation. \emph{Biochemia Medica, 19}(2), 120-126. https://doi.org/10.11613/BM.2009.011
 }
 \seealso{
 \code{\link{th_odds_ratio}}, rules of thumb for odds ratio

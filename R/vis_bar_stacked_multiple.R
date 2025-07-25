@@ -1,7 +1,7 @@
 #' Multiple Stacked Bar-Chart
 #' 
 #' @description
-#' To visualise an ordinal variable, it often makes sense to stack the results. Stacking the results creates a compound bar chart, or sometimes stacked bar chart (Wilkinson, 2005, p. 157) or component bar chart (Zedeck, 2014, p. 54). It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category, each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
+#' To visualise an ordinal variable, it often makes sense to stack the results. Stacking the results creates a compound bar chart, or sometimes stacked bar chart (Wilkinson, 2005, p. 157) or component bar chart (Zedeck, 2014, p. 54). It can be defined as: "a bar chart showing multiple bars stacked at each x-axis category, each representing a value of the stacking variable" (Upton & Cook, 2014, p. 88).
 #' 
 #' Instead of one bar (see **vi_bar_stacked_single()**), we can create two or more (one for each group). This could then be considered a multiple compound bar-chart.
 #' 
@@ -47,3 +47,6 @@ vi_bar_stacked_multiple <- function(catField, ordField, levels=NULL, ...){
   barplot(pct, legend = rownames(pct), ...)
   
 }
+
+
+

@@ -5,9 +5,9 @@
 #' 
 #' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 #' 
-#' Yiğit and Gökpina (2010, p. 32) concluded that this test is inferior to some other alternatives when there is heteroscedasticity (variances in the groups not the same) are preferred (for example the Welch one-way ANOVA).
+#' Yigit and Gokpina (2010, p. 32) concluded that this test is inferior to some other alternatives when there is heteroscedasticity (variances in the groups not the same) are preferred (for example the Welch one-way ANOVA).
 #' 
-#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #'  
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -45,16 +45,16 @@
 #' \item \eqn{\chi^2\left(\dots,\dots\right)} the cumulative distribution function of the chi-square distribution.
 #' }
 #' 
-#' I couldn't find the chi-square test itself in the original article, but the calculation for an independent samples test repeated usually indeed leads to a chi-square distribution. The formula and chi-square distribution can also be found in Adepoju et al. (2016, p. 64), Cavus and Yazici (2020, p. 7) and Yiğit and Gökpina (2010, p. 17)
+#' I couldn't find the chi-square test itself in the original article, but the calculation for an independent samples test repeated usually indeed leads to a chi-square distribution. The formula and chi-square distribution can also be found in Adepoju et al. (2016, p. 64), Cavus and Yazici (2020, p. 7) and Yigit and Gokpina (2010, p. 17)
 #' 
 #' @references 
-#' Adepoju, K. A., Shittu, O. I., & Chukwu, A. U. (2016). On the development of an exponentiated F test for one-way ANOVA in the presence of outlier(s). *Mathematics and Statistics, 4*(2), 62–69. https://doi.org/10.13189/ms.2016.040203
+#' Adepoju, K. A., Shittu, O. I., & Chukwu, A. U. (2016). On the development of an exponentiated F test for one-way ANOVA in the presence of outlier(s). *Mathematics and Statistics, 4*(2), 62-69. https://doi.org/10.13189/ms.2016.040203
 #' 
-#' Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
+#' Cavus, M., & Yazici, B. (2020). Testing the equality of normal distributed and independent groups' means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
 #' 
-#' Scott, A. J., & Smith, T. M. F. (1971). Interval estimates for linear combinations of means. *Applied Statistics, 20*(3), 276–285. https://doi.org/10.2307/2346757
+#' Scott, A. J., & Smith, T. M. F. (1971). Interval estimates for linear combinations of means. *Applied Statistics, 20*(3), 276-285. https://doi.org/10.2307/2346757
 #' 
-#' Yiğit, E., & Gökpinar, F. (2010). A simulation study on tests for one-way ANOVA under the unequal variance assumption. *Communications, Faculty Of Science, University of Ankara*, 15–34. https://doi.org/10.1501/Commua1_0000000660
+#' Yigit, E., & Gokpinar, F. (2010). A simulation study on tests for one-way ANOVA under the unequal variance assumption. *Communications, Faculty Of Science, University of Ankara*, 15-34. https://doi.org/10.1501/Commua1_0000000660
 #' 
 #' 
 #' @author 
@@ -93,3 +93,6 @@ ts_scott_smith_owa <- function(nomField, scaleField, categories=NULL){
   return (testResults)
   
 }
+
+
+

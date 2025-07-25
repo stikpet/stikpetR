@@ -66,7 +66,7 @@
 #' 
 #' 
 #' @references
-#' Student. (1908). The probable error of a mean. *Biometrika, 6*(1), 1–25. https://doi.org/10.1093/biomet/6.1.1
+#' Student. (1908). The probable error of a mean. *Biometrika, 6*(1), 1-25. https://doi.org/10.1093/biomet/6.1.1
 #' 
 #' 
 #' @author 
@@ -113,3 +113,6 @@ ts_student_t_os <- function(data, mu=NULL){
 
   return(testResults)
 }
+
+
+

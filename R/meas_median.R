@@ -50,9 +50,9 @@
 #' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
 #' @references 
-#' Cournot, A. A. (1843). *Exposition de la théorie des chances et des probabilités*. L. Hachette.
+#' Cournot, A. A. (1843). *Exposition de la theorie des chances et des probabilites*. L. Hachette.
 #' 
-#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225–272.
+#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225-272.
 #' 
 #' Pacioli, L. (1523). *Summa de arithmetica geometria proportioni: Et proportionalita*. Paganino de Paganini.
 #' 
@@ -130,3 +130,6 @@ me_median <- function(data, levels=NULL, tieBreaker=c("between", "low", "high"))
   }
   return(med)
 }
+
+
+

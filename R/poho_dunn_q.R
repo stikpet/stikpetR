@@ -47,7 +47,7 @@
 #' }
 #' 
 #' @references
-#' Dunn, O. J. (1964). Multiple comparisons using rank sums. *Technometrics, 6*(3), 241–252. doi:10.1080/00401706.1964.10490181
+#' Dunn, O. J. (1964). Multiple comparisons using rank sums. *Technometrics, 6*(3), 241-252. doi:10.1080/00401706.1964.10490181
 #' 
 #' IBM. (2021). IBM SPSS Statistics Algorithms. IBM.
 #' 
@@ -113,3 +113,6 @@ ph_dunn_q <- function(data, success = NULL){
   return (res)
   
 }
+
+
+

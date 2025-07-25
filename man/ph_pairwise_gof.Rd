@@ -15,7 +15,7 @@ ph_pairwise_gof(
 \arguments{
 \item{data}{dataframe with scores}
 
-\item{test}{{"pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"}, optional test to use for each pair}
+\item{test}{c("pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"), optional test to use for each pair}
 
 \item{expCount}{optional dataframe with categories and expected counts}
 

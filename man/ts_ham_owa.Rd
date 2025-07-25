@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_ham_owa.R
 \name{ts_ham_owa}
 \alias{ts_ham_owa}
-\title{Hartung-Argaç-Makambi Test}
+\title{Hartung-Argac-Makambi Test}
 \usage{
 ts_ham_owa(nomField, scaleField, categories = NULL, version = c(1, 2))
 }
@@ -31,7 +31,7 @@ If the p-value is below a pre-defined threshold (usually 0.05), the null hypothe
 
 This test is a modification of the Welch one-way ANOVA.
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula used (Hartung et al., 2002, p. 206):
@@ -69,9 +69,9 @@ that using (n_j+2)/(n_j+1) gives reliable results for small sample sizes, and a 
 By setting 'version=2' the same version for \eqn{\phi} as in the Doex library will be used
 }
 \references{
-Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. \emph{The R Journal, 12}(2), 134. https://doi.org/10.32614/RJ-2021-008
+Cavus, M., & Yazici, B. (2020). Testing the equality of normal distributed and independent groups' means under unequal variances by doex package. \emph{The R Journal, 12}(2), 134. https://doi.org/10.32614/RJ-2021-008
 
-Hartung, J., Argaç, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. \emph{Statistical Papers, 43}(2), 197–235. https://doi.org/10.1007/s00362-002-0097-8
+Hartung, J., Argac, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. \emph{Statistical Papers, 43}(2), 197-235. https://doi.org/10.1007/s00362-002-0097-8
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

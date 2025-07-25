@@ -16,7 +16,7 @@
 #' \deqn{S = \frac{\left(n^3 - n\right)\times\left(1 - r_s\right)}{6}}
 #' 
 #' @references 
-#' Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman’s rho. *Applied Statistics, 24*(3), 377–379. https://doi.org/10.2307/2347111
+#' Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman's rho. *Applied Statistics, 24*(3), 377-379. https://doi.org/10.2307/2347111
 #' 
 #' @author 
 #' P. Stikker
@@ -122,3 +122,6 @@ he_AS89 <- function(n, IS){
   return(PRHO)
   
 }
+
+
+

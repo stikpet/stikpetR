@@ -7,7 +7,7 @@
 #' 
 #' @param post_hoc_results dataframe with the result of either ph_pairwise_bin(), ph_pairwise_gof(), ph_residual_bin(), or ph_residual_gof()
 #' @param es string optional, the effect size to determine. Either 'auto', 'coheng', 'cohenh', 'ar', 'cramerv', 'cohenw', 'jbme', 'fei', 'rosenthal'
-#' @param bergsma optional boolean. Use of Bergsma correction, only for Cramér V
+#' @param bergsma optional boolean. Use of Bergsma correction, only for Cramer V
 #' 
 #' @returns
 #' a dataframe with for residual post-hoc:
@@ -25,11 +25,11 @@
 #' }
 #' 
 #' @details
-#' 'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramér's V otherwise.
+#' 'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramer's V otherwise.
 #' 
 #' Cohen g ('coheng'), Cohen h ('cohenh') and Alternative Ratio ('ar') can all be used for any test.
 #' 
-#' Cramér V ('cramerv'), Cohen w ('cohenw'), Johnston-Berry-Mielke E ('jbme'), and Fei ('fei') can be used with chi-square tests (or likelihood ratio tests)
+#' Cramer V ('cramerv'), Cohen w ('cohenw'), Johnston-Berry-Mielke E ('jbme'), and Fei ('fei') can be used with chi-square tests (or likelihood ratio tests)
 #' 
 #' The Rosenthal Correlation ('rosenthal') can be used with a z-test (proportion/Wald/score/residual).
 #' 
@@ -109,7 +109,7 @@ es_post_hoc_gof <- function(post_hoc_results, es='auto', bergsma=FALSE){
     coheng = "Cohen g",
     cohenh = "Cohen h",
     ar = "alternative ratio",
-    cramerv = "Cramér V",
+    cramerv = "Cramer V",
     cohenw = "Cohen w",
     jbme = "Johnston-Berry-Mielke E",
     fei = "Fei",
@@ -219,3 +219,6 @@ es_post_hoc_gof <- function(post_hoc_results, es='auto', bergsma=FALSE){
   
   return (results)
 }
+
+
+

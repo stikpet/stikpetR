@@ -15,7 +15,7 @@ ph_pairwise_bin(
 \arguments{
 \item{data}{dataframe with scores}
 
-\item{test}{{"binomial", "score", "wald"}, optional test to use for each pair}
+\item{test}{c("binomial", "score", "wald"), optional test to use for each pair}
 
 \item{expCount}{optional dataframe with categories and expected counts}
 

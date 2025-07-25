@@ -56,3 +56,6 @@ es_cohen_d <- function(nomField, scaleField, categories=NULL){
   return(d)
   
 }
+
+
+

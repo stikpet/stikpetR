@@ -53,9 +53,9 @@ es_cramer_v_ind(chi2Val, n, nRows, nCols, cc="bergsma")
 
 }
 \references{
-Bergsma, W. (2013). A bias-correction for Cramér’s and Tschuprow’s. Journal of the Korean Statistical Society, 42(3), 323–328. https://doi.org/10.1016/j.jkss.2012.10.002
+Bergsma, W. (2013). A bias-correction for Cramer's and Tschuprow's. Journal of the Korean Statistical Society, 42(3), 323-328. https://doi.org/10.1016/j.jkss.2012.10.002
 
-Cramér, H. (1946). Mathematical methods of statistics. Princeton University Press.
+Cramer, H. (1946). Mathematical methods of statistics. Princeton University Press.
 }
 \author{
 P. Stikker

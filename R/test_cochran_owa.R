@@ -6,7 +6,7 @@
 #' 
 #' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 #' 
-#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #' 
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -20,7 +20,7 @@
 #' \item{pValue}{the significance (p-value)}
 #' 
 #' @details 
-#' The formula used is (Cavus & Yazıcı, 2020, p. 5; Hartung et al., 2002, p. 202; Mezui-Mbeng, 2015, p. 787):
+#' The formula used is (Cavus & Yazici, 2020, p. 5; Hartung et al., 2002, p. 202; Mezui-Mbeng, 2015, p. 787):
 #' \deqn{\chi_C^2 = \sum_{j=1}^k w_j\times\left(\bar{x}_j - \bar{y}_w\right)^2}
 #' \deqn{df = k - 1}
 #' \deqn{sig. = 1 - \chi^2\left(\chi_C^2, df\right)}
@@ -46,16 +46,16 @@
 #' \item \eqn{\chi^2\left(\dots,\dots\right)} the cumulative distribution function of the chi-square distribution.
 #' }
 #' 
-#' Couldn’t really find the formula in the original article which is from Cochran (1937)
+#' Couldn't really find the formula in the original article which is from Cochran (1937)
 #' 
 #' @references 
-#' Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
+#' Cavus, M., & Yazici, B. (2020). Testing the equality of normal distributed and independent groups' means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
 #' 
-#' Cochran, W. G. (1937). Problems arising in the analysis of a series of similar experiments. *Supplement to the Journal of the Royal Statistical Society, 4*(1), 102–118. https://doi.org/10.2307/2984123
+#' Cochran, W. G. (1937). Problems arising in the analysis of a series of similar experiments. *Supplement to the Journal of the Royal Statistical Society, 4*(1), 102-118. https://doi.org/10.2307/2984123
 #' 
-#' Hartung, J., Argaç, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. *Statistical Papers, 43*(2), 197–235. https://doi.org/10.1007/s00362-002-0097-8
+#' Hartung, J., Argac, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. *Statistical Papers, 43*(2), 197-235. https://doi.org/10.1007/s00362-002-0097-8
 #' 
-#' Mezui-Mbeng, P. (2015). A note on Cochran test for homogeneity in two ways ANOVA and meta-analysis. *Open Journal of Statistics, 5*(7), 787–796. https://doi.org/10.4236/ojs.2015.57078
+#' Mezui-Mbeng, P. (2015). A note on Cochran test for homogeneity in two ways ANOVA and meta-analysis. *Open Journal of Statistics, 5*(7), 787-796. https://doi.org/10.4236/ojs.2015.57078
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -99,3 +99,6 @@ ts_cochran_owa <- function(nomField, scaleField, categories=NULL){
   return(res)
   
 }
+
+
+

@@ -45,7 +45,7 @@
 #' 
 #' 
 #' @references 
-#' Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. *International Journal of Approximate Reasoning, 45*(3), 531–545. https://doi.org/10.1016/j.ijar.2006.06.024
+#' Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. *International Journal of Approximate Reasoning, 45*(3), 531-545. https://doi.org/10.1016/j.ijar.2006.06.024
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -90,3 +90,6 @@ me_consensus <- function(data, levels=NULL){
   
   return(cns)  
 }
+
+
+

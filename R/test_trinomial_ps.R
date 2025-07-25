@@ -114,3 +114,6 @@ ts_trinomial_ps <- function(field1, field2, levels=NULL, dmu=0){
   return(results)
   
 }
+
+
+

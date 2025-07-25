@@ -95,3 +95,6 @@ es_pairwise_bin <- function(data, expCounts=NULL, es="coheng"){
   
   return(res)
 }
+
+
+

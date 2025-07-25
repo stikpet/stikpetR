@@ -116,25 +116,25 @@
 #' 
 #' 
 #' @references
-#' Doane, D. P. (1976). Aesthetic frequency classifications. *The American Statistician, 30*(4), 181–183. https://doi.org/10.2307/2683757
+#' Doane, D. P. (1976). Aesthetic frequency classifications. *The American Statistician, 30*(4), 181-183. https://doi.org/10.2307/2683757
 #' 
-#' Freedman, D., & Diaconis, P. (1981). On the histogram as a density estimator. *Zeitschrift Für Wahrscheinlichkeitstheorie Und Verwandte Gebiete, 57*(4), 453–476. https://doi.org/10.1007/BF01025868
+#' Freedman, D., & Diaconis, P. (1981). On the histogram as a density estimator. *Zeitschrift Fur Wahrscheinlichkeitstheorie Und Verwandte Gebiete, 57*(4), 453-476. https://doi.org/10.1007/BF01025868
 #' 
 #' Iman, R. L., & Conover, W. J. (1989). *Modern business statistics* (2nd ed.). Wiley.
 #' 
-#' Knuth, K. H. (2019). Optimal data-based binning for histograms and histogram-based probability density models. *Digital Signal Processing, 95*, 1–30. https://doi.org/10.1016/j.dsp.2019.102581
+#' Knuth, K. H. (2019). Optimal data-based binning for histograms and histogram-based probability density models. *Digital Signal Processing, 95*, 1-30. https://doi.org/10.1016/j.dsp.2019.102581
 #' 
 #' Lohaka, H. O. (2007). Making a grouped-data frequency table: Development and examination of the iteration algorithm \[Doctoral dissertation, Ohio University\]. https://etd.ohiolink.edu
 #' 
-#' Scott, D. W. (1979). On optimal and data-based histograms. *Biometrika, 66*(3), 605–610. https://doi.org/10.1093/biomet/66.3.605
+#' Scott, D. W. (1979). On optimal and data-based histograms. *Biometrika, 66*(3), 605-610. https://doi.org/10.1093/biomet/66.3.605
 #' 
-#' Shimazaki, H., & Shinomoto, S. (2007). A method for selecting the bin size of a time histogram. *Neural Computation, 19*(6), 1503–1527. https://doi.org/10.1162/neco.2007.19.6.1503
+#' Shimazaki, H., & Shinomoto, S. (2007). A method for selecting the bin size of a time histogram. *Neural Computation, 19*(6), 1503-1527. https://doi.org/10.1162/neco.2007.19.6.1503
 #' 
-#' Stone, C. J. (1984). An asymptotically optimal window selection rule for kernel density estimates. *The Annals of Statistics, 12*(4), 1285–1297.
+#' Stone, C. J. (1984). An asymptotically optimal window selection rule for kernel density estimates. *The Annals of Statistics, 12*(4), 1285-1297.
 #' 
-#' Sturges, H. A. (1926). The choice of a class interval. *Journal of the American Statistical Association, 21*(153), 65–66. https://doi.org/10.1080/01621459.1926.10502161
+#' Sturges, H. A. (1926). The choice of a class interval. *Journal of the American Statistical Association, 21*(153), 65-66. https://doi.org/10.1080/01621459.1926.10502161
 #' 
-#' Terrell, G. R., & Scott, D. W. (1985). Oversmoothed nonparametric density estimates. *Journal of the American Statistical Association, 80*(389), 209–214. https://doi.org/10.2307/2288074
+#' Terrell, G. R., & Scott, D. W. (1985). Oversmoothed nonparametric density estimates. *Journal of the American Statistical Association, 80*(389), 209-214. https://doi.org/10.2307/2288074
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -245,3 +245,6 @@ tab_nbins <- function(data, method='src', adjust=1, maxBins=NULL, qmethod="cdf")
     
     return (k)
 }
+
+
+

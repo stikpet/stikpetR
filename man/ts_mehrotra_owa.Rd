@@ -29,7 +29,7 @@ If the p-value is below a pre-defined threshold (usually 0.05), the null hypothe
 
 Mehrotra (1997) modified the calculation for the first degrees of freedom in the Brown-Forsythe test for means, all other values are the same.
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula used (Mehrotra, 1997, p. 11141):
@@ -58,7 +58,7 @@ With:
 The same as the Brown-Forsythe test for means, except for \eqn{df_1}.
 }
 \references{
-Mehrotra, D. V. (1997). Improving the Brown-Forsythe solution to the generalized Behrens-Fisher problem. \emph{Communications in Statistics - Simulation and Computation, 26}(3), 1139–1145. doi:10.1080/03610919708813431
+Mehrotra, D. V. (1997). Improving the Brown-Forsythe solution to the generalized Behrens-Fisher problem. \emph{Communications in Statistics - Simulation and Computation, 26}(3), 1139-1145. doi:10.1080/03610919708813431
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -143,31 +143,31 @@
 #' \code{\link{r_rosenthal}}, to determine Rosenthal correlation coefficient
 #' 
 #' @references
-#' Agnes. (2011, April 16). Correlation – Correlation coefficient, r. Finance Training Course. https://financetrainingcourse.com/education/2011/04/correlation-correlation-coefficient-r/
+#' Agnes. (2011, April 16). Correlation - Correlation coefficient, r. Finance Training Course. https://financetrainingcourse.com/education/2011/04/correlation-correlation-coefficient-r/
 #' 
 #' Bartz, A. E. (1988). *Basic statistical concepts* (3rd ed.). Macmillan.
 #' 
-#' Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. *Innovation in Aging, 3*(4), 1–8. doi:10.1093/geroni/igz036
+#' Brydges, C. R. (2019). Effect size guidelines, sample size calculations, and statistical power in gerontology. *Innovation in Aging, 3*(4), 1-8. doi:10.1093/geroni/igz036
 #' 
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #' 
 #' Disha, M. (2016, November 3). Correlation: Meaning, types and its computation. Your Article Library. https://www.yourarticlelibrary.com/statistics-2/correlation-meaning-types-and-its-computation-statistics/92001
 #' 
-#' Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. *Advances in Methods and Practices in Psychological Science, 2*(2), 156–168. doi:10.1177/2515245919847202
+#' Funder, D. C., & Ozer, D. J. (2019). Evaluating effect size in psychological research: Sense and nonsense. *Advances in Methods and Practices in Psychological Science, 2*(2), 156-168. doi:10.1177/2515245919847202
 #' 
-#' Gignac, G. E., & Szodorai, E. T. (2016). Effect size guidelines for individual differences researchers. *Personality and Individual Differences, 102*, 74–78. doi:10.1016/j.paid.2016.06.069
+#' Gignac, G. E., & Szodorai, E. T. (2016). Effect size guidelines for individual differences researchers. *Personality and Individual Differences, 102*, 74-78. doi:10.1016/j.paid.2016.06.069
 #' 
-#' Hemphill, J. F. (2003). Interpreting the magnitudes of correlation coefficients. *American Psychologist, 58*(1), 78–79. doi:10.1037/0003-066X.58.1.78
+#' Hemphill, J. F. (2003). Interpreting the magnitudes of correlation coefficients. *American Psychologist, 58*(1), 78-79. doi:10.1037/0003-066X.58.1.78
 #' 
 #' Hopkins, W. G. (2006, August 7). New view of statistics: Effect magnitudes. http://www.sportsci.org/resource/stats/effectmag.html
 #' 
-#' Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. *European Journal of Social Psychology, 51*(3), 485–504. doi:10.1002/ejsp.2752
+#' Lovakov, A., & Agadullina, E. R. (2021). Empirically derived guidelines for effect size interpretation in social psychology. *European Journal of Social Psychology, 51*(3), 485-504. doi:10.1002/ejsp.2752
 #' 
 #' Rafter, J. A., Abell, M. L., & Braselton, J. P. (2003). *Statistics with Maple*. Academic Press.
 #' 
 #' Rea, L. M., & Parker, R. A. (2014). *Designing and conducting survey research: A comprehensive guide* (4th ed.). Jossey-Bass, a Wiley brand.
 #' 
-#' Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. *Journal of Social Service Research, 21*(4), 37–59. doi:10.1300/J079v21n04_02
+#' Rosenthal, J. A. (1996). Qualitative descriptors of strength of association and effect size. *Journal of Social Service Research, 21*(4), 37-59. doi:10.1300/J079v21n04_02
 #' 
 #' Rumsey, D. J. (2011). *Statistics for dummies* (2nd ed.). Wiley.
 #' 
@@ -291,3 +291,6 @@ th_pearson_r <- function(r, qual="bartz"){
   
   return(results)
 }
+
+
+

@@ -69,3 +69,6 @@ vi_bar_dual_axis <- function(data, varname=NULL){
   par(op)
   
 }
+
+
+

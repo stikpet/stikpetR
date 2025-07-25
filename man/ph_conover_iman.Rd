@@ -63,7 +63,7 @@ The formula can also be found in Conover (1980, pp. 230-231).
 \references{
 Conover, W. J. (1980). \emph{Practical nonparametric statistics} (2nd ed.). Wiley.
 
-Conover, W. J., & Iman, R. L. (1979). \emph{On multiple-comparisons procedures} (LA-7677-MS; pp. 1–14). Los Alamos Scientific Laboratory.
+Conover, W. J., & Iman, R. L. (1979). \emph{On multiple-comparisons procedures} (LA-7677-MS; pp. 1-14). Los Alamos Scientific Laboratory.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

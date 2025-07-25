@@ -57,7 +57,7 @@
 #' test as proposed by Yuen (1974, p. 167)
 #' 
 #' The second version is used in the other libraries, and can be found in Wilcox (2012, p. 157), 
-#' or Peró-Cebollero and Guàrdia-Olmos (2013, p. 409).
+#' or Pero-Cebollero and Guardia-Olmos (2013, p. 409).
 #' 
 #' 
 #' @section Before, After and Alternatives:
@@ -78,13 +78,13 @@
 #' 
 #' 
 #' @references 
-#' Peró-Cebollero, M., & Guàrdia-Olmos, J. (2013). The adequacy of different robust statistical tests in comparing two independent groups. *Psicológica*, 34, 407–424.
+#' Pero-Cebollero, M., & Guardia-Olmos, J. (2013). The adequacy of different robust statistical tests in comparing two independent groups. *Psicologica*, 34, 407-424.
 #' 
-#' Tukey, J. W., & McLaughlin, D. H. (1963). Less vulnerable confidence and significance procedures for location based on a single sample: Trimming/Winsorization 1. *Sankhyā: The Indian Journal of Statistics, 25*(3), 331–352.
+#' Tukey, J. W., & McLaughlin, D. H. (1963). Less vulnerable confidence and significance procedures for location based on a single sample: Trimming/Winsorization 1. *Sankhya: The Indian Journal of Statistics, 25*(3), 331-352.
 #' 
 #' Wilcox, R. R. (2012). *Introduction to robust estimation and hypothesis testing* (3rd ed.). Academic Press.
 #' 
-#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. doi:10.1093/biomet/61.1.165
+#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165-170. doi:10.1093/biomet/61.1.165
 #' 
 #' 
 #' @author 
@@ -152,3 +152,6 @@ ts_trimmed_mean_os <- function(data, mu=NULL, trimProp=0.1, se="yuen"){
   
   return(results)
 }
+
+
+

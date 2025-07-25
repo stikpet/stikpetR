@@ -107,3 +107,6 @@ tab_frequency_bins <- function(data, nbins="sturges", bins=NULL, incl_lower=TRUE
   
   return (freq)
 }
+
+
+

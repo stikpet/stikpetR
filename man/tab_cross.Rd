@@ -30,9 +30,9 @@ tab_cross(
 dataframe : the cross table
 }
 \description{
-A contingency table can be defined as “tables arising when observations on a number of categorical variables are cross-classified” (Everitt, 2004, p.89).
+A contingency table can be defined as "tables arising when observations on a number of categorical variables are cross-classified" (Everitt, 2004, p.89).
 
-There are quite a few variations on the name for this type of table. Perhaps the oldest name is actually contingency table, which was the name Pearson (1904, p. 34) gave to them. Another popular name is cross tabulation (Upton & Cook, 2002, p. 79), but also cross classification table (Zekeck, 2014, p. 71) and bivariate frequency table (Porkess, 1988, p. 48) are used. The one I used cross table which can for example be found in Newbold et al. (2013, p. 9) or Sá (2007, p. 52).
+There are quite a few variations on the name for this type of table. Perhaps the oldest name is actually contingency table, which was the name Pearson (1904, p. 34) gave to them. Another popular name is cross tabulation (Upton & Cook, 2002, p. 79), but also cross classification table (Zekeck, 2014, p. 71) and bivariate frequency table (Porkess, 1988, p. 48) are used. The one I used cross table which can for example be found in Newbold et al. (2013, p. 9) or Sa (2007, p. 52).
 }
 \examples{
 #Example: dataframe
@@ -56,7 +56,7 @@ Pearson, K. (1904). \emph{Contributions to the Mathematical Theory of Evolution}
 
 Porkess, R. (1988). \emph{Dictionary of statistics}. Collins.
 
-Sá, J. P. M. de. (2007). \emph{Applied statistics: Using SPSS, Statistica, MATLAB, and R} (2nd ed.). Springer.
+Sa, J. P. M. de. (2007). \emph{Applied statistics: Using SPSS, Statistica, MATLAB, and R} (2nd ed.). Springer.
 
 Upton, G., & Cook, I. (2002). \emph{Oxford: Dictionary of statistics}. Oxford University Press.
 

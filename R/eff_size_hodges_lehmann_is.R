@@ -31,9 +31,9 @@
 #' There might be a faster method to actually determine this. Algorithm 616 (Monahan, 1984), but couldn't translate the Fortran to R
 #' 
 #' @references 
-#' Hodges, J. L., & Lehmann, E. L. (1963). Estimates of location based on rank tests. *The Annals of Mathematical Statistics, 34*(2), 598–611. doi:10.1214/aoms/1177704172
+#' Hodges, J. L., & Lehmann, E. L. (1963). Estimates of location based on rank tests. *The Annals of Mathematical Statistics, 34*(2), 598-611. doi:10.1214/aoms/1177704172
 #' 
-#' Monahan, J. F. (1984). Algorithm 616: Fast computation of the Hodges-Lehmann location estimator. *ACM Transactions on Mathematical Software, 10*(3), 265–270. doi:10.1145/1271.319414
+#' Monahan, J. F. (1984). Algorithm 616: Fast computation of the Hodges-Lehmann location estimator. *ACM Transactions on Mathematical Software, 10*(3), 265-270. doi:10.1145/1271.319414
 #' 
 #' van Geloven, N. (2018, March 13). Mann-Whitney U toets \[Wiki\]. Wikistatistiek. https://wikistatistiek.amc.nl/Mann-Whitney_U_toets
 #' 
@@ -74,3 +74,6 @@ es_hodges_lehmann_is <- function(catField, scores, categories=NULL, levels=NULL)
   
   return(hl)
 }
+
+
+

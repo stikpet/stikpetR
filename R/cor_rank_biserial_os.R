@@ -43,7 +43,7 @@
 #' \code{\link{r_rosenthal}}, for the Rank-Biserial Correlation
 #' 
 #' @references 
-#' Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonparametric correlation. *Comprehensive Psychology*, 3, 1–9. https://doi.org/10.2466/11.IT.3.1
+#' Kerby, D. S. (2014). The simple difference formula: An approach to teaching nonparametric correlation. *Comprehensive Psychology*, 3, 1-9. https://doi.org/10.2466/11.IT.3.1
 #' 
 #' King, B. M., & Minium, E. W. (2008). *Statistical reasoning in the behavioral sciences* (5th ed.). John Wiley & Sons, Inc.
 #' 
@@ -96,5 +96,8 @@ r_rank_biserial_os <- function(data, levels=NULL, mu=NULL){
   
   return(testResults)
 }
+
+
+
 
 

@@ -65,13 +65,13 @@ The p-value (sig.):
 }
 }
 \references{
-Bhapkar, V. P. (1961). Some tests for categorical data. \emph{The Annals of Mathematical Statistics, 32}(1), 72–83. doi:10.1214/aoms/1177705140
+Bhapkar, V. P. (1961). Some tests for categorical data. \emph{The Annals of Mathematical Statistics, 32}(1), 72-83. doi:10.1214/aoms/1177705140
 
-Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. \emph{Journal of the American Statistical Association, 61}(313), 228–235. doi:10.1080/01621459.1966.10502021
+Bhapkar, V. P. (1966). A note on the equivalence of two test criteria for hypotheses in categorical data. \emph{Journal of the American Statistical Association, 61}(313), 228-235. doi:10.1080/01621459.1966.10502021
 
-Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. \emph{The British Journal of Psychiatry, 116}(535), 651–655. doi:10.1192/bjp.116.535.651
+Maxwell, A. E. (1970). Comparing the classification of subjects by two independent judges. \emph{The British Journal of Psychiatry, 116}(535), 651-655. doi:10.1192/bjp.116.535.651
 
-Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. \emph{Biometrika, 42}(3/4), 412–416. doi:10.2307/2333387
+Stuart, A. (1955). A test for homogeneity of the marginal distributions in a two-way classification. \emph{Biometrika, 42}(3/4), 412-416. doi:10.2307/2333387
 
 Uebersax, J. (2006, August 30). McNemar tests of marginal homogeneity. http://www.john-uebersax.com/stat/mcnemar.htm
 }

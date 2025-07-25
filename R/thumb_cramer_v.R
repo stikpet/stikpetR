@@ -1,11 +1,11 @@
-#' Rule-of-Thumb for Cramér V
+#' Rule-of-Thumb for Cramer V
 #' 
 #' @description
-#' Simple function to use a rule-of-thumb for the Cramér V effect size. Note however that many will actually use the rule-of-thumb for Cohen w and convert Cramér V to Cohen w first.
+#' Simple function to use a rule-of-thumb for the Cramer V effect size. Note however that many will actually use the rule-of-thumb for Cohen w and convert Cramer V to Cohen w first.
 #' 
 #' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CramerV.html)
 #' 
-#' @param v the Cramér V value
+#' @param v the Cramer V value
 #' @param qual optional setting for which rule of thumb to use. Either "rea-parker" (default), "akoglu", "calamba-rustico"
 #' 
 #' 
@@ -54,12 +54,12 @@
 #' 
 #' @section Before, After and Alternatives:
 #' Before using this function you need to obtain a Cramer v value:
-#' \code{\link{es_cramer_v_gof}}, to determine Cramér V for a Goodness-of-Fit test.
-#' \code{\link{es_cramer_v_ind}}, to determine Cramér V for a test of independence.
+#' \code{\link{es_cramer_v_gof}}, to determine Cramer V for a Goodness-of-Fit test.
+#' \code{\link{es_cramer_v_ind}}, to determine Cramer V for a test of independence.
 #' 
 #' 
 #' @references 
-#' Akoglu, H. (2018). User’s guide to correlation coefficients. *Turkish Journal of Emergency Medicine, 18*(3), 91–93. doi:10.1016/j.tjem.2018.08.001
+#' Akoglu, H. (2018). User's guide to correlation coefficients. *Turkish Journal of Emergency Medicine, 18*(3), 91-93. doi:10.1016/j.tjem.2018.08.001
 #' 
 #' Calamba, S. S., & Rustico, E. M. P. (2019). Usefulness of code of ethics for professional accountants in resolving ethical conflicts in the Philippines.
 #' 
@@ -135,3 +135,6 @@ th_cramer_v <- function(v, qual="rea-parker"){
   return(results)
   
 }
+
+
+

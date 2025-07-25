@@ -9,12 +9,12 @@
 #' 
 #' By setting \eqn{\lambda} to different values, we get the different tests:
 #' \itemize{
-#' \item{\eqn{\lambda = 1}}{Pearson chi-square}
-#' \item{\eqn{\lambda = 0}}{G/Wilks/Likelihood-Ratio}
-#' \item{\eqn{\lambda = -\frac{1}{2}}}{Freeman-Tukey}
-#' \item{\eqn{\lambda = -1}}{Mod-Log-Likelihood}
-#' \item{\eqn{\lambda = -2}}{Neyman}
-#' \item{\eqn{\lambda = \frac{2}{3}}}{Cressie-Read}
+#' \item \eqn{\lambda = 1}{Pearson chi-square}
+#' \item \eqn{\lambda = 0}{G/Wilks/Likelihood-Ratio}
+#' \item \eqn{\lambda = -\frac{1}{2}}{Freeman-Tukey}
+#' \item \eqn{\lambda = -1}{Mod-Log-Likelihood}
+#' \item \eqn{\lambda = -2}{Neyman}
+#' \item \eqn{\lambda = \frac{2}{3}}{Cressie-Read}
 #' }
 #' 
 #' This function is shown in this [YouTube video](https://youtu.be/ghvDQZrMruY) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PowerDivergence.html)
@@ -111,23 +111,23 @@
 #' @references 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
 #' 
-#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440–464. doi:10.1111/j.2517-6161.1984.tb01318.x
+#' Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. *Journal of the Royal Statistical Society: Series B (Methodological), 46*(3), 440-464. doi:10.1111/j.2517-6161.1984.tb01318.x
 #' 
-#' Freeman, M. F., & Tukey, J. W. (1950). Transformations related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607–611. doi:10.1214/aoms/1177729756
+#' Freeman, M. F., & Tukey, J. W. (1950). Transformations related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607-611. doi:10.1214/aoms/1177729756
 #' 
-#' Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. *Statistics in Medicine, 9*(4), 363–367. doi:10.1002/sim.4780090403
+#' Haviland, M. G. (1990). Yates's correction for continuity and the analysis of 2 x 2 contingency tables. *Statistics in Medicine, 9*(4), 363-367. doi:10.1002/sim.4780090403
 #' 
-#' Neyman, J. (1949). Contribution to the theory of the chi-square test. Berkeley Symposium on Math. Stat, and Prob, 239–273. doi:10.1525/9780520327016-030
+#' Neyman, J. (1949). Contribution to the theory of the chi-square test. Berkeley Symposium on Math. Stat, and Prob, 239-273. doi:10.1525/9780520327016-030
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. doi:10.2307/2332518
+#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 x 2 table. *Biometrika, 34*(1/2), 139-167. doi:10.2307/2332518
 #' 
-#' Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. *Philosophical Magazine Series 5, 50*(302), 157–175. doi:10.1080/14786440009463897
+#' Pearson, K. (1900). On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling. *Philosophical Magazine Series 5, 50*(302), 157-175. doi:10.1080/14786440009463897
 #' 
-#' Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. *The Annals of Mathematical Statistics, 9*(1), 60–62. doi:10.1214/aoms/1177732360
+#' Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. *The Annals of Mathematical Statistics, 9*(1), 60-62. doi:10.1214/aoms/1177732360
 #' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. doi:10.2307/2335081
+#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33-37. doi:10.2307/2335081
 #' 
-#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217–235. doi:10.2307/2983604
+#' Yates, F. (1934). Contingency tables involving small numbers and the chi square test. *Supplement to the Journal of the Royal Statistical Society, 1*(2), 217-235. doi:10.2307/2983604
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -301,3 +301,6 @@ ts_powerdivergence_gof <- function(data, expCounts=NULL, lambd=c("cressie-read",
   
   return (testResults)
 }
+
+
+

@@ -55,3 +55,6 @@ th_cohen_f <- function(f, qual="cohen"){
   return(results)
   
 }
+
+
+

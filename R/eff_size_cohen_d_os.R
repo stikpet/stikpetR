@@ -83,3 +83,6 @@ es_cohen_d_os <- function(data, mu=NULL){
   return(dos)
 
 }
+
+
+

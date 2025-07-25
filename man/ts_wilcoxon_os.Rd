@@ -143,8 +143,8 @@ but for the z-split method it will include them.
 
 For both methods now \eqn{n_r=n}, where n is the number of scores.
 
-The Pratt (1959) method and z-split method were found in Python’s documentation
-for scipy’s Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
+The Pratt (1959) method and z-split method were found in Python's documentation
+for scipy's Wilcoxon function (scipy, n.d.). They also refer to Cureton (1967) for the Pratt method.
 }
 \section{Before, After and Alternatives}{
 
@@ -177,13 +177,13 @@ ts_wilcoxon_os(ex2)
 
 }
 \references{
-Cureton, E. E. (1967). The normal approximation to the signed-rank sampling distribution when zero differences are present. \emph{Journal of the American Statistical Association, 62}(319), 1068–1069. https://doi.org/10.1080/01621459.1967.10500917
+Cureton, E. E. (1967). The normal approximation to the signed-rank sampling distribution when zero differences are present. \emph{Journal of the American Statistical Association, 62}(319), 1068-1069. https://doi.org/10.1080/01621459.1967.10500917
 
-Harris, T., & Hardin, J. W. (2013). Exact Wilcoxon Signed-Rank and Wilcoxon Mann–Whitney Ranksum Tests. \emph{The Stata Journal, 13}(2), 337–343. https://doi.org/10.1177/1536867X1301300208
+Harris, T., & Hardin, J. W. (2013). Exact Wilcoxon Signed-Rank and Wilcoxon Mann-Whitney Ranksum Tests. \emph{The Stata Journal, 13}(2), 337-343. https://doi.org/10.1177/1536867X1301300208
 
-Iman, R. L. (1974). Use of a t-statistic as an approximation to the exact distribution of the wildcoxon signed ranks test statistic. \emph{Communications in Statistics, 3}(8), 795–806. https://doi.org/10.1080/03610927408827178
+Iman, R. L. (1974). Use of a t-statistic as an approximation to the exact distribution of the wildcoxon signed ranks test statistic. \emph{Communications in Statistics, 3}(8), 795-806. https://doi.org/10.1080/03610927408827178
 
-Pratt, J. W. (1959). Remarks on zeros and ties in the Wilcoxon signed rank procedures. \emph{Journal of the American Statistical Association, 54}(287), 655–667. https://doi.org/10.1080/01621459.1959.10501526
+Pratt, J. W. (1959). Remarks on zeros and ties in the Wilcoxon signed rank procedures. \emph{Journal of the American Statistical Association, 54}(287), 655-667. https://doi.org/10.1080/01621459.1959.10501526
 
 scipy. (n.d.). Scipy.stats.wilcoxon. Scipy. https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.wilcoxon.html
 

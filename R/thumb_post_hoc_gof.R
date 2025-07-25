@@ -22,9 +22,9 @@
 #' 
 #' 
 #' @details
-#' For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramér V, when setting *convert=True* it will convert it again to Cohen w.
+#' For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramer V, when setting *convert=True* it will convert it again to Cohen w.
 #' 
-#' Other possible conversions are Cohen h' to Cohen h, and Cramér V to Cohen w.
+#' Other possible conversions are Cohen h' to Cohen h, and Cramer V to Cohen w.
 #' 
 #' See the separate documentation for each of the rules-of-thumb, or conversion.
 #' 
@@ -174,3 +174,6 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
   return (df)
   
 }
+
+
+

@@ -53,3 +53,6 @@ es_cohen_f <- function(nomField, scaleField, categories=NULL, useRanks=FALSE){
   
   return(f2**0.5)
 }
+
+
+

@@ -1,4 +1,4 @@
-#' Hartung-Argaç-Makambi Test
+#' Hartung-Argac-Makambi Test
 #' @description 
 #' Tests if the means (averages) of each category could be the same in the population.
 #' 
@@ -6,7 +6,7 @@
 #' 
 #' This test is a modification of the Welch one-way ANOVA.
 #' 
-#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #' 
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -58,9 +58,9 @@
 #' By setting 'version=2' the same version for \eqn{\phi} as in the Doex library will be used
 #' 
 #' @references 
-#' Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
+#' Cavus, M., & Yazici, B. (2020). Testing the equality of normal distributed and independent groups' means under unequal variances by doex package. *The R Journal, 12*(2), 134. https://doi.org/10.32614/RJ-2021-008
 #' 
-#' Hartung, J., Argaç, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. *Statistical Papers, 43*(2), 197–235. https://doi.org/10.1007/s00362-002-0097-8
+#' Hartung, J., Argac, D., & Makambi, K. H. (2002). Small sample properties of tests on homogeneity in one-way anova and meta-analysis. *Statistical Papers, 43*(2), 197-235. https://doi.org/10.1007/s00362-002-0097-8
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -105,3 +105,6 @@ ts_ham_owa <- function(nomField, scaleField, categories=NULL, version=c(1, 2)){
   return (testResults)
   
 }
+
+
+

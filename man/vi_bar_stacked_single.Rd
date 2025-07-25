@@ -21,8 +21,8 @@ A regular bar-chart but with the bars on top of each other, instead of next to e
 This is called a compound bar chart, stacked bar chart (Wilkinson, 2005, p. 157) or
 component bar chart (Zedeck, 2014, p. 54).
 
-It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category,
-each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
+It can be defined as: "a bar chart showing multiple bars stacked at each x-axis category,
+each representing a value of the stacking variable" (Upton & Cook, 2014, p. 88).
 
 This function is shown in this \href{https://youtu.be/j92bv5gFwpI}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/bar-chart.html}{PeterStatistics.com}
 }

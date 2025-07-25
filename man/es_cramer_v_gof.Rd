@@ -19,11 +19,11 @@ es_cramer_v_gof(chi2, n, k, bergsma = FALSE)
 Cramer's V value
 }
 \description{
-Cramér's V is one possible effect size when using a chi-square test. This measure is actually designed for the chi-square test for independence but can be adjusted for the goodness-of-fit test (Kelley & Preacher, 2012, p. 145; Mangiafico, 2016, p. 474).
+Cramer's V is one possible effect size when using a chi-square test. This measure is actually designed for the chi-square test for independence but can be adjusted for the goodness-of-fit test (Kelley & Preacher, 2012, p. 145; Mangiafico, 2016, p. 474).
 
 It gives an estimate of how well the data then fits the expected values, where 0 would indicate that they are exactly equal. If you use the equal distributed expected values the maximum value would be 1, otherwise it could actually also exceed 1.
 
-As for a classification Cramér's V can be converted to Cohen w, for which Cohen provides rules of thumb.
+As for a classification Cramer's V can be converted to Cohen w, for which Cohen provides rules of thumb.
 
 A Bergsma correction is also possible.
 
@@ -47,11 +47,11 @@ With:
 \deqn{\tilde{k} = k - \frac{\left(k - 1\right)^2}{n - 1}}
 \deqn{\varphi^2 = \frac{\chi_{GoF}^{2}}{n}}
 
-Cramér described V (1946, p. 282) for use with a test of independence. Others (e.g. K. Kelley & Preacher, 2012, p. 145; Mangiafico, 2016a, p. 474) added that this can also be use for goodness-of-fit tests.
+Cramer described V (1946, p. 282) for use with a test of independence. Others (e.g. K. Kelley & Preacher, 2012, p. 145; Mangiafico, 2016a, p. 474) added that this can also be use for goodness-of-fit tests.
 
 For the Bergsma (2013, pp. 324-325) correction the same thing applies
 
-Cramér's V can be converted to Cohen's w using \emph{es_convert(from="cramervgof", to = "cohenw", ex1 = df)}
+Cramer's V can be converted to Cohen's w using \emph{es_convert(from="cramervgof", to = "cohenw", ex1 = df)}
 
 Rules-of-thumb for the interpretation can then be used, using \emph{th_cohen_w(w)}
 }
@@ -77,10 +77,10 @@ Before this you will need a chi-square value. From either:
 \code{\link{ph_residual_gof_gof}} for Residuals Using Goodness-of-Fit Tests
 
 After this you might want to use some rule-of-thumb for the interpretation:
-\code{\link{th_cramer_v}} for various rules-of-thumb for Cramér V.
+\code{\link{th_cramer_v}} for various rules-of-thumb for Cramer V.
 
 or convert to Cohen w:
-\code{\link{es_convert}} to convert Cramér's V to Cohen w (using fr="cramervgof", to="cohenw", ex1=k).
+\code{\link{es_convert}} to convert Cramer's V to Cohen w (using fr="cramervgof", to="cohenw", ex1=k).
 \code{\link{th_cohen_w}} for various rules-of-thumb for Cohen w.
 
 Alternative effect sizes that use a chi-square value:
@@ -98,11 +98,11 @@ es_cramer_v_gof(chi2Value, n, k, bergsma=TRUE)
 
 }
 \references{
-Bergsma, W. (2013). A bias-correction for Cramér’s and Tschuprow’s. \emph{Journal of the Korean Statistical Society, 42}(3), 323–328. https://doi.org/10.1016/j.jkss.2012.10.002
+Bergsma, W. (2013). A bias-correction for Cramer's and Tschuprow's. \emph{Journal of the Korean Statistical Society, 42}(3), 323-328. https://doi.org/10.1016/j.jkss.2012.10.002
 
-Cramér, H. (1946). \emph{Mathematical methods of statistics}. Princeton University Press.
+Cramer, H. (1946). \emph{Mathematical methods of statistics}. Princeton University Press.
 
-Kelley, K., & Preacher, K. J. (2012). On effect size. \emph{Psychological Methods, 17}(2), 137–152. https://doi.org/10.1037/a0028086
+Kelley, K., & Preacher, K. J. (2012). On effect size. \emph{Psychological Methods, 17}(2), 137-152. https://doi.org/10.1037/a0028086
 
 Mangiafico, S. S. (2016). Summary and analysis of extension program evaluation in R (1.13.5). Rutger Cooperative Extension.
 }

@@ -108,3 +108,6 @@ th_rank_biserial <- function(rb, qual="cohen"){
   return(results)
   
 }
+
+
+

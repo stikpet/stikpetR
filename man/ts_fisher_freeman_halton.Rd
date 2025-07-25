@@ -34,9 +34,9 @@ ts_fisher(var1, var2)
 
 }
 \references{
-Fisher, R. A. (1922). On the Interpretation of \eqn{\chi^2} from Contingency Tables, and the Calculation of P. \emph{Journal of the Royal Statistical Society, 85}(1), 87–94. https://doi.org/10.2307/2340521
+Fisher, R. A. (1922). On the Interpretation of \eqn{\chi^2} from Contingency Tables, and the Calculation of P. \emph{Journal of the Royal Statistical Society, 85}(1), 87-94. https://doi.org/10.2307/2340521
 
-Freeman, G. H., & Halton, J. H. (1951). Note on an exact treatment of contingency, goodness of fit and other problems of significance. \emph{Biometrika, 38}(1/2), 141–149. https://doi.org/10.2307/2332323
+Freeman, G. H., & Halton, J. H. (1951). Note on an exact treatment of contingency, goodness of fit and other problems of significance. \emph{Biometrika, 38}(1/2), 141-149. https://doi.org/10.2307/2332323
 }
 \author{
 P. Stikker

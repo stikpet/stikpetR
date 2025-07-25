@@ -69,7 +69,7 @@
 #' 
 #' Sachs, L. (1982). *Applied statistics: A handbook of techniques*. Springer-Verlag.
 #' 
-#' Schaich, E., & Hamerle, A. (1984). *Verteilungsfreie statistische Prüfverfahren*. Springer. doi:10.1007/978-3-642-70032-3
+#' Schaich, E., & Hamerle, A. (1984). *Verteilungsfreie statistische Prufverfahren*. Springer. doi:10.1007/978-3-642-70032-3
 #' 
 #' Zaiontz, C. (n.d.). Schaich-Hamerle Test after KW. Real Statistics Using Excel. Retrieved October 25, 2023, from https://real-statistics.com/one-way-analysis-of-variance-anova/kruskal-wallis-test/schaich-hamerle-test/
 #' 
@@ -179,3 +179,6 @@ ph_nemenyi <- function(catField, ordField,
   return (res)
   
 }
+
+
+

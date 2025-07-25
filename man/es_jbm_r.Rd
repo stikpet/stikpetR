@@ -42,9 +42,9 @@ The original article has in the equation for \eqn{\mu_{\delta}} the first factor
 Alexis (2014) indicated this was wrong and \eqn{n} should be used.
 }
 \references{
-Alexis. (2014, September 7). Answer to “Effect size of Cochran’s Q.” Cross Validated. https://stats.stackexchange.com/a/114649
+Alexis. (2014, September 7). Answer to "Effect size of Cochran's Q." Cross Validated. https://stats.stackexchange.com/a/114649
 
-Berry, K. J., Johnston, J. E., & Mielke, P. W. (2007). An alternative measure of effect size for Cochran’s Q test for related proportions. \emph{Perceptual and Motor Skills, 104}(3_suppl), 1236–1242. doi:10.2466/pms.104.4.1236-1242
+Berry, K. J., Johnston, J. E., & Mielke, P. W. (2007). An alternative measure of effect size for Cochran's Q test for related proportions. \emph{Perceptual and Motor Skills, 104}(3_suppl), 1236-1242. doi:10.2466/pms.104.4.1236-1242
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

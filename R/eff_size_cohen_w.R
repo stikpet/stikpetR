@@ -59,3 +59,6 @@ es_cohen_w <-function(chi2, n){
   
   return (w)
 }
+
+
+

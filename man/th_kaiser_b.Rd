@@ -30,7 +30,7 @@ Kaiser's rule of thumb for Kaiser b (1968, p. 212):\tabular{ll}{
 }
 }
 \references{
-Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. \emph{American Political Science Review, 62}(1), 208–215. doi:10.2307/1953335
+Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. \emph{American Political Science Review, 62}(1), 208-215. doi:10.2307/1953335
 }
 \seealso{
 \code{\link{me_qv}}, to determine Kaiser b

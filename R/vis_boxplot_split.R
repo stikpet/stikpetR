@@ -43,3 +43,6 @@ vi_boxplot_split <- function(catField, scaleField, categories=NULL, ...){
   #create the split boxplot
   boxplot(score~category, data=df, xlab=scaleName, ylab=catName, horizontal=TRUE, ...)  
 }
+
+
+

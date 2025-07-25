@@ -73,3 +73,6 @@ ts_z_ps <- function(field1, field2, dmu=0, dsigma=NULL){
   return(results)
   
 }
+
+
+

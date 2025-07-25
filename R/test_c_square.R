@@ -20,28 +20,28 @@
 #' \item{categories}{the two categories that were used}
 #' 
 #' @details
-#' The test statistic (Schüürhuis et al., 2025, p. 9, eq. 17):
+#' The test statistic (Schuurhuis et al., 2025, p. 9, eq. 17):
 #' \deqn{C^2 = \frac{4}{\hat{\sigma}_N^2} \times \hat{\theta}_N\times\left(1 - \hat{\theta}_N\right) \times \left(\hat{\theta}_N - \frac{1}{2}\right)^2}
 #' 
-#' the estimate of the overall variance of (Schüürhuis et al., 2025, p. 5, eq. 5):
+#' the estimate of the overall variance of (Schuurhuis et al., 2025, p. 5, eq. 5):
 #' \deqn{\hat{\sigma}_N^2 = \frac{1}{d_n}\times\left(\left(\sum_{k=1}^2 SS_k^*\right) - n_1 \times n_2 \times \left(\hat{\theta}_N\times\left(1 - \hat{\theta}_N\right) - \frac{\hat{\tau}_N}{4}\right)\right)}
 #' 
 #' the sum of squares for each of the two categories of the placement values:
 #' \deqn{SS_k^\ast = \sum_{i=1}^{n_k} \left(R_{ik}^\ast - \bar{R}_{k}^*\right)^2}
 #' 
-#' the mean of placement values (Schüürhuis et al., 2025, p. 5):
+#' the mean of placement values (Schuurhuis et al., 2025, p. 5):
 #' \deqn{\bar{R}_{k}^\ast = \frac{\sum_{i=1}^{n_k} R_{ik}^\ast}{n_k}}
 #' 
 #' the placement values:
 #' \deqn{R_{ik}^* = R_{ik} - R_{ik}^{(k)}}
 #' 
-#' Denominator (Schüürhuis et al., 2025, p. 5):
+#' Denominator (Schuurhuis et al., 2025, p. 5):
 #' \deqn{d_n = n_1\times\left(n_1 - 1\right) \times n_2\times\left(n_2 - 1\right)}
 #' 
-#' the probability of ties in the overlap (Schüürhuis et al., 2025, p. 5, eq. 4):
+#' the probability of ties in the overlap (Schuurhuis et al., 2025, p. 5, eq. 4):
 #' \deqn{\hat{\tau}_N = \frac{1}{n_1}\times\left(\bar{R}_2^+ - \bar{R}_2^- - \left(\bar{R}_2^{(2)+} - \bar{R}_2^{(2)-}\right)\right)}
 #' 
-#' estimated Mann-Whitney effect (Schüürhuis et al., 2025, p. 4, eq. 1):
+#' estimated Mann-Whitney effect (Schuurhuis et al., 2025, p. 4, eq. 1):
 #' \deqn{\hat{\theta} = \frac{1}{n_1} \times \left(\bar{R}_2 - \frac{n_2 + 1}{2}\right)}
 #' note that this is the same as \eqn{\hat{p}} in the Brunner-Munzel test.
 #' 
@@ -68,7 +68,7 @@
 #' Independent samples tests for a binary vs ordinal variable include Brunner-Munzel (\code{\link{ts_brunner_munzel}}), C-square (\code{\link{ts_c_square}}), Cliff-Delta (\code{\link{ts_cliff_delta_is}}), Fligner-Policello (\code{\link{ts_fligner_policello}}), Mann-Whitney U (\code{\link{ts_mann_whitney}}), Mood-Median (\code{\link{ts_mood_median}})
 #' 
 #' @references 
-#' Schüürhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
+#' Schuurhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -162,3 +162,6 @@ ts_c_square <- function(catField, ordField, categories=NULL, levels=NULL){
   
   return(results)  
 }
+
+
+

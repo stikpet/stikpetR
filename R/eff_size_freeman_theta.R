@@ -35,7 +35,7 @@
 #' @references
 #' Freeman, L. C. (1965). *Elementary applied statistics: For students in behavioral science*. Wiley.
 #' 
-#' Jacobson, P. E. (1972). Applying measures of association to nominal-ordinal data. *The Pacific Sociological Review, 15*(1), 41–60. doi:10.2307/1388286
+#' Jacobson, P. E. (1972). Applying measures of association to nominal-ordinal data. *The Pacific Sociological Review, 15*(1), 41-60. doi:10.2307/1388286
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -80,3 +80,6 @@ es_freeman_theta <- function(catField, ordField, categories=NULL, levels=NULL){
   
   return (theta)
 }
+
+
+

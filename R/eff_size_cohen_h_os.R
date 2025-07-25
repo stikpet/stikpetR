@@ -133,6 +133,9 @@ es_cohen_h_os <- function(data, p0=0.5, p0Cat=NULL, codes=NULL){
   results <- data.frame(h2, cat_used)
   colnames(results)<-c("Cohen h'", "comment")
   
-  return (results)
+  return(results)
 
 }
+
+
+

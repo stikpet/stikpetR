@@ -19,7 +19,7 @@ Dataframe with:
 \item{g for cat 2}{Cohen g for category 2}
 }
 \description{
-Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003),
+Cohen's g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003),
 score or Wald test. It is simply the difference of the sample proportion with 0.5.
 
 A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}

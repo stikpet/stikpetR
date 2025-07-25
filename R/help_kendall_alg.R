@@ -73,3 +73,6 @@ he_kendall <- function(n, c){
   
   return(prob)
 }
+
+
+

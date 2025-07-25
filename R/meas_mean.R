@@ -92,13 +92,13 @@
 #' @references 
 #' Aristotle. (1850). *The nicomachean ethics of Aristotle* (R. W. Browne, Trans.). Henry G. Bohn.
 #' 
-#' Dixon, W. J. (1960). Simplified estimation from censored normal samples. *The Annals of Mathematical Statistics, 31*(2), 385–391. https://doi.org/10.1214/aoms/1177705900
+#' Dixon, W. J. (1960). Simplified estimation from censored normal samples. *The Annals of Mathematical Statistics, 31*(2), 385-391. https://doi.org/10.1214/aoms/1177705900
 #' 
-#' Louis, P., Núñez, M., & Xefteris, D. (2023). Trimming extreme reports in preference aggregation. *Games and Economic Behavior, 137*, 116–151. https://doi.org/10.1016/j.geb.2022.11.003
+#' Louis, P., Nunez, M., & Xefteris, D. (2023). Trimming extreme reports in preference aggregation. *Games and Economic Behavior, 137*, 116-151. https://doi.org/10.1016/j.geb.2022.11.003
 #' 
 #' Lovitt, W. V., & Holtzclaw, H. F. (1931). *Statistics*. Prentice Hall.
 #' 
-#' Tukey, J. W. (1962). The future of data analysis. *The Annals of Mathematical Statistics, 33*(1), 1–67. https://doi.org/10.1214/aoms/1177704711
+#' Tukey, J. W. (1962). The future of data analysis. *The Annals of Mathematical Statistics, 33*(1), 1-67. https://doi.org/10.1214/aoms/1177704711
 #' 
 #' Weinberg, G. H., & Schumaker, J. A. (1962). *Statistics An intuitive approach*. Wadsworth Publishing.
 #' 
@@ -184,3 +184,6 @@ me_mean <- function(data,
   
   return (res)
 }
+
+
+

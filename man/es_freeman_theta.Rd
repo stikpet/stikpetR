@@ -46,7 +46,7 @@ With:
 \references{
 Freeman, L. C. (1965). \emph{Elementary applied statistics: For students in behavioral science}. Wiley.
 
-Jacobson, P. E. (1972). Applying measures of association to nominal-ordinal data. \emph{The Pacific Sociological Review, 15}(1), 41–60. doi:10.2307/1388286
+Jacobson, P. E. (1972). Applying measures of association to nominal-ordinal data. \emph{The Pacific Sociological Review, 15}(1), 41-60. doi:10.2307/1388286
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

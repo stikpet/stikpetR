@@ -54,3 +54,6 @@ r_rosenthal <- function(zVal, n){
   return (r)
   
 }
+
+
+

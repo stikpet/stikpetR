@@ -80,7 +80,7 @@ The original source for the formula is most likely Mood (1950), but the ones sho
 }
 }
 \references{
-Brown, G. W., & Mood, A. M. (1951). On median tests for linear hypotheses. Proceedings of the Second Berkeley Symposium on Mathematical Statistics and Probability, 2, 159–167.
+Brown, G. W., & Mood, A. M. (1951). On median tests for linear hypotheses. Proceedings of the Second Berkeley Symposium on Mathematical Statistics and Probability, 2, 159-167.
 
 Mood, A. M. (1950). \emph{Introduction to the theory of statistics}. McGraw-Hill.
 }

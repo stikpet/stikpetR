@@ -56,7 +56,7 @@
 #' }
 #' 
 #' @references
-#' Critchlow, D. E., & Fligner, M. A. (1991). On distribution-free multiple comparisons in the one-way analysis of variance. *Communications in Statistics - Theory and Methods, 20*(1), 127–139. doi:10.1080/03610929108830487
+#' Critchlow, D. E., & Fligner, M. A. (1991). On distribution-free multiple comparisons in the one-way analysis of variance. *Communications in Statistics - Theory and Methods, 20*(1), 127-139. doi:10.1080/03610929108830487
 #' 
 #' Dwass, M. (1960). *Some k-sample rank-order tests*. In I. Olkin, S. G. Ghurye, W. Hoeffding, W. G. Madow, & H. B. Mann (Eds.), Contributions to probability and statistics; Essays in honor of Harold Hotelling. Stanford University Press.
 #' 
@@ -66,7 +66,7 @@
 #' 
 #' Shigenobu. (2004, July 28). Multiple comparisons using the Steel-Dwass method. http://aoki2.si.gunma-u.ac.jp/R/Steel-Dwass.html
 #' 
-#' Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. Technometrics, 2(2), 197–207. doi:10.1080/00401706.1960.10489894
+#' Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. Technometrics, 2(2), 197-207. doi:10.1080/00401706.1960.10489894
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -144,3 +144,6 @@ ph_sdcf <- function(catField, ordField,
   return (res)
   
 }
+
+
+

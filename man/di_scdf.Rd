@@ -97,23 +97,23 @@ di_scdf(n, rs, method="AS89")
 
 }
 \references{
-Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman’s rho. \emph{Applied Statistics, 24}(3), 377–379. https://doi.org/10.2307/2347111
+Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman's rho. \emph{Applied Statistics, 24}(3), 377-379. https://doi.org/10.2307/2347111
 
-Choi, S. C. (1977). Tests of equality of dependent correlation coefficients. \emph{Biometrika, 64}(3), 645–647. https://doi.org/10.1093/biomet/64.3.645
+Choi, S. C. (1977). Tests of equality of dependent correlation coefficients. \emph{Biometrika, 64}(3), 645-647. https://doi.org/10.1093/biomet/64.3.645
 
-Fieller, E. C., Hartley, H. O., & Pearson, E. S. (1957). Tests for rank correlation coefficients. I. \emph{Biometrika, 44}(3–4), 470–481. https://doi.org/10.1093/biomet/44.3-4.470
+Fieller, E. C., Hartley, H. O., & Pearson, E. S. (1957). Tests for rank correlation coefficients. I. \emph{Biometrika, 44}(3-4), 470-481. https://doi.org/10.1093/biomet/44.3-4.470
 
-Iman, R. L., & Conover, W. J. (1978). Approximations of the critical region for spearman’s rho with and without ties present. \emph{Communications in Statistics - Simulation and Computation, 7}(3), 269–282. https://doi.org/10.1080/03610917808812076
+Iman, R. L., & Conover, W. J. (1978). Approximations of the critical region for spearman's rho with and without ties present. \emph{Communications in Statistics - Simulation and Computation, 7}(3), 269-282. https://doi.org/10.1080/03610917808812076
 
 Kendall, M., & Stuart, A. (1979). \emph{The advanced theory of statistics. Volume 2: Inference and relationship} (4th ed.). Griffin.
 
-Olds, E. G. (1938). Distributions of sums of squares of rank differences for small numbers of individuals. \emph{The Annals of Mathematical Statistics, 9}(2), 133–148. https://doi.org/10.1214/aoms/1177732332
+Olds, E. G. (1938). Distributions of sums of squares of rank differences for small numbers of individuals. \emph{The Annals of Mathematical Statistics, 9}(2), 133-148. https://doi.org/10.1214/aoms/1177732332
 
-Olds, E. G. (1949). The 5\% significance levels for sums of squares of rank differences and a correction. \emph{The Annals of Mathematical Statistics, 20}(1), 117–118. https://doi.org/10.1214/aoms/1177730099
+Olds, E. G. (1949). The 5\% significance levels for sums of squares of rank differences and a correction. \emph{The Annals of Mathematical Statistics, 20}(1), 117-118. https://doi.org/10.1214/aoms/1177730099
 
-Pitman, E. J. G. (1937). Significance tests which may be applied to samples from any populations. II. The correlation coefficient test. Supplement to the \emph{Journal of the Royal Statistical Society, 4}(2), 225–232. https://doi.org/10.2307/2983647
+Pitman, E. J. G. (1937). Significance tests which may be applied to samples from any populations. II. The correlation coefficient test. Supplement to the \emph{Journal of the Royal Statistical Society, 4}(2), 225-232. https://doi.org/10.2307/2983647
 
-van de Wiel, M. A., & Bucchianico, A. D. (2001). Fast computation of the exact null distribution of Spearman’s rho and Page’s L statistic for samples with and without ties. \emph{Journal of Statistical Planning and Inference, 92}(1–2), 133–145. https://doi.org/10.1016/S0378-3758(00)00166-X
+van de Wiel, M. A., & Bucchianico, A. D. (2001). Fast computation of the exact null distribution of Spearman's rho and Page's L statistic for samples with and without ties. \emph{Journal of Statistical Planning and Inference, 92}(1-2), 133-145. https://doi.org/10.1016/S0378-3758(00)00166-X
 }
 \author{
 P. Stikker

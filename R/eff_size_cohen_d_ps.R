@@ -48,7 +48,7 @@
 #' cohen.d(datF$var1, datF$var2, paired=TRUE, within=FALSE)
 #'
 #' @references
-#' Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In *Introduction to Meta-Analysis* (pp. 21–32). John Wiley & Sons, Ltd. doi:10.1002/9780470743386
+#' Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Effect sizes based on means. In *Introduction to Meta-Analysis* (pp. 21-32). John Wiley & Sons, Ltd. doi:10.1002/9780470743386
 #'
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #'
@@ -86,3 +86,6 @@ es_cohen_d_ps <- function(field1, field2, within=TRUE){
   return(dz)
 
 }
+
+
+

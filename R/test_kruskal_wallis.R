@@ -139,9 +139,9 @@
 #'
 #'
 #' @references
-#' Iman, R. L., & Davenport, J. M. (1976). New approximations to the exact distribution of the kruskal-wallis test statistic. *Communications in Statistics - Theory and Methods, 5*(14), 1335–1348. doi:10.1080/03610927608827446
+#' Iman, R. L., & Davenport, J. M. (1976). New approximations to the exact distribution of the kruskal-wallis test statistic. *Communications in Statistics - Theory and Methods, 5*(14), 1335-1348. doi:10.1080/03610927608827446
 #' 
-#' Kruskal, W. H., & Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. *Journal of the American Statistical Association, 47*(260), 583–621. doi:10.1080/01621459.1952.10483441
+#' Kruskal, W. H., & Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. *Journal of the American Statistical Association, 47*(260), 583-621. doi:10.1080/01621459.1952.10483441
 #' 
 #' Wallace, D. L. (1959). Simplified beta-approximations to the Kruskal-Wallis H test. *Journal of the American Statistical Association, 54*(285), 225. doi:10.2307/2282148
 #' 
@@ -302,3 +302,6 @@ ts_kruskal_wallis <- function(catField, ordField, categories=NULL, levels=NULL,
   }
   return (res)
 }
+
+
+

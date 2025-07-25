@@ -17,23 +17,23 @@ me_quantiles(
 )
 }
 \arguments{
-\item{data}{: list or dataframe}
+\item{data}{list or dataframe}
 
-\item{levels}{: list, optional coding to use}
+\item{levels}{list, optional coding to use}
 
-\item{k}{: number of quantiles}
+\item{k}{number of quantiles}
 
-\item{method}{: string, optional which method to use to calculate quartiles}
+\item{method}{string, optional which method to use to calculate quartiles}
 
-\item{indexMethod}{: {"sas1", "sas4", "excel", "hl", "hf8", "hf9"}, optional to indicate which type of indexing to use. Default is "sas1"}
+\item{indexMethod}{c("sas1", "sas4", "excel", "hl", "hf8", "hf9"), optional to indicate which type of indexing to use. Default is "sas1"}
 
-\item{q1Frac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"}
+\item{q1Frac}{c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"), optional to indicate what type of rounding to use for quantiles below 50 percent. Default is "linear"}
 
-\item{q1Int}{: {"int", "midpoint"}, optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"}
+\item{q1Int}{c("int", "midpoint"), optional to indicate the use of the integer or the midpoint method for first quarter. Default is "int"}
 
-\item{q3Frac}{: {"linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"}, optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"}
+\item{q3Frac}{c("linear", "down", "up", "bankers", "nearest", "halfdown", "midpoint"), optional to indicate what type of rounding to use for quantiles equal or above 50 percent. Default is "linear"}
 
-\item{q3Int}{: {"int", "midpoint"}, optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
+\item{q3Int}{c("int", "midpoint"), optional  to indicate the use of the integer or the midpoint method for quantiles equal or above 50 percent. Default is "int"
 
 method can be set to "own" and then provide the next parameters, or any of the methods listed in the notes.}
 }
@@ -143,27 +143,27 @@ me_quantiles(ex3, levels=order)
 
 }
 \references{
-Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. \emph{The American Statistician, 41}(3), 200–203. https://doi.org/10.1080/00031305.1987.10475479
+Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. \emph{The American Statistician, 41}(3), 200-203. https://doi.org/10.1080/00031305.1987.10475479
 
-Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225–272.
+Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225-272.
 
-Gumbel, E. J. (1939). La Probabilité des Hypothèses. \emph{Compes Rendus de l’ Académie des Sciences, 209}, 645–647.
+Gumbel, E. J. (1939). La Probabilite des Hypotheses. \emph{Compes Rendus de l' Academie des Sciences, 209}, 645-647.
 
-Hazen, A. (1914). Storage to be provided in impounding municipal water supply. \emph{Transactions of the American Society of Civil Engineers, 77}(1), 1539–1640. https://doi.org/10.1061/taceat.0002563
+Hazen, A. (1914). Storage to be provided in impounding municipal water supply. \emph{Transactions of the American Society of Civil Engineers, 77}(1), 1539-1640. https://doi.org/10.1061/taceat.0002563
 
 Hogg, R. V., & Ledolter, J. (1992). \emph{Applied statistics for engineers and physical scientists} (2nd int.). Macmillan.
 
-Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. \emph{The American Statistician, 50}(4), 361–365. https://doi.org/10.2307/2684934
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. \emph{The American Statistician, 50}(4), 361-365. https://doi.org/10.2307/2684934
 
-Langford, E. (2006). Quartiles in elementary statistics. \emph{Journal of Statistics Education, 14}(3), 1–17. https://doi.org/10.1080/10691898.2006.11910589
+Langford, E. (2006). Quartiles in elementary statistics. \emph{Journal of Statistics Education, 14}(3), 1-17. https://doi.org/10.1080/10691898.2006.11910589
 
 Lohninger, H. (n.d.). Quartile. Fundamentals of Statistics. Retrieved April 7, 2023, from http://www.statistics4u.com/fundstat_eng/cc_quartile.html
 
-McAlister, D. (1879). The law of the geometric mean. \emph{Proceedings of the Royal Society of London, 29}(196–199), 367–376. https://doi.org/10.1098/rspl.1879.0061
+McAlister, D. (1879). The law of the geometric mean. \emph{Proceedings of the Royal Society of London, 29}(196-199), 367-376. https://doi.org/10.1098/rspl.1879.0061
 
 Mendenhall, W., & Sincich, T. (1992). \emph{Statistics for engineering and the sciences} (3rd ed.). Dellen Publishing Company.
 
-Parzen, E. (1979). Nonparametric statistical data modeling. \emph{Journal of the American Statistical Association, 74}(365), 105–121. https://doi.org/10.1080/01621459.1979.10481621
+Parzen, E. (1979). Nonparametric statistical data modeling. \emph{Journal of the American Statistical Association, 74}(365), 105-121. https://doi.org/10.1080/01621459.1979.10481621
 
 SAS. (1990). SAS procedures guide: Version 6 (3rd ed.). SAS Institute.
 
@@ -173,7 +173,7 @@ Snedecor, G. W. (1940). \emph{Statistical methods applied to experiments in agri
 
 Vining, G. G. (1998). \emph{Statistical methods for engineers}. Duxbury Press.
 
-Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
+Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniors Vetenskaps Akademien, 153, 1-55.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}

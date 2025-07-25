@@ -81,19 +81,19 @@ anova_stats(aov(scores~groups))
 omega_squared(aov(scores~groups))
 }
 \references{
-Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. \emph{Journal of Experimental Social Psychology, 74}, 187–195. doi:10.1016/j.jesp.2017.09.004
+Albers, C., & Lakens, D. (2018). When power analyses based on pilot data are biased: Inaccurate effect size estimators and follow-up bias. \emph{Journal of Experimental Social Psychology, 74}, 187-195. doi:10.1016/j.jesp.2017.09.004
 
-Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley’s \eqn{\epsilon} and Hays’ \eqn{\omega}. \emph{Educational and Psychological Measurement, 35}(3), 541–554. doi:10.1177/001316447503500304
+Carroll, R. M., & Nordholm, L. A. (1975). Sampling characteristics of Kelley's \eqn{\epsilon} and Hays' \eqn{\omega}. \emph{Educational and Psychological Measurement, 35}(3), 541-554. doi:10.1177/001316447503500304
 
 Hays, W. L. (1973). \emph{Statistics for the social sciences} (2nd ed.). Holt, Rinehart and Winston.
 
-Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. \emph{Canadian Psychological Review / Psychologie Canadienne, 16}(1), 44–48. doi:10.1037/h0081789
+Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. \emph{Canadian Psychological Review / Psychologie Canadienne, 16}(1), 44-48. doi:10.1037/h0081789
 
-Kirk, R. E. (1996). Practical significance: A concept whose time has come. \emph{Educational and Psychological Measurement, 56}(5), 746–759. doi:10.1177/0013164496056005002
+Kirk, R. E. (1996). Practical significance: A concept whose time has come. \emph{Educational and Psychological Measurement, 56}(5), 746-759. doi:10.1177/0013164496056005002
 
-Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. \emph{Behaviormetrika, 40}(2), 129–147. doi:10.2333/bhmk.40.129
+Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. \emph{Behaviormetrika, 40}(2), 129-147. doi:10.2333/bhmk.40.129
 
-Olejnik, S., & Algina, J. (2003). Generalized eta and omega squared statistics: Measures of effect size for some common research designs. \emph{Psychological Methods, 8}(4), 434–447. doi:10.1037/1082-989X.8.4.434
+Olejnik, S., & Algina, J. (2003). Generalized eta and omega squared statistics: Measures of effect size for some common research designs. \emph{Psychological Methods, 8}(4), 434-447. doi:10.1037/1082-989X.8.4.434
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

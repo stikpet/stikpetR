@@ -63,6 +63,8 @@ rcmdcheck("stikpetR")
 #setwd("H:/PeterStatistics/Packages/R")
 #devtools::create("stikpetR")
 
+# DOCUMENTATION ASCII FIXES
+# see documentation errors
 setwd("H:/PeterStatistics/Packages/R/stikpetR")
 results <- lapply(rd_files, tools::checkRd)
 names(results) <- basename(rd_files)
@@ -74,16 +76,75 @@ for (file in names(results)) {
 }
 
 
-fix_quotes <- function(file) {
-  text <- readLines(file, encoding = "UTF-8")
-  text <- gsub("[‘’]", "'", text)  # Replace curly single quotes
-  text <- gsub("[“”]", "\"", text) # Replace curly double quotes
-  writeLines(text, file, useBytes = TRUE)
+
+# preview files
+setwd("H:/PeterStatistics/Packages/R/stikpetR")
+preview_roxygen_issues <- function(file) {
+  lines <- readLines(file, encoding = "UTF-8")
+  roxy_lines <- grep("^#'", lines, value = TRUE)
+  
+  if (any(grepl("[^\x01-\x7F‘’“”éÉàèê–—•]", roxy_lines))) {
+    cat("Needs cleaning:", file, "\n")
+    bad_lines <- grep("[^\x01-\x7F‘’“”éÉàèê–—•]", roxy_lines, value = TRUE)
+    print(bad_lines)
+  }
+}
+r_files <- list.files("R", pattern = "\\.R$", full.names = TRUE)
+invisible(lapply(r_files, preview_roxygen_issues))
+
+# replace non-ASCII text in all files
+fix_roxygen_quotes <- function(file) {
+  lines <- readLines(file, encoding = "UTF-8")
+  for (i in seq_along(lines)) {
+    if (grepl("^#'", lines[i])) {
+      lines[i] <- gsub("[‘’]", "'", lines[i])  # Single quotes
+      lines[i] <- gsub("[“”]", '"', lines[i])  # Double quotes
+      lines[i] <- gsub("á", "a", lines[i])
+      lines[i] <- gsub("ä", "a", lines[i])
+      lines[i] <- gsub("à", "a", lines[i])
+      lines[i] <- gsub("æ", "a", lines[i])
+      lines[i] <- gsub("ā", "a", lines[i])
+      
+      lines[i] <- gsub("ç", "c", lines[i])
+      
+      lines[i] <- gsub("é", "e", lines[i])
+      lines[i] <- gsub("é", "e", lines[i])
+      lines[i] <- gsub("è", "e", lines[i])
+      lines[i] <- gsub("É", "E", lines[i])
+      
+      lines[i] <- gsub("ğ", "g", lines[i])
+      
+      lines[i] <- gsub("í", "i", lines[i])
+      lines[i] <- gsub("ı", "i", lines[i])
+      lines[i] <- gsub("İ", "I", lines[i])
+      
+      lines[i] <- gsub("ñ", "n", lines[i])
+      lines[i] <- gsub("ö", "o", lines[i])
+      lines[i] <- gsub("Ö", "O", lines[i])
+      lines[i] <- gsub("ø", "o", lines[i])
+      lines[i] <- gsub("ó", "o", lines[i])
+      lines[i] <- gsub("ó", "o", lines[i])
+      lines[i] <- gsub("ő", "o", lines[i])
+      
+      lines[i] <- gsub("Š", "S", lines[i])
+      lines[i] <- gsub("š", "s", lines[i])
+      lines[i] <- gsub("ş", "s", lines[i])
+      
+      lines[i] <- gsub("ü", "u", lines[i])
+      lines[i] <- gsub("ú", "u", lines[i])
+      lines[i] <- gsub("×", "x", lines[i])
+      
+      
+      lines[i] <- gsub("–|—", "-", lines[i])   # dashes
+      lines[i] <- gsub("•", "*", lines[i])     # bullet
+    }
+  }
+  writeLines(c(lines, ""), file, useBytes = TRUE)
 }
 
-# Apply to all Rd files
-rd_files <- list.files("man", pattern = "\\.Rd$", full.names = TRUE)
-lapply(rd_files, fix_quotes)
+# Apply to all R files
+r_files <- list.files("R", pattern = "\\.R$", full.names = TRUE)
+invisible(lapply(r_files, fix_roxygen_quotes))
 
 
 

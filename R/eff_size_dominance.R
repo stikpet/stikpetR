@@ -99,3 +99,6 @@ es_dominance <- function(data, levels=NULL, mu=NULL, out="dominance"){
   
   return(results)
 }
+
+
+

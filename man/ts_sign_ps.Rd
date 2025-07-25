@@ -69,9 +69,9 @@ signTest(ord1, ord2, paired=TRUE)
 SIGN.test(ord1, ord2)
 }
 \references{
-Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observed in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186–190. doi:10.1098/rstl.1710.0011
+Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observed in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186-190. doi:10.1098/rstl.1710.0011
 
-Dixon, W. J., & Mood, A. M. (1946). The statistical sign test. \emph{Journal of the American Statistical Association, 41}(236), 557–566. doi:10.1080/01621459.1946.10501898
+Dixon, W. J., & Mood, A. M. (1946). The statistical sign test. \emph{Journal of the American Statistical Association, 41}(236), 557-566. doi:10.1080/01621459.1946.10501898
 
 SPSS. (2006). SPSS 15.0 algorithms.
 }

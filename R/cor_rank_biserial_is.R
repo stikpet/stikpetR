@@ -35,11 +35,11 @@
 #' \code{\link{th_cohen_d}}, rules of thumb for Cohen d
 #' 
 #' @references 
-#' Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. *Psychological Bulletin, 114*(3), 494–509. https://doi.org/10.1037/0033-2909.114.3.494
+#' Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. *Psychological Bulletin, 114*(3), 494-509. https://doi.org/10.1037/0033-2909.114.3.494
 #' 
-#' Cureton, E. E. (1956). Rank-biserial correlation. *Psychometrika, 21*(3), 287–290. https://doi.org/10.1007/BF02289138
+#' Cureton, E. E. (1956). Rank-biserial correlation. *Psychometrika, 21*(3), 287-290. https://doi.org/10.1007/BF02289138
 #' 
-#' Glass, G. V. (1966). Note on rank biserial correlation. *Educational and Psychological Measurement, 26*(3), 623–631. https://doi.org/10.1177/001316446602600307
+#' Glass, G. V. (1966). Note on rank biserial correlation. *Educational and Psychological Measurement, 26*(3), 623-631. https://doi.org/10.1177/001316446602600307
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -107,3 +107,6 @@ r_rank_biserial_is <- function(catField, ordField, categories=NULL, levels=NULL)
   rb = 2*(r1Avg - r2Avg)/n  
   return(rb)  
 }
+
+
+

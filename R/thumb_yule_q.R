@@ -25,7 +25,7 @@
 #' \code{\link{es_bin_bin}}, to determine Yule Q
 #' 
 #' @references
-#' Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
+#' Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal's Gamma) & Yule's Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -51,3 +51,6 @@ th_yule_q <- function(q, qual="glen"){
   return(results)
   
 }
+
+
+

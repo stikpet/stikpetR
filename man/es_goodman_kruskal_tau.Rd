@@ -50,13 +50,13 @@ test for tau. Margolin and Light (1974) reach the same conclusion and proof the
 equivelance.
 }
 \references{
-Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732–764. https://doi.org/10.2307/2281536
+Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732-764. https://doi.org/10.2307/2281536
 
-Light, R. J., & Margolin, B. H. (1971). An analysis of variance for categorical data. \emph{Journal of the American Statistical Association, 66}(335), 534–544. https://doi.org/10.1080/01621459.1971.10482297
+Light, R. J., & Margolin, B. H. (1971). An analysis of variance for categorical data. \emph{Journal of the American Statistical Association, 66}(335), 534-544. https://doi.org/10.1080/01621459.1971.10482297
 
-Margolin, B. H., & Light, R. J. (1974). An analysis of variance for categorical data, II: Small sample comparisons with chi square and other competitors. \emph{Journal of the American Statistical Association, 69}(347), 755–764. https://doi.org/10.1080/01621459.1974.10480201
+Margolin, B. H., & Light, R. J. (1974). An analysis of variance for categorical data, II: Small sample comparisons with chi square and other competitors. \emph{Journal of the American Statistical Association, 69}(347), 755-764. https://doi.org/10.1080/01621459.1974.10480201
 
-Särndal, C. E. (1974). A comparative study of association measures. \emph{Psychometrika, 39}(2), 165–187. https://doi.org/10.1007/BF02291467
+Sarndal, C. E. (1974). A comparative study of association measures. \emph{Psychometrika, 39}(2), 165-187. https://doi.org/10.1007/BF02291467
 }
 \author{
 P. Stikker

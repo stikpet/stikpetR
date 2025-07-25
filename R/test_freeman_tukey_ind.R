@@ -6,7 +6,7 @@
 #' 
 #' The Freeman-Tukey test does the same, but attempts to approximate the normal distribution with a binomial or Poisson distribution.
 #' 
-#' One problem though is that the test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often ‘not too many cells’ is fixed at no more than 20% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
+#' One problem though is that the test should only be used if not too many cells have a so-called expected count, of less than 5, and the minimum expected count is at least 1. So you will also have to check first if these conditions are met. Most often 'not too many cells' is fixed at no more than 20% of the cells. This is often referred to as 'Cochran conditions', after Cochran (1954, p. 420). Note that for example Fisher (1925, p. 83) is more strict, and finds that all cells should have an expected count of at least 5 .
 #' 
 #' 
 #' @param field1 list or dataframe with the first categorical field
@@ -68,23 +68,23 @@
 #' \deqn{q = 1 + \frac{\left(n\times\left(\sum_{i=1}^r \frac{1}{R_i}\right)-1\right) \times \left(n\times\left(\sum_{j=1}^c \frac{1}{C_j}\right)-1\right)}{6\times n\times df}}
 #' 
 #' @references 
-#' Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. *Science World Journal, 2*(2), 21–27. doi:10.4314/swj.v2i2.51730
+#' Ayinde, K., & Abidoye, A. O. (2010). Simplified Freeman-Tukey test statistics for testing probabilities in contingency tables. *Science World Journal, 2*(2), 21-27. doi:10.4314/swj.v2i2.51730
 #' 
 #' Bishop, Y. M. M., Fienberg, S. E., & Holland, P. W. (2007). *Discrete multivariate analysis*. Springer.
 #' 
 #' Fisher, R. A. (1925). *Statistical methods for research workers*. Oliver and Boyd.
 #' 
-#' Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607–611. doi:10.1214/aoms/1177729756
+#' Freeman, M. F., & Tukey, J. W. (1950). Transformations Related to the angular and the square root. *The Annals of Mathematical Statistics, 21*(4), 607-611. doi:10.1214/aoms/1177729756
 #' 
-#' Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams’s improved G 2 test statistics in small samples of one-way multinomials. *Biometrika, 71*(2), 415–418. doi:10.2307/2336263
+#' Lawal, H. B. (1984). Comparisons of the X 2 , Y 2 , Freeman-Tukey and Williams's improved G 2 test statistics in small samples of one-way multinomials. *Biometrika, 71*(2), 415-418. doi:10.2307/2336263
 #' 
 #' McDonald, J. H. (2014). *Handbook of biological statistics* (3rd ed.). Sparky House Publishing.
 #' 
 #' Ozturk, E., Basol, M., Goksuluk, D., & Karahan, S. (2023). Performance comparison of independence tests in two-way contingency table. *REVSTAT-Statistical Journal, 21*(2), Article 2. doi:10.57805/revstat.v21i2.403
 #' 
-#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. *Biometrika, 34*(1/2), 139–167. doi:10.2307/2332518
+#' Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 x 2 table. *Biometrika, 34*(1/2), 139-167. doi:10.2307/2332518
 #' 
-#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33–37. doi:10.2307/2335081
+#' Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. *Biometrika, 63*(1), 33-37. doi:10.2307/2335081
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -173,3 +173,6 @@ ts_freeman_tukey_ind <- function(field1, field2, categories1=NULL, categories2=N
   return (results)
   
 }
+
+
+

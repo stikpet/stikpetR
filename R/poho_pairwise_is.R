@@ -114,3 +114,6 @@ ph_pairwise_is <- function(nomField, scaleField, categories=NULL, isTest = "stud
   return (res)
   
 }
+
+
+

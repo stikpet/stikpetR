@@ -25,7 +25,7 @@ Note that for a 2x2 table there are quite a lot of different tests. Upton (1982)
 
 Its important to note that the test assumes the margins are fixed (i.e. the row and column totals don't change), so only use this test if this assumptions is valid for your data. See \href{https://www.influentialpoints.com/Training/Fishers_exact_test_use_and_misuse.htm}{InfluentialPoints.com} for more critique on this test.
 
-As Hitchcock (2009, pp. 3–4) points out, the history is a bit murky. Some refer to Fisher (1922) who does seem to mention the exact distribution in a footnote on page 339, but the test is supposedly first fully discussed by Fisher in the fifth edition of his book (1934). Irwin (1935) notes that his paper was concluded already in 1933, but publication was delayed. He also refers to Yates (1934) who also discuss the test, and refers to personal communication with Fisher. Another paper from Fisher (1935b) is also sometimes referred to. Fisher (1935a, pp. 24–29) described an experiment and the exact test to use, which is commonly known as the Lady Tasting Tea Experiment.
+As Hitchcock (2009, pp. 3-4) points out, the history is a bit murky. Some refer to Fisher (1922) who does seem to mention the exact distribution in a footnote on page 339, but the test is supposedly first fully discussed by Fisher in the fifth edition of his book (1934). Irwin (1935) notes that his paper was concluded already in 1933, but publication was delayed. He also refers to Yates (1934) who also discuss the test, and refers to personal communication with Fisher. Another paper from Fisher (1935b) is also sometimes referred to. Fisher (1935a, pp. 24-29) described an experiment and the exact test to use, which is commonly known as the Lady Tasting Tea Experiment.
 
 This function is shown in this \href{https://youtu.be/5o8nlO1bibk}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/FisherExactTest.html}{PeterStatistics.com}
 }
@@ -69,25 +69,25 @@ ts_fisher(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
  
 }
 \references{
-Fisher, R. A. (1922). On the interpretation of chi-square from contingency tables, and the calculation of p. \emph{Journal of the Royal Statistical Society, 85}(1), 87–94. https://doi.org/10.2307/2340521
+Fisher, R. A. (1922). On the interpretation of chi-square from contingency tables, and the calculation of p. \emph{Journal of the Royal Statistical Society, 85}(1), 87-94. https://doi.org/10.2307/2340521
 
 Fisher, R. A. (1934). \emph{Statistical methods for research workers} (5th ed.). Oliver and Boyd.
 
 Fisher, R. A. (1935a). \emph{The design of experiments}. Oliver and Boyd.
 
-Fisher, R. A. (1935b). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39–82. https://doi.org/10.2307/2342435
+Fisher, R. A. (1935b). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39-82. https://doi.org/10.2307/2342435
 
 Fisher, R. A. (1950). \emph{Statistical methods for research workers} (11th rev.). Oliver and Boyd.
 
-Hitchcock, D. B. (2009). Yates and contingency tables: 75 years later. \emph{Journal Électronique d’Histoire Des Probabilités et de La Statistique, 5}(2), 1–14.
+Hitchcock, D. B. (2009). Yates and contingency tables: 75 years later. \emph{Journal Electronique d'Histoire Des Probabilites et de La Statistique, 5}(2), 1-14.
 
-Irwin, J. O. (1935). Tests of significance for differences between percentages based on small numbers. \emph{Metron, 12}(2), 83–94.
+Irwin, J. O. (1935). Tests of significance for differences between percentages based on small numbers. \emph{Metron, 12}(2), 83-94.
 
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
-Upton, G. J. G. (1982). A comparison of alternative tests for the 2 x 2 comparative trial. \emph{Journal of the Royal Statistical Society. Series A (General), 145}(1), 86–105. https://doi.org/10.2307/2981423
+Upton, G. J. G. (1982). A comparison of alternative tests for the 2 x 2 comparative trial. \emph{Journal of the Royal Statistical Society. Series A (General), 145}(1), 86-105. https://doi.org/10.2307/2981423
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. https://doi.org/10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217-235. https://doi.org/10.2307/2983604
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

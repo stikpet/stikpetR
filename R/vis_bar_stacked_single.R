@@ -5,8 +5,8 @@
 #' This is called a compound bar chart, stacked bar chart (Wilkinson, 2005, p. 157) or 
 #' component bar chart (Zedeck, 2014, p. 54). 
 #' 
-#' It can be defined as: “a bar chart showing multiple bars stacked at each x-axis category, 
-#' each representing a value of the stacking variable” (Upton & Cook, 2014, p. 88).
+#' It can be defined as: "a bar chart showing multiple bars stacked at each x-axis category, 
+#' each representing a value of the stacking variable" (Upton & Cook, 2014, p. 88).
 #' 
 #' This function is shown in this [YouTube video](https://youtu.be/j92bv5gFwpI) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/bar-chart.html)
 #' 
@@ -96,3 +96,6 @@ vi_bar_stacked_single <- function(data, catCoding=NULL, orientation=c("h", "v"))
   
   return(chart)
 }
+
+
+

@@ -20,7 +20,7 @@ Vilfredo Pareto. This principle states that roughly 80\% of consequencies come f
 20\% of causes (Pareto, 1896).
 
 Unfortunately, there is no general agreed upon definition of a Pareto diagram.
-The most general description I’ve found was by Kemp and Kemp (2004) who mention it
+The most general description I've found was by Kemp and Kemp (2004) who mention it
 is a name for a bar chart if the order of the bars have no meaning
 (i.e. for a nominal variable), and they only mention that often the bars are then
 placed in decreasing order. According to some authors a Pareto diagram is any diagram
@@ -85,7 +85,7 @@ Kemp, S. M., & Kemp, S. (2004). \emph{Business statistics demystified}. McGraw-H
 
 Kenney, J. F. (1939). \emph{Mathematics of statistics; Part one}. Chapman & Hall.
 
-Pareto, V. (1896). \emph{Cours d’économie politique} (Vol. 1). Lausanne.
+Pareto, V. (1896). \emph{Cours d'economie politique} (Vol. 1). Lausanne.
 
 Upton, G. J. G., & Cook, I. (2014). \emph{Dictionary of statistics} (3rd ed.). Oxford University Press.
 

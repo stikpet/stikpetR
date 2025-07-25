@@ -39,7 +39,7 @@
 #' \code{\link{vi_stem_and_leaf}}, for a Stem-and-Leaf Display.
 #' 
 #' @references
-#' Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. *Philosophical Transactions of the Royal Society of London. (A.)*, 186, 343–414. doi:10.1098/rsta.1895.0010
+#' Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. *Philosophical Transactions of the Royal Society of London. (A.)*, 186, 343-414. doi:10.1098/rsta.1895.0010
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -64,3 +64,6 @@ vi_histogram <- function(data, xlbl=NULL, ylbl=NULL, ...){
   hist(data, xlab = xlbl, ylab=ylbl, ...)
   
 }
+
+
+

@@ -58,13 +58,13 @@ es_cont_coeff(chi2Value, n)
 
 }
 \references{
-Blaikie, N. W. H. (1969). Religion, social status, and community involvement: A study in Christchurch. \emph{The Australian and New Zealand Journal of Sociology, 5}(1), 14–31. doi:10.1177/144078336900500102
+Blaikie, N. W. H. (1969). Religion, social status, and community involvement: A study in Christchurch. \emph{The Australian and New Zealand Journal of Sociology, 5}(1), 14-31. doi:10.1177/144078336900500102
 
 Blaikie, N. W. H. (2003). \emph{Analyzing quantitative data: From description to explanation}. Sage Publications Ltd.
 
 Pearson, K. (1904). \emph{Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation}. Dulau and Co.
 
-Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. \emph{In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III} (pp. 777–780).
+Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. \emph{In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III} (pp. 777-780).
 }
 \author{
 P. Stikker

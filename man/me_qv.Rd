@@ -45,7 +45,7 @@ I've tried to categorise the measures a bit, based on the calculations. Below is
    9 \tab mean \tab Smith-Wilson E1* \tab (Smith & Wilson, 1996, p. 71) \tab evenness \cr
    10 \tab mean \tab Wilcox STDEV \tab (Wilcox, 1973, p. 14) \tab  \cr
    11 \tab entropy \tab Shannon-Weaver Entropy \tab (Shannon & Weaver, 1949, p. 20) \tab entropy \cr
-   12 \tab entropy \tab Rényi Entropy \tab (Rényi, 1961, p. 549) \tab entropy \cr
+   12 \tab entropy \tab Renyi Entropy \tab (Renyi, 1961, p. 549) \tab entropy \cr
    13 \tab entropy \tab Wilcox HREL = \tab (Wilcox, 1973, p. 16) \tab  \cr
    13 \tab entropy \tab Pielou J \tab (Pielou, 1966, p. 141) \tab diversity \cr
    14 \tab entropy \tab Sheldon Index \tab (Sheldon, 1969, p. 467) \tab equitability = relative diversity \cr
@@ -125,7 +125,7 @@ This variation ratio would become 0\% if all cases fitted in the modal category,
 
 A 0 (0\%) would mean that all cases were in the modal category. A 1 (100\%) would indicate that no cases were in the modal category. However, this seems impossible to ever occur, since the modal category is the category with the highest frequency, which is impossible to be 0, unless there are no cases at all.
 
-\strong{Berger–Parker index} ("bpi")
+\strong{Berger-Parker index} ("bpi")
 
 The variation ratio is the opposite of the Berger-Parker Index, which is simply the proportion of scores that did fit in the modal category. In formula notation (Berger & Parker, 1970, p. 1345):
 \deqn{BPI = \frac{F_{mode}}{n}}
@@ -217,11 +217,11 @@ It deals a lot with proportions rather than the counts themselves
 The formula used (Shannon & Weaver, 1949, p. 20):
 \deqn{H_{sw}=-\sum_{i=1}^k p_i\times\ln\left(p_i\right)}
 
-\strong{Rényi entropy} ("re")
+\strong{Renyi entropy} ("re")
 
 This is a generalisation for Shannon entropy.
 
-The formula used is (Rényi, 1961, p. 549):
+The formula used is (Renyi, 1961, p. 549):
 \deqn{H_q = \frac{1}{1 - q}\times\log_2\left(\sum_{i=1}^k p_i^q\right)}
 
 \strong{Wilcox HREL} ("hrel") and \strong{Pielou J} ("j")
@@ -382,35 +382,35 @@ me_qv(ex2, "swe")
 
 }
 \references{
-Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. \emph{Science, 168}(3937), 1345–1347. doi:10.1126/science.168.3937.1345
+Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. \emph{Science, 168}(3937), 1345-1347. doi:10.1126/science.168.3937.1345
 
-Bulla, L. (1994). An index of evenness and its associated diversity measure. \emph{Oikos, 70}(1), 167–171. doi:10.2307/3545713
+Bulla, L. (1994). An index of evenness and its associated diversity measure. \emph{Oikos, 70}(1), 167-171. doi:10.2307/3545713
 
-Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. \emph{The Journal of Animal Ecology, 12}(1), 42–58. doi:10.2307/1411
+Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. \emph{The Journal of Animal Ecology, 12}(1), 42-58. doi:10.2307/1411
 
 Freeman, L. C. (1965). \emph{Elementary applied statistics: For students in behavioral science}. Wiley.
 
 Gibbs, J. P., & Poston, D. L. (1975). The division of labor: Conceptualization and related measures. \emph{Social Forces, 53}(3), 468. doi:10.2307/2576589
 
-Heip, C. (1974). A new index measuring evenness. \emph{Journal of the Marine Biological Association of the United Kingdom, 54}(3), 555–557. doi:10.1017/S0025315400022736
+Heip, C. (1974). A new index measuring evenness. \emph{Journal of the Marine Biological Association of the United Kingdom, 54}(3), 555-557. doi:10.1017/S0025315400022736
 
-Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. \emph{Ecology, 54}(2), 427–432. doi:10.2307/1934352
+Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. \emph{Ecology, 54}(2), 427-432. doi:10.2307/1934352
 
-Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. \emph{American Political Science Review, 62}(1), 208–215. doi:10.2307/1953335
+Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. \emph{American Political Science Review, 62}(1), 208-215. doi:10.2307/1953335
 
-Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. \emph{Journal of Theoretical Biology, 13}, 131–144. doi:10.1016/0022-5193(66)90013-0
+Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. \emph{Journal of Theoretical Biology, 13}, 131-144. doi:10.1016/0022-5193(66)90013-0
 
-Renyi, A. (1961). On measures of entropy and information. \emph{Contributions to the Theory of Statistics, 1}, 547–562.
+Renyi, A. (1961). On measures of entropy and information. \emph{Contributions to the Theory of Statistics, 1}, 547-562.
 
 Shannon, C. E., & Weaver, W. (1949). \emph{The mathematical theory of communication}. The university of Illinois press.
 
-Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. \emph{Ecology, 50}(3), 466–467. doi:10.2307/1933900
+Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. \emph{Ecology, 50}(3), 466-467. doi:10.2307/1933900
 
 Simpson, E. H. (1949). Measurement of diversity. \emph{Nature, 163}(4148), Article 4148. doi:10.1038/163688a0
 
-Smith, B., & Wilson, J. B. (1996). A consumer’s guide to evenness indices. \emph{Oikos, 76}(1), 70–82. doi:10.2307/3545749
+Smith, B., & Wilson, J. B. (1996). A consumer's guide to evenness indices. \emph{Oikos, 76}(1), 70-82. doi:10.2307/3545749
 
-Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. \emph{Political Research Quarterly, 26}(2), 325–343. doi:10.1177/106591297302600209
+Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. \emph{Political Research Quarterly, 26}(2), 325-343. doi:10.1177/106591297302600209
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

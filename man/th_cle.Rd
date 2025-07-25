@@ -9,9 +9,9 @@ th_cle(cle, qual = "vd", convert = "no")
 \arguments{
 \item{cle}{the Vargha-Delaney A value}
 
-\item{qual}{{"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure}
+\item{qual}{c("vd", others via convert), optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure}
 
-\item{convert}{{"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.}
+\item{convert}{c("no", "rb", "cohen_d"), optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.}
 }
 \value{
 A dataframe with:
@@ -67,7 +67,7 @@ th_cle(cle, qual="sawilowsky", convert="rb")
 \references{
 Marfo, P., & Okyere, G. A. (2019). The accuracy of effect-size estimates under normals and contaminated normals in meta-analysis. \emph{Heliyon, 5}(6), e01838. doi:10.1016/j.heliyon.2019.e01838
 
-Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101–132. doi:10.3102/10769986025002101
+Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101-132. doi:10.3102/10769986025002101
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

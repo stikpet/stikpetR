@@ -49,3 +49,6 @@ es_bag_s <- function(field1, field2, categories=NULL){
   
   return (S)
 }
+
+
+

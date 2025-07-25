@@ -105,3 +105,6 @@ vi_stem_and_leaf <- function(data, key=NULL){
   
   return (display)
 }
+
+
+

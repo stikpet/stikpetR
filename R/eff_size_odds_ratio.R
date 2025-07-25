@@ -56,11 +56,11 @@
 #' \code{\link{es_convert}}, to convert an odds ratio to Yule Q, Yule Y, or Cohen d.
 #' 
 #' @references
-#' Cox, D. R. (1958). The regression analysis of binary sequences. *Journal of the Royal Statistical Society: Series B (Methodological), 20*(2), 215–232. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x
+#' Cox, D. R. (1958). The regression analysis of binary sequences. *Journal of the Royal Statistical Society: Series B (Methodological), 20*(2), 215-232. https://doi.org/10.1111/j.2517-6161.1958.tb00292.x
 #' 
-#' Fisher, R. A. (1935). The logic of inductive inference. *Journal of the Royal Statistical Society, 98*(1), 39–82. https://doi.org/10.2307/2342435
+#' Fisher, R. A. (1935). The logic of inductive inference. *Journal of the Royal Statistical Society, 98*(1), 39-82. https://doi.org/10.2307/2342435
 #' 
-#' McHugh, M. (2009). The odds ratio: Calculation, usage, and interpretation. *Biochemia Medica, 19*(2), 120–126. https://doi.org/10.11613/BM.2009.011
+#' McHugh, M. (2009). The odds ratio: Calculation, usage, and interpretation. *Biochemia Medica, 19*(2), 120-126. https://doi.org/10.11613/BM.2009.011
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -99,3 +99,6 @@ es_odds_ratio <- function(field1, field2, categories1=NULL, categories2=NULL){
   
   return (results)
 }
+
+
+

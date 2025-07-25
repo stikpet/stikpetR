@@ -8,7 +8,7 @@
 #' This function is shown in this [YouTube video](https://youtu.be/BpciZSpMeKc) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param data dataframe with scores
-#' @param test {"pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"}, optional test to use for each pair
+#' @param test c("pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"), optional test to use for each pair
 #' @param expCount optional dataframe with categories and expected counts
 #' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional arguments for the specific test that are passed along.
@@ -198,3 +198,6 @@ ph_pairwise_gof <- function(data, test="pearson", expCount=NULL, mtc='bonferroni
   
   return (res)
 }
+
+
+

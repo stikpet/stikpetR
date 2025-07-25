@@ -6,7 +6,7 @@
 #' 
 #' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 #' 
-#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #' 
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -54,9 +54,9 @@
 #' Asiribo and Gurland (1990) derive the same correction as Box, although their notation for \eqn{df_1^*} is different, but will give the same result. 
 #' 
 #' @references 
-#' Asiribo, O., & Gurland, J. (1990). Coping with variance heterogeneity. *Communications in Statistics - Theory and Methods, 19*(11), 4029–4048. doi:10.1080/03610929008830427
+#' Asiribo, O., & Gurland, J. (1990). Coping with variance heterogeneity. *Communications in Statistics - Theory and Methods, 19*(11), 4029-4048. doi:10.1080/03610929008830427
 #' 
-#' Box, G. E. P. (1954). Some theorems on quadratic forms applied in the study of analysis of variance problems, I: Effect of inequality of variance in the one-way classification. *The Annals of Mathematical Statistics, 25*(2), 290–302. doi:10.1214/aoms/1177728786
+#' Box, G. E. P. (1954). Some theorems on quadratic forms applied in the study of analysis of variance problems, I: Effect of inequality of variance in the one-way classification. *The Annals of Mathematical Statistics, 25*(2), 290-302. doi:10.1214/aoms/1177728786
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -95,3 +95,6 @@ ts_box_owa <- function(nomField, scaleField, categories=NULL){
   return (testResults)
   
 }
+
+
+

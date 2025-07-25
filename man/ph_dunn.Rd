@@ -60,9 +60,9 @@ With:
 }
 }
 \references{
-Dunn, O. J. (1964). Multiple comparisons using rank sums. \emph{Technometrics, 6}(3), 241–252. doi:10.1080/00401706.1964.10490181
+Dunn, O. J. (1964). Multiple comparisons using rank sums. \emph{Technometrics, 6}(3), 241-252. doi:10.1080/00401706.1964.10490181
 
-Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. \emph{Technometrics, 2}(2), 197–207. doi:10.1080/00401706.1960.10489894
+Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. \emph{Technometrics, 2}(2), 197-207. doi:10.1080/00401706.1960.10489894
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

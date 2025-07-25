@@ -127,3 +127,6 @@ ph_pairwise_t <- function(nomField, scaleField, categories=NULL){
   return (res)
   
 }
+
+
+

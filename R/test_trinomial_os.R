@@ -37,7 +37,7 @@
 #' \item \eqn{p_0} the probability of the a score in the sample being equal to the hypothesized median
 #' \item \eqn{p_{pos}} the population proportion of a score being above the hypothesized median
 #' \item \eqn{p_{neg}} the population proportion of a score being below the hypothesized median
-#' \item \eqn{\text{tri}\left(…,… \right)} the trinomial probability mass function
+#' \item \eqn{\text{tri}\left(\dots, \dots \right)} the trinomial probability mass function
 #' }
 #' 
 #' The paired version of the test is described in Bian et al. (1941), while Zaiontz (n.d.) mentions it can also be used for one-sample situations.
@@ -118,3 +118,6 @@ ts_trinomial_os <- function(data, levels=NULL, mu=NULL){
   return(results)
   
 }
+
+
+

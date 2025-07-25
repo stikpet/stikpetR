@@ -49,3 +49,6 @@ th_point_biserial <- function(rp, qual="cohen"){
   
   return(results)
 }
+
+
+

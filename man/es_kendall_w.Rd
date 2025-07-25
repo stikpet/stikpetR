@@ -35,7 +35,7 @@ The number of rows and columns of a dataframe with R's \emph{nrow(dataframe)} an
 \emph{ncol(dataframe)} functions.
 }
 \references{
-Serlin, R. C., Carr, J., & Marascuilo, L. A. (1982). A measure of association for selected nonparametric procedures. \emph{Psychological Bulletin, 92}(3), 786–790. https://doi.org/10.1037/0033-2909.92.3.786
+Serlin, R. C., Carr, J., & Marascuilo, L. A. (1982). A measure of association for selected nonparametric procedures. \emph{Psychological Bulletin, 92}(3), 786-790. https://doi.org/10.1037/0033-2909.92.3.786
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

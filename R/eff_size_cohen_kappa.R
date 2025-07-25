@@ -46,9 +46,9 @@
 #' Where \eqn{\Phi\left(\dots\right)} is the cumulative density function of the standard normal distribution
 #' 
 #' @references 
-#' Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement, 20*(1), 37–46. https://doi.org/10.1177/001316446002000104
+#' Cohen, J. (1960). A coefficient of agreement for nominal scales. *Educational and Psychological Measurement, 20*(1), 37-46. https://doi.org/10.1177/001316446002000104
 #' 
-#' Fleiss, J. L., Cohen, J., & Everitt, B. S. (1969). Large sample standard errors of kappa and weighted kappa. *Psychological Bulletin, 72*(5), 323–327. https://doi.org/10.1037/h0028106
+#' Fleiss, J. L., Cohen, J., & Everitt, B. S. (1969). Large sample standard errors of kappa and weighted kappa. *Psychological Bulletin, 72*(5), 323-327. https://doi.org/10.1037/h0028106
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -128,3 +128,6 @@ es_cohen_kappa <- function(nom1, nom2, ase="exact"){
   return(results)
   
 }
+
+
+

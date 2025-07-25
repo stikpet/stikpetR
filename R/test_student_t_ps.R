@@ -42,7 +42,7 @@
 #' t.test(var1, var2, paired=TRUE, mu=5)
 #' 
 #' @references 
-#' Student. (1908). The probable error of a mean. *Biometrika, 6*(1), 1–25. doi:10.1093/biomet/6.1.1
+#' Student. (1908). The probable error of a mean. *Biometrika, 6*(1), 1-25. doi:10.1093/biomet/6.1.1
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -69,3 +69,6 @@ ts_student_t_ps <- function(field1, field2, dmu=0){
   return(results)
   
 }
+
+
+

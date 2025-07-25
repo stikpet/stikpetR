@@ -59,3 +59,6 @@ ph_column_proportion <- function(field1, field2, categories1=NULL, categories2=N
   return (res)
   
 }
+
+
+

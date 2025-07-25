@@ -75,9 +75,9 @@ With:
 \deqn{n_0 = \left\lfloor n\times p_0\right\rfloor}
 
 This method looks at the number of cases. In a sample of \eqn{n} people,
-we’d then expect \eqn{n_0 = \left\lfloor n\times p_0\right\rfloor} successes (we round the result down to the nearest integer).
+we'd then expect \eqn{n_0 = \left\lfloor n\times p_0\right\rfloor} successes (we round the result down to the nearest integer).
 We only had \eqn{n_{min}}, so a difference of \eqn{n_0-n_{min}}.
-The ‘equal distance method’ now means to look for the chance of having \eqn{k} or less,
+The 'equal distance method' now means to look for the chance of having \eqn{k} or less,
 and \eqn{n_0+n_0-n_{min}=2\times n_0-n{_min}} or more.
 Each of these two probabilities can be found using a binomial distribution.
 Adding these two together than gives the two-sided significance.
@@ -90,7 +90,7 @@ With:
 This method looks at the probabilities itself.
 \eqn{b\left(n, n_{min},p_0^*\right)} is the probability of having exactly \eqn{n_{min}}
 out of a group of n, with a chance \eqn{p_0^*} each time.
-The method of small p-values now considers ‘or more extreme’ any number between 0 and n (the sample size)
+The method of small p-values now considers 'or more extreme' any number between 0 and n (the sample size)
 that has a probability less or equal to this.
 This means we need to go over each option, determine the probability and check if it is lower or equal.
 So, the probability of 0 successes, the probability of 1 success, etc.

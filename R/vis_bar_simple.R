@@ -1,7 +1,7 @@
 #' Simple Bar-Chart
 #' 
 #' @description 
-#' A bar-chart is defined as “a graph in which bars of varying height with spaces between them are used to display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20). 
+#' A bar-chart is defined as "a graph in which bars of varying height with spaces between them are used to display data for variables defined by qualities or categories" (Zedeck, 2014, p. 20). 
 #' 
 #' A [YouTube](https://youtu.be/zT52FTyC6P8) video on pie charts.
 #' 
@@ -94,3 +94,6 @@ vi_bar_simple <- function(data, varname=NULL, height="count"){
   }
 
 }
+
+
+

@@ -41,9 +41,9 @@ James (1951) proposed three tests, one for large group sizes, a 'first order tes
 
 The James test statistic value J is the same as the test statistic in Cochran's test, calculated slightly different, but will lead to the same result.
 
-Schneider and Penfield (1997) looked at the Welch, Alexander-Govern and the James test (they ignored the Brown-Forsythe since they found it to perform worse than Welch or James), and concluded: “Under variance heterogeneity, Alexander-Govern’s approximation was not only comparable to the Welch test and the James second-order test but was superior, in certain instances, when coupled with the power results for those tests” (p. 285).
+Schneider and Penfield (1997) looked at the Welch, Alexander-Govern and the James test (they ignored the Brown-Forsythe since they found it to perform worse than Welch or James), and concluded: "Under variance heterogeneity, Alexander-Govern's approximation was not only comparable to the Welch test and the James second-order test but was superior, in certain instances, when coupled with the power results for those tests" (p. 285).
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula use for the test statistic (James, 1951, p. 324):
@@ -99,15 +99,15 @@ However, others use \eqn{v_j^* = n_j - 1} for example Myers (1998, p. 209) and C
 By setting 'ddof' this alternative version will be used.
 }
 \references{
-Cribbie, R. A., Fiksenbaum, L., Keselman, H. J., & Wilcox, R. R. (2012). Effect of non-normality on test statistics for one-way independent groups designs: Effects of non-normality on test statistics. \emph{British Journal of Mathematical and Statistical Psychology, 65}(1), 56–73. doi:10.1111/j.2044-8317.2011.02014.x
+Cribbie, R. A., Fiksenbaum, L., Keselman, H. J., & Wilcox, R. R. (2012). Effect of non-normality on test statistics for one-way independent groups designs: Effects of non-normality on test statistics. \emph{British Journal of Mathematical and Statistical Psychology, 65}(1), 56-73. doi:10.1111/j.2044-8317.2011.02014.x
 
-Deshon, R. P., & Alexander, R. A. (1994). A generalization of James’s second-order approximation to the test for regression slope equality. \emph{Educational and Psychological Measurement, 54}(2), 328–335. doi:10.1177/0013164494054002007
+Deshon, R. P., & Alexander, R. A. (1994). A generalization of James's second-order approximation to the test for regression slope equality. \emph{Educational and Psychological Measurement, 54}(2), 328-335. doi:10.1177/0013164494054002007
 
-James, G. S. (1951). The comparison of several groups of observations when the ratios of the population variances are unknown. \emph{Biometrika, 38}(3–4), 324–329. doi:10.1093/biomet/38.3-4.324
+James, G. S. (1951). The comparison of several groups of observations when the ratios of the population variances are unknown. \emph{Biometrika, 38}(3-4), 324-329. doi:10.1093/biomet/38.3-4.324
 
-Myers, L. (1998). Comparability of the james’ second-order approximation test and the alexander and govern  A  statistic for non-normal heteroscedastic data. \emph{Journal of Statistical Computation and Simulation, 60}(3), 207–222. doi:10.1080/00949659808811888
+Myers, L. (1998). Comparability of the james' second-order approximation test and the alexander and govern  A  statistic for non-normal heteroscedastic data. \emph{Journal of Statistical Computation and Simulation, 60}(3), 207-222. doi:10.1080/00949659808811888
 
-Schneider, P. J., & Penfield, D. A. (1997). Alexander and Govern’s approximation: Providing an alternative to ANOVA under variance heterogeneity. \emph{The Journal of Experimental Education, 65}(3), 271–286. doi:10.1080/00220973.1997.9943459
+Schneider, P. J., & Penfield, D. A. (1997). Alexander and Govern's approximation: Providing an alternative to ANOVA under variance heterogeneity. \emph{The Journal of Experimental Education, 65}(3), 271-286. doi:10.1080/00220973.1997.9943459
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

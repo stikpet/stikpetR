@@ -11,7 +11,7 @@ es_post_hoc_gof(post_hoc_results, es = "auto", bergsma = FALSE)
 
 \item{es}{string optional, the effect size to determine. Either 'auto', 'coheng', 'cohenh', 'ar', 'cramerv', 'cohenw', 'jbme', 'fei', 'rosenthal'}
 
-\item{bergsma}{optional boolean. Use of Bergsma correction, only for Cramér V}
+\item{bergsma}{optional boolean. Use of Bergsma correction, only for Cramer V}
 }
 \value{
 a dataframe with for residual post-hoc:
@@ -34,11 +34,11 @@ Determines an effect size for each test (row) from the results of ph_pairwise_bi
 This function is shown in this \href{https://youtu.be/Oc5Ejp-W2gU}{YouTube video} and described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
-'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramér's V otherwise.
+'auto' will use Cohen h for exact tests, Rosenthal correlation for z-tests and Cramer's V otherwise.
 
 Cohen g ('coheng'), Cohen h ('cohenh') and Alternative Ratio ('ar') can all be used for any test.
 
-Cramér V ('cramerv'), Cohen w ('cohenw'), Johnston-Berry-Mielke E ('jbme'), and Fei ('fei') can be used with chi-square tests (or likelihood ratio tests)
+Cramer V ('cramerv'), Cohen w ('cohenw'), Johnston-Berry-Mielke E ('jbme'), and Fei ('fei') can be used with chi-square tests (or likelihood ratio tests)
 
 The Rosenthal Correlation ('rosenthal') can be used with a z-test (proportion/Wald/score/residual).
 

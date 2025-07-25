@@ -31,9 +31,9 @@
 #' }
 #' 
 #' @references 
-#' Bowker, A. H. (1948). A test for symmetry in contingency tables. *Journal of the American Statistical Association, 43*(244), 572–574. doi:10.2307/2280710
+#' Bowker, A. H. (1948). A test for symmetry in contingency tables. *Journal of the American Statistical Association, 43*(244), 572-574. doi:10.2307/2280710
 #' 
-#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153–157. doi:10.1007/BF02295996
+#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153-157. doi:10.1007/BF02295996
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -67,3 +67,6 @@ ts_mcnemar_bowker <- function(field1, field2, categories=NULL, cc=FALSE){
   return(res)
   
 }
+
+
+

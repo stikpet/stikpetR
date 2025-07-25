@@ -1,7 +1,7 @@
 #' Mode
 #' 
 #' @description 
-#' The mode is a measure of central tendency and defined as “the abscissa corresponding to the ordinate of maximum frequency” (Pearson, 1895, p. 345). A more modern definition would be “the most common value obtained in a set of observations” (Weisstein, 2002). 
+#' The mode is a measure of central tendency and defined as "the abscissa corresponding to the ordinate of maximum frequency" (Pearson, 1895, p. 345). A more modern definition would be "the most common value obtained in a set of observations" (Weisstein, 2002). 
 #' 
 #' The word mode might even come from the French word 'mode' which means fashion. Fashion is what most people wear, so the mode is the option most people chose.
 #' 
@@ -55,9 +55,9 @@
 #' @references 
 #' Larson, R., & Farber, E. (2014). *Elementary statistics: Picturing the world* (6th ed.). Pearson.
 #' 
-#' Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. *Philosophical Transactions of the Royal Society of London. (A.), 186*, 343–414. https://doi.org/10.1098/rsta.1895.0010
+#' Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. *Philosophical Transactions of the Royal Society of London. (A.), 186*, 343-414. https://doi.org/10.1098/rsta.1895.0010
 #' 
-#' Spiegel, M. R., & Stephens, L. J. (2008). *Schaum’s outline of theory and problems of statistics* (4th ed.). McGraw-Hill.
+#' Spiegel, M. R., & Stephens, L. J. (2008). *Schaum's outline of theory and problems of statistics* (4th ed.). McGraw-Hill.
 #' 
 #' Weisstein, E. W. (2002). *CRC concise encyclopedia of mathematics* (2nd ed.). Chapman & Hall/CRC.
 #' 
@@ -117,3 +117,6 @@ me_mode <- function(data, allEq = c("none", "all")){
   return(results)
   
 }
+
+
+

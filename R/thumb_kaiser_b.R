@@ -26,7 +26,7 @@
 #' \code{\link{me_qv}}, to determine Kaiser b
 #' 
 #' @references 
-#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208–215. doi:10.2307/1953335
+#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208-215. doi:10.2307/1953335
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -57,3 +57,6 @@ th_kaiser_b <- function(b, qual="kaiser"){
   return(results)
   
 }
+
+
+

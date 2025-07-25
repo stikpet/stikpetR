@@ -43,7 +43,7 @@ With:
 \item \eqn{n_i} the number of scores in category i
 }
 
-Glass actually uses a ‘control group’ and \eqn{s_2} is then the standard deviation of the control group.
+Glass actually uses a 'control group' and \eqn{s_2} is then the standard deviation of the control group.
 }
 \examples{
 #Example 1: dataframe
@@ -61,7 +61,7 @@ es_glass_delta(groups, scores)
 
 }
 \references{
-Glass, G. V. (1976). Primary, secondary, and meta-analysis of research. \emph{Educational Researcher, 5}(10), 3–8. https://doi.org/10.3102/0013189X005010003
+Glass, G. V. (1976). Primary, secondary, and meta-analysis of research. \emph{Educational Researcher, 5}(10), 3-8. https://doi.org/10.3102/0013189X005010003
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

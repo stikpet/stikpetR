@@ -91,9 +91,9 @@
 #' }
 #' 
 #' @references
-#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
+#' Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. *Biometrika, 61*(1), 165-170. https://doi.org/10.1093/biomet/61.1.165
 #'  
-#' Yuen, K. K., & Dixon, W. J. (1973). The approximate behaviour and performance of the two-sample trimmed t. *Biometrika, 60*(2), 369–374. https://doi.org/10.2307/2334550
+#' Yuen, K. K., & Dixon, W. J. (1973). The approximate behaviour and performance of the two-sample trimmed t. *Biometrika, 60*(2), 369-374. https://doi.org/10.2307/2334550
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -183,3 +183,6 @@ ts_trimmed_mean_is <- function(catField,
   return(results)
   
 }
+
+
+

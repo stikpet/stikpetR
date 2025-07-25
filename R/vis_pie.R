@@ -120,3 +120,6 @@ vi_pie <- function(data, labels=c("count", "percent", "both", "none")){
   return(chart)
   
 }
+
+
+

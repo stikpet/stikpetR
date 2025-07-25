@@ -40,7 +40,7 @@ If we have the scores 40, 50 and 60 in group A, and the scores 30, 50, and 51 in
 
 The test could therefor be used if we have a binary and an ordinal variable. The Mann-Whitney U test is probably the most famous one used in these scenarios, but actually has quite some limitations, and this Brunner-Munzel test might be better suited in many cases. The Fligner-Policello test is another test that is sometimes used.
 
-Brunner and Munzel (p. 21) indicate the test-statistic that is computed follows a standard normal distribution, if each category has 50 or more data points. They also remark (p. 22) that the test is no longer accurate if sample sizes are less than 10, although in Schüürhuis et al. (2025, p. 18) 15 is listed. Neubert and Brunner (2007) propose to use a studentized permutation test in these cases. Schüürhuis et al. (2025) developed an improved version of this test as well, called a \(C^2\) test.
+Brunner and Munzel (p. 21) indicate the test-statistic that is computed follows a standard normal distribution, if each category has 50 or more data points. They also remark (p. 22) that the test is no longer accurate if sample sizes are less than 10, although in Schuurhuis et al. (2025, p. 18) 15 is listed. Neubert and Brunner (2007) propose to use a studentized permutation test in these cases. Schuurhuis et al. (2025) developed an improved version of this test as well, called a \(C^2\) test.
 
 The test is also described at \href{https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html}{PeterStatistics.com}.
 }
@@ -94,11 +94,11 @@ ts_brunner_munzel(dfr[['Gen_Gender']], dfr[['Mix_NrAct']], levels=coding)
 
 }
 \references{
-Brunner, E., & Munzel, U. (2000). The nonparametric Behrens-Fisher problem: Asymptotic theory and a small-sample approximation. \emph{Biometrical Journal, 42}(1), 17–25. https://doi.org/10.1002/(SICI)1521-4036(200001)42:1<17::AID-BIMJ17>3.0.CO;2-U
+Brunner, E., & Munzel, U. (2000). The nonparametric Behrens-Fisher problem: Asymptotic theory and a small-sample approximation. \emph{Biometrical Journal, 42}(1), 17-25. https://doi.org/10.1002/(SICI)1521-4036(200001)42:1<17::AID-BIMJ17>3.0.CO;2-U
 
-Neubert, K., & Brunner, E. (2007). A studentized permutation test for the non-parametric Behrens–Fisher problem. \emph{Computational Statistics & Data Analysis, 51}(10), 5192–5204. https://doi.org/10.1016/j.csda.2006.05.024
+Neubert, K., & Brunner, E. (2007). A studentized permutation test for the non-parametric Behrens-Fisher problem. \emph{Computational Statistics & Data Analysis, 51}(10), 5192-5204. https://doi.org/10.1016/j.csda.2006.05.024
 
-Schüürhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
+Schuurhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -29,7 +29,7 @@ etaSq, float. The eta squared value
 \description{
 An effect size measure to indicate the the strength of the categories on the ordinal/scale field. A 0 would indicate no influence, and 1 a perfect relationship.
 
-It is “the proportion of the variation in Y that is associated with membership of the different groups defined by X “ (Richardson, 2011, p. 136).
+It is "the proportion of the variation in Y that is associated with membership of the different groups defined by X " (Richardson, 2011, p. 136).
 
 An alternative Epsilon Squared is an attempt to make eta-squared unbiased (applying a population correction ratio) (Kelley, 1935, p. 557). Although a popular belief is that omega-squared is preferred over epsilon-squared (Keselman, 1975), a later study actually showed that epsilon-squared might be preferred (Okada, 2013).
 
@@ -95,17 +95,17 @@ anova_stats(aov(scores~groups))
 eta_squared(aov(scores~groups))
 }
 \references{
-Kelley, T. L. (1935). An unbiased correlation ratio measure. \emph{Proceedings of the National Academy of Sciences, 21}(9), 554–559. doi:10.1073/pnas.21.9.554
+Kelley, T. L. (1935). An unbiased correlation ratio measure. \emph{Proceedings of the National Academy of Sciences, 21}(9), 554-559. doi:10.1073/pnas.21.9.554
 
-Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. \emph{Canadian Psychological Review / Psychologie Canadienne, 16}(1), 44–48. doi:10.1037/h0081789
+Keselman, H. J. (1975). A Monte Carlo investigation of three estimates of treatment magnitude: Epsilon squared, eta squared, and omega squared. \emph{Canadian Psychological Review / Psychologie Canadienne, 16}(1), 44-48. doi:10.1037/h0081789
 
-Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. \emph{Behaviormetrika, 40}(2), 129–147. doi:10.2333/bhmk.40.129
+Okada, K. (2013). Is omega squared less biased? A comparison of three major effect size indices in one-way anova. \emph{Behaviormetrika, 40}(2), 129-147. doi:10.2333/bhmk.40.129
 
 Pearson, K. (1911). On a correction to be made to the correlation ratio \eqn{\eta}. \emph{Biometrika, 8}(1/2), 254. doi:10.2307/2331454
 
-Richardson, J. T. E. (2011). Eta squared and partial eta squared as measures of effect size in educational research. \emph{Educational Research Review, 6}(2), 135–147. doi:10.1016/j.edurev.2010.12.001
+Richardson, J. T. E. (2011). Eta squared and partial eta squared as measures of effect size in educational research. \emph{Educational Research Review, 6}(2), 135-147. doi:10.1016/j.edurev.2010.12.001
 
-Tomczak, M., & Tomczak, E. (2014). The need to report effect size estimates revisited. An overview of some recommended measures of effect size. \emph{Trends in Sport Sciences, 1}(21), 19–25.
+Tomczak, M., & Tomczak, E. (2014). The need to report effect size estimates revisited. An overview of some recommended measures of effect size. \emph{Trends in Sport Sciences, 1}(21), 19-25.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

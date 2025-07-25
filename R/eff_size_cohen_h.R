@@ -41,3 +41,6 @@ es_cohen_h <- function(p1, p2){
   return (h)
 
 }
+
+
+

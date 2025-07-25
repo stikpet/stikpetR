@@ -18,7 +18,7 @@
 #' @param scaleField A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
 #' @param dmu Optional difference according to null hypothesis (default is 0)
-#' @param df_ver {'ws', 'w', welch-satterthwaite, 'welch'} optional version of degrees of freedom to use
+#' @param df_ver c('ws', 'w', welch-satterthwaite, 'welch') optional version of degrees of freedom to use
 #' 
 #' @returns 
 #' A dataframe with:
@@ -59,13 +59,13 @@
 #' @references
 #' Aspin, A. A., & Welch, B. L. (1949). Tables for use in comparisons whose accuracy involves two variances, separately estimated. *Biometrika, 36*(3/4), 290. https://doi.org/10.2307/2332668
 #' 
-#' Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student’s t-test and the Mann–Whitney U test. *Behavioral Ecology, 17*(4), 688–690. https://doi.org/10.1093/beheco/ark016
+#' Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student's t-test and the Mann-Whitney U test. *Behavioral Ecology, 17*(4), 688-690. https://doi.org/10.1093/beheco/ark016
 #' 
 #' Satterthwaite, F. E. (1946). An approximate distribution of estimates of variance components. *Biometrics Bulletin, 2*(6), 110. https://doi.org/10.2307/3002019
 #' 
-#' Welch, B. L. (1938). The significance of the difference between two means when the population variances are unequal. *Biometrika, 29*(3–4), 350–362. https://doi.org/10.1093/biomet/29.3-4.350
+#' Welch, B. L. (1938). The significance of the difference between two means when the population variances are unequal. *Biometrika, 29*(3-4), 350-362. https://doi.org/10.1093/biomet/29.3-4.350
 #' 
-#' Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. *Biometrika, 34*(1/2), 28–35. https://doi.org/10.2307/2332510
+#' Welch, B. L. (1947). The generalization of `Student's' problem when several different population variances are involved. *Biometrika, 34*(1/2), 28-35. https://doi.org/10.2307/2332510
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -137,3 +137,6 @@ ts_welch_t_is <- function(catField, scaleField, categories=NULL, dmu=0, df_ver='
   return(results)
   
 }
+
+
+

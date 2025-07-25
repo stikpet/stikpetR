@@ -6,7 +6,7 @@
 #' 
 #' Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
 #' 
-#' Gamma looks at so-called discordant and concordant pairs, and ignores tied pairs. Kendall Tau b does the same, but applies a correction for ties. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+#' Gamma looks at so-called discordant and concordant pairs, and ignores tied pairs. Kendall Tau b does the same, but applies a correction for ties. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Goktas and isci. (2011) for more information on the comparisons.
 #' 
 #' @param ordField1 the numeric scores of the first variable
 #' @param ordField2 the numeric scores of the second variable
@@ -74,15 +74,15 @@
 #' ord.gamma(table(ord1, ord2))
 #' 
 #' @references 
-#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. doi:10.2307/2286793
+#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309-315. doi:10.2307/2286793
 #' 
-#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
+#' Goktas, A., & isci, O. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
 #' 
-#' Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. J*ournal of the American Statistical Association, 49*(268), 732–764. doi:10.2307/2281536
+#' Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. J*ournal of the American Statistical Association, 49*(268), 732-764. doi:10.2307/2281536
 #' 
-#' Goodman, L. A., & Kruskal, W. H. (1963). Measures of Association for Cross Classifications III: Approximate Sampling Theory. *Journal of the American Statistical Association, 58*(302), 310–364. doi:10.1080/01621459.1963.10500850
+#' Goodman, L. A., & Kruskal, W. H. (1963). Measures of Association for Cross Classifications III: Approximate Sampling Theory. *Journal of the American Statistical Association, 58*(302), 310-364. doi:10.1080/01621459.1963.10500850
 #' 
-#' Goodman, L. A., & Kruskal, W. H. (1972). Measures of Association for Cross Classifications IV: Simplification of Asymptotic Variances. *Journal of the American Statistical Association, 67*(338), 415–421. doi:10.1080/01621459.1972.10482401
+#' Goodman, L. A., & Kruskal, W. H. (1972). Measures of Association for Cross Classifications IV: Simplification of Asymptotic Variances. *Journal of the American Statistical Association, 67*(338), 415-421. doi:10.1080/01621459.1972.10482401
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -192,4 +192,7 @@ r_goodman_kruskal_gamma <- function(ordField1, ordField2, levels1=NULL, levels2=
   return(results)
   
 }
+
+
+
 

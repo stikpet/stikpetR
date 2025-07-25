@@ -30,7 +30,7 @@ he_AS89(n, S)
 
 }
 \references{
-Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman’s rho. \emph{Applied Statistics, 24}(3), 377–379. https://doi.org/10.2307/2347111
+Best, D. J., & Roberts, D. E. (1975). Algorithm AS 89: The upper tail probabilities of Spearman's rho. \emph{Applied Statistics, 24}(3), 377-379. https://doi.org/10.2307/2347111
 }
 \author{
 P. Stikker

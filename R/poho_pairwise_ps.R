@@ -122,3 +122,6 @@ ph_pairwise_ps <- function(data, levels=NULL, test = "sign",
   return (res)
   
 }
+
+
+

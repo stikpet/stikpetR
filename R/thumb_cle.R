@@ -6,8 +6,8 @@
 #' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
 #' 
 #' @param cle the Vargha-Delaney A value
-#' @param qual {"vd", others via convert}, optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
-#' @param convert {"no", "rb", "cohen_d"}, optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
+#' @param qual c("vd", others via convert), optional rules-of-thumb to use, currently only 'vd' for Vargha-Delaney, otherwise a converted measure
+#' @param convert c("no", "rb", "cohen_d"), optional list in case to use a rule-of-thumb from a converted measure. Either "no" for no conversion, "rb" for rank-biserial, or "cohen_d" for Cohen d.
 #' 
 #' @returns 
 #' A dataframe with:
@@ -47,7 +47,7 @@
 #' @references 
 #' Marfo, P., & Okyere, G. A. (2019). The accuracy of effect-size estimates under normals and contaminated normals in meta-analysis. *Heliyon, 5*(6), e01838. doi:10.1016/j.heliyon.2019.e01838
 #' 
-#' Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. *Journal of Educational and Behavioral Statistics, 25*(2), 101–132. doi:10.3102/10769986025002101
+#' Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. *Journal of Educational and Behavioral Statistics, 25*(2), 101-132. doi:10.3102/10769986025002101
 #' 
 #' 
 #' @author 
@@ -97,3 +97,6 @@ th_cle <- function(cle, qual="vd", convert="no"){
   return(results)
   
 }
+
+
+

@@ -54,5 +54,5 @@ The p-value (significance) is then calculated using:
 }
 }
 \references{
-Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. \emph{The Public Opinion Quarterly, 19}(3), 321–325.
+Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. \emph{The Public Opinion Quarterly, 19}(3), 321-325.
 }

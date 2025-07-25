@@ -55,13 +55,13 @@
 #' The test statistic is:
 #' \deqn{T_i = \frac{U_i}{ASE\left(U_i\right)_0}}
 #' 
-#' The formula’s were taken from SPSS 15 Algorithms (2006, p. 117), 
+#' The formula's were taken from SPSS 15 Algorithms (2006, p. 117), 
 #' unclear what the original source is, probably Theil (1970) or Theil (1972)
 #' 
 #' @references 
 #' SPSS. (2006). SPSS 15.0 algorithms.
 #' 
-#' Theil, H. (1970). On the estimation of relationships involving qualitative variables. *American Journal of Sociology, 76*(1), 103–154. doi:10.1086/224909
+#' Theil, H. (1970). On the estimation of relationships involving qualitative variables. *American Journal of Sociology, 76*(1), 103-154. doi:10.1086/224909
 #' 
 #' Theil, H. (1972). *Statistical decomposition analysis: With applications in the social and administrative sciences* (Vol. 14). North-Holland Pub. Co.; American Elsevier Pub. Co.
 #' 
@@ -149,3 +149,6 @@ es_theil_u <- function(field1, field2, categories1=NULL, categories2=NULL){
   return(results)
   
 }
+
+
+

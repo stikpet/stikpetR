@@ -63,8 +63,8 @@ else:
 \item \eqn{\chi^2\left(\dots\right)}	the chi-square cumulative density function
 }
 
-The term ‘Likelihood Ratio Goodness-of-Fit’ can for example be found in an article
-from Quine and Robinson (1985), the term ‘Wilks’s likelihood ratio test’ can also be found
+The term 'Likelihood Ratio Goodness-of-Fit' can for example be found in an article
+from Quine and Robinson (1985), the term 'Wilks's likelihood ratio test' can also be found
 in Li and Babu (2019, p. 331), while the term G-test is found in Hoey (2012, p. 4)
 
 The Yates continuity correction (cc="yates") is calculated using (Yates, 1934, p. 222):
@@ -141,23 +141,23 @@ ts_g_gof(ex3)
 
 }
 \references{
-Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
+Haviland, M. G. (1990). Yates's correction for continuity and the analysis of 2 x 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363-367. doi:10.1002/sim.4780090403
 
-Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1–6. doi:10.48550/ARXIV.1206.4881
+Hoey, J. (2012). The two-way likelihood ratio (G) test and comparison to two-way chi squared test. 1-6. doi:10.48550/ARXIV.1206.4881
 
 Li, B., & Babu, G. J. (2019). \emph{A graduate course on statistical inference}. Springer.
 
 McDonald, J. H. (2014). \emph{Handbook of biological statistics} (3rd ed.). Sparky House Publishing.
 
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 x 2 table. \emph{Biometrika, 34}(1/2), 139-167. doi:10.2307/2332518
 
-Quine, M. P., & Robinson, J. (1985). Efficiencies of chi-square and likelihood Ratio goodness-of-fit tests. \emph{The Annals of Statistics, 13}(2), 727–742. doi:10.1214/aos/1176349550
+Quine, M. P., & Robinson, J. (1985). Efficiencies of chi-square and likelihood Ratio goodness-of-fit tests. \emph{The Annals of Statistics, 13}(2), 727-742. doi:10.1214/aos/1176349550
 
-Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. \emph{The Annals of Mathematical Statistics, 9}(1), 60–62. doi:10.1214/aoms/1177732360
+Wilks, S. S. (1938). The large-sample distribution of the likelihood ratio for testing composite hypotheses. \emph{The Annals of Mathematical Statistics, 9}(1), 60-62. doi:10.1214/aoms/1177732360
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33-37. doi:10.2307/2335081
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217-235. doi:10.2307/2983604
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

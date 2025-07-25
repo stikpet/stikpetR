@@ -161,3 +161,6 @@ ts_multinomial_gof <- function(data, expCounts=NULL) {
   
   return(testResults)
 }
+
+
+

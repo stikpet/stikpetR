@@ -112,9 +112,9 @@ Agresti, A. (2013). \emph{Categorical data analysis} (3rd ed.). Wiley.
 
 IBM SPSS Statistics Algorithms. (2021). IBM.
 
-Wilson, E. B. (1927). Probable Inference, the Law of Succession, and Statistical Inference. \emph{Journal of the American Statistical Association, 22}(158), 209–212. doi:10.2307/2276774
+Wilson, E. B. (1927). Probable Inference, the Law of Succession, and Statistical Inference. \emph{Journal of the American Statistical Association, 22}(158), 209-212. doi:10.2307/2276774
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217-235. doi:10.2307/2983604
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

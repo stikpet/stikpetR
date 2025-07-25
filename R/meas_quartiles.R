@@ -104,31 +104,31 @@
 #' 
 #' 
 #' @references 
-#' Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. *The American Statistician, 41*(3), 200–203. https://doi.org/10.1080/00031305.1987.10475479
+#' Freund, J. E., & Perles, B. M. (1987). A new look at quartiles of ungrouped data. *The American Statistician, 41*(3), 200-203. https://doi.org/10.1080/00031305.1987.10475479
 #' 
-#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225–272.
+#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225-272.
 #' 
-#' Gumbel, E. J. (1939). La Probabilité des Hypothèses. *Compes Rendus de l’ Académie des Sciences, 209*, 645–647.
+#' Gumbel, E. J. (1939). La Probabilite des Hypotheses. *Compes Rendus de l' Academie des Sciences, 209*, 645-647.
 #' 
-#' Hazen, A. (1914). Storage to be provided in impounding municipal water supply. *Transactions of the American Society of Civil Engineers, 77*(1), 1539–1640. https://doi.org/10.1061/taceat.0002563
+#' Hazen, A. (1914). Storage to be provided in impounding municipal water supply. *Transactions of the American Society of Civil Engineers, 77*(1), 1539-1640. https://doi.org/10.1061/taceat.0002563
 #' 
 #' Hogg, R. V., & Ledolter, J. (1992). *Applied statistics for engineers and physical scientists* (2nd int.). Macmillan.
 #' 
-#' Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. *The American Statistician, 50*(4), 361–365. https://doi.org/10.2307/2684934
+#' Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. *The American Statistician, 50*(4), 361-365. https://doi.org/10.2307/2684934
 #' 
-#' Joarder, A. H., & Firozzaman, M. (2001). Quartiles for discrete data. *Teaching Statistics, 23*(3), 86–89. https://doi.org/10.1111/1467-9639.00063
+#' Joarder, A. H., & Firozzaman, M. (2001). Quartiles for discrete data. *Teaching Statistics, 23*(3), 86-89. https://doi.org/10.1111/1467-9639.00063
 #' 
-#' Langford, E. (2006). Quartiles in elementary statistics. *Journal of Statistics Education, 14*(3), 1–17. https://doi.org/10.1080/10691898.2006.11910589
+#' Langford, E. (2006). Quartiles in elementary statistics. *Journal of Statistics Education, 14*(3), 1-17. https://doi.org/10.1080/10691898.2006.11910589
 #' 
 #' Lohninger, H. (n.d.). Quartile. Fundamentals of Statistics. Retrieved April 7, 2023, from http://www.statistics4u.com/fundstat_eng/cc_quartile.html
 #' 
-#' McAlister, D. (1879). The law of the geometric mean. *Proceedings of the Royal Society of London, 29*(196–199), 367–376. https://doi.org/10.1098/rspl.1879.0061
+#' McAlister, D. (1879). The law of the geometric mean. *Proceedings of the Royal Society of London, 29*(196-199), 367-376. https://doi.org/10.1098/rspl.1879.0061
 #' 
 #' Mendenhall, W., & Sincich, T. (1992). *Statistics for engineering and the sciences* (3rd ed.). Dellen Publishing Company.
 #' 
 #' Moore, D. S., & McCabe, G. P. (1989). *Introduction to the practice of statistics*. W.H. Freeman.
 #' 
-#' Parzen, E. (1979). Nonparametric statistical data modeling. *Journal of the American Statistical Association, 74*(365), 105–121. https://doi.org/10.1080/01621459.1979.10481621
+#' Parzen, E. (1979). Nonparametric statistical data modeling. *Journal of the American Statistical Association, 74*(365), 105-121. https://doi.org/10.1080/01621459.1979.10481621
 #' 
 #' SAS. (1990). SAS procedures guide: Version 6 (3rd ed.). SAS Institute.
 #' 
@@ -140,7 +140,7 @@
 #' 
 #' Vining, G. G. (1998). *Statistical methods for engineers*. Duxbury Press.
 #' 
-#' Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniörs Vetenskaps Akademien, 153, 1–55.
+#' Weibull, W. (1939).* The phenomenon of rupture in solids*. Ingeniors Vetenskaps Akademien, 153, 1-55.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -282,3 +282,6 @@ me_quartiles <- function(data, levels=NULL,
   
   return (results)
 }
+
+
+

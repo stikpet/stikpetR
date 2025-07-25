@@ -23,7 +23,7 @@
 #' *ncol(dataframe)* functions.
 #' 
 #' @references 
-#' Serlin, R. C., Carr, J., & Marascuilo, L. A. (1982). A measure of association for selected nonparametric procedures. *Psychological Bulletin, 92*(3), 786–790. https://doi.org/10.1037/0033-2909.92.3.786
+#' Serlin, R. C., Carr, J., & Marascuilo, L. A. (1982). A measure of association for selected nonparametric procedures. *Psychological Bulletin, 92*(3), 786-790. https://doi.org/10.1037/0033-2909.92.3.786
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -35,3 +35,6 @@ es_kendall_w <- function(Q, n, k){
   
   return(es)
 }
+
+
+

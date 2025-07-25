@@ -35,3 +35,6 @@ r_polychoric <- function(dataVar, groupVar){
   return(rp)
   
 }
+
+
+

@@ -52,7 +52,7 @@ t.test(var1, var2, paired=TRUE)
 t.test(var1, var2, paired=TRUE, mu=5)
 }
 \references{
-Student. (1908). The probable error of a mean. \emph{Biometrika, 6}(1), 1–25. doi:10.1093/biomet/6.1.1
+Student. (1908). The probable error of a mean. \emph{Biometrika, 6}(1), 1-25. doi:10.1093/biomet/6.1.1
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

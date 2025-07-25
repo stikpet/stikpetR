@@ -114,3 +114,6 @@ ts_z_is <- function(catField, scaleField, categories=NULL, dmu=0, sigma1=NULL, s
   return(results)
   
 }
+
+
+

@@ -99,11 +99,11 @@ spearman.test(ord1, ord2, approximation="AS89")
 spearman.test(ord1, ord2, approximation="exact")
 }
 \references{
-Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+Goktas, A., & isci, O. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
 
-Spearman, C. (1904). The proof and measurement of association between two things. \emph{The American Journal of Psychology, 15}(1), 72–101.
+Spearman, C. (1904). The proof and measurement of association between two things. \emph{The American Journal of Psychology, 15}(1), 72-101.
 
-Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. \emph{Journal of the American Statistical Association, 67}(339), 578–580. doi:10.1080/01621459.1972.10481251
+Zar, J. H. (1972). Significance testing of the Spearman rank correlation coefficient. \emph{Journal of the American Statistical Association, 67}(339), 578-580. doi:10.1080/01621459.1972.10481251
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

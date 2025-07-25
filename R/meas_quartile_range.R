@@ -63,9 +63,9 @@
 #' 
 #' 
 #' @references 
-#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225–272.
+#' Galton, F. (1881). Report of the anthropometric committee. *Report of the British Association for the Advancement of Science, 51*, 225-272.
 #' 
-#' Luo, D., Wan, X., Liu, J., & Tong, T. (2018). Optimally estimating the sample mean from the sample size, median, mid-range, and/or mid-quartile range. *Statistical Methods in Medical Research, 27*(6), 1785–1805. doi:10.1177/0962280216669183
+#' Luo, D., Wan, X., Liu, J., & Tong, T. (2018). Optimally estimating the sample mean from the sample size, median, mid-range, and/or mid-quartile range. *Statistical Methods in Medical Research, 27*(6), 1785-1805. doi:10.1177/0962280216669183
 #' 
 #' Parzen, E. (1980). *Data modeling using quantile and density-quantile functions*. Institute of Statistics, Texas A&M University.
 #' 
@@ -129,3 +129,6 @@ me_quartile_range <- function(data, levels=NULL,
   return (results)
   
 }
+
+
+

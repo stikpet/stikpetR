@@ -111,9 +111,9 @@ With:
 }
 }
 \references{
-Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. \emph{Biometrika, 61}(1), 165–170. https://doi.org/10.1093/biomet/61.1.165
+Yuen, K. K. (1974). The two-sample trimmed t for unequal population variances. \emph{Biometrika, 61}(1), 165-170. https://doi.org/10.1093/biomet/61.1.165
 
-Yuen, K. K., & Dixon, W. J. (1973). The approximate behaviour and performance of the two-sample trimmed t. \emph{Biometrika, 60}(2), 369–374. https://doi.org/10.2307/2334550
+Yuen, K. K., & Dixon, W. J. (1973). The approximate behaviour and performance of the two-sample trimmed t. \emph{Biometrika, 60}(2), 369-374. https://doi.org/10.2307/2334550
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

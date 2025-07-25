@@ -31,11 +31,11 @@ To convert a W statistic to a U statistic use:
 \deqn{U = W - \frac{n_1\times\left(n_1 + 1\right)}{2}}
 }
 \references{
-Dinneen, L. C., & Blakesley, B. C. (1973). Algorithm AS 62: A generator for the sampling distribution of the Mann- Whitney U statistic. \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics), 22}(2), 269–273. doi:10.2307/2346934
+Dinneen, L. C., & Blakesley, B. C. (1973). Algorithm AS 62: A generator for the sampling distribution of the Mann- Whitney U statistic. \emph{Journal of the Royal Statistical Society. Series C (Applied Statistics), 22}(2), 269-273. doi:10.2307/2346934
 
-Festinger, L. (1946). The significance of difference between means without reference to the frequency distribution function. \emph{Psychometrika, 11}(2), 97–105. doi:10.1007/BF02288926
+Festinger, L. (1946). The significance of difference between means without reference to the frequency distribution function. \emph{Psychometrika, 11}(2), 97-105. doi:10.1007/BF02288926
 
-Mann, H. B., & Whitney, D. R. (1947). On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. \emph{The Annals of Mathematical Statistics, 18}(1), 50–60. doi:10.1214/aoms/1177730491
+Mann, H. B., & Whitney, D. R. (1947). On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. \emph{The Annals of Mathematical Statistics, 18}(1), 50-60. doi:10.1214/aoms/1177730491
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

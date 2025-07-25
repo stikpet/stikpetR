@@ -22,9 +22,9 @@
 #' with:
 #' \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 #' 
-#' The shift-algorithm from Streitberg and Röhmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
+#' The shift-algorithm from Streitberg and Rohmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
 #' \itemize{
-#' \item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (n×(n+1))/2
+#' \item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (nx(n+1))/2
 #' \item Create a vector with the value 1 followed by n times a 0.
 #' \item Create a shifted vector by moving all values by 1.
 #' \item Add the two results (the original and the shifted version)
@@ -37,11 +37,11 @@
 #' This Wilcoxon Signed Rank Test (One-Sample) uses this distribution. The \code{\link{ts_wilcoxon_os}} function performs this test, but uses R's own psignrank
 #' 
 #' @references 
-#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
+#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864-871. doi:10.2307/2283253
 #' 
 #' Munzel, U., & Brunner, E. (2002). An exact paired rank test. *Biometrical Journal, 44*(5), 584. doi:10.1002/1521-4036(200207)44:5<584::AID-BIMJ584>3.0.CO;2-9
 #' 
-#' Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12–19.
+#' Streitberg, B., & Rohmel, J. (1987). Exakte Verteilungen fur Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12-19.
 #' 
 #' 
 #' @author 
@@ -135,9 +135,9 @@ di_wcdf <- function(T, n, method="shift"){
 #' with:
 #' \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 #' 
-#' The shift-algorithm from Streitberg and Röhmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
+#' The shift-algorithm from Streitberg and Rohmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
 #' \itemize{
-#' \item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (n×(n+1))/2
+#' \item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (nx(n+1))/2
 #' \item Create a vector with the value 1 followed by n times a 0.
 #' \item Create a shifted vector by moving all values by 1.
 #' \item Add the two results (the original and the shifted version)
@@ -149,11 +149,11 @@ di_wcdf <- function(T, n, method="shift"){
 #' 
 #' 
 #' @references 
-#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
+#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864-871. doi:10.2307/2283253
 #' 
 #' Munzel, U., & Brunner, E. (2002). An exact paired rank test. *Biometrical Journal, 44*(5), 584. doi:10.1002/1521-4036(200207)44:5<584::AID-BIMJ584>3.0.CO;2-9
 #' 
-#' Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12–19.
+#' Streitberg, B., & Rohmel, J. (1987). Exakte Verteilungen fur Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. *EDV in Medizin und Biologie, 18*(1), 12-19.
 #' 
 #' 
 #' @author 
@@ -233,7 +233,7 @@ di_wpmf <- function(T, n, method="shift"){
 #' \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 #' 
 #' @references 
-#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864–871. doi:10.2307/2283253
+#' McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. *Journal of the American Statistical Association, 60*(311), 864-871. doi:10.2307/2283253
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -250,3 +250,6 @@ srf <-function(T,n){
   else if (n>=0){
     return (srf(T-n, n-1) + srf(T, n-1))}
 }
+
+
+

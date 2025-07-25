@@ -6,7 +6,7 @@
 #' 
 #' Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
 #' 
-#' Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+#' Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Goktas and isci. (2011) for more information on the comparisons.
 #' 
 #' Kendall Tau a is the same as Goodman-Kruskal Gamma. See r_stuart_tau() for Stuart-Kendall-Tau c.
 #' 
@@ -156,21 +156,21 @@
 #' ord.tau(table(ord1, ord2))
 #' 
 #' @references 
-#' Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall’s tau. *Applied Statistics, 23*(1), 98–100. doi:10.2307/2347062
+#' Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall's tau. *Applied Statistics, 23*(1), 98-100. doi:10.2307/2347062
 #' 
-#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309–315. doi:10.2307/2286793
+#' Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. *Journal of the American Statistical Association, 72*(358), 309-315. doi:10.2307/2286793
 #' 
-#' Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
+#' Goktas, A., & isci, O. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. *Advances in Methodology and Statistics, 8*(1). doi:10.51936/milh5641
 #' 
-#' Kendall, M. G. (1938). A new measure of rank correlation. *Biometrika, 30*(1–2), 81–93. doi:10.1093/biomet/30.1-2.81
+#' Kendall, M. G. (1938). A new measure of rank correlation. *Biometrika, 30*(1-2), 81-93. doi:10.1093/biomet/30.1-2.81
 #' 
-#' Kendall, M. G. (1945). The treatment of ties in ranking problems. *Biometrika, 33*(3), 239–251. doi:10.1093/biomet/33.3.239
+#' Kendall, M. G. (1945). The treatment of ties in ranking problems. *Biometrika, 33*(3), 239-251. doi:10.1093/biomet/33.3.239
 #' 
 #' Kendall, M. G. (1962). *Rank correlation methods* (3rd ed.). Charles Griffin.
 #' 
 #' Kendall, M., & Gibbons, J. D. (1990). *Rank correlation methods* (5th ed.). Oxford University Press.
 #' 
-#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338–346. doi:10.1037/h0045013
+#' Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall's tau, a nonparametric correlation coefficient. *Psychological Bulletin, 53*(4), 338-346. doi:10.1037/h0045013
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -323,3 +323,6 @@ r_kendall_tau <- function(ordField1, ordField2, levels1=NULL, levels2=NULL, vers
   
   return(results)
 }
+
+
+

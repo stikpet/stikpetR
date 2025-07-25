@@ -8,7 +8,7 @@
 #' This function is shown in this [YouTube video](https://youtu.be/RQw09eg9Ojo) and test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param data dataframe with scores
-#' @param test {"pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial"} optional test to use
+#' @param test c("pearson", "freeman-tukey", "freeman-tukey-read", "g", "mod-log-g", "neyman", "powerdivergence", "multinomial") optional test to use
 #' @param expCount optional dataframe with categories and expected counts
 #' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional parameters to be passed to the test
@@ -183,3 +183,6 @@ ph_residual_gof_gof <- function(data, test="pearson", expCount=NULL, mtc='bonfer
   
   return (res)
 }
+
+
+

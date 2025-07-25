@@ -55,13 +55,13 @@ es_phi(df1[['mar1']], df1[['sex']], categories1=c("WIDOWED", "DIVORCED"))
 \references{
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
-Cole, L. C. (1949). The measurement of interspecific associaton. \emph{Ecology, 30}(4), 411–424. https://doi.org/10.2307/1932444
+Cole, L. C. (1949). The measurement of interspecific associaton. \emph{Ecology, 30}(4), 411-424. https://doi.org/10.2307/1932444
 
-Pearson, K. (1900). Mathematical Contributions to the Theory of Evolution. VII. On the Correlation of Characters not Quantitatively Measurable. \emph{Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character}, 195, 1–405.
+Pearson, K. (1900). Mathematical Contributions to the Theory of Evolution. VII. On the Correlation of Characters not Quantitatively Measurable. \emph{Philosophical Transactions of the Royal Society of London. Series A, Containing Papers of a Mathematical or Physical Character}, 195, 1-405.
 
 Pearson, K. (1904). \emph{Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation}. Dulau and Co.
 
-Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579–652. https://doi.org/10.2307/2340126
+Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579-652. https://doi.org/10.2307/2340126
 }
 \seealso{
 \code{\link{th_cohen_w}}, rules of thumb for Cohen w

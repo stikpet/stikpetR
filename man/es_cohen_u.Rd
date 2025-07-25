@@ -9,7 +9,7 @@ es_cohen_u(d, version = "u3")
 \arguments{
 \item{d}{the Cohen d value}
 
-\item{version}{{"u3", "u2", "u1"}, Optional, the version of Cohen U to determine}
+\item{version}{c("u3", "u2", "u1"), Optional, the version of Cohen U to determine}
 }
 \value{
 The Cohen U value

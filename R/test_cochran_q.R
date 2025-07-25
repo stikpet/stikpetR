@@ -46,7 +46,7 @@
 #' cochran.qtest(score~var |id, data=myData.long)
 #' 
 #' @references 
-#' Cochran, W. G. (1950). The comparison of percentages in matched samples. *Biometrika, 37*(3/4), 256–266. https://doi.org/10.2307/2332378
+#' Cochran, W. G. (1950). The comparison of percentages in matched samples. *Biometrika, 37*(3/4), 256-266. https://doi.org/10.2307/2332378
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -85,3 +85,6 @@ ts_cochran_q <- function(data, success = NULL){
   return(results)
   
 }
+
+
+

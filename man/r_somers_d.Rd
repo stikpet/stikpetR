@@ -37,7 +37,7 @@ A positive correlation indicates that if someone scored high on the first field,
 
 Alternatives for Somers D are Gamma, Kendall Tau, and Stuart-Kendall Tau, but also Spearman rho could be considered.
 
-Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Goktas and isci. (2011) for more information on the comparisons.
 
 Kendall Tau a is the same as Goodman-Kruskal Gamma.
 }
@@ -114,9 +114,9 @@ SomersDelta(ord1, ord2, direction = "column")
 ord.somers.d(table(ord1,ord2))
 }
 \references{
-Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+Goktas, A., & isci, O. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
 
-Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. \emph{American Sociological Review, 27}(6), 799–811. doi:10.2307/2090408
+Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. \emph{American Sociological Review, 27}(6), 799-811. doi:10.2307/2090408
 
 SPSS. (2006). SPSS 15.0 algorithms.
 }

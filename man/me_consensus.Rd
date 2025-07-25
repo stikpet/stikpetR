@@ -73,7 +73,7 @@ me_consensus(ex3, levels=order)
 
 }
 \references{
-Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. \emph{International Journal of Approximate Reasoning, 45}(3), 531–545. https://doi.org/10.1016/j.ijar.2006.06.024
+Tastle, W. J., & Wierman, M. J. (2007). Consensus and dissention: A measure of ordinal dispersion. \emph{International Journal of Approximate Reasoning, 45}(3), 531-545. https://doi.org/10.1016/j.ijar.2006.06.024
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

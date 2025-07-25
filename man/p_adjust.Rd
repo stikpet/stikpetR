@@ -9,7 +9,7 @@ p_adjust(p_values, method = "bonferroni", alpha = 0.05)
 \arguments{
 \item{p_values}{list with the various p-values}
 
-\item{method}{{'bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original', 'none'} optional method to use for adjustment, Default is 'bonferroni'}
+\item{method}{c('bonferroni', 'sidak', 'hommel', 'holm', 'holm-sidak', 'hochberg', 'bh', 'by', 'hommel-original', 'none') optional method to use for adjustment, Default is 'bonferroni'}
 
 \item{alpha}{: float, optional alpha level to use, only applies to 'hommel-original'. Default is 0.05.}
 }
@@ -17,7 +17,7 @@ p_adjust(p_values, method = "bonferroni", alpha = 0.05)
 p_adj_val : list with the adjusted p-values
 }
 \description{
-Various methods exist to counter a problem with multiple testing. Bonferroni, Šidák, Hommel, Holm, Holm-Šidák, and Hochberg all attempt to control the family wise error rate (FWER), while Benjamini-Hochberg and Benjamini-Yekutieli attempt to control the false discovery rate (FDR).
+Various methods exist to counter a problem with multiple testing. Bonferroni, Sidak, Hommel, Holm, Holm-Sidak, and Hochberg all attempt to control the family wise error rate (FWER), while Benjamini-Hochberg and Benjamini-Yekutieli attempt to control the false discovery rate (FDR).
 
 FWER methods want to minimize the chance of making at least one Type I error (incorrectly rejecting the null hypothesis), while FDR methods attempt to balance the false positive and false negatives.
 }
@@ -36,9 +36,9 @@ Dunn (1961, p. 53) uses the Bonferroni inequality to adjust confidence intervals
 
 Bonferroni describes these inequalities in two papers (1935, 1936), but unfortunately I do not read Italian. The term 'Bonferroni inequalities' can already be found in Feller (1950, p. 75)
 
-\strong{Šidák}
+\strong{Sidak}
 
-The formula used (Šidák, 1967, p. 629):
+The formula used (Sidak, 1967, p. 629):
 \deqn{\tilde{p}_i = \min\left(1, 1 - \left(1 - p_i\right)^k\right)}
 
 Where \eqn{p_i} is the p-value of test \eqn{i}, and \eqn{k} the number of tests.
@@ -72,14 +72,14 @@ Where \eqn{p_i} is the p-value of test \eqn{i} after sorting all p-values in asc
 
 Holm (1979, p. 67) describes this procedure, but uses alpha level.
 
-\strong{Holm-Šidák}
+\strong{Holm-Sidak}
 
 The formula used (SAS, n.d.):
 \deqn{\tilde{p}_i =\begin{cases} 1 - \left(1 - p_1 \right)^k & i= 1\\ \max \left(\tilde{p}_{i-1}, 1 - \left(1 - p_i\right)^{k - i + 1}\right) & i=2,\dots,k \end{cases} }
 
 Where \eqn{p_i} is the p-value of test \eqn{i} after sorting all p-values in ascending order, and \eqn{k} the number of tests.
 
-This uses Holm (1979, p. 67) step-down approach, but instead of using the Bonferroni adjustment, it uses Šidák.
+This uses Holm (1979, p. 67) step-down approach, but instead of using the Bonferroni adjustment, it uses Sidak.
 
 \strong{Hochberg}
 
@@ -135,27 +135,27 @@ The function will adjust the p-values using:
 \deqn{\tilde{p}_i =\begin{cases} \min\left(1, j\times p_i\right) & j exists \\ 1 & j does not exist \end{cases} }
 }
 \references{
-Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. \emph{Journal of the Royal Statistical Society Series B: Statistical Methodology, 57}(1), 289–300. doi:10.1111/j.2517-6161.1995.tb02031.x
+Benjamini, Y., & Hochberg, Y. (1995). Controlling the false discovery rate: A practical and powerful approach to multiple testing. \emph{Journal of the Royal Statistical Society Series B: Statistical Methodology, 57}(1), 289-300. doi:10.1111/j.2517-6161.1995.tb02031.x
 
-Benjamini, Y., & Yekutieli, D. (2001). The control of the false discovery rate in multiple testing under dependency. \emph{The Annals of Statistics, 29}(4), 1165–1188. doi:10.1214/aos/1013699998
+Benjamini, Y., & Yekutieli, D. (2001). The control of the false discovery rate in multiple testing under dependency. \emph{The Annals of Statistics, 29}(4), 1165-1188. doi:10.1214/aos/1013699998
 
-Bonferroni, C. E. (1935). Il calcolo delle assicurazioni su gruppi di teste. In \emph{Studi in Onore del Professore Salvatore Ortu Carboni} (pp. 13–60).
+Bonferroni, C. E. (1935). Il calcolo delle assicurazioni su gruppi di teste. In \emph{Studi in Onore del Professore Salvatore Ortu Carboni} (pp. 13-60).
 
-Bonferroni, C. E. (1936). \emph{Teoria statistica delle classi e calcolo delle probabilità}. Pubblicazioni Del R Istituto Superiore Di Scienze Economiche e Commerciali Di Firenze, 8, 3–62.
+Bonferroni, C. E. (1936). \emph{Teoria statistica delle classi e calcolo delle probabilita}. Pubblicazioni Del R Istituto Superiore Di Scienze Economiche e Commerciali Di Firenze, 8, 3-62.
 
-Dunn, O. J. (1961). Multiple comparisons among means. \emph{Journal of the American Statistical Association, 56}(293), 52–64. https://doi.org/10.1080/01621459.1961.10482090
+Dunn, O. J. (1961). Multiple comparisons among means. \emph{Journal of the American Statistical Association, 56}(293), 52-64. https://doi.org/10.1080/01621459.1961.10482090
 
 Feller, W. (1950). \emph{An introduction to probability theory and its applications: Vol. One}. John Wiley & Sons.
 
-Hochberg, Y. (1988). A sharper Bonferroni procedure for multiple tests of significance. \emph{Biometrika, 75}(4), 800–802. doi:10.1093/biomet/75.4.800
+Hochberg, Y. (1988). A sharper Bonferroni procedure for multiple tests of significance. \emph{Biometrika, 75}(4), 800-802. doi:10.1093/biomet/75.4.800
 
-Holm, S. (1979). A simple sequentially rejective multiple test procedure. \emph{Scandinavian Journal of Statistics, 6}(2), 65–70.
+Holm, S. (1979). A simple sequentially rejective multiple test procedure. \emph{Scandinavian Journal of Statistics, 6}(2), 65-70.
 
-Hommel, G. (1988). A stagewise rejective multiple test procedure based on a modified Bonferroni test. \emph{Biometrika, 75}(2), 383–386. doi:10.1093/biomet/75.2.383
+Hommel, G. (1988). A stagewise rejective multiple test procedure based on a modified Bonferroni test. \emph{Biometrika, 75}(2), 383-386. doi:10.1093/biomet/75.2.383
 
-SAS. (n.d.). PROC MULTTEST: p-Value Adjustments. SAS/STAT(R) 9.22 User’s Guide. Retrieved February 1, 2025, from https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_multtest_sect014.htm
+SAS. (n.d.). PROC MULTTEST: p-Value Adjustments. SAS/STAT(R) 9.22 User's Guide. Retrieved February 1, 2025, from https://support.sas.com/documentation/cdl/en/statug/63347/HTML/default/viewer.htm#statug_multtest_sect014.htm
 
-Šidák, Z. (1967). Rectangular confidence regions for the means of multivariate normal distributions. \emph{Journal of the American Statistical Association, 62}(318), 626. doi:10.2307/2283989
+Sidak, Z. (1967). Rectangular confidence regions for the means of multivariate normal distributions. \emph{Journal of the American Statistical Association, 62}(318), 626. doi:10.2307/2283989
 
 Wright, S. P. (1992). Adjusted p-values for simultaneous inference. \emph{Biometrics, 48}(4), 1005. doi:10.2307/2532694
 }

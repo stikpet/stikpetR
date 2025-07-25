@@ -35,7 +35,7 @@ he_spearman_permutation(ord1, ord2)
 
 }
 \references{
-cuttlefish44. (2016, September 16). Answer to “Different methods for finding spearman’s coefficient produce diff p-values depending on presence of tied values.” Cross Validated. https://stats.stackexchange.com/a/235380/190640
+cuttlefish44. (2016, September 16). Answer to "Different methods for finding spearman's coefficient produce diff p-values depending on presence of tied values." Cross Validated. https://stats.stackexchange.com/a/235380/190640
 }
 \author{
 P. Stikker

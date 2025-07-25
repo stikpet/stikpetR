@@ -14,17 +14,17 @@ me_variation(
 )
 }
 \arguments{
-\item{data}{: list or dataframe}
+\item{data}{list or dataframe}
 
-\item{levels}{: dictionary, optional coding to use}
+\item{levels}{dictionary, optional coding to use}
 
-\item{measure}{: {"std", "var", "mad", "madmed", "medad", "stddm", "cv", "cd", "own"}, optional the measure to determine. Default is "std"}
+\item{measure}{c("std", "var", "mad", "madmed", "medad", "stddm", "cv", "cd", "own"), optional the measure to determine. Default is "std"}
 
-\item{ddof}{: float, optional option to adjust the division in standard deviation or variance with. Default is 1.}
+\item{ddof}{float, optional option to adjust the division in standard deviation or variance with. Default is 1.}
 
-\item{center}{: {"mean", "median", "mode"} or float, optional if measure is "own" the value to use as center. Default is "mean"}
+\item{center}{c("mean", "median", "mode") or float, optional if measure is "own" the value to use as center. Default is "mean"}
 
-\item{azs}{: {"square", "abs"}, optional if measure is "own" the way to avoid a zero sum. Either by squaring or absolute value}
+\item{azs}{c("square", "abs"), optional if measure is "own" the way to avoid a zero sum. Either by squaring or absolute value}
 }
 \value{
 A dataframe with:
@@ -123,9 +123,9 @@ me_variation(ex2, measure='mad')
 
 }
 \references{
-Pearson, K. (1896). Contributions to the mathematical theory of evolution. III. Regression, Heredity, and Panmixia. \emph{Philosophical Transactions of the Royal Society of London}. (A.), 1896, 253–318.
+Pearson, K. (1896). Contributions to the mathematical theory of evolution. III. Regression, Heredity, and Panmixia. \emph{Philosophical Transactions of the Royal Society of London}. (A.), 1896, 253-318.
 
-Siraj-Ud-Doulah, M. (2018). Alternative measures of standard deviation coefficient of variation and standard error. \emph{International Journal of Statistics and Applications, 8}(6), 309–315. https://doi.org/10.5923/j.statistics.20180806.04
+Siraj-Ud-Doulah, M. (2018). Alternative measures of standard deviation coefficient of variation and standard error. \emph{International Journal of Statistics and Applications, 8}(6), 309-315. https://doi.org/10.5923/j.statistics.20180806.04
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

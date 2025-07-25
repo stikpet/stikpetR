@@ -30,9 +30,9 @@ This function will add a classification to the results of \strong{es_post_hoc_go
 This function is shown in this \href{https://youtu.be/Oc5Ejp-W2gU}{YouTube video} and described at \href{https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html}{PeterStatistics.com}
 }
 \details{
-For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramér V, when setting \emph{convert=True} it will convert it again to Cohen w.
+For Johnston-Berry-Mielke E and Fei, a conversion is always done to Cramer V, when setting \emph{convert=True} it will convert it again to Cohen w.
 
-Other possible conversions are Cohen h' to Cohen h, and Cramér V to Cohen w.
+Other possible conversions are Cohen h' to Cohen h, and Cramer V to Cohen w.
 
 See the separate documentation for each of the rules-of-thumb, or conversion.
 }

@@ -53,11 +53,11 @@ r_rank_biserial_is(binary, ordinal, categories=c("peer", "apple"))
 
 }
 \references{
-Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. \emph{Psychological Bulletin, 114}(3), 494–509. https://doi.org/10.1037/0033-2909.114.3.494
+Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. \emph{Psychological Bulletin, 114}(3), 494-509. https://doi.org/10.1037/0033-2909.114.3.494
 
-Cureton, E. E. (1956). Rank-biserial correlation. \emph{Psychometrika, 21}(3), 287–290. https://doi.org/10.1007/BF02289138
+Cureton, E. E. (1956). Rank-biserial correlation. \emph{Psychometrika, 21}(3), 287-290. https://doi.org/10.1007/BF02289138
 
-Glass, G. V. (1966). Note on rank biserial correlation. \emph{Educational and Psychological Measurement, 26}(3), 623–631. https://doi.org/10.1177/001316446602600307
+Glass, G. V. (1966). Note on rank biserial correlation. \emph{Educational and Psychological Measurement, 26}(3), 623-631. https://doi.org/10.1177/001316446602600307
 }
 \seealso{
 \code{\link{es_convert}}, to convert to Cohen d, use \verb{fr="rb", to="cohend"}.

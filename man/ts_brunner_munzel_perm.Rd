@@ -37,7 +37,7 @@ This function performs a studentized permutation test of the Brunner-Munzel test
 \details{
 The idea for a studentized permutation test was proposed by Neubert and Brunner (2007). The regular Brunner-Munzel test statistic is calculated, then the categories get shuffled and the statistic is re-calculated. This repeats.
 
-The minimum of the number of permutations above vs. below the observed statistic is multiplied by two and then divided by the number of iterations, to obtain the p-value (Schüürhuis et al., 2025, p. 7)
+The minimum of the number of permutations above vs. below the observed statistic is multiplied by two and then divided by the number of iterations, to obtain the p-value (Schuurhuis et al., 2025, p. 7)
 
 See the ts_brunner_munzel for more details.
 }
@@ -56,9 +56,9 @@ ts_brunner_munzel_perm(dfr[['Gen_Gender']], dfr[['Mix_NrAct']], levels=coding)
 
 }
 \references{
-Neubert, K., & Brunner, E. (2007). A studentized permutation test for the non-parametric Behrens–Fisher problem. \emph{Computational Statistics & Data Analysis, 51}(10), 5192–5204. https://doi.org/10.1016/j.csda.2006.05.024
+Neubert, K., & Brunner, E. (2007). A studentized permutation test for the non-parametric Behrens-Fisher problem. \emph{Computational Statistics & Data Analysis, 51}(10), 5192-5204. https://doi.org/10.1016/j.csda.2006.05.024
 
-Schüürhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
+Schuurhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

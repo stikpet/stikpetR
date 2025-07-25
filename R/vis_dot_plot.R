@@ -23,8 +23,8 @@
 #' 
 #' @details 
 #' In the definition a *bar chart* is mentioned. A bar chart can be defined as 
-#' “a graph in which bars of varying height with spaces between them are used to 
-#' display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20). 
+#' "a graph in which bars of varying height with spaces between them are used to 
+#' display data for variables defined by qualities or categories" (Zedeck, 2014, p. 20). 
 #' Together this indicates that a dot plot is used for categorical data.
 #' 
 #' However, Zedeck sees the dot plot as an alternative name for a scatterplot, 
@@ -85,3 +85,6 @@ vi_dot_plot <- function(data, stackRatio=1, dotSize=1){
   
   return(chart)  
 }
+
+
+

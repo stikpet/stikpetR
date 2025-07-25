@@ -2,7 +2,7 @@
 % Please edit documentation in R/test_ozdemir_kurt_owa.R
 \name{ts_ozdemir_kurt_owa}
 \alias{ts_ozdemir_kurt_owa}
-\title{Özdemir-Kurt Test}
+\title{Ozdemir-Kurt Test}
 \usage{
 ts_ozdemir_kurt_owa(nomField, scaleField, categories = NULL)
 }
@@ -25,10 +25,10 @@ Tests if the means (averages) of each category could be the same in the populati
 
 If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
-The formula used (Özdemir & Kurt, 2006, pp. 85-86):
+The formula used (Ozdemir & Kurt, 2006, pp. 85-86):
 \deqn{ B^2 = \sum_{j=1}^k\left(c_j\times\sqrt{\ln\left(1+\frac{t_j^2}{v_i}\right)}\right)^2 }
 \deqn{ df = k - 1 }
 \deqn{sig. = 1 - \chi^2\left(B^2, df\right)}
@@ -64,7 +64,7 @@ With:
 A binary search for a p-value is done such that \eqn{B^2 = \chi_{crit}^2}.
 }
 \references{
-Özdemir, A. F., & Kurt, S. (2006). One way fixed effect analysis of variance under variance heterogeneity and a solution proposal. \emph{Selçuk Journal of Applied Mathematics, 7}(2), 81–90.
+Ozdemir, A. F., & Kurt, S. (2006). One way fixed effect analysis of variance under variance heterogeneity and a solution proposal. \emph{Selcuk Journal of Applied Mathematics, 7}(2), 81-90.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -33,9 +33,9 @@
 #' This equation is used when method="dunlap".
 #'
 #' @references
-#' Dunlap, W. P. (1994). Generalizing the common language effect size indicator to bivariate normal correlations. *Psychological Bulletin, 116*(3), 509–511. https://doi.org/10.1037/0033-2909.116.3.509
+#' Dunlap, W. P. (1994). Generalizing the common language effect size indicator to bivariate normal correlations. *Psychological Bulletin, 116*(3), 509-511. https://doi.org/10.1037/0033-2909.116.3.509
 #'
-#' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361–365. https://doi.org/10.1037/0033-2909.111.2.361
+#' McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. *Psychological Bulletin, 111*(2), 361-365. https://doi.org/10.1037/0033-2909.111.2.361
 #'
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -74,3 +74,6 @@ es_common_language_ps <- function(field1, field2, dmu=0, method=c("dunlap", "mcg
   return(cl)
 
 }
+
+
+

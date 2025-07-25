@@ -60,3 +60,6 @@ ph_residual <- function(field1, field2, categories1=NULL, categories2=NULL, resi
   return (res)
   
 }
+
+
+

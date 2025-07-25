@@ -72,9 +72,9 @@ ts_sign_os(ex2)
 
 }
 \references{
-Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observ’d in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186–190. https://doi.org/10.1098/rstl.1710.0011
+Arbuthnott, J. (1710). An argument for divine providence, taken from the constant regularity observ'd in the births of both sexes. \emph{Philosophical Transactions of the Royal Society of London, 27}(328), 186-190. https://doi.org/10.1098/rstl.1710.0011
 
-Stewart, W. M. (1941). A note on the power of the sign test. \emph{The Annals of Mathematical Statistics, 12}(2), 236–239. https://doi.org/10.1214/aoms/1177731755
+Stewart, W. M. (1941). A note on the power of the sign test. \emph{The Annals of Mathematical Statistics, 12}(2), 236-239. https://doi.org/10.1214/aoms/1177731755
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

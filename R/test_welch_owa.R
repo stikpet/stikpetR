@@ -4,7 +4,7 @@
 #' 
 #' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 #' 
-#' Delacre et al. (2019) recommend to use the Welch ANOVA instead of the classic and Brown-Forsythe versions, but there are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' Delacre et al. (2019) recommend to use the Welch ANOVA instead of the classic and Brown-Forsythe versions, but there are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #' 
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -50,21 +50,21 @@
 #' \deqn{F_W = \frac{\chi_{Cochran}^2}{k - 1 + 2\times\lambda\times\frac{k - 2}{k + 1}}}
 #' Where \eqn{\chi_{Cochran}^2} is the test statistic of the Cochran one-way test
 #' 
-#' Cavus and Yazici (2020) make a difference between the Welch and the Welch-Aspin ANOVA. The only difference in the article is that with the Welch 2×(k-2) is used, 
-#' while in the Welch-Aspin version 2×k-2. I think this is a mistake in their formula, since the article they refer to from Aspin is about two means.
+#' Cavus and Yazici (2020) make a difference between the Welch and the Welch-Aspin ANOVA. The only difference in the article is that with the Welch 2x(k-2) is used, 
+#' while in the Welch-Aspin version 2xk-2. I think this is a mistake in their formula, since the article they refer to from Aspin is about two means.
 #' 
 #' Johansen F test (Johansen, 1980) will give the same results
 #' 
 #' @references 
-#' Cavus, M., & Yazıcı, B. (2020). Testing the equality of normal distributed and independent groups’ means under unequal variances by doex package. *The R Journal, 12*(2), 134. doi:10.32614/RJ-2021-008
+#' Cavus, M., & Yazici, B. (2020). Testing the equality of normal distributed and independent groups' means under unequal variances by doex package. *The R Journal, 12*(2), 134. doi:10.32614/RJ-2021-008
 #' 
-#' Delacre, M., Leys, C., Mora, Y. L., & Lakens, D. (2019). Taking parametric assumptions seriously: Arguments for the use of Welch’s F-test instead of the classical F-test in one-way ANOVA. *International Review of Social Psychology, 32*(1), 1–12. doi:10.5334/irsp.198
+#' Delacre, M., Leys, C., Mora, Y. L., & Lakens, D. (2019). Taking parametric assumptions seriously: Arguments for the use of Welch's F-test instead of the classical F-test in one-way ANOVA. *International Review of Social Psychology, 32*(1), 1-12. doi:10.5334/irsp.198
 #' 
-#' Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. *Biometrika, 67*(1), 85–92. doi:10.1093/biomet/67.1.85
+#' Johansen, S. (1980). The Welch-James approximation to the distribution of the residual sum of squares in a weighted linear regression. *Biometrika, 67*(1), 85-92. doi:10.1093/biomet/67.1.85
 #' 
-#' Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. *Biometrika, 34*(1/2), 28–35. doi:10.2307/2332510
+#' Welch, B. L. (1947). The generalization of `Student's' problem when several different population variances are involved. *Biometrika, 34*(1/2), 28-35. doi:10.2307/2332510
 #' 
-#' Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. *Biometrika, 38*(3/4), 330–336. doi:10.2307/2332579
+#' Welch, B. L. (1951). On the comparison of several mean values: An alternative approach. *Biometrika, 38*(3/4), 330-336. doi:10.2307/2332579
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -112,3 +112,6 @@ ts_welch_owa <- function(nomField, scaleField, categories=NULL){
   return(res)
   
 }
+
+
+

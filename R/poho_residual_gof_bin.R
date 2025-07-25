@@ -8,7 +8,7 @@
 #' This function is shown in this [YouTube video](https://youtu.be/mioMqScuhZ8) and test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param data dataframe with scores
-#' @param test {"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use
+#' @param test c("adj-residual", "std-residual", "binomial", "wald", "score") optional test to use
 #' @param expCount optional dataframe with categories and expected counts
 #' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional parameters to be passed to the test
@@ -76,9 +76,9 @@
 #'   
 #' @references 
 #' Agresti, A. (2007). *An introduction to categorical data analysis* (2nd ed.). Wiley-Interscience.
-#' Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. *Biometrics, 29*(1), 205–220. doi:10.2307/2529686
+#' Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. *Biometrics, 29*(1), 205-220. doi:10.2307/2529686
 #' R. (n.d.). Chisq.test \[Computer software\]. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
-#' Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, *Research & Evaluation, 20*(8), 1–10.
+#' Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, *Research & Evaluation, 20*(8), 1-10.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -202,3 +202,6 @@ ph_residual_gof_bin <- function(data, test="std-residual", expCount=NULL, mtc='b
   
   return (res)
 }
+
+
+

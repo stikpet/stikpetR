@@ -25,7 +25,7 @@ Tests if the means (averages) of each category could be the same in the populati
 
 If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula used (Wilcox, 1988, pp. 110-111)
@@ -55,7 +55,7 @@ The original article has an error in the formula for \eqn{b_j}. There are missin
 Using the population version in the article of \eqn{c_j} the formula used here was adapted.
 }
 \references{
-Wilcox, R. R. (1988). A new alternative to the ANOVA F and new results on James’s second-order method. \emph{British Journal of Mathematical and Statistical Psychology, 41}(1), 109–117. https://doi.org/10.1111/j.2044-8317.1988.tb00890.x
+Wilcox, R. R. (1988). A new alternative to the ANOVA F and new results on James's second-order method. \emph{British Journal of Mathematical and Statistical Psychology, 41}(1), 109-117. https://doi.org/10.1111/j.2044-8317.1988.tb00890.x
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

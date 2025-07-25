@@ -7,7 +7,7 @@
 #' \item{A}{all possible permutations of integers from 1 to n}
 #' 
 #' @references 
-#' Museful. (2013, November 25). Answer to “Generating all distinct permutations of a list in R.” Stack Overflow. https://stackoverflow.com/a/20199902/12149706
+#' Museful. (2013, November 25). Answer to "Generating all distinct permutations of a list in R." Stack Overflow. https://stackoverflow.com/a/20199902/12149706
 #' 
 #' @author 
 #' P. Stikker
@@ -33,3 +33,6 @@ he_permutations <- function(n){
     return(A)
   }
 }
+
+
+

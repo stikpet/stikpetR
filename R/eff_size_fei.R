@@ -53,9 +53,9 @@
 #' \code{\link{es_jbm_e}}, for Johnston-Berry-Mielke E.
 #' 
 #' @references 
-#' Ben-Shachar, M. S., Patil, I., Thériault, R., Wiernik, B. M., & Lüdecke, D. (2023). Phi, fei, fo, fum: Effect sizes for categorical data that use the chi-squared statistic. *Mathematics, 11*(1982), 1–10. doi:10.3390/math11091982
+#' Ben-Shachar, M. S., Patil, I., Theriault, R., Wiernik, B. M., & Ludecke, D. (2023). Phi, fei, fo, fum: Effect sizes for categorical data that use the chi-squared statistic. *Mathematics, 11*(1982), 1-10. doi:10.3390/math11091982
 #' 
-#' Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. *Perceptual and Motor Skills, 103*(2), 412–414. doi:10.2466/pms.103.2.412-414
+#' Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. *Perceptual and Motor Skills, 103*(2), 412-414. doi:10.2466/pms.103.2.412-414
 #'  
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -74,3 +74,6 @@ es_fei <-function(chi2, n, minExp){
   
   return (f)
 }
+
+
+

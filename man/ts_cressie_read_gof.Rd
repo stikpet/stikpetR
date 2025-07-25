@@ -100,15 +100,15 @@ n*powerDivStat(obs/n, exp, lambda=2/3)
 }
 
 \references{
-Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. \emph{Journal of the Royal Statistical Society: Series B (Methodological), 46}(3), 440–464. doi:10.1111/j.2517-6161.1984.tb01318.x
+Cressie, N., & Read, T. R. C. (1984). Multinomial goodness-of-fit tests. \emph{Journal of the Royal Statistical Society: Series B (Methodological), 46}(3), 440-464. doi:10.1111/j.2517-6161.1984.tb01318.x
 
-Haviland, M. G. (1990). Yates’s correction for continuity and the analysis of 2 × 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363–367. doi:10.1002/sim.4780090403
+Haviland, M. G. (1990). Yates's correction for continuity and the analysis of 2 x 2 contingency tables. \emph{Statistics in Medicine, 9}(4), 363-367. doi:10.1002/sim.4780090403
 
-Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 × 2 table. \emph{Biometrika, 34}(1/2), 139–167. doi:10.2307/2332518
+Pearson, E. S. (1947). The choice of statistical tests illustrated on the Interpretation of data classed in a 2 x 2 table. \emph{Biometrika, 34}(1/2), 139-167. doi:10.2307/2332518
 
-Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33–37. doi:10.2307/2335081
+Williams, D. A. (1976). Improved likelihood ratio tests for complete contingency tables. \emph{Biometrika, 63}(1), 33-37. doi:10.2307/2335081
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217-235. doi:10.2307/2983604
 }
 \seealso{
 Alternative tests with a nominal variable:
@@ -124,7 +124,7 @@ Alternative tests with a nominal variable:
 
 Effect sizes that might be of interest:
 \itemize{
-\item \code{\link{es_cramer_v_gof}} Cramér's V for goodness-of-fit
+\item \code{\link{es_cramer_v_gof}} Cramer's V for goodness-of-fit
 \item \code{\link{es_cohen_w}} Cohen w
 \item \code{\link{es_jbm_e}} Johnston-Berry-Mielke E
 }

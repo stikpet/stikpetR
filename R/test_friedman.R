@@ -64,15 +64,15 @@
 #' @references
 #' Conover, W. J. (1980). *Practical nonparametric statistics* (2nd ed.). Wiley.
 #' 
-#' Friedman, M. (1937). The use of ranks to avoid the assumption of normality implicit in the analysis of variance. *Journal of the American Statistical Association, 32*(200), 675–701. doi:10.2307/2279372
+#' Friedman, M. (1937). The use of ranks to avoid the assumption of normality implicit in the analysis of variance. *Journal of the American Statistical Association, 32*(200), 675-701. doi:10.2307/2279372
 #' 
-#' Friedman, M. (1939). A correction. *Journal of the American Statistical Association, 34*(205), 109–109. doi:10.1080/01621459.1939.10502372
+#' Friedman, M. (1939). A correction. *Journal of the American Statistical Association, 34*(205), 109-109. doi:10.1080/01621459.1939.10502372
 #' 
 #' Hollander, M., & Wolfe, D. A. (1999). *Nonparametric statistical methods* (2nd ed.). Wiley.
 #' 
 #' IBM. (2021). IBM SPSS Statistics Algorithms. IBM.
 #' 
-#' Iman, R., & Davenport, J. (1980). Approximations of the critical region of the Friedman statistic. *Communications in Statistics-Theory and Methods, 9*, 571–595.
+#' Iman, R., & Davenport, J. (1980). Approximations of the critical region of the Friedman statistic. *Communications in Statistics-Theory and Methods, 9*, 571-595.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -146,3 +146,6 @@ ts_friedman <- function(data, levels=NULL, ties=TRUE, dist="chi"){
   return (res)
   
 }
+
+
+

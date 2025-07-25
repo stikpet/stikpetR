@@ -87,7 +87,7 @@ ts_fligner_policello(binary, ordinal, categories=c("peer", "apple"))
 
 }
 \references{
-Fligner, M. A., & Policello, G. E. (1981). Robust rank procedures for the Behrens-Fisher problem. \emph{Journal of the American Statistical Association, 76}(373), 162–168. https://doi.org/10.1080/01621459.1981.10477623
+Fligner, M. A., & Policello, G. E. (1981). Robust rank procedures for the Behrens-Fisher problem. \emph{Journal of the American Statistical Association, 76}(373), 162-168. https://doi.org/10.1080/01621459.1981.10477623
 
 Hollander, M., Wolfe, D. A., & Chicken, E. (2014). \emph{Nonparametric statistical methods} (3rd ed.). John Wiley & Sons, Inc.
 

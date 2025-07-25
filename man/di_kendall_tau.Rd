@@ -32,7 +32,7 @@ Where \eqn{C = n_c}, i.e. the number of concordant pairs.
 This algorithm already returns a two-tailed result.
 }
 \references{
-Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall’s tau. \emph{Applied Statistics, 23}(1), 98–100. https://doi.org/10.2307/2347062
+Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall's tau. \emph{Applied Statistics, 23}(1), 98-100. https://doi.org/10.2307/2347062
 }
 \author{
 P. Stikker

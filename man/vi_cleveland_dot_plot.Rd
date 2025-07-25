@@ -66,7 +66,7 @@ vi_cleveland_dot_plot(ex2);
 
 }
 \references{
-Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. \emph{Journal of the American Statistical Association, 79}(387), 531–554. https://doi.org/10.2307/2288400
+Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. \emph{Journal of the American Statistical Association, 79}(387), 531-554. https://doi.org/10.2307/2288400
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

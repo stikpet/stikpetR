@@ -55,7 +55,7 @@ To decide on which category is associated with p0 the following is used:
 }
 
 This test differs from the one-sample score test in the calculation of the standard error.
-For the ‘regular’ version this is based on the expected proportion,
+For the 'regular' version this is based on the expected proportion,
 while for the Wald version it is done with the observed proportion.
 
 The formula used (Wald, 1943):
@@ -110,9 +110,9 @@ Agresti, A. (2013). \emph{Categorical data analysis} (3rd ed.). Wiley.
 
 IBM SPSS Statistics Algorithms. (2021). IBM.
 
-Wald, A. (1943). Tests of statistical hypotheses concerning several parameters when the number of observations is large. \emph{Transactions of the American Mathematical Society, 54}(3), 426–482. doi:10.2307/1990256
+Wald, A. (1943). Tests of statistical hypotheses concerning several parameters when the number of observations is large. \emph{Transactions of the American Mathematical Society, 54}(3), 426-482. doi:10.2307/1990256
 
-Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217–235. doi:10.2307/2983604
+Yates, F. (1934). Contingency tables involving small numbers and the chi square test. \emph{Supplement to the Journal of the Royal Statistical Society, 1}(2), 217-235. doi:10.2307/2983604
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

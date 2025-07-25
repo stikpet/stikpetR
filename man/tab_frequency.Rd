@@ -37,15 +37,15 @@ A YouTube video with explanation on this test is available \href{https://youtu.b
 }
 \details{
 The column \strong{Frequency} shows how many respondents answered each option. We can tell that 100 people in this survey
-chose the option 'very scientific'. This is also known as the \strong{absolute frequency} and defined as “the number of
-occurrences of a particular phenomenon” (Zedeck, “Frequency”, 2014, p. 144).
+chose the option 'very scientific'. This is also known as the \strong{absolute frequency} and defined as "the number of
+occurrences of a particular phenomenon" (Zedeck, "Frequency", 2014, p. 144).
 
 The \strong{Percent} column shows the percentages, based on the grand total, so including the missing values.
-Percentages can be defined as “a way of expressing ratios in terms of whole numbers. A ratio or fraction is converted to
-a percentage by multiplying by 100 and appending a "percentage sign" \%” (Weisstein, 2002, p. 2200).
+Percentages can be defined as "a way of expressing ratios in terms of whole numbers. A ratio or fraction is converted to
+a percentage by multiplying by 100 and appending a "percentage sign" \%" (Weisstein, 2002, p. 2200).
 
 The \strong{Valid Percent} shows the percentage, based on the valid total, so excluding the missing values.
-Most often the ‘Percent’ shown in reports are actually Valid Percent, but the word ‘Valid’ is then simply left out.
+Most often the 'Percent' shown in reports are actually Valid Percent, but the word 'Valid' is then simply left out.
 
 Percentages show the number of cases that could be expected if there would be 100 cases in total, hence per-cent which means
 'per 100'. If your sample size is very small, be careful about using percentages. If it is less than 100, it means that you
@@ -53,7 +53,7 @@ are 'blowing up' your differences, while percentages are more commonly used to '
 
 The term \strong{relative frequency} is also sometimes used. This is the frequency divided by the total number of cases.
 Note that this should then always produce a decimal value between 0 and 1 (inclusive).
-Multiply this by 100 and you get the percentage, multiply it by 1000 and you get permille (‰), multiply it by 360 and
+Multiply this by 100 and you get the percentage, multiply it by 1000 and you get permille, multiply it by 360 and
 you get the degrees of a circle, etc.
 
 In general the formula for a percentage is:
@@ -66,14 +66,14 @@ In general the formula for a percentage is:
 \item \eqn{n} the sample size, i.e. the sum of all frequencies (either including or excluding the missing values)
 }
 
-The \strong{cumulative frequency} (not shown in table) can be defined as: “the total (absolute) frequency up to the upper
-boundary of that class” (Kenney, 1939, p. 16). This would only be useful if there is an order to the categories,
+The \strong{cumulative frequency} (not shown in table) can be defined as: "the total (absolute) frequency up to the upper
+boundary of that class" (Kenney, 1939, p. 16). This would only be useful if there is an order to the categories,
 so we can say that for example 299 respondents found accounting pretty scientific or even more. Which is why these
 cumulative frequencies will not have a meaningful interpretation for a nominal variable (e.g. 28 students study
 business or less?).
 
 The \strong{Cumulative Percent} is the running total of the Valid Percent, it is the addition of all previous and the current
-category’s valid percentages.
+category's valid percentages.
 
 The cumulative frequency can be calculated using:
 \deqn{CF_i = \sum_{j=1}^i F_j}
@@ -84,7 +84,7 @@ It can also be determined using the cumulative frequency:
 \deqn{CPR_i = \frac{CF_i}{n}}
 
 When the categories are ranges of values (bins), the frequency density could become helpful.
-It can be defined as: “the number of occurrences of an event divided by the bin size…” (Zedeck, 2014, pp. 144–145).
+It can be defined as: "the number of occurrences of an event divided by the bin size..." (Zedeck, 2014, pp. 144-145).
 See the binned tables for more information about this.
 }
 \examples{

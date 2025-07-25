@@ -52,7 +52,7 @@
 #' }
 #' 
 #' @references
-#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153–157. doi:10.1007/BF02295996
+#' McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. *Psychometrika, 12*(2), 153-157. doi:10.1007/BF02295996
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -111,3 +111,6 @@ ph_mcnemar_pw <- function(field1, field2, categories=NULL, exact=FALSE, cc=FALSE
   colnames(res) = c("field1", "field2", "n", "statistic", "df", "p-value", "adj. p-value")
   return (res)
 }
+
+
+

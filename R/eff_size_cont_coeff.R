@@ -48,13 +48,13 @@
 #' YouTube channel: https://www.youtube.com/stikpet
 #' 
 #' @references 
-#' Blaikie, N. W. H. (1969). Religion, social status, and community involvement: A study in Christchurch. *The Australian and New Zealand Journal of Sociology, 5*(1), 14–31. doi:10.1177/144078336900500102
+#' Blaikie, N. W. H. (1969). Religion, social status, and community involvement: A study in Christchurch. *The Australian and New Zealand Journal of Sociology, 5*(1), 14-31. doi:10.1177/144078336900500102
 #' 
 #' Blaikie, N. W. H. (2003). *Analyzing quantitative data: From description to explanation*. Sage Publications Ltd.
 #' 
 #' Pearson, K. (1904). *Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation*. Dulau and Co.
 #' 
-#' Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. *In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III* (pp. 777–780).
+#' Sakoda, J. M. (1977). Measures of Association for Multivariate Contingency Tables. *In Proceedings of the Social Statistics Section of the American Statistical Association: Vol. Part III* (pp. 777-780).
 #' 
 #' @export
 es_cont_coeff <- function(chi2, n, adj=NULL, r=NULL, c=NULL){
@@ -75,3 +75,6 @@ es_cont_coeff <- function(chi2, n, adj=NULL, r=NULL, c=NULL){
   return (es)
   
 }
+
+
+

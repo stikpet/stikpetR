@@ -35,13 +35,13 @@
 #' \code{\link{ts_wilcoxon_os}}, for One-Sample Wilcoxon Signed Rank Test.
 #' 
 #' @references
-#' Hodges, J. L., & Lehmann, E. L. (1963). Estimates of location based on rank tests. *The Annals of Mathematical Statistics, 34*(2), 598–611. doi:10.1214/aoms/1177704172
+#' Hodges, J. L., & Lehmann, E. L. (1963). Estimates of location based on rank tests. *The Annals of Mathematical Statistics, 34*(2), 598-611. doi:10.1214/aoms/1177704172
 #' 
-#' Monahan, J. F. (1984). Algorithm 616: Fast computation of the Hodges-Lehmann location estimator. *ACM Transactions on Mathematical Software, 10*(3), 265–270. doi:10.1145/1271.319414
+#' Monahan, J. F. (1984). Algorithm 616: Fast computation of the Hodges-Lehmann location estimator. *ACM Transactions on Mathematical Software, 10*(3), 265-270. doi:10.1145/1271.319414
 #' 
-#' Walsh, J. E. (1949a). Applications of some significance tests for the median which are valid under very general conditions. Journal of the American Statistical Association, 44(247), 342–355. doi:10.1080/01621459.1949.10483311
+#' Walsh, J. E. (1949a). Applications of some significance tests for the median which are valid under very general conditions. Journal of the American Statistical Association, 44(247), 342-355. doi:10.1080/01621459.1949.10483311
 #' 
-#' Walsh, J. E. (1949b). Some significance tests for the median which are valid under very general conditions. *The Annals of Mathematical Statistics, 20*(1), 64–81. doi:10.1214/aoms/1177730091
+#' Walsh, J. E. (1949b). Some significance tests for the median which are valid under very general conditions. *The Annals of Mathematical Statistics, 20*(1), 64-81. doi:10.1214/aoms/1177730091
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -74,3 +74,6 @@ me_hodges_lehmann_os <- function(scores, levels=NULL){
   HL = median(walsh[lower.tri(walsh, diag = TRUE)])  
   return (HL)
 }
+
+
+

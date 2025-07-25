@@ -83,14 +83,14 @@
 #'
 #' fr="cohenw", to="cc"
 #' 
-#' *Cohen w to Cramér V GoF*
+#' *Cohen w to Cramer V GoF*
 #' 
 #' fr="cohenw", to="cramervgof", ex1=k
 #' 
 #' This uses (Cohen, 1988, p. 223):
 #' \deqn{v = \frac{w}{\sqrt{k - 1}}}
 #' 
-#' *Cohen w to Cramér V ind.*
+#' *Cohen w to Cramer V ind.*
 #' 
 #' fr="cohenw", to="cramervind", ex1=r, ex2=c
 #' 
@@ -284,11 +284,11 @@
 #' @references
 #' Borenstein, M., Hedges, L. V., Higgins, J. P. T., & Rothstein, H. R. (2009). Converting Among Effect Sizes. In *Introduction to Meta-Analysis*. John Wiley & Sons, Ltd. https://doi.org/10.1002/9780470743386
 #'
-#' Chinn, S. (2000). A simple method for converting an odds ratio to effect size for use in meta-analysis. *Statistics in Medicine, 19*(22), 3127–3131. https://doi.org/10.1002/1097-0258(20001130)19:22<3127::aid-sim784>3.0.co;2-m
+#' Chinn, S. (2000). A simple method for converting an odds ratio to effect size for use in meta-analysis. *Statistics in Medicine, 19*(22), 3127-3131. https://doi.org/10.1002/1097-0258(20001130)19:22<3127::aid-sim784>3.0.co;2-m
 #'
 #' Cohen, J. (1988). *Statistical power analysis for the behavioral sciences* (2nd ed.). L. Erlbaum Associates.
 #'
-#' Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. *Perceptual and Motor Skills, 103*(2), 412–414. https://doi.org/10.2466/pms.103.2.412-414
+#' Johnston, J. E., Berry, K. J., & Mielke, P. W. (2006). Measures of effect size for chi-squared and likelihood-ratio goodness-of-fit tests. *Perceptual and Motor Skills, 103*(2), 412-414. https://doi.org/10.2466/pms.103.2.412-414
 #'
 #' @export
 es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
@@ -421,3 +421,6 @@ es_convert <- function(es, fr, to, ex1=NULL, ex2=NULL){
   return(res)
 
 }
+
+
+

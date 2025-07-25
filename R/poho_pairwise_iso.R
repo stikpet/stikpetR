@@ -110,3 +110,6 @@ ph_pairwise_iso <- function(catField, ordField, categories=NULL, levels=NULL, is
   colnames(res) = res_columns
   return (res)
 }
+
+
+

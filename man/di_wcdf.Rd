@@ -30,9 +30,9 @@ The recursive method uses the formula from McCornack (1965, p. 864):
 with:
 \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 
-The shift-algorithm from Streitberg and Röhmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
+The shift-algorithm from Streitberg and Rohmel (1987), and can also be found in Munzel and Brunner (2002). This works as follows.
 \itemize{
-\item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (n×(n+1))/2
+\item Start with listing all values from 0 to the maximum possible sum of ranks, so 0 to (nx(n+1))/2
 \item Create a vector with the value 1 followed by n times a 0.
 \item Create a shifted vector by moving all values by 1.
 \item Add the two results (the original and the shifted version)
@@ -49,11 +49,11 @@ di_wcdf(T=8, n=12)
  
 }
 \references{
-McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864–871. doi:10.2307/2283253
+McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864-871. doi:10.2307/2283253
 
 Munzel, U., & Brunner, E. (2002). An exact paired rank test. \emph{Biometrical Journal, 44}(5), 584. doi:10.1002/1521-4036(200207)44:5<584::AID-BIMJ584>3.0.CO;2-9
 
-Streitberg, B., & Röhmel, J. (1987). Exakte Verteilungen für Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. \emph{EDV in Medizin und Biologie, 18}(1), 12–19.
+Streitberg, B., & Rohmel, J. (1987). Exakte Verteilungen fur Rang-und Randomisierungstests im allgemeinen c-Stichprobenproblem. \emph{EDV in Medizin und Biologie, 18}(1), 12-19.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

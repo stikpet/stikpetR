@@ -53,13 +53,13 @@
 #' Note that all of these should give the same result.
 #'  
 #' @references 
-#' Friedman, H. (1968). Magnitude of experimental effect and a table for its rapid estimation. *Psychological Bulletin, 70*(4), 245–251. https://doi.org/10.1037/h0026258
+#' Friedman, H. (1968). Magnitude of experimental effect and a table for its rapid estimation. *Psychological Bulletin, 70*(4), 245-251. https://doi.org/10.1037/h0026258
 #' 
-#' Soper, H. E. (1914). On the probable error of the bi-serial expression for the correlation coefficient. *Biometrika, 10*(2/3), 384–390. https://doi.org/10.2307/2331789
+#' Soper, H. E. (1914). On the probable error of the bi-serial expression for the correlation coefficient. *Biometrika, 10*(2/3), 384-390. https://doi.org/10.2307/2331789
 #' 
-#' Tate, R. F. (1954). Correlation between a discrete and a continuous variable. Point-biserial correlation. *The Annals of Mathematical Statistics, 25*(3), 603–607. https://doi.org/10.1214/aoms/1177728730
+#' Tate, R. F. (1954). Correlation between a discrete and a continuous variable. Point-biserial correlation. *The Annals of Mathematical Statistics, 25*(3), 603-607. https://doi.org/10.1214/aoms/1177728730
 #' 
-#' Tate, R. F. (1955). Applications of correlation models for biserial data. *Journal of the American Statistical Association, 50*(272), 1078–1095. https://doi.org/10.2307/2281207
+#' Tate, R. F. (1955). Applications of correlation models for biserial data. *Journal of the American Statistical Association, 50*(272), 1078-1095. https://doi.org/10.2307/2281207
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -116,3 +116,6 @@ r_point_biserial <- function(catField, scaleField, categories=NULL){
   return(results)
   
 }
+
+
+

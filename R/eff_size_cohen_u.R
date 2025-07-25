@@ -12,7 +12,7 @@
 #' By converting each back to Cohen's d, the rule-of-thumb from Cohen d could be used as classification.
 #' 
 #' @param d the Cohen d value
-#' @param version {"u3", "u2", "u1"}, Optional, the version of Cohen U to determine
+#' @param version c("u3", "u2", "u1"), Optional, the version of Cohen U to determine
 #' 
 #' @returns 
 #' The Cohen U value
@@ -49,3 +49,6 @@ es_cohen_u <- function(d, version='u3'){
   
   return (u)
 }
+
+
+

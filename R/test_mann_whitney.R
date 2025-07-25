@@ -59,9 +59,9 @@
 #' 
 #'
 #' @references 
-#' Lehmann, E. L., & D’Abrera, H. J. M. (1975). *Nonparametrics: Statistical methods based on ranks*. Holden-Day.
+#' Lehmann, E. L., & D'Abrera, H. J. M. (1975). *Nonparametrics: Statistical methods based on ranks*. Holden-Day.
 #' 
-#' Mann, H. B., & Whitney, D. R. (1947). On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. *The Annals of Mathematical Statistics, 18*(1), 50–60. https://doi.org/10.1214/aoms/1177730491
+#' Mann, H. B., & Whitney, D. R. (1947). On a Test of Whether one of Two Random Variables is Stochastically Larger than the Other. *The Annals of Mathematical Statistics, 18*(1), 50-60. https://doi.org/10.1214/aoms/1177730491
 #' 
 #' Wilcoxon, F. (1945). Individual comparisons by ranking methods. *Biometrics Bulletin, 1*(6), 80. https://doi.org/10.2307/3001968
 #' 
@@ -177,3 +177,6 @@ ts_mann_whitney <- function(catField, ordField, categories=NULL, levels=NULL, me
   
   return(results)  
 }
+
+
+

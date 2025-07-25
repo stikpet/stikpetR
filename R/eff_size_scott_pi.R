@@ -44,7 +44,7 @@
 #' }
 #' 
 #' @references
-#' Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. *The Public Opinion Quarterly, 19*(3), 321–325.
+#' Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. *The Public Opinion Quarterly, 19*(3), 321-325.
 #'  
 #' @export
 es_scott_pi <- function(field1, field2, categories=NULL){
@@ -78,3 +78,6 @@ es_scott_pi <- function(field1, field2, categories=NULL){
   return(res)
   
 }
+
+
+

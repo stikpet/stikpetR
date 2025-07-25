@@ -63,3 +63,6 @@ th_cohen_w <- function(w, qual="cohen"){
 }
 
 
+
+
+

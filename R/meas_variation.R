@@ -6,12 +6,12 @@
 #' This function is shown in this [YouTube video](https://youtu.be/hhqMByH1vIo) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/QuantitativeVariation.html)
 #' 
 #' 
-#' @param data : list or dataframe
-#' @param levels : dictionary, optional coding to use
-#' @param measure : {"std", "var", "mad", "madmed", "medad", "stddm", "cv", "cd", "own"}, optional the measure to determine. Default is "std"
-#' @param ddof : float, optional option to adjust the division in standard deviation or variance with. Default is 1.
-#' @param center : {"mean", "median", "mode"} or float, optional if measure is "own" the value to use as center. Default is "mean"
-#' @param azs : {"square", "abs"}, optional if measure is "own" the way to avoid a zero sum. Either by squaring or absolute value
+#' @param data list or dataframe
+#' @param levels dictionary, optional coding to use
+#' @param measure c("std", "var", "mad", "madmed", "medad", "stddm", "cv", "cd", "own"), optional the measure to determine. Default is "std"
+#' @param ddof float, optional option to adjust the division in standard deviation or variance with. Default is 1.
+#' @param center c("mean", "median", "mode") or float, optional if measure is "own" the value to use as center. Default is "mean"
+#' @param azs c("square", "abs"), optional if measure is "own" the way to avoid a zero sum. Either by squaring or absolute value
 #' 
 #' 
 #' @returns
@@ -94,9 +94,9 @@
 #' 
 #' 
 #' @references
-#' Pearson, K. (1896). Contributions to the mathematical theory of evolution. III. Regression, Heredity, and Panmixia. *Philosophical Transactions of the Royal Society of London*. (A.), 1896, 253–318.
+#' Pearson, K. (1896). Contributions to the mathematical theory of evolution. III. Regression, Heredity, and Panmixia. *Philosophical Transactions of the Royal Society of London*. (A.), 1896, 253-318.
 #' 
-#' Siraj-Ud-Doulah, M. (2018). Alternative measures of standard deviation coefficient of variation and standard error. *International Journal of Statistics and Applications, 8*(6), 309–315. https://doi.org/10.5923/j.statistics.20180806.04
+#' Siraj-Ud-Doulah, M. (2018). Alternative measures of standard deviation coefficient of variation and standard error. *International Journal of Statistics and Applications, 8*(6), 309-315. https://doi.org/10.5923/j.statistics.20180806.04
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -192,3 +192,6 @@ me_variation <- function(data,
   colnames(results)<-c("value", "measure")    
   return (results)
 }
+
+
+

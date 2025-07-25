@@ -25,7 +25,7 @@ with:
 \deqn{srf^*\left(x,y\right) = srf\left(x-y,y-1\right) + srf\left(x,y-1\right)}
 }
 \references{
-McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864–871. doi:10.2307/2283253
+McCornack, R. L. (1965). Extended tables of the Wilcoxon matched pair signed rank statistic. \emph{Journal of the American Statistical Association, 60}(311), 864-871. doi:10.2307/2283253
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

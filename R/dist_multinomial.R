@@ -26,7 +26,7 @@
 #' \deqn{\ln\left(mpmf\left(F, P\right)\right) = \ln\left(\Gamma\left(n + 1\right)\right) + \sum_{i=1}^k F_i\times\ln\left(P_i\right) - \ln\left(\Gamma\left(F_i + 1\right)\right)}
 #' This formula can for example be found in Arnold (2018).
 #' 
-#' If *method=mprob* the algorithm from García-Pérez (1999) is used:
+#' If *method=mprob* the algorithm from Garcia-Perez (1999) is used:
 #' \enumerate{
 #' \item Determine \eqn{F^*}, the counts in descending order, and move the elements in \eqn{P} accordingly creating \eqn{P^*}.
 #' \item Set \eqn{pmf = 1}, \eqn{t=P_1^*}, \eqn{i=2}, \eqn{x=0}, and \eqn{m=F_1^*}
@@ -46,11 +46,11 @@
 #' @references 
 #' Arnold, J. (2018, December 3). Maximum Likelihood for the multinomial distribution (bag of words) \[Blog\]. Jakuba. https://blog.jakuba.net/maximum-likelihood-for-multinomial-distribution/
 #' 
-#' Berry, K. J., & Mielke, P. W. (1995). Exact cumulative probabilities for the multinomial distribution. *Educational and Psychological Measurement, 55*(5), 769–772. doi:10.1177/0013164495055005008
+#' Berry, K. J., & Mielke, P. W. (1995). Exact cumulative probabilities for the multinomial distribution. *Educational and Psychological Measurement, 55*(5), 769-772. doi:10.1177/0013164495055005008
 #' 
-#' Edgeworth, F. Y. (1905). The law of error. *Transactions of the Cambridge Philosophical Society, 20*, 36–66.
+#' Edgeworth, F. Y. (1905). The law of error. *Transactions of the Cambridge Philosophical Society, 20*, 36-66.
 #' 
-#' García-Pérez, M. A. (1999). MPROB: Computation of multinomial probabilities. *Behavior Research Methods, Instruments, & Computers, 31*(4), 701–705. doi:10.3758/BF03200749
+#' Garcia-Perez, M. A. (1999). MPROB: Computation of multinomial probabilities. *Behavior Research Methods, Instruments, & Computers, 31*(4), 701-705. doi:10.3758/BF03200749
 #' 
 #' 
 #' @author 
@@ -201,3 +201,6 @@ he_find_combinations <- function(n, k) {
   helper(n, k, numeric(0), result_env)
   return(result_env$result)
 }
+
+
+

@@ -37,7 +37,7 @@ With:
 
 \emph{Symbols used:}
 \itemize{
-\item \eqn{d'} Cohen’s d for one-sample
+\item \eqn{d'} Cohen's d for one-sample
 \item \eqn{df} the degrees of freedom
 \item \eqn{n} the sample size (i.e. the number of scores)
 \item \eqn{\Gamma\left(\dots\right)} the gamma function
@@ -83,11 +83,11 @@ es_hedges_g_os(ex2)
  
 }
 \references{
-Durlak, J. A. (2009). How to select, calculate, and interpret effect sizes. \emph{Journal of Pediatric Psychology, 34}(9), 917–928. https://doi.org/10.1093/jpepsy/jsp004
+Durlak, J. A. (2009). How to select, calculate, and interpret effect sizes. \emph{Journal of Pediatric Psychology, 34}(9), 917-928. https://doi.org/10.1093/jpepsy/jsp004
 
-Hedges, L. V. (1981). Distribution Theory for Glass’s Estimator of Effect Size and Related Estimators. \emph{Journal of Educational Statistics, 6}(2), 107–128. https://doi.org/10.2307/1164588
+Hedges, L. V. (1981). Distribution Theory for Glass's Estimator of Effect Size and Related Estimators. \emph{Journal of Educational Statistics, 6}(2), 107-128. https://doi.org/10.2307/1164588
 
-Xue, X. (2020). Improved approximations of Hedges’ g*. https://doi.org/10.48550/arXiv.2003.06675
+Xue, X. (2020). Improved approximations of Hedges' g*. https://doi.org/10.48550/arXiv.2003.06675
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

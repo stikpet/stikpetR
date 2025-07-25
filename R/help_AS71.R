@@ -10,7 +10,7 @@
 #' The Fortran code was translated to R by myself.
 #' 
 #' @references 
-#' Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall’s tau. *Applied Statistics, 23*(1), 98–100. https://doi.org/10.2307/2347062
+#' Best, D. J., & Gipps, P. G. (1974). Algorithm AS 71: The upper tail probabilities of Kendall's tau. *Applied Statistics, 23*(1), 98-100. https://doi.org/10.2307/2347062
 #' 
 #' @author 
 #' P. Stikker
@@ -158,3 +158,6 @@ he_AS71 <- function(S, N){
   return(PRTAUS)
   
 }
+
+
+

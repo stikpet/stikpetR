@@ -62,3 +62,6 @@ vi_boxplot_single <- function(data, varname=NULL){
   boxplot(data, ylab=varname, horizontal=TRUE)
   
 }
+
+
+

@@ -64,7 +64,7 @@ vi_histogram(ex2);
 
 }
 \references{
-Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. \emph{Philosophical Transactions of the Royal Society of London. (A.)}, 186, 343–414. doi:10.1098/rsta.1895.0010
+Pearson, K. (1895). Contributions to the mathematical theory of evolution. II. Skew variation in homogeneous material. \emph{Philosophical Transactions of the Royal Society of London. (A.)}, 186, 343-414. doi:10.1098/rsta.1895.0010
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

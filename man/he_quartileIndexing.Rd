@@ -64,15 +64,15 @@ Most basic (\strong{SAS1}):
 \deqn{iQ_i = \left(n + \frac{1}{4}\right)\times p_i + \frac{3}{8}}
 }
 \references{
-Gumbel, E. J. (1939). La Probabilité des Hypothèses. Compes Rendus de l’ Académie des Sciences, 209, 645–647.
+Gumbel, E. J. (1939). La Probabilite des Hypotheses. Compes Rendus de l' Academie des Sciences, 209, 645-647.
 
-Hazen, A. (1914). Storage to be provided in impounding municipal water supply. Transactions of the American Society of Civil Engineers, 77(1), 1539–1640. https://doi.org/10.1061/taceat.0002563
+Hazen, A. (1914). Storage to be provided in impounding municipal water supply. Transactions of the American Society of Civil Engineers, 77(1), 1539-1640. https://doi.org/10.1061/taceat.0002563
 
 Hogg, R. V., & Ledolter, J. (1992). Applied statistics for engineers and physical scientists (2nd int.). Macmillan.
 
-Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361–365. https://doi.org/10.2307/2684934
+Hyndman, R. J., & Fan, Y. (1996). Sample quantiles in statistical packages. The American Statistician, 50(4), 361-365. https://doi.org/10.2307/2684934
 
-Joarder, A. H., & Firozzaman, M. (2001). Quartiles for discrete data. Teaching Statistics, 23(3), 86–89. https://doi.org/10.1111/1467-9639.00063
+Joarder, A. H., & Firozzaman, M. (2001). Quartiles for discrete data. Teaching Statistics, 23(3), 86-89. https://doi.org/10.1111/1467-9639.00063
 
 Moore, D. S., & McCabe, G. P. (1989). Introduction to the practice of statistics. W.H. Freeman.
 

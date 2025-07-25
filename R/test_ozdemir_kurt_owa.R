@@ -1,10 +1,10 @@
-#' Özdemir-Kurt Test
+#' Ozdemir-Kurt Test
 #' @description 
 #' Tests if the means (averages) of each category could be the same in the population.
 #' 
 #' If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 #' 
-#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+#' There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 #' 
 #' @param nomField the groups variable
 #' @param scaleField the numeric scores variable
@@ -18,7 +18,7 @@
 #' \item{p-value}{the significance (p-value)}
 #' 
 #' @details 
-#' The formula used (Özdemir & Kurt, 2006, pp. 85-86):
+#' The formula used (Ozdemir & Kurt, 2006, pp. 85-86):
 #' \deqn{ B^2 = \sum_{j=1}^k\left(c_j\times\sqrt{\ln\left(1+\frac{t_j^2}{v_i}\right)}\right)^2 }
 #' \deqn{ df = k - 1 }
 #' \deqn{sig. = 1 - \chi^2\left(B^2, df\right)}
@@ -54,7 +54,7 @@
 #' A binary search for a p-value is done such that \eqn{B^2 = \chi_{crit}^2}.
 #' 
 #' @references 
-#' Özdemir, A. F., & Kurt, S. (2006). One way fixed effect analysis of variance under variance heterogeneity and a solution proposal. *Selçuk Journal of Applied Mathematics, 7*(2), 81–90.
+#' Ozdemir, A. F., & Kurt, S. (2006). One way fixed effect analysis of variance under variance heterogeneity and a solution proposal. *Selcuk Journal of Applied Mathematics, 7*(2), 81-90.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -115,3 +115,6 @@ ts_ozdemir_kurt_owa <- function(nomField, scaleField, categories=NULL){
   return (testResults)
   
 }
+
+
+

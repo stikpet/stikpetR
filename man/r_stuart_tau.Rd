@@ -39,7 +39,7 @@ A positive correlation indicates that if someone scored high on the first field,
 
 Alternatives for Gamma are Kendall Tau, Stuart-Kendall Tau and Somers D, but also Spearman rho could be considered.
 
-Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Göktaş and İşçi. (2011) for more information on the comparisons.
+Kendall Tau b looks at so-called discordant and concordant pairs, but unlike Gamma it does not ignore tied pairs. Stuart-Kendall Tau c also, but also takes the size of the table into consideration. Somers d only makes a correction for tied pairs in one of the two directions. Spearman rho is more of a variation on Pearson correlation, but applied to ranks. See Goktas and isci. (2011) for more information on the comparisons.
 
 Kendall Tau a is the same as Goodman-Kruskal Gamma.
 }
@@ -105,11 +105,11 @@ StuartTauC(ord1, ord2)
 ord.tau(table(ord1, ord2))
 }
 \references{
-Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309–315. doi:10.2307/2286793
+Brown, M. B., & Benedetti, J. K. (1977). Sampling behavior of test for correlation in two-way contingency tables. \emph{Journal of the American Statistical Association, 72}(358), 309-315. doi:10.2307/2286793
 
-Göktaş, A., & İşçi, Ö. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
+Goktas, A., & isci, O. (2011). A comparison of the most commonly used measures of association for doubly ordered square contingency tables via simulation. \emph{Advances in Methodology and Statistics, 8}(1). doi:10.51936/milh5641
 
-Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall’s tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338–346. doi:10.1037/h0045013
+Schaeffer, M. S., & Levitt, E. E. (1956). Concerning Kendall's tau, a nonparametric correlation coefficient. \emph{Psychological Bulletin, 53}(4), 338-346. doi:10.1037/h0045013
 
 Stuart, A. (1953). The estimation and comparison of strengths of association in contingency tables. \emph{Biometrika, 40}(1/2), 105. doi:10.2307/2333101
 }

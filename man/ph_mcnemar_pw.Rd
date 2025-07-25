@@ -64,7 +64,7 @@ The adjusted p-value is then determined using a Bonferroni correction:
 }
 }
 \references{
-McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. \emph{Psychometrika, 12}(2), 153–157. doi:10.1007/BF02295996
+McNemar, Q. (1947). Note on the sampling error of the difference between correlated proportions or percentages. \emph{Psychometrika, 12}(2), 153-157. doi:10.1007/BF02295996
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

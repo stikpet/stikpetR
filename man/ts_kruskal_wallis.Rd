@@ -160,9 +160,9 @@ I have not been able to find an exact distribution for H in R. A good starting p
 might be Choi et al. (2003) and let me know if you manage.
 }
 \references{
-Iman, R. L., & Davenport, J. M. (1976). New approximations to the exact distribution of the kruskal-wallis test statistic. \emph{Communications in Statistics - Theory and Methods, 5}(14), 1335–1348. doi:10.1080/03610927608827446
+Iman, R. L., & Davenport, J. M. (1976). New approximations to the exact distribution of the kruskal-wallis test statistic. \emph{Communications in Statistics - Theory and Methods, 5}(14), 1335-1348. doi:10.1080/03610927608827446
 
-Kruskal, W. H., & Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. \emph{Journal of the American Statistical Association, 47}(260), 583–621. doi:10.1080/01621459.1952.10483441
+Kruskal, W. H., & Wallis, W. A. (1952). Use of ranks in one-criterion variance analysis. \emph{Journal of the American Statistical Association, 47}(260), 583-621. doi:10.1080/01621459.1952.10483441
 
 Wallace, D. L. (1959). Simplified beta-approximations to the Kruskal-Wallis H test. \emph{Journal of the American Statistical Association, 54}(285), 225. doi:10.2307/2282148
 }

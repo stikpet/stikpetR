@@ -20,7 +20,7 @@ he_permutations(5)
 
 }
 \references{
-Museful. (2013, November 25). Answer to “Generating all distinct permutations of a list in R.” Stack Overflow. https://stackoverflow.com/a/20199902/12149706
+Museful. (2013, November 25). Answer to "Generating all distinct permutations of a list in R." Stack Overflow. https://stackoverflow.com/a/20199902/12149706
 }
 \author{
 P. Stikker

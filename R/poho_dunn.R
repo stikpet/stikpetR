@@ -50,9 +50,9 @@
 #' }
 #' 
 #' @references
-#' Dunn, O. J. (1964). Multiple comparisons using rank sums. *Technometrics, 6*(3), 241–252. doi:10.1080/00401706.1964.10490181
+#' Dunn, O. J. (1964). Multiple comparisons using rank sums. *Technometrics, 6*(3), 241-252. doi:10.1080/00401706.1964.10490181
 #' 
-#' Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. *Technometrics, 2*(2), 197–207. doi:10.1080/00401706.1960.10489894
+#' Steel, R. G. D. (1960). A rank sum test for comparing all pairs of treatments. *Technometrics, 2*(2), 197-207. doi:10.1080/00401706.1960.10489894
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -128,3 +128,6 @@ ph_dunn <- function(catField, ordField,
   return (res)
   
 }
+
+
+

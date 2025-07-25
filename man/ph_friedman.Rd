@@ -52,7 +52,7 @@ Note that in the calculation \eqn{SE} is determined using all ranks, including t
 
 \strong{Nemenyi}
 
-Pohlert (2016, p. 15) shows the formula from Nemenyi (1963) as well as in Demšar (2006, pp. 11-12):
+Pohlert (2016, p. 15) shows the formula from Nemenyi (1963) as well as in Demsar (2006, pp. 11-12):
 \deqn{q_{1,2} = \frac{\left|R_1 - R_2\right|}{\sqrt{\frac{k\times\left(k+1\right)}{6\times n}}}\times\sqrt{2}}
 \deqn{df = n - k}
 
@@ -86,13 +86,13 @@ The Bonferroni adjustment is done using:
 }
 }
 \references{
-Benavoli, A., Corani, G., & Mangili, F. (2016). Should we really use post-hoc tests based on mean-ranks? \emph{Journal of Machine Learning Research, 17}, 1–10. doi:10.48550/ARXIV.1505.02288
+Benavoli, A., Corani, G., & Mangili, F. (2016). Should we really use post-hoc tests based on mean-ranks? \emph{Journal of Machine Learning Research, 17}, 1-10. doi:10.48550/ARXIV.1505.02288
 
 BrightStat. (n.d.). Friedman test. BrightStat. Retrieved November 5, 2023, from https://secure.brightstat.com/index.php?p=c&d=1&c=2&i=9
 
 Conover, W. J. (1980). \emph{Practical nonparametric statistics} (2nd ed.). Wiley.
 
-Demšar, J. (2006). Statistical comparisons of classifiers over multiple data sets. \emph{The Journal of Machine Learning Research, 7}, 1–30. doi:10.5555/1248547.1248548
+Demsar, J. (2006). Statistical comparisons of classifiers over multiple data sets. \emph{The Journal of Machine Learning Research, 7}, 1-30. doi:10.5555/1248547.1248548
 
 Gnambs, T. (n.d.). SPSS Friedman. http://timo.gnambs.at/sites/default/files/spss_friedmanph.sps
 

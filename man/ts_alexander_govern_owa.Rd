@@ -26,9 +26,9 @@ Tests if the means (averages) of each category could be the same in the populati
 
 If the p-value is below a pre-defined threshold (usually 0.05), the null hypothesis is rejected, and there are then at least two categories who will have a different mean on the scaleField score in the population.
 
-Schneider and Penfield (1997) looked at the Welch, Alexander-Govern and the James test (they ignored the Brown-Forsythe since they found it to perform worse than Welch or James), and concluded: “Under variance heterogeneity, Alexander-Govern’s approximation was not only comparable to the Welch test and the James second-order test but was superior, in certain instances, when coupled with the power results for those tests” (p. 285).
+Schneider and Penfield (1997) looked at the Welch, Alexander-Govern and the James test (they ignored the Brown-Forsythe since they found it to perform worse than Welch or James), and concluded: "Under variance heterogeneity, Alexander-Govern's approximation was not only comparable to the Welch test and the James second-order test but was superior, in certain instances, when coupled with the power results for those tests" (p. 285).
 
-There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Özdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
+There are quite some alternatives for this, the stikpet library has Fisher, Welch, James, Box, Scott-Smith, Brown-Forsythe, Alexander-Govern, Mehrotra modified Brown-Forsythe, Hartung-Agac-Makabi, Ozdemir-Kurt and Wilcox as options. See the notes from ts_fisher_owa() for some discussion on the differences.
 }
 \details{
 The formula used (Alexander & Govern, 1994, pp. 92-94):
@@ -62,9 +62,9 @@ With:
 }
 }
 \references{
-Alexander, R. A., & Govern, D. M. (1994). A new and simpler approximation for ANOVA under variance heterogeneity. \emph{Journal of Educational Statistics, 19}(2), 91–101. doi:10.2307/1165140
+Alexander, R. A., & Govern, D. M. (1994). A new and simpler approximation for ANOVA under variance heterogeneity. \emph{Journal of Educational Statistics, 19}(2), 91-101. doi:10.2307/1165140
 
-Schneider, P. J., & Penfield, D. A. (1997). Alexander and Govern’s approximation: Providing an alternative to ANOVA under variance heterogeneity. \emph{The Journal of Experimental Education, 65}(3), 271–286. doi:10.1080/00220973.1997.9943459
+Schneider, P. J., & Penfield, D. A. (1997). Alexander and Govern's approximation: Providing an alternative to ANOVA under variance heterogeneity. \emph{The Journal of Experimental Education, 65}(3), 271-286. doi:10.1080/00220973.1997.9943459
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

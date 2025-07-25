@@ -1,3 +1,6 @@
+# Suppress R CMD check note for ggplot variable bindings
+utils::globalVariables(c("Var1", "Var2", "Freq"))
+
 #' Butterfly Chart / Tornado Chart / Pyramid Chart
 #' 
 #' @importFrom ggplot2 ggplot
@@ -87,3 +90,6 @@ vi_butterfly_chart <- function(field1,
     ylab("count") +
     guides(fill=guide_legend(title=deparse(substitute(field2))))
 }
+
+
+

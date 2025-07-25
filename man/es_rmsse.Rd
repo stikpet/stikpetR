@@ -56,11 +56,11 @@ Zhang and Algina (2011) create a robust version of the RMSSE for one-way fixed e
 \references{
 Smith, B., & Dowd, M. (2014). One-way analysis of variance (ANOVA). Dalhousie University. https://www.mathstat.dal.ca/~stat2080/Fall14/Lecturenotes/anova1.pdf
 
-Steiger, J. H., & Fouladi, R. T. (1997). \emph{Noncentrality interval estimation and the evaluation of statistical models}. In L. L. Harlow, S. A. Mulaik, & J. H. Steiger, What if there were no significance tests? (pp. 221–257). Lawrence Erlbaum Associates.
+Steiger, J. H., & Fouladi, R. T. (1997). \emph{Noncentrality interval estimation and the evaluation of statistical models}. In L. L. Harlow, S. A. Mulaik, & J. H. Steiger, What if there were no significance tests? (pp. 221-257). Lawrence Erlbaum Associates.
 
 Wikipedia. (2023). Effect size. In Wikipedia. https://en.wikipedia.org/w/index.php?title=Effect_size&oldid=1175948622
 
-Zhang, G., & Algina, J. (2011). A robust root mean square standardized effect size in one-way fixed-effects ANOVA. \emph{Journal of Modern Applied Statistical Methods, 10}(1), 77–96. https://doi.org/10.22237/jmasm/1304222880
+Zhang, G., & Algina, J. (2011). A robust root mean square standardized effect size in one-way fixed-effects ANOVA. \emph{Journal of Modern Applied Statistical Methods, 10}(1), 77-96. https://doi.org/10.22237/jmasm/1304222880
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

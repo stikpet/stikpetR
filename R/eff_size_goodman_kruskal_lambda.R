@@ -40,10 +40,10 @@
 #' \item \eqn{R_i} row total of row i, it can be calculated using \eqn{R_i=\sum_{j=1}^c F_{i,j}}
 #' \item \eqn{C_j} column total of column j, it can be calculated using \eqn{C_j=\sum_{i=1}^r F_{i,j}}
 #' \item \eqn{n} the total number of cases, it can be calculated in various ways, \eqn{n = \sum_{j=1}^c C_j =\sum_{i=1}^r R_i = \sum_{i=1}^r \sum_{j=1}^c F_{i,j}}
-#' \item \eqn{f_{i,max}} is the maximum count of row i, i.e. \eqn{f_{i,max}=\text{max}\left\{ F_{i,1},F_{i,2},…,F_{i,c}\right\}}
-#' \item \eqn{f_{max,j}} is the maximum count of column j, i.e. \eqn{f_{max,j}=\text{max}\left\{ F_{1,j},F_{2,j},…,F_{r,j}\right\}}
-#' \item \eqn{R_{max}} is the maximum of the row totals, i.e. \eqn{R_{max}=\text{max}\left\{ R_1,R_2,…,R_r\right\}}
-#' \item \eqn{C_{max}} is the maximum of the column totals, i.e. \eqn{C_{max}=\text{max}\left\{ C_1,C_2,…,C_c\right\}}
+#' \item \eqn{f_{i,max}} is the maximum count of row i, i.e. \eqn{f_{i,max}=\text{max}\left\{ F_{i,1},F_{i,2},\dots,F_{i,c}\right\}}
+#' \item \eqn{f_{max,j}} is the maximum count of column j, i.e. \eqn{f_{max,j}=\text{max}\left\{ F_{1,j},F_{2,j},\dots,F_{r,j}\right\}}
+#' \item \eqn{R_{max}} is the maximum of the row totals, i.e. \eqn{R_{max}=\text{max}\left\{ R_1,R_2,\dots,R_r\right\}}
+#' \item \eqn{C_{max}} is the maximum of the column totals, i.e. \eqn{C_{max}=\text{max}\left\{ C_1,C_2,\dots,C_c\right\}}
 #' \item \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
 #' }
 #' 
@@ -55,11 +55,11 @@
 #' average them, or simply choose one at random.
 #' 
 #' @references 
-#' Goodman, L. A., & Kruskal, W. H. (1954). Measures of Association for Cross Classifications. *Journal of the American Statistical Association, 49*(268), 732–764. https://doi.org/10.2307/2281536
+#' Goodman, L. A., & Kruskal, W. H. (1954). Measures of Association for Cross Classifications. *Journal of the American Statistical Association, 49*(268), 732-764. https://doi.org/10.2307/2281536
 #' 
-#' Gray, L. N., & Campbell, R. (1975). Statistical significance of the Lambda coefficients: A comment. *Behavioral Science, 20*(4), 258–259. https://doi.org/10.1002/bs.3830200407
+#' Gray, L. N., & Campbell, R. (1975). Statistical significance of the Lambda coefficients: A comment. *Behavioral Science, 20*(4), 258-259. https://doi.org/10.1002/bs.3830200407
 #' 
-#' Hartwig, F. (1973). Statistical significance of the lambda coefficients. *Behavioral Science, 18*(4), 307–310. https://doi.org/10.1002/bs.3830180409
+#' Hartwig, F. (1973). Statistical significance of the lambda coefficients. *Behavioral Science, 18*(4), 307-310. https://doi.org/10.1002/bs.3830180409
 #' 
 #' SPSS. (2006). SPSS 15.0 algorithms.
 #' 
@@ -278,3 +278,6 @@ es_goodman_kruskal_lambda <- function(field1, field2, categories1=NULL, categori
   return(results)
   
 }
+
+
+

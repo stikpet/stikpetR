@@ -1,7 +1,7 @@
 #' Cohen's g
 #' 
 #' @description 
-#' Cohen’s g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003), 
+#' Cohen's g (Cohen, 1988) is an effect size measure that could be accompanying a one-sample binomial (see Rosnow & Rosenthal, 2003), 
 #' score or Wald test. It is simply the difference of the sample proportion with 0.5. 
 #' 
 #' A video explanation of Cohen g can be found \href{https://youtu.be/tPZMvB8QrM0}{here on YouTube}
@@ -128,5 +128,8 @@ es_cohen_g <- function(data, p0Cat=NULL, codes=NULL){
   results <- data.frame(g1, g2)
   colnames(results)<-c(paste0("g for ", cat1_lbl), paste0("g for ", cat2_lbl))
   
-  return (results)
+  return(results)
 }
+
+
+

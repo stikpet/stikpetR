@@ -15,7 +15,7 @@ ph_residual_gof_bin(
 \arguments{
 \item{data}{dataframe with scores}
 
-\item{test}{{"adj-residual", "std-residual", "binomial", "wald", "score"} optional test to use}
+\item{test}{c("adj-residual", "std-residual", "binomial", "wald", "score") optional test to use}
 
 \item{expCount}{optional dataframe with categories and expected counts}
 
@@ -108,9 +108,9 @@ ph_residual_gof_bin(ex1, test="binomial", mtc='holm')
 }
 \references{
 Agresti, A. (2007). \emph{An introduction to categorical data analysis} (2nd ed.). Wiley-Interscience.
-Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. \emph{Biometrics, 29}(1), 205–220. doi:10.2307/2529686
+Haberman, S. J. (1973). The analysis of residuals in cross-classified tables. \emph{Biometrics, 29}(1), 205-220. doi:10.2307/2529686
 R. (n.d.). Chisq.test [Computer software]. https://stat.ethz.ch/R-manual/R-devel/library/stats/html/chisq.test.html
-Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, \emph{Research & Evaluation, 20}(8), 1–10.
+Sharpe, D. (2015). Your chi-square test is statistically significant: Now what? Practical Assessment, \emph{Research & Evaluation, 20}(8), 1-10.
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

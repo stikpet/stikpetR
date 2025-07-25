@@ -1,3 +1,6 @@
+# Suppress R CMD check note for ggplot variable bindings
+utils::globalVariables(c("score"))
+
 #' Split Histogram
 #' 
 #' @importFrom ggplot2 ggplot
@@ -42,3 +45,6 @@ vi_histogram_split <- function(catField, scaleField, categories=NULL, ...){
     facet_wrap(~ category, ncol=1)
   
 }
+
+
+

@@ -284,12 +284,12 @@ with \eqn{\Phi^{-1}\left(\dots\right)} being the inverse standard normal cumulat
 The formulas were obtained from the following sources.
 The columns W-C-H show which equation corresponds to my label in:
 \itemize{
-\item W: Warrens (2008, pp. 219–222). Equation 4 from Warrens is the chi-square value and not added.
-\item C: Choi et al. (2010, pp. 44–45). Equations not added from this source are: Eq. 4 is a ‘3w Jaccard’, could not find a source for this and not added. Equation 12 is just the intersection (a), eq. 13 the innerproduct (a+d), and 66 the dispersion. Equation 51 is the chi-square value and measures 15 to 30 and 62 are just distance measures.
-\item H: Hubálek (Hubálek, 1982, pp. 671–673)
+\item W: Warrens (2008, pp. 219-222). Equation 4 from Warrens is the chi-square value and not added.
+\item C: Choi et al. (2010, pp. 44-45). Equations not added from this source are: Eq. 4 is a '3w Jaccard', could not find a source for this and not added. Equation 12 is just the intersection (a), eq. 13 the innerproduct (a+d), and 66 the dispersion. Equation 51 is the chi-square value and measures 15 to 30 and 62 are just distance measures.
+\item H: Hubalek (Hubalek, 1982, pp. 671-673)
 }
 
-If no page number is listed in the original source, the formula was taken from Warrens, Choi et al. and/or Hubálek.\tabular{llllll}{
+If no page number is listed in the original source, the formula was taken from Warrens, Choi et al. and/or Hubalek.\tabular{llllll}{
    nr \tab Label \tab Original \tab W \tab C \tab H \cr
    1 \tab Russell-Rao \tab (Russell & Rao, 1940) \tab 15 \tab 14 \tab 14 \cr
    2 \tab Dice-1 \tab (Dice, 1945, p. 302) \tab 17a \tab  \tab  \cr
@@ -331,7 +331,7 @@ If no page number is listed in the original source, the formula was taken from W
     \tab Ochiai-2 \tab (Ochiai, 1957) \tab  \tab 60 \tab  \cr
    30 \tab Rogot-Goldberg \tab (Rogot & Goldberg, 1966, p. 997) \tab 32 \tab  \tab  \cr
    31 \tab Sokal-Sneath-3 \tab (Sokal & Sneath, 1963, p. 130) \tab 30c \tab 49 \tab 18 \cr
-   32 \tab Hawkin-Dotson \tab (Hawkins & Dotson, 1975, pp. 372–373) \tab 34 \tab  \tab  \cr
+   32 \tab Hawkin-Dotson \tab (Hawkins & Dotson, 1975, pp. 372-373) \tab 34 \tab  \tab  \cr
    33 \tab Clement \tab (Clement, 1976, p. 258) \tab 37 \tab  \tab  \cr
    34 \tab Harris-Lahey \tab (Harris & Lahey, 1978, p. 526) \tab 40 \tab  \tab  \cr
    35 \tab Austin-Colwell \tab (Austin & Colwell, 1977, p. 205) \tab  \tab  \tab 21 \cr
@@ -389,27 +389,27 @@ If no page number is listed in the original source, the formula was taken from W
    78 \tab Pearson Q4 \tab (Pearson, 1900, p. 16) \tab  \tab  \tab  \cr
    79 \tab Pearson Q5 \tab (Pearson, 1900, p. 16) \tab  \tab  \tab  \cr
    80 \tab Camp \tab (Camp, 1934, p. 309) \tab  \tab  \tab  \cr
-   81 \tab Becker-Clogg-1 \tab (Becker & Clogg, 1988, pp. 410–412) \tab  \tab  \tab  \cr
-   82 \tab Becker-Clogg-2 \tab (Becker & Clogg, 1988, pp. 410–412) \tab  \tab  \tab  \cr
+   81 \tab Becker-Clogg-1 \tab (Becker & Clogg, 1988, pp. 410-412) \tab  \tab  \tab  \cr
+   82 \tab Becker-Clogg-2 \tab (Becker & Clogg, 1988, pp. 410-412) \tab  \tab  \tab  \cr
    83 \tab Bonett-Price-2 \tab (Bonett & Price, 2005, p. 216) \tab  \tab  \tab  \cr
    84 \tab Bonett-Price-3 \tab (Bonett & Price, 2005, p. 216) \tab  \tab  \tab  \cr
    85 \tab Ched-Popovich \tab (Chen & Popovich, 2002, p. 37) \tab  \tab  \tab  \cr
 }
 }
 \references{
-Alroy, J. (2015). A new twist on a very old binary similarity coefficient. \emph{Ecology, 96}(2), 575–586. doi:10.1890/14-0471.1
+Alroy, J. (2015). A new twist on a very old binary similarity coefficient. \emph{Ecology, 96}(2), 575-586. doi:10.1890/14-0471.1
 
 Anderberg, M. R. (1973). \emph{Cluster analysis for applications}. New York, NY, Academic Press.
 
-Austin, B., & Colwell, R. R. (1977). Evaluation of some coefficients for use in numerical taxonomy of microorganisms. \emph{International Journal of Systematic Bacteriology, 27}(3), 204–210. doi:10.1099/00207713-27-3-204
+Austin, B., & Colwell, R. R. (1977). Evaluation of some coefficients for use in numerical taxonomy of microorganisms. \emph{International Journal of Systematic Bacteriology, 27}(3), 204-210. doi:10.1099/00207713-27-3-204
 
-Baroni-Urbani, C., & Buser, M. W. (1976). Similarity of binary data. \emph{Systematic Zoology, 25}(3), 251–259. doi:10.2307/2412493
+Baroni-Urbani, C., & Buser, M. W. (1976). Similarity of binary data. \emph{Systematic Zoology, 25}(3), 251-259. doi:10.2307/2412493
 
-Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. \emph{Sociological Methods & Research, 16}(3), 407–424. doi:10.1177/0049124188016003003
+Becker, M. P., & Clogg, C. C. (1988). A note on approximating correlations from Odds Ratios. \emph{Sociological Methods & Research, 16}(3), 407-424. doi:10.1177/0049124188016003003
 
-Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. \emph{Journal of Educational and Behavioral Statistics, 30}(2), 213–225. https://doi.org/10.3102/10769986030002213
+Bonett, D. G., & Price, R. M. (2005). Inferential methods for the tetrachoric correlation coefficient. \emph{Journal of Educational and Behavioral Statistics, 30}(2), 213-225. https://doi.org/10.3102/10769986030002213
 
-Bonett, D. G., & Price, R. M. (2007). Statistical inference for generalized yule coefficients in 2 x 2 contingency tables. \emph{Sociological Methods & Research, 35}(3), 429–446. doi:10.1177/0049124106292358
+Bonett, D. G., & Price, R. M. (2007). Statistical inference for generalized yule coefficients in 2 x 2 contingency tables. \emph{Sociological Methods & Research, 35}(3), 429-446. doi:10.1177/0049124106292358
 
 Braun-Blanquet, J. (1932). \emph{Plant sociology: The study of plant communities}. McGraw Hill.
 
@@ -417,145 +417,145 @@ Camp, B. H. (1934). \emph{Mathematical part of elementary statistics}. D.C. Heat
 
 Chen, P. Y., & Popovich, P. M. (2002). \emph{Correlation: Parametric and nonparametric measures}. Sage Publications.
 
-Choi, S.-S., Cha, S.-H., & Tappert, C. (2010). A survey of binary similarity and distance measures. \emph{Journal on Systemics, Cybernetics and Informatics, 8}(1), 43–48.
+Choi, S.-S., Cha, S.-H., & Tappert, C. (2010). A survey of binary similarity and distance measures. \emph{Journal on Systemics, Cybernetics and Informatics, 8}(1), 43-48.
 
-Clement, P. W. (1976). A formula for computing inter-observer agreement. \emph{Psychological Reports, 39}(1), 257–258. doi:10.2466/pr0.1976.39.1.257
+Clement, P. W. (1976). A formula for computing inter-observer agreement. \emph{Psychological Reports, 39}(1), 257-258. doi:10.2466/pr0.1976.39.1.257
 
-Cohen, J. (1960). A coefficient of agreement for nominal scales. \emph{Educational and Psychological Measurement, 20}(1), 37–46. doi:10.1177/001316446002000104
+Cohen, J. (1960). A coefficient of agreement for nominal scales. \emph{Educational and Psychological Measurement, 20}(1), 37-46. doi:10.1177/001316446002000104
 
 Cohen, J. (1988). \emph{Statistical power analysis for the behavioral sciences} (2nd ed.). L. Erlbaum Associates.
 
-Cole, L. C. (1949). \emph{The measurement of interspecific associaton. Ecology, 30}(4), 411–424. doi:10.2307/1932444
+Cole, L. C. (1949). \emph{The measurement of interspecific associaton. Ecology, 30}(4), 411-424. doi:10.2307/1932444
 
-Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. \emph{Educational and Psychological Measurement, 28}(2), 239–244. doi:10.1177/001316446802800202
+Cureton, E. E. (1968). Tetrachoric correlation by the Camp approximation. \emph{Educational and Psychological Measurement, 28}(2), 239-244. doi:10.1177/001316446802800202
 
-Dennis, S. F. (1965). The construction of a thesaurus automatically from a sample of text. In M. E. Stevens, V. E. Giuliano, & L. B. Heilprin (Eds.), \emph{Statistical Association Methods for Mechanized Documentation} (Vol. 14, pp. 61–148). U.S. Government Printing Office.
+Dennis, S. F. (1965). The construction of a thesaurus automatically from a sample of text. In M. E. Stevens, V. E. Giuliano, & L. B. Heilprin (Eds.), \emph{Statistical Association Methods for Mechanized Documentation} (Vol. 14, pp. 61-148). U.S. Government Printing Office.
 
-Dice, L. R. (1945). Measures of the amount of ecologic association between species. \emph{Ecology, 26}(3), 297–302. doi:10.2307/1932409
+Dice, L. R. (1945). Measures of the amount of ecologic association between species. \emph{Ecology, 26}(3), 297-302. doi:10.2307/1932409
 
-Digby, P. G. N. (1983). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 39}(3), 753–757. doi:10.2307/2531104
+Digby, P. G. N. (1983). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 39}(3), 753-757. doi:10.2307/2531104
 
-Doolittle, M. H. (1885). The verification of predictions. \emph{Bulletin of the Philosophical Society of Washington, 7}, 122–127.
+Doolittle, M. H. (1885). The verification of predictions. \emph{Bulletin of the Philosophical Society of Washington, 7}, 122-127.
 
-Driver, H. E., & Kroeber, A. L. (1932). Quantitative expression of cultural relationships. \emph{University Of California Publications in American Archeology and Ethnology, 31}(4), 211–256.
+Driver, H. E., & Kroeber, A. L. (1932). Quantitative expression of cultural relationships. \emph{University Of California Publications in American Archeology and Ethnology, 31}(4), 211-256.
 
-Edwards, J. H. (1957). A note on the practical interpretation of 2 x 2 tables. \emph{Journal of Epidemiology & Community Health, 11}(2), 73–78. doi:10.1136/jech.11.2.73
+Edwards, J. H. (1957). A note on the practical interpretation of 2 x 2 tables. \emph{Journal of Epidemiology & Community Health, 11}(2), 73-78. doi:10.1136/jech.11.2.73
 
-Edwards, J. H., & Edwards, A. W. F. (1984). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 40}(2), 563–563.
+Edwards, J. H., & Edwards, A. W. F. (1984). Approximating the tetrachoric correlation coefficient. \emph{Biometrics, 40}(2), 563-563.
 
-Eyraud, H. (1936). Les principes de la mesure des correlations. \emph{Ann. Univ. Lyon, III. Ser., Sect. A, 1}(30–47), 111.
+Eyraud, H. (1936). Les principes de la mesure des correlations. \emph{Ann. Univ. Lyon, III. Ser., Sect. A, 1}(30-47), 111.
 
-Fager, E. W., & McGowan, J. A. (1963). Zooplankton species groups in the north pacific: Co-occurrences of species can be used to derive groups whose members react similarly to water-mass types. \emph{Science, 140}(3566), 453–460. doi:10.1126/science.140.3566.453
+Fager, E. W., & McGowan, J. A. (1963). Zooplankton species groups in the north pacific: Co-occurrences of species can be used to derive groups whose members react similarly to water-mass types. \emph{Science, 140}(3566), 453-460. doi:10.1126/science.140.3566.453
 
-Faith, D. P. (1983). Asymmetric binary similarity measures. \emph{Oecologia, 57}(3), 287–290. doi:10.1007/BF00377169
+Faith, D. P. (1983). Asymmetric binary similarity measures. \emph{Oecologia, 57}(3), 287-290. doi:10.1007/BF00377169
 
-Fisher, R. A. (1935). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39–82. doi:10.2307/2342435
+Fisher, R. A. (1935). The logic of inductive inference. \emph{Journal of the Royal Statistical Society, 98}(1), 39-82. doi:10.2307/2342435
 
-Fleiss, J. L. (1975). Measuring agreement between two judges on the presence or absence of a trait. \emph{Biometrics, 31}(3), 651–659. doi:10.2307/2529549
+Fleiss, J. L. (1975). Measuring agreement between two judges on the presence or absence of a trait. \emph{Biometrics, 31}(3), 651-659. doi:10.2307/2529549
 
-Forbes, S. A. (1907). On the local distribution of certain Illinois fishes: An essay in statistical ecology. \emph{Illinois Natural History Survey Bulletin, 7}(8), 273–303.
+Forbes, S. A. (1907). On the local distribution of certain Illinois fishes: An essay in statistical ecology. \emph{Illinois Natural History Survey Bulletin, 7}(8), 273-303.
 
 Forbes, S. A. (1925). Method of determining and measuring the associative relations of species. \emph{Science, 61}, 524.
 
 Fossum, E. G., & Kaskey, G. (1966). Optimization and standardization of information retrieval language and systems (AF49(638)1194; p. 96). Univac Division.
 
-Gilbert, G. K. (1884). Finley’s tornado predictions. \emph{American Meteorological Journal, 1}(5), 166–172.
+Gilbert, G. K. (1884). Finley's tornado predictions. \emph{American Meteorological Journal, 1}(5), 166-172.
 
-Gilbert, N., & Wells, T. C. E. (1966). \emph{Analysis of quadrat data. Journal of Ecology, 54}(3), 675–685. doi:10.2307/2257810
+Gilbert, N., & Wells, T. C. E. (1966). \emph{Analysis of quadrat data. Journal of Ecology, 54}(3), 675-685. doi:10.2307/2257810
 
-Gleason, H. A. (1920). Some applications of the quadrat method. \emph{Bulletin of the Torrey Botanical Club, 47}(1), 21–33. doi:10.2307/2480223
+Gleason, H. A. (1920). Some applications of the quadrat method. \emph{Bulletin of the Torrey Botanical Club, 47}(1), 21-33. doi:10.2307/2480223
 
-Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal’s Gamma) & Yule’s Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
+Glen, S. (2017, August 16). Gamma Coefficient (Goodman and Kruskal's Gamma) & Yule's Q. Statistics How To. https://www.statisticshowto.com/gamma-coefficient-goodman-kruskal/
 
-Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732–764. doi:10.2307/2281536
+Goodman, L. A., & Kruskal, W. H. (1954). Measures of association for cross classifications. \emph{Journal of the American Statistical Association, 49}(268), 732-764. doi:10.2307/2281536
 
 Gower, J. C. (1971). A general coefficient of similarity and some of its properties. \emph{Biometrics, 27}(4), 857. doi:10.2307/2528823
 
-Gower, J. C., & Legendre, P. (1986). Metric and Euclidean properties of dissimilarity coefficients. \emph{Journal of Classification, 3}(1), 5–48. doi:10.1007/BF01896809
+Gower, J. C., & Legendre, P. (1986). Metric and Euclidean properties of dissimilarity coefficients. \emph{Journal of Classification, 3}(1), 5-48. doi:10.1007/BF01896809
 
-Hamann, U. (1961). Merkmalsbestand und verwandtschaftsbeziehungen der farinosae: Ein beitrag zum system der monokotyledonen. \emph{Willdenowia, 2}(5), 639–768.
+Hamann, U. (1961). Merkmalsbestand und verwandtschaftsbeziehungen der farinosae: Ein beitrag zum system der monokotyledonen. \emph{Willdenowia, 2}(5), 639-768.
 
-Harris, F. C., & Lahey, B. B. (1978). A method for combining occurrence and nonoccurrence interobserver agreement scores. \emph{Journal of Applied Behavior Analysis, 11}(4), 523–527. doi:10.1901/jaba.1978.11-523
+Harris, F. C., & Lahey, B. B. (1978). A method for combining occurrence and nonoccurrence interobserver agreement scores. \emph{Journal of Applied Behavior Analysis, 11}(4), 523-527. doi:10.1901/jaba.1978.11-523
 
-Hawkins, R. P., & Dotson, V. A. (1975). Reliability scores that delude: An Alice in wonderland trip through the misleading characteristics of inter-observer agreement scores in interval recording. In E. Ramp & G. Semb (Eds.), *Behavior  analysis: Areas of research and application *(pp. 359–376). Prentice Hall.
+Hawkins, R. P., & Dotson, V. A. (1975). Reliability scores that delude: An Alice in wonderland trip through the misleading characteristics of inter-observer agreement scores in interval recording. In E. Ramp & G. Semb (Eds.), *Behavior  analysis: Areas of research and application *(pp. 359-376). Prentice Hall.
 
-Hubálek, Z. (1982). Coefficients of association and similarity, based on binary (presence-absence) data: An evaluation. \emph{Biological Reviews, 57}(4), 669–689. doi:10.1111/j.1469-185X.1982.tb00376.x
+Hubalek, Z. (1982). Coefficients of association and similarity, based on binary (presence-absence) data: An evaluation. \emph{Biological Reviews, 57}(4), 669-689. doi:10.1111/j.1469-185X.1982.tb00376.x
 
-Hurlbert, S. H. (1969). A coefficient of interspecific assciation. \emph{Ecology, 50}(1), 1–9. doi:10.2307/1934657
+Hurlbert, S. H. (1969). A coefficient of interspecific assciation. \emph{Ecology, 50}(1), 1-9. doi:10.2307/1934657
 
-Jaccard, P. (1901). Étude comparative de la distribution florale dans une portion des Alpes et des Jura. \emph{Bulletin Del La Société Vaudoise Des Sciences Naturelles, 37}, 547–579.
+Jaccard, P. (1901). Etude comparative de la distribution florale dans une portion des Alpes et des Jura. \emph{Bulletin Del La Societe Vaudoise Des Sciences Naturelles, 37}, 547-579.
 
-Jaccard, P. (1912). The distribution of the flora in the alpine zone. \emph{The New Phytologist, 11}(2), 37–50.
+Jaccard, P. (1912). The distribution of the flora in the alpine zone. \emph{The New Phytologist, 11}(2), 37-50.
 
-Johnson, S. C. (1967). Hierarchical clustering schemes. \emph{Psychometrika, 32}(3), 241–254. doi:10.1007/BF02289588
+Johnson, S. C. (1967). Hierarchical clustering schemes. \emph{Psychometrika, 32}(3), 241-254. doi:10.1007/BF02289588
 
-Jones, J. A., & Harrold, M. J. (2005). Empirical evaluation of the tarantula automatic fault-localization technique. Proceedings of the 20th IEEE/ACM International Conference on Automated Software Engineering, 273–282. doi:10.1145/1101908.1101949
+Jones, J. A., & Harrold, M. J. (2005). Empirical evaluation of the tarantula automatic fault-localization technique. Proceedings of the 20th IEEE/ACM International Conference on Automated Software Engineering, 273-282. doi:10.1145/1101908.1101949
 
-Kent, R. N., & Foster, S. L. (1977). Direct observational procedures: Methodological issues in naturalistic settings. In A. R. Ciminero, K. S. Calhoun, & H. E. Adams (Eds.), \emph{Handbook of behavioral assessment} (pp. 279–328). New York, NY: Wiley. http://archive.org/details/handbookofbehavi00cimi
+Kent, R. N., & Foster, S. L. (1977). Direct observational procedures: Methodological issues in naturalistic settings. In A. R. Ciminero, K. S. Calhoun, & H. E. Adams (Eds.), \emph{Handbook of behavioral assessment} (pp. 279-328). New York, NY: Wiley. http://archive.org/details/handbookofbehavi00cimi
 
-Kuder, G. F., & Richardson, M. W. (1937). The theory of the estimation of test reliability. \emph{Psychometrika, 2}(3), 151–160. doi:10.1007/BF02288391
+Kuder, G. F., & Richardson, M. W. (1937). The theory of the estimation of test reliability. \emph{Psychometrika, 2}(3), 151-160. doi:10.1007/BF02288391
 
-Kulczynski, S. (1927). Die Pflanzenassoziationen der Pieninen. \emph{Bulletin International de l’Academie Polonaise Des Sciences et Des Lettres, Classe Des Sciences Mathematiques et Naturelles, B (Sciences Naturelles)}, II, 57–203.
+Kulczynski, S. (1927). Die Pflanzenassoziationen der Pieninen. \emph{Bulletin International de l'Academie Polonaise Des Sciences et Des Lettres, Classe Des Sciences Mathematiques et Naturelles, B (Sciences Naturelles)}, II, 57-203.
 
-Ling, M. H. T. (2010). COPADS, I: Distance coefficients between two lists or sets. \emph{The Python Papers Source Codes, 2}(2), 1–31.
+Ling, M. H. T. (2010). COPADS, I: Distance coefficients between two lists or sets. \emph{The Python Papers Source Codes, 2}(2), 1-31.
 
-Loevinger, J. (1947). A systematic approach to the construction and evaluation of tests of ability. \emph{Psychological Monographs, 61}(4), i–49. doi:10.1037/h0093565
+Loevinger, J. (1947). A systematic approach to the construction and evaluation of tests of ability. \emph{Psychological Monographs, 61}(4), i-49. doi:10.1037/h0093565
 
-Maxwell, A. E., & Pilliner, A. E. (1968). Deriving coefficients of reliability and agreement for ratings. \emph{The British Journal of Mathematical and Statistical Psychology, 21}(1), 105–116. doi:10.1111/j.2044-8317.1968.tb00401.x
+Maxwell, A. E., & Pilliner, A. E. (1968). Deriving coefficients of reliability and agreement for ratings. \emph{The British Journal of Mathematical and Statistical Psychology, 21}(1), 105-116. doi:10.1111/j.2044-8317.1968.tb00401.x
 
-McConnaughey, B. H. (1964). The determination and analysis of plankton communities. \emph{Marine Research, 7}, 1–40.
+McConnaughey, B. H. (1964). The determination and analysis of plankton communities. \emph{Marine Research, 7}, 1-40.
 
-Michael, E. L. (1920). Marine Ecology and the coefficient of association: A plea in behalf of quantitative biology. \emph{Journal of Ecology, 8}(1), 54–59. doi:10.2307/2255213
+Michael, E. L. (1920). Marine Ecology and the coefficient of association: A plea in behalf of quantitative biology. \emph{Journal of Ecology, 8}(1), 54-59. doi:10.2307/2255213
 
-Mountford, M. D. (1962). An index of similarity and its application to classification problems. In P. W. Murphy & D. Phil (Eds.), \emph{Progress in soil zoology} (pp. 43–50). Butterworths.
+Mountford, M. D. (1962). An index of similarity and its application to classification problems. In P. W. Murphy & D. Phil (Eds.), \emph{Progress in soil zoology} (pp. 43-50). Butterworths.
 
-Nei, M., & Li, W. H. (1979). Mathematical model for studying genetic variation in terms of restriction endonucleases. \emph{Proceedings of the National Academy of Sciences, 76}(10), 5269–5273. doi:10.1073/pnas.76.10.5269
+Nei, M., & Li, W. H. (1979). Mathematical model for studying genetic variation in terms of restriction endonucleases. \emph{Proceedings of the National Academy of Sciences, 76}(10), 5269-5273. doi:10.1073/pnas.76.10.5269
 
-Ochiai, A. (1957). Zoogeographical studies on the soleoid fishes found in Japan and its neighbouring regions-I. \emph{Nippon Suisan Gakkaishi, 22}(9), 522–525. doi:10.2331/suisan.22.522
+Ochiai, A. (1957). Zoogeographical studies on the soleoid fishes found in Japan and its neighbouring regions-I. \emph{Nippon Suisan Gakkaishi, 22}(9), 522-525. doi:10.2331/suisan.22.522
 
-Otsuka, Y. (1936). The faunal character of the Japanese Pleistocene marine Mollusca, as evidence of the climate having become colder during the Pleistocene in Japan. \emph{Bulletin of the Biogeographical Society of Japan, 6}(16), 165–170.
+Otsuka, Y. (1936). The faunal character of the Japanese Pleistocene marine Mollusca, as evidence of the climate having become colder during the Pleistocene in Japan. \emph{Bulletin of the Biogeographical Society of Japan, 6}(16), 165-170.
 
-Pearson, K. (1900). Contributions to the mathematical theory of evolution. VII. On the correlation of characters not quantitatively measurable. \emph{Philosophical Transactions of the Royal Society of London, 195}, 1–405. doi:10.1098/rsta.1900.0022
+Pearson, K. (1900). Contributions to the mathematical theory of evolution. VII. On the correlation of characters not quantitatively measurable. \emph{Philosophical Transactions of the Royal Society of London, 195}, 1-405. doi:10.1098/rsta.1900.0022
 
 Pearson, K. (1904). \emph{Contributions to the Mathematical Theory of Evolution. XIII. On the theory of contingency and its relation to association and normal correlation}. Dulau and Co.
 
-Pearson, K., & Heron, D. (1913). On theories of association. \emph{Biometrika, 9}(1/2), 159–315. doi:10.2307/2331805
+Pearson, K., & Heron, D. (1913). On theories of association. \emph{Biometrika, 9}(1/2), 159-315. doi:10.2307/2331805
 
-Peirce, C. S. (1884). The numerical measure of the success of predictions. \emph{Science, 4}(93), 453–454. doi:10.1126/science.ns-4.93.453-a
+Peirce, C. S. (1884). The numerical measure of the success of predictions. \emph{Science, 4}(93), 453-454. doi:10.1126/science.ns-4.93.453-a
 
-Rogers, D. J., & Tanimoto, T. T. (1960). A computer program for classifying plants. \emph{Science, 132}(3434), 1115–1118. doi:10.1126/science.132.3434.1115
+Rogers, D. J., & Tanimoto, T. T. (1960). A computer program for classifying plants. \emph{Science, 132}(3434), 1115-1118. doi:10.1126/science.132.3434.1115
 
-Rogot, E., & Goldberg, I. D. (1966). A proposed index for measuring agreement in test-retest studies. \emph{Journal of Chronic Diseases, 19}(9), 991–1006. doi:10.1016/0021-9681(66)90032-4
+Rogot, E., & Goldberg, I. D. (1966). A proposed index for measuring agreement in test-retest studies. \emph{Journal of Chronic Diseases, 19}(9), 991-1006. doi:10.1016/0021-9681(66)90032-4
 
-Russell, P. F., & Rao, T. R. (1940). On habitat and association of species of anopheline larvae in south-eastern Madras. \emph{Journal of the Malaria Institute of India, 3}(1), 153–178.
+Russell, P. F., & Rao, T. R. (1940). On habitat and association of species of anopheline larvae in south-eastern Madras. \emph{Journal of the Malaria Institute of India, 3}(1), 153-178.
 
-Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. \emph{The Public Opinion Quarterly, 19}(3), 321–325.
+Scott, W. A. (1955). Reliability of content analysis: The case of nominal scale coding. \emph{The Public Opinion Quarterly, 19}(3), 321-325.
 
-Simpson, G. G. (1943). Mammals and the nature of continents. \emph{American Journal of Science, 241}(1), 1–31. doi:10.2475/ajs.241.1.1
+Simpson, G. G. (1943). Mammals and the nature of continents. \emph{American Journal of Science, 241}(1), 1-31. doi:10.2475/ajs.241.1.1
 
-Simpson, G. G. (1960). Notes on the measurement of faunal resemblance. \emph{American Journal of Science, 258-A}, 300–311.
+Simpson, G. G. (1960). Notes on the measurement of faunal resemblance. \emph{American Journal of Science, 258-A}, 300-311.
 
 Sokal, P. H. A., & Sneath, R. R. (1963). Principles of numerical taxonomy. W.H. Freeman and Company.
 
 Sokal, R., & Michener, C. (1958). A statistical method for evaluating systematic relationships. University of Kansas Science Bulletin.
 
-Sorgenfrei, T. (1958). Molluscan assemblages from the marine middle miocene of south Jutland and their Environments. Vol. I. \emph{Danmarks Geologiske Undersøgelse II. Række}, 79, 1–355. doi:10.34194/raekke2.v79.6868
+Sorgenfrei, T. (1958). Molluscan assemblages from the marine middle miocene of south Jutland and their Environments. Vol. I. \emph{Danmarks Geologiske Undersogelse II. Rakke}, 79, 1-355. doi:10.34194/raekke2.v79.6868
 
-Stiles, H. E. (1961). The association factor in information retrieval. \emph{Journal of the ACM, 8}(2), 271–279. doi:10.1145/321062.321074
+Stiles, H. E. (1961). The association factor in information retrieval. \emph{Journal of the ACM, 8}(2), 271-279. doi:10.1145/321062.321074
 
 Tanimoto, T. T. (1958). An elementary mathematical theory of classification and prediction (PB167360). International Business Machines Corp., New York, NY.
 
-Tarwid, K. (1960). Szacowanie zbieinosci nisz ekologicznych gatunkow droga oceny prawdopodobienstwa spotykania sie ich w polowach. \emph{Ekologia Polska, 6}, 115–130.
+Tarwid, K. (1960). Szacowanie zbieinosci nisz ekologicznych gatunkow droga oceny prawdopodobienstwa spotykania sie ich w polowach. \emph{Ekologia Polska, 6}, 115-130.
 
-Tulloss, R. E. (1997). Assessment of similarity indices for undesirable properties and a new tripartite similarity index based on cost functions. In M. E. Palm & I. H. Chapela (Eds.), \emph{Mycology in sustainable development: Expanding concepts, vanishing borders} (pp. 122–143). Parkway Pub.
+Tulloss, R. E. (1997). Assessment of similarity indices for undesirable properties and a new tripartite similarity index based on cost functions. In M. E. Palm & I. H. Chapela (Eds.), \emph{Mycology in sustainable development: Expanding concepts, vanishing borders} (pp. 122-143). Parkway Pub.
 
 Walker, H. M., & Lev, J. (1953). \emph{Statistical inference}. Holt.
 
 Warrens, M. J. (2008). Similarity coefficients for binary data: Properties of coefficients, coefficient matrices, multi-way metrics and multivariate coefficients [Doctoral dissertation, Universiteit Leiden]. https://hdl.handle.net/1887/12987
 
-Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. \emph{Philosophical Transactions of the Royal Society of London, 194}, 257–319. doi:10.1098/rsta.1900.0019
+Yule, G. U. (1900). On the association of attributes in statistics: With illustrations from the material of the childhood society, &c. \emph{Philosophical Transactions of the Royal Society of London, 194}, 257-319. doi:10.1098/rsta.1900.0019
 
-Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579–652. doi:10.2307/2340126
+Yule, G. U. (1912). On the methods of measuring association between two attributes. \emph{Journal of the Royal Statistical Society, 75}(6), 579-652. doi:10.2307/2340126
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

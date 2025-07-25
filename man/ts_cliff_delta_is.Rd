@@ -42,7 +42,7 @@ A dataframe with:
 \description{
 The Cliff test, is a test for stochastic-equivelance. This means that even if the medians are equal between two independent samples, this test could be significant.
 
-Lets say we have one group A that scored 1, 2, 2, 5, 6, 6, 7, and another group B that scored 4, 4, 4, 5, 10, 10, 12. Each group has the same median (i.e. 5), and are symmetric around the median, but if a high score is positive, most people would rather be in group B than in group A. This is where ‘stochastic equality’ comes in. It looks at the chance if you pick a random person from group A and B each, the one from group A scores lower than the one from group B, and add half the chance that their equal. In this example that’s about 0.68.
+Lets say we have one group A that scored 1, 2, 2, 5, 6, 6, 7, and another group B that scored 4, 4, 4, 5, 10, 10, 12. Each group has the same median (i.e. 5), and are symmetric around the median, but if a high score is positive, most people would rather be in group B than in group A. This is where 'stochastic equality' comes in. It looks at the chance if you pick a random person from group A and B each, the one from group A scores lower than the one from group B, and add half the chance that their equal. In this example that's about 0.68.
 
 Cliff (1993) used a standard normal distribution, while Vargha and Delaney later used a t-distribution (Vargha, 2000; Vargha & Delaney, 2000, Delaney & Vargha, 2002).
 }
@@ -121,11 +121,11 @@ ts_cliff_delta_is(dfr[['Gen_Gender']], dfr[['Mix_NrAct']], levels=coding)
 
 }
 \references{
-Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. \emph{Psychological Bulletin, 114}(3), 494–509. doi:10.1037/0033-2909.114.3.494
+Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. \emph{Psychological Bulletin, 114}(3), 494-509. doi:10.1037/0033-2909.114.3.494
 
-Delaney, H. D., & Vargha, A. (2002). Comparing several robust tests of stochastic equality with ordinally scaled variables and small to moderate sized samples. \emph{Psychological Methods, 7}(4), 485–503. doi:10.1037/1082-989X.7.4.485
+Delaney, H. D., & Vargha, A. (2002). Comparing several robust tests of stochastic equality with ordinally scaled variables and small to moderate sized samples. \emph{Psychological Methods, 7}(4), 485-503. doi:10.1037/1082-989X.7.4.485
 
-Vargha A. (2000). Két pszichológiai populáció sztochasztikus egyenlőségének ellenőrzésére alkalmas statisztikai próbák összehasonlító vizsgálata. \emph{Magyar Pszichológiai Szemle, 55}(2–3), Article 2–3. doi:10/1/mpszle.55.2000.2-3.5.pdf
+Vargha A. (2000). Ket pszichologiai populacio sztochasztikus egyenlosegenek ellenorzesere alkalmas statisztikai probak osszehasonlito vizsgalata. \emph{Magyar Pszichologiai Szemle, 55}(2-3), Article 2-3. doi:10/1/mpszle.55.2000.2-3.5.pdf
 
 Vargha, A., & Delaney, H. D. (2000). Comparing several robust tests of stochastic equality. https://eric.ed.gov/?id=ED441836
 }

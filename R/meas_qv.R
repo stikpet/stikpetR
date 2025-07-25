@@ -26,7 +26,7 @@
 #' |9|mean|Smith-Wilson E1*|(Smith & Wilson, 1996, p. 71)|evenness|
 #' |10|mean|Wilcox STDEV|(Wilcox, 1973, p. 14)| |
 #' |11|entropy|Shannon-Weaver Entropy|(Shannon & Weaver, 1949, p. 20)|entropy|
-#' |12|entropy|Rényi Entropy|(Rényi, 1961, p. 549)|entropy|
+#' |12|entropy|Renyi Entropy|(Renyi, 1961, p. 549)|entropy|
 #' |13|entropy|Wilcox HREL = |(Wilcox, 1973, p. 16)| |
 #' |13|entropy|Pielou J|(Pielou, 1966, p. 141)|diversity|
 #' |14|entropy|Sheldon Index|(Sheldon, 1969, p. 467)|equitability = relative diversity|
@@ -115,7 +115,7 @@
 #' 
 #' A 0 (0%) would mean that all cases were in the modal category. A 1 (100%) would indicate that no cases were in the modal category. However, this seems impossible to ever occur, since the modal category is the category with the highest frequency, which is impossible to be 0, unless there are no cases at all.
 #' 
-#' **Berger–Parker index** ("bpi")
+#' **Berger-Parker index** ("bpi")
 #' 
 #' The variation ratio is the opposite of the Berger-Parker Index, which is simply the proportion of scores that did fit in the modal category. In formula notation (Berger & Parker, 1970, p. 1345):
 #' \deqn{BPI = \frac{F_{mode}}{n}}
@@ -207,11 +207,11 @@
 #' The formula used (Shannon & Weaver, 1949, p. 20):
 #' \deqn{H_{sw}=-\sum_{i=1}^k p_i\times\ln\left(p_i\right)}
 #' 
-#' **Rényi entropy** ("re")
+#' **Renyi entropy** ("re")
 #' 
 #' This is a generalisation for Shannon entropy.
 #' 
-#' The formula used is (Rényi, 1961, p. 549):
+#' The formula used is (Renyi, 1961, p. 549):
 #' \deqn{H_q = \frac{1}{1 - q}\times\log_2\left(\sum_{i=1}^k p_i^q\right)}
 #' 
 #' **Wilcox HREL** ("hrel") and **Pielou J** ("j")
@@ -356,35 +356,35 @@
 #' \code{\link{ts_powerdivergence_gof}}, for Power Divergence GoF Test. 
 #' 
 #' @references
-#' Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. *Science, 168*(3937), 1345–1347. doi:10.1126/science.168.3937.1345
+#' Berger, W. H., & Parker, F. L. (1970). Diversity of planktonic foraminifera in deep-sea sediments. *Science, 168*(3937), 1345-1347. doi:10.1126/science.168.3937.1345
 #' 
-#' Bulla, L. (1994). An index of evenness and its associated diversity measure. *Oikos, 70*(1), 167–171. doi:10.2307/3545713
+#' Bulla, L. (1994). An index of evenness and its associated diversity measure. *Oikos, 70*(1), 167-171. doi:10.2307/3545713
 #' 
-#' Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. *The Journal of Animal Ecology, 12*(1), 42–58. doi:10.2307/1411
+#' Fisher, R. A., Corbet, A. S., & Williams, C. B. (1943). The relation between the number of species and the number of individuals in a random sample of an animal population. *The Journal of Animal Ecology, 12*(1), 42-58. doi:10.2307/1411
 #' 
 #' Freeman, L. C. (1965). *Elementary applied statistics: For students in behavioral science*. Wiley.
 #' 
 #' Gibbs, J. P., & Poston, D. L. (1975). The division of labor: Conceptualization and related measures. *Social Forces, 53*(3), 468. doi:10.2307/2576589
 #' 
-#' Heip, C. (1974). A new index measuring evenness. *Journal of the Marine Biological Association of the United Kingdom, 54*(3), 555–557. doi:10.1017/S0025315400022736
+#' Heip, C. (1974). A new index measuring evenness. *Journal of the Marine Biological Association of the United Kingdom, 54*(3), 555-557. doi:10.1017/S0025315400022736
 #' 
-#' Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. *Ecology, 54*(2), 427–432. doi:10.2307/1934352
+#' Hill, M. O. (1973). Diversity and evenness: A unifying notation and its consequences. *Ecology, 54*(2), 427-432. doi:10.2307/1934352
 #' 
-#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208–215. doi:10.2307/1953335
+#' Kaiser, H. F. (1968). A measure of the population quality of legislative apportionment. *American Political Science Review, 62*(1), 208-215. doi:10.2307/1953335
 #' 
-#' Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. *Journal of Theoretical Biology, 13*, 131–144. doi:10.1016/0022-5193(66)90013-0
+#' Pielou, E. C. (1966). The measurement of diversity in different types of biological collections. *Journal of Theoretical Biology, 13*, 131-144. doi:10.1016/0022-5193(66)90013-0
 #' 
-#' Renyi, A. (1961). On measures of entropy and information. *Contributions to the Theory of Statistics, 1*, 547–562.
+#' Renyi, A. (1961). On measures of entropy and information. *Contributions to the Theory of Statistics, 1*, 547-562.
 #' 
 #' Shannon, C. E., & Weaver, W. (1949). *The mathematical theory of communication*. The university of Illinois press.
 #' 
-#' Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. *Ecology, 50*(3), 466–467. doi:10.2307/1933900
+#' Sheldon, A. L. (1969). Equitability indices: Dependence on the species count. *Ecology, 50*(3), 466-467. doi:10.2307/1933900
 #' 
 #' Simpson, E. H. (1949). Measurement of diversity. *Nature, 163*(4148), Article 4148. doi:10.1038/163688a0
 #' 
-#' Smith, B., & Wilson, J. B. (1996). A consumer’s guide to evenness indices. *Oikos, 76*(1), 70–82. doi:10.2307/3545749
+#' Smith, B., & Wilson, J. B. (1996). A consumer's guide to evenness indices. *Oikos, 76*(1), 70-82. doi:10.2307/3545749
 #' 
-#' Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. *Political Research Quarterly, 26*(2), 325–343. doi:10.1177/106591297302600209
+#' Wilcox, A. R. (1973). Indices of qualitative variation and political measurement. *Political Research Quarterly, 26*(2), 325-343. doi:10.1177/106591297302600209
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -658,3 +658,6 @@ me_qv <- function(data, measure="vr", var1=2, var2=1){
   colnames(results)<-c("value", "measure", "source")
   return (results)
 }
+
+
+

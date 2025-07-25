@@ -29,8 +29,8 @@ This function is shown in this \href{https://youtu.be/pq3mA9m47p4}{YouTube video
 }
 \details{
 In the definition a \emph{bar chart} is mentioned. A bar chart can be defined as
-“a graph in which bars of varying height with spaces between them are used to
-display data for variables defined by qualities or categories” (Zedeck, 2014, p. 20).
+"a graph in which bars of varying height with spaces between them are used to
+display data for variables defined by qualities or categories" (Zedeck, 2014, p. 20).
 Together this indicates that a dot plot is used for categorical data.
 
 However, Zedeck sees the dot plot as an alternative name for a scatterplot,

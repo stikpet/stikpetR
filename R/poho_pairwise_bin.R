@@ -8,7 +8,7 @@
 #' This function is shown in this [YouTube video](https://youtu.be/Li_I2D52Kjk) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/PostHocAfterGoF.html)
 #' 
 #' @param data dataframe with scores
-#' @param test {"binomial", "score", "wald"}, optional test to use for each pair
+#' @param test c("binomial", "score", "wald"), optional test to use for each pair
 #' @param expCount optional dataframe with categories and expected counts
 #' @param mtc optional string. Any of the methods available in p_adjust() to correct for multiple tests
 #' @param ... optional additional arguments for the specific test that are passed along.
@@ -163,3 +163,6 @@ ph_pairwise_bin <- function(data, test="binomial", expCount=NULL, mtc='bonferron
   
   return (res)
 }
+
+
+

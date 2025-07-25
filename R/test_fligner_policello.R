@@ -51,7 +51,7 @@
 #' Independent samples tests for a binary vs ordinal variable include Brunner-Munzel (\code{\link{ts_brunner_munzel}}), C-square (\code{\link{ts_c_square}}), Cliff-Delta (\code{\link{ts_cliff_delta_is}}), Fligner-Policello (\code{\link{ts_fligner_policello}}), Mann-Whitney U (\code{\link{ts_mann_whitney}}), Mood-Median (\code{\link{ts_mood_median}})
 #' 
 #' @references 
-#' Fligner, M. A., & Policello, G. E. (1981). Robust rank procedures for the Behrens-Fisher problem. *Journal of the American Statistical Association, 76*(373), 162–168. https://doi.org/10.1080/01621459.1981.10477623
+#' Fligner, M. A., & Policello, G. E. (1981). Robust rank procedures for the Behrens-Fisher problem. *Journal of the American Statistical Association, 76*(373), 162-168. https://doi.org/10.1080/01621459.1981.10477623
 #' 
 #' Hollander, M., Wolfe, D. A., & Chicken, E. (2014). *Nonparametric statistical methods* (3rd ed.). John Wiley & Sons, Inc.
 #' 
@@ -148,3 +148,6 @@ ts_fligner_policello <- function(catField,
   return (results)
   
 }
+
+
+

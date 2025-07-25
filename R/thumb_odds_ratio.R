@@ -25,7 +25,7 @@
 #' 
 #' "hopkins" => Hopkins (1997, tbl. 1)
 #' 
-#' |\\(OR^{\\ast}\\)| Interpretation|
+#' |\eqn{OR^{\ast}}| Interpretation|
 #' |---|----------|
 #' |1.00 < 1.50 | trivial |
 #' |1.50 < 3.50 | small |
@@ -63,13 +63,13 @@
 #' 
 #' 
 #' @references
-#' Chen, H., Cohen, P., & Chen, S. (2010). How big is a big Odds Ratio? Interpreting the magnitudes of Odds Ratios in epidemiological studies. *Communications in Statistics - Simulation and Computation, 39*(4), 860–864. doi:10.1080/03610911003650383
+#' Chen, H., Cohen, P., & Chen, S. (2010). How big is a big Odds Ratio? Interpreting the magnitudes of Odds Ratios in epidemiological studies. *Communications in Statistics - Simulation and Computation, 39*(4), 860-864. doi:10.1080/03610911003650383
 #' 
 #' Hopkins, W. G. (2006, August 7). New view of statistics: Effect magnitudes. http://www.sportsci.org/resource/stats/effectmag.html
 #' 
 #' Jones, K. (2014, June 5). How do you interpret the odds ratio (OR)? ResearchGate. https://www.researchgate.net/post/How_do_you_interpret_the_odds_ratio_OR
 #' 
-#' Wuensch, K. (2009). Cohen’s conventions for small, medium, and large effects. https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=get&target=esize.doc
+#' Wuensch, K. (2009). Cohen's conventions for small, medium, and large effects. https://imaging.mrc-cbu.cam.ac.uk/statswiki/FAQ/effectSize?action=AttachFile&do=get&target=esize.doc
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -138,3 +138,6 @@ th_odds_ratio <- function(or, qual="chen"){
   
   return(results)
 }
+
+
+

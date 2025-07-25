@@ -40,7 +40,7 @@
 #' \code{\link{vi_pie}}, for Pie Chart.
 #' 
 #' @references 
-#' Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. *Journal of the American Statistical Association, 79*(387), 531–554. https://doi.org/10.2307/2288400
+#' Cleveland, W. S., & McGill, R. (1984). Graphical perception: Theory, experimentation, and application to the development of graphical methods. *Journal of the American Statistical Association, 79*(387), 531-554. https://doi.org/10.2307/2288400
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -67,3 +67,6 @@ vi_cleveland_dot_plot <- function(data, size=2){
   
   return(chart)
 }
+
+
+

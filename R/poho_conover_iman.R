@@ -52,7 +52,7 @@
 #' @references
 #' Conover, W. J. (1980). *Practical nonparametric statistics* (2nd ed.). Wiley. 
 #' 
-#' Conover, W. J., & Iman, R. L. (1979). *On multiple-comparisons procedures* (LA-7677-MS; pp. 1–14). Los Alamos Scientific Laboratory.
+#' Conover, W. J., & Iman, R. L. (1979). *On multiple-comparisons procedures* (LA-7677-MS; pp. 1-14). Los Alamos Scientific Laboratory.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -134,3 +134,6 @@ ph_conover_iman <- function(catField, ordField,
   return (res)
   
 }
+
+
+

@@ -4,7 +4,7 @@
 #' @description 
 #' In essence this attempts to mimic a correlation coefficient between two scale variables. It can be defined as "An estimate of the correlation between two random variables having a bivariate normal distribution, obtained from the information from a double dichotomy of their bivariate distribution" (Everitt, 2004, p. 372). 
 #' 
-#' This assumes the two binary variables have ‘hidden’ underlying normal distribution. If so, the combination of the two forms a bivariate normal distribution with a specific correlation between them. The quest is then to find the correlation, such that the cumulative density function of the z-values of the two marginal totals of the top-left cell (a) match that value.
+#' This assumes the two binary variables have 'hidden' underlying normal distribution. If so, the combination of the two forms a bivariate normal distribution with a specific correlation between them. The quest is then to find the correlation, such that the cumulative density function of the z-values of the two marginal totals of the top-left cell (a) match that value.
 #' 
 #' This is quite tricky to do, so a few have proposed an approximation for this. These include Yule r, Pearson Q4 and Q5, Camp, Becker and Clogg, and Bonett and Price , all available and more with (\code{\link{es_bin_bin}}).
 #' 
@@ -33,9 +33,9 @@
 #' @references 
 #' Brown, M. B. (1977). Algorithm AS 116: The tetrachoric correlation and its asymptotic standard error. *Applied Statistics, 26*(3), 343. https://doi.org/10.2307/2346985
 #' 
-#' Divgi, D. R. (1979). Calculation of the tetrachoric correlation coefficient. *Psychometrika, 44*(2), 169–172. https://doi.org/10.1007/BF02293968
+#' Divgi, D. R. (1979). Calculation of the tetrachoric correlation coefficient. *Psychometrika, 44*(2), 169-172. https://doi.org/10.1007/BF02293968
 #' 
-#' Kirk, D. B. (1973). On the numerical approximation of the bivariate normal (tetrachoric) correlation coefficient. *Psychometrika, 38*(2), 259–268. https://doi.org/10.1007/BF02291118
+#' Kirk, D. B. (1973). On the numerical approximation of the bivariate normal (tetrachoric) correlation coefficient. *Psychometrika, 38*(2), 259-268. https://doi.org/10.1007/BF02291118
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
@@ -749,4 +749,7 @@ hEfn2 <- function(h2k2, hk2, x, xx, v, w) {
   f = exp((-1 * h2k2 + hk2 * v * x) / (2 * (1 - w * xx))) / sqrt(1 - w * xx);
   return (f)
 }
+
+
+
 

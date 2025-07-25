@@ -150,3 +150,6 @@ he_quartilesIndex <-function(data, indexMethod=c("inclusive", "exclusive", "sas1
   
   return (results)
 }
+
+
+

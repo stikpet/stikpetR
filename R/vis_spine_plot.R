@@ -54,3 +54,6 @@ vi_spine_plot <- function(field1,
   
   spineplot(ct, xlab=field1Name, ylab=field2Name)
 }
+
+
+

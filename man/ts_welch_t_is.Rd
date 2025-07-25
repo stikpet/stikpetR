@@ -15,7 +15,7 @@ ts_welch_t_is(catField, scaleField, categories = NULL, dmu = 0, df_ver = "ws")
 
 \item{dmu}{Optional difference according to null hypothesis (default is 0)}
 
-\item{df_ver}{{'ws', 'w', welch-satterthwaite, 'welch'} optional version of degrees of freedom to use}
+\item{df_ver}{c('ws', 'w', welch-satterthwaite, 'welch') optional version of degrees of freedom to use}
 }
 \value{
 A dataframe with:
@@ -85,13 +85,13 @@ ts_welch_t_is(groups, scores)
 \references{
 Aspin, A. A., & Welch, B. L. (1949). Tables for use in comparisons whose accuracy involves two variances, separately estimated. \emph{Biometrika, 36}(3/4), 290. https://doi.org/10.2307/2332668
 
-Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student’s t-test and the Mann–Whitney U test. \emph{Behavioral Ecology, 17}(4), 688–690. https://doi.org/10.1093/beheco/ark016
+Ruxton, G. D. (2006). The unequal variance t-test is an underused alternative to Student's t-test and the Mann-Whitney U test. \emph{Behavioral Ecology, 17}(4), 688-690. https://doi.org/10.1093/beheco/ark016
 
 Satterthwaite, F. E. (1946). An approximate distribution of estimates of variance components. \emph{Biometrics Bulletin, 2}(6), 110. https://doi.org/10.2307/3002019
 
-Welch, B. L. (1938). The significance of the difference between two means when the population variances are unequal. \emph{Biometrika, 29}(3–4), 350–362. https://doi.org/10.1093/biomet/29.3-4.350
+Welch, B. L. (1938). The significance of the difference between two means when the population variances are unequal. \emph{Biometrika, 29}(3-4), 350-362. https://doi.org/10.1093/biomet/29.3-4.350
 
-Welch, B. L. (1947). The generalization of `Student’s’ problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28–35. https://doi.org/10.2307/2332510
+Welch, B. L. (1947). The generalization of `Student's' problem when several different population variances are involved. \emph{Biometrika, 34}(1/2), 28-35. https://doi.org/10.2307/2332510
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

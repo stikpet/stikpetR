@@ -88,9 +88,9 @@ me_median(ex4, tieBreaker="high")
 
 }
 \references{
-Cournot, A. A. (1843). \emph{Exposition de la théorie des chances et des probabilités}. L. Hachette.
+Cournot, A. A. (1843). \emph{Exposition de la theorie des chances et des probabilites}. L. Hachette.
 
-Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225–272.
+Galton, F. (1881). Report of the anthropometric committee. \emph{Report of the British Association for the Advancement of Science, 51}, 225-272.
 
 Pacioli, L. (1523). \emph{Summa de arithmetica geometria proportioni: Et proportionalita}. Paganino de Paganini.
 

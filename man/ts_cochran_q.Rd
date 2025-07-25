@@ -55,7 +55,7 @@ myData.long<-reshape(dFr, varying=c("var1", "var2", "var3", "var4"), v.names="sc
 cochran.qtest(score~var |id, data=myData.long)
 }
 \references{
-Cochran, W. G. (1950). The comparison of percentages in matched samples. \emph{Biometrika, 37}(3/4), 256–266. https://doi.org/10.2307/2332378
+Cochran, W. G. (1950). The comparison of percentages in matched samples. \emph{Biometrika, 37}(3/4), 256-266. https://doi.org/10.2307/2332378
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

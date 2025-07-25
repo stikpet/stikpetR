@@ -106,33 +106,33 @@ R's \emph{stats} library has a similar function.
 cor.test(var1, var2)
 }
 \references{
-Cattin, P. (1980a). Note on the estimation of the squared cross-validated multiple correlation of a regression model. \emph{Psychological Bulletin, 87}(1), 63–65. https://doi.org/10.1037/0033-2909.87.1.63
+Cattin, P. (1980a). Note on the estimation of the squared cross-validated multiple correlation of a regression model. \emph{Psychological Bulletin, 87}(1), 63-65. https://doi.org/10.1037/0033-2909.87.1.63
 
-Cattin, P. (1980b). Estimation of the predictive power of a regression model. \emph{Journal of Applied Psychology, 65}(4), 407–414. https://doi.org/10.1037/0021-9010.65.4.407
+Cattin, P. (1980b). Estimation of the predictive power of a regression model. \emph{Journal of Applied Psychology, 65}(4), 407-414. https://doi.org/10.1037/0021-9010.65.4.407
 
-Claudy, J. G. (1978). Multiple regression and validity estimation in one sample. \emph{Applied Psychological Measurement, 2}(4), 595–607. https://doi.org/10.1177/014662167800200414
+Claudy, J. G. (1978). Multiple regression and validity estimation in one sample. \emph{Applied Psychological Measurement, 2}(4), 595-607. https://doi.org/10.1177/014662167800200414
 
-Ezekiel, M. (1929). The application of the theory of error to multiple and curvilinear correlation. \emph{Journal of the American Statistical Association, 24}(165), 99–104. https://doi.org/10.2307/2277015
+Ezekiel, M. (1929). The application of the theory of error to multiple and curvilinear correlation. \emph{Journal of the American Statistical Association, 24}(165), 99-104. https://doi.org/10.2307/2277015
 
-Ezekiel, M. (1941). Methods of correlation analysis (2nd ed.). John Wiley & Sons.Fisher, R. A. (1915). Frequency distribution of the values of the correlation coefficient in samples from an indefinitely large population. \emph{Biometrika, 10}(4), 507–521. https://doi.org/10.2307/2331838
+Ezekiel, M. (1941). Methods of correlation analysis (2nd ed.). John Wiley & Sons.Fisher, R. A. (1915). Frequency distribution of the values of the correlation coefficient in samples from an indefinitely large population. \emph{Biometrika, 10}(4), 507-521. https://doi.org/10.2307/2331838
 
-Fisher, R. A. (1921). On the “probable error” of a coefficient of correlation deduced from a small sample. \emph{Metron, 1}, 3–32.
+Fisher, R. A. (1921). On the "probable error" of a coefficient of correlation deduced from a small sample. \emph{Metron, 1}, 3-32.
 
-Herzberg, P. A. (1969). The parameters of cross-validation. \emph{Psychometrika Monograph Supplement, 34}(2), 1–70.
+Herzberg, P. A. (1969). The parameters of cross-validation. \emph{Psychometrika Monograph Supplement, 34}(2), 1-70.
 
-Olkin, I., & Pratt, J. W. (1958). Unbiased estimation of certain correlation coefficients. \emph{The Annals of Mathematical Statistics, 29}(1), 201–211. https://doi.org/10.1214/aoms/1177706717
+Olkin, I., & Pratt, J. W. (1958). Unbiased estimation of certain correlation coefficients. \emph{The Annals of Mathematical Statistics, 29}(1), 201-211. https://doi.org/10.1214/aoms/1177706717
 
 Olkin, I., & Siotani, M. (1964). Asymptotic distribution of functions of a correlation matrix. Laboratory for Quantitative Research in Education, Department of Statistics, Stanford University.
 
-Pearson, K. (1896). Mathematical Contributions to the Theory of Evolution. III. Regression, Heredity, and Panmixia. *Philosophical Transactions of the Royal Society of London. *(A.), 1896, 253–318.
+Pearson, K. (1896). Mathematical Contributions to the Theory of Evolution. III. Regression, Heredity, and Panmixia. *Philosophical Transactions of the Royal Society of London. *(A.), 1896, 253-318.
 
 Pugh, E. M., & Winslow, G. H. (1966). \emph{The analysis of physical measurements}. Addison-Wesley.
 
-Raju, N. S., Bilgic, R., Edwards, J. E., & Fleer, P. F. (1997). Methodology review: Estimation of population validity and cross-validity, and the use of equal weights in prediction. \emph{Applied Psychological Measurement, 21}(4), 291–305. https://doi.org/10.1177/01466216970214001
+Raju, N. S., Bilgic, R., Edwards, J. E., & Fleer, P. F. (1997). Methodology review: Estimation of population validity and cross-validity, and the use of equal weights in prediction. \emph{Applied Psychological Measurement, 21}(4), 291-305. https://doi.org/10.1177/01466216970214001
 
-Steiger, J. H. (1980). Tests for comparing elements of a correlation matrix. \emph{Psychological Bulletin, 87}(2), 245–251. https://doi.org/10.1037/0033-2909.87.2.245
+Steiger, J. H. (1980). Tests for comparing elements of a correlation matrix. \emph{Psychological Bulletin, 87}(2), 245-251. https://doi.org/10.1037/0033-2909.87.2.245
 
-Wherry, R. J. (1931). A new formula for predicting the shrinkage of the coefficient of multiple correlation. \emph{The Annals of Mathematical Statistics, 2}(4), 440–457. https://doi.org/10.1214/aoms/1177732951
+Wherry, R. J. (1931). A new formula for predicting the shrinkage of the coefficient of multiple correlation. \emph{The Annals of Mathematical Statistics, 2}(4), 440-457. https://doi.org/10.1214/aoms/1177732951
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
