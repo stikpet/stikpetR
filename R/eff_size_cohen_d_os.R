@@ -2,7 +2,7 @@
 #' 
 #' This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 #' 
-#' The test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenD.html)
+#' This function is shown in this [YouTube video](https://youtu.be/Ihn-f386m-U) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenD.html)
 #' 
 #' 
 #' @param data pandas series with the numeric scores

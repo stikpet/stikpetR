@@ -18,14 +18,14 @@
 #' 
 #' A Marimekko Chart is simply an alternative name for the Mosaic Plot, although according to Wikipedia "mosaic plots can be colored and shaded according to deviations from independence, whereas Marimekko charts are colored according to the category levels" (Wikipedia, 2022).
 #' 
-#' The term 'Spine Plot' itself is often attributed to Hummel, but I've been unable to hunt down his original article: Linked bar charts: Analysing categorical data graphically. Computational Statistics 11: 23–33.
+#' The term 'Spine Plot' itself is often attributed to Hummel, but I've been unable to hunt down his original article: Linked bar charts: Analysing categorical data graphically. Computational Statistics 11: 23-33.
 #' 
 #' @references
-#' Carvalho, T. (2021, April 10). Marimekko Charts with Python’s Matplotlib. Medium. https://towardsdatascience.com/marimekko-charts-with-pythons-matplotlib-6b9784ae73a1
+#' Carvalho, T. (2021, April 10). Marimekko Charts with Python's Matplotlib. Medium. https://towardsdatascience.com/marimekko-charts-with-pythons-matplotlib-6b9784ae73a1
 #' 
-#' Friendly, M. (2002). A brief history of the mosaic display. *Journal of Computational and Graphical Statistics, 11*(1), 89–107. https://doi.org/10.1198/106186002317375631
+#' Friendly, M. (2002). A brief history of the mosaic display. *Journal of Computational and Graphical Statistics, 11*(1), 89-107. https://doi.org/10.1198/106186002317375631
 #' 
-#' Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In W. F. Eddy (Ed.), Proceedings of the 13th Symposium on the Interface (pp. 268–273). Springer. https://doi.org/10.1007/978-1-4613-9464-8_37
+#' Hartigan, J. A., & Kleiner, B. (1981). Mosaics for contingency tables. In W. F. Eddy (Ed.), Proceedings of the 13th Symposium on the Interface (pp. 268-273). Springer. https://doi.org/10.1007/978-1-4613-9464-8_37
 #' 
 #' Muenchen, R. A. (2009). *R for SAS and SPSS Users*. Springer.
 #' 

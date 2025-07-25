@@ -1,6 +1,6 @@
 #' Stem-and-Leaf Display
 #' @description
-#' A stem-and-leaf display is defined as: "a method of displaying data in which each observation is split into two parts labelled the ‘stem’ and the ‘leaf’" (Everitt, 2004, p. 362). A diagram that could be used to visualize scale variables, created by Tukey (1972, p. 296).
+#' A stem-and-leaf display is defined as: "a method of displaying data in which each observation is split into two parts labelled the 'stem' and the 'leaf'" (Everitt, 2004, p. 362). A diagram that could be used to visualize scale variables, created by Tukey (1972, p. 296).
 #' 
 #' In some variations of this, the cumulative frequencies are also shown, but currently this function does not provide for that.
 #' 
@@ -32,7 +32,7 @@
 #' @references 
 #' Everitt, B. (2004). *The Cambridge dictionary of statistics* (2nd ed.). Cambridge University Press.
 #' 
-#' Tukey, J. W. (1972). Some graphic and semigraphic displays. In T. A. Bancroft & S. A. Brown (Eds.), *Statistical Papers in Honor of George W. Snedecor* (pp. 293–316). Iowa State University Press.
+#' Tukey, J. W. (1972). Some graphic and semigraphic displays. In T. A. Bancroft & S. A. Brown (Eds.), *Statistical Papers in Honor of George W. Snedecor* (pp. 293-316). Iowa State University Press.
 #' 
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)

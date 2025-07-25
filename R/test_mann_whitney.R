@@ -49,6 +49,14 @@
 #' For the exact distribution the Mann-Whitney-Wilcoxon distribution is used, from the **pwilcox()** function from R.
 #' 
 #' Wilcoxon (1945) had developed this test earlier for the case when both categories have the same sample size, and Mann and Whitney expanded on this.
+#' 
+#' @section Before, After and Alternatives:
+#' Before running the test you might first want to get an impression using a cross table using \code{\link{tab_cross}}, or a stacked bar chart using \code{\link{vi_bar_stacked_multiple}} for a visualisation.
+#' 
+#' After the test you might want an effect size measure, either \code{\link{es_common_language_is}} for the CLES, \code{\link{es_hodges_lehmann_is}} for Hodges-Lehmann, or \code{\link{r_rank_biserial_is}} for the (Glass) rank biserial (Cliff delta).
+#' 
+#' Independent samples tests for a binary vs ordinal variable include Brunner-Munzel (\code{\link{ts_brunner_munzel}}), C-square (\code{\link{ts_c_square}}), Cliff-Delta (\code{\link{ts_cliff_delta_is}}), Fligner-Policello (\code{\link{ts_fligner_policello}}), Mann-Whitney U (\code{\link{ts_mann_whitney}}), Mood-Median (\code{\link{ts_mood_median}})
+#' 
 #'
 #' @references 
 #' Lehmann, E. L., & D’Abrera, H. J. M. (1975). *Nonparametrics: Statistical methods based on ranks*. Holden-Day.

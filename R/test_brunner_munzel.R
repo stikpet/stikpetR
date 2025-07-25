@@ -8,6 +8,8 @@
 #' 
 #' Brunner and Munzel (p. 21) indicate the test-statistic that is computed follows a standard normal distribution, if each category has 50 or more data points. They also remark (p. 22) that the test is no longer accurate if sample sizes are less than 10, although in Schüürhuis et al. (2025, p. 18) 15 is listed. Neubert and Brunner (2007) propose to use a studentized permutation test in these cases. Schüürhuis et al. (2025) developed an improved version of this test as well, called a \(C^2\) test.
 #' 
+#' The test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html).
+#' 
 #' @param catField A vector or dataframe with the group data
 #' @param ordField A vector or dataframe with the scores data
 #' @param categories optional list with the two categories to use from catField. If not set the first two found will be used
@@ -61,6 +63,9 @@
 #' Before running the test you might first want to get an impression using a cross table using \code{\link{tab_cross}}, or a stacked bar chart using \code{\link{vi_bar_stacked_multiple}} for a visualisation.
 #' 
 #' After the test you might want an effect size measure, either \code{\link{es_common_language_is}} for the CLES, \code{\link{es_hodges_lehmann_is}} for Hodges-Lehmann, or \code{\link{r_rank_biserial_is}} for the (Glass) rank biserial (Cliff delta).
+#' 
+#' Independent samples tests for a binary vs ordinal variable include Brunner-Munzel (\code{\link{ts_brunner_munzel}}), C-square (\code{\link{ts_c_square}}), Cliff-Delta (\code{\link{ts_cliff_delta_is}}), Fligner-Policello (\code{\link{ts_fligner_policello}}), Mann-Whitney U (\code{\link{ts_mann_whitney}}), Mood-Median (\code{\link{ts_mood_median}})
+#' 
 #' 
 #' @references 
 #' Brunner, E., & Munzel, U. (2000). The nonparametric Behrens-Fisher problem: Asymptotic theory and a small-sample approximation. *Biometrical Journal, 42*(1), 17–25. https://doi.org/10.1002/(SICI)1521-4036(200001)42:1<17::AID-BIMJ17>3.0.CO;2-U

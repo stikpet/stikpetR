@@ -15,9 +15,7 @@ vi_pie(data, labels = c("count", "percent", "both", "none"))
 chart the pie chart
 }
 \description{
-A pie-chart is a “graphic display in which a circle is cut into wedges with the area of
-each wedge being proportional to the percentage of cases in the category represented by
-that wedge” (Zedeck, 2014, p. 260).
+A pie-chart is a \"graphic display in which a circle is cut into wedges with the area of each wedge being proportional to the percentage of cases in the category represented by that wedge\" (Zedeck, 2014, p. 260).
 
 A video on pie charts is available \href{https://youtu.be/e6JtJsh-6iw}{here}.
 

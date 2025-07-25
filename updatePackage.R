@@ -62,3 +62,28 @@ rcmdcheck("stikpetR")
 
 #setwd("H:/PeterStatistics/Packages/R")
 #devtools::create("stikpetR")
+
+setwd("H:/PeterStatistics/Packages/R/stikpetR")
+results <- lapply(rd_files, tools::checkRd)
+names(results) <- basename(rd_files)
+for (file in names(results)) {
+  if (length(results[[file]]) > 0) {
+    cat("Issues in:", file, "\n")
+    print(results[[file]])
+  }
+}
+
+
+fix_quotes <- function(file) {
+  text <- readLines(file, encoding = "UTF-8")
+  text <- gsub("[‘’]", "'", text)  # Replace curly single quotes
+  text <- gsub("[“”]", "\"", text) # Replace curly double quotes
+  writeLines(text, file, useBytes = TRUE)
+}
+
+# Apply to all Rd files
+rd_files <- list.files("man", pattern = "\\.Rd$", full.names = TRUE)
+lapply(rd_files, fix_quotes)
+
+
+

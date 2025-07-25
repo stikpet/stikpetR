@@ -65,6 +65,8 @@
 #' 
 #' After the test you might want an effect size measure, either \code{\link{es_common_language_is}} for the CLES, \code{\link{es_hodges_lehmann_is}} for Hodges-Lehmann, or \code{\link{r_rank_biserial_is}} for the (Glass) rank biserial (Cliff delta).
 #' 
+#' Independent samples tests for a binary vs ordinal variable include Brunner-Munzel (\code{\link{ts_brunner_munzel}}), C-square (\code{\link{ts_c_square}}), Cliff-Delta (\code{\link{ts_cliff_delta_is}}), Fligner-Policello (\code{\link{ts_fligner_policello}}), Mann-Whitney U (\code{\link{ts_mann_whitney}}), Mood-Median (\code{\link{ts_mood_median}})
+#' 
 #' @references 
 #' Schüürhuis, S., Konietschke, F., & Brunner, E. (2025). A new approach to the Nonparametric Behrens-Fisher problem with compatible confidence intervals (arXiv:2504.01796). arXiv. https://doi.org/10.48550/arXiv.2504.01796
 #'  
