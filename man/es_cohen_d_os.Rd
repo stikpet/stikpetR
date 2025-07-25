@@ -18,7 +18,7 @@ Cohen d'. mu is also printed if not provided.
 This function will calculate Cohen d' (one-sample). An effect size measure that can be used with a test for a single mean (for example a one-sample Student t-test).
 }
 \details{
-The test is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenD.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/Ihn-f386m-U}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CohenD.html}{PeterStatistics.com}
 
 The formula used (Cohen, 1988, p. 46):
 \deqn{d'=\frac{\bar{x}-\mu_{H_{0}}}{s}}
