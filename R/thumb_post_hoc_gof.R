@@ -58,18 +58,18 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
   if ('Cohen h' %in% colnames(df) && convert){
     conv_lbl = 'Cohen h_2 to Cohen h'}
   else if ('Cohen w' %in% colnames(df) && convert){
-    (conv_lbl = 'Cohen w to Cramér V')}
-  else if ('Cramér V' %in% colnames(df) && convert){
-    conv_lbl = 'Cramér V to Cohen w'}
+    (conv_lbl = 'Cohen w to Cramer V')}
+  else if ('Cramer V' %in% colnames(df) && convert){
+    conv_lbl = 'Cramer V to Cohen w'}
   else if ('Johnston-Berry-Mielke E' %in% colnames(df)){
     if (convert){
-      conv_lbl = 'JBM-E to Cramér V'}
+      conv_lbl = 'JBM-E to Cramer V'}
     else{
       conv_lbl = 'JBM-E to Cohen w'}
   }
   else if ('Fei' %in% colnames(df)){
     if (convert){
-      conv_lbl = 'Fei to Cramér V'}
+      conv_lbl = 'Fei to Cramer V'}
     else{
       conv_lbl = 'Fei to Cohen w'}
   }
@@ -99,13 +99,13 @@ th_post_hoc_gof <- function(eff_sizes, convert=FALSE, ph_results=NULL, ...){
         else{
           q = th_cohen_w(df[i, 'Cohen w'], ...)}
       }
-      else if ('Cramér V' %in% colnames(df)){
+      else if ('Cramer V' %in% colnames(df)){
         if (convert){
-          cohenW = es_convert(df[i, 'Cramér V'], fr="cramervgof", to="cohenw", ex1=2)
+          cohenW = es_convert(df[i, 'Cramer V'], fr="cramervgof", to="cohenw", ex1=2)
           q = th_cohen_w(cohenW, ...)
           conv_val = cohenW}      
         else{
-          q = th_cramer_v(df[i, 'Cramér V'], ...)}
+          q = th_cramer_v(df[i, 'Cramer V'], ...)}
       }
       else if ('Johnston-Berry-Mielke E' %in% colnames(df)){
         if (is.null(ph_results)){

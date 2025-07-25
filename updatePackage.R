@@ -148,3 +148,18 @@ invisible(lapply(r_files, fix_roxygen_quotes))
 
 
 
+# check for ASCII anywhere including the code
+r_files <- list.files("R", pattern = "\\.R$", full.names = TRUE)
+for (file in r_files) {
+  lines <- readLines(file, warn = FALSE, encoding = "UTF-8")
+  non_ascii_lines <- grep("[^\x01-\x7F]", lines)
+  if (length(non_ascii_lines) > 0) {
+    cat("\nIn file:", file, "\n")
+    for (i in non_ascii_lines) {
+      cat(sprintf("Line %d: %s\n", i, lines[i]))
+    }
+  }
+}
+
+
+

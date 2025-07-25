@@ -88,7 +88,7 @@ es_cohen_h_os <- function(data, p0=0.5, p0Cat=NULL, codes=NULL){
       if (length(freq) != 2){
         # unable to determine which category p0 would belong to, so print warning and end
         print("WARNING: data does not have two unique categories, please specify two categories using codes parameter")
-        return
+        return(invisible(NULL))
       }
       else{
         n1 = unname(freq[1])

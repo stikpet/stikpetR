@@ -123,7 +123,7 @@ ts_wald_os <- function(data,
       if (length(freq) != 2){
         # unable to determine which category p0 would belong to, so print warning and end
         print("WARNING: data does not have two unique categories, please specify two categories using codes parameter")
-        return
+        return(invisible(NULL))
       }
       else{
         n1 = unname(freq[1])
