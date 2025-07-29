@@ -44,6 +44,8 @@ The word mode might even come from the French word 'mode' which means fashion. F
 If one category has the highest frequency this category will be the modal category and if two or more categories have the same highest frequency each of them will be the mode. If there is only one mode the set is sometimes called unimodal, if there are two it is called bimodal, with three trimodal, etc. For two or more, thse term multimodal can also be used.
 
 An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
+
+This function is shown in this \href{https://youtu.be/QtjC5e1oK_o}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/Mode.html}{PeterStatistics.com}
 }
 \details{
 The function will use the \strong{tab_frequency_bins()} function with the given parameters \emph{nbins}, \emph{bins}, \emph{incl_lower} and \emph{adjust}. See details of that function for more info.

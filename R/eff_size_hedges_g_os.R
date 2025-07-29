@@ -5,7 +5,7 @@
 #' 
 #' Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 #' 
-#' TThe measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/HedgesG.html)
+#' This function is shown in this [YouTube video](https://youtu.be/8u7mtLDhQJI) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/HedgesG.html)
 #' 
 #' 
 #' @param data vector or dataframe with the numeric scores

@@ -11,6 +11,8 @@
 #' 
 #' An advantage of the mode over many other measures of central tendency (like the median and mean), is that it can be determined for already nominal data types.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/QtjC5e1oK_o) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/Mode.html)
+#' 
 #' @param data list or dataframe
 #' @param nbins optional, either the number of bins to create, or a specific method from the *tab_nbins()* function. Default is "sturges"
 #' @param bins optional dataframe with lower and upper bounds

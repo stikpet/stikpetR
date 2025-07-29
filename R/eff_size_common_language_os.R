@@ -12,7 +12,7 @@
 #' 
 #' For scale data, an approximation using the standard normal distribution is also available using Cohen's d, alternatively a conversion via the rank-biserial coefficient can be done. These two are used in R's *effectsize* library from Ben-Shachar et al. (2020).
 #' 
-#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
+#' This function is shown in this [YouTube video](https://youtu.be/rThV33MNnVs) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
 #' 
 #' 
 #' @param scores list with scores as numbers, or if text also provide levels
@@ -110,6 +110,8 @@ es_common_language_os <- function(scores, levels=NULL, mu=NULL, version="brute")
     scores = factor(na.omit(scores), ordered = TRUE, levels = levels)
     scores = as.numeric(scores)
   }
+  
+  scores = na.omit(scores)
   
   #set hypothesized median to mid range if not provided
   if (is.null(mu)) {

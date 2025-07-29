@@ -26,7 +26,7 @@ This function will calculate Hedges g (one-sample). An effect size measure that 
 
 Hedges g is a correction for Cohen's d'. Actually Hedges (1981) didn't seem to have a one-sample version for Hedges g, and this correction is the one for Hedges g used for the independent samples.
 
-TThe measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/HedgesG.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/8u7mtLDhQJI}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/HedgesG.html}{PeterStatistics.com}
 }
 \details{
 The formula used for the exact method (appr=NULL) (Hedges, 1981, p. 111):

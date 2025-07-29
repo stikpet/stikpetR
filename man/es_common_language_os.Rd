@@ -31,7 +31,7 @@ This version is implemented in MatLab (see https://nl.mathworks.com/matlabcentra
 
 For scale data, an approximation using the standard normal distribution is also available using Cohen's d, alternatively a conversion via the rank-biserial coefficient can be done. These two are used in R's \emph{effectsize} library from Ben-Shachar et al. (2020).
 
-The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/rThV33MNnVs}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
 }
 \details{
 For "brute" simply counts all scores above the test statistic and half of the ones that are equal (Tulimieri, 2021):
