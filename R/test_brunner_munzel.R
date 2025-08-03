@@ -8,7 +8,7 @@
 #' 
 #' Brunner and Munzel (p. 21) indicate the test-statistic that is computed follows a standard normal distribution, if each category has 50 or more data points. They also remark (p. 22) that the test is no longer accurate if sample sizes are less than 10, although in Schuurhuis et al. (2025, p. 18) 15 is listed. Neubert and Brunner (2007) propose to use a studentized permutation test in these cases. Schuurhuis et al. (2025) developed an improved version of this test as well, called a \(C^2\) test.
 #' 
-#' The test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html).
+#' This function is shown in this [YouTube video](https://youtu.be/9jo8CrxYndA) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html).
 #' 
 #' @param catField A vector or dataframe with the group data
 #' @param ordField A vector or dataframe with the scores data

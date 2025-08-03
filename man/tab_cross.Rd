@@ -33,6 +33,8 @@ dataframe : the cross table
 A contingency table can be defined as "tables arising when observations on a number of categorical variables are cross-classified" (Everitt, 2004, p.89).
 
 There are quite a few variations on the name for this type of table. Perhaps the oldest name is actually contingency table, which was the name Pearson (1904, p. 34) gave to them. Another popular name is cross tabulation (Upton & Cook, 2002, p. 79), but also cross classification table (Zekeck, 2014, p. 71) and bivariate frequency table (Porkess, 1988, p. 48) are used. The one I used cross table which can for example be found in Newbold et al. (2013, p. 9) or Sa (2007, p. 52).
+
+This function is shown in this \href{https://youtu.be/ACSpOuPM_yU}{YouTube video} and the table is also discussed at \href{https://peterstatistics.com/Terms/Tables/CrossTable.html}{PeterStatistics.com}
 }
 \examples{
 #Example: dataframe

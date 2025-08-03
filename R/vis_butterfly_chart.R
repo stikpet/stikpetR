@@ -18,6 +18,8 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' 
 #' Depending on the ordering of the results different names exist. I've chosen to use 'butterfly' if no ordering is done, 'pyramid' if they are ordered from small to large, and 'tornado' when going from large to small.
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/QeyqW5Vk69o) and the diagram is also discussed at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param categories1 : optional list with selection of categories of field1

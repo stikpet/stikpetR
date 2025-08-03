@@ -5,6 +5,8 @@
 #' 
 #' There are quite a few variations on the name for this type of table. Perhaps the oldest name is actually contingency table, which was the name Pearson (1904, p. 34) gave to them. Another popular name is cross tabulation (Upton & Cook, 2002, p. 79), but also cross classification table (Zekeck, 2014, p. 71) and bivariate frequency table (Porkess, 1988, p. 48) are used. The one I used cross table which can for example be found in Newbold et al. (2013, p. 9) or Sa (2007, p. 52).
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/ACSpOuPM_yU) and the table is also discussed at [PeterStatistics.com](https://peterstatistics.com/Terms/Tables/CrossTable.html)
+#' 
 #' @param field1 : dataframe field with categories for the rows
 #' @param field2 : dataframe field with categories for the columns
 #' @param order1 : optional list with order for categories of field1

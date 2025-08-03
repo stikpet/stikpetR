@@ -33,6 +33,8 @@ plot
 A special case of diverging bar charts when only comparing two categories.
 
 Depending on the ordering of the results different names exist. I've chosen to use 'butterfly' if no ordering is done, 'pyramid' if they are ordered from small to large, and 'tornado' when going from large to small.
+
+This function is shown in this \href{https://youtu.be/QeyqW5Vk69o}{YouTube video} and the diagram is also discussed at \link{PeterStatistics.com}(https://peterstatistics.com/Terms/Visualisations/PyramidChart.html
 }
 \details{
 The term \emph{butterfly chart} can for example be found in Hwang and Yoon (2021, p. 25).

@@ -5,6 +5,8 @@
 #' If we have the scores 40, 50 and 60 in group A, and the scores 30, 50, and 51 in group B, the median of each group is 50. However if we pick 40 from group A, there is a 1/3 chance it is higher than a value from group B. If we pick 50 there is also a 1/3 chance, and if we pick 60 there is a 3/3 chance. Together, there is a (1/3+1/3+3/3)/3 = 5/9 chance that if you pick a random value from group A and B, that the one in group A is higher. This is quite off from the 50%.
 #' 
 #' The test could therefor be used if we have a binary and an ordinal variable. The Brunner-Munzel test is known not to be suitable in small sample sizes. This C-square test has no such limitation.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/Uy5TTfKVQ6c) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/C-squareTest.html).
 #'  
 #' @param catField A vector or dataframe with the group data
 #' @param ordField A vector or dataframe with the scores data

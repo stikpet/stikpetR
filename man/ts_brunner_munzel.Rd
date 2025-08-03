@@ -42,7 +42,7 @@ The test could therefor be used if we have a binary and an ordinal variable. The
 
 Brunner and Munzel (p. 21) indicate the test-statistic that is computed follows a standard normal distribution, if each category has 50 or more data points. They also remark (p. 22) that the test is no longer accurate if sample sizes are less than 10, although in Schuurhuis et al. (2025, p. 18) 15 is listed. Neubert and Brunner (2007) propose to use a studentized permutation test in these cases. Schuurhuis et al. (2025) developed an improved version of this test as well, called a \(C^2\) test.
 
-The test is also described at \href{https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html}{PeterStatistics.com}.
+This function is shown in this \href{https://youtu.be/9jo8CrxYndA}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/BrunnerMunzelTest.html}{PeterStatistics.com}.
 }
 \details{
 The test-statistic is calculated using (Brunner & Munzel, 2000, p. 21, eq. 4.8):
