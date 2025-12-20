@@ -32,7 +32,8 @@ ts_cliff_delta_is(
 \value{
 A dataframe with:
 \item{var}{the estimated overall variance}
-\item{test-statistic}{the Cliff-Delta statistic}
+\item{Cliff delta}{the Cliff-Delta value}
+\item{test-statistic}{the test statistic}
 \item{df}{the degrees of freedom}
 \item{p-value}{the significance (p-value), two-tailed}
 \item{categories}{the two categories that were used}

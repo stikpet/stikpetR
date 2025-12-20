@@ -17,7 +17,8 @@
 #' @returns
 #' A dataframe with:
 #' \item{var}{the estimated overall variance}
-#' \item{test-statistic}{the Cliff-Delta statistic}
+#' \item{Cliff delta}{the Cliff-Delta value}
+#' \item{test-statistic}{the test statistic}
 #' \item{df}{the degrees of freedom}
 #' \item{p-value}{the significance (p-value), two-tailed}
 #' \item{categories}{the two categories that were used}
@@ -201,8 +202,8 @@ ts_cliff_delta_is <- function(catField, ordField, categories=NULL, levels=NULL, 
   }
   cats = paste0(cat1, ', ', cat2)
   
-  results <- data.frame(var, C, df, p, cats, var_used, test_used)
-  colnames(results) <- c("var", "test statistic", "df", "p-value", "categories", 'var used', "test used")
+  results <- data.frame(var, d, C, df, p, cats, var_used, test_used)
+  colnames(results) <- c("var", "Cliff delta", "test statistic", "df", "p-value", "categories", 'var used', "test used")
   
   return(results)  
 }
