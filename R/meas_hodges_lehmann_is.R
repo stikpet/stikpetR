@@ -41,7 +41,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-es_hodges_lehmann_is <- function(catField, scores, categories=NULL, levels=NULL){
+me_hodges_lehmann_is <- function(catField, scores, categories=NULL, levels=NULL){
   
   #remove rows with missing values
   df = data.frame(scores, catField)
