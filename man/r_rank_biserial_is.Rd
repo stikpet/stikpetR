@@ -2,9 +2,15 @@
 % Please edit documentation in R/cor_rank_biserial_is.R
 \name{r_rank_biserial_is}
 \alias{r_rank_biserial_is}
-\title{(Glass) Rank Biserial Correlation / Cliff Delta}
+\title{Rank Biserial Correlation}
 \usage{
-r_rank_biserial_is(catField, ordField, categories = NULL, levels = NULL)
+r_rank_biserial_is(
+  catField,
+  ordField,
+  categories = NULL,
+  levels = NULL,
+  version = "cureton"
+)
 }
 \arguments{
 \item{catField}{A vector with the scores data}
@@ -14,17 +20,25 @@ r_rank_biserial_is(catField, ordField, categories = NULL, levels = NULL)
 \item{categories}{optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.}
 
 \item{levels}{optional vector with the labels of the ordinal field in order.}
+
+\item{version}{optional the method to use to calculate rank-biserial correlation. Either "cureton" (default), "glass"}
 }
 \value{
-(Glass) Rank Biserial Correlation / Cliff Delta value
+Rank Biserial Correlation
 }
 \description{
 This function will calculate Rank biserial correlation coefficient (independent-samples)
+
+Cureton (1956) was perhaps the first to mention this term and provided a formula. His formula actually yields the same result as Goodman-Kruskal gamma (Goodman & Kruskal, 1954). Glass (1965; 1966) also developed a formula, but only for cases when there are no ties between the two categories. His formula will yield the same result as Somers'd (1962) and Cliff delta (1993). Cureton (1968) responded to Glass and gave his formula in an alternative form. Willson (1976) showed the link with Cureton formula and the Mann-Whitney U statistic. For more details on this see the article from Rubia (2022).
 }
 \details{
-The formula used is (Glass, 1966, p. 626):
+If version='cureton', the formula from Cureton (1968, p. 68) is used:
+\deqn{r_{rb} = \frac{\bar{R}_1 - \left(n + 1\right)/2}{n_2/2 - B/n_1}}
+
+If version='glass', the formula from Glass (1965, p. 91; 1966, p. 626) is used:
 \deqn{r_b = \frac{2\times\left(\bar{R}_1 - \bar{R}_2\right)}{n}}
 With:
+\deqn{B = \frac{\sum_{i=1}^c t_{i,1} \times t_{i,2}}{2}}
 \deqn{\bar{R}_i=\frac{R_i}{n_i}}
 
 \emph{Symbols used:}
@@ -33,9 +47,12 @@ With:
 \item \eqn{R_i} the sum of ranks in category i
 \item \eqn{n} the total sample size
 \item \eqn{n_i} the number of scores in category i
+\item \eqn{t_{i,j}}, the i-th number of tied scores in j
 }
 
-Glass (1966) showed that the formula was the same as that of the rank biserial from Cureton (1956). Cliff's delta (Cliff, 1993, p. 495) is actually also the same.
+If one category has two scores of 3 and the other has three scores of 3, then \eqn{t_{1,1} = 2, t_{1,2} = 3}, if the first category has also one score of 4 and the second has two scores of 4, then \eqn{t_{2,1} = 1, t_{2,2} = 2}, etc.
+
+Cureton's version is the same as Goodman-Kruskal gamma, while Glass's version is the same as Somers' d (1962, p. 804) and Cliff Delta (1993, p. 495).
 
 The rank biserial can be converted to a Cohen d (using the \strong{es_convert()} function), and then the rules-of-thumb for Cohen d could be used (\strong{th_cohen_d()})
 }
