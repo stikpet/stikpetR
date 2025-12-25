@@ -6,6 +6,8 @@
 #' 
 #' Cliff (1993) used a standard normal distribution, while Vargha and Delaney later used a t-distribution (Vargha, 2000; Vargha & Delaney, 2000, Delaney & Vargha, 2002).
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/Uc-UxEDoDWA) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/CliffDeltaTest.html)
+#' 
 #' @param catField A vector or dataframe with the group data
 #' @param ordField A vector or dataframe with the scores data
 #' @param categories optional list with the two categories to use from catField. If not set the first two found will be used

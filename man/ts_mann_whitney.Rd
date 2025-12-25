@@ -39,6 +39,8 @@ A dataframe with:
 The Mann-Whitney U and Wilcoxon Rank Sum test are the same. Mann and Whitney simply expanded on the ideas from Wilcoxon.
 
 The test will compare the distribution of ranks between two categories. The assumption is that the two categories have the same mean rank (which often is stated simplified as having the same median in the population).
+
+The function is shown in this \href{https://youtu.be/VwnR7f1sU8w}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/MannWhitneyUtest.html}{PeterStatistics.com}
 }
 \details{
 The formula used is (Mann & Whitney, 1947, p. 51):

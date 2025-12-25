@@ -46,6 +46,8 @@ The Cliff test, is a test for stochastic-equivelance. This means that even if th
 Lets say we have one group A that scored 1, 2, 2, 5, 6, 6, 7, and another group B that scored 4, 4, 4, 5, 10, 10, 12. Each group has the same median (i.e. 5), and are symmetric around the median, but if a high score is positive, most people would rather be in group B than in group A. This is where 'stochastic equality' comes in. It looks at the chance if you pick a random person from group A and B each, the one from group A scores lower than the one from group B, and add half the chance that their equal. In this example that's about 0.68.
 
 Cliff (1993) used a standard normal distribution, while Vargha and Delaney later used a t-distribution (Vargha, 2000; Vargha & Delaney, 2000, Delaney & Vargha, 2002).
+
+The function is shown in this \href{https://youtu.be/Uc-UxEDoDWA}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/CliffDeltaTest.html}{PeterStatistics.com}
 }
 \details{
 The test-statistic for this test is (Cliff, 1993, p. 500):

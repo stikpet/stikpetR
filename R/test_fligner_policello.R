@@ -4,6 +4,7 @@
 #' 
 #' Roughly put the assumption for this test is that the two categories have the same median in the population.
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/Ek36vYbzl9s) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/FlignerPolicello.html)
 #' 
 #' @param catField A vector with the scores data
 #' @param ordField A vector with the group data

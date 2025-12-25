@@ -37,6 +37,8 @@ A dataframe with:
 An alternative for the more famous Mann-Whitney U test. The MWU test has as an assumption that the scores in the two categories have the same shape and have unequal variances (Fong & Huang, 2019). The Fligner-Policello test does not, although the distribution around their medians should be symmetric in the population Zaiontz (n.d.).
 
 Roughly put the assumption for this test is that the two categories have the same median in the population.
+
+The function is shown in this \href{https://youtu.be/Ek36vYbzl9s}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/FlignerPolicello.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:

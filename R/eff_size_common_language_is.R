@@ -15,12 +15,14 @@
 #' 
 #' The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
 #' 
+#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
+#' 
 #' @param catField A vector with the categorical data
 #' @param scores A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
 #' @param levels Optional list with the ordinal text values in order
 #' @param dmu Optional difference according to null hypothesis (default is 0)
-#' @param method Optional optional method to use. "brute" will use a brute force " that will split ties evenly, "brute-it" is the same as brute but ignores ties, "vda" will use the calculation from Vargha-Delany, and "appr" a normal approximation from McGraw-Wong
+#' @param method Optional optional method to use. Either "brute", "brute-it", "vda", "appr-mw" or "appr-wh"
 #' 
 #' @returns 
 #' A dataframe with:
@@ -40,6 +42,10 @@
 #' \deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{s_1^2 + s_2^2}}}
 #' \deqn{s_i^2 = \frac{\sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
 #' \deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
+#' 
+#' While "appr-wh" uses the approximation from Wolfe and Hogg (1971, p. 28, eq. 2), which uses for the z calculation:
+#' \deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{2}\times s}}
+#' \deqn{s = \sqrt{\frac{s_1^2\times\left(n_1 - 1\right) + s_2^2\times\left(n_2 - 1\right)}{n_1 + n_2}}}
 #' 
 #' *Symbols used:*
 #' \itemize{
@@ -108,14 +114,19 @@ es_common_language_is <- function(catField, scores, categories=NULL, levels=NULL
   n1 = length(x1)
   n2 = length(x2)
   
-  if (method=="appr"){
+  if (method=="appr-mw" || method=="appr-wh"){
     var1 = var(x1)
     var2 = var(x2)
     
     m1 = mean(x1)
     m2 = mean(x2)
     
-    z = (m1 - m2 - dmu)/sqrt(var1 + var2)
+    if (method=="appr-mw"){
+      z = (m1 - m2 - dmu)/sqrt(var1 + var2)}
+    else {
+      se = 2**0.5 * ((var1*(n1 - 1) + var2*(n2 - 1))/(n1 + n2))**0.5
+      z = (m1 - m2 - dmu)/se
+    }
     
     c1 = pnorm(z)
     

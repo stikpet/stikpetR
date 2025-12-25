@@ -24,7 +24,7 @@ es_common_language_is(
 
 \item{dmu}{Optional difference according to null hypothesis (default is 0)}
 
-\item{method}{Optional optional method to use. "brute" will use a brute force " that will split ties evenly, "brute-it" is the same as brute but ignores ties, "vda" will use the calculation from Vargha-Delany, and "appr" a normal approximation from McGraw-Wong}
+\item{method}{Optional optional method to use. Either "brute", "brute-it", "vda", "appr-mw" or "appr-wh"}
 }
 \value{
 A dataframe with:
@@ -46,6 +46,8 @@ It was further developed by Vargha and Delaney (2000) especially in light of a M
 For scale data, an approximation using the standard normal distribution is also available.
 
 The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
+
+The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
 }
 \details{
 For "brute" simply all possible pairs are determined and half of the ties are added, i.e. (Grissom, 1994, p. 282):
@@ -60,6 +62,10 @@ With:
 \deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{s_1^2 + s_2^2}}}
 \deqn{s_i^2 = \frac{\sum_{j=1}^{n_i} \left(x_{i,j} - \bar{x}_i\right)^2}{n_i - 1}}
 \deqn{\bar{x}_i = \frac{\sum_{j=1}^{n_i} x_{i,j}}{n_i}}
+
+While "appr-wh" uses the approximation from Wolfe and Hogg (1971, p. 28, eq. 2), which uses for the z calculation:
+\deqn{z = \frac{\left|\bar{x}_1 - \bar{x}_2\right|}{\sqrt{2}\times s}}
+\deqn{s = \sqrt{\frac{s_1^2\times\left(n_1 - 1\right) + s_2^2\times\left(n_2 - 1\right)}{n_1 + n_2}}}
 
 \emph{Symbols used:}
 \itemize{

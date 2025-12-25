@@ -4,6 +4,8 @@
 #' 
 #' The test will compare the distribution of ranks between two categories. The assumption is that the two categories have the same mean rank (which often is stated simplified as having the same median in the population).
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/VwnR7f1sU8w) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/MannWhitneyUtest.html)
+#' 
 #' @param catField A vector or dataframe with the group data
 #' @param ordField A vector or dataframe with the scores data
 #' @param categories : optional list with the two categories to use from catField. If not set the first two found will be used
