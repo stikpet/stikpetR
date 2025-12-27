@@ -114,12 +114,14 @@ es_common_language_is <- function(catField, scores, categories=NULL, levels=NULL
   n1 = length(x1)
   n2 = length(x2)
   
+  var1 = var(x1)
+  var2 = var(x2)
+  
+  m1 = mean(x1)
+  m2 = mean(x2)
+  
   if (method=="appr-mw" || method=="appr-wh"){
-    var1 = var(x1)
-    var2 = var(x2)
     
-    m1 = mean(x1)
-    m2 = mean(x2)
     
     if (method=="appr-mw"){
       z = (m1 - m2 - dmu)/sqrt(var1 + var2)}
