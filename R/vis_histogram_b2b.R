@@ -9,6 +9,7 @@ utils::globalVariables(c("score"))
 #' @importFrom ggplot2 labs
 #' @importFrom ggplot2 scale_y_continuous
 #' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 after_stat
 #' 
 #' @description 
 #' This function creates a simple back-to-back histogram. This is sometimes also referred to as a Pyramid chart or a Dual-Sided histogram (Jelen, 2005).
