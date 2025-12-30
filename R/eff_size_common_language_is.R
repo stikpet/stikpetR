@@ -15,7 +15,7 @@
 #' 
 #' The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
 #' 
-#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
+#' The function is shown in this [YouTube video](https://youtu.be/VOQTj6VWdEM) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html)
 #' 
 #' @param catField A vector with the categorical data
 #' @param scores A vector with the scores

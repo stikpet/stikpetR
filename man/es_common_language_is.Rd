@@ -47,7 +47,7 @@ For scale data, an approximation using the standard normal distribution is also 
 
 The term Common Language Effect Size can be found in McGraw and Wong (1992), the term Probability of Superiority is found in Grissom (1994), and the term Stochastic Superiority in Vargha and Delaney (2000)
 
-The measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
+The function is shown in this \href{https://youtu.be/VOQTj6VWdEM}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/EffectSizes/CommonLanguageEffectSize.html}{PeterStatistics.com}
 }
 \details{
 For "brute" simply all possible pairs are determined and half of the ties are added, i.e. (Grissom, 1994, p. 282):
