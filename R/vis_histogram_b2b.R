@@ -6,6 +6,9 @@ utils::globalVariables(c("score"))
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 geom_histogram
 #' @importFrom ggplot2 aes
+#' @importFrom ggplot2 labs
+#' @importFrom ggplot2 scale_y_continuous
+#' @importFrom ggplot2 coord_flip
 #' 
 #' @description 
 #' This function creates a simple back-to-back histogram. This is sometimes also referred to as a Pyramid chart or a Dual-Sided histogram (Jelen, 2005).
@@ -75,6 +78,7 @@ vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, e
   }
   
   # CREATE THE PLOT
+  ylab_text <- ifelse(density, "Density", "Frequency")
   if (density){
     hist1 = geom_histogram(
       data = df[df$category == cat1, ],
@@ -90,7 +94,7 @@ vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, e
       breaks = bins2, 
       ...)    
     
-    ggplot() + hist1 + hist2 + scale_y_continuous(labels = abs) + labs(x = "score", y = "Density") + coord_flip()
+    
   }
   else {
     hist1 = geom_histogram(
@@ -106,9 +110,10 @@ vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, e
       col = "black",
       breaks = bins2, 
       ...)    
-    ggplot() + hist1 + hist2 + 
-      scale_y_continuous(labels = abs) + 
-      labs(x = "score", y = "Frequency") + 
-      coord_flip()
-  }    
+  }   
+  
+  ggplot() + hist1 + hist2 + 
+    scale_y_continuous(labels = abs) + 
+    labs(x = "score", y = ylab_text) + 
+    coord_flip()
 }
