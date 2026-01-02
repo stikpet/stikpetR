@@ -60,7 +60,7 @@ th_rank_biserial <- function(rb, version="glass", qual=NULL, convert="no"){
       results = th_cle(vda, qual)
     }
     else{
-      if (qual == "metsamuuronen-somers"){
+      if (!is.null(qual) && qual == "metsamuuronen-somers"){
         results = th_somers_d(rb, "metsamuuronen")}
       else{
         if (is.null(qual)){
