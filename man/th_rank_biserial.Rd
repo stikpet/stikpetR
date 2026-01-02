@@ -4,12 +4,16 @@
 \alias{th_rank_biserial}
 \title{Rule-of-Thumb for Rank Biserial Correlation}
 \usage{
-th_rank_biserial(rb, qual = "cohen")
+th_rank_biserial(rb, version = "glass", qual = NULL, convert = "no")
 }
 \arguments{
 \item{rb}{the rank-biserial correlation value}
 
+\item{version}{optional version of rank-biserial that was used. Either "glass" (default) or "cureton"}
+
 \item{qual}{optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal", "brydges"}
+
+\item{convert}{optional conversion to use (only for Glass version). Either "no", "cohen_d", "vda"}
 }
 \value{
 A dataframe with:
@@ -22,22 +26,11 @@ Simple function to use a rule-of-thumb for the Rank Biserial Correlation.
 This function is shown in this \href{https://youtu.be/31jr7jUCni4}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html}{PeterStatistics.com}
 }
 \details{
-Cohen's rule of thumb for rank-biserial correlation (1988, p. 82):\tabular{ll}{
-   |r_b| \tab Interpretation \cr
-   0.000 < 0.125 \tab negligible \cr
-   0.125 < 0.304 \tab small \cr
-   0.304 < 0.465 \tab medium \cr
-   0.465 or more \tab large \cr
-}
+If a Cureton version of rank-biserial was used, the result for independent samples is the same as Goodman-Kruskal gamma, so we can also use those rules-of-thumb.
 
+If a Glass version is used, then we can either use Cliff Delta, Somers d, or a conversion to either Cohen d, or Vargha-Delaney A.
 
-Vargha and Delaney (2000, p. 106):\tabular{ll}{
-   |r_b| \tab Interpretation \cr
-   0.00 < 0.11 \tab negligible \cr
-   0.11 < 0.28 \tab small \cr
-   0.28 < 0.43 \tab medium \cr
-   0.43 or more \tab large \cr
-}
+See the separate functions on each of these for various rules-of-thumbs.
 }
 \section{Before, After and Alternatives}{
 
@@ -47,19 +40,8 @@ Before this you might want to obtain the measure:
 
 The function uses the convert function and corresponding rules of thumb:
 \code{\link{es_convert}}, to convert this to Cohen d.
-\code{\link{th_cohen_d}}, rules of thumb for Cohen d.
 }
 
-\examples{
-# Example 1: using Cohen's rules:
-rb = 0.6
-th_rank_biserial(rb)
-
-# Example 2: Convert to Cohen d, then use Cohen d rules:
-rb= 0.23
-th_rank_biserial(rb, qual="cohen-conv")
-
-}
 \references{
 Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
 }

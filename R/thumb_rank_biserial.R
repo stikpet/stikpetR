@@ -7,8 +7,9 @@
 #' 
 #' 
 #' @param rb the rank-biserial correlation value
+#' @param version optional version of rank-biserial that was used. Either "glass" (default) or "cureton"
 #' @param qual optional setting for which rule of thumb to use. Either "cohen" (default), "vd", "sawilowsky", "cohen-conv", "lovakov", "rosenthal", "brydges"
-#' 
+#' @param convert optional conversion to use (only for Glass version). Either "no", "cohen_d", "vda"
 #' 
 #' @returns 
 #' A dataframe with:
@@ -17,23 +18,11 @@
 #' 
 #' 
 #' @details 
-#' Cohen's rule of thumb for rank-biserial correlation (1988, p. 82):
+#' If a Cureton version of rank-biserial was used, the result for independent samples is the same as Goodman-Kruskal gamma, so we can also use those rules-of-thumb.
 #' 
-#' |\|r_b\|| Interpretation|
-#' |---|----------|
-#' |0.000 < 0.125 | negligible |
-#' |0.125 < 0.304 | small |
-#' |0.304 < 0.465 | medium |
-#' |0.465 or more | large |
+#' If a Glass version is used, then we can either use Cliff Delta, Somers d, or a conversion to either Cohen d, or Vargha-Delaney A.
 #' 
-#' Vargha and Delaney (2000, p. 106):
-#' 
-#' |\|r_b\|| Interpretation|
-#' |---|----------|
-#' |0.00 < 0.11 | negligible |
-#' |0.11 < 0.28 | small |
-#' |0.28 < 0.43 | medium |
-#' |0.43 or more | large |
+#' See the separate functions on each of these for various rules-of-thumbs.
 #' 
 #' @section Before, After and Alternatives:
 #' Before this you might want to obtain the measure:
@@ -41,9 +30,7 @@
 #' \code{\link{r_rank_biserial_os}}, to determine a the rank biserial for one-sample.
 #' 
 #' The function uses the convert function and corresponding rules of thumb:
-#' \code{\link{es_convert}}, to convert this to Cohen d.
-#' \code{\link{th_cohen_d}}, rules of thumb for Cohen d.
-#' 
+#' \code{\link{es_convert}}, to convert this to Cohen d. 
 #' 
 #' @references 
 #' Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). L. Erlbaum Associates.
@@ -52,62 +39,36 @@
 #' @author 
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
-#' 
-#' @examples
-#' # Example 1: using Cohen's rules:
-#' rb = 0.6
-#' th_rank_biserial(rb)
-#' 
-#' # Example 2: Convert to Cohen d, then use Cohen d rules:
-#' rb= 0.23
-#' th_rank_biserial(rb, qual="cohen-conv")
-#' 
 #' @export
-th_rank_biserial <- function(rb, qual="cohen"){
-  
-  if (qual=="cohen"){
-    #Use Cohen (1988, p. 82)
-    ref = "Cohen (1988, p. 82)"
-    if (abs(rb) < 0.125){
-      qual = "negligible"}
-    else if (abs(rb) < 0.304){
-      qual = "small"}
-    else if (abs(rb) < 0.465){
-      qual = "medium"}
+th_rank_biserial <- function(rb, version="glass", qual=NULL, convert="no"){
+  if (version == 'cureton'){
+    if (is.null(qual)){
+      qual = "blaikie"}
+      results = th_gk_gamma(rb, qual)
+  }
+  else if (version=='glass'){
+    if (convert == "cohen_d"){
+      if (is.null(qual)){
+        qual = "sawilowsky"}
+      d = es_convert(rb, fr="rb", to="cohend")
+      results = th_cohen_d(d, qual)
+    }
+    else if (convert == "vda" || convert == "cles"){
+      if (is.null(qual)){
+        qual = "vargha"}
+      vda = es_convert(rb, fr="rb", to="cle")
+      results = th_cle(vda, qual)
+    }
     else{
-      qual = "large"}
+      if (qual == "metsamuuronen-somers"){
+        results = th_somers_d(rb, "metsamuuronen")}
+      else{
+        if (is.null(qual)){
+          qual = "romano"}
+        results = th_cliff_delta(rb, qual)}
+    }
   }
-  else if (qual=="vd"){
-    #Use Vargha and Delaney (2000, p. 106)
-    ref = "Vargha and Delaney (2000, p. 106)"
-    if (abs(rb) < 0.11){
-      qual = "negligible"}
-    else if (abs(rb) < 0.28){
-      qual = "small"}
-    else if (abs(rb) < 0.43){
-      qual = "medium"}
-    else{
-      qual = "large"}
-  }
-  else if (qual %in% c("sawilowsky", "cohen-conv", "lovakov", "rosenthal", "brydges")){
-    if (qual=="cohen-conv"){
-      qual="cohen"}
-    
-    #convert to Cohen's d
-    d = es_convert(rb, fr="rb", to="cohend")
-    
-    res = th_cohen_d(d, qual)
-    qual = res$classification
-    ref = res$reference
-    
-  }
-  
-  results = data.frame(qual, ref)
-  colnames(results)<-c("classification", "reference")
   
   return(results)
   
 }
-
-
-

@@ -4,7 +4,7 @@
 #' 
 #' It is in the one-sample case therefor a measure of central tendancy and sometimes referred to as the pseudo median.
 #' 
-#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/HodgesLehmannOS.html)
+#' The measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/HodgesLehmann.html)
 #' 
 #' @param scores list with scores as numbers, or if text also provide levels
 #' @param levels optional vector with levels in order

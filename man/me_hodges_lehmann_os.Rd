@@ -19,7 +19,7 @@ The Hodges-Lehmann Estimate (Hodges & Lehmann, 1963) for a one-sample scenario, 
 
 It is in the one-sample case therefor a measure of central tendancy and sometimes referred to as the pseudo median.
 
-The measure is also described at \href{https://peterstatistics.com/Terms/Measures/HodgesLehmannOS.html}{PeterStatistics.com}
+The measure is also described at \href{https://peterstatistics.com/Terms/Measures/HodgesLehmann.html}{PeterStatistics.com}
 }
 \details{
 The formula used (Hodges & Lehmann, 1963, p. 599):

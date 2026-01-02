@@ -26,6 +26,8 @@ The Hodges-Lehmann estimate, is the median of all the possible differences betwe
 It is sometimes incorrectly described as the difference between the two medians, but that is incorrect. It is not uncommon to have a different Hodges-Lehmann estimate than simply taking the difference between the two medians.
 
 This measure is sometimes mentioned as an effect size measure for a Mann-Whitney U / Wilcoxon Rank Sum test (van Geloven, 2018), however since it is a median of the possible differences, it is not standardized (i.e. it doesn't range between two fixed values, and depends therefor on the data).
+
+The function is shown in this \href{https://youtu.be/z6JfHdPxsU4}{YouTube video} and the measure is also described at \href{https://peterstatistics.com/Terms/Measures/HodgesLehmann.html}{PeterStatistics.com}
 }
 \details{
 The formula for the Hodges-Lehmann estimator with two samples is (Hodges & Lehmann, 1963, p. 602):

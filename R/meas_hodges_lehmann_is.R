@@ -6,6 +6,8 @@
 #' 
 #' This measure is sometimes mentioned as an effect size measure for a Mann-Whitney U / Wilcoxon Rank Sum test (van Geloven, 2018), however since it is a median of the possible differences, it is not standardized (i.e. it doesn't range between two fixed values, and depends therefor on the data).
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/z6JfHdPxsU4) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Measures/HodgesLehmann.html)
+#' 
 #' @param catField A vector with the categorical data
 #' @param scores A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.
