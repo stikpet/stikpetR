@@ -69,8 +69,21 @@
 #' 
 #' The CLE for the other category is simply 1 - CLE, except for the case where ties are ignored ("brute-it").
 #' 
-#' @seealso 
+#' @section Before, After and Alternatives:
+#' Before determining this effect size measure, you might want to run a test:
+#' \code{\link{ts_mann_whitney}}, for the Mann-Whitney U test
+#' \code{\link{ts_fligner_policello}}, for the Fligner-Policello test
+#' \code{\link{ts_brunner_munzel}}, for the Brunner-Munzel test
+#' \code{\link{ts_brunner_munzel_perm}}, for the Brunner-Munzel Permutation test
+#' \code{\link{ts_c_square}}, for the \eqn{C^2} test
+#' 
+#' After obtaining the coefficient you might want a rule-of-thumb:
 #' \code{\link{th_cle}}, to find rules-of-thumb for the CLE
+#' 
+#' Alternative Effect Sizes:
+#' \code{\link{r_rank_biserial_is}} for the (Glass) rank biserial (Cliff delta)
+#' \code{\link{me_hodges_lehmann_is}}, for Hodges-Lehmann
+#' 
 #' 
 #' @references 
 #' Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. *Journal of Consulting and Clinical Psychology, 62*(2), 281-284. doi:10.1037/0022-006X.62.2.281

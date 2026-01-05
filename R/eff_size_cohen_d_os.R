@@ -4,7 +4,6 @@
 #' 
 #' This function is shown in this [YouTube video](https://youtu.be/Ihn-f386m-U) and the measure is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/EffectSizes/CohenD.html)
 #' 
-#' 
 #' @param data pandas series with the numeric scores
 #' @param mu optional parameter to set the hypothesized mean. If not used the midrange is used
 #' 

@@ -4,6 +4,8 @@
 #' 
 #' Cureton (1956) was perhaps the first to mention this term and provided a formula. His formula actually yields the same result as Goodman-Kruskal gamma (Goodman & Kruskal, 1954). Glass (1965; 1966) also developed a formula, but only for cases when there are no ties between the two categories. His formula will yield the same result as Somers'd (1962) and Cliff delta (1993). Cureton (1968) responded to Glass and gave his formula in an alternative form. Willson (1976) showed the link with Cureton formula and the Mann-Whitney U statistic. For more details on this see the article from Rubia (2022).
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/_bMdlnwuThY) and the coefficient is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html)
+#' 
 #' @param catField A vector with the scores data
 #' @param ordField A vector with the group data
 #' @param categories optional vector with categories to use and order for the categorical field. Otherwise the first two found will be used.
@@ -36,12 +38,20 @@
 #' 
 #' Cureton's version is the same as Goodman-Kruskal gamma, while Glass's version is the same as Somers' d (1962, p. 804) and Cliff Delta (1993, p. 495).
 #' 
-#' The rank biserial can be converted to a Cohen d (using the **es_convert()** function), and then the rules-of-thumb for Cohen d could be used (**th_cohen_d()**)
+#' @section Before, After and Alternatives:
+#' Before determining this effect size measure, you might want to run a test:
+#' \code{\link{ts_mann_whitney}}, for the Mann-Whitney U test
+#' \code{\link{ts_fligner_policello}}, for the Fligner-Policello test
+#' \code{\link{ts_brunner_munzel}}, for the Brunner-Munzel test
+#' \code{\link{ts_brunner_munzel_perm}}, for the Brunner-Munzel Permutation test
+#' \code{\link{ts_c_square}}, for the \eqn{C^2} test
 #' 
-#' @seealso 
-#' \code{\link{es_convert}}, to convert to Cohen d, use `fr="rb", to="cohend"`.
+#' After obtaining the coefficient you might want a rule-of-thumb:
+#' \code{\link{th_rank_biserial}}, for rules-of-thumb for the rank-biserial correlation
 #' 
-#' \code{\link{th_cohen_d}}, rules of thumb for Cohen d
+#' Alternative Effect Sizes:
+#' \code{\link{es_common_language_is}}, for Common Language Effect Size
+#' \code{\link{me_hodges_lehmann_is}}, for Hodges-Lehmann
 #' 
 #' @references 
 #' Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal questions. *Psychological Bulletin, 114*(3), 494-509. https://doi.org/10.1037/0033-2909.114.3.494

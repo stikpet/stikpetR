@@ -2,7 +2,7 @@
 #' @description
 #' This function creates a simple butterfly chart by binning scaled data. This is sometimes also referred to as a Pyramid chart. 
 #' 
-#' The visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html)
+#' The function is shown in this [YouTube video](https://youtu.be/nJuel_XSCdo) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html)
 #' 
 #' @param catField list or dataframe with the categories
 #' @param scaleField list or dataframe with the scores

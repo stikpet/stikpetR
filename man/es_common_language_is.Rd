@@ -89,6 +89,23 @@ The CLE can be converted to a Rank Biserial (= Cliff delta) using the \strong{es
 
 The CLE for the other category is simply 1 - CLE, except for the case where ties are ignored ("brute-it").
 }
+\section{Before, After and Alternatives}{
+
+Before determining this effect size measure, you might want to run a test:
+\code{\link{ts_mann_whitney}}, for the Mann-Whitney U test
+\code{\link{ts_fligner_policello}}, for the Fligner-Policello test
+\code{\link{ts_brunner_munzel}}, for the Brunner-Munzel test
+\code{\link{ts_brunner_munzel_perm}}, for the Brunner-Munzel Permutation test
+\code{\link{ts_c_square}}, for the \eqn{C^2} test
+
+After obtaining the coefficient you might want a rule-of-thumb:
+\code{\link{th_cle}}, to find rules-of-thumb for the CLE
+
+Alternative Effect Sizes:
+\code{\link{r_rank_biserial_is}} for the (Glass) rank biserial (Cliff delta)
+\code{\link{me_hodges_lehmann_is}}, for Hodges-Lehmann
+}
+
 \references{
 Grissom, R. J. (1994). Statistical analysis of ordinal categorical status after therapies. \emph{Journal of Consulting and Clinical Psychology, 62}(2), 281-284. doi:10.1037/0022-006X.62.2.281
 
@@ -97,9 +114,6 @@ McGraw, K. O., & Wong, S. P. (1992). A common language effect size statistic. \e
 Vargha, A., & Delaney, H. D. (2000). A critique and improvement of the CL common language effect size statistics of McGraw and Wong. \emph{Journal of Educational and Behavioral Statistics, 25}(2), 101-132. doi:10.3102/10769986025002101
 
 Wolfe, D. A., & Hogg, R. V. (1971). On constructing statistics and reporting data. \emph{The American Statistician, 25}(4), 27-30. doi:10.1080/00031305.1971.10477278
-}
-\seealso{
-\code{\link{th_cle}}, to find rules-of-thumb for the CLE
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

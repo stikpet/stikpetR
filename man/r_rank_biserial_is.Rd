@@ -30,6 +30,8 @@ Rank Biserial Correlation
 This function will calculate Rank biserial correlation coefficient (independent-samples)
 
 Cureton (1956) was perhaps the first to mention this term and provided a formula. His formula actually yields the same result as Goodman-Kruskal gamma (Goodman & Kruskal, 1954). Glass (1965; 1966) also developed a formula, but only for cases when there are no ties between the two categories. His formula will yield the same result as Somers'd (1962) and Cliff delta (1993). Cureton (1968) responded to Glass and gave his formula in an alternative form. Willson (1976) showed the link with Cureton formula and the Mann-Whitney U statistic. For more details on this see the article from Rubia (2022).
+
+The function is shown in this \href{https://youtu.be/_bMdlnwuThY}{YouTube video} and the coefficient is also described at \href{https://peterstatistics.com/Terms/Correlations/RankBiserialCorrelation.html}{PeterStatistics.com}
 }
 \details{
 If version='cureton', the formula from Cureton (1968, p. 68) is used:
@@ -53,9 +55,24 @@ With:
 If one category has two scores of 3 and the other has three scores of 3, then \eqn{t_{1,1} = 2, t_{1,2} = 3}, if the first category has also one score of 4 and the second has two scores of 4, then \eqn{t_{2,1} = 1, t_{2,2} = 2}, etc.
 
 Cureton's version is the same as Goodman-Kruskal gamma, while Glass's version is the same as Somers' d (1962, p. 804) and Cliff Delta (1993, p. 495).
-
-The rank biserial can be converted to a Cohen d (using the \strong{es_convert()} function), and then the rules-of-thumb for Cohen d could be used (\strong{th_cohen_d()})
 }
+\section{Before, After and Alternatives}{
+
+Before determining this effect size measure, you might want to run a test:
+\code{\link{ts_mann_whitney}}, for the Mann-Whitney U test
+\code{\link{ts_fligner_policello}}, for the Fligner-Policello test
+\code{\link{ts_brunner_munzel}}, for the Brunner-Munzel test
+\code{\link{ts_brunner_munzel_perm}}, for the Brunner-Munzel Permutation test
+\code{\link{ts_c_square}}, for the \eqn{C^2} test
+
+After obtaining the coefficient you might want a rule-of-thumb:
+\code{\link{th_rank_biserial}}, for rules-of-thumb for the rank-biserial correlation
+
+Alternative Effect Sizes:
+\code{\link{es_common_language_is}}, for Common Language Effect Size
+\code{\link{me_hodges_lehmann_is}}, for Hodges-Lehmann
+}
+
 \examples{
 #Example 1: dataframe
 dataFile = "https://peterstatistics.com/Packages/ExampleData/GSS2012a.csv"
@@ -75,11 +92,6 @@ Cliff, N. (1993). Dominance statistics: Ordinal analyses to answer ordinal quest
 Cureton, E. E. (1956). Rank-biserial correlation. \emph{Psychometrika, 21}(3), 287-290. https://doi.org/10.1007/BF02289138
 
 Glass, G. V. (1966). Note on rank biserial correlation. \emph{Educational and Psychological Measurement, 26}(3), 623-631. https://doi.org/10.1177/001316446602600307
-}
-\seealso{
-\code{\link{es_convert}}, to convert to Cohen d, use \verb{fr="rb", to="cohend"}.
-
-\code{\link{th_cohen_d}}, rules of thumb for Cohen d
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}
