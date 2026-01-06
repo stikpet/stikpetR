@@ -10,7 +10,7 @@ vi_histogram_overlay(
   categories = NULL,
   bins = NULL,
   show = "count",
-  density = FALSE,
+  density = "auto",
   title = "histogram",
   colors = c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
 )
@@ -26,7 +26,7 @@ vi_histogram_overlay(
 
 \item{show}{c('count', 'relative'), show either counts or relative count on vertical scale}
 
-\item{density}{c(FALSE, TRUE, 'auto'), show (relative) frequency or use (relative) frequency density.}
+\item{density}{c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.}
 
 \item{title}{string, title on top of chart, default is 'histogram'}
 

@@ -10,7 +10,7 @@
 #' @param categories optional list with the two categories to use from bin_field. If not set the first two found will be used
 #' @param bins optional list with upper bounds of bins to be used, or any of the pre-set options from hist() 
 #' @param show c('count', 'relative'), show either counts or relative count on vertical scale
-#' @param density c(FALSE, TRUE, 'auto'), show (relative) frequency or use (relative) frequency density.
+#' @param density c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.
 #' @param title string, title on top of chart, default is 'histogram'
 #' @param colors vector, two colors, one for each category, default is c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
 #' 
@@ -21,7 +21,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NULL, show='count', density=FALSE, title='histogram', colors=c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))){
+vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NULL, show='count', density='auto', title='histogram', colors=c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))){
   # DATA PREPARATION
   # create dataframe and remove missing values
   df <- na.omit(data.frame(score=scaleField, category=catField))
