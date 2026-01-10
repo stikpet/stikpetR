@@ -5,26 +5,39 @@
 \title{Butterfly Chart / Tornado Chart / Pyramid Chart}
 \usage{
 vi_butterfly_chart(
-  field1,
-  field2,
-  categories1 = NULL,
-  categories2 = NULL,
+  field,
+  bin_field,
+  field_categories = NULL,
+  bin_categories = NULL,
   variation = "butterfly",
-  roundHigh = 5
+  roundHigh = 5,
+  show = "count",
+  rotate = TRUE,
+  xlbl = NULL,
+  colors = c("orange", "blue"),
+  show_grid = FALSE
 )
 }
 \arguments{
-\item{field1}{: dataframe field with categories for the rows}
+\item{bin_field}{: dataframe field with categories for the columns}
 
-\item{field2}{: dataframe field with categories for the columns}
+\item{field_categories}{: optional list with selection of categories of field1}
 
-\item{categories1}{: optional list with selection of categories of field1}
-
-\item{categories2}{: optional list with selection of categories of field2}
+\item{bin_categories}{: optional list with selection of categories of field2}
 
 \item{variation}{: optional order of the bars. Either "butterfly" (default), "tornado", or "pyramid"}
 
 \item{roundHigh}{: optional to adjust number of tickmarks on horizontal axis}
+
+\item{show}{: {'count', 'bin-percent', 'field-percent', 'overall-percent'}, optional show either counts or percentage}
+
+\item{rotate}{: bool, optional rotate the bars so they appear horizontal. Default is True}
+
+\item{xlbl}{: string, optional label for the field axis, if not set the name of the field is used.}
+
+\item{colors}{: list, optional vector with two colors, one for each category to use}
+
+\item{show_grid}{: bool, optional show a grid on the chart. Default is False}
 }
 \value{
 plot

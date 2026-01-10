@@ -23,7 +23,7 @@ The histogram
 \description{
 A histogram is a bit like a bar chart for a scale variable. You would create some bins, and then plot these as bars.
 
-This function is shown in this \href{https://youtu.be/4Yty4u5ihJ8}{YouTube video} and the visualisation is described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
+This function is shown in this \href{https://youtu.be/v13UlQvbOvs}{YouTube video} and the visualisation is described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
 }
 \details{
 This function is just using some defaults for the \strong{hist()} function from R's \emph{graphics} library.

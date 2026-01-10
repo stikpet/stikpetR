@@ -12,6 +12,8 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' @importFrom ggplot2 xlab
 #' @importFrom ggplot2 ylab
 #' @importFrom ggplot2 guide_legend
+#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom ggplot2 theme_classic
 #' 
 #' @description
 #' A special case of diverging bar charts when only comparing two categories. 
@@ -20,12 +22,17 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' 
 #' This function is shown in this [YouTube video](https://youtu.be/QeyqW5Vk69o) and the diagram is also discussed at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html
 #' 
-#' @param field1 : dataframe field with categories for the rows
-#' @param field2 : dataframe field with categories for the columns
-#' @param categories1 : optional list with selection of categories of field1
-#' @param categories2 : optional list with selection of categories of field2
+#' @param bin_field : dataframe field with categories for the rows
+#' @param bin_field : dataframe field with categories for the columns
+#' @param field_categories : optional list with selection of categories of field1
+#' @param bin_categories : optional list with selection of categories of field2
 #' @param variation : optional order of the bars. Either "butterfly" (default), "tornado", or "pyramid" 
 #' @param roundHigh : optional to adjust number of tickmarks on horizontal axis
+#' @param show : {'count', 'bin-percent', 'field-percent', 'overall-percent'}, optional show either counts or percentage
+#' @param rotate : bool, optional rotate the bars so they appear horizontal. Default is True
+#' @param xlbl : string, optional label for the field axis, if not set the name of the field is used.
+#' @param colors : list, optional vector with two colors, one for each category to use
+#' @param show_grid : bool, optional show a grid on the chart. Default is False
 #' 
 #' @returns
 #' plot
@@ -58,14 +65,29 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' vi_butterfly_chart(df1[['mar1']], df1[['sex']], variation="pyramid", roundHigh=100)
 #' 
 #' @export
-vi_butterfly_chart <- function(field1, 
-                               field2,
-                               categories1=NULL, 
-                               categories2=NULL, 
+vi_butterfly_chart <- function(field, 
+                               bin_field,
+                               field_categories=NULL, 
+                               bin_categories=NULL, 
                                variation='butterfly', 
-                               roundHigh=5){
+                               roundHigh=5, 
+                               show='count', 
+                               rotate=TRUE, 
+                               xlbl=NULL,
+                               colors = c('orange', 'blue'), 
+                               show_grid=FALSE){
   
-  ct<-tab_cross(field1, field2, order1=categories1, order2=categories2)
+  
+  percent <- switch(
+    show,
+    "count" = NULL,
+    "bin-percent" = "column",
+    "field-percent" = "row",
+    "overall-percent" = "all",
+    stop("Invalid value for 'show'")
+  )
+  
+  ct<-tab_cross(field, bin_field, order1=field_categories, order2=bin_categories, percent=percent)  
   
   if (variation=="tornado") {
     ct <- addmargins(ct)
@@ -79,18 +101,30 @@ vi_butterfly_chart <- function(field1,
     ct <- ct[2:(nrow(ct)), 0:2]
   }
   
+  if(is.null(xlbl)){
+    xlbl = deparse(substitute(field))}
+  
+  
+  if (show=='count'){ylbl = 'frequency'}
+  if (show=='bin-percent'){ylbl = paste0('percent of ', deparse(substitute(bin_field)))}
+  if (show=='field-percent'){ylbl = paste0('percent of ', xlbl)}
+  if (show=='overall-percent'){ylbl = 'percent of overall'}
+  
   high <- roundHigh * (round(max(ct)/roundHigh, 0)+1)
   
   ctDf <- as.data.frame(ct)
   colnames(ctDf) = c("Var1", "Var2", "Freq")
   
-  ggplot(ctDf, aes(x = Var1, fill = Var2, y = ifelse(test = Var2 == rownames(table(Var2))[1], yes = -Freq, no = Freq))) + 
-    geom_bar(stat = "identity") + 
-    scale_y_continuous(limits = c(-high, high), breaks=seq(-high,high,roundHigh),labels=abs(seq(-high,high,roundHigh))) + 
-    coord_flip() + 
-    xlab(deparse(substitute(field1))) + 
-    ylab("count") +
-    guides(fill=guide_legend(title=deparse(substitute(field2))))
+  plot <- ggplot(ctDf, aes(x = Var1, fill = Var2, y = ifelse(test = Var2 == rownames(table(Var2))[1], yes = -Freq, no = Freq))) + 
+    geom_bar(stat = "identity") + scale_fill_manual(values = colors) + 
+    scale_y_continuous(limits = c(-high, high), breaks=seq(-high,high,roundHigh), labels=abs(seq(-high,high,roundHigh))) + 
+    xlab(xlbl) + 
+    ylab(ylbl) +
+    guides(fill=guide_legend(title=xlbl)) 
+  
+  if (rotate){plot = plot + coord_flip()}
+  if (!show_grid){plot = plot + theme_classic()}
+  return(plot)
 }
 
 

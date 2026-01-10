@@ -3,7 +3,7 @@
 #' @description
 #' A histogram is a bit like a bar chart for a scale variable. You would create some bins, and then plot these as bars.
 #' 
-#' This function is shown in this [YouTube video](https://youtu.be/4Yty4u5ihJ8) and the visualisation is described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/histogram.html)
+#' This function is shown in this [YouTube video](https://youtu.be/v13UlQvbOvs) and the visualisation is described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/histogram.html)
 #' 
 #' @param data list or dataframe
 #' @param show c('count', 'relative'), show either counts or relative count on vertical scale
@@ -61,7 +61,7 @@ vi_histogram <- function(data, show='count', density='auto', xlbl=NULL, ...){
     else {density=TRUE}}
   
   if (show=="count" && density==FALSE){
-    yLabel = "Frequency"
+    yLabel = "frequency"
     histFreq = TRUE
     # set densities to counts, in case unequal bin-widths
     h$density = h$counts
@@ -71,18 +71,18 @@ vi_histogram <- function(data, show='count', density='auto', xlbl=NULL, ...){
     h$counts <- h$counts / sum(h$counts) * 100
     # set densities to counts, in case unequal bin-widths
     h$density = h$counts
-    yLabel = "Percent of category"
+    yLabel = "percent"
     histFreq = TRUE        
   }
   
   else if (show=="count" && density==TRUE){
     h$density <- h$density * sum(h$counts)
-    yLabel = "Frequency density"
+    yLabel = "frequency density"
     histFreq = FALSE        
   } 
   
   else if (show=="relative" && density==TRUE){
-    yLabel = "Relative Frequency density"
+    yLabel = "relative frequency density"
     histFreq = FALSE
   } 
   
