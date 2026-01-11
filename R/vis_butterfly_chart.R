@@ -27,7 +27,6 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' @param field_categories : optional list with selection of categories of field1
 #' @param bin_categories : optional list with selection of categories of field2
 #' @param variation : optional order of the bars. Either "butterfly" (default), "tornado", or "pyramid" 
-#' @param roundHigh : optional to adjust number of tickmarks on horizontal axis
 #' @param show : {'count', 'bin-percent', 'field-percent', 'overall-percent'}, optional show either counts or percentage
 #' @param rotate : bool, optional rotate the bars so they appear horizontal. Default is True
 #' @param xlbl : string, optional label for the field axis, if not set the name of the field is used.
@@ -70,7 +69,6 @@ vi_butterfly_chart <- function(field,
                                field_categories=NULL, 
                                bin_categories=NULL, 
                                variation='butterfly', 
-                               roundHigh=5, 
                                show='count', 
                                rotate=TRUE, 
                                xlbl=NULL,
@@ -110,14 +108,12 @@ vi_butterfly_chart <- function(field,
   if (show=='field-percent'){ylbl = paste0('percent of ', xlbl)}
   if (show=='overall-percent'){ylbl = 'percent of overall'}
   
-  high <- roundHigh * (round(max(ct)/roundHigh, 0)+1)
-  
   ctDf <- as.data.frame(ct)
   colnames(ctDf) = c("Var1", "Var2", "Freq")
   
   plot <- ggplot(ctDf, aes(x = Var1, fill = Var2, y = ifelse(test = Var2 == rownames(table(Var2))[1], yes = -Freq, no = Freq))) + 
     geom_bar(stat = "identity") + scale_fill_manual(values = colors) + 
-    scale_y_continuous(limits = c(-high, high), breaks=seq(-high,high,roundHigh), labels=abs(seq(-high,high,roundHigh))) + 
+    scale_y_continuous(labels=abs) + 
     xlab(xlbl) + 
     ylab(ylbl) +
     guides(fill=guide_legend(title=xlbl)) 

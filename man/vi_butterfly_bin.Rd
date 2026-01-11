@@ -4,7 +4,7 @@
 \alias{vi_butterfly_bin}
 \title{Butterfly Chart of Binned Data (Pyramid chart)}
 \usage{
-vi_butterfly_bin(catField, scaleField, categories = NULL, bins = NULL)
+vi_butterfly_bin(catField, scaleField, categories = NULL, bins = NULL, ...)
 }
 \arguments{
 \item{catField}{list or dataframe with the categories}
@@ -13,15 +13,15 @@ vi_butterfly_bin(catField, scaleField, categories = NULL, bins = NULL)
 
 \item{categories}{optional list with the two categories to use from bin_field. If not set the first two found will be used}
 
-\item{bins}{optional list with lower and upper bounds, otherwise bins will be made using tab_frequency_bins}
+\item{bins}{optional either a list with parameters to pass to tab_frequency_bins, a dataframe with upper and lower bounds, or simply NULL (default)}
+
+\item{...}{optional additional parameters to pass to vi_butterfly_chart}
 }
 \value{
 butterfly chart
 }
 \description{
 This function creates a simple butterfly chart by binning scaled data. This is sometimes also referred to as a Pyramid chart.
-
-The function is shown in this \href{https://youtu.be/nJuel_XSCdo}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/PyramidChart.html}{PeterStatistics.com}
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

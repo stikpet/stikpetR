@@ -10,7 +10,6 @@ vi_butterfly_chart(
   field_categories = NULL,
   bin_categories = NULL,
   variation = "butterfly",
-  roundHigh = 5,
   show = "count",
   rotate = TRUE,
   xlbl = NULL,
@@ -26,8 +25,6 @@ vi_butterfly_chart(
 \item{bin_categories}{: optional list with selection of categories of field2}
 
 \item{variation}{: optional order of the bars. Either "butterfly" (default), "tornado", or "pyramid"}
-
-\item{roundHigh}{: optional to adjust number of tickmarks on horizontal axis}
 
 \item{show}{: {'count', 'bin-percent', 'field-percent', 'overall-percent'}, optional show either counts or percentage}
 

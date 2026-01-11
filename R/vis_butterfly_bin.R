@@ -2,12 +2,11 @@
 #' @description
 #' This function creates a simple butterfly chart by binning scaled data. This is sometimes also referred to as a Pyramid chart. 
 #' 
-#' The function is shown in this [YouTube video](https://youtu.be/nJuel_XSCdo) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html)
-#' 
 #' @param catField list or dataframe with the categories
 #' @param scaleField list or dataframe with the scores
 #' @param categories optional list with the two categories to use from bin_field. If not set the first two found will be used
-#' @param bins optional list with lower and upper bounds, otherwise bins will be made using tab_frequency_bins
+#' @param bins optional either a list with parameters to pass to tab_frequency_bins, a dataframe with upper and lower bounds, or simply NULL (default)
+#' @param ... optional additional parameters to pass to vi_butterfly_chart
 #' 
 #' @returns
 #' butterfly chart
@@ -16,7 +15,8 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-vi_butterfly_bin <- function(catField, scaleField, categories=NULL, bins=NULL){
+vi_butterfly_bin <- function(catField, scaleField, categories=NULL, 
+                             bins=NULL, ...){
   # DATA PREPARATION
   # create dataframe and remove missing values
   df <- na.omit(data.frame(score=scaleField, category=catField))
@@ -41,20 +41,20 @@ vi_butterfly_bin <- function(catField, scaleField, categories=NULL, bins=NULL){
   allScores = c(scoresCat1, scoresCat2)
   
   #determine bins overall
-  if (is.null(bins)){
-    # create binned frequency table
-    freq_table = tab_frequency_bins(allScores)
-    bins = paste0('[', freq_table[['lower bound']], ', ', freq_table[['upper bound']], ')' )
+  freq_table <- switch(
+    class(bins)[1],   # use the first class if bins has multiple
+    "NULL" = tab_frequency_bins(allScores),
+    "list" = do.call(tab_frequency_bins, c(list(data = allScores), bins)),
+    "data.frame" = tab_frequency_bins(allScores, bins = bins),
+    stop("Invalid value for 'bins'")
+  )
+  
+  bins = paste0('[', freq_table[['lower bound']], ', ', freq_table[['upper bound']], ')' )
   
   #determine counts of bins for each category
   freq_table_cat1 = tab_frequency_bins(scoresCat1, bins=data.frame(freq_table['lower bound'], freq_table['upper bound']))
   freq_table_cat2 = tab_frequency_bins(scoresCat2, bins=data.frame(freq_table['lower bound'], freq_table['upper bound']))
-  }
-  else {
-    freq_table_cat1 = tab_frequency_bins(scoresCat1, bins=bins)
-    freq_table_cat2 = tab_frequency_bins(scoresCat2, bins=bins)
-    bins = paste0('[', bins[1], ', ', bins[2], ')' )
-  }
+  
   
   X_ord = rep(paste0('[', freq_table_cat1[['lower bound']], ', ', freq_table_cat1[['upper bound']], ')' ), freq_table_cat1[['frequency']])
   Y_ord = rep(paste0('[', freq_table_cat2[['lower bound']], ', ', freq_table_cat2[['upper bound']], ')' ), freq_table_cat2[['frequency']])
@@ -62,6 +62,6 @@ vi_butterfly_bin <- function(catField, scaleField, categories=NULL, bins=NULL){
   cats = c(rep(cat1, length(X_ord)), rep(cat2, length(Y_ord)))
   score = c(X_ord, Y_ord)
   
-  vi_butterfly_chart(score, cats, variation='butterfly')
+  vi_butterfly_chart(score, cats, variation='butterfly', ...)
   
 }
