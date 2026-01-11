@@ -83,7 +83,7 @@ vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL,
     xlbl = deparse(substitute(scaleField))
   }
   if (density=='auto'){
-    if (h$equidist){density=FALSE}
+    if (all(diff(bins) == diff(bins)[1])){density=FALSE}
     else {density=TRUE}}
   
   if (show=="count" && density==FALSE){
