@@ -6,6 +6,7 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' @importFrom ggplot2 ggplot
 #' @importFrom ggplot2 geom_histogram
 #' @importFrom ggplot2 aes
+#' @importFrom ggplot2 after_stat
 #' @importFrom ggplot2 coord_flip
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 labs
