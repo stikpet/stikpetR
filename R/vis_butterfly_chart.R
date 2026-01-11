@@ -22,7 +22,7 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' 
 #' This function is shown in this [YouTube video](https://youtu.be/QeyqW5Vk69o) and the diagram is also discussed at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/PyramidChart.html
 #' 
-#' @param bin_field : dataframe field with categories for the rows
+#' @param field : dataframe field with categories for the rows
 #' @param bin_field : dataframe field with categories for the columns
 #' @param field_categories : optional list with selection of categories of field1
 #' @param bin_categories : optional list with selection of categories of field2
@@ -30,6 +30,7 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' @param show : {'count', 'bin-percent', 'field-percent', 'overall-percent'}, optional show either counts or percentage
 #' @param rotate : bool, optional rotate the bars so they appear horizontal. Default is True
 #' @param xlbl : string, optional label for the field axis, if not set the name of the field is used.
+#' @param ylbl : string, optional label for the bin_field axis, if not set the name of the bin_field is used.
 #' @param colors : list, optional vector with two colors, one for each category to use
 #' @param show_grid : bool, optional show a grid on the chart. Default is False
 #' 
@@ -72,6 +73,7 @@ vi_butterfly_chart <- function(field,
                                show='count', 
                                rotate=TRUE, 
                                xlbl=NULL,
+                               ylbl=NULL,
                                colors = c('orange', 'blue'), 
                                show_grid=FALSE){
   
@@ -102,9 +104,11 @@ vi_butterfly_chart <- function(field,
   if(is.null(xlbl)){
     xlbl = deparse(substitute(field))}
   
+  if(is.null(ylbl)){
+    ylbl = deparse(substitute(bin_field))}
   
   if (show=='count'){ylbl = 'frequency'}
-  if (show=='bin-percent'){ylbl = paste0('percent of ', deparse(substitute(bin_field)))}
+  if (show=='bin-percent'){ylbl = paste0('percent of ', ylbl)}
   if (show=='field-percent'){ylbl = paste0('percent of ', xlbl)}
   if (show=='overall-percent'){ylbl = 'percent of overall'}
   
@@ -116,7 +120,7 @@ vi_butterfly_chart <- function(field,
     scale_y_continuous(labels=abs) + 
     xlab(xlbl) + 
     ylab(ylbl) +
-    guides(fill=guide_legend(title=xlbl)) 
+    guides(fill=guide_legend()) 
   
   if (rotate){plot = plot + coord_flip()}
   if (!show_grid){plot = plot + theme_classic()}

@@ -13,11 +13,14 @@ vi_butterfly_chart(
   show = "count",
   rotate = TRUE,
   xlbl = NULL,
+  ylbl = NULL,
   colors = c("orange", "blue"),
   show_grid = FALSE
 )
 }
 \arguments{
+\item{field}{: dataframe field with categories for the rows}
+
 \item{bin_field}{: dataframe field with categories for the columns}
 
 \item{field_categories}{: optional list with selection of categories of field1}
@@ -31,6 +34,8 @@ vi_butterfly_chart(
 \item{rotate}{: bool, optional rotate the bars so they appear horizontal. Default is True}
 
 \item{xlbl}{: string, optional label for the field axis, if not set the name of the field is used.}
+
+\item{ylbl}{: string, optional label for the bin_field axis, if not set the name of the bin_field is used.}
 
 \item{colors}{: list, optional vector with two colors, one for each category to use}
 
