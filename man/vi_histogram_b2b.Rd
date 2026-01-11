@@ -11,8 +11,10 @@ vi_histogram_b2b(
   bins = NULL,
   show = "count",
   density = "auto",
-  title = "histogram",
-  colors = c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
+  xlbl = NULL,
+  rotate = TRUE,
+  colors = c("orange", "blue"),
+  ...
 )
 }
 \arguments{
@@ -22,15 +24,19 @@ vi_histogram_b2b(
 
 \item{categories}{optional list with the two categories to use from bin_field. If not set the first two found will be used}
 
-\item{bins}{optional list with upper bounds of bins to be used, or any of the pre-set options from hist()}
+\item{bins}{optional either a list with parameters to pass to tab_frequency_bins, a dataframe with upper and lower bounds, or simply NULL (default)}
 
 \item{show}{c('count', 'relative'), show either counts or relative count on vertical scale}
 
 \item{density}{c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.}
 
-\item{title}{string, title on top of chart, default is 'histogram'}
+\item{xlbl}{: string, optional label for the field axis, if not set the name of the field is used.}
+
+\item{rotate}{: bool, optional rotate the bars so they appear horizontal. Default is True}
 
 \item{colors}{vector, two colors, one for each category, default is c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))}
+
+\item{...}{optional additional parameters to pass to geom_histogram}
 }
 \value{
 The back-to-back histogram

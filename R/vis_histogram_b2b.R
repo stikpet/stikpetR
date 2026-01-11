@@ -1,4 +1,14 @@
+# Suppress R CMD check note for ggplot variable bindings
+utils::globalVariables(c("Var1", "Var2", "Freq"))
+
 #' Back-to-Back Histogram
+#' 
+#' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 geom_histogram
+#' @importFrom ggplot2 aes
+#' @importFrom ggplot2 coord_flip
+#' @importFrom ggplot2 scale_fill_manual
+#' @importFrom ggplot2 labs
 #' 
 #' @description 
 #' This function creates a simple back-to-back histogram. This is sometimes also referred to as a Pyramid chart or a Dual-Sided histogram (Jelen, 2005).
@@ -12,11 +22,13 @@
 #' @param catField list or dataframe with the categories
 #' @param scaleField list or dataframe with the scores
 #' @param categories optional list with the two categories to use from bin_field. If not set the first two found will be used
-#' @param bins optional list with upper bounds of bins to be used, or any of the pre-set options from hist() 
+#' @param bins optional either a list with parameters to pass to tab_frequency_bins, a dataframe with upper and lower bounds, or simply NULL (default)
 #' @param show c('count', 'relative'), show either counts or relative count on vertical scale
 #' @param density c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.
-#' @param title string, title on top of chart, default is 'histogram'
+#' @param xlbl : string, optional label for the field axis, if not set the name of the field is used.
+#' @param rotate : bool, optional rotate the bars so they appear horizontal. Default is True
 #' @param colors vector, two colors, one for each category, default is c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
+#' @param ... optional additional parameters to pass to geom_histogram
 #' 
 #' @returns
 #' The back-to-back histogram
@@ -30,7 +42,9 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, show='count', density='auto', title='histogram', colors=c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))){
+vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, 
+                             show='count', density='auto', xlbl=NULL, rotate=TRUE, 
+                             colors=c('orange', 'blue'), ...){
   # DATA PREPARATION
   # create dataframe and remove missing values
   df <- na.omit(data.frame(score=scaleField, category=catField))
@@ -54,75 +68,63 @@ vi_histogram_b2b <- function(catField, scaleField, categories=NULL, bins=NULL, s
   #combine this into one long list
   allScores = c(scoresCat1, scoresCat2)
   
-  #if bins not set, use Sturges
-  if (is.null(bins)){
-    bins = "Sturges"}
+  ##determine bins overall
+  freq_table <- switch(
+    class(bins)[1],   # use the first class if bins has multiple
+    "NULL" = tab_frequency_bins(allScores),
+    "list" = do.call(tab_frequency_bins, c(list(data = allScores), bins)),
+    "data.frame" = tab_frequency_bins(allScores, bins = bins),
+    stop("Invalid value for 'bins'")
+  )
   
-  h <- hist(allScores, breaks = bins, plot = FALSE)
-  bins <- h$breaks
+  bins = c(freq_table[, "lower bound"], max(freq_table["upper bound"]))
   
-  xLabel = deparse(substitute(scaleField))
-  
-  h1 <- hist(scoresCat1, breaks=bins, plot = FALSE)
-  h2 <- hist(scoresCat2, breaks=bins, plot = FALSE)
-  
+  if (is.null(xlbl)){
+    xlbl = deparse(substitute(scaleField))
+  }
   if (density=='auto'){
     if (h$equidist){density=FALSE}
     else {density=TRUE}}
   
   if (show=="count" && density==FALSE){
-    # regular counts -> flip second
-    h2$counts = -h2$counts
-    
-    yLabel = "Frequency"
-    histFreq = TRUE
-    # set densities to counts, in case unequal bin-widths
-    h1$density = h1$counts
-    h2$density = h2$counts
-    ylimits = c(min(h2$counts), max(h1$counts))
+    ylabel = 'frequency'
+    hist1 = geom_histogram(data = df[df$category==cat1, ],
+                           aes(x = score, y = after_stat(count), fill = category), 
+                           breaks=bins, ...)
+    hist2 = geom_histogram(data = df[df$category==cat2, ],
+                           aes(x = score, y = -after_stat(count), fill = category), 
+                           breaks=bins, ...)      
   }
-  
-  else if (show=="relative" && density==FALSE){    
-    # regular percent
-    h1$counts <- h1$counts / sum(h1$counts) * 100
-    h2$counts <- -h2$counts / sum(h2$counts) * 100
-    ylimits = c(min(h2$counts), max(h1$counts))
-    # set densities to counts, in case unequal bin-widths
-    h1$density = h1$counts
-    h2$density = h2$counts
-    yLabel = "Percent of category"
-    histFreq = TRUE        
+  if (show=="count" && density==TRUE){
+    ylabel = 'frequency density'
+    hist1 = geom_histogram(data = df[df$category==cat1, ],
+                           aes(x = score, y = after_stat(density*sum(count)), fill = category), 
+                           breaks=bins, ...)
+    hist2 = geom_histogram(data = df[df$category==cat2, ],
+                           aes(x = score, y = -after_stat(density*sum(count)), fill = category), 
+                           breaks=bins, ...)
   }
+  if (show=="relative" && density==FALSE){
+    ylabel = 'percent'
+    hist1 = geom_histogram(data = df[df$category==cat1, ],
+                           aes(x = score, y = after_stat(count/sum(count)*100), fill = category),
+                           breaks=bins, ...)
+    hist2 = geom_histogram(data = df[df$category==cat2, ],
+                           aes(x = score, y = -after_stat(count/sum(count)*100), fill = category), 
+                           breaks=bins, ...)
+  }
+  if (show=="relative" && density==TRUE){
+    ylabel = 'probability density'
+    hist1 = geom_histogram(data = df[df$category==cat1, ],
+                           aes(x = score, y = after_stat(density), fill = category),
+                           breaks=bins, ...)
+    hist2 = geom_histogram(data = df[df$category==cat2, ],
+                           aes(x = score, y = -after_stat(density), fill = category),
+                           breaks=bins, ...)
+  }
+  plot = ggplot() + hist1 + hist2 + labs(x=xlbl, y=ylabel) + 
+    scale_fill_manual(values = setNames(c(colors[1], colors[2]), c(cat1, cat2)))
+  if (rotate){plot = plot + coord_flip()}
   
-  else if (show=="count" && density==TRUE){
-    # frequency density
-    h1$density <- h1$density * length(scoresCat1)
-    h2$density <- -h2$density * length(scoresCat2)
-    ylimits = c(min(h2$density), max(h1$density))
-    yLabel = "Frequency density"
-    histFreq = FALSE        
-  } 
-  
-  else if (show=="relative" && density==TRUE){
-    # relative frequency density
-    h2$density <- -h2$density
-    ylimits = c(min(h2$density), max(h1$density))
-    yLabel = "Relative Frequency density"
-    histFreq = FALSE
-  } 
-  
-  
-  suppressWarnings(plot(h1, freq = histFreq, main=title, xlab = xLabel, ylab = yLabel, col = colors[1], ylim=ylimits, yaxt = "n"))
-  
-  suppressWarnings(plot(h2, freq = histFreq, col = colors[2], add=TRUE))
-  
-  # change negative values on vertical axis to show as positive
-  tick_pos <- pretty(ylimits)
-  axis(2, at = tick_pos, labels = abs(tick_pos))
-  
-  legend("topright",
-         legend = c(cat1, cat2),
-         fill = c(colors[1], colors[2]),
-         border = c("black", "black"),
-         bty = "n")
+  plot
 }
