@@ -64,10 +64,10 @@ vi_butterfly_bin <- function(catField, scaleField, categories=NULL,
   
   dots <- list(...)
   if (!('xlbl' %in% names(dots))){
-    dots$xlbl = deparse(substitute(scaleField))
+    dots$xlbl = deparse(substitute(catField))
   }
   if (!('ylbl' %in% names(dots))){
-    dots$ylbl = deparse(substitute(catField))
+    dots$ylbl = deparse(substitute(scaleField))
   }
   
   do.call(vi_butterfly_chart, c(list(field=score, bin_field=cats, variation='butterfly'), dots))

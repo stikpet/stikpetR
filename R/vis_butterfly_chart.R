@@ -120,7 +120,7 @@ vi_butterfly_chart <- function(field,
     scale_y_continuous(labels=abs) + 
     xlab(xlbl) + 
     ylab(ylbl) +
-    guides(fill=guide_legend()) 
+    guides(fill=guide_legend(title=NULL)) 
   
   if (rotate){plot = plot + coord_flip()}
   if (!show_grid){plot = plot + theme_classic()}
