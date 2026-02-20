@@ -1,7 +1,7 @@
 #' Overlaid Histogram
 #' 
 #' @description 
-#' This function creates a simple overlaid (overlapping) histogram. 
+#' This function creates a simple overlaid (overlapping) histogram. The bins will be including the lower bound and excluding the upper, except the last bin.
 #' 
 #' See **vi_histogram()** for more details on histograms.
 #' 
@@ -49,13 +49,13 @@ vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NUL
   if (is.null(bins)){
     bins = "Sturges"}
   
-  h <- hist(allScores, breaks = bins, plot = FALSE)
+  h <- hist(allScores, breaks = bins, right=FALSE, plot = FALSE)
   bins <- h$breaks
   
   xLabel = deparse(substitute(scaleField))
   
-  h1 <- hist(scoresCat1, breaks=bins, plot = FALSE)
-  h2 <- hist(scoresCat2, breaks=bins, plot = FALSE)
+  h1 <- hist(scoresCat1, breaks=bins, right=FALSE, plot = FALSE)
+  h2 <- hist(scoresCat2, breaks=bins, right=FALSE, plot = FALSE)
   
   if (density=='auto'){
     if (h$equidist){density=FALSE}

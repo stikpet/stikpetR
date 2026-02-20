@@ -36,7 +36,7 @@ vi_histogram_overlay(
 The overlaid histograms
 }
 \description{
-This function creates a simple overlaid (overlapping) histogram.
+This function creates a simple overlaid (overlapping) histogram. The bins will be including the lower bound and excluding the upper, except the last bin.
 
 See \strong{vi_histogram()} for more details on histograms.
 }
