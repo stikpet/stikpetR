@@ -11,8 +11,10 @@ vi_histogram_overlay(
   bins = NULL,
   show = "count",
   density = "auto",
-  title = "histogram",
-  colors = c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
+  title = NULL,
+  xlbl = NULL,
+  colors = c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4)),
+  ...
 )
 }
 \arguments{
@@ -30,13 +32,17 @@ vi_histogram_overlay(
 
 \item{title}{string, title on top of chart, default is 'histogram'}
 
+\item{xlbl}{string, title for the horizontal axis. If set to NULL the name of the catField variable is used.}
+
 \item{colors}{vector, two colors, one for each category, default is c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))}
+
+\item{...}{optional additional parameters to pass to plot()}
 }
 \value{
 The overlaid histograms
 }
 \description{
-This function creates a simple overlaid (overlapping) histogram. The bins will be including the lower bound and excluding the upper, except the last bin.
+This function creates a simple overlaid (overlapping) histogram of two categories. The bins will be including the lower bound and excluding the upper, except the last bin.
 
 See \strong{vi_histogram()} for more details on histograms.
 }

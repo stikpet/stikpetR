@@ -1,7 +1,7 @@
 #' Overlaid Histogram
 #' 
 #' @description 
-#' This function creates a simple overlaid (overlapping) histogram. The bins will be including the lower bound and excluding the upper, except the last bin.
+#' This function creates a simple overlaid (overlapping) histogram of two categories. The bins will be including the lower bound and excluding the upper, except the last bin.
 #' 
 #' See **vi_histogram()** for more details on histograms.
 #' 
@@ -12,7 +12,9 @@
 #' @param show c('count', 'relative'), show either counts or relative count on vertical scale
 #' @param density c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.
 #' @param title string, title on top of chart, default is 'histogram'
+#' @param xlbl string, title for the horizontal axis. If set to NULL the name of the catField variable is used.
 #' @param colors vector, two colors, one for each category, default is c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))
+#' @param ... optional additional parameters to pass to plot()
 #' 
 #' @returns
 #' The overlaid histograms
@@ -21,7 +23,7 @@
 #' P. Stikker. [Companion Website](https://PeterStatistics.com), [YouTube Channel](https://www.youtube.com/stikpet), [Patreon donations](https://www.patreon.com/bePatron?u=19398076)
 #' 
 #' @export
-vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NULL, show='count', density='auto', title='histogram', colors=c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4))){
+vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NULL, show='count', density='auto', title=NULL, xlbl=NULL, colors=c(rgb(0, 0, 1, 1/4), rgb(1, 0, 0, 1/4)), ...){
   # DATA PREPARATION
   # create dataframe and remove missing values
   df <- na.omit(data.frame(score=scaleField, category=catField))
@@ -52,7 +54,9 @@ vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NUL
   h <- hist(allScores, breaks = bins, right=FALSE, plot = FALSE)
   bins <- h$breaks
   
-  xLabel = deparse(substitute(scaleField))
+  if (is.null(xlbl)){
+    xLabel = deparse(substitute(scaleField))}
+  else {xLabel = xlbl}
   
   h1 <- hist(scoresCat1, breaks=bins, right=FALSE, plot = FALSE)
   h2 <- hist(scoresCat2, breaks=bins, right=FALSE, plot = FALSE)
@@ -95,9 +99,9 @@ vi_histogram_overlay <- function(catField, scaleField, categories=NULL, bins=NUL
     histFreq = FALSE
   } 
   
-  suppressWarnings(plot(h1, freq = histFreq, main=title, xlab = xLabel, ylab = yLabel, col = colors[1], ylim=ylimits))
+  suppressWarnings(plot(h1, freq = histFreq, main=title, xlab = xLabel, ylab = yLabel, col = colors[1], ylim=ylimits, ...))
   
-  suppressWarnings(plot(h2, freq = histFreq, col = colors[2], add=TRUE))
+  suppressWarnings(plot(h2, freq = histFreq, col = colors[2], add=TRUE, ...))
   
   legend("topright",
          legend = c(cat1, cat2),
