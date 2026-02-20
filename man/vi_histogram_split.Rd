@@ -4,16 +4,36 @@
 \alias{vi_histogram_split}
 \title{Split Histogram}
 \usage{
-vi_histogram_split(catField, scaleField, categories = NULL, ...)
+vi_histogram_split(
+  catField,
+  scaleField,
+  categories = NULL,
+  bins = NULL,
+  show = "count",
+  density = "auto",
+  shareY = TRUE,
+  xlbl = NULL,
+  ...
+)
 }
 \arguments{
 \item{catField}{list or dataframe with the categories}
 
 \item{scaleField}{list or dataframe with the scores}
 
-\item{categories}{optional list with categories to use}
+\item{categories}{optional list with the two categories to use from bin_field. If not set the first two found will be used}
 
-\item{...}{other parameters for use in geom_histogram function}
+\item{bins}{optional list with upper bounds of bins to be used, or any of the pre-set options from hist()}
+
+\item{show}{c('count', 'relative'), show either counts or relative count on vertical scale}
+
+\item{density}{c('auto', FALSE, TRUE), show (relative) frequency or use (relative) frequency density.}
+
+\item{shareY}{boolean, use same vertical axis range for each category}
+
+\item{xlbl}{string, title for the horizontal axis. If set to NULL the name of the catField variable is used.}
+
+\item{...}{optional additional parameters to pass to plot()}
 }
 \value{
 The split histogram
