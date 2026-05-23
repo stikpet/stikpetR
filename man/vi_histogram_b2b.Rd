@@ -46,7 +46,7 @@ This function creates a simple back-to-back histogram. This is sometimes also re
 
 The back-to-back histogram together with back-to-back stem-and-leaf and split box-plots are described as effective ways to compare two distributions by Lane and Sándor (2009).
 
-The function is shown in this \href{https://youtu.be/nJuel_XSCdo}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
+The function is shown in this \href{https://youtu.be/uyB9YsfZv-g}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
 
 See \strong{vi_histogram()} for more details on histograms.
 }

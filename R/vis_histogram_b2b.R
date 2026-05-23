@@ -16,7 +16,7 @@ utils::globalVariables(c("Var1", "Var2", "Freq"))
 #' 
 #' The back-to-back histogram together with back-to-back stem-and-leaf and split box-plots are described as effective ways to compare two distributions by Lane and Sándor (2009).
 #' 
-#' The function is shown in this [YouTube video](https://youtu.be/nJuel_XSCdo) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/histogram.html)
+#' The function is shown in this [YouTube video](https://youtu.be/uyB9YsfZv-g) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/histogram.html)
 #' 
 #' See **vi_histogram()** for more details on histograms.
 #' 

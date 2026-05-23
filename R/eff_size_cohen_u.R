@@ -1,17 +1,17 @@
 #' Cohen U
 #' @description 
-#' Cohen (1988, p. 23) provided three measures that relate to Cohen's d.
+#' Cohen (1988, p. 23) provided three measures that relate to Cohen's \eqn{d_s} (a.k.a. Hedges g).
 #' \itemize{
 #' \item  \eqn{U_1}, is (supposedly) the proportion of non-overlap between distributions
 #' \item  \eqn{U_2}, is (supposedly) the proportion of overlap between distributions
 #' \item  \eqn{U_3}, is the proportion of one group's scores below the mean of another group
 #' }
 #' 
-#' \eqn{U_1} and \eqn{U_2} are probably the least used of these three, since most likeley Cohen was wrong in his calculation (Grice & Barrett, 2014). A nice interactive visualisation of the relation between Cohen and the Common Language Effect size, can be found at https://rpsychologist.com/therapist-effects. It actually correct's Cohen U.
+#' \eqn{U_1} and \eqn{U_2} are probably the least used of these three, since most likely Cohen was wrong in his calculation (Grice & Barrett, 2014). A nice interactive visualisation of the relation between Cohen and the Common Language Effect size, can be found at https://rpsychologist.com/therapist-effects. It actually corrects Cohen U.
 #' 
 #' By converting each back to Cohen's d, the rule-of-thumb from Cohen d could be used as classification.
 #' 
-#' @param d the Cohen d value
+#' @param d the Cohen d_s value (a.k.a. Hedges g)
 #' @param version c("u3", "u2", "u1"), Optional, the version of Cohen U to determine
 #' 
 #' @returns 
@@ -25,8 +25,7 @@
 #' 
 #' *Symbols used:*
 #' \itemize{
-#'  \item  \eqn{d}, Cohen's d value
-#' \item \eqn{n_i} the number of scores in category i
+#'  \item  \eqn{d}, Cohen's d_s value, the Cohen d for independent samples, a.k.a. Hedges g.
 #' \item  \eqn{\Phi\left(\dots\right)} the cumulative density function of the standard normal distribution
 #' }
 #' 

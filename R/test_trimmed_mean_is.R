@@ -8,10 +8,12 @@
 #' |-------|-----------|---------|
 #' |Student| yes | yes|
 #' |Welch | no | yes|
-#' |Trimmed | yes | no | 
+#' |Yuen-Dixon | yes | no | 
 #' |Yuen-Welch |no | no |
 #' 
-#' The Student and Welch are available as separate functions. The Trimmed Means and Yuen-Welch test are available in this one.
+#' The Student and Welch are available as separate functions. The Yuen-Dixon and Yuen-Welch test are available in this one, each using trimmed means.
+#' 
+#' This function is shown in this [YouTube video](https://youtu.be/Ae20sHdOac4) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/TrimmedMeansIS.html)
 #' 
 #' @param catField A vector with the categorical data
 #' @param scaleField A vector with the scores

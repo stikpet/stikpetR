@@ -43,6 +43,8 @@ There are four similar tests, with different assumptions.\tabular{lll}{
 
 
 The Trimmed and Yuen-Welch can be found in the \strong{ts_trimmed_mean_is()}, and the Welch t-test with the \strong{ts_welch_t_is().}
+
+This function is shown in this \href{https://youtu.be/yKCkSfNz6-Q}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/Student-t.html}{PeterStatistics.com}
 }
 \details{
 The formula used is:

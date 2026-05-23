@@ -14,6 +14,8 @@
 #' 
 #' The Trimmed and Yuen-Welch can be found in the **ts_trimmed_mean_is()**, and the Welch t-test with the **ts_welch_t_is().**
 #' 
+#' This function is shown in this [YouTube video](https://youtu.be/yKCkSfNz6-Q) and the test is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Tests/Student-t.html)
+#' 
 #' @param catField A vector with the categorical data
 #' @param scaleField A vector with the scores
 #' @param categories Optional to indicate which two categories of catField to use, otherwise first two found will be used.

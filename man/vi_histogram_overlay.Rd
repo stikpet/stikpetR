@@ -45,6 +45,8 @@ The overlaid histograms
 This function creates a simple overlaid (overlapping) histogram of two categories. The bins will be including the lower bound and excluding the upper, except the last bin.
 
 See \strong{vi_histogram()} for more details on histograms.
+
+The function is shown in this \href{https://youtu.be/IWIPIFRwaWw}{YouTube video} and the visualisation is also described at \href{https://peterstatistics.com/Terms/Visualisations/histogram.html}{PeterStatistics.com}
 }
 \author{
 P. Stikker. \href{https://PeterStatistics.com}{Companion Website}, \href{https://www.youtube.com/stikpet}{YouTube Channel}, \href{https://www.patreon.com/bePatron?u=19398076}{Patreon donations}

@@ -46,12 +46,14 @@ There are four similar tests, with different assumptions.\tabular{lll}{
    test \tab equal variance \tab normality \cr
    Student \tab yes \tab yes \cr
    Welch \tab no \tab yes \cr
-   Trimmed \tab yes \tab no \cr
+   Yuen-Dixon \tab yes \tab no \cr
    Yuen-Welch \tab no \tab no \cr
 }
 
 
-The Student and Welch are available as separate functions. The Trimmed Means and Yuen-Welch test are available in this one.
+The Student and Welch are available as separate functions. The Yuen-Dixon and Yuen-Welch test are available in this one, each using trimmed means.
+
+This function is shown in this \href{https://youtu.be/Ae20sHdOac4}{YouTube video} and the test is also described at \href{https://peterstatistics.com/Terms/Tests/TrimmedMeansIS.html}{PeterStatistics.com}
 }
 \details{
 \strong{YUEN}

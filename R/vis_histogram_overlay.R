@@ -5,6 +5,8 @@
 #' 
 #' See **vi_histogram()** for more details on histograms.
 #' 
+#' The function is shown in this [YouTube video](https://youtu.be/IWIPIFRwaWw) and the visualisation is also described at [PeterStatistics.com](https://peterstatistics.com/Terms/Visualisations/histogram.html)
+#' 
 #' @param catField list or dataframe with the categories
 #' @param scaleField list or dataframe with the scores
 #' @param categories optional list with the two categories to use from bin_field. If not set the first two found will be used
